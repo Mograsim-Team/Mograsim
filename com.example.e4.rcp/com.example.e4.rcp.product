@@ -3,6 +3,12 @@
 
 <product name="com.example.e4.rcp" id="com.example.e4.rcp.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
+   <aboutInfo>
+      <image path="/com.example.e4.rcp/icons/TestERPC.png"/>
+      <text>
+         kjhgjkhgjk
+      </text>
+   </aboutInfo>
 
    <configIni use="default">
    </configIni>
@@ -14,7 +20,18 @@
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="/com.example.e4.rcp/icons/debug_view.png"/>
+   <windowImages i16="/com.example.e4.rcp/icons/TestERPC16.png" i32="/com.example.e4.rcp/icons/TestERPC32.png" i64="/com.example.e4.rcp/icons/TestERPC64.png" i128="/com.example.e4.rcp/icons/TestERPC128.png"/>
+
+
+   <launcher>
+      <win useIco="false">
+         <bmp/>
+      </win>
+   </launcher>
+
+
+   <vm>
+   </vm>
 
 
    <plugins>
