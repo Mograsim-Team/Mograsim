@@ -32,7 +32,7 @@
 ### Weiterführende Ideen
 1.  x86 Modell
 2.  ARM Modell
-
+3.  Signalgraphen
 
 ### Szenarios
 <details><summary>
@@ -46,10 +46,22 @@ Das Programm lässt sich entweder über den Eclipse Marketplace einfach installi
 Das Programm muss sich ohne nennenswerten Aufwand oder Kentnisse vom Benutzer rückstandslos entfernen lassen.<sup>[A]</sup>
 
 #### 03. Programmstart
-Das Programm bzw. Plugin startet schnell (unter 10 sec.; besser unter 5 sec).<sup>[A]</sup> Bei dem ersten Programmstart ist ein Willkommensfenster zu sehen, das auf erklärende Resourcen verweist, den Nutzer grüßt und ggf. auf die (Sprach-)Einstellungen hinweist.<sup>[B]</sup> Es wird bestenfalls auf ein Beispielprojekt verwiesen (kann erstellt werden?) um dem Nutzer zu ermöglichen, sich damit vertraut zu machen.<sup>[C]</sup>
+Das Programm bzw. Plugin startet schnell (unter 10 sec.; besser unter 5 sec).<sup>[A]</sup> Bei dem ersten Programmstart ist ein Willkommensfenster zu sehen, das auf erklärende Resourcen verweist, den Nutzer grüßt und ggf. auf die (Sprach-)Einstellungen hinweist.<sup>[B]</sup> Es wird bestenfalls auf ein Beispielprojekt verwiesen (kann erstellt werden?) um dem Nutzer zu ermöglichen, sich damit vertraut zu machen.<sup>[C]</sup> Ein schnell Link zum Erstellen eines neuen Projekts/Simulation/... wird angezeigt.<sup>[D]</sup>
 
 #### 04. Programmende
-Sollten bei Beenden des Programms oder Programmabsturz nicht persistierte Daten vorliegen, muss dafür gesorgt werden, dass diese nicht verloren gehen.<sup>[A]</sup> Enweder durch einen Dialog<sup>[B]</sup>, oder durch erzeugte Recovery-Dateien<sup>[C]</sup>.
+Sollten bei Beenden des Programms oder Programmabsturz nicht persistierte Daten vorliegen, muss dafür gesorgt werden, dass diese nicht verloren gehen.<sup>[A]</sup> Enweder durch einen Dialog<sup>[B]</sup>, oder durch erzeugte Recovery-Dateien<sup>[C]</sup>. Bei Absturz des Programms wird eine passende und aufschlussreiche Fehlermeldung angezeigt, bestenfalls mit Link zu einer Report-Möglichkeit.<sup>[D]</sup>
+
+#### 05. Einstellungen
+Die Hauptextfarbe und Schriftgröße muss einstellbar sein<sup>[A]</sup>, besser noch Hintergrund- und Markierungsfarben und Schriftstil.<sup>[B]</sup> Die Einstellung der Sprache muss möglich sein.<sup>[C]</sup>
+
+#### 06. Einstieg
+Das Einstiegsprojekt zeigt zu Beginn die passende Ansicht an, die Mikroprogrammierung ist wie bei dem Am2900ME ungehindert möglich.<sup>[A]</sup> Bestenfalls ist dieses beim (erstmaligen) Start direkt geöffnet.<sup>[B]</sup> Wichtige Fenster (v.a. die grafische Darstellung) sind direkt sichtbar, oder zumindest in einem Tab geöffnet (müssen nicht gesucht werden).<sup>[C]</sup>
+
+#### 07. Nutzung der Visualisierung
+Die Visualisierung soll möglichst der Vorlesung entsprechen.<sup>[A]</sup> Sie lässt sich transformieren (z.B. Zoom mit dem Mausrad, Verschieben mit Mausklick oder Mausklick und Alt) und wieder zurücksetzen.<sup>[B]</sup>
+
+#### 08. Hilfestellung
+Mit dem Produkt wird eine offline-Dokumentation mitgeliefert. (bestenfalls DE und EN)<sup>[A]</sup> Mit Rechtsklick lässt sich über ein Kontextmenü der Teil der Dokumentation öffnen, der das angeklickte und seine Funktion beschreibt. Dies sollte mit fast allem möglich sein.<sup>[B]</sup> Bleibt man mit der Maus länger über einem GUI-Bestandteil, wird eine kurze Beschreibung/Hilfe dazu angezeigt (Tooltip).<sup>[C]</sup>
 
 ### Fügt hier eure eigenen dazu, fortlaufend nummeriert und ggf. mit <sup>[A,B,C,..]</sup> genauer spezifiziert.
 
