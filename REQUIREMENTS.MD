@@ -36,7 +36,9 @@
 
 ### Szenarios
 <details><summary>
-Alle Szenarios Anzeigen...
+
+__*Alle Szenarios anzeigen*__
+
 </summary><p>
 
 #### 01. Installation
@@ -63,7 +65,7 @@ Die Visualisierung soll möglichst der Vorlesung entsprechen.<sup>[A]</sup> Sie 
 #### 08. Hilfestellung
 Mit dem Produkt wird eine offline-Dokumentation mitgeliefert. (bestenfalls DE und EN)<sup>[A]</sup> Mit Rechtsklick lässt sich über ein Kontextmenü der Teil der Dokumentation öffnen, der das angeklickte und seine Funktion beschreibt. Dies sollte mit fast allem möglich sein.<sup>[B]</sup> Bleibt man mit der Maus länger über einem GUI-Bestandteil, wird eine kurze Beschreibung/Hilfe dazu angezeigt (Tooltip).<sup>[C]</sup>
 
-### Fügt hier eure eigenen dazu, fortlaufend nummeriert und ggf. mit <sup>[A,B,C,..]</sup> genauer spezifiziert.
+#### Fügt hier eure eigenen dazu, fortlaufend nummeriert und ggf. mit <sup>[A,B,C,..]</sup> genauer spezifiziert.
 
 </p></details>
 
