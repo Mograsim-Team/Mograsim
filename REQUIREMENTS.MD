@@ -99,7 +99,8 @@ Mit dem Produkt wird eine offline-Dokumentation mitgeliefert. (bestenfalls DE un
 - [https://download.eclipse.org/eclipse/downloads/](https://download.eclipse.org/eclipse/downloads/) - Eclipse Project
 - [https://www.vogella.com/tutorials/EclipseRCP/article.html](https://www.vogella.com/tutorials/EclipseRCP/article.html) - **Eclipse RPC Tutorial**
 - [https://github.com/eclipse/gef/wiki](https://github.com/eclipse/gef/wiki) - **Wiki für das Grafikframework**
-- [https://github.com/eclipse/MaisiKoleni/Am2900ME](https://github.com/eclipse/MaisiKoleni/Am2900ME)
+- [https://github.com/eclipse/MaisiKoleni/Am2900ME](https://github.com/eclipse/MaisiKoleni/Am2900ME) - der geistige Vorgänger
+- [https://github.com/Haspamelodica/Am2900ME_swt](https://github.com/Haspamelodica/Am2900ME_swt) -  ... auch mit SWT
 
 ### Rechtliches
 <details><summary>MIT Lizenz? - [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/)</summary><p>
