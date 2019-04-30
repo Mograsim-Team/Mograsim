@@ -32,20 +32,26 @@
 ### Weiterführende Ideen
 1.  x86 Modell
 2.  ARM Modell
-    
+
+<details><summary>
+### Szenarios
+</summary><p>
+#### 1.
+</p></details>
+
 ## Technologie-Stack
 *   Git (anscheinend über Gitlab)
 *   Eclipse RCP
-	-  (noch zu testen)
+    -  (noch zu testen)
 *   Java
-	- Version 8?
-	-  Version 10?
-	-   Version 12?
+    -   Version 8?
+    -   Version 10?
+    -   Version 12?
 *   Bibliotheken
     -   Lombok? [https://projectlombok.org/features/all](https://projectlombok.org/features/all)
-		Sauberer und sicherer Code; aber zusätzliche Dep.
-	-   JUnit 5.4.x ? AssertJ? [http://joel-costigliola.github.io/assertj/index.html](http://joel-costigliola.github.io/assertj/index.html)
-	- (Apache Commons?)
+	Sauberer und sicherer Code; aber zusätzliche Dep.
+    -   JUnit 5.4.x ? AssertJ? [http://joel-costigliola.github.io/assertj/index.html](http://joel-costigliola.github.io/assertj/index.html)
+    - (Apache Commons?)
     Sehr weit verbreitete und gut designte & getestete Lib;  
     aber zusätzliche Dep.
     - Sonstiges? Logging? Log4j
@@ -60,14 +66,16 @@
 
 ## Sonstiges
 ### Nützliche Links
-[https://wiki.eclipse.org/Rich_Client_Platform](https://wiki.eclipse.org/Rich_Client_Platform) -Links
-[https://wiki.eclipse.org/User_Interface_Guidelines](https://wiki.eclipse.org/User_Interface_Guidelines) - etwas alt, aber nützlich
-[https://download.eclipse.org/eclipse/downloads/](https://download.eclipse.org/eclipse/downloads/) - Eclipse Project
-[https://www.vogella.com/tutorials/EclipseRCP/article.html](https://www.vogella.com/tutorials/EclipseRCP/article.html) - Eclipse RPC Tutorial
-[https://github.com/eclipse/gef/wiki](https://github.com/eclipse/gef/wiki) - Wiki für das Grafikframework
+- [https://wiki.eclipse.org/Rich_Client_Platform](https://wiki.eclipse.org/Rich_Client_Platform) -Links
+- [https://wiki.eclipse.org/User_Interface_Guidelines](https://wiki.eclipse.org/User_Interface_Guidelines) - etwas alt, aber nützlich
+- [https://download.eclipse.org/eclipse/downloads/](https://download.eclipse.org/eclipse/downloads/) - Eclipse Project
+- [https://www.vogella.com/tutorials/EclipseRCP/article.html](https://www.vogella.com/tutorials/EclipseRCP/article.html) - **Eclipse RPC Tutorial**
+- [https://github.com/eclipse/gef/wiki](https://github.com/eclipse/gef/wiki) - **Wiki für das Grafikframework**
+- [https://github.com/eclipse/MaisiKoleni/Am2900ME](https://github.com/eclipse/MaisiKoleni/Am2900ME)
 
 ### Rechtliches
 <details><summary>MIT Lizenz? - [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/)</summary><p>
+
 >MIT License
 >
 >Copyright (c) 2019 Christian Femers, Daniel Kirschten, Fabian Stemmler
@@ -91,5 +99,6 @@
 >LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 >OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 >SOFTWARE.
+
 </p></details>
 Muss ggf. Eclipse Public License verwendet werden wegen Copyleft?
