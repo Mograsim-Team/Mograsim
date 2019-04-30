@@ -33,10 +33,26 @@
 1.  x86 Modell
 2.  ARM Modell
 
-<details><summary>
+
 ### Szenarios
+<details><summary>
+Alle Szenarios Anzeigen...
 </summary><p>
-#### 1.
+
+#### 01. Installation
+Das Programm lässt sich entweder über den Eclipse Marketplace einfach installieren (oder als Eclipse Projekt) oder **als eigenes Eclipse RPC Projekt direkt herunterladen (ggf. entpacken) und starten.**<sup>[A]</sup> Das Programm / Plugin lässt sich auf Windows (7+), MacOS und Linux ausführen; alle verbreitete Hardware nach 2010 mit 64 Bit OS sollte funktionieren.<sup>[B]</sup> Es muss auf den Rechnern in den TUM Rechnerhallen funktionieren.<sup>[C]</sup>
+
+#### 02. Deinstallation
+Das Programm muss sich ohne nennenswerten Aufwand oder Kentnisse vom Benutzer rückstandslos entfernen lassen.<sup>[A]</sup>
+
+#### 03. Programmstart
+Das Programm bzw. Plugin startet schnell (unter 10 sec.; besser unter 5 sec).<sup>[A]</sup> Bei dem ersten Programmstart ist ein Willkommensfenster zu sehen, das auf erklärende Resourcen verweist, den Nutzer grüßt und ggf. auf die (Sprach-)Einstellungen hinweist.<sup>[B]</sup> Es wird bestenfalls auf ein Beispielprojekt verwiesen (kann erstellt werden?) um dem Nutzer zu ermöglichen, sich damit vertraut zu machen.<sup>[C]</sup>
+
+#### 04. Programmende
+Sollten bei Beenden des Programms oder Programmabsturz nicht persistierte Daten vorliegen, muss dafür gesorgt werden, dass diese nicht verloren gehen.<sup>[A]</sup> Enweder durch einen Dialog<sup>[B]</sup>, oder durch erzeugte Recovery-Dateien<sup>[C]</sup>.
+
+### Fügt hier eure eigenen dazu, fortlaufend nummeriert und ggf. mit <sup>[A,B,C,..]</sup> genauer spezifiziert.
+
 </p></details>
 
 ## Technologie-Stack
