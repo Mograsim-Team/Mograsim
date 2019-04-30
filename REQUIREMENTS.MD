@@ -67,10 +67,7 @@
 [https://github.com/eclipse/gef/wiki](https://github.com/eclipse/gef/wiki) - Wiki für das Grafikframework
 
 ### Rechtliches
-MIT Lizenz? - [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/)
-
-  
-
+<details><summary>MIT Lizenz? - [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/)</summary><p>
 >MIT License
 >
 >Copyright (c) 2019 Christian Femers, Daniel Kirschten, Fabian Stemmler
@@ -94,5 +91,5 @@ MIT Lizenz? - [https://choosealicense.com/licenses/mit/](https://choosealicense.
 >LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 >OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 >SOFTWARE.
-
+</p></details>
 Muss ggf. Eclipse Public License verwendet werden wegen Copyleft?
