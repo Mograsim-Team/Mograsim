@@ -1,6 +1,8 @@
 # Rechnerarchitektur GP 2019
 #### Modularer Grafischer Schaltkreis Simulator (für die MI-Maschine)
 
+*Ihr könnt hier gerne nach belieben Dinge ändern, haltet euch nicht zurück^^*
+
 ## Anforderungen
 
 ### Pflichtfeatures
@@ -35,11 +37,7 @@
 3.  Signalgraphen
 
 ### Szenarios
-<details><summary>
-
-__*Alle Szenarios anzeigen*__
-
-</summary><p>
+<details><summary><strong>Alle Szenarios anzeigen</strong></summary><p>
 
 #### 01. Installation
 Das Programm lässt sich entweder über den Eclipse Marketplace einfach installieren (oder als Eclipse Projekt) oder **als eigenes Eclipse RPC Projekt direkt herunterladen (ggf. entpacken) und starten.**<sup>[A]</sup> Das Programm / Plugin lässt sich auf Windows (7+), MacOS und Linux ausführen; alle verbreitete Hardware nach 2010 mit 64 Bit OS sollte funktionieren.<sup>[B]</sup> Es muss auf den Rechnern in den TUM Rechnerhallen funktionieren.<sup>[C]</sup>
