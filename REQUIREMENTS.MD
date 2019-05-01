@@ -40,7 +40,7 @@
 <details><summary><strong>Alle Szenarios anzeigen</strong></summary><p>
 
 #### 01. Installation
-Das Programm lässt sich entweder über den Eclipse Marketplace einfach installieren (oder als Eclipse Projekt) oder **als eigenes Eclipse RPC Projekt direkt herunterladen (ggf. entpacken) und starten.**<sup>[A]</sup> Das Programm / Plugin lässt sich auf Windows (7+), MacOS und Linux ausführen; alle verbreitete Hardware nach 2010 mit 64 Bit OS sollte funktionieren.<sup>[B]</sup> Es muss auf den Rechnern in den TUM Rechnerhallen funktionieren.<sup>[C]</sup>
+Das Programm lässt sich entweder über den Eclipse Marketplace einfach installieren (oder als Eclipse Projekt) oder als eigenes Eclipse RPC Projekt direkt herunterladen (ggf. entpacken) und starten.<sup>[A]</sup> Das Programm / Plugin lässt sich auf Windows (7+), MacOS und Linux ausführen; alle verbreitete Hardware nach 2010 mit 64 Bit OS sollte funktionieren.<sup>[B]</sup> Es muss auf den Rechnern in den TUM Rechnerhallen funktionieren.<sup>[C]</sup>
 
 #### 02. Deinstallation
 Das Programm muss sich ohne nennenswerten Aufwand oder Kentnisse vom Benutzer rückstandslos entfernen lassen.<sup>[A]</sup>
@@ -61,7 +61,7 @@ Das Einstiegsprojekt zeigt zu Beginn die passende Ansicht an, die Mikroprogrammi
 Die Visualisierung soll möglichst der Vorlesung entsprechen.<sup>[A]</sup> Sie lässt sich transformieren (z.B. Zoom mit dem Mausrad, Verschieben mit Mausklick oder Mausklick und Alt) und wieder zurücksetzen.<sup>[B]</sup>
 
 #### 08. Hilfestellung
-Mit dem Produkt wird eine offline-Dokumentation mitgeliefert. (bestenfalls DE und EN)<sup>[A]</sup> Mit Rechtsklick lässt sich über ein Kontextmenü der Teil der Dokumentation öffnen, der das angeklickte und seine Funktion beschreibt. Dies sollte mit fast allem möglich sein.<sup>[B]</sup> Bleibt man mit der Maus länger über einem GUI-Bestandteil, wird eine kurze Beschreibung/Hilfe dazu angezeigt (Tooltip).<sup>[C]</sup>
+Mit dem Produkt wird eine offline-Dokumentation mitgeliefert. (bestenfalls DE und EN)<sup>[A]</sup> Mit Rechtsklick lässt sich über ein Kontextmenü der Teil der Dokumentation öffnen, der das angeklickte und seine Funktion beschreibt (Vorbild Cinema4D). Dies sollte mit fast allem möglich sein.<sup>[B]</sup> Bleibt man mit der Maus länger über einem GUI-Bestandteil, wird eine kurze Beschreibung/Hilfe dazu angezeigt (Tooltip).<sup>[C]</sup>
 
 #### Fügt hier eure eigenen dazu, fortlaufend nummeriert und ggf. mit <sup>[A,B,C,..]</sup> genauer spezifiziert.
 
