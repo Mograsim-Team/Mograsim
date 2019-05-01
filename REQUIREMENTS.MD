@@ -76,8 +76,6 @@ Mit dem Produkt wird eine offline-Dokumentation mitgeliefert. (bestenfalls DE un
     -   Version 10?
     -   Version 12?
 *   Bibliotheken
-    -   Lombok? [https://projectlombok.org/features/all](https://projectlombok.org/features/all)
-	Sauberer und sicherer Code; aber zusätzliche Dep.
     -   JUnit 5.4.x ? AssertJ? [http://joel-costigliola.github.io/assertj/index.html](http://joel-costigliola.github.io/assertj/index.html)
     - (Apache Commons?)
     Sehr weit verbreitete und gut designte & getestete Lib;  
