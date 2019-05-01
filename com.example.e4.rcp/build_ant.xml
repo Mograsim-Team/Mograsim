@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="plugin_export" name="build">
+	<target name="plugin_export">
+		<pde.exportPlugins destination="K:\Java-Programme und Einstellungen\testERPC" exportSource="false" exportType="directory" plugins="com.example.e4.rcp" qualifier="201905011926" useJARFormat="true"/>
+	</target>
+</project>

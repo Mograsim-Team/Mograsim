@@ -9,12 +9,20 @@
             application="org.eclipse.e4.ui.workbench.swt.E4Application"
             name="com.example.e4.rcp">
          <property
-               name="applicationCSS"
-               value="platform:/plugin/com.example.e4.rcp/css/default.css">
-         </property>
-         <property
                name="appName"
                value="com.example.e4.rcp">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/TestERPC.png">
+         </property>
+         <property
+               name="aboutText"
+               value="kjhgjkhgjk">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/TestERPC16.png,icons/TestERPC32.png,icons/TestERPC64.png,icons/TestERPC128.png">
          </property>
       </product>
    </extension>

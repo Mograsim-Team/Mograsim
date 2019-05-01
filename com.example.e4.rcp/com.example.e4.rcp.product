@@ -14,7 +14,7 @@
    </configIni>
 
    <launcherArgs>
-      <programArgs>-clearPersistedState
+      <programArgs>-clearPersistedState -nl de
       </programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
@@ -36,9 +36,11 @@
 
    <plugins>
       <plugin id="com.example.e4.rcp"/>
+      <plugin id="com.example.e4.rcp.nl1" fragment="true"/>
       <plugin id="com.ibm.icu"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
+      <plugin id="javax.xml"/>
       <plugin id="org.apache.batik.constants"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.i18n"/>
@@ -91,6 +93,7 @@
       <plugin id="org.eclipse.equinox.event"/>
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
+      <plugin id="org.eclipse.fx.osgi" fragment="true"/>
       <plugin id="org.eclipse.jface"/>
       <plugin id="org.eclipse.jface.databinding"/>
       <plugin id="org.eclipse.osgi"/>

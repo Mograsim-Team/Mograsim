@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Rcp
+Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: com.example.e4.rcp;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: EXAMPLE
+Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.eclipse.core.runtime;bundle-version="0.0.0",
  org.eclipse.swt;bundle-version="0.0.0",
@@ -15,6 +15,9 @@ Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.eclipse.e4.ui.di;bundle-version="0.0.0",
  org.eclipse.e4.core.contexts;bundle-version="0.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-Localization: OSGI-INF/l10n/bundle
 Import-Package: javax.annotation;version="1.0.0";resolution:=optional,
  javax.inject;version="1.0.0"
 Automatic-Module-Name: com.example.e4.rcp
+Export-Package: com.example.e4.rcp.handlers,
+ com.example.e4.rcp.parts

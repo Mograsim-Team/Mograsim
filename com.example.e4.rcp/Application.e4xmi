@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.window.main" selectedElement="_6wlLksgZEeSyMNYR5xypkQ" label="Eclipse 4 RCP Application" iconURI="platform:/plugin/com.example.e4.rcp/icons/TestERPC16.png" tooltip="Hauptfenster" width="500" height="400">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.window.main" selectedElement="_6wlLksgZEeSyMNYR5xypkQ" label="%trimmedwindow.label.1" iconURI="platform:/plugin/com.example.e4.rcp/icons/TestERPC16.png" tooltip="%trimmedwindow.tooltip.1" width="500" height="400">
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.partsashcontainer.sample">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.partstack.sample">
-        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.part.sample" contributionURI="bundleclass://com.example.e4.rcp/com.example.e4.rcp.parts.SamplePart" label="Sample Part" iconURI="platform:/plugin/com.example.e4.rcp/icons/home.png"/>
+        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.part.sample" contributionURI="bundleclass://com.example.e4.rcp/com.example.e4.rcp.parts.SamplePart" label="%part.label.1" iconURI="platform:/plugin/com.example.e4.rcp/icons/home.png"/>
       </children>
       <children xsi:type="basic:PartStack" xmi:id="_IcuwAGpsEemMm_uKcWEHow" elementId="com.example.e4.rcp.partstack.0">
-        <children xsi:type="basic:Part" xmi:id="_HdzpoGpsEemMm_uKcWEHow" elementId="com.example.e4.rcp.part.notherpart" contributionURI="bundleclass://com.example.e4.rcp/com.example.e4.rcp.parts.NPart" label="Nother Part" iconURI="platform:/plugin/com.example.e4.rcp/icons/debug_view.png" closeable="true"/>
+        <children xsi:type="basic:Part" xmi:id="_HdzpoGpsEemMm_uKcWEHow" elementId="com.example.e4.rcp.part.notherpart" contributionURI="bundleclass://com.example.e4.rcp/com.example.e4.rcp.parts.NPart" label="%part.label.2" iconURI="platform:/plugin/com.example.e4.rcp/icons/debug_view.png" closeable="true"/>
       </children>
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
-      <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="File">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.handleditem.file.open" label="Open" iconURI="platform:/plugin/com.example.e4.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.handleditem.save" label="Save" iconURI="platform:/plugin/com.example.e4.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.handleditem.quit" label="Quit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+      <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="%menu.label.1">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.handleditem.file.open" label="%handledmenuitem.label.1" iconURI="platform:/plugin/com.example.e4.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.handleditem.save" label="%handledmenuitem.label.2" iconURI="platform:/plugin/com.example.e4.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.handleditem.quit" label="%handledmenuitem.label.3" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
       </children>
-      <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+      <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="%menu.label.2">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.handleditem.about" label="%handledmenuitem.label.4" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="com.example.e4.rcp.trimbar.top">
@@ -40,10 +40,10 @@
     <children xmi:id="_6wlLesgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
     <children xmi:id="_6wlLe8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
   </rootContext>
-  <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
-  <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
-  <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
-  <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="%command.commandname.1"/>
+  <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="%command.commandname.2"/>
+  <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="%command.commandname.3"/>
+  <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="%command.commandname.4"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
