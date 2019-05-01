@@ -36,8 +36,8 @@
 2.  ARM Modell
 3.  Signalgraphen
 
-### Szenarios
-<details><summary><strong>Alle Szenarios anzeigen</strong></summary><p>
+### Use Cases
+<details><summary><strong>Alle Use Cases anzeigen</strong></summary><p>
 
 #### 01. Installation
 Das Programm lässt sich entweder über den Eclipse Marketplace einfach installieren (oder als Eclipse Projekt) oder als eigenes Eclipse RPC Projekt direkt herunterladen (ggf. entpacken) und starten.<sup>[A]</sup> Das Programm / Plugin lässt sich auf Windows (7+), MacOS und Linux ausführen; alle verbreitete Hardware nach 2010 mit 64 Bit OS sollte funktionieren.<sup>[B]</sup> Es muss auf den Rechnern in den TUM Rechnerhallen funktionieren.<sup>[C]</sup>
