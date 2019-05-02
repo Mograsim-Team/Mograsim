@@ -63,6 +63,12 @@ Die Visualisierung soll möglichst der Vorlesung entsprechen.<sup>[A]</sup> Sie 
 #### 08. Hilfestellung
 Mit dem Produkt wird eine offline-Dokumentation mitgeliefert. (bestenfalls DE und EN)<sup>[A]</sup> Mit Rechtsklick lässt sich über ein Kontextmenü der Teil der Dokumentation öffnen, der das angeklickte und seine Funktion beschreibt (Vorbild Cinema4D). Dies sollte mit fast allem möglich sein.<sup>[B]</sup> Bleibt man mit der Maus länger über einem GUI-Bestandteil, wird eine kurze Beschreibung/Hilfe dazu angezeigt (Tooltip).<sup>[C]</sup>
 
+#### 09. Dateihandhabung
+Die Dateien sollten möglichst menschenlesbar sein, z.B. in CSV-Format, um Kommunikation mit anderer Software und Änderungen durch den Nutzer zu ermöglichen.<sup>[A]</sup> Die Dateien enthalten eine Versionsnummer, um Abwärtskompatibilität und hilfreiche Fehlermeldungen zu ermöglichen.<sup>[B]</sup>
+
+#### 10. Entwicklerunterstützung
+Das Projekt soll sich einfach bauen/kompilieren/exportieren lassen, es muss beschrieben werden wie das möglich ist.<sup>[A]</sup> Die Verbreitung zur Anwendung soll ebenfalls unproblematisch sein.<sup>[B]</sup>
+
 #### Fügt hier eure eigenen dazu, fortlaufend nummeriert und ggf. mit <sup>[A,B,C,..]</sup> genauer spezifiziert.
 
 </p></details>
