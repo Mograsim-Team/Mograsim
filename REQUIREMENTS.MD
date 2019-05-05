@@ -73,6 +73,10 @@ Das Projekt soll sich einfach bauen/kompilieren/exportieren lassen, es muss besc
 
 </p></details>
 
+### UML und Ähnliches
+#### Grobe Struktur
+![image](https://user-images.githubusercontent.com/11130248/57186855-aae24600-6ee6-11e9-88b4-371622d43adc.png)
+
 ## Technologie-Stack
 *   Git (anscheinend über Gitlab)
 *   Eclipse RCP
