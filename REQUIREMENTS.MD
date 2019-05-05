@@ -111,7 +111,10 @@ Das Projekt soll sich einfach bauen/kompilieren/exportieren lassen, es muss besc
 - [https://github.com/Haspamelodica/Am2900ME_swt](https://github.com/Haspamelodica/Am2900ME_swt) -  ... auch mit SWT
 
 ### Rechtliches
-<details><summary>MIT Lizenz? - [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/)</summary><p>
+<details><summary>
+MIT Lizenz? - https://choosealicense.com/licenses/mit/
+
+</summary><p>
 
 >MIT License
 >
