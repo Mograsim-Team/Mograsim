@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: com.example.e4.rcp.nl1 Fragment
-Bundle-SymbolicName: com.example.e4.rcp.nl1
-Bundle-Version: 1.0.0
-Fragment-Host: com.example.e4.rcp;bundle-version="[1.0.0,1.1.0)"
-Automatic-Module-Name: com.example.e4.rcp.nl1
