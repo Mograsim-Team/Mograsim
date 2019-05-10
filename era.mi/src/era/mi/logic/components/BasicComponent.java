@@ -1,8 +1,8 @@
 package era.mi.logic.components;
 
 import era.mi.logic.Simulation;
-import era.mi.logic.WireArray;
-import era.mi.logic.WireArrayObserver;
+import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.WireArrayObserver;
 
 public abstract class BasicComponent implements WireArrayObserver
 {

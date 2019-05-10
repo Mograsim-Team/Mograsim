@@ -1,8 +1,8 @@
 package era.mi.logic.components;
 
 import era.mi.logic.Bit;
-import era.mi.logic.WireArray;
-import era.mi.logic.WireArrayObserver;
+import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.WireArrayObserver;
 
 public class Splitter implements WireArrayObserver
 {
@@ -16,9 +16,9 @@ public class Splitter implements WireArrayObserver
 		input.addObserver(this);
 		int length = 0;
 		for(WireArray out : outputs)
-			length += out.length();
+			length += out.length;
 		
-		if(input.length() != length)
+		if(input.length != length)
 			throw new IllegalArgumentException("The input of splitting one into n WireArrays must have length = a1.length() + a2.length() + ... + an.length().");
 	}
 
@@ -28,10 +28,10 @@ public class Splitter implements WireArrayObserver
 		Bit[] inputBits = input.getValues();
 		for(int i = 0; i < outputs.length; i++)
 		{
-			Bit[] outputBits = new Bit[outputs[i].length()];
-			System.arraycopy(inputBits, startIndex, outputBits, 0, outputs[i].length());
+			Bit[] outputBits = new Bit[outputs[i].length];
+			System.arraycopy(inputBits, startIndex, outputBits, 0, outputs[i].length);
 			outputs[i].feedSignals(outputBits);
-			startIndex += outputs[i].length();
+			startIndex += outputs[i].length;
 		}
 	}
 

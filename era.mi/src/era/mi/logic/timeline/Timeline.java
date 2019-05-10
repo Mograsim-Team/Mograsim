@@ -15,7 +15,6 @@ public class Timeline
 	public Timeline(int initCapacity)
 	{
 		events = new PriorityQueue<InnerEvent>(initCapacity, (a, b) -> {
-			//Is this really necessary? If only ints are allowed as relative timing, the difference should always be an int
 			long difference = a.getTiming() - b.getTiming();
 			if(difference == 0)
 				return 0;

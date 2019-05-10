@@ -1,12 +1,14 @@
 package era.mi.logic.components.gates;
 
 import era.mi.logic.Util;
-import era.mi.logic.WireArray;
 import era.mi.logic.components.BasicComponent;
+import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.WireArray.WireArrayInput;
 
 public class XorGate extends BasicComponent
 {
 	private WireArray a, b, out;
+	private WireArrayInput outI;
 	
 	public XorGate(int processTime, WireArray a, WireArray b, WireArray out)
 	{
@@ -20,7 +22,7 @@ public class XorGate extends BasicComponent
 
 	protected void compute()
 	{
-		out.feedSignals(Util.xor(a.getValues(), b.getValues()));
+		outI.feedSignals(Util.xor(a.getValues(), b.getValues()));
 	}
 
 	public WireArray getA()

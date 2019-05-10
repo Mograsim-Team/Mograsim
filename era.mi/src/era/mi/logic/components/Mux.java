@@ -1,7 +1,7 @@
 package era.mi.logic.components;
 
 import era.mi.logic.Bit;
-import era.mi.logic.WireArray;
+import era.mi.logic.wires.WireArray;
 
 /**
  * Models a Multiplexer. A is selected when select bit is 1, B when select bit is 0. Outputs X otherwise.
@@ -24,8 +24,8 @@ public class Mux extends BasicComponent
 	public Mux(int processTime, WireArray a, WireArray b, WireArray select, WireArray out)
 	{
 		super(processTime);
-		size = a.length();
-		if(b.length() != out.length() || b.length() != size)
+		size = a.length;
+		if(b.length != out.length || b.length != size)
 			throw new IllegalArgumentException("All MUX wire arrays must be of uniform length!");
 		this.a = a;
 		a.addObserver(this);

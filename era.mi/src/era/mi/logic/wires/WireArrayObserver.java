@@ -1,4 +1,4 @@
-package era.mi.logic;
+package era.mi.logic.wires;
 
 public interface WireArrayObserver
 {
