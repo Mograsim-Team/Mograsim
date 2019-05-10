@@ -291,5 +291,17 @@ public class WireArray
 				bits[i] = Bit.Z;
 			feedSignals(bits);
 		}
+		
+		@Override
+		public String toString()
+		{
+			return Arrays.toString(values);
+		}
+	}
+
+	@Override
+	public String toString()
+	{
+		return String.format("wire 0x%08x value: %s inputs: %s", hashCode(), Arrays.toString(values), inputs);
 	}
 }

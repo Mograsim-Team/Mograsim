@@ -33,6 +33,12 @@ public class Timeline
 		currentTime = first.getTiming();
 		first.run();
 	}
+	
+	public void executeAll()
+	{
+		while (hasNext())
+			executeNext();
+	}
 
 	public long getSimulationTime()
 	{
