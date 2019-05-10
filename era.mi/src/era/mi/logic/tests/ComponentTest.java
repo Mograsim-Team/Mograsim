@@ -3,15 +3,13 @@ package era.mi.logic.tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.function.LongConsumer;
 
 import org.junit.jupiter.api.Test;
 
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
-import era.mi.logic.components.Merger2;
-import era.mi.logic.components.Mux;
 import era.mi.logic.components.Mux2;
-import era.mi.logic.components.Splitter;
 import era.mi.logic.components.gates.AndGate;
 import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.components.gates.OrGate;
@@ -244,5 +242,50 @@ class ComponentTest
 			Simulation.TIMELINE.executeNext();
 		}
 		assertTrue(Arrays.equals(w.getValues(), new Bit[] { Bit.ONE, Bit.Z }));
+	}
+	
+	@Test
+	void wireConnections()
+	{
+		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
+		
+		Simulation.TIMELINE.reset();
+
+		WireArray a = new WireArray(1, 2);
+		WireArray b = new WireArray(1, 2);
+		WireArray c = new WireArray(1, 2);
+		WireArrayInput aI = a.createInput();
+		WireArrayInput bI = b.createInput();
+		WireArrayInput cI = c.createInput();
+
+		TestBitDisplay test = new TestBitDisplay(c);
+		LongConsumer print = time -> System.out.format("Time %2d\n   %s\n   %s\n   %s\n", time, a, b, c);
+
+		cI.feedSignals(Bit.ONE);
+		test.assertAfterSimulationIs(print, Bit.ONE);
+
+		cI.feedSignals(Bit.X);
+		test.assertAfterSimulationIs(print, Bit.X);
+
+		cI.feedSignals(Bit.X);
+		cI.feedSignals(Bit.Z);
+		test.assertAfterSimulationIs(print, Bit.Z);
+
+		Connector c1 = new Connector(b, c);
+		test.assertAfterSimulationIs(print, Bit.Z);
+		System.out.println("ONE");
+		bI.feedSignals(Bit.ONE);
+		test.assertAfterSimulationIs(print, Bit.ONE);
+		System.out.println("ZERO");
+		bI.feedSignals(Bit.ZERO);
+		test.assertAfterSimulationIs(print, Bit.ZERO);
+		System.out.println("Z");
+		bI.feedSignals(Bit.Z);
+		test.assertAfterSimulationIs(Bit.Z);
+	}
+
+	private static void assertBitArrayEquals(Bit[] actual, Bit... expected)
+	{
+		assertArrayEquals(expected, actual);
 	}
 }
