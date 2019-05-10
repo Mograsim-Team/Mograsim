@@ -146,7 +146,7 @@ Muss ggf. Eclipse Public License verwendet werden wegen Copyleft?
 <details><summary>
 Eclipse Public License 2.0? - https://www.eclipse.org/legal/epl-2.0/
 
-</summary>
+</summary><p>
 
 >Copyright (c) 2019 Christian Femers, Daniel Kirschten and Fabian Stemmler
 >
@@ -162,4 +162,4 @@ Eclipse Public License 2.0? - https://www.eclipse.org/legal/epl-2.0/
 >
 >SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
-</details>
+</p></details>
