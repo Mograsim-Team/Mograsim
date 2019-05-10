@@ -2,17 +2,18 @@ package era.mi.logic.components;
 
 import era.mi.logic.Bit;
 import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.WireArray.WireArrayInput;
 import era.mi.logic.wires.WireArrayObserver;
 
 public class Splitter implements WireArrayObserver
 {
 	private WireArray input;
-	private WireArray[] outputs;
+	private WireArrayInput[] outputs;
 	
 	public Splitter(WireArray input, WireArray... outputs)
 	{
 		this.input = input;
-		this.outputs = outputs;
+		this.outputs = WireArray.extractInputs(outputs);
 		input.addObserver(this);
 		int length = 0;
 		for(WireArray out : outputs)
@@ -28,21 +29,11 @@ public class Splitter implements WireArrayObserver
 		Bit[] inputBits = input.getValues();
 		for(int i = 0; i < outputs.length; i++)
 		{
-			Bit[] outputBits = new Bit[outputs[i].length];
-			System.arraycopy(inputBits, startIndex, outputBits, 0, outputs[i].length);
+			Bit[] outputBits = new Bit[outputs[i].owner.length];
+			System.arraycopy(inputBits, startIndex, outputBits, 0, outputs[i].owner.length);
 			outputs[i].feedSignals(outputBits);
-			startIndex += outputs[i].length;
+			startIndex += outputs[i].owner.length;
 		}
-	}
-
-	public WireArray getInput()
-	{
-		return input;
-	}
-	
-	public WireArray[] getOutputs()
-	{
-		return outputs.clone();
 	}
 	
 	@Override

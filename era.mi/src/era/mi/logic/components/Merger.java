@@ -1,61 +1,68 @@
 package era.mi.logic.components;
 
-import era.mi.logic.Util;
-import era.mi.logic.Bit;
-import era.mi.logic.WireArray;
-import era.mi.logic.WireArrayObserver;
+import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.WireArray.WireArrayInput;
+import era.mi.logic.wires.WireArrayObserver;
 
-@Deprecated
 public class Merger implements WireArrayObserver
 {
-	private WireArray out;
-	private WireArray[] inputs;
-	
-	//TODO: General problem with this concept; New inputs coming in at the same time override each other
-	
-	/**
-	 * 
-	 * @param union The output of merging n {@link WireArray}s into one. Must have length = a1.length() + a2.length() + ... + an.length().
-	 * @param inputs The inputs to be merged into the union
-	 */
-	public Merger(WireArray union, WireArray... inputs)
+    private WireArrayInput outI;
+    private WireArray[] inputs;
+    private int[] beginningIndex;
+
+    /**
+     * 
+     * @param union  The output of merging n {@link WireArray}s into one. Must have
+     *               length = a1.length() + a2.length() + ... + an.length().
+     * @param inputs The inputs to be merged into the union
+     */
+    public Merger(WireArray union, WireArray... inputs)
+    {
+	this.inputs = inputs;
+	this.outI = union.createInput();
+	this.beginningIndex = new int[inputs.length];
+
+	int length = 0;
+	for (int i = 0; i < inputs.length; i++)
 	{
-		this.inputs = inputs;
-		this.out = union;
-		
-		int length = 0;
-		for(WireArray input : inputs)
-		{
-			length += input.length();
-			input.addObserver(this);
-		}
-			
-		if(length != union.length())
-			throw new IllegalArgumentException("The output of merging n WireArrays into one must have length = a1.length() + a2.length() + ... + an.length().");
+	    beginningIndex[i] = length;
+	    length += inputs[i].length;
+	    inputs[i].addObserver(this);
 	}
 
-	protected void compute()
-	{
-		Bit[][] bits = new Bit[inputs.length][];
-		for(int i = 0; i < inputs.length; i++)
-			bits[i] = inputs[i].getValues();
-		Bit[] newOut = Util.concat(bits);
-		out.feedSignals(newOut);
-	}
+	if (length != union.length)
+	    throw new IllegalArgumentException(
+		    "The output of merging n WireArrays into one must have length = a1.length() + a2.length() + ... + an.length().");
+    }
 
-	public WireArray getInput(int index)
-	{
-		return inputs[index];
-	}
-	
-	public WireArray getUnion()
-	{
-		return out;
-	}
-	
-	@Override
-	public void update(WireArray initiator)
-	{
-		compute(); //No inner delay
-	}
+    public WireArray getInput(int index)
+    {
+	return inputs[index];
+    }
+
+    public WireArray getUnion()
+    {
+	return outI.owner;
+    }
+
+    @Override
+    public void update(WireArray initiator)
+    {
+	int index = find(initiator);
+	int beginning = beginningIndex[index];
+	outI.feedSignals(beginning, initiator.getValues());
+    }
+
+    private int find(WireArray w)
+    {
+	for (int i = 0; i < inputs.length; i++)
+	    if (inputs[i] == w)
+		return i;
+	return -1;
+    }
+
+    public WireArray[] getInputs()
+    {
+	return inputs.clone();
+    }
 }

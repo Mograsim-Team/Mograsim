@@ -4,11 +4,11 @@ import era.mi.logic.Bit;
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArray.WireArrayInput;
 
-public class TriState extends BasicComponent{
+public class TriStateBuffer extends BasicComponent{
 	WireArray in, enable;
 	WireArrayInput outI;
 	
-	public TriState(int processTime, WireArray in, WireArray out, WireArray enable) {
+	public TriStateBuffer(int processTime, WireArray in, WireArray out, WireArray enable) {
 		super(processTime);
 		if(in.length != out.length)
 			throw new IllegalArgumentException("Tri-state output must have the same amount of bits as the input. Input: " + in.length + " Output: " + out.length);
