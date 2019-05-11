@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="splashExtension" name="%extension-point.name" schema="schema/splashExtension.exsd"/>
+
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.e4.ui.workbench.swt.E4Application"
+            name="Simulator WIP">
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/SampleERCP/css/default.css">
+         </property>
+         <property
+               name="appName"
+               value="Simulator WIP">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/app/ico_16t.png,icons/app/ico_32t.png,icons/app/ico_48t.png,icons/app/ico_64t.png,icons/app/ico_128t.png,icons/app/ico_256t.png">
+         </property>
+         <property
+               name="aboutText"
+               value="Example">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.splashHandlers">
+      <splashHandler
+            class="sampleercp.splashHandlers.ExtensibleSplashHandler"
+            id="sampleercp.splashHandlers.extensible">
+      </splashHandler>
+      <splashHandlerProductBinding
+            productId="SampleERCP.product"
+            splashId="sampleercp.splashHandlers.extensible">
+      </splashHandlerProductBinding>
+      <splashHandler
+            class="sampleercp.splashhandlers.ExtensibleSplashHandler"
+            id="sampleercp.splashHandlers.extensible">
+      </splashHandler>
+      <splashHandlerProductBinding
+            productId="SampleERCP.product"
+            splashId="sampleercp.splashHandlers.extensible">
+      </splashHandlerProductBinding>
+   </extension>
+   <extension
+         point="SampleERCP.splashExtension">
+      <splashExtension
+            icon="icons/af.png"
+            id="af"
+            tooltip="Application Framework">
+      </splashExtension>
+      <splashExtension
+            icon="icons/embedded.png"
+            id="embedded"
+            tooltip="Embedded">
+      </splashExtension>
+      <splashExtension
+            icon="icons/enterprise.png"
+            id="enterprise"
+            tooltip="Enterprise">
+      </splashExtension>
+      <splashExtension
+            icon="icons/languages.png"
+            id="languages"
+            tooltip="Languages">
+      </splashExtension>
+      <splashExtension
+            icon="icons/rcp.png"
+            id="rcp"
+            tooltip="RCP">
+      </splashExtension>
+   </extension>
+
+</plugin>
