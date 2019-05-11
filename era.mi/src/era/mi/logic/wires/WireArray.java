@@ -7,6 +7,7 @@ import java.util.List;
 
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
+import era.mi.logic.Util;
 
 /**
  * Represents an array of wires that can store n bits of information.
@@ -316,6 +317,18 @@ public class WireArray
 	public Bit[] getValues()
 	{
 	    return values.clone();
+	}
+	
+	public Bit[] wireValuesExcludingMe() 
+	{
+		Bit[] bits = Util.arrayOfZ(length);
+		for (WireArrayInput wai : inputs) 
+		{
+			if(wai == this)
+				continue;
+			Util.combineInto(bits, wai.getValues());
+		}
+		return bits;
 	}
 
 	public void clearSignals()

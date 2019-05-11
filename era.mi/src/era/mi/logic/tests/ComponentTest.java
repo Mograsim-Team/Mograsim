@@ -1,11 +1,9 @@
 package era.mi.logic.tests;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.function.LongConsumer;
 
 import org.junit.jupiter.api.Test;
 
@@ -241,45 +239,79 @@ class ComponentTest
 	assertArrayEquals(new Bit[] { Bit.ONE, Bit.Z }, w.getValues());
     }
 
-//	@Test
-//	void wireConnections()
-//	{
-//		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
-//		
-//		Simulation.TIMELINE.reset();
-//
-//		WireArray a = new WireArray(1, 2);
-//		WireArray b = new WireArray(1, 2);
-//		WireArray c = new WireArray(1, 2);
-//		WireArrayInput aI = a.createInput();
-//		WireArrayInput bI = b.createInput();
-//		WireArrayInput cI = c.createInput();
-//
-//		TestBitDisplay test = new TestBitDisplay(c);
-//		LongConsumer print = time -> System.out.format("Time %2d\n   %s\n   %s\n   %s\n", time, a, b, c);
-//
-//		cI.feedSignals(Bit.ONE);
-//		test.assertAfterSimulationIs(print, Bit.ONE);
-//
-//		cI.feedSignals(Bit.X);
-//		test.assertAfterSimulationIs(print, Bit.X);
-//
-//		cI.feedSignals(Bit.X);
-//		cI.feedSignals(Bit.Z);
-//		test.assertAfterSimulationIs(print, Bit.Z);
-//
-//		Connector c1 = new Connector(b, c);
-//		test.assertAfterSimulationIs(print, Bit.Z);
-//		System.out.println("ONE");
-//		bI.feedSignals(Bit.ONE);
-//		test.assertAfterSimulationIs(print, Bit.ONE);
-//		System.out.println("ZERO");
-//		bI.feedSignals(Bit.ZERO);
-//		test.assertAfterSimulationIs(print, Bit.ZERO);
-//		System.out.println("Z");
-//		bI.feedSignals(Bit.Z);
-//		test.assertAfterSimulationIs(Bit.Z);
-//	}
+	@Test
+	void wireConnections()
+	{
+		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
+		
+		Simulation.TIMELINE.reset();
+
+		WireArray a = new WireArray(1, 2);
+		WireArray b = new WireArray(1, 2);
+		WireArray c = new WireArray(1, 2);
+		WireArrayInput aI = a.createInput();
+		WireArrayInput bI = b.createInput();
+		WireArrayInput cI = c.createInput();
+
+		TestBitDisplay test = new TestBitDisplay(c);
+		TestBitDisplay test2 = new TestBitDisplay(a);
+		LongConsumer print = time -> System.out.format("Time %2d\n   a: %s\n   b: %s\n   c: %s\n", time, a, b, c);
+
+		cI.feedSignals(Bit.ONE);
+		test.assertAfterSimulationIs(print, Bit.ONE);
+
+		cI.feedSignals(Bit.X);
+		test.assertAfterSimulationIs(print, Bit.X);
+
+		cI.feedSignals(Bit.X);
+		cI.feedSignals(Bit.Z);
+		test.assertAfterSimulationIs(print, Bit.Z);
+
+		Connector c1 = new Connector(b, c);
+		test.assertAfterSimulationIs(print, Bit.Z);
+		System.err.println("ONE");
+		bI.feedSignals(Bit.ONE);
+		test.assertAfterSimulationIs(print, Bit.ONE);
+		System.err.println("ZERO");
+		bI.feedSignals(Bit.ZERO);
+		test.assertAfterSimulationIs(print, Bit.ZERO);
+		System.err.println("Z");
+		bI.feedSignals(Bit.Z);
+		test.assertAfterSimulationIs(print, Bit.Z);
+		
+		Connector c2 = new Connector(a, b);
+		System.err.println("Z 2");
+		aI.feedSignals(Bit.Z);
+		test.assertAfterSimulationIs(print, Bit.Z);
+		test2.assertAfterSimulationIs(Bit.Z);
+		System.err.println("ONE 2");
+		aI.feedSignals(Bit.ONE);
+		test.assertAfterSimulationIs(print, Bit.ONE);
+		test2.assertAfterSimulationIs(Bit.ONE);
+		System.err.println("ZERO 2");
+		aI.feedSignals(Bit.ZERO);
+		test.assertAfterSimulationIs(print, Bit.ZERO);
+		test2.assertAfterSimulationIs(Bit.ZERO);
+		System.err.println("Z 2 II");
+		aI.feedSignals(Bit.Z);
+		test.assertAfterSimulationIs(print, Bit.Z);
+		test2.assertAfterSimulationIs(Bit.Z);
+		
+		System.err.println("No Conflict yet");
+		bI.feedSignals(Bit.ONE);
+		test.assertAfterSimulationIs(print, Bit.ONE);
+		test2.assertAfterSimulationIs(Bit.ONE);
+		aI.feedSignals(Bit.ONE);
+		test.assertAfterSimulationIs(print, Bit.ONE);
+		test2.assertAfterSimulationIs(Bit.ONE);
+		System.err.println("Conflict");
+		aI.feedSignals(Bit.ZERO);
+		test.assertAfterSimulationIs(print, Bit.X);
+		test2.assertAfterSimulationIs(Bit.X);
+		aI.feedSignals(Bit.ONE);
+		test.assertAfterSimulationIs(print, Bit.ONE);
+		test2.assertAfterSimulationIs(Bit.ONE);
+	}
 
     private static void assertBitArrayEquals(Bit[] actual, Bit... expected)
     {

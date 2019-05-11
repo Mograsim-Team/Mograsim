@@ -30,9 +30,9 @@ public class Connector implements WireArrayObserver
 		Simulation.TIMELINE.addEvent((e) ->
 		{
 			if (initiator == a)
-				bI.feedSignals(a.getValues());
+				bI.feedSignals(aI.wireValuesExcludingMe());
 			else
-				aI.feedSignals(b.getValues());
+				aI.feedSignals(bI.wireValuesExcludingMe());
 		}, 1);
 	}
 }

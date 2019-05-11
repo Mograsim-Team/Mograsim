@@ -15,6 +15,7 @@ public class BitDisplay extends BasicComponent
 		super(1);
 		this.in = in;
 		in.addObserver(this);
+		compute();
 	}
 
 	@Override
