@@ -1,6 +1,9 @@
 package era.mi.logic.tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 
@@ -20,7 +23,7 @@ import era.mi.logic.wires.WireArray.WireArrayInput;
 
 class ComponentTest
 {
-
+    
 	@Test
 	void circuitExampleTest()
 	{
@@ -39,10 +42,7 @@ class ComponentTest
 		d.createInput().feedSignals(Bit.ONE, Bit.ONE);
 		e.createInput().feedSignals(Bit.ZERO);
 		
-		while(Simulation.TIMELINE.hasNext())
-		{
-			Simulation.TIMELINE.executeNext();
-		}
+		Simulation.TIMELINE.executeAll();
 		
 		assertEquals(Bit.ONE, j.getValue());
 		assertEquals(Bit.ZERO, k.getValue());
@@ -56,14 +56,11 @@ class ComponentTest
 	in.createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 	new Splitter(in, a, b, c);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
-	assertTrue(Arrays.equals(a.getValues(), new Bit[] { Bit.ZERO, Bit.ONE, Bit.ZERO }));
-	assertTrue(Arrays.equals(b.getValues(), new Bit[] { Bit.ONE, Bit.ZERO }));
-	assertTrue(Arrays.equals(c.getValues(), new Bit[] { Bit.ONE, Bit.ZERO, Bit.ONE }));
+	assertArrayEquals(new Bit[] { Bit.ZERO, Bit.ONE, Bit.ZERO }, a.getValues());
+	assertArrayEquals(new Bit[] { Bit.ONE, Bit.ZERO }, b.getValues());
+	assertArrayEquals(new Bit[] { Bit.ONE, Bit.ZERO, Bit.ONE }, c.getValues());
     }
 
     @Test
@@ -77,10 +74,7 @@ class ComponentTest
 
 	new Merger(out, a, b, c);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
 	assertTrue(Arrays.equals(out.getValues(),
 		new Bit[] { Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE }));
@@ -99,19 +93,13 @@ class ComponentTest
 	enI.feedSignals(Bit.ONE);
 	aI.feedSignals(Bit.ONE);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
 	assertEquals(Bit.ONE, b.getValue());
 
 	bI.feedSignals(Bit.ZERO);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
 	assertEquals(Bit.X, b.getValue());
 	assertEquals(Bit.ONE, a.getValue());
@@ -119,10 +107,7 @@ class ComponentTest
 	aI.clearSignals();
 	enI.feedSignals(Bit.ZERO);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
 	assertEquals(Bit.ZERO, a.getValue());
 
@@ -141,27 +126,18 @@ class ComponentTest
 	c.createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
 	new Mux(1, out, select, a, b, c);
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
-	assertTrue(Arrays.equals(new Bit[] { Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO }, out.getValues()));
+	assertArrayEquals(new Bit[] { Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO }, out.getValues());
 	selectIn.feedSignals(Bit.ZERO, Bit.ONE);
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
-	assertTrue(Arrays.equals(new Bit[] { Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE }, out.getValues()));
+	assertArrayEquals(new Bit[] { Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE }, out.getValues());
 
 	selectIn.feedSignals(Bit.ONE, Bit.ONE);
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
-	assertTrue(Arrays.equals(new Bit[] { Bit.Z, Bit.Z, Bit.Z, Bit.Z }, out.getValues()));
+	assertArrayEquals(new Bit[] { Bit.Z, Bit.Z, Bit.Z, Bit.Z }, out.getValues());
 
     }
 
@@ -173,11 +149,8 @@ class ComponentTest
 	gate.getA().createInput().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
 	gate.getB().createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
-	assertTrue(Arrays.equals(gate.getOut().getValues(), new Bit[] { Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ZERO }));
+	Simulation.TIMELINE.executeAll();
+	assertArrayEquals(new Bit[] { Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ZERO }, gate.getOut().getValues());
     }
 
     @Test
@@ -188,12 +161,9 @@ class ComponentTest
 	gate.getA().createInput().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
 	gate.getB().createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
-	assertTrue(Arrays.equals(gate.getOut().getValues(), new Bit[] { Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ONE }));
+	assertArrayEquals(new Bit[] { Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ONE }, gate.getOut().getValues());
     }
 
     @Test
@@ -213,33 +183,23 @@ class ComponentTest
 	sIn.feedSignals(Bit.ONE);
 	rIn.feedSignals(Bit.ZERO);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
-	assertEquals(q.getValue(), Bit.ONE);
-	assertEquals(nq.getValue(), Bit.ZERO);
+	assertEquals(Bit.ONE, q.getValue());
+	assertEquals(Bit.ZERO, nq.getValue());
 
 	sIn.feedSignals(Bit.ZERO);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
-
-	assertEquals(q.getValue(), Bit.ONE);
-	assertEquals(nq.getValue(), Bit.ZERO);
+	Simulation.TIMELINE.executeAll();
+	assertEquals(Bit.ONE, q.getValue());
+	assertEquals(Bit.ZERO, nq.getValue());
 
 	rIn.feedSignals(Bit.ONE);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
-	assertEquals(q.getValue(), Bit.ZERO);
-	assertEquals(nq.getValue(), Bit.ONE);
+	assertEquals(Bit.ZERO, q.getValue());
+	assertEquals(Bit.ONE, nq.getValue());
     }
 
     @Test
@@ -250,13 +210,10 @@ class ComponentTest
 	WireArray a = new WireArray(4, 1);
 	a.createInput().feedSignals(Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE);
 
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
+	Simulation.TIMELINE.executeAll();
 
-	assertEquals(a.getUnsignedValue(), 15);
-	assertEquals(a.getSignedValue(), -1);
+	assertEquals(15, a.getUnsignedValue());
+	assertEquals(-1, a.getSignedValue());
     }
 
     @Test
@@ -267,33 +224,21 @@ class ComponentTest
 	WireArrayInput wI1 = w.createInput(), wI2 = w.createInput();
 	wI1.feedSignals(Bit.ONE, Bit.Z);
 	wI2.feedSignals(Bit.Z, Bit.X);
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
-	assertTrue(Arrays.equals(w.getValues(), new Bit[] { Bit.ONE, Bit.X }));
+	Simulation.TIMELINE.executeAll();
+	assertArrayEquals(new Bit[] { Bit.ONE, Bit.X }, w.getValues());
 
 	wI2.feedSignals(Bit.ZERO, Bit.Z);
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
-	assertTrue(Arrays.equals(w.getValues(), new Bit[] { Bit.X, Bit.Z }));
+	Simulation.TIMELINE.executeAll();
+	assertArrayEquals(new Bit[] { Bit.X, Bit.Z }, w.getValues());
 
 	wI2.feedSignals(Bit.Z, Bit.Z);
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
-	assertTrue(Arrays.equals(w.getValues(), new Bit[] { Bit.ONE, Bit.Z }));
+	Simulation.TIMELINE.executeAll();
+	assertArrayEquals(new Bit[] { Bit.ONE, Bit.Z }, w.getValues());
 
 	wI2.feedSignals(Bit.ONE, Bit.Z);
 	w.addObserver((i) -> fail("WireArray notified observer, although value did not change."));
-	while (Simulation.TIMELINE.hasNext())
-	{
-	    Simulation.TIMELINE.executeNext();
-	}
-	assertTrue(Arrays.equals(w.getValues(), new Bit[] { Bit.ONE, Bit.Z }));
+	Simulation.TIMELINE.executeAll();
+	assertArrayEquals(new Bit[] { Bit.ONE, Bit.Z }, w.getValues());
     }
 
 //	@Test
