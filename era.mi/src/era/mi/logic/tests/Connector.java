@@ -1,5 +1,6 @@
 package era.mi.logic.tests;
 
+import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArray.WireArrayInput;
@@ -25,7 +26,7 @@ public class Connector implements WireArrayObserver
 	}
 
 	@Override
-	public void update(WireArray initiator)
+	public void update(WireArray initiator, Bit[] oldValues)
 	{
 		Simulation.TIMELINE.addEvent((e) ->
 		{

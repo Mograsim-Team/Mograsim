@@ -37,7 +37,7 @@ public class Splitter implements WireArrayObserver
 	}
 	
 	@Override
-	public void update(WireArray initiator)
+	public void update(WireArray initiator, Bit[] oldValues)
 	{
 		compute();
 	}

@@ -1,10 +1,15 @@
 package era.mi.logic.components;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import era.mi.logic.Bit;
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArray.WireArrayInput;
 import era.mi.logic.wires.WireArrayObserver;
 
-public class Merger implements WireArrayObserver
+public class Merger implements WireArrayObserver, Component
 {
     private WireArrayInput outI;
     private WireArray[] inputs;
@@ -46,7 +51,7 @@ public class Merger implements WireArrayObserver
     }
 
     @Override
-    public void update(WireArray initiator)
+    public void update(WireArray initiator, Bit[] oldValues)
     {
 	int index = find(initiator);
 	int beginning = beginningIndex[index];
@@ -65,4 +70,16 @@ public class Merger implements WireArrayObserver
     {
 	return inputs.clone();
     }
+
+	@Override
+	public List<WireArray> getAllInputs()
+	{
+		return Collections.unmodifiableList(Arrays.asList(inputs));
+	}
+
+	@Override
+	public List<WireArray> getAllOutputs()
+	{
+		return Collections.unmodifiableList(Arrays.asList(outI.owner));
+	}
 }

@@ -1,5 +1,10 @@
 package era.mi.logic.components;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArray.WireArrayInput;
 
@@ -68,5 +73,19 @@ public class Mux extends BasicComponent
 		
 		WireArray active = inputs[selectValue];
 		outI.feedSignals(active.getValues());
+	}
+
+	@Override
+	public List<WireArray> getAllInputs()
+	{
+		ArrayList<WireArray> wires = new ArrayList<WireArray>(Arrays.asList(inputs));
+		wires.add(select);
+		return Collections.unmodifiableList(wires);
+	}
+
+	@Override
+	public List<WireArray> getAllOutputs()
+	{
+		return Collections.unmodifiableList(Arrays.asList(outI.owner));
 	}
 }

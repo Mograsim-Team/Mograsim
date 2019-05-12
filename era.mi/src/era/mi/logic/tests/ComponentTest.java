@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
+import era.mi.logic.components.Demux;
 import era.mi.logic.components.Merger;
 import era.mi.logic.components.Mux;
 import era.mi.logic.components.Splitter;
@@ -140,6 +141,39 @@ class ComponentTest
     }
 
     @Test
+    void demuxTest()
+    {
+	Simulation.TIMELINE.reset();
+	WireArray a = new WireArray(4, 3), b = new WireArray(4, 6), c = new WireArray(4, 4),
+		select = new WireArray(2, 5), in = new WireArray(4, 1);
+	WireArrayInput selectIn = select.createInput();
+
+	selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
+	in.createInput().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
+
+	new Demux(1, in, select, a, b, c);
+	Simulation.TIMELINE.executeAll();
+
+	assertBitArrayEquals(a.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
+	assertBitArrayEquals(b.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
+	assertBitArrayEquals(c.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
+	selectIn.feedSignals(Bit.ZERO, Bit.ONE);
+	Simulation.TIMELINE.executeAll();
+
+	assertBitArrayEquals(a.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
+	assertBitArrayEquals(b.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
+	assertBitArrayEquals(c.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
+
+	selectIn.feedSignals(Bit.ONE, Bit.ONE);
+	Simulation.TIMELINE.executeAll();
+
+	assertBitArrayEquals(a.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
+	assertBitArrayEquals(b.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
+	assertBitArrayEquals(c.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
+
+    }
+    
+    @Test
     void andTest()
     {
 	Simulation.TIMELINE.reset();
@@ -234,7 +268,7 @@ class ComponentTest
 	assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 
 	wI2.feedSignals(Bit.ONE, Bit.Z);
-	w.addObserver((i) -> fail("WireArray notified observer, although value did not change."));
+	w.addObserver((i, oldValues) -> fail("WireArray notified observer, although value did not change."));
 	Simulation.TIMELINE.executeAll();
 	assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
     }

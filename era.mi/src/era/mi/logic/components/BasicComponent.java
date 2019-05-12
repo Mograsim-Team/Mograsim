@@ -1,10 +1,11 @@
 package era.mi.logic.components;
 
+import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArrayObserver;
 
-public abstract class BasicComponent implements WireArrayObserver
+public abstract class BasicComponent implements WireArrayObserver, Component
 {
 	private int processTime;
 	
@@ -20,7 +21,7 @@ public abstract class BasicComponent implements WireArrayObserver
 	}
 	
 	@Override
-	public void update(WireArray initiator)
+	public void update(WireArray initiator, Bit[] oldValues)
 	{
 		Simulation.TIMELINE.addEvent((e) -> {compute();}, processTime);
 	}

@@ -42,8 +42,9 @@ public class WireArray
 		WireArrayInput input = inputs.get(0);
 		if (!Arrays.equals(input.getValues(), values))
 		{
+			Bit[] oldValues = values.clone();
 			System.arraycopy(input.getValues(), 0, values, 0, length);
-			notifyObservers();
+			notifyObservers(oldValues);
 		}
 	}
 
@@ -69,8 +70,9 @@ public class WireArray
 
 		if (!Arrays.equals(newValues, values))
 		{
-			notifyObservers();
+			Bit[] oldValues = values;
 			values = newValues;
+			notifyObservers(oldValues);
 		}
 	}
 
@@ -217,10 +219,10 @@ public class WireArray
 		return observers.add(ob);
 	}
 
-	private void notifyObservers()
+	private void notifyObservers(Bit[] oldValues)
 	{
 		for (WireArrayObserver o : observers)
-			o.update(this);
+			o.update(this, oldValues);
 	}
 
 	/**

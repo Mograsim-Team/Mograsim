@@ -1,5 +1,9 @@
 package era.mi.logic.components;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import era.mi.logic.Bit;
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArray.WireArrayInput;
@@ -28,6 +32,18 @@ public class TriStateBuffer extends BasicComponent{
 			outI.feedSignals(in.getValues());
 		else
 			outI.clearSignals();
+	}
+
+	@Override
+	public List<WireArray> getAllInputs()
+	{
+		return Collections.unmodifiableList(Arrays.asList(in, enable));
+	}
+
+	@Override
+	public List<WireArray> getAllOutputs()
+	{
+		return Collections.unmodifiableList(Arrays.asList(outI.owner));
 	}
 
 }
