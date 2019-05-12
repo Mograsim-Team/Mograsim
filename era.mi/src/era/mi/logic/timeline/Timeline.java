@@ -91,5 +91,16 @@ public class Timeline
 			function.handle(event);
 		}
 		
+		@Override
+		public String toString()
+		{
+			return event.toString();
+		}
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "simulation time: " + currentTime + ", " + events.toString();
 	}
 }

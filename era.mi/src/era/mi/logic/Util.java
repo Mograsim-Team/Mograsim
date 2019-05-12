@@ -85,16 +85,9 @@ public final class Util
 	return out;
     }
     
-    public static Bit[] arrayOfZ(int length)
-    {
-    Bit[] out = new Bit[length];
-    Arrays.fill(out, Bit.Z);
-    return out;
-    }
-    
     /**
      * uses the {@link Bit#combineWith(Bit)} method, does not create a new array,
-     * the result is stored in the fist array.
+     * the result is stored in the first array.
      * 
      * @author Christian Femers
      */

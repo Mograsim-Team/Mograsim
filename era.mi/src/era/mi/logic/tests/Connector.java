@@ -15,7 +15,7 @@ public class Connector implements WireArrayObserver
 	public Connector(WireArray a, WireArray b)
 	{
 		if (a.length != b.length)
-			throw new IllegalArgumentException("WireArray width does not match: " + a.length + ", " + b.length);
+			throw new IllegalArgumentException(String.format("WireArray width does not match: %o, %o", a.length, b.length));
 		this.a = a;
 		this.b = b;
 		a.addObserver(this);

@@ -1,5 +1,7 @@
 package era.mi.logic;
 
+import java.util.Arrays;
+
 public enum Bit
 {
 	ONE, ZERO, Z, X;
@@ -41,9 +43,11 @@ public enum Bit
 
 	public Bit xor(Bit other)
 	{
-		// I'm uncertain how this should behave for cases where one value is neither 1 nor 0.
-		// TODO: Implement xor
-		return Bit.X;
+		if(this == Bit.X || this == Bit.Z
+				|| other == Bit.X || other == Bit.Z)
+			return Bit.X;
+		else
+			return this == other ? Bit.ZERO : Bit.ONE;
 	}
 
 	public Bit not()
@@ -57,6 +61,13 @@ public enum Bit
 			default:
 				return Bit.X;
 			}
+	}
+	
+	public Bit[] makeArray(int length)
+	{
+		Bit[] bits = new Bit[length];
+		Arrays.fill(bits, this);
+		return bits;
 	}
 
 	/**
