@@ -1,7 +1,5 @@
 package era.mi.components.gui;
 
-import java.util.List;
-
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
