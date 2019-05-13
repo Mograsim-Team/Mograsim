@@ -16,6 +16,7 @@ import era.mi.logic.components.Splitter;
 import era.mi.logic.components.gates.AndGate;
 import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.wires.WireArray;
+import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
@@ -40,8 +41,7 @@ public class LogicUI
 		componentPositions = new HashMap<>();
 		initComponents();
 
-		canvas.addZoomedRenderer(gc -> components.forEach(
-				component -> component.render(new TranslatedGC(gc, componentPositions.get(component)))));
+		canvas.addZoomedRenderer(gc -> components.forEach(component -> drawComponent(gc, component)));
 		new ZoomableCanvasUserInput(canvas).enableUserInput();
 		new ZoomableCanvasOverlay(canvas, null).enableScale();
 	}
@@ -54,12 +54,25 @@ public class LogicUI
 		new NotGate(1, f, g);
 		new Merger(h, c, g);
 		addComponent(new GUIMux(1, i, e, h, d), 10, 10);
+		addComponent(new GUIMux(1, a, new WireArray(10, 1), a, b, e, f), 100, 100);
 		new Splitter(i, k, j);
 	}
 	private void addComponent(BasicGUIComponent component, double x, double y)
 	{
 		components.add(component);
 		componentPositions.put(component, new Point(x, y));
+	}
+	private void drawComponent(GeneralGC gc, BasicGUIComponent component)
+	{
+		TranslatedGC tgc = new TranslatedGC(gc, componentPositions.get(component));
+		component.render(tgc);
+		tgc.setBackground(display.getSystemColor(SWT.COLOR_BLUE));
+		for(int i = 0; i < component.getConnectedWireArraysCount(); i ++)
+		{
+			Point connectionPoint = component.getWireArrayConnectionPoint(i);
+			if(connectionPoint != null)
+				tgc.fillOval(connectionPoint.x - 2, connectionPoint.y - 2, 4, 4);
+		}
 	}
 	public void run()
 	{
