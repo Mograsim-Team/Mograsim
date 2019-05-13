@@ -9,16 +9,16 @@ import era.mi.logic.wires.WireArrayObserver;
 public class Connector implements WireArrayObserver
 {
 	private final WireArray a;
-	private final WireArray b;
+//	private final WireArray b;
 	private final WireArrayInput aI;
 	private final WireArrayInput bI;
 
 	public Connector(WireArray a, WireArray b)
 	{
 		if (a.length != b.length)
-			throw new IllegalArgumentException(String.format("WireArray width does not match: %o, %o", a.length, b.length));
+			throw new IllegalArgumentException(String.format("WireArray width does not match: %d, %d", a.length, b.length));
 		this.a = a;
-		this.b = b;
+//		this.b = b;
 		a.addObserver(this);
 		b.addObserver(this);
 		aI = a.createInput();

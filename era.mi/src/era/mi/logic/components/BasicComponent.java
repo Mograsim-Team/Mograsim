@@ -5,6 +5,10 @@ import era.mi.logic.Simulation;
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArrayObserver;
 
+/**
+ * A basic component that recomputes all outputs (with a delay), when it is updated.
+ * @author Fabian Stemmler
+ */
 public abstract class BasicComponent implements WireArrayObserver, Component
 {
 	private int processTime;

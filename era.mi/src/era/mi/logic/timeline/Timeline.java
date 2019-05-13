@@ -103,4 +103,9 @@ public class Timeline
 	{
 		return "simulation time: " + currentTime + ", " + events.toString();
 	}
+	
+	public static long toNanoseconds(long ticks)
+	{
+		return ticks; //TODO: Alter this when it has been determined how ticks should relate to real time.
+	}
 }

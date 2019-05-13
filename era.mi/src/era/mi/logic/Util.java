@@ -103,6 +103,6 @@ public final class Util
 
     interface BitOp
     {
-	Bit execute(Bit a, Bit b);
+    	Bit execute(Bit a, Bit b);
     }
 }

@@ -26,7 +26,7 @@ public class WireArray
 	public WireArray(int length, int travelTime)
 	{
 		if (length < 1)
-			throw new IllegalArgumentException(String.format("Tried to create an array of wires with length %o, but a length of less than 1 makes no sense.", length));
+			throw new IllegalArgumentException(String.format("Tried to create an array of wires with length %d, but a length of less than 1 makes no sense.", length));
 		this.length = length;
 		this.travelTime = travelTime;
 		initValues();
