@@ -54,7 +54,6 @@ public class LogicUI
 		new NotGate(1, f, g);
 		new Merger(h, c, g);
 		addComponent(new GUIMux(1, i, e, h, d), 10, 10);
-		addComponent(new GUIMux(1, a, new WireArray(10, 1), a, b, e, f), 100, 100);
 		new Splitter(i, k, j);
 	}
 	private void addComponent(BasicGUIComponent component, double x, double y)
