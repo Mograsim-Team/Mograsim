@@ -10,3 +10,7 @@
 	path = SWTHelper
 	url = https://github.com/Haspamelodica/SWTHelper
 	branch = master
+[submodule "SampleERCP"]
+	path = SampleERCP
+	url = <address of this repo>
+	branch = SampleERCP
