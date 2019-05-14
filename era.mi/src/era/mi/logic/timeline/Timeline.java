@@ -39,6 +39,41 @@ public class Timeline
 		while (hasNext())
 			executeNext();
 	}
+	
+	/**
+	 * Executes all events up to a given simulation timestamp. The simulation
+	 * process can be constrained by a real world timestamp.
+	 * 
+	 * @param timestamp  the simulation timestamp up to which the events will be
+	 *                   processed
+	 * @param stopMillis the System.currentTimeMillis() when simulation definitely
+	 *                   needs to stop.
+	 * @return if it was possible to fulfil the goal in the given real world time.
+	 * @author Christian Femers
+	 */
+	public ExecutionResult executeUpTo(long timestamp, long stopMillis)
+	{
+		if (events.isEmpty())
+		{
+			currentTime = timestamp;
+			return ExecutionResult.NOTHING_DONE;
+		}
+		int checkStop = 0;
+		InnerEvent first = events.peek();
+		while (first != null && first.getTiming() <= timestamp)
+		{
+			events.remove();
+			currentTime = first.getTiming();
+			first.run();
+			// Don't check after every run
+			checkStop = (checkStop + 1) % 10;
+			if (checkStop == 0 && System.currentTimeMillis() >= stopMillis)
+				return ExecutionResult.RAN_OUT_OF_TIME;
+			first = events.peek();
+		}
+		currentTime = timestamp;
+		return ExecutionResult.DONE_IN_TIME;
+	}
 
 	public long getSimulationTime()
 	{
@@ -107,5 +142,10 @@ public class Timeline
 	public static long toNanoseconds(long ticks)
 	{
 		return ticks; //TODO: Alter this when it has been determined how ticks should relate to real time.
+	}
+	
+	public enum ExecutionResult
+	{
+		NOTHING_DONE, DONE_IN_TIME, RAN_OUT_OF_TIME 
 	}
 }
