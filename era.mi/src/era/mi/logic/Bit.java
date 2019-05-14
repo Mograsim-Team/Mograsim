@@ -13,12 +13,14 @@ public enum Bit
 
 	public Bit and(Bit other)
 	{
-		if (equals(Bit.ZERO) || other.equals(Bit.ZERO))
-			return Bit.ZERO;
-		else if (equals(other) && equals(Bit.ONE))
-			return Bit.ONE;
+		if (this == ZERO || other == ZERO)
+			return ZERO;
+		else if (this == other && this == ONE)
+			return ONE;
+		else if (this == X || other == X)
+			return X;
 		else
-			return Bit.X;
+			return ZERO;
 	}
 
 	public static Bit or(Bit a, Bit b)
@@ -28,12 +30,14 @@ public enum Bit
 
 	public Bit or(Bit other)
 	{
-		if (equals(Bit.ONE) || other.equals(Bit.ONE))
-			return Bit.ONE;
-		else if (equals(other) && equals(Bit.ZERO))
-			return Bit.ZERO;
+		if (this == ONE || other == ONE)
+			return ONE;
+		else if (this == other && this == ZERO)
+			return ZERO;
+		else if (this == X || other == X)
+			return X;
 		else
-			return Bit.X;
+			return ZERO;
 	}
 
 	public static Bit xor(Bit a, Bit b)
@@ -43,11 +47,10 @@ public enum Bit
 
 	public Bit xor(Bit other)
 	{
-		if(this == Bit.X || this == Bit.Z
-				|| other == Bit.X || other == Bit.Z)
+		if(this == X || this == Z || other == X || other == Z)
 			return Bit.X;
 		else
-			return this == other ? Bit.ZERO : Bit.ONE;
+			return this == other ? ZERO : ONE;
 	}
 
 	public Bit not()
