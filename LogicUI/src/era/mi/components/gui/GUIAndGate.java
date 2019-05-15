@@ -10,6 +10,7 @@ import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class GUIAndGate extends AndGate implements BasicGUIComponent
 {
@@ -44,6 +45,11 @@ public class GUIAndGate extends AndGate implements BasicGUIComponent
 		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
 	}
 
+	@Override
+	public Rectangle getBounds()
+	{
+		return new Rectangle(0, 0, 20, height);
+	}
 	@Override
 	public void render(GeneralGC gc)
 	{

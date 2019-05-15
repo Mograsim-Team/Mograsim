@@ -3,6 +3,7 @@ package era.mi.components.gui;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public interface BasicGUIComponent
 {
@@ -10,6 +11,11 @@ public interface BasicGUIComponent
 	 * Render this component to the given gc, at coordinates (0, 0).
 	 */
 	public void render(GeneralGC gc);
+	/**
+	 * Returns the bounds of this component.
+	 * Used for calculating which component is clicked.
+	 */
+	public Rectangle getBounds();
 
 	//TODO this code will be replaced by code in BasicComponent.
 	/**

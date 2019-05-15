@@ -9,6 +9,7 @@ import era.mi.logic.components.Splitter;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class GUISplitter extends Splitter implements BasicGUIComponent
 {
@@ -41,6 +42,11 @@ public class GUISplitter extends Splitter implements BasicGUIComponent
 		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
 	}
 
+	@Override
+	public Rectangle getBounds()
+	{
+		return new Rectangle(0, 0, 20, height);
+	}
 	@Override
 	public void render(GeneralGC gc)
 	{
