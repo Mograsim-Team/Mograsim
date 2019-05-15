@@ -18,6 +18,7 @@ public interface BasicGUIComponent
 	public Rectangle getBounds();
 	/**
 	 * Called when this component is clicked. Relative coordinates of the click are given.
+	 * Returns true if this component has to be redrawn.
 	 */
 	public default boolean clicked(double x, double y)
 	{
