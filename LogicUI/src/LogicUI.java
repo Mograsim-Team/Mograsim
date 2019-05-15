@@ -70,7 +70,7 @@ public class LogicUI
 		{
 			Point connectionPoint = component.getWireArrayConnectionPoint(i);
 			if(connectionPoint != null)
-				tgc.fillOval(connectionPoint.x - 2, connectionPoint.y - 2, 4, 4);
+				tgc.fillOval(connectionPoint.x - 1, connectionPoint.y - 1, 2, 2);
 		}
 	}
 	public void run()
