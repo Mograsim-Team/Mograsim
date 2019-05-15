@@ -16,6 +16,13 @@ public interface BasicGUIComponent
 	 * Used for calculating which component is clicked.
 	 */
 	public Rectangle getBounds();
+	/**
+	 * Called when this component is clicked. Relative coordinates of the click are given.
+	 */
+	public default boolean clicked(double x, double y)
+	{
+		return false;
+	}
 
 	//TODO this code will be replaced by code in BasicComponent.
 	/**
