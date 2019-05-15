@@ -2,6 +2,9 @@ package era.mi.wires.gui;
 
 import java.util.Objects;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+
 import era.mi.components.gui.BasicGUIComponent;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -35,6 +38,29 @@ public class GUIWire
 
 	public void render(GeneralGC gc)
 	{
+		Color oldFG = gc.getForeground();
+		if(wa.length == 1)
+		{
+			int fgColorConstant;
+			switch(wa.getValue())
+			{
+				case ONE:
+					fgColorConstant = SWT.COLOR_GREEN;
+					break;
+				case ZERO:
+					fgColorConstant = SWT.COLOR_BLUE;
+					break;
+				case U:
+				case X:
+				case Z:
+					fgColorConstant = SWT.COLOR_RED;
+					break;
+				default:
+					throw new IllegalArgumentException("Unknown enum constant: " + wa.getValue());
+			}
+			gc.setForeground(gc.getDevice().getSystemColor(fgColorConstant));
+		}
 		gc.drawPolyline(path);
+		gc.setForeground(oldFG);
 	}
 }
