@@ -1,6 +1,9 @@
 package era.mi.logic.timeline;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
+import java.util.function.Consumer;
 
 /**
  * Orders Events by the time they are due to be executed. Can execute Events individually.
@@ -12,6 +15,8 @@ public class Timeline
 	private PriorityQueue<InnerEvent> events;
 	private long currentTime = 0;
 	
+	private final List<Consumer<TimelineEvent>> eventAddedListener;
+	
 	public Timeline(int initCapacity)
 	{
 		events = new PriorityQueue<InnerEvent>(initCapacity, (a, b) -> {
@@ -20,6 +25,8 @@ public class Timeline
 				return 0;
 			return difference < 0 ? -1 : 1;
 		});
+		
+		eventAddedListener = new ArrayList<>();
 	}
 	
 	public boolean hasNext()
@@ -79,11 +86,28 @@ public class Timeline
 	{
 		return currentTime;
 	}
+
+	public long nextEventTime()
+	{
+		if(!hasNext())
+			return -1;
+		else
+			return events.peek().timing;
+	}
 	
 	public void reset()
 	{
 		events.clear();
 		currentTime = 0;
+	}
+
+	public void addEventAddedListener(Consumer<TimelineEvent> listener)
+	{
+		eventAddedListener.add(listener);
+	}
+	public void removeEventAddedListener(Consumer<TimelineEvent> listener)
+	{
+		eventAddedListener.remove(listener);
 	}
 	
 	/**
@@ -94,7 +118,9 @@ public class Timeline
 	public void addEvent(TimelineEventHandler function, int relativeTiming)
 	{
 		long timing = currentTime + relativeTiming;
-		events.add(new InnerEvent(function, new TimelineEvent(timing), timing));
+		TimelineEvent event = new TimelineEvent(timing);
+		events.add(new InnerEvent(function, event, timing));
+		eventAddedListener.forEach(l -> l.accept(event));
 	}
 	
 	private class InnerEvent
