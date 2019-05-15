@@ -9,10 +9,10 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import era.mi.components.gui.BasicGUIComponent;
+import era.mi.components.gui.GUIMerger;
 import era.mi.components.gui.GUIMux;
+import era.mi.components.gui.GUISplitter;
 import era.mi.logic.Simulation;
-import era.mi.logic.components.Merger;
-import era.mi.logic.components.Splitter;
 import era.mi.logic.components.gates.AndGate;
 import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.wires.WireArray;
@@ -52,9 +52,9 @@ public class LogicUI
 				f = new WireArray(1, 1), g = new WireArray(1, 1), h = new WireArray(2, 1), i = new WireArray(2, 1), j = new WireArray(1, 1), k = new WireArray(1, 1);
 		new AndGate(1, f, a, b);
 		new NotGate(1, f, g);
-		new Merger(h, c, g);
+		addComponent(new GUIMerger(h, c, g), 70, 10);
 		addComponent(new GUIMux(1, i, e, h, d), 10, 10);
-		new Splitter(i, k, j);
+		addComponent(new GUISplitter(i, k, j), 40, 10);
 	}
 	private void addComponent(BasicGUIComponent component, double x, double y)
 	{
