@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -130,10 +131,40 @@ public class LogicUI
 
 	public void run()
 	{
+		AtomicBoolean running = new AtomicBoolean(true);
+		Thread simulationThread = new Thread(() ->
+		{
+			while(running.get())
+			{
+				//always execute to keep timeline from "hanging behind" for too long
+				Simulation.TIMELINE.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
+				long sleepTime;
+				if(Simulation.TIMELINE.hasNext())
+				{
+					sleepTime = Simulation.TIMELINE.nextEventTime() - System.currentTimeMillis();
+				} else
+					sleepTime = 100;
+				try
+				{
+					if(sleepTime > 0)
+						Thread.sleep(sleepTime);
+				} catch(InterruptedException e)
+				{} //it is normal execution flow to be interrupted
+			}
+		});
+		simulationThread.start();
+		Simulation.TIMELINE.addEventAddedListener(event ->
+		{
+			if(event.getTiming() >= System.currentTimeMillis() / (double) 1)
+				simulationThread.interrupt();
+		});
+
 		shell.open();
 		while(!shell.isDisposed())
 			if(!display.readAndDispatch())
 				display.sleep();
+		running.set(false);
+		simulationThread.interrupt();
 	}
 
 	public static void main(String[] args)
