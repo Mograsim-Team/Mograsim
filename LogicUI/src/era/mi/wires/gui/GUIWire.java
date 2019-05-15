@@ -12,7 +12,7 @@ public class GUIWire
 	private final WireArray	wa;
 	private final double[]	path;
 
-	public GUIWire(BasicGUIComponent component1, int component1ConnectionIndex, Point component1Pos, BasicGUIComponent component2, int component2ConnectionIndex, Point component2Pos, Point... path)
+	public GUIWire(Runnable redraw, BasicGUIComponent component1, int component1ConnectionIndex, Point component1Pos, BasicGUIComponent component2, int component2ConnectionIndex, Point component2Pos, Point... path)
 	{
 		this.wa = component1.getConnectedWireArray(component1ConnectionIndex);
 		if(!Objects.equals(wa, component2.getConnectedWireArray(component2ConnectionIndex)))
@@ -29,6 +29,8 @@ public class GUIWire
 		Point component2ConnectionPoint = component2.getWireArrayConnectionPoint(component2ConnectionIndex);
 		this.path[this.path.length - 2] = component2Pos.x + component2ConnectionPoint.x;
 		this.path[this.path.length - 1] = component2Pos.y + component2ConnectionPoint.y;
+
+		wa.addObserver((initiator, oldValues) -> redraw.run());
 	}
 
 	public void render(GeneralGC gc)

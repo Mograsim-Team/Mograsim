@@ -100,7 +100,7 @@ public class LogicUI
 	}
 	private void addWire(BasicGUIComponent component1, int component1ConnectionIndex, BasicGUIComponent component2, int component2ConnectionIndex, Point... path)
 	{
-		wires.add(new GUIWire(component1, component1ConnectionIndex, componentPositions.get(component1), component2, component2ConnectionIndex, componentPositions.get(component2), path));
+		wires.add(new GUIWire(canvas::redrawThreadsafe, component1, component1ConnectionIndex, componentPositions.get(component1), component2, component2ConnectionIndex, componentPositions.get(component2), path));
 	}
 	private void drawComponent(GeneralGC gc, BasicGUIComponent component)
 	{
