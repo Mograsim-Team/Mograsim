@@ -12,7 +12,7 @@ import era.mi.logic.wires.WireArray.WireArrayInput;
  * @author Christian Femers
  *
  */
-public class ManualSwitch implements Component 
+public final class ManualSwitch implements Component 
 {
 	private WireArray output;
 	private WireArrayInput outputI;

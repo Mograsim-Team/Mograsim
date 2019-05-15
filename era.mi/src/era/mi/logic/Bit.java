@@ -2,108 +2,94 @@ package era.mi.logic;
 
 import java.util.Arrays;
 
-public enum Bit
-{
-	ONE, ZERO, Z, X;
+/**
+ * stdlogic according to IEEE 1164
+ */
+public enum Bit {
+	U, X, ZERO, ONE, Z;
 
-	public static Bit and(Bit a, Bit b)
-	{
+	public static Bit and(Bit a, Bit b) {
 		return a.and(b);
 	}
 
-	public Bit and(Bit other)
-	{
-		if (this == ZERO || other == ZERO)
-			return ZERO;
-		else if (this == other && this == ONE)
-			return ONE;
-		else if (this == X || other == X)
-			return X;
-		else
-			return ZERO;
+	public Bit and(Bit other) {
+		return fromTable(AND_TABLE, this, other);
 	}
 
-	public static Bit or(Bit a, Bit b)
-	{
+	public static Bit or(Bit a, Bit b) {
 		return a.or(b);
 	}
 
-	public Bit or(Bit other)
-	{
-		if (this == ONE || other == ONE)
-			return ONE;
-		else if (this == other && this == ZERO)
-			return ZERO;
-		else if (this == X || other == X)
-			return X;
-		else
-			return ZERO;
+	public Bit or(Bit other) {
+		return fromTable(OR_TABLE, this, other);
 	}
 
-	public static Bit xor(Bit a, Bit b)
-	{
+	public static Bit xor(Bit a, Bit b) {
 		return a.xor(b);
 	}
 
-	public Bit xor(Bit other)
-	{
-		if(this == X || this == Z || other == X || other == Z)
-			return Bit.X;
-		else
-			return this == other ? ZERO : ONE;
+	public Bit xor(Bit other) {
+		return fromTable(XOR_TABLE, this, other);
 	}
 
-	public Bit not()
-	{
-		switch (this)
-			{
-			case ONE:
-				return Bit.ZERO;
-			case ZERO:
-				return Bit.ONE;
-			default:
-				return Bit.X;
-			}
+	public Bit not() {
+		switch (this) {
+		case U:
+			return U;
+		case ONE:
+			return ZERO;
+		case ZERO:
+			return ONE;
+		default:
+			return X;
+		}
 	}
-	
-	public Bit[] makeArray(int length)
-	{
+
+	public Bit[] makeArray(int length) {
 		Bit[] bits = new Bit[length];
 		Arrays.fill(bits, this);
 		return bits;
 	}
 
-	/**
-	 * Rules for two bits that get directly connected<br>
-	 * <code><table>
-	 * <tbody>
-	 * <tr><td><td>X<td>0<td>1<td>Z</tr>
-	 * <tr><td>X<td>X<td>X<td>X<td>X</tr>
-	 * <tr><td>0<td>X<td>0<td>X<td>0</tr>
-	 * <tr><td>1<td>X<td>X<td>1<td>1</tr>
-	 * <tr><td>Z<td>X<td>0<td>1<td>Z</tr>
-	 * </tbody>
-	 * </table><code>
-	 * 
-	 * @return the result according to the table
-	 * 
-	 * @author Christian Femers
-	 */
-	public Bit combineWith(Bit other)
-	{
-		if (this == other)
-			return this;
-		if (this == X || other == X)
-			return X;
-		if (other == Z)
-			return this;
-		if (this == Z)
-			return other;
-		return X;
+	public Bit combineWith(Bit other) {
+		return fromTable(JOIN_TABLE, this, other);
 	}
 
-	public static Bit combine(Bit a, Bit b)
-	{
+	public static Bit combine(Bit a, Bit b) {
 		return a.combineWith(b);
 	}
+
+	private static Bit fromTable(Bit[][] table, Bit a, Bit b) {
+		return table[a.ordinal()][b.ordinal()];
+	}
+
+	// @formatter:off
+	private static Bit[][] JOIN_TABLE = 
+		{ { U, U, U,    U,   U    }, 
+		  { U, X, X,    X,   X    }, 
+		  { U, X, ZERO, X,   ZERO },
+		  { U, X, X,    ONE, ONE  }, 
+		  { U, X, ZERO, ONE, Z    } };
+
+	private static Bit[][] AND_TABLE = 
+		{ { U,    U,    ZERO, U,    U    }, 
+		  { U,    X,    ZERO, X,    X    },
+		  { ZERO, ZERO, ZERO, ZERO, ZERO }, 
+		  { U,    X,    ZERO, ONE,  X    }, 
+		  { U,    X,    ZERO, X,    X    } };
+
+	private static Bit[][] OR_TABLE =
+    	{ { U,   U,   U,    ONE, U    },    
+    	  { U,   X,   X,    ONE, X    },    
+    	  { U,   X,   ZERO, ONE, X    },    
+    	  { ONE, ONE, ONE,  ONE, ONE  },    
+    	  { U,   X,   X,    ONE, X    } };
+	
+	private static Bit[][] XOR_TABLE =
+    	{ { U, U, U,    U,    U },    
+    	  { U, X, X,    X,    X },    
+    	  { U, X, ZERO, ONE,  X },    
+    	  { U, X, ONE,  ZERO, X },    
+    	  { U, X, X,    X,    X } }; 
+	// @formatter:on
 }
