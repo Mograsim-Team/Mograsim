@@ -20,7 +20,7 @@ public class GUIMux extends Mux implements BasicGUIComponent
 	{
 		super(processTime, out, select, inputs);
 
-		double height = inputs.length * 10;
+		double height = inputs.length * 5;
 		if(height < 10)
 			height = 10;
 		this.height = height;
@@ -36,8 +36,8 @@ public class GUIMux extends Mux implements BasicGUIComponent
 
 		{
 			connectedWireArraysModifiable.addAll(Arrays.asList(inputs));
-			double inputHeightIncrement = height / (inputs.length - 1);
-			double inputHeight = 10;
+			double inputHeightIncrement = (height + 20) / inputs.length;
+			double inputHeight = inputHeightIncrement / 2;
 			for(int i = 0; i < inputs.length; i ++, inputHeight += inputHeightIncrement)
 				wireArrayConnectionPointsModifiable.add(new Point(0, inputHeight));
 		}
