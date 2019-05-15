@@ -42,7 +42,7 @@ public class GUINotGate extends NotGate implements BasicGUIComponent
 		Font labelFont = new Font(oldFont.getName(), 5, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(LABEL);
-		gc.drawText(LABEL, 10 - textExtent.x / 2, 5 - textExtent.y / 2, true);
+		gc.drawText(LABEL, 8.5 - textExtent.x / 2, 5 - textExtent.y / 2, true);
 		gc.setFont(oldFont);
 		gc.drawOval(17, 3.5, 3, 3);
 	}
