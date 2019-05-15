@@ -12,14 +12,13 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 
 import era.mi.components.gui.BasicGUIComponent;
-import era.mi.components.gui.GUIAndGate;
 import era.mi.components.gui.GUIManualSwitch;
-import era.mi.components.gui.GUIMerger;
-import era.mi.components.gui.GUIMux;
 import era.mi.components.gui.GUINotGate;
-import era.mi.components.gui.GUISplitter;
+import era.mi.components.gui.GUIOrGate;
 import era.mi.logic.Simulation;
 import era.mi.logic.wires.WireArray;
+import era.mi.wires.gui.GUIWire;
+import era.mi.wires.gui.WireConnectionPoint;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -29,11 +28,15 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
 
 public class LogicUI
 {
+	private static final int					WIRE_DELAY	= 40;
+	private static final int					OR_DELAY	= 100;
+	private static final int					NOT_DELAY	= 100;
 	private final Display						display;
 	private final Shell							shell;
 	private final ZoomableCanvas				canvas;
 	private final Set<BasicGUIComponent>		components;
 	private final Map<BasicGUIComponent, Point>	componentPositions;
+	private final Set<GUIWire>					wires;
 
 	public LogicUI()
 	{
@@ -44,9 +47,11 @@ public class LogicUI
 
 		components = new HashSet<>();
 		componentPositions = new HashMap<>();
+		wires = new HashSet<>();
 		initComponents();
 
-		canvas.addZoomedRenderer(gc -> components.forEach(component -> drawComponent(gc, component)));
+		canvas.addZoomedRenderer(gc -> components.forEach(c -> drawComponent(gc, c)));
+		canvas.addZoomedRenderer(gc -> wires.forEach(w -> w.render(gc)));
 		ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
 		userInput.buttonDrag = 3;
 		userInput.buttonZoom = 2;
@@ -57,19 +62,44 @@ public class LogicUI
 	private void initComponents()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(1, 1), b = new WireArray(1, 1), c = new WireArray(1, 10), d = new WireArray(2, 1), e = new WireArray(1, 1),
-				f = new WireArray(1, 1), g = new WireArray(1, 1), h = new WireArray(2, 1), i = new WireArray(2, 1), j = new WireArray(1, 1), k = new WireArray(1, 1);
-		addComponent(new GUIManualSwitch(a), 160, 10);
-		addComponent(new GUIAndGate(1, f, a, b), 130, 10);
-		addComponent(new GUINotGate(1, f, g), 100, 10);
-		addComponent(new GUIMerger(h, c, g), 70, 10);
-		addComponent(new GUIMux(1, i, e, h, d), 10, 10);
-		addComponent(new GUISplitter(i, k, j), 40, 10);
+		WireArray r = new WireArray(1, WIRE_DELAY);
+		WireArray s = new WireArray(1, WIRE_DELAY);
+		WireArray t2 = new WireArray(1, WIRE_DELAY);
+		WireArray t1 = new WireArray(1, WIRE_DELAY);
+		WireArray q = new WireArray(1, WIRE_DELAY);
+		WireArray nq = new WireArray(1, WIRE_DELAY);
+
+		GUIManualSwitch rIn = addComponent(new GUIManualSwitch(r), 100, 100);
+		GUIManualSwitch sIn = addComponent(new GUIManualSwitch(s), 100, 200);
+		GUIOrGate or1 = addComponent(new GUIOrGate(OR_DELAY, t1, r, nq), 160, 102.5);
+		GUIOrGate or2 = addComponent(new GUIOrGate(OR_DELAY, t2, q, s), 160, 192.5);
+		GUINotGate not1 = addComponent(new GUINotGate(NOT_DELAY, t1, q), 200, 107.5);
+		GUINotGate not2 = addComponent(new GUINotGate(NOT_DELAY, t2, nq), 200, 197.5);
+
+		WireConnectionPoint p1 = addComponent(new WireConnectionPoint(q, 2), 250, 112.5);
+		WireConnectionPoint p2 = addComponent(new WireConnectionPoint(nq, 2), 250, 202.5);
+
+		addWire(rIn, 0, or1, 0);
+		addWire(sIn, 0, or2, 1);
+		addWire(or1, 2, not1, 0);
+		addWire(or2, 2, not2, 0);
+		addWire(not1, 1, p1, 0);
+		addWire(not2, 1, p2, 0);
+		addWire(p1, 1, or2, 0, new Point(250, 130), new Point(140, 185), new Point(140, 197.5));
+		addWire(p2, 1, or1, 1, new Point(250, 185), new Point(140, 130), new Point(140, 117.5));
 	}
-	private void addComponent(BasicGUIComponent component, double x, double y)
+	/**
+	 * Returns the given component for convenience.
+	 */
+	private <C extends BasicGUIComponent> C addComponent(C component, double x, double y)
 	{
 		components.add(component);
 		componentPositions.put(component, new Point(x, y));
+		return component;
+	}
+	private void addWire(BasicGUIComponent component1, int component1ConnectionIndex, BasicGUIComponent component2, int component2ConnectionIndex, Point... path)
+	{
+		wires.add(new GUIWire(component1, component1ConnectionIndex, componentPositions.get(component1), component2, component2ConnectionIndex, componentPositions.get(component2), path));
 	}
 	private void drawComponent(GeneralGC gc, BasicGUIComponent component)
 	{
