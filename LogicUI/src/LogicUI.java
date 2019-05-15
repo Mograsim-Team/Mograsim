@@ -11,10 +11,10 @@ import org.eclipse.swt.widgets.Shell;
 import era.mi.components.gui.BasicGUIComponent;
 import era.mi.components.gui.GUIMerger;
 import era.mi.components.gui.GUIMux;
+import era.mi.components.gui.GUINotGate;
 import era.mi.components.gui.GUISplitter;
 import era.mi.logic.Simulation;
 import era.mi.logic.components.gates.AndGate;
-import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
@@ -51,7 +51,7 @@ public class LogicUI
 		WireArray a = new WireArray(1, 1), b = new WireArray(1, 1), c = new WireArray(1, 10), d = new WireArray(2, 1), e = new WireArray(1, 1),
 				f = new WireArray(1, 1), g = new WireArray(1, 1), h = new WireArray(2, 1), i = new WireArray(2, 1), j = new WireArray(1, 1), k = new WireArray(1, 1);
 		new AndGate(1, f, a, b);
-		new NotGate(1, f, g);
+		addComponent(new GUINotGate(1, f, g), 100, 10);
 		addComponent(new GUIMerger(h, c, g), 70, 10);
 		addComponent(new GUIMux(1, i, e, h, d), 10, 10);
 		addComponent(new GUISplitter(i, k, j), 40, 10);
