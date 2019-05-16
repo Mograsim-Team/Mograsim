@@ -104,15 +104,7 @@ public class LogicUI
 	}
 	private void drawComponent(GeneralGC gc, BasicGUIComponent component)
 	{
-		TranslatedGC tgc = new TranslatedGC(gc, componentPositions.get(component));
-		component.render(tgc);
-		tgc.setBackground(display.getSystemColor(SWT.COLOR_BLUE));
-		for(int i = 0; i < component.getConnectedWireArraysCount(); i ++)
-		{
-			Point connectionPoint = component.getWireArrayConnectionPoint(i);
-			if(connectionPoint != null)
-				tgc.fillOval(connectionPoint.x - 1, connectionPoint.y - 1, 2, 2);
-		}
+		component.render(new TranslatedGC(gc, componentPositions.get(component)));
 	}
 	private void mouseDown(Event e)
 	{
