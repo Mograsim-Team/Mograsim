@@ -25,7 +25,7 @@ public class WireConnectionPoint implements BasicGUIComponent
 		Color oldBG = gc.getBackground();
 		if(wa.length == 1)
 			gc.setBackground(gc.getDevice().getSystemColor(GUIWire.getSWTColorConstantForBit(wa.getValue())));
-		gc.fillOval(-2, -2, 4, 4);
+		gc.fillOval(-1, -1, 2, 2);
 		gc.setBackground(oldBG);
 	}
 	@Override
