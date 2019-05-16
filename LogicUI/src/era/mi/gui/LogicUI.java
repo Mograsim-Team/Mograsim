@@ -1,4 +1,4 @@
-package era.mi.gui.examples;
+package era.mi.gui;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,13 +13,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 
 import era.mi.gui.components.BasicGUIComponent;
-import era.mi.gui.components.GUIManualSwitch;
-import era.mi.gui.components.GUINotGate;
-import era.mi.gui.components.GUIOrGate;
 import era.mi.gui.wires.GUIWire;
-import era.mi.gui.wires.WireConnectionPoint;
 import era.mi.logic.Simulation;
-import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -29,9 +24,6 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
 
 public class LogicUI
 {
-	private static final int					WIRE_DELAY	= 40;
-	private static final int					OR_DELAY	= 100;
-	private static final int					NOT_DELAY	= 100;
 	private final Display						display;
 	private final Shell							shell;
 	private final ZoomableCanvas				canvas;
@@ -49,7 +41,6 @@ public class LogicUI
 		components = new HashSet<>();
 		componentPositions = new HashMap<>();
 		wires = new HashSet<>();
-		initComponents();
 
 		canvas.addZoomedRenderer(gc -> components.forEach(c -> drawComponent(gc, c)));
 		canvas.addZoomedRenderer(gc -> wires.forEach(w -> w.render(gc)));
@@ -60,51 +51,30 @@ public class LogicUI
 		new ZoomableCanvasOverlay(canvas, null).enableScale();
 		canvas.addListener(SWT.MouseDown, this::mouseDown);
 	}
-	private void initComponents()
-	{
-		Simulation.TIMELINE.reset();
-		WireArray r = new WireArray(1, WIRE_DELAY);
-		WireArray s = new WireArray(1, WIRE_DELAY);
-		WireArray t2 = new WireArray(1, WIRE_DELAY);
-		WireArray t1 = new WireArray(1, WIRE_DELAY);
-		WireArray q = new WireArray(1, WIRE_DELAY);
-		WireArray nq = new WireArray(1, WIRE_DELAY);
-
-		GUIManualSwitch rIn = addComponent(new GUIManualSwitch(r), 100, 100);
-		GUIManualSwitch sIn = addComponent(new GUIManualSwitch(s), 100, 200);
-		GUIOrGate or1 = addComponent(new GUIOrGate(OR_DELAY, t1, r, nq), 160, 102.5);
-		GUIOrGate or2 = addComponent(new GUIOrGate(OR_DELAY, t2, q, s), 160, 192.5);
-		GUINotGate not1 = addComponent(new GUINotGate(NOT_DELAY, t1, q), 200, 107.5);
-		GUINotGate not2 = addComponent(new GUINotGate(NOT_DELAY, t2, nq), 200, 197.5);
-
-		WireConnectionPoint p1 = addComponent(new WireConnectionPoint(q, 2), 250, 112.5);
-		WireConnectionPoint p2 = addComponent(new WireConnectionPoint(nq, 2), 250, 202.5);
-
-		addWire(rIn, 0, or1, 0);
-		addWire(sIn, 0, or2, 1);
-		addWire(or1, 2, not1, 0);
-		addWire(or2, 2, not2, 0);
-		addWire(not1, 1, p1, 0);
-		addWire(not2, 1, p2, 0);
-		addWire(p1, 1, or2, 0, new Point(250, 130), new Point(140, 185), new Point(140, 197.5));
-		addWire(p2, 1, or1, 1, new Point(250, 185), new Point(140, 130), new Point(140, 117.5));
-	}
 	/**
 	 * Returns the given component for convenience.
 	 */
-	private <C extends BasicGUIComponent> C addComponent(C component, double x, double y)
+	public <C extends BasicGUIComponent> C addComponent(C component, double x, double y)
 	{
 		components.add(component);
 		componentPositions.put(component, new Point(x, y));
 		return component;
 	}
-	private void addWire(BasicGUIComponent component1, int component1ConnectionIndex, BasicGUIComponent component2, int component2ConnectionIndex, Point... path)
+	public void addWire(BasicGUIComponent component1, int component1ConnectionIndex, BasicGUIComponent component2, int component2ConnectionIndex, Point... path)
 	{
 		wires.add(new GUIWire(canvas::redrawThreadsafe, component1, component1ConnectionIndex, componentPositions.get(component1), component2, component2ConnectionIndex, componentPositions.get(component2), path));
 	}
 	private void drawComponent(GeneralGC gc, BasicGUIComponent component)
 	{
-		component.render(new TranslatedGC(gc, componentPositions.get(component)));
+		TranslatedGC tgc = new TranslatedGC(gc, componentPositions.get(component));
+		component.render(tgc);
+		tgc.setBackground(display.getSystemColor(SWT.COLOR_BLUE));
+//		for(int i = 0; i < component.getConnectedWireArraysCount(); i ++)
+//		{
+//			Point connectionPoint = component.getWireArrayConnectionPoint(i);
+//			if(connectionPoint != null)
+//				tgc.fillOval(connectionPoint.x - 1, connectionPoint.y - 1, 2, 2);
+//		}
 	}
 	private void mouseDown(Event e)
 	{
@@ -157,10 +127,5 @@ public class LogicUI
 				display.sleep();
 		running.set(false);
 		simulationThread.interrupt();
-	}
-
-	public static void main(String[] args)
-	{
-		new LogicUI().run();
 	}
 }
