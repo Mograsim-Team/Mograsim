@@ -1,30 +1,42 @@
-package era.mi.components.gui;
+package era.mi.gui.components;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import era.mi.logic.components.ManualSwitch;
+import era.mi.logic.components.Splitter;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
-public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
+public class GUISplitter extends Splitter implements BasicGUIComponent
 {
+	private final int				outputCount;
+	private final double			height;
 	private final List<WireArray>	connectedWireArrays;
 	private final List<Point>		wireArrayConnectionPoints;
 
-	public GUIManualSwitch(WireArray output)
+	public GUISplitter(WireArray input, WireArray... outputs)
 	{
-		super(output);
+		super(input, outputs);
 
 		List<WireArray> connectedWireArraysModifiable = new ArrayList<>();
 		List<Point> wireArrayConnectionPointsModifiable = new ArrayList<>();
 
-		connectedWireArraysModifiable.add(output);
-		wireArrayConnectionPointsModifiable.add(new Point(20, 7.5));
+		this.outputCount = outputs.length;
+		this.height = (outputCount - 1) * 10;
+
+		connectedWireArraysModifiable.add(input);
+		wireArrayConnectionPointsModifiable.add(new Point(0, height / 2));
+
+		{
+			connectedWireArraysModifiable.addAll(Arrays.asList(outputs));
+			double outputHeight = 0;
+			for(int i = 0; i < outputCount; i ++, outputHeight += 10)
+				wireArrayConnectionPointsModifiable.add(new Point(20, outputHeight));
+		}
 
 		this.connectedWireArrays = Collections.unmodifiableList(connectedWireArraysModifiable);
 		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
@@ -33,25 +45,16 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	@Override
 	public Rectangle getBounds()
 	{
-		return new Rectangle(0, 0, 20, 15);
+		return new Rectangle(0, 0, 20, height);
 	}
 	@Override
 	public void render(GeneralGC gc)
 	{
-		gc.drawRectangle(0, 0, 20, 15);
-		String label = isOn() ? "ON" : "OFF";
-		Font oldFont = gc.getFont();
-		Font labelFont = new Font(oldFont.getName(), 6, oldFont.getStyle());
-		gc.setFont(labelFont);
-		Point textExtent = gc.textExtent(label);
-		gc.drawText(label, 10 - textExtent.x / 2, 7.5 - textExtent.y / 2, true);
-		gc.setFont(oldFont);
-	}
-	@Override
-	public boolean clicked(double x, double y)
-	{
-		toggle();
-		return true;
+		gc.drawLine(0, height / 2, 10, height / 2);
+		gc.drawLine(10, 0, 10, height);
+		double outputHeight = 0;
+		for(int i = 0; i < outputCount; i ++, outputHeight += 10)
+			gc.drawLine(10, outputHeight, 20, outputHeight);
 	}
 
 	@Override

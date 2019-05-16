@@ -1,4 +1,4 @@
-package era.mi.examples.gui;
+package era.mi.gui.examples;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,14 +12,14 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Shell;
 
-import era.mi.components.gui.BasicGUIComponent;
-import era.mi.components.gui.GUIManualSwitch;
-import era.mi.components.gui.GUINotGate;
-import era.mi.components.gui.GUIOrGate;
+import era.mi.gui.components.BasicGUIComponent;
+import era.mi.gui.components.GUIManualSwitch;
+import era.mi.gui.components.GUINotGate;
+import era.mi.gui.components.GUIOrGate;
+import era.mi.gui.wires.GUIWire;
+import era.mi.gui.wires.WireConnectionPoint;
 import era.mi.logic.Simulation;
 import era.mi.logic.wires.WireArray;
-import era.mi.wires.gui.GUIWire;
-import era.mi.wires.gui.WireConnectionPoint;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;

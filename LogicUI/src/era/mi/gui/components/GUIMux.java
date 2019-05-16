@@ -1,45 +1,47 @@
-package era.mi.components.gui;
+package era.mi.gui.components;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import era.mi.logic.components.gates.OrGate;
+import era.mi.logic.components.Mux;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
-public class GUIOrGate extends OrGate implements BasicGUIComponent
+public class GUIMux extends Mux implements BasicGUIComponent
 {
-	private static final String LABEL = "\u22651";//>=1
-
-	private final int				inputCount;
 	private final double			height;
 	private final List<WireArray>	connectedWireArrays;
 	private final List<Point>		wireArrayConnectionPoints;
 
-	public GUIOrGate(int processTime, WireArray out, WireArray... in)
+	public GUIMux(int processTime, WireArray out, WireArray select, WireArray... inputs)
 	{
-		super(processTime, out, in);
+		super(processTime, out, select, inputs);
+
+		double height = inputs.length * 5;
+		if(height < 10)
+			height = 10;
+		this.height = height;
 
 		List<WireArray> connectedWireArraysModifiable = new ArrayList<>();
 		List<Point> wireArrayConnectionPointsModifiable = new ArrayList<>();
 
-		this.inputCount = in.length;
-		this.height = inputCount * 10;
+		connectedWireArraysModifiable.add(out);
+		wireArrayConnectionPointsModifiable.add(new Point(20, 10 + height / 2));
+
+		connectedWireArraysModifiable.add(select);
+		wireArrayConnectionPointsModifiable.add(new Point(10, 5));
 
 		{
-			connectedWireArraysModifiable.addAll(Arrays.asList(in));
-			double inputHeight = 5;
-			for(int i = 0; i < inputCount; i ++, inputHeight += 10)
+			connectedWireArraysModifiable.addAll(Arrays.asList(inputs));
+			double inputHeightIncrement = (height + 20) / inputs.length;
+			double inputHeight = inputHeightIncrement / 2;
+			for(int i = 0; i < inputs.length; i ++, inputHeight += inputHeightIncrement)
 				wireArrayConnectionPointsModifiable.add(new Point(0, inputHeight));
 		}
-
-		connectedWireArraysModifiable.add(out);
-		wireArrayConnectionPointsModifiable.add(new Point(20, height / 2));
 
 		this.connectedWireArrays = Collections.unmodifiableList(connectedWireArraysModifiable);
 		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
@@ -48,21 +50,17 @@ public class GUIOrGate extends OrGate implements BasicGUIComponent
 	@Override
 	public Rectangle getBounds()
 	{
-		return new Rectangle(0, 0, 20, height);
+		return new Rectangle(0, 0, 20, height + 20);
 	}
 	@Override
 	public void render(GeneralGC gc)
 	{
-		gc.drawRectangle(0, 0, 17, height);
-		Font oldFont = gc.getFont();
-		Font labelFont = new Font(oldFont.getName(), 5, oldFont.getStyle());
-		gc.setFont(labelFont);
-		Point textExtent = gc.textExtent(LABEL);
-		gc.drawText(LABEL, 8.5 - textExtent.x / 2, (height - textExtent.y) / 2, true);
-		gc.setFont(oldFont);
-		gc.drawOval(17, height / 2 - 1.5, 3, 3);
+		gc.drawPolygon(new double[] {
+				0, 0,
+				20, 10,
+				20, height + 10,
+				0, height + 20});
 	}
-
 	@Override
 	public int getConnectedWireArraysCount()
 	{

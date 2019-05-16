@@ -1,44 +1,41 @@
-package era.mi.components.gui;
+package era.mi.gui.components;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import era.mi.logic.components.gates.AndGate;
+import era.mi.logic.components.Merger;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
-public class GUIAndGate extends AndGate implements BasicGUIComponent
+public class GUIMerger extends Merger implements BasicGUIComponent
 {
-	private static final String LABEL = "&";
-
 	private final int				inputCount;
 	private final double			height;
 	private final List<WireArray>	connectedWireArrays;
 	private final List<Point>		wireArrayConnectionPoints;
 
-	public GUIAndGate(int processTime, WireArray out, WireArray... in)
+	public GUIMerger(WireArray union, WireArray... inputs)
 	{
-		super(processTime, out, in);
+		super(union, inputs);
 
 		List<WireArray> connectedWireArraysModifiable = new ArrayList<>();
 		List<Point> wireArrayConnectionPointsModifiable = new ArrayList<>();
 
-		this.inputCount = in.length;
-		this.height = inputCount * 10;
+		this.inputCount = inputs.length;
+		this.height = (inputCount - 1) * 10;
 
 		{
-			connectedWireArraysModifiable.addAll(Arrays.asList(in));
-			double inputHeight = 5;
+			connectedWireArraysModifiable.addAll(Arrays.asList(inputs));
+			double inputHeight = 0;
 			for(int i = 0; i < inputCount; i ++, inputHeight += 10)
 				wireArrayConnectionPointsModifiable.add(new Point(0, inputHeight));
 		}
 
-		connectedWireArraysModifiable.add(out);
+		connectedWireArraysModifiable.add(union);
 		wireArrayConnectionPointsModifiable.add(new Point(20, height / 2));
 
 		this.connectedWireArrays = Collections.unmodifiableList(connectedWireArraysModifiable);
@@ -53,14 +50,11 @@ public class GUIAndGate extends AndGate implements BasicGUIComponent
 	@Override
 	public void render(GeneralGC gc)
 	{
-		gc.drawRectangle(0, 0, 17, height);
-		Font oldFont = gc.getFont();
-		Font labelFont = new Font(oldFont.getName(), 5, oldFont.getStyle());
-		gc.setFont(labelFont);
-		Point textExtent = gc.textExtent(LABEL);
-		gc.drawText(LABEL, 8.5 - textExtent.x / 2, (height - textExtent.y) / 2, true);
-		gc.setFont(oldFont);
-		gc.drawOval(17, height / 2 - 1.5, 3, 3);
+		double inputHeight = 0;
+		for(int i = 0; i < inputCount; i ++, inputHeight += 10)
+			gc.drawLine(0, inputHeight, 10, inputHeight);
+		gc.drawLine(10, 0, 10, height);
+		gc.drawLine(10, height / 2, 20, height / 2);
 	}
 
 	@Override

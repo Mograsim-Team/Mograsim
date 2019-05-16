@@ -1,42 +1,35 @@
-package era.mi.components.gui;
+package era.mi.gui.components;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import era.mi.logic.components.Splitter;
+import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
-public class GUISplitter extends Splitter implements BasicGUIComponent
+public class GUINotGate extends NotGate implements BasicGUIComponent
 {
-	private final int				outputCount;
-	private final double			height;
+	private static final String LABEL = "\u22651";//>=1
+
 	private final List<WireArray>	connectedWireArrays;
 	private final List<Point>		wireArrayConnectionPoints;
 
-	public GUISplitter(WireArray input, WireArray... outputs)
+	public GUINotGate(int processTime, WireArray in, WireArray out)
 	{
-		super(input, outputs);
+		super(processTime, in, out);
 
 		List<WireArray> connectedWireArraysModifiable = new ArrayList<>();
 		List<Point> wireArrayConnectionPointsModifiable = new ArrayList<>();
 
-		this.outputCount = outputs.length;
-		this.height = (outputCount - 1) * 10;
+		connectedWireArraysModifiable.add(in);
+		wireArrayConnectionPointsModifiable.add(new Point(0, 5));
 
-		connectedWireArraysModifiable.add(input);
-		wireArrayConnectionPointsModifiable.add(new Point(0, height / 2));
-
-		{
-			connectedWireArraysModifiable.addAll(Arrays.asList(outputs));
-			double outputHeight = 0;
-			for(int i = 0; i < outputCount; i ++, outputHeight += 10)
-				wireArrayConnectionPointsModifiable.add(new Point(20, outputHeight));
-		}
+		connectedWireArraysModifiable.add(out);
+		wireArrayConnectionPointsModifiable.add(new Point(20, 5));
 
 		this.connectedWireArrays = Collections.unmodifiableList(connectedWireArraysModifiable);
 		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
@@ -45,16 +38,19 @@ public class GUISplitter extends Splitter implements BasicGUIComponent
 	@Override
 	public Rectangle getBounds()
 	{
-		return new Rectangle(0, 0, 20, height);
+		return new Rectangle(0, 0, 20, 10);
 	}
 	@Override
 	public void render(GeneralGC gc)
 	{
-		gc.drawLine(0, height / 2, 10, height / 2);
-		gc.drawLine(10, 0, 10, height);
-		double outputHeight = 0;
-		for(int i = 0; i < outputCount; i ++, outputHeight += 10)
-			gc.drawLine(10, outputHeight, 20, outputHeight);
+		gc.drawRectangle(0, 0, 17, 10);
+		Font oldFont = gc.getFont();
+		Font labelFont = new Font(oldFont.getName(), 5, oldFont.getStyle());
+		gc.setFont(labelFont);
+		Point textExtent = gc.textExtent(LABEL);
+		gc.drawText(LABEL, 8.5 - textExtent.x / 2, 5 - textExtent.y / 2, true);
+		gc.setFont(oldFont);
+		gc.drawOval(17, 3.5, 3, 3);
 	}
 
 	@Override

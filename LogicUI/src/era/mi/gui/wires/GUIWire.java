@@ -1,11 +1,11 @@
-package era.mi.wires.gui;
+package era.mi.gui.wires;
 
 import java.util.Objects;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
-import era.mi.components.gui.BasicGUIComponent;
+import era.mi.gui.components.BasicGUIComponent;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;

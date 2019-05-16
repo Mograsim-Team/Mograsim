@@ -1,4 +1,4 @@
-package era.mi.components.gui;
+package era.mi.gui.components;
 
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
