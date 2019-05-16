@@ -23,8 +23,8 @@ public class WireConnectionPoint implements BasicGUIComponent
 	public void render(GeneralGC gc)
 	{
 		Color oldBG = gc.getBackground();
-		Color fg = gc.getForeground();
-		gc.setBackground(fg);
+		if(wa.length == 1)
+			gc.setBackground(gc.getDevice().getSystemColor(GUIWire.getSWTColorConstantForBit(wa.getValue())));
 		gc.fillOval(-2, -2, 4, 4);
 		gc.setBackground(oldBG);
 	}

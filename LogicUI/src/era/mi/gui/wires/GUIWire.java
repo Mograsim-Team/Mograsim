@@ -6,6 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
 import era.mi.gui.components.BasicGUIComponent;
+import era.mi.logic.Bit;
 import era.mi.logic.wires.WireArray;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -40,27 +41,26 @@ public class GUIWire
 	{
 		Color oldFG = gc.getForeground();
 		if(wa.length == 1)
-		{
-			int fgColorConstant;
-			switch(wa.getValue())
-			{
-				case ONE:
-					fgColorConstant = SWT.COLOR_GREEN;
-					break;
-				case ZERO:
-					fgColorConstant = SWT.COLOR_BLUE;
-					break;
-				case U:
-				case X:
-				case Z:
-					fgColorConstant = SWT.COLOR_RED;
-					break;
-				default:
-					throw new IllegalArgumentException("Unknown enum constant: " + wa.getValue());
-			}
-			gc.setForeground(gc.getDevice().getSystemColor(fgColorConstant));
-		}
+			gc.setForeground(gc.getDevice().getSystemColor(getSWTColorConstantForBit(wa.getValue())));
 		gc.drawPolyline(path);
 		gc.setForeground(oldFG);
+	}
+
+	public static int getSWTColorConstantForBit(Bit bit)
+	{
+		switch(bit)
+		{
+			case ONE:
+				return SWT.COLOR_GREEN;
+			case ZERO:
+				return SWT.COLOR_BLUE;
+			case Z:
+				return SWT.COLOR_BLACK;
+			case U:
+			case X:
+				return SWT.COLOR_RED;
+			default:
+				throw new IllegalArgumentException("Unknown enum constant: " + bit);
+		}
 	}
 }
