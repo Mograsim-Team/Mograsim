@@ -22,6 +22,11 @@ import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasOverlay;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 
+/**
+ * Standalone simulation visualizer.
+ * 
+ * @author Daniel Kirschten
+ */
 public class LogicUI
 {
 	private final Display						display;
@@ -52,7 +57,10 @@ public class LogicUI
 		canvas.addListener(SWT.MouseDown, this::mouseDown);
 	}
 	/**
+	 * Add a component to be drawn.
 	 * Returns the given component for convenience.
+	 * 
+	 * @author Daniel Kirschten
 	 */
 	public <C extends BasicGUIComponent> C addComponent(C component, double x, double y)
 	{
@@ -60,6 +68,12 @@ public class LogicUI
 		componentPositions.put(component, new Point(x, y));
 		return component;
 	}
+	/**
+	 * Add a graphical wire between the given connection points of the given components.
+	 * The given components have to be added and the given connection points have to be connected logically first.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	public void addWire(BasicGUIComponent component1, int component1ConnectionIndex, BasicGUIComponent component2, int component2ConnectionIndex, Point... path)
 	{
 		wires.add(new GUIWire(canvas::redrawThreadsafe, component1, component1ConnectionIndex, componentPositions.get(component1), component2, component2ConnectionIndex, componentPositions.get(component2), path));
@@ -69,12 +83,6 @@ public class LogicUI
 		TranslatedGC tgc = new TranslatedGC(gc, componentPositions.get(component));
 		component.render(tgc);
 		tgc.setBackground(display.getSystemColor(SWT.COLOR_BLUE));
-//		for(int i = 0; i < component.getConnectedWireArraysCount(); i ++)
-//		{
-//			Point connectionPoint = component.getWireArrayConnectionPoint(i);
-//			if(connectionPoint != null)
-//				tgc.fillOval(connectionPoint.x - 1, connectionPoint.y - 1, 2, 2);
-//		}
 	}
 	private void mouseDown(Event e)
 	{
@@ -91,6 +99,10 @@ public class LogicUI
 		}
 	}
 
+	/**
+	 * Start the simulation timeline, and open the UI shell.
+	 * Returns when the shell is closed.
+	 */
 	public void run()
 	{
 		AtomicBoolean running = new AtomicBoolean(true);
