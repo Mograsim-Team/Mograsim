@@ -114,10 +114,9 @@ public class LogicUI
 				Simulation.TIMELINE.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
 				long sleepTime;
 				if(Simulation.TIMELINE.hasNext())
-				{
 					sleepTime = Simulation.TIMELINE.nextEventTime() - System.currentTimeMillis();
-				} else
-					sleepTime = 100;
+				else
+					sleepTime = 10;
 				try
 				{
 					if(sleepTime > 0)
@@ -129,7 +128,7 @@ public class LogicUI
 		simulationThread.start();
 		Simulation.TIMELINE.addEventAddedListener(event ->
 		{
-			if(event.getTiming() >= System.currentTimeMillis() / (double) 1)
+			if(event.getTiming() <= System.currentTimeMillis())
 				simulationThread.interrupt();
 		});
 
