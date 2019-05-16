@@ -53,14 +53,13 @@ public class GUIAndGate extends AndGate implements BasicGUIComponent
 	@Override
 	public void render(GeneralGC gc)
 	{
-		gc.drawRectangle(0, 0, 17, height);
+		gc.drawRectangle(0, 0, 20, height);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), 5, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(LABEL);
-		gc.drawText(LABEL, 8.5 - textExtent.x / 2, (height - textExtent.y) / 2, true);
+		gc.drawText(LABEL, 10 - textExtent.x / 2, (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
-		gc.drawOval(17, height / 2 - 1.5, 3, 3);
 	}
 
 	@Override
