@@ -180,8 +180,7 @@ public class GUITest extends JPanel {
 
 	}
 
-	private void drawSwitch(Graphics g, ManualSwitch ms, String text, double posX1, double posY1, double posX2,
-			double posY2) {
+	private void drawSwitch(Graphics g, ManualSwitch ms, String text, double posX1, double posY1, double posX2, double posY2) {
 		int x1 = gX(posX1) - 5;
 		int x2 = gX(posX2) + 5;
 		int y1 = gY(posY1) - 5;

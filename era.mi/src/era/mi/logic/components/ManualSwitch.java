@@ -12,50 +12,42 @@ import era.mi.logic.wires.WireArray.WireArrayInput;
  * @author Christian Femers
  *
  */
-public class ManualSwitch implements Component 
-{
+public class ManualSwitch implements Component {
 	private WireArray output;
 	private WireArrayInput outputI;
 	private boolean isOn;
-	
-	public ManualSwitch(WireArray output) 
-	{
-		if(output.length != 1)
+
+	public ManualSwitch(WireArray output) {
+		if (output.length != 1)
 			throw new IllegalArgumentException("Switch output can be only a single wire");
 		this.output = output;
 		this.outputI = output.createInput();
 	}
-	
-	public void switchOn()
-	{
+
+	public void switchOn() {
 		setState(true);
 	}
-	
-	public void switchOff()
-	{
+
+	public void switchOff() {
 		setState(false);
 	}
-	
-	public void toggle()
-	{
+
+	public void toggle() {
 		setState(!isOn);
 	}
-	
-	public void setState(boolean isOn)
-	{
-		if(this.isOn == isOn)
+
+	public void setState(boolean isOn) {
+		if (this.isOn == isOn)
 			return;
 		this.isOn = isOn;
 		outputI.feedSignals(getValue());
 	}
-	
-	public boolean isOn()
-	{
+
+	public boolean isOn() {
 		return isOn;
 	}
-	
-	public Bit getValue()
-	{
+
+	public Bit getValue() {
 		return isOn ? Bit.ONE : Bit.ZERO;
 	}
 
