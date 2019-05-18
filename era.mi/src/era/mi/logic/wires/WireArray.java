@@ -257,7 +257,7 @@ public class WireArray
 
 		private void initValues()
 		{
-			inputValues = Bit.Z.makeArray(length);
+			inputValues = Bit.U.makeArray(length);
 		}
 
 		/**
