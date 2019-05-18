@@ -4,7 +4,8 @@ import java.util.List;
 
 import era.mi.logic.wires.WireArray;
 
-public interface Component {
+public interface Component
+{
 
 	/**
 	 * Returns immutable list of all inputs to the {@link Component} (including e.g. the select bits to a MUX). Intended for visualization

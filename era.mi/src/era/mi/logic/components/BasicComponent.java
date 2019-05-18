@@ -10,7 +10,8 @@ import era.mi.logic.wires.WireArrayObserver;
  * 
  * @author Fabian Stemmler
  */
-public abstract class BasicComponent implements WireArrayObserver, Component {
+public abstract class BasicComponent implements WireArrayObserver, Component
+{
 	private int processTime;
 
 	/**
@@ -19,13 +20,16 @@ public abstract class BasicComponent implements WireArrayObserver, Component {
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public BasicComponent(int processTime) {
+	public BasicComponent(int processTime)
+	{
 		this.processTime = processTime > 0 ? processTime : 1;
 	}
 
 	@Override
-	public void update(WireArray initiator, Bit[] oldValues) {
-		Simulation.TIMELINE.addEvent((e) -> {
+	public void update(WireArray initiator, Bit[] oldValues)
+	{
+		Simulation.TIMELINE.addEvent((e) ->
+		{
 			compute();
 		}, processTime);
 	}

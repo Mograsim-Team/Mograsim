@@ -10,23 +10,29 @@ import era.mi.logic.Simulation;
 import era.mi.logic.components.BitDisplay;
 import era.mi.logic.wires.WireArray;
 
-public final class TestBitDisplay extends BitDisplay {
+public final class TestBitDisplay extends BitDisplay
+{
 
-	public TestBitDisplay(WireArray in) {
+	public TestBitDisplay(WireArray in)
+	{
 		super(in);
 	}
 
-	public void assertDisplays(Bit... expected) {
+	public void assertDisplays(Bit... expected)
+	{
 		assertArrayEquals(expected, getDisplayedValue());
 	}
 
-	public void assertAfterSimulationIs(Bit... expected) {
+	public void assertAfterSimulationIs(Bit... expected)
+	{
 		Simulation.TIMELINE.executeAll();
 		assertDisplays(expected);
 	}
 
-	public void assertAfterSimulationIs(LongConsumer r, Bit... expected) {
-		while (Simulation.TIMELINE.hasNext()) {
+	public void assertAfterSimulationIs(LongConsumer r, Bit... expected)
+	{
+		while (Simulation.TIMELINE.hasNext())
+		{
 			Simulation.TIMELINE.executeNext();
 			r.accept(Simulation.TIMELINE.getSimulationTime());
 		}
@@ -34,7 +40,8 @@ public final class TestBitDisplay extends BitDisplay {
 	}
 
 	@Override
-	protected void compute() {
+	protected void compute()
+	{
 		super.compute();
 		System.out.println("update: value is " + Arrays.toString(getDisplayedValue()));
 	}

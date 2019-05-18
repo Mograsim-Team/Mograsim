@@ -22,7 +22,8 @@ import era.mi.logic.components.gates.OrGate;
 import era.mi.logic.timeline.Timeline.ExecutionResult;
 import era.mi.logic.wires.WireArray;
 
-public class GUITest extends JPanel {
+public class GUITest extends JPanel
+{
 
 	private static final long serialVersionUID = 1L;
 
@@ -51,13 +52,18 @@ public class GUITest extends JPanel {
 	int width;
 	boolean sizeChanged;
 
-	public GUITest() {
-		addMouseListener(new MouseListener() {
+	public GUITest()
+	{
+		addMouseListener(new MouseListener()
+		{
 
 			@Override
-			public void mouseReleased(MouseEvent e) {
-				for (Entry<ManualSwitch, Rectangle> dim : switchMap.entrySet()) {
-					if (dim.getValue().contains(e.getPoint())) {
+			public void mouseReleased(MouseEvent e)
+			{
+				for (Entry<ManualSwitch, Rectangle> dim : switchMap.entrySet())
+				{
+					if (dim.getValue().contains(e.getPoint()))
+					{
 						dim.getKey().switchOff();
 						repaint();
 					}
@@ -65,9 +71,12 @@ public class GUITest extends JPanel {
 			}
 
 			@Override
-			public void mousePressed(MouseEvent e) {
-				for (Entry<ManualSwitch, Rectangle> dim : switchMap.entrySet()) {
-					if (dim.getValue().contains(e.getPoint())) {
+			public void mousePressed(MouseEvent e)
+			{
+				for (Entry<ManualSwitch, Rectangle> dim : switchMap.entrySet())
+				{
+					if (dim.getValue().contains(e.getPoint()))
+					{
 						dim.getKey().switchOn();
 						repaint();
 					}
@@ -75,17 +84,20 @@ public class GUITest extends JPanel {
 			}
 
 			@Override
-			public void mouseExited(MouseEvent e) {
+			public void mouseExited(MouseEvent e)
+			{
 				// none
 			}
 
 			@Override
-			public void mouseEntered(MouseEvent e) {
+			public void mouseEntered(MouseEvent e)
+			{
 				// none
 			}
 
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e)
+			{
 				// If you want toggle buttons, use this code instead
 //				for (Entry<ManualSwitch, Rectangle> dim : switchMap.entrySet()) {
 //					if (dim.getValue().contains(e.getPoint())) {
@@ -98,7 +110,8 @@ public class GUITest extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics some_g) {
+	public void paint(Graphics some_g)
+	{
 		super.paint(some_g);
 		Graphics2D g = ((Graphics2D) some_g);
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
@@ -142,31 +155,37 @@ public class GUITest extends JPanel {
 		drawString(g, "Hint: drag the cursor out of the pressed switch to keep it's state", 5, 0, 0.0, 1.0);
 	}
 
-	private void checkSizeChange() {
+	private void checkSizeChange()
+	{
 		sizeChanged = height != getHeight() || width != getWidth();
-		if (sizeChanged) {
+		if (sizeChanged)
+		{
 			height = getHeight();
 			width = getWidth();
 		}
 	}
 
-	private void adaptFont(Graphics g) {
+	private void adaptFont(Graphics g)
+	{
 		g.setFont(g.getFont().deriveFont(Math.min(height, width) / 40f));
 	}
 
-	private void drawString(Graphics g, String s, int x, int y, double anchorX, double anchorY) {
+	private void drawString(Graphics g, String s, int x, int y, double anchorX, double anchorY)
+	{
 		int h = g.getFontMetrics().getAscent();
 		int w = g.getFontMetrics().stringWidth(s);
 		g.drawString(s, x - (int) (w * anchorX), y + (int) (h * anchorY));
 	}
 
-	private void drawWire(Graphics g, WireArray wa, String name, double x1, double y1, double x2, double y2) {
+	private void drawWire(Graphics g, WireArray wa, String name, double x1, double y1, double x2, double y2)
+	{
 		setTo(g, wa);
 		g.drawLine(gX(x1), gY(y1), gX(x2), gY(y2));
 		drawString(g, name, (gX(x1) + gX(x2)) / 2, (gY(y1) + gY(y2)) / 2 - 5, 0, 0);
 	}
 
-	private void drawSquare(Graphics g, int posX, int posY, String text) {
+	private void drawSquare(Graphics g, int posX, int posY, String text)
+	{
 		int x1 = gX(posX) - 5;
 		int x2 = gX(posX + 1) + 5;
 		int y1 = gY(posY) - 5;
@@ -180,13 +199,15 @@ public class GUITest extends JPanel {
 
 	}
 
-	private void drawSwitch(Graphics g, ManualSwitch ms, String text, double posX1, double posY1, double posX2, double posY2) {
+	private void drawSwitch(Graphics g, ManualSwitch ms, String text, double posX1, double posY1, double posX2, double posY2)
+	{
 		int x1 = gX(posX1) - 5;
 		int x2 = gX(posX2) + 5;
 		int y1 = gY(posY1) - 5;
 		int y2 = gY(posY2) + 5;
 
-		if (sizeChanged) {
+		if (sizeChanged)
+		{
 			Rectangle r = new Rectangle(x1, y1, x2 - x1, y2 - y1);
 			switchMap.put(ms, r);
 		}
@@ -198,12 +219,15 @@ public class GUITest extends JPanel {
 		drawString(g, text, (x1 + x2) / 2, (y1 + y2) / 2, 0.5, 0.5);
 	}
 
-	private static void setBlack(Graphics g) {
+	private static void setBlack(Graphics g)
+	{
 		g.setColor(Color.BLACK);
 	}
 
-	private static void setTo(Graphics g, WireArray wa) {
-		switch (wa.getValue()) {
+	private static void setTo(Graphics g, WireArray wa)
+	{
+		switch (wa.getValue())
+		{
 		case ONE:
 			g.setColor(Color.GREEN);
 			break;
@@ -221,15 +245,18 @@ public class GUITest extends JPanel {
 		}
 	}
 
-	private int gY(double pos) {
+	private int gY(double pos)
+	{
 		return (int) (pos * height / 11);
 	}
 
-	private int gX(double pos) {
+	private int gX(double pos)
+	{
 		return (int) (pos * width / 11) + 50;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		JFrame f = new JFrame("Test circuit 1.0.0");
 		GUITest gt = new GUITest();
 		f.add(gt);
@@ -243,15 +270,19 @@ public class GUITest extends JPanel {
 		long lastFrame = begin;
 		long updateT = 16;
 
-		while (f.isVisible()) {
+		while (f.isVisible())
+		{
 			ExecutionResult er = Simulation.TIMELINE.executeUpTo((lastFrame - begin) * 3, lastFrame + 14);
 //				if (Simulation.TIMELINE.hasNext()) 
 //				Simulation.TIMELINE.executeNext();
 			if (er != ExecutionResult.NOTHING_DONE)
 				gt.repaint(12);
-			try {
+			try
+			{
 				Thread.sleep(Math.max(16 - System.currentTimeMillis() + lastFrame, 0));
-			} catch (Exception e) {
+			}
+			catch (Exception e)
+			{
 				e.printStackTrace();
 			}
 			lastFrame = System.currentTimeMillis();

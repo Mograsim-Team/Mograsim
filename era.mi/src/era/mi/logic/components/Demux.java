@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayInput;
+import era.mi.logic.wires.WireArray.WireArrayEnd;
 
 /**
  * Models a multiplexer. Takes an arbitrary amount of input {@link WireArray}s, one of which, as determined by select, is put through to the
@@ -14,10 +14,11 @@ import era.mi.logic.wires.WireArray.WireArrayInput;
  * @author Fabian Stemmler
  *
  */
-public class Demux extends BasicComponent {
+public class Demux extends BasicComponent
+{
 	private final WireArray select, in;
 	private final WireArray[] outputs;
-	private final WireArrayInput[] outputsI;
+	private final WireArrayEnd[] outputsI;
 	private final int outputSize;
 	private int selected = -1;
 
@@ -28,14 +29,16 @@ public class Demux extends BasicComponent {
 	 * @param select  Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
 	 * @param outputs One of these inputs is mapped to the output, depending on the select bits
 	 */
-	public Demux(int processTime, WireArray in, WireArray select, WireArray... outputs) {
+	public Demux(int processTime, WireArray in, WireArray select, WireArray... outputs)
+	{
 		super(processTime);
 		outputSize = in.length;
 
 		this.in = in;
 		this.outputs = outputs;
-		this.outputsI = new WireArrayInput[outputs.length];
-		for (int i = 0; i < this.outputsI.length; i++) {
+		this.outputsI = new WireArrayEnd[outputs.length];
+		for (int i = 0; i < this.outputsI.length; i++)
+		{
 			if (outputs[i].length != outputSize)
 				throw new IllegalArgumentException("All DEMUX wire arrays must be of uniform length!");
 			this.outputsI[i] = outputs[i].createInput();
@@ -52,7 +55,8 @@ public class Demux extends BasicComponent {
 	}
 
 	@Override
-	public void compute() {
+	public void compute()
+	{
 		int selectValue = select.hasNumericValue() ? (int) select.getUnsignedValue() : -1;
 		if (selectValue >= outputsI.length)
 			selectValue = -1;
@@ -67,12 +71,14 @@ public class Demux extends BasicComponent {
 	}
 
 	@Override
-	public List<WireArray> getAllInputs() {
+	public List<WireArray> getAllInputs()
+	{
 		return Collections.unmodifiableList(Arrays.asList(in, select));
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs() {
+	public List<WireArray> getAllOutputs()
+	{
 		return Collections.unmodifiableList(Arrays.asList(outputs));
 	}
 }

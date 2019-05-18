@@ -2,9 +2,11 @@ package era.mi.logic;
 
 import era.mi.logic.timeline.Timeline;
 
-public class Simulation {
+public class Simulation
+{
 	public final static Timeline TIMELINE = new Timeline(11);
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 	}
 }

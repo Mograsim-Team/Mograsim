@@ -6,13 +6,15 @@ import java.util.List;
 
 import era.mi.logic.Bit;
 import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayInput;
+import era.mi.logic.wires.WireArray.WireArrayEnd;
 
-public class TriStateBuffer extends BasicComponent {
+public class TriStateBuffer extends BasicComponent
+{
 	WireArray in, enable;
-	WireArrayInput outI;
+	WireArrayEnd outI;
 
-	public TriStateBuffer(int processTime, WireArray in, WireArray out, WireArray enable) {
+	public TriStateBuffer(int processTime, WireArray in, WireArray out, WireArray enable)
+	{
 		super(processTime);
 		if (in.length != out.length)
 			throw new IllegalArgumentException(
@@ -27,7 +29,8 @@ public class TriStateBuffer extends BasicComponent {
 	}
 
 	@Override
-	protected void compute() {
+	protected void compute()
+	{
 		if (enable.getValue() == Bit.ONE)
 			outI.feedSignals(in.getValues());
 		else
@@ -35,12 +38,14 @@ public class TriStateBuffer extends BasicComponent {
 	}
 
 	@Override
-	public List<WireArray> getAllInputs() {
+	public List<WireArray> getAllInputs()
+	{
 		return Collections.unmodifiableList(Arrays.asList(in, enable));
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs() {
+	public List<WireArray> getAllOutputs()
+	{
 		return Collections.unmodifiableList(Arrays.asList(outI.owner));
 	}
 

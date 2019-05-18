@@ -5,35 +5,44 @@ import java.util.Arrays;
 /**
  * stdlogic according to IEEE 1164
  */
-public enum Bit {
+public enum Bit
+{
 	U, X, ZERO, ONE, Z;
 
-	public static Bit and(Bit a, Bit b) {
+	public static Bit and(Bit a, Bit b)
+	{
 		return a.and(b);
 	}
 
-	public Bit and(Bit other) {
+	public Bit and(Bit other)
+	{
 		return fromTable(AND_TABLE, this, other);
 	}
 
-	public static Bit or(Bit a, Bit b) {
+	public static Bit or(Bit a, Bit b)
+	{
 		return a.or(b);
 	}
 
-	public Bit or(Bit other) {
+	public Bit or(Bit other)
+	{
 		return fromTable(OR_TABLE, this, other);
 	}
 
-	public static Bit xor(Bit a, Bit b) {
+	public static Bit xor(Bit a, Bit b)
+	{
 		return a.xor(b);
 	}
 
-	public Bit xor(Bit other) {
+	public Bit xor(Bit other)
+	{
 		return fromTable(XOR_TABLE, this, other);
 	}
 
-	public Bit not() {
-		switch (this) {
+	public Bit not()
+	{
+		switch (this)
+		{
 		case U:
 			return U;
 		case ONE:
@@ -45,21 +54,25 @@ public enum Bit {
 		}
 	}
 
-	public Bit[] makeArray(int length) {
+	public Bit[] makeArray(int length)
+	{
 		Bit[] bits = new Bit[length];
 		Arrays.fill(bits, this);
 		return bits;
 	}
 
-	public Bit combineWith(Bit other) {
+	public Bit combineWith(Bit other)
+	{
 		return fromTable(JOIN_TABLE, this, other);
 	}
 
-	public static Bit combine(Bit a, Bit b) {
+	public static Bit combine(Bit a, Bit b)
+	{
 		return a.combineWith(b);
 	}
 
-	private static Bit fromTable(Bit[][] table, Bit a, Bit b) {
+	private static Bit fromTable(Bit[][] table, Bit a, Bit b)
+	{
 		return table[a.ordinal()][b.ordinal()];
 	}
 

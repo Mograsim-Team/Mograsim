@@ -7,19 +7,23 @@ package era.mi.logic.timeline;
  * @author Fabian Stemmler
  *
  */
-public class TimelineEvent {
+public class TimelineEvent
+{
 	private final long timing;
 
-	TimelineEvent(long timing) {
+	TimelineEvent(long timing)
+	{
 		super();
 		this.timing = timing;
 	}
 
-	public long getTiming() {
+	public long getTiming()
+	{
 		return timing;
 	}
 
-	public String toString() {
+	public String toString()
+	{
 		return "timestamp: " + timing;
 	}
 }

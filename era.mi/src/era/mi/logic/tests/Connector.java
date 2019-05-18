@@ -3,16 +3,18 @@ package era.mi.logic.tests;
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayInput;
+import era.mi.logic.wires.WireArray.WireArrayEnd;
 import era.mi.logic.wires.WireArrayObserver;
 
-public class Connector implements WireArrayObserver {
+public class Connector implements WireArrayObserver
+{
 	private final WireArray a;
 //	private final WireArray b;
-	private final WireArrayInput aI;
-	private final WireArrayInput bI;
+	private final WireArrayEnd aI;
+	private final WireArrayEnd bI;
 
-	public Connector(WireArray a, WireArray b) {
+	public Connector(WireArray a, WireArray b)
+	{
 		if (a.length != b.length)
 			throw new IllegalArgumentException(String.format("WireArray width does not match: %d, %d", a.length, b.length));
 		this.a = a;
@@ -24,8 +26,10 @@ public class Connector implements WireArrayObserver {
 	}
 
 	@Override
-	public void update(WireArray initiator, Bit[] oldValues) {
-		Simulation.TIMELINE.addEvent((e) -> {
+	public void update(WireArray initiator, Bit[] oldValues)
+	{
+		Simulation.TIMELINE.addEvent((e) ->
+		{
 			if (initiator == a)
 				bI.feedSignals(aI.wireValuesExcludingMe());
 			else

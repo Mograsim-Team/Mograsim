@@ -8,8 +8,10 @@ import era.mi.logic.wires.WireArray;
  * 
  * @author Fabian Stemmler
  */
-public class XorGate extends MultiInputGate {
-	public XorGate(int processTime, WireArray out, WireArray... in) {
+public class XorGate extends MultiInputGate
+{
+	public XorGate(int processTime, WireArray out, WireArray... in)
+	{
 		super(processTime, Util::xor, out, in);
 	}
 

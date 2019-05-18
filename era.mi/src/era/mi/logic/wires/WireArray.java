@@ -1,5 +1,6 @@
 package era.mi.logic.wires;
 
+import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -15,14 +16,16 @@ import era.mi.logic.Util;
  * @author Fabian Stemmler
  *
  */
-public class WireArray {
+public class WireArray
+{
 	private Bit[] values;
 	public final int travelTime;
 	private List<WireArrayObserver> observers = new ArrayList<WireArrayObserver>();
 	public final int length;
-	private List<WireArrayInput> inputs = new ArrayList<WireArrayInput>();
+	private List<WireArrayEnd> inputs = new ArrayList<WireArrayEnd>();
 
-	public WireArray(int length, int travelTime) {
+	public WireArray(int length, int travelTime)
+	{
 		if (length < 1)
 			throw new IllegalArgumentException(
 					String.format("Tried to create an array of wires with length %d, but a length of less than 1 makes no sense.", length));
@@ -31,27 +34,33 @@ public class WireArray {
 		initValues();
 	}
 
-	private void initValues() {
-		values = Bit.Z.makeArray(length);
+	private void initValues()
+	{
+		values = Bit.U.makeArray(length);
 	}
 
-	private void recalculateSingleInput() {
-		WireArrayInput input = inputs.get(0);
-		if (!Arrays.equals(input.getValues(), values)) {
+	private void recalculateSingleInput()
+	{
+		WireArrayEnd input = inputs.get(0);
+		if (!Arrays.equals(input.getValues(), values))
+		{
 			Bit[] oldValues = values.clone();
 			System.arraycopy(input.getValues(), 0, values, 0, length);
 			notifyObservers(oldValues);
 		}
 	}
 
-	private void recalculateMultipleInputs() {
-		Iterator<WireArrayInput> it = inputs.iterator();
+	private void recalculateMultipleInputs()
+	{
+		Iterator<WireArrayEnd> it = inputs.iterator();
 		Bit[] newValues = it.next().inputValues.clone();
 
-		while (it.hasNext()) {
-			WireArrayInput input = it.next();
+		while (it.hasNext())
+		{
+			WireArrayEnd input = it.next();
 			Bit[] bits = input.getValues();
-			for (int i = 0; i < length; i++) {
+			for (int i = 0; i < length; i++)
+			{
 				if (Bit.Z.equals(bits[i]) || newValues[i].equals(bits[i]))
 					continue;
 				else if (Bit.Z.equals(newValues[i]))
@@ -61,15 +70,18 @@ public class WireArray {
 			}
 		}
 
-		if (!Arrays.equals(newValues, values)) {
+		if (!Arrays.equals(newValues, values))
+		{
 			Bit[] oldValues = values;
 			values = newValues;
 			notifyObservers(oldValues);
 		}
 	}
 
-	private void recalculate() {
-		switch (inputs.size()) {
+	private void recalculate()
+	{
+		switch (inputs.size())
+		{
 		case 0:
 			return;
 		case 1:
@@ -88,8 +100,10 @@ public class WireArray {
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public boolean hasNumericValue() {
-		for (Bit b : values) {
+	public boolean hasNumericValue()
+	{
+		for (Bit b : values)
+		{
 			if (b != Bit.ZERO && b != Bit.ONE)
 				return false;
 		}
@@ -103,11 +117,14 @@ public class WireArray {
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public long getUnsignedValue() {
+	public long getUnsignedValue()
+	{
 		long val = 0;
 		long mask = 1;
-		for (int i = 0; i < length; i++) {
-			switch (values[i]) {
+		for (int i = 0; i < length; i++)
+		{
+			switch (values[i])
+			{
 			default:
 			case Z:
 			case X:
@@ -130,10 +147,12 @@ public class WireArray {
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public long getSignedValue() {
+	public long getSignedValue()
+	{
 		long val = getUnsignedValue();
 		long mask = 1 << (length - 1);
-		if ((mask & val) != 0) {
+		if ((mask & val) != 0)
+		{
 			int shifts = 64 - length;
 			return (val << shifts) >> shifts;
 		}
@@ -147,7 +166,8 @@ public class WireArray {
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public Bit getValue() {
+	public Bit getValue()
+	{
 		return getValue(0);
 	}
 
@@ -158,11 +178,13 @@ public class WireArray {
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public Bit getValue(int index) {
+	public Bit getValue(int index)
+	{
 		return values[index];
 	}
 
-	public Bit[] getValues(int start, int end) {
+	public Bit[] getValues(int start, int end)
+	{
 		int length = end - start;
 		Bit[] bits = new Bit[length];
 		System.arraycopy(values, start, bits, 0, length);
@@ -174,7 +196,8 @@ public class WireArray {
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public Bit[] getValues() {
+	public Bit[] getValues()
+	{
 		return values.clone();
 	}
 
@@ -186,45 +209,54 @@ public class WireArray {
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public boolean addObserver(WireArrayObserver ob) {
+	public boolean addObserver(WireArrayObserver ob)
+	{
 		return observers.add(ob);
 	}
 
-	private void notifyObservers(Bit[] oldValues) {
+	private void notifyObservers(Bit[] oldValues)
+	{
 		for (WireArrayObserver o : observers)
 			o.update(this, oldValues);
 	}
 
 	/**
-	 * Create and register a {@link WireArrayInput} object, which is tied to this {@link WireArray}.
+	 * Create and register a {@link WireArrayEnd} object, which is tied to this {@link WireArray}.
 	 */
-	public WireArrayInput createInput() {
-		return new WireArrayInput(this);
+	public WireArrayEnd createInput()
+	{
+		return new WireArrayEnd(this);
 	}
 
-	private void registerInput(WireArrayInput toRegister) {
+	private void registerInput(WireArrayEnd toRegister)
+	{
 		inputs.add(toRegister);
 	}
 
 	/**
-	 * A {@link WireArrayInput} feeds a constant signal into the {@link WireArray} it is tied to. The combination of all inputs determines
-	 * the {@link WireArray}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs
-	 * than Z 0 and 1 turn into X when they are mixed
+	 * A {@link WireArrayEnd} feeds a constant signal into the {@link WireArray} it is tied to. The combination of all inputs determines the
+	 * {@link WireArray}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs than
+	 * Z 0 and 1 turn into X when they are mixed
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public class WireArrayInput {
+	public class WireArrayEnd implements Closeable
+	{
 		public final WireArray owner;
+		private boolean open;
 		private Bit[] inputValues;
 
-		private WireArrayInput(WireArray owner) {
+		private WireArrayEnd(WireArray owner)
+		{
 			super();
 			this.owner = owner;
+			open = true;
 			initValues();
 			owner.registerInput(this);
 		}
 
-		private void initValues() {
+		private void initValues()
+		{
 			inputValues = Bit.Z.makeArray(length);
 		}
 
@@ -235,12 +267,14 @@ public class WireArray {
 		 * 
 		 * @author Fabian Stemmler
 		 */
-		public void feedSignals(Bit... newValues) {
-			if (newValues.length == length) {
+		public void feedSignals(Bit... newValues)
+		{
+			if (newValues.length == length)
+			{
 				feedSignals(0, newValues);
 			} else
 				throw new IllegalArgumentException(
-						String.format("Attempted to input %o bits instead of %o bits.", newValues.length, length));
+						String.format("Attempted to input %d bits instead of %d bits.", newValues.length, length));
 		}
 
 		/**
@@ -251,40 +285,49 @@ public class WireArray {
 		 * 
 		 * @author Fabian Stemmler
 		 */
-		public void feedSignals(int startingBit, Bit... newValues) {
+		public void feedSignals(int startingBit, Bit... newValues)
+		{
+			if (!open)
+				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
 			Simulation.TIMELINE.addEvent((e) -> setValues(startingBit, newValues), travelTime);
 		}
 
-		private void setValues(int startingBit, Bit... newValues) {
+		private void setValues(int startingBit, Bit... newValues)
+		{
 			int exclLastIndex = startingBit + newValues.length;
 			if (length < exclLastIndex)
 				throw new ArrayIndexOutOfBoundsException(
-						String.format("Attempted to input bits from index %o to %o when there are only %o wires.", startingBit,
+						String.format("Attempted to input bits from index %d to %d when there are only %d wires.", startingBit,
 								exclLastIndex - 1, length));
-			if (!Arrays.equals(inputValues, startingBit, exclLastIndex, newValues, 0, newValues.length)) {
+			if (!Arrays.equals(inputValues, startingBit, exclLastIndex, newValues, 0, newValues.length))
+			{
 				System.arraycopy(newValues, 0, inputValues, startingBit, newValues.length);
 				owner.recalculate();
 			}
 		}
 
 		/**
-		 * Returns a copy (safe to modify) of the values the {@link WireArrayInput} is currently feeding into the associated
+		 * Returns a copy (safe to modify) of the values the {@link WireArrayEnd} is currently feeding into the associated
 		 * {@link WireArray}.
 		 */
-		public Bit[] getValues() {
+		public Bit[] getValues()
+		{
 			return inputValues.clone();
 		}
 
 		/**
-		 * {@link WireArrayInput} now feeds Z into the associated {@link WireArray}.
+		 * {@link WireArrayEnd} now feeds Z into the associated {@link WireArray}.
 		 */
-		public void clearSignals() {
+		public void clearSignals()
+		{
 			feedSignals(Bit.Z.makeArray(length));
 		}
 
-		public Bit[] wireValuesExcludingMe() {
+		public Bit[] wireValuesExcludingMe()
+		{
 			Bit[] bits = Bit.Z.makeArray(length);
-			for (WireArrayInput wai : inputs) {
+			for (WireArrayEnd wai : inputs)
+			{
 				if (wai == this)
 					continue;
 				Util.combineInto(bits, wai.getValues());
@@ -292,19 +335,39 @@ public class WireArray {
 			return bits;
 		}
 
+		public Bit getWireValue()
+		{
+			return owner.getValue();
+		}
+
+		public Bit[] getWireValues()
+		{
+			return owner.getValues();
+		}
+
 		@Override
-		public String toString() {
+		public String toString()
+		{
 			return Arrays.toString(inputValues);
+		}
+
+		@Override
+		public void close()
+		{
+			inputs.remove(this);
+			open = false;
 		}
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return String.format("wire 0x%08x value: %s inputs: %s", hashCode(), Arrays.toString(values), inputs);
 	}
 
-	public static WireArrayInput[] extractInputs(WireArray[] w) {
-		WireArrayInput[] inputs = new WireArrayInput[w.length];
+	public static WireArrayEnd[] extractInputs(WireArray[] w)
+	{
+		WireArrayEnd[] inputs = new WireArrayEnd[w.length];
 		for (int i = 0; i < w.length; i++)
 			inputs[i] = w[i].createInput();
 		return inputs;

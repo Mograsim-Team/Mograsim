@@ -8,11 +8,13 @@ import java.util.List;
 import era.mi.logic.Bit;
 import era.mi.logic.wires.WireArray;
 
-public class BitDisplay extends BasicComponent {
+public class BitDisplay extends BasicComponent
+{
 	private final WireArray in;
 	private Bit[] displayedValue;
 
-	public BitDisplay(WireArray in) {
+	public BitDisplay(WireArray in)
+	{
 		super(1);
 		this.in = in;
 		in.addObserver(this);
@@ -20,25 +22,30 @@ public class BitDisplay extends BasicComponent {
 	}
 
 	@Override
-	protected void compute() {
+	protected void compute()
+	{
 		displayedValue = in.getValues();
 	}
 
-	public Bit[] getDisplayedValue() {
+	public Bit[] getDisplayedValue()
+	{
 		return displayedValue;
 	}
 
-	public boolean isDisplaying(Bit... values) {
+	public boolean isDisplaying(Bit... values)
+	{
 		return Arrays.equals(displayedValue, values);
 	}
 
 	@Override
-	public List<WireArray> getAllInputs() {
+	public List<WireArray> getAllInputs()
+	{
 		return Collections.unmodifiableList(Arrays.asList(in));
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs() {
+	public List<WireArray> getAllOutputs()
+	{
 		return Collections.unmodifiableList(new ArrayList<WireArray>());
 	}
 }

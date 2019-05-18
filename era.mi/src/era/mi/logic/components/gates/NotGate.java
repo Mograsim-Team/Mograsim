@@ -7,13 +7,15 @@ import java.util.List;
 import era.mi.logic.Util;
 import era.mi.logic.components.BasicComponent;
 import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayInput;
+import era.mi.logic.wires.WireArray.WireArrayEnd;
 
-public class NotGate extends BasicComponent {
+public class NotGate extends BasicComponent
+{
 	private WireArray in, out;
-	private WireArrayInput outI;
+	private WireArrayEnd outI;
 
-	public NotGate(int processTime, WireArray in, WireArray out) {
+	public NotGate(int processTime, WireArray in, WireArray out)
+	{
 		super(processTime);
 		this.in = in;
 		in.addObserver(this);
@@ -21,25 +23,30 @@ public class NotGate extends BasicComponent {
 		outI = out.createInput();
 	}
 
-	public void compute() {
+	public void compute()
+	{
 		outI.feedSignals(Util.not(in.getValues()));
 	}
 
-	public WireArray getIn() {
+	public WireArray getIn()
+	{
 		return in;
 	}
 
-	public WireArray getOut() {
+	public WireArray getOut()
+	{
 		return out;
 	}
 
 	@Override
-	public List<WireArray> getAllInputs() {
+	public List<WireArray> getAllInputs()
+	{
 		return Collections.unmodifiableList(Arrays.asList(in));
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs() {
+	public List<WireArray> getAllOutputs()
+	{
 		return Collections.unmodifiableList(Arrays.asList(out));
 	}
 }

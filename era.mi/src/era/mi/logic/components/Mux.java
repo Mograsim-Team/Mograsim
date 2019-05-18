@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayInput;
+import era.mi.logic.wires.WireArray.WireArrayEnd;
 
 /**
  * Models a multiplexer. Takes an arbitrary amount of input {@link WireArray}s, one of which, as determined by select, is put through to the
@@ -15,9 +15,10 @@ import era.mi.logic.wires.WireArray.WireArrayInput;
  * @author Fabian Stemmler
  *
  */
-public class Mux extends BasicComponent {
+public class Mux extends BasicComponent
+{
 	private WireArray select;
-	private WireArrayInput outI;
+	private WireArrayEnd outI;
 	private WireArray[] inputs;
 	private final int outputSize;
 
@@ -28,12 +29,14 @@ public class Mux extends BasicComponent {
 	 * @param select Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
 	 * @param inputs One of these inputs is mapped to the output, depending on the select bits
 	 */
-	public Mux(int processTime, WireArray out, WireArray select, WireArray... inputs) {
+	public Mux(int processTime, WireArray out, WireArray select, WireArray... inputs)
+	{
 		super(processTime);
 		outputSize = out.length;
 
 		this.inputs = inputs.clone();
-		for (int i = 0; i < this.inputs.length; i++) {
+		for (int i = 0; i < this.inputs.length; i++)
+		{
 			if (inputs[i].length != outputSize)
 				throw new IllegalArgumentException("All MUX wire arrays must be of uniform length!");
 			inputs[i].addObserver(this);
@@ -50,18 +53,22 @@ public class Mux extends BasicComponent {
 		outI = out.createInput();
 	}
 
-	public WireArray getOut() {
+	public WireArray getOut()
+	{
 		return outI.owner;
 	}
 
-	public WireArray getSelect() {
+	public WireArray getSelect()
+	{
 		return select;
 	}
 
 	@Override
-	public void compute() {
+	public void compute()
+	{
 		int selectValue;
-		if (!select.hasNumericValue() || (selectValue = (int) select.getUnsignedValue()) >= inputs.length) {
+		if (!select.hasNumericValue() || (selectValue = (int) select.getUnsignedValue()) >= inputs.length)
+		{
 			outI.clearSignals();
 			return;
 		}
@@ -71,14 +78,16 @@ public class Mux extends BasicComponent {
 	}
 
 	@Override
-	public List<WireArray> getAllInputs() {
+	public List<WireArray> getAllInputs()
+	{
 		ArrayList<WireArray> wires = new ArrayList<WireArray>(Arrays.asList(inputs));
 		wires.add(select);
 		return Collections.unmodifiableList(wires);
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs() {
+	public List<WireArray> getAllOutputs()
+	{
 		return Collections.unmodifiableList(Arrays.asList(outI.owner));
 	}
 }
