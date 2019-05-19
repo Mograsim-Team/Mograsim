@@ -17,7 +17,8 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-public class SamplePart {
+public class SamplePart
+{
 
 	private TableViewer tableViewer;
 
@@ -25,7 +26,8 @@ public class SamplePart {
 	private MPart part;
 
 	@PostConstruct
-	public void createComposite(Composite parent) {
+	public void createComposite(Composite parent)
+	{
 		parent.setLayout(new GridLayout(1, false));
 
 		Text txtInput = new Text(parent, SWT.BORDER);
@@ -41,16 +43,19 @@ public class SamplePart {
 	}
 
 	@Focus
-	public void setFocus() {
+	public void setFocus()
+	{
 		tableViewer.getTable().setFocus();
 	}
 
 	@Persist
-	public void save() {
+	public void save()
+	{
 		part.setDirty(false);
 	}
 
-	private static List<String> createInitialDataModel() {
+	private static List<String> createInitialDataModel()
+	{
 		return Arrays.asList("Sample item 1", "Sample item 2", "Sample item 3", "Sample item 4", "Sample item 5");
 	}
 }

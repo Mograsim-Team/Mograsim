@@ -21,7 +21,8 @@ import org.eclipse.ui.splash.AbstractSplashHandler;
  * @since 3.3
  *
  */
-public class ExtensibleSplashHandler extends AbstractSplashHandler {
+public class ExtensibleSplashHandler extends AbstractSplashHandler
+{
 
 	private ArrayList<Image> fImageList;
 
@@ -46,7 +47,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * 
 	 */
-	public ExtensibleSplashHandler() {
+	public ExtensibleSplashHandler()
+	{
 		fImageList = new ArrayList<>();
 		fTooltipList = new ArrayList<>();
 		fIconPanel = null;
@@ -54,12 +56,12 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 
 	/*
 	 * (non-Javadoc)
-	 * @see
-	 * org.eclipse.ui.splash.AbstractSplashHandler#init(org.eclipse.swt.widgets.
-	 * Shell)
+	 * 
+	 * @see org.eclipse.ui.splash.AbstractSplashHandler#init(org.eclipse.swt.widgets. Shell)
 	 */
 	@Override
-	public void init(Shell splash) {
+	public void init(Shell splash)
+	{
 		// Store the shell
 		super.init(splash);
 		// Configure the shell layout
@@ -67,7 +69,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 		// Load all splash extensions
 		loadSplashExtensions();
 		// If no splash extensions were loaded abort the splash handler
-		if (!hasSplashExtensions()) {
+		if (!hasSplashExtensions())
+		{
 			return;
 		}
 		// Create UI
@@ -82,14 +85,16 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * @return
 	 */
-	private boolean hasSplashExtensions() {
+	private boolean hasSplashExtensions()
+	{
 		return !fImageList.isEmpty();
 	}
 
 	/**
 	 * 
 	 */
-	private void createUI() {
+	private void createUI()
+	{
 		// Create the icon panel
 		createUICompositeIconPanel();
 		// Create the images
@@ -99,7 +104,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * 
 	 */
-	private void createUIImages() {
+	private void createUIImages()
+	{
 		Iterator<Image> imageIterator = fImageList.iterator();
 		Iterator<String> tooltipIterator = fTooltipList.iterator();
 		int i = 1;
@@ -107,7 +113,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 		// Create all the images
 		// Abort if we run out of columns (left-over images will not fit within
 		// the usable splash screen width)
-		while (imageIterator.hasNext() && (i <= columnCount)) {
+		while (imageIterator.hasNext() && (i <= columnCount))
+		{
 			Image image = imageIterator.next();
 			String tooltip = tooltipIterator.next();
 			// Create the image using a label widget
@@ -120,7 +127,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	 * @param image
 	 * @param tooltip
 	 */
-	private void createUILabel(Image image, String tooltip) {
+	private void createUILabel(Image image, String tooltip)
+	{
 		// Create the label (no text)
 		Label label = new Label(fIconPanel, SWT.NONE);
 		label.setImage(image);
@@ -130,7 +138,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * 
 	 */
-	private void createUICompositeIconPanel() {
+	private void createUICompositeIconPanel()
+	{
 		Shell splash = getSplash();
 		// Create the composite
 		fIconPanel = new Composite(splash, SWT.NONE);
@@ -153,7 +162,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * 
 	 */
-	private void configureUICompositeIconPanelBounds() {
+	private void configureUICompositeIconPanelBounds()
+	{
 		// Determine the size of the panel and position it at the bottom-right
 		// of the splash screen.
 		Point panelSize = fIconPanel.computeSize(SWT.DEFAULT, SWT.DEFAULT, true);
@@ -169,7 +179,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * @return
 	 */
-	private int getUsableSplashScreenWidth() {
+	private int getUsableSplashScreenWidth()
+	{
 		// Splash screen width minus two graphic border bevel widths
 		return getSplash().getSize().x - (F_SPLASH_SCREEN_BEVEL * 2);
 	}
@@ -177,12 +188,13 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * 
 	 */
-	private void loadSplashExtensions() {
+	private void loadSplashExtensions()
+	{
 		// Get all splash handler extensions
-		IExtension[] extensions = Platform.getExtensionRegistry().getExtensionPoint(F_SPLASH_EXTENSION_ID)
-				.getExtensions();
+		IExtension[] extensions = Platform.getExtensionRegistry().getExtensionPoint(F_SPLASH_EXTENSION_ID).getExtensions();
 		// Process all splash handler extensions
-		for (int i = 0; i < extensions.length; i++) {
+		for (int i = 0; i < extensions.length; i++)
+		{
 			processSplashExtension(extensions[i]);
 		}
 	}
@@ -190,11 +202,13 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * @param extension
 	 */
-	private void processSplashExtension(IExtension extension) {
+	private void processSplashExtension(IExtension extension)
+	{
 		// Get all splash handler configuration elements
 		IConfigurationElement[] elements = extension.getConfigurationElements();
 		// Process all splash handler configuration elements
-		for (int j = 0; j < elements.length; j++) {
+		for (int j = 0; j < elements.length; j++)
+		{
 			processSplashElements(elements[j]);
 		}
 	}
@@ -202,7 +216,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * @param configurationElement
 	 */
-	private void processSplashElements(IConfigurationElement configurationElement) {
+	private void processSplashElements(IConfigurationElement configurationElement)
+	{
 		// Attribute: icon
 		processSplashElementIcon(configurationElement);
 		// Attribute: tooltip
@@ -212,13 +227,16 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * @param configurationElement
 	 */
-	private void processSplashElementTooltip(IConfigurationElement configurationElement) {
+	private void processSplashElementTooltip(IConfigurationElement configurationElement)
+	{
 		// Get attribute tooltip
 		String tooltip = configurationElement.getAttribute(F_ELEMENT_TOOLTIP);
 		// If a tooltip is not defined, give it a default
-		if ((tooltip == null) || (tooltip.length() == 0)) {
+		if ((tooltip == null) || (tooltip.length() == 0))
+		{
 			fTooltipList.add(F_DEFAULT_TOOLTIP);
-		} else {
+		} else
+		{
 			fTooltipList.add(tooltip);
 		}
 	}
@@ -226,28 +244,33 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * @param configurationElement
 	 */
-	private void processSplashElementIcon(IConfigurationElement configurationElement) {
+	private void processSplashElementIcon(IConfigurationElement configurationElement)
+	{
 		// Get attribute icon
 		String iconImageFilePath = configurationElement.getAttribute(F_ELEMENT_ICON);
 		// Abort if an icon attribute was not specified
-		if ((iconImageFilePath == null) || (iconImageFilePath.length() == 0)) {
+		if ((iconImageFilePath == null) || (iconImageFilePath.length() == 0))
+		{
 			return;
 		}
 		// Create a corresponding image descriptor
-		ImageDescriptor descriptor = AbstractUIPlugin
-				.imageDescriptorFromPlugin(configurationElement.getNamespaceIdentifier(), iconImageFilePath);
+		ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin(configurationElement.getNamespaceIdentifier(),
+				iconImageFilePath);
 		// Abort if no corresponding image was found
-		if (descriptor == null) {
+		if (descriptor == null)
+		{
 			return;
 		}
 		// Create the image
 		Image image = descriptor.createImage();
 		// Abort if image creation failed
-		if (image == null) {
+		if (image == null)
+		{
 			return;
 		}
 		// Abort if the image does not have dimensions of 50x50
-		if ((image.getBounds().width != F_IMAGE_WIDTH) || (image.getBounds().height != F_IMAGE_HEIGHT)) {
+		if ((image.getBounds().width != F_IMAGE_WIDTH) || (image.getBounds().height != F_IMAGE_HEIGHT))
+		{
 			// Dipose of the image
 			image.dispose();
 			return;
@@ -259,7 +282,8 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * 
 	 */
-	private void configureUISplash() {
+	private void configureUISplash()
+	{
 		// Configure layout
 		GridLayout layout = new GridLayout(1, true);
 		getSplash().setLayout(layout);
@@ -270,27 +294,33 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 	/**
 	 * 
 	 */
-	private void doEventLoop() {
+	private void doEventLoop()
+	{
 		Shell splash = getSplash();
-		if (!splash.getDisplay().readAndDispatch()) {
+		if (!splash.getDisplay().readAndDispatch())
+		{
 			splash.getDisplay().sleep();
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.ui.splash.AbstractSplashHandler#dispose()
 	 */
 	@Override
-	public void dispose() {
+	public void dispose()
+	{
 		super.dispose();
 		// Check to see if any images were defined
-		if ((fImageList == null) || fImageList.isEmpty()) {
+		if ((fImageList == null) || fImageList.isEmpty())
+		{
 			return;
 		}
 		// Dispose of all the images
 		Iterator<Image> iterator = fImageList.iterator();
-		while (iterator.hasNext()) {
+		while (iterator.hasNext())
+		{
 			Image image = iterator.next();
 			image.dispose();
 		}
