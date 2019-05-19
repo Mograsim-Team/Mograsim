@@ -61,12 +61,7 @@ public class WireArray
 			Bit[] bits = input.getValues();
 			for (int i = 0; i < length; i++)
 			{
-				if (Bit.Z.equals(bits[i]) || newValues[i].equals(bits[i]))
-					continue;
-				else if (Bit.Z.equals(newValues[i]))
-					newValues[i] = bits[i];
-				else
-					newValues[i] = Bit.X;
+				newValues[i] = newValues[i].combineWith(bits[i]);
 			}
 		}
 

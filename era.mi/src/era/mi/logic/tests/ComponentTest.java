@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
+import era.mi.logic.components.Connector;
 import era.mi.logic.components.Demux;
 import era.mi.logic.components.Merger;
 import era.mi.logic.components.Mux;
@@ -21,6 +22,7 @@ import era.mi.logic.components.gates.XorGate;
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArray.WireArrayEnd;
 
+@SuppressWarnings("unused")
 class ComponentTest
 {
 
@@ -92,6 +94,7 @@ class ComponentTest
 		WireArrayEnd enI = en.createInput(), aI = a.createInput(), bI = b.createInput();
 		enI.feedSignals(Bit.ONE);
 		aI.feedSignals(Bit.ONE);
+		bI.feedSignals(Bit.Z);
 
 		Simulation.TIMELINE.executeAll();
 
@@ -292,7 +295,7 @@ class ComponentTest
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 	}
 
-//	@Test
+	@Test
 	void wireConnections()
 	{
 		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
@@ -320,7 +323,7 @@ class ComponentTest
 		cI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
 
-		new Connector(b, c);
+		new Connector(b, c).connect();
 		test.assertAfterSimulationIs(print, Bit.Z);
 		System.err.println("ONE");
 		bI.feedSignals(Bit.ONE);
@@ -332,7 +335,7 @@ class ComponentTest
 		bI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
 
-		new Connector(a, b);
+		new Connector(a, b).connect();
 		System.err.println("Z 2");
 		aI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
