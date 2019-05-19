@@ -13,10 +13,10 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class GUINotGate extends NotGate implements BasicGUIComponent
 {
-	private static final String LABEL = "\u22651";//>=1
+	private static final String LABEL = "\u22651";// >=1
 
-	private final List<WireArray>	connectedWireArrays;
-	private final List<Point>		wireArrayConnectionPoints;
+	private final List<WireArray> connectedWireArrays;
+	private final List<Point> wireArrayConnectionPoints;
 
 	public GUINotGate(int processTime, WireArray in, WireArray out)
 	{
@@ -40,6 +40,7 @@ public class GUINotGate extends NotGate implements BasicGUIComponent
 	{
 		return new Rectangle(0, 0, 20, 10);
 	}
+
 	@Override
 	public void render(GeneralGC gc)
 	{
@@ -58,11 +59,13 @@ public class GUINotGate extends NotGate implements BasicGUIComponent
 	{
 		return connectedWireArrays.size();
 	}
+
 	@Override
 	public WireArray getConnectedWireArray(int connectionIndex)
 	{
 		return connectedWireArrays.get(connectionIndex);
 	}
+
 	@Override
 	public Point getWireArrayConnectionPoint(int connectionI)
 	{

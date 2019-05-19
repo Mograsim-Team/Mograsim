@@ -28,9 +28,9 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 		bitNames = Collections.unmodifiableMap(bitNamesModifiable);
 	}
 
-	private final WireArray			wa;
-	private final List<WireArray>	connectedWireArrays;
-	private final List<Point>		wireArrayConnectionPoints;
+	private final WireArray wa;
+	private final List<WireArray> connectedWireArrays;
+	private final List<Point> wireArrayConnectionPoints;
 
 	public GUIManualSwitch(WireArray output)
 	{
@@ -53,6 +53,7 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	{
 		return new Rectangle(0, 0, 20, 15);
 	}
+
 	@Override
 	public void render(GeneralGC gc)
 	{
@@ -65,6 +66,7 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 		gc.drawText(label, 10 - textExtent.x / 2, 7.5 - textExtent.y / 2, true);
 		gc.setFont(oldFont);
 	}
+
 	@Override
 	public boolean clicked(double x, double y)
 	{
@@ -77,11 +79,13 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	{
 		return connectedWireArrays.size();
 	}
+
 	@Override
 	public WireArray getConnectedWireArray(int connectionIndex)
 	{
 		return connectedWireArrays.get(connectionIndex);
 	}
+
 	@Override
 	public Point getWireArrayConnectionPoint(int connectionI)
 	{

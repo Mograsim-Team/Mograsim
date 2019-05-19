@@ -29,12 +29,12 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
  */
 public class LogicUI
 {
-	private final Display						display;
-	private final Shell							shell;
-	private final ZoomableCanvas				canvas;
-	private final Set<BasicGUIComponent>		components;
-	private final Map<BasicGUIComponent, Point>	componentPositions;
-	private final Set<GUIWire>					wires;
+	private final Display display;
+	private final Shell shell;
+	private final ZoomableCanvas canvas;
+	private final Set<BasicGUIComponent> components;
+	private final Map<BasicGUIComponent, Point> componentPositions;
+	private final Set<GUIWire> wires;
 
 	public LogicUI()
 	{
@@ -56,9 +56,9 @@ public class LogicUI
 		new ZoomableCanvasOverlay(canvas, null).enableScale();
 		canvas.addListener(SWT.MouseDown, this::mouseDown);
 	}
+
 	/**
-	 * Add a component to be drawn.
-	 * Returns the given component for convenience.
+	 * Add a component to be drawn. Returns the given component for convenience.
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -68,31 +68,36 @@ public class LogicUI
 		componentPositions.put(component, new Point(x, y));
 		return component;
 	}
+
 	/**
-	 * Add a graphical wire between the given connection points of the given components.
-	 * The given components have to be added and the given connection points have to be connected logically first.
+	 * Add a graphical wire between the given connection points of the given components. The given components have to be added and the given
+	 * connection points have to be connected logically first.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public void addWire(BasicGUIComponent component1, int component1ConnectionIndex, BasicGUIComponent component2, int component2ConnectionIndex, Point... path)
+	public void addWire(BasicGUIComponent component1, int component1ConnectionIndex, BasicGUIComponent component2,
+			int component2ConnectionIndex, Point... path)
 	{
-		wires.add(new GUIWire(canvas::redrawThreadsafe, component1, component1ConnectionIndex, componentPositions.get(component1), component2, component2ConnectionIndex, componentPositions.get(component2), path));
+		wires.add(new GUIWire(canvas::redrawThreadsafe, component1, component1ConnectionIndex, componentPositions.get(component1),
+				component2, component2ConnectionIndex, componentPositions.get(component2), path));
 	}
+
 	private void drawComponent(GeneralGC gc, BasicGUIComponent component)
 	{
 		TranslatedGC tgc = new TranslatedGC(gc, componentPositions.get(component));
 		component.render(tgc);
 		tgc.setBackground(display.getSystemColor(SWT.COLOR_BLUE));
 	}
+
 	private void mouseDown(Event e)
 	{
-		if(e.button == 1)
+		if (e.button == 1)
 		{
 			Point click = canvas.displayToWorldCoords(e.x, e.y);
-			for(BasicGUIComponent component : components)
-				if(component.getBounds().translate(componentPositions.get(component)).contains(click))
+			for (BasicGUIComponent component : components)
+				if (component.getBounds().translate(componentPositions.get(component)).contains(click))
 				{
-					if(component.clicked(click.x, click.y))
+					if (component.clicked(click.x, click.y))
 						canvas.redraw();
 					break;
 				}
@@ -100,41 +105,42 @@ public class LogicUI
 	}
 
 	/**
-	 * Start the simulation timeline, and open the UI shell.
-	 * Returns when the shell is closed.
+	 * Start the simulation timeline, and open the UI shell. Returns when the shell is closed.
 	 */
 	public void run()
 	{
 		AtomicBoolean running = new AtomicBoolean(true);
 		Thread simulationThread = new Thread(() ->
 		{
-			while(running.get())
+			while (running.get())
 			{
-				//always execute to keep timeline from "hanging behind" for too long
+				// always execute to keep timeline from "hanging behind" for too long
 				Simulation.TIMELINE.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
 				long sleepTime;
-				if(Simulation.TIMELINE.hasNext())
+				if (Simulation.TIMELINE.hasNext())
 					sleepTime = Simulation.TIMELINE.nextEventTime() - System.currentTimeMillis();
 				else
 					sleepTime = 10;
 				try
 				{
-					if(sleepTime > 0)
+					if (sleepTime > 0)
 						Thread.sleep(sleepTime);
-				} catch(InterruptedException e)
-				{} //it is normal execution flow to be interrupted
+				}
+				catch (InterruptedException e)
+				{
+				} // it is normal execution flow to be interrupted
 			}
 		});
 		simulationThread.start();
 		Simulation.TIMELINE.addEventAddedListener(event ->
 		{
-			if(event.getTiming() <= System.currentTimeMillis())
+			if (event.getTiming() <= System.currentTimeMillis())
 				simulationThread.interrupt();
 		});
 
 		shell.open();
-		while(!shell.isDisposed())
-			if(!display.readAndDispatch())
+		while (!shell.isDisposed())
+			if (!display.readAndDispatch())
 				display.sleep();
 		running.set(false);
 		simulationThread.interrupt();

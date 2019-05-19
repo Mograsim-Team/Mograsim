@@ -11,9 +11,9 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 
 public class RSLatchGUIExample
 {
-	private static final int	WIRE_DELAY	= 10;
-	private static final int	OR_DELAY	= 50;
-	private static final int	NOT_DELAY	= 50;
+	private static final int WIRE_DELAY = 10;
+	private static final int OR_DELAY = 50;
+	private static final int NOT_DELAY = 50;
 
 	public static void main(String[] args)
 	{

@@ -13,10 +13,10 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class GUIMerger extends Merger implements BasicGUIComponent
 {
-	private final int				inputCount;
-	private final double			height;
-	private final List<WireArray>	connectedWireArrays;
-	private final List<Point>		wireArrayConnectionPoints;
+	private final int inputCount;
+	private final double height;
+	private final List<WireArray> connectedWireArrays;
+	private final List<Point> wireArrayConnectionPoints;
 
 	public GUIMerger(WireArray union, WireArray... inputs)
 	{
@@ -31,7 +31,7 @@ public class GUIMerger extends Merger implements BasicGUIComponent
 		{
 			connectedWireArraysModifiable.addAll(Arrays.asList(inputs));
 			double inputHeight = 0;
-			for(int i = 0; i < inputCount; i ++, inputHeight += 10)
+			for (int i = 0; i < inputCount; i++, inputHeight += 10)
 				wireArrayConnectionPointsModifiable.add(new Point(0, inputHeight));
 		}
 
@@ -47,11 +47,12 @@ public class GUIMerger extends Merger implements BasicGUIComponent
 	{
 		return new Rectangle(0, 0, 20, height);
 	}
+
 	@Override
 	public void render(GeneralGC gc)
 	{
 		double inputHeight = 0;
-		for(int i = 0; i < inputCount; i ++, inputHeight += 10)
+		for (int i = 0; i < inputCount; i++, inputHeight += 10)
 			gc.drawLine(0, inputHeight, 10, inputHeight);
 		gc.drawLine(10, 0, 10, height);
 		gc.drawLine(10, height / 2, 20, height / 2);
@@ -62,11 +63,13 @@ public class GUIMerger extends Merger implements BasicGUIComponent
 	{
 		return connectedWireArrays.size();
 	}
+
 	@Override
 	public WireArray getConnectedWireArray(int connectionIndex)
 	{
 		return connectedWireArrays.get(connectionIndex);
 	}
+
 	@Override
 	public Point getWireArrayConnectionPoint(int connectionI)
 	{

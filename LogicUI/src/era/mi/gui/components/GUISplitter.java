@@ -13,10 +13,10 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class GUISplitter extends Splitter implements BasicGUIComponent
 {
-	private final int				outputCount;
-	private final double			height;
-	private final List<WireArray>	connectedWireArrays;
-	private final List<Point>		wireArrayConnectionPoints;
+	private final int outputCount;
+	private final double height;
+	private final List<WireArray> connectedWireArrays;
+	private final List<Point> wireArrayConnectionPoints;
 
 	public GUISplitter(WireArray input, WireArray... outputs)
 	{
@@ -34,7 +34,7 @@ public class GUISplitter extends Splitter implements BasicGUIComponent
 		{
 			connectedWireArraysModifiable.addAll(Arrays.asList(outputs));
 			double outputHeight = 0;
-			for(int i = 0; i < outputCount; i ++, outputHeight += 10)
+			for (int i = 0; i < outputCount; i++, outputHeight += 10)
 				wireArrayConnectionPointsModifiable.add(new Point(20, outputHeight));
 		}
 
@@ -47,13 +47,14 @@ public class GUISplitter extends Splitter implements BasicGUIComponent
 	{
 		return new Rectangle(0, 0, 20, height);
 	}
+
 	@Override
 	public void render(GeneralGC gc)
 	{
 		gc.drawLine(0, height / 2, 10, height / 2);
 		gc.drawLine(10, 0, 10, height);
 		double outputHeight = 0;
-		for(int i = 0; i < outputCount; i ++, outputHeight += 10)
+		for (int i = 0; i < outputCount; i++, outputHeight += 10)
 			gc.drawLine(10, outputHeight, 20, outputHeight);
 	}
 
@@ -62,11 +63,13 @@ public class GUISplitter extends Splitter implements BasicGUIComponent
 	{
 		return connectedWireArrays.size();
 	}
+
 	@Override
 	public WireArray getConnectedWireArray(int connectionIndex)
 	{
 		return connectedWireArrays.get(connectionIndex);
 	}
+
 	@Override
 	public Point getWireArrayConnectionPoint(int connectionI)
 	{

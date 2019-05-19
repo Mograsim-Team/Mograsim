@@ -13,16 +13,16 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class GUIMux extends Mux implements BasicGUIComponent
 {
-	private final double			height;
-	private final List<WireArray>	connectedWireArrays;
-	private final List<Point>		wireArrayConnectionPoints;
+	private final double height;
+	private final List<WireArray> connectedWireArrays;
+	private final List<Point> wireArrayConnectionPoints;
 
 	public GUIMux(int processTime, WireArray out, WireArray select, WireArray... inputs)
 	{
 		super(processTime, out, select, inputs);
 
 		double height = inputs.length * 5;
-		if(height < 10)
+		if (height < 10)
 			height = 10;
 		this.height = height;
 
@@ -39,7 +39,7 @@ public class GUIMux extends Mux implements BasicGUIComponent
 			connectedWireArraysModifiable.addAll(Arrays.asList(inputs));
 			double inputHeightIncrement = (height + 20) / inputs.length;
 			double inputHeight = inputHeightIncrement / 2;
-			for(int i = 0; i < inputs.length; i ++, inputHeight += inputHeightIncrement)
+			for (int i = 0; i < inputs.length; i++, inputHeight += inputHeightIncrement)
 				wireArrayConnectionPointsModifiable.add(new Point(0, inputHeight));
 		}
 
@@ -52,25 +52,25 @@ public class GUIMux extends Mux implements BasicGUIComponent
 	{
 		return new Rectangle(0, 0, 20, height + 20);
 	}
+
 	@Override
 	public void render(GeneralGC gc)
 	{
-		gc.drawPolygon(new double[] {
-				0, 0,
-				20, 10,
-				20, height + 10,
-				0, height + 20});
+		gc.drawPolygon(new double[] { 0, 0, 20, 10, 20, height + 10, 0, height + 20 });
 	}
+
 	@Override
 	public int getConnectedWireArraysCount()
 	{
 		return connectedWireArrays.size();
 	}
+
 	@Override
 	public WireArray getConnectedWireArray(int connectionIndex)
 	{
 		return connectedWireArrays.get(connectionIndex);
 	}
+
 	@Override
 	public Point getWireArrayConnectionPoint(int connectionI)
 	{

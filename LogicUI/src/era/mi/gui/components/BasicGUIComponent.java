@@ -11,30 +11,32 @@ public interface BasicGUIComponent
 	 * Render this component to the given gc, at coordinates (0, 0).
 	 */
 	public void render(GeneralGC gc);
+
 	/**
-	 * Returns the bounds of this component.
-	 * Used for calculating which component is clicked.
+	 * Returns the bounds of this component. Used for calculating which component is clicked.
 	 */
 	public Rectangle getBounds();
+
 	/**
-	 * Called when this component is clicked. Relative coordinates of the click are given.
-	 * Returns true if this component has to be redrawn.
+	 * Called when this component is clicked. Relative coordinates of the click are given. Returns true if this component has to be redrawn.
 	 */
 	public default boolean clicked(double x, double y)
 	{
 		return false;
 	}
 
-	//TODO this code will be replaced by code in BasicComponent.
+	// TODO this code will be replaced by code in BasicComponent.
 	/**
-	 * Returns how many wire arrays are connected to this component.
-	 * (Connections are static - they can't be removed and no new ones can be added)
+	 * Returns how many wire arrays are connected to this component. (Connections are static - they can't be removed and no new ones can be
+	 * added)
 	 */
 	public int getConnectedWireArraysCount();
+
 	/**
 	 * Returns the n-th wire array connected to this component.
 	 */
 	public WireArray getConnectedWireArray(int connectionIndex);
+
 	/**
 	 * Returns relative coordinates where the n-th wire array is connected to this component.
 	 */

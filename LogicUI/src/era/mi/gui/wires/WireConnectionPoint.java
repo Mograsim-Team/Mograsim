@@ -10,8 +10,8 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class WireConnectionPoint implements BasicGUIComponent
 {
-	private final WireArray	wa;
-	private final int		wiresCrossing;
+	private final WireArray wa;
+	private final int wiresCrossing;
 
 	public WireConnectionPoint(WireArray wa, int wiresCrossing)
 	{
@@ -23,26 +23,30 @@ public class WireConnectionPoint implements BasicGUIComponent
 	public void render(GeneralGC gc)
 	{
 		Color oldBG = gc.getBackground();
-		if(wa.length == 1)
+		if (wa.length == 1)
 			gc.setBackground(gc.getDevice().getSystemColor(GUIWire.getSWTColorConstantForBit(wa.getValue())));
 		gc.fillOval(-1, -1, 2, 2);
 		gc.setBackground(oldBG);
 	}
+
 	@Override
 	public Rectangle getBounds()
 	{
 		return new Rectangle(0, 0, 0, 0);
 	}
+
 	@Override
 	public int getConnectedWireArraysCount()
 	{
 		return wiresCrossing;
 	}
+
 	@Override
 	public WireArray getConnectedWireArray(int connectionIndex)
 	{
 		return wa;
 	}
+
 	@Override
 	public Point getWireArrayConnectionPoint(int connectionIndex)
 	{

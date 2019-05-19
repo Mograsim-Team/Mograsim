@@ -16,10 +16,10 @@ public class GUIAndGate extends AndGate implements BasicGUIComponent
 {
 	private static final String LABEL = "&";
 
-	private final int				inputCount;
-	private final double			height;
-	private final List<WireArray>	connectedWireArrays;
-	private final List<Point>		wireArrayConnectionPoints;
+	private final int inputCount;
+	private final double height;
+	private final List<WireArray> connectedWireArrays;
+	private final List<Point> wireArrayConnectionPoints;
 
 	public GUIAndGate(int processTime, WireArray out, WireArray... in)
 	{
@@ -34,7 +34,7 @@ public class GUIAndGate extends AndGate implements BasicGUIComponent
 		{
 			connectedWireArraysModifiable.addAll(Arrays.asList(in));
 			double inputHeight = 5;
-			for(int i = 0; i < inputCount; i ++, inputHeight += 10)
+			for (int i = 0; i < inputCount; i++, inputHeight += 10)
 				wireArrayConnectionPointsModifiable.add(new Point(0, inputHeight));
 		}
 
@@ -50,6 +50,7 @@ public class GUIAndGate extends AndGate implements BasicGUIComponent
 	{
 		return new Rectangle(0, 0, 20, height);
 	}
+
 	@Override
 	public void render(GeneralGC gc)
 	{
@@ -67,11 +68,13 @@ public class GUIAndGate extends AndGate implements BasicGUIComponent
 	{
 		return connectedWireArrays.size();
 	}
+
 	@Override
 	public WireArray getConnectedWireArray(int connectionIndex)
 	{
 		return connectedWireArrays.get(connectionIndex);
 	}
+
 	@Override
 	public Point getWireArrayConnectionPoint(int connectionI)
 	{
