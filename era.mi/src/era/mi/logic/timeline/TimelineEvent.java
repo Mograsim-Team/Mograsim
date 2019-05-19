@@ -22,6 +22,7 @@ public class TimelineEvent
 		return timing;
 	}
 
+	@Override
 	public String toString()
 	{
 		return "timestamp: " + timing;

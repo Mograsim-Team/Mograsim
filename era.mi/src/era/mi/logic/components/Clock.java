@@ -1,7 +1,5 @@
 package era.mi.logic.components;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Bit;
@@ -26,14 +24,14 @@ public class Clock implements TimelineEventHandler, Component
 	{
 		this.delta = delta;
 		this.outI = out.createInput();
-		Simulation.TIMELINE.addEvent(this, 50);
+		Simulation.TIMELINE.addEvent(this, delta);
 	}
 
 	@Override
 	public void handle(TimelineEvent e)
 	{
 		addToTimeline();
-		outI.feedSignals(new Bit[] { toggle ? Bit.ONE : Bit.ZERO });
+		outI.feedSignals(toggle ? Bit.ONE : Bit.ZERO);
 		toggle = !toggle;
 	}
 
@@ -50,12 +48,12 @@ public class Clock implements TimelineEventHandler, Component
 	@Override
 	public List<WireArray> getAllInputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList());
+		return List.of();
 	}
 
 	@Override
 	public List<WireArray> getAllOutputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(outI.owner));
+		return List.of(outI.owner);
 	}
 }

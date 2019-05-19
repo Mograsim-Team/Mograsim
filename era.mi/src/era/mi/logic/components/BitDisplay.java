@@ -1,8 +1,6 @@
 package era.mi.logic.components;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Bit;
@@ -40,12 +38,12 @@ public class BitDisplay extends BasicComponent
 	@Override
 	public List<WireArray> getAllInputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(in));
+		return List.of(in);
 	}
 
 	@Override
 	public List<WireArray> getAllOutputs()
 	{
-		return Collections.unmodifiableList(new ArrayList<WireArray>());
+		return List.of();
 	}
 }

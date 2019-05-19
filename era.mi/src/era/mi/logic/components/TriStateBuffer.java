@@ -1,7 +1,5 @@
 package era.mi.logic.components;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Bit;
@@ -40,13 +38,13 @@ public class TriStateBuffer extends BasicComponent
 	@Override
 	public List<WireArray> getAllInputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(in, enable));
+		return List.of(in, enable);
 	}
 
 	@Override
 	public List<WireArray> getAllOutputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(outI.owner));
+		return List.of(outI.owner);
 	}
 
 }

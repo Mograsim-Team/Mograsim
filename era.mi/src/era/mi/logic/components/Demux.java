@@ -1,15 +1,13 @@
 package era.mi.logic.components;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.wires.WireArray;
 import era.mi.logic.wires.WireArray.WireArrayEnd;
 
 /**
- * Models a multiplexer. Takes an arbitrary amount of input {@link WireArray}s, one of which, as determined by select, is put through to the
- * output.
+ * Models a multiplexer. Takes an arbitrary amount of outputs {@link WireArray}s, one of which, as determined by select, receives the input
+ * signal.
  * 
  * @author Fabian Stemmler
  *
@@ -23,11 +21,11 @@ public class Demux extends BasicComponent
 	private int selected = -1;
 
 	/**
-	 * Input {@link WireArray}s and out must be of uniform length
+	 * Output {@link WireArray}s and in must be of uniform length
 	 * 
-	 * @param out     Must be of uniform length with all inputs.
-	 * @param select  Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
-	 * @param outputs One of these inputs is mapped to the output, depending on the select bits
+	 * @param in      Must be of uniform length with all outputs.
+	 * @param select  Indexes the output array to which the input is mapped. Must have enough bits to index all outputs.
+	 * @param outputs One of these outputs receives the input signal, depending on the select bits
 	 */
 	public Demux(int processTime, WireArray in, WireArray select, WireArray... outputs)
 	{
@@ -73,12 +71,12 @@ public class Demux extends BasicComponent
 	@Override
 	public List<WireArray> getAllInputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(in, select));
+		return List.of(in, select);
 	}
 
 	@Override
 	public List<WireArray> getAllOutputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(outputs));
+		return List.of(outputs);
 	}
 }

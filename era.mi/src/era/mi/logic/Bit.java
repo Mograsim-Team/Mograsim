@@ -77,28 +77,28 @@ public enum Bit
 	}
 
 	// @formatter:off
-	private static Bit[][] JOIN_TABLE = 
+	private static final Bit[][] JOIN_TABLE = 
 		{ { U, U, U,    U,   U    }, 
 		  { U, X, X,    X,   X    }, 
 		  { U, X, ZERO, X,   ZERO },
 		  { U, X, X,    ONE, ONE  }, 
 		  { U, X, ZERO, ONE, Z    } };
 
-	private static Bit[][] AND_TABLE = 
+	private static final Bit[][] AND_TABLE = 
 		{ { U,    U,    ZERO, U,    U    }, 
 		  { U,    X,    ZERO, X,    X    },
 		  { ZERO, ZERO, ZERO, ZERO, ZERO }, 
 		  { U,    X,    ZERO, ONE,  X    }, 
 		  { U,    X,    ZERO, X,    X    } };
 
-	private static Bit[][] OR_TABLE =
+	private static final Bit[][] OR_TABLE =
     	{ { U,   U,   U,    ONE, U    },    
     	  { U,   X,   X,    ONE, X    },    
     	  { U,   X,   ZERO, ONE, X    },    
     	  { ONE, ONE, ONE,  ONE, ONE  },    
     	  { U,   X,   X,    ONE, X    } };
 	
-	private static Bit[][] XOR_TABLE =
+	private static final Bit[][] XOR_TABLE =
     	{ { U, U, U,    U,    U },    
     	  { U, X, X,    X,    X },    
     	  { U, X, ZERO, ONE,  X },    

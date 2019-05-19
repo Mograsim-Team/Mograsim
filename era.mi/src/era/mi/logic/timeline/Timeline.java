@@ -90,8 +90,7 @@ public class Timeline
 	{
 		if (!hasNext())
 			return -1;
-		else
-			return events.peek().timing;
+		return events.peek().timing;
 	}
 
 	public void reset()
@@ -127,7 +126,7 @@ public class Timeline
 	private class InnerEvent
 	{
 
-		private final long timing;
+		final long timing;
 		private final TimelineEventHandler function;
 		private final TimelineEvent event;
 

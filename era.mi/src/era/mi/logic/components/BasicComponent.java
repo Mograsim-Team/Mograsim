@@ -28,10 +28,7 @@ public abstract class BasicComponent implements WireArrayObserver, Component
 	@Override
 	public void update(WireArray initiator, Bit[] oldValues)
 	{
-		Simulation.TIMELINE.addEvent((e) ->
-		{
-			compute();
-		}, processTime);
+		Simulation.TIMELINE.addEvent(e -> compute(), processTime);
 	}
 
 	protected abstract void compute();

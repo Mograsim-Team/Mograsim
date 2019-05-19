@@ -170,7 +170,7 @@ public class GUITest extends JPanel
 		g.setFont(g.getFont().deriveFont(Math.min(height, width) / 40f));
 	}
 
-	private void drawString(Graphics g, String s, int x, int y, double anchorX, double anchorY)
+	private static void drawString(Graphics g, String s, int x, int y, double anchorX, double anchorY)
 	{
 		int h = g.getFontMetrics().getAscent();
 		int w = g.getFontMetrics().stringWidth(s);

@@ -1,7 +1,5 @@
 package era.mi.logic.components.gates;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Bit;
@@ -38,15 +36,16 @@ public abstract class MultiInputGate extends BasicComponent
 	@Override
 	public List<WireArray> getAllInputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(in));
+		return List.of(in);
 	}
 
 	@Override
 	public List<WireArray> getAllOutputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(out));
+		return List.of(out);
 	}
 
+	@Override
 	protected void compute()
 	{
 		Bit[] result = in[0].getValues();

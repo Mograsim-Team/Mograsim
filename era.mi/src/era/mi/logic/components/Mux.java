@@ -88,6 +88,6 @@ public class Mux extends BasicComponent
 	@Override
 	public List<WireArray> getAllOutputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(outI.owner));
+		return List.of(outI.owner);
 	}
 }

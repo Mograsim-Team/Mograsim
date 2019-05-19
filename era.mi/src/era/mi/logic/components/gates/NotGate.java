@@ -1,7 +1,5 @@
 package era.mi.logic.components.gates;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Util;
@@ -23,6 +21,7 @@ public class NotGate extends BasicComponent
 		outI = out.createInput();
 	}
 
+	@Override
 	public void compute()
 	{
 		outI.feedSignals(Util.not(in.getValues()));
@@ -41,12 +40,12 @@ public class NotGate extends BasicComponent
 	@Override
 	public List<WireArray> getAllInputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(in));
+		return List.of(in);
 	}
 
 	@Override
 	public List<WireArray> getAllOutputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(out));
+		return List.of(out);
 	}
 }

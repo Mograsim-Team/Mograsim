@@ -22,7 +22,7 @@ public class WireArray
 	public final int travelTime;
 	private List<WireArrayObserver> observers = new ArrayList<WireArrayObserver>();
 	public final int length;
-	private List<WireArrayEnd> inputs = new ArrayList<WireArrayEnd>();
+	List<WireArrayEnd> inputs = new ArrayList<WireArrayEnd>();
 
 	public WireArray(int length, int travelTime)
 	{
@@ -73,7 +73,7 @@ public class WireArray
 		}
 	}
 
-	private void recalculate()
+	void recalculate()
 	{
 		switch (inputs.size())
 		{
@@ -223,7 +223,7 @@ public class WireArray
 		return new WireArrayEnd(this);
 	}
 
-	private void registerInput(WireArrayEnd toRegister)
+	void registerInput(WireArrayEnd toRegister)
 	{
 		inputs.add(toRegister);
 	}
@@ -239,9 +239,9 @@ public class WireArray
 	{
 		public final WireArray owner;
 		private boolean open;
-		private Bit[] inputValues;
+		Bit[] inputValues;
 
-		private WireArrayEnd(WireArray owner)
+		WireArrayEnd(WireArray owner)
 		{
 			super();
 			this.owner = owner;
@@ -264,12 +264,11 @@ public class WireArray
 		 */
 		public void feedSignals(Bit... newValues)
 		{
-			if (newValues.length == length)
-			{
-				feedSignals(0, newValues);
-			} else
+			if (newValues.length != length)
 				throw new IllegalArgumentException(
 						String.format("Attempted to input %d bits instead of %d bits.", newValues.length, length));
+			feedSignals(0, newValues);
+
 		}
 
 		/**
