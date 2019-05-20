@@ -1,7 +1,3 @@
-[submodule "SampleERCP"]
-	path = SampleERCP
-	url = <address of this repo>
-	branch = SampleERCP
 [submodule "SWTHelper"]
 	path = SWTHelper
 	url = https://github.com/Haspamelodica/SWTHelper
