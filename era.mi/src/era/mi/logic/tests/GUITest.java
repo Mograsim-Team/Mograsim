@@ -282,7 +282,7 @@ public class GUITest extends JPanel
 				gt.repaint(12);
 			try
 			{
-				Thread.sleep(Math.max(16 - System.currentTimeMillis() + lastFrame, 0));
+				Thread.sleep(Math.max(updateT - System.currentTimeMillis() + lastFrame, 0));
 			}
 			catch (Exception e)
 			{

@@ -200,7 +200,15 @@ public class Wire
 	 */
 	public WireEnd createEnd()
 	{
-		return new WireEnd();
+		return new WireEnd(false);
+	}
+
+	/**
+	 * Create a {@link WireEnd} object, which is tied to this {@link Wire}. This {@link WireEnd} cannot written to.
+	 */
+	public WireEnd createReadOnlyEnd()
+	{
+		return new WireEnd(true);
 	}
 
 	private void registerInput(WireEnd toRegister)
@@ -220,17 +228,18 @@ public class Wire
 		private boolean open;
 		private Bit[] inputValues;
 
-		private WireEnd()
+		private WireEnd(boolean readOnly)
 		{
 			super();
 			open = true;
 			initValues();
-			registerInput(this);
+			if (!readOnly)
+				registerInput(this);
 		}
 
 		private void initValues()
 		{
-			inputValues = Bit.Z.makeArray(length);
+			inputValues = Bit.U.makeArray(length);
 		}
 
 		/**
@@ -415,11 +424,11 @@ public class Wire
 		@Override
 		public String toString()
 		{
-			return Arrays.toString(values);
+			return Arrays.toString(inputValues);
 			// return String.format("%s \nFeeding: %s", WireArray.this.toString(), Arrays.toString(inputValues));
 		}
 
-		public void disconnect()
+		public void close()
 		{
 			inputs.remove(this);
 			open = false;
