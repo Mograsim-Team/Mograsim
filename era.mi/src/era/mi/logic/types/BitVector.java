@@ -255,7 +255,7 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	 * 
 	 * @see Object#equals(Object)
 	 */
-	public boolean equals(BitVector other, int offset)
+	public boolean equalsWithOffset(BitVector other, int offset)
 	{
 		if (other == null)
 			return false;

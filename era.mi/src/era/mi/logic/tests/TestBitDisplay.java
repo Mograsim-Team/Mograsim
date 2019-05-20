@@ -2,7 +2,6 @@ package era.mi.logic.tests;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import java.util.Arrays;
 import java.util.function.LongConsumer;
 
 import era.mi.logic.Simulation;
@@ -20,7 +19,7 @@ public final class TestBitDisplay extends BitDisplay
 
 	public void assertDisplays(Bit... expected)
 	{
-		assertArrayEquals(expected, getDisplayedValue());
+		assertArrayEquals(expected, getDisplayedValue().getBits());
 	}
 
 	public void assertAfterSimulationIs(Bit... expected)
@@ -43,6 +42,6 @@ public final class TestBitDisplay extends BitDisplay
 	protected void compute()
 	{
 		super.compute();
-		System.out.println("update: value is " + Arrays.toString(getDisplayedValue()));
+		System.out.println("update: value is " + getDisplayedValue());
 	}
 }

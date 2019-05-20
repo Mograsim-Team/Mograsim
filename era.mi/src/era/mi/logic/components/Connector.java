@@ -3,7 +3,7 @@ package era.mi.logic.components;
 import java.util.List;
 
 import era.mi.logic.Simulation;
-import era.mi.logic.types.Bit;
+import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
 import era.mi.logic.wires.WireObserver;
@@ -47,7 +47,7 @@ public class Connector implements WireObserver, Component
 	}
 
 	@Override
-	public void update(Wire initiator, Bit[] oldValues)
+	public void update(Wire initiator, BitVector oldValues)
 	{
 		if (connected)
 			Simulation.TIMELINE.addEvent(e -> update(initiator), 1);

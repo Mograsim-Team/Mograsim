@@ -3,7 +3,8 @@ package era.mi.logic.components.gates;
 import java.util.List;
 
 import era.mi.logic.components.BasicComponent;
-import era.mi.logic.types.Bit;
+import era.mi.logic.types.BitVector.BitVectorMutator;
+import era.mi.logic.types.MutationOperation;
 import era.mi.logic.wires.Wire.WireEnd;
 
 public abstract class MultiInputGate extends BasicComponent
@@ -11,9 +12,9 @@ public abstract class MultiInputGate extends BasicComponent
 	protected WireEnd[] in;
 	protected WireEnd out;
 	protected final int length;
-	protected Operation op;
+	protected MutationOperation op;
 
-	protected MultiInputGate(int processTime, Operation op, WireEnd out, WireEnd... in)
+	protected MultiInputGate(int processTime, MutationOperation op, WireEnd out, WireEnd... in)
 	{
 		super(processTime);
 		this.op = op;
@@ -45,14 +46,9 @@ public abstract class MultiInputGate extends BasicComponent
 	@Override
 	protected void compute()
 	{
-		Bit[] result = in[0].getValues();
-		for (int i = 1; i < in.length; i++)
-			result = op.execute(result, in[i].getValues());
-		out.feedSignals(result);
-	}
-
-	protected interface Operation
-	{
-		public Bit[] execute(Bit[] a, Bit[] b);
+		BitVectorMutator mutator = BitVectorMutator.empty();
+		for (WireEnd w : in)
+			op.apply(mutator, w.getValues());
+		out.feedSignals(mutator.get());
 	}
 }

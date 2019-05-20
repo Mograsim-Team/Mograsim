@@ -1,13 +1,14 @@
 package era.mi.logic.wires;
 
+import static era.mi.logic.types.Bit.*;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import era.mi.logic.Simulation;
-import era.mi.logic.Util;
 import era.mi.logic.types.Bit;
+import era.mi.logic.types.BitVector;
+import era.mi.logic.types.BitVector.BitVectorMutator;
 
 /**
  * Represents an array of wires that can store n bits of information.
@@ -17,7 +18,7 @@ import era.mi.logic.types.Bit;
  */
 public class Wire
 {
-	private Bit[] values;
+	private BitVector values;
 	public final int travelTime;
 	private List<WireObserver> observers = new ArrayList<WireObserver>();
 	public final int length;
@@ -35,41 +36,29 @@ public class Wire
 
 	private void initValues()
 	{
-		values = Bit.U.makeArray(length);
+		values = U.toVector(length);
 	}
 
 	private void recalculateSingleInput()
 	{
-		WireEnd input = inputs.get(0);
-		if (!Arrays.equals(input.getInputValues(), values))
-		{
-			Bit[] oldValues = values.clone();
-			System.arraycopy(input.getInputValues(), 0, values, 0, length);
-			notifyObservers(oldValues);
-		}
+		setNewValues(inputs.get(0).getInputValues());
 	}
 
 	private void recalculateMultipleInputs()
 	{
-		Iterator<WireEnd> it = inputs.iterator();
-		Bit[] newValues = it.next().inputValues.clone();
+		BitVectorMutator mutator = BitVectorMutator.empty();
+		for (WireEnd wireArrayEnd : inputs)
+			mutator.join(wireArrayEnd.getInputValues());
+		setNewValues(mutator.get());
+	}
 
-		while (it.hasNext())
-		{
-			WireEnd input = it.next();
-			Bit[] bits = input.getInputValues();
-			for (int i = 0; i < length; i++)
-			{
-				newValues[i] = newValues[i].join(bits[i]);
-			}
-		}
-
-		if (!Arrays.equals(newValues, values))
-		{
-			Bit[] oldValues = values;
-			values = newValues;
-			notifyObservers(oldValues);
-		}
+	private void setNewValues(BitVector newValues)
+	{
+		if (values.equals(newValues))
+			return;
+		BitVector oldValues = values;
+		values = newValues;
+		notifyObservers(oldValues);
 	}
 
 	private void recalculate()
@@ -115,9 +104,9 @@ public class Wire
 	{
 		long val = 0;
 		long mask = 1;
-		for (int i = 0; i < length; i++)
+		for (Bit bit : values)
 		{
-			switch (values[i])
+			switch (bit)
 			{
 			default:
 			case Z:
@@ -160,20 +149,17 @@ public class Wire
 
 	public Bit getValue(int index)
 	{
-		return values[index];
+		return values.getBit(index);
 	}
 
-	public Bit[] getValues(int start, int end)
+	public BitVector getValues(int start, int end)
 	{
-		int length = end - start;
-		Bit[] bits = new Bit[length];
-		System.arraycopy(values, start, bits, 0, length);
-		return bits;
+		return values.subVector(start, end);
 	}
 
-	public Bit[] getValues()
+	public BitVector getValues()
 	{
-		return values.clone();
+		return values;
 	}
 
 	/**
@@ -189,7 +175,7 @@ public class Wire
 		return observers.add(ob);
 	}
 
-	private void notifyObservers(Bit[] oldValues)
+	private void notifyObservers(BitVector oldValues)
 	{
 		for (WireObserver o : observers)
 			o.update(this, oldValues);
@@ -226,12 +212,12 @@ public class Wire
 	public class WireEnd
 	{
 		private boolean open;
-		private Bit[] inputValues;
+		private BitVector inputValues;
 
 		private WireEnd(boolean readOnly)
 		{
 			super();
-			open = true;
+			open = !readOnly; // TODO: that makes sense, doesn't it?
 			initValues();
 			if (!readOnly)
 				registerInput(this);
@@ -239,7 +225,7 @@ public class Wire
 
 		private void initValues()
 		{
-			inputValues = Bit.U.makeArray(length);
+			inputValues = U.toVector(length);
 		}
 
 		/**
@@ -251,39 +237,52 @@ public class Wire
 		 */
 		public void feedSignals(Bit... newValues)
 		{
-			if (newValues.length != length)
+			feedSignals(BitVector.of(newValues));
+		}
+
+		public void feedSignals(BitVector newValues)
+		{
+			if (newValues.length() != length)
 				throw new IllegalArgumentException(
-						String.format("Attempted to input %d bits instead of %d bits.", newValues.length, length));
-			feedSignals(0, newValues);
+						String.format("Attempted to input %d bits instead of %d bits.", newValues.length(), length));
+			if (!open)
+				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
+			Simulation.TIMELINE.addEvent(e -> setValues(newValues), travelTime);
 		}
 
 		/**
 		 * Sets values of a subarray of wires. This takes up time, as specified by the {@link Wire}s travel time.
 		 * 
-		 * @param newValues   The new values the wires should take on.
+		 * @param bitVector   The new values the wires should take on.
 		 * @param startingBit The first index of the subarray of wires.
 		 * 
 		 * @author Fabian Stemmler
 		 */
-		public void feedSignals(int startingBit, Bit... newValues)
+		public void feedSignals(int startingBit, BitVector bitVector)
 		{
 			if (!open)
 				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
-			Simulation.TIMELINE.addEvent((e) -> setValues(startingBit, newValues), travelTime);
+			Simulation.TIMELINE.addEvent(e -> setValues(startingBit, bitVector), travelTime);
 		}
 
-		private void setValues(int startingBit, Bit... newValues)
+		private void setValues(int startingBit, BitVector newValues)
 		{
-			int exclLastIndex = startingBit + newValues.length;
-			if (length < exclLastIndex)
-				throw new ArrayIndexOutOfBoundsException(
-						String.format("Attempted to input bits from index %d to %d when there are only %d wires.", startingBit,
-								exclLastIndex - 1, length));
-			if (!Arrays.equals(inputValues, startingBit, exclLastIndex, newValues, 0, newValues.length))
+			// index check covered in equals
+			if (!inputValues.equalsWithOffset(newValues, startingBit))
 			{
-				System.arraycopy(newValues, 0, inputValues, startingBit, newValues.length);
+				Bit[] vals = inputValues.getBits();
+				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.length());
+				inputValues = BitVector.of(vals);
 				Wire.this.recalculate();
 			}
+		}
+
+		private void setValues(BitVector newValues)
+		{
+			if (inputValues.equals(newValues))
+				return;
+			inputValues = newValues;
+			Wire.this.recalculate();
 		}
 
 		/**
@@ -299,23 +298,20 @@ public class Wire
 		 */
 		public Bit getInputValue(int index)
 		{
-			return inputValues[index];
+			return inputValues.getBit(index);
 		}
 
 		/**
 		 * @return A copy (safe to modify) of the values the {@link WireEnd} is currently feeding into the associated {@link Wire}.
 		 */
-		public Bit[] getInputValues()
+		public BitVector getInputValues()
 		{
 			return getInputValues(0, length);
 		}
 
-		public Bit[] getInputValues(int start, int end)
+		public BitVector getInputValues(int start, int end)
 		{
-			int length = end - start;
-			Bit[] bits = new Bit[length];
-			System.arraycopy(inputValues, start, bits, 0, length);
-			return bits;
+			return inputValues.subVector(start, end);
 		}
 
 		/**
@@ -323,19 +319,19 @@ public class Wire
 		 */
 		public void clearSignals()
 		{
-			feedSignals(Bit.Z.makeArray(length));
+			feedSignals(Z.toVector(length));
 		}
 
-		public Bit[] wireValuesExcludingMe()
+		public BitVector wireValuesExcludingMe()
 		{
-			Bit[] bits = Bit.Z.makeArray(length);
-			for (WireEnd wai : inputs)
+			BitVectorMutator mutator = BitVectorMutator.empty();
+			for (WireEnd wireEnd : inputs)
 			{
-				if (wai == this)
+				if (wireEnd == this)
 					continue;
-				Util.combineInto(bits, wai.getInputValues());
+				mutator.join(wireEnd.inputValues);
 			}
-			return bits;
+			return mutator.get();
 		}
 
 		/**
@@ -367,7 +363,7 @@ public class Wire
 		 * 
 		 * @author Fabian Stemmler
 		 */
-		public Bit[] getValues()
+		public BitVector getValues()
 		{
 			return Wire.this.getValues();
 		}
@@ -379,7 +375,7 @@ public class Wire
 		 * 
 		 * @author Fabian Stemmler
 		 */
-		public Bit[] getValues(int start, int end)
+		public BitVector getValues(int start, int end)
 		{
 			return Wire.this.getValues(start, end);
 		}
@@ -424,7 +420,7 @@ public class Wire
 		@Override
 		public String toString()
 		{
-			return Arrays.toString(inputValues);
+			return inputValues.toString();
 			// return String.format("%s \nFeeding: %s", WireArray.this.toString(), Arrays.toString(inputValues));
 		}
 
@@ -453,7 +449,7 @@ public class Wire
 	@Override
 	public String toString()
 	{
-		return String.format("wire 0x%08x value: %s inputs: %s", hashCode(), Arrays.toString(values), inputs);
+		return String.format("wire 0x%08x value: %s inputs: %s", hashCode(), values, inputs);
 		// Arrays.toString(values), inputs.stream().map(i -> Arrays.toString(i.inputValues)).reduce((s1, s2) -> s1 + s2)
 	}
 

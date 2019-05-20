@@ -2,7 +2,7 @@ package era.mi.logic.components;
 
 import java.util.List;
 
-import era.mi.logic.types.Bit;
+import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
 import era.mi.logic.wires.WireObserver;
@@ -48,7 +48,7 @@ public class Merger implements WireObserver, Component
 	}
 
 	@Override
-	public void update(Wire initiator, Bit[] oldValues)
+	public void update(Wire initiator, BitVector oldValues)
 	{
 		int index = find(initiator);
 		int beginning = beginningIndex[index];

@@ -2,7 +2,6 @@ package era.mi.logic.components.gates;
 
 import java.util.List;
 
-import era.mi.logic.Util;
 import era.mi.logic.components.BasicComponent;
 import era.mi.logic.wires.Wire.WireEnd;
 
@@ -22,7 +21,7 @@ public class NotGate extends BasicComponent
 	@Override
 	protected void compute()
 	{
-		out.feedSignals(Util.not(in.getValues()));
+		out.feedSignals(in.getValues().not());
 	}
 
 	public WireEnd getIn()

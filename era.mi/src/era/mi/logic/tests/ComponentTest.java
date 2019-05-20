@@ -2,7 +2,6 @@ package era.mi.logic.tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
 import java.util.function.LongConsumer;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +18,7 @@ import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.components.gates.OrGate;
 import era.mi.logic.components.gates.XorGate;
 import era.mi.logic.types.Bit;
+import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
 
@@ -78,8 +78,7 @@ class ComponentTest
 
 		Simulation.TIMELINE.executeAll();
 
-		assertTrue(
-				Arrays.equals(out.getValues(), new Bit[] { Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE }));
+		assertBitArrayEquals(out.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 	}
 
 	@Test
@@ -378,8 +377,8 @@ class ComponentTest
 		test2.assertAfterSimulationIs(Bit.ONE);
 	}
 
-	private static void assertBitArrayEquals(Bit[] actual, Bit... expected)
+	private static void assertBitArrayEquals(BitVector actual, Bit... expected)
 	{
-		assertArrayEquals(expected, actual);
+		assertArrayEquals(expected, actual.getBits());
 	}
 }

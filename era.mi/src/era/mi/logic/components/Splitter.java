@@ -1,6 +1,6 @@
 package era.mi.logic.components;
 
-import era.mi.logic.types.Bit;
+import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
 import era.mi.logic.wires.WireObserver;
@@ -26,19 +26,17 @@ public class Splitter implements WireObserver
 
 	protected void compute()
 	{
+		BitVector inputBits = input.getValues();
 		int startIndex = 0;
-		Bit[] inputBits = input.getValues();
 		for (int i = 0; i < outputs.length; i++)
 		{
-			Bit[] outputBits = new Bit[outputs[i].length()];
-			System.arraycopy(inputBits, startIndex, outputBits, 0, outputs[i].length());
-			outputs[i].feedSignals(outputBits);
+			outputs[i].feedSignals(inputBits.subVector(startIndex, startIndex + outputs[i].length()));
 			startIndex += outputs[i].length();
 		}
 	}
 
 	@Override
-	public void update(Wire initiator, Bit[] oldValues)
+	public void update(Wire initiator, BitVector oldValues)
 	{
 		compute();
 	}
