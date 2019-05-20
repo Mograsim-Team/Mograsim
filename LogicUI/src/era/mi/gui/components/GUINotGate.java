@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.gates.NotGate;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire.WireEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -15,24 +15,24 @@ public class GUINotGate extends NotGate implements BasicGUIComponent
 {
 	private static final String LABEL = "\u22651";// >=1
 
-	private final List<WireArray> connectedWireArrays;
-	private final List<Point> wireArrayConnectionPoints;
+	private final List<WireEnd> connectedWireEnds;
+	private final List<Point> WireEndConnectionPoints;
 
-	public GUINotGate(int processTime, WireArray in, WireArray out)
+	public GUINotGate(int processTime, WireEnd in, WireEnd out)
 	{
 		super(processTime, in, out);
 
-		List<WireArray> connectedWireArraysModifiable = new ArrayList<>();
-		List<Point> wireArrayConnectionPointsModifiable = new ArrayList<>();
+		List<WireEnd> connectedWireEndsModifiable = new ArrayList<>();
+		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
 
-		connectedWireArraysModifiable.add(in);
-		wireArrayConnectionPointsModifiable.add(new Point(0, 5));
+		connectedWireEndsModifiable.add(in);
+		WireEndConnectionPointsModifiable.add(new Point(0, 5));
 
-		connectedWireArraysModifiable.add(out);
-		wireArrayConnectionPointsModifiable.add(new Point(20, 5));
+		connectedWireEndsModifiable.add(out);
+		WireEndConnectionPointsModifiable.add(new Point(20, 5));
 
-		this.connectedWireArrays = Collections.unmodifiableList(connectedWireArraysModifiable);
-		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
+		this.connectedWireEnds = Collections.unmodifiableList(connectedWireEndsModifiable);
+		this.WireEndConnectionPoints = Collections.unmodifiableList(WireEndConnectionPointsModifiable);
 	}
 
 	@Override
@@ -55,20 +55,20 @@ public class GUINotGate extends NotGate implements BasicGUIComponent
 	}
 
 	@Override
-	public int getConnectedWireArraysCount()
+	public int getConnectedWireEndsCount()
 	{
-		return connectedWireArrays.size();
+		return connectedWireEnds.size();
 	}
 
 	@Override
-	public WireArray getConnectedWireArray(int connectionIndex)
+	public WireEnd getConnectedWireEnd(int connectionIndex)
 	{
-		return connectedWireArrays.get(connectionIndex);
+		return connectedWireEnds.get(connectionIndex);
 	}
 
 	@Override
-	public Point getWireArrayConnectionPoint(int connectionI)
+	public Point getWireEndConnectionPoint(int connectionI)
 	{
-		return wireArrayConnectionPoints.get(connectionI);
+		return WireEndConnectionPoints.get(connectionI);
 	}
 }

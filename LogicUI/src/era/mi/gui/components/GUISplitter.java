@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.Splitter;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire.WireEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -15,31 +15,31 @@ public class GUISplitter extends Splitter implements BasicGUIComponent
 {
 	private final int outputCount;
 	private final double height;
-	private final List<WireArray> connectedWireArrays;
-	private final List<Point> wireArrayConnectionPoints;
+	private final List<WireEnd> connectedWireEnds;
+	private final List<Point> WireEndConnectionPoints;
 
-	public GUISplitter(WireArray input, WireArray... outputs)
+	public GUISplitter(WireEnd input, WireEnd... outputs)
 	{
 		super(input, outputs);
 
-		List<WireArray> connectedWireArraysModifiable = new ArrayList<>();
-		List<Point> wireArrayConnectionPointsModifiable = new ArrayList<>();
+		List<WireEnd> connectedWireEndsModifiable = new ArrayList<>();
+		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
 
 		this.outputCount = outputs.length;
 		this.height = (outputCount - 1) * 10;
 
-		connectedWireArraysModifiable.add(input);
-		wireArrayConnectionPointsModifiable.add(new Point(0, height / 2));
+		connectedWireEndsModifiable.add(input);
+		WireEndConnectionPointsModifiable.add(new Point(0, height / 2));
 
 		{
-			connectedWireArraysModifiable.addAll(Arrays.asList(outputs));
+			connectedWireEndsModifiable.addAll(Arrays.asList(outputs));
 			double outputHeight = 0;
 			for (int i = 0; i < outputCount; i++, outputHeight += 10)
-				wireArrayConnectionPointsModifiable.add(new Point(20, outputHeight));
+				WireEndConnectionPointsModifiable.add(new Point(20, outputHeight));
 		}
 
-		this.connectedWireArrays = Collections.unmodifiableList(connectedWireArraysModifiable);
-		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
+		this.connectedWireEnds = Collections.unmodifiableList(connectedWireEndsModifiable);
+		this.WireEndConnectionPoints = Collections.unmodifiableList(WireEndConnectionPointsModifiable);
 	}
 
 	@Override
@@ -59,20 +59,20 @@ public class GUISplitter extends Splitter implements BasicGUIComponent
 	}
 
 	@Override
-	public int getConnectedWireArraysCount()
+	public int getConnectedWireEndsCount()
 	{
-		return connectedWireArrays.size();
+		return connectedWireEnds.size();
 	}
 
 	@Override
-	public WireArray getConnectedWireArray(int connectionIndex)
+	public WireEnd getConnectedWireEnd(int connectionIndex)
 	{
-		return connectedWireArrays.get(connectionIndex);
+		return connectedWireEnds.get(connectionIndex);
 	}
 
 	@Override
-	public Point getWireArrayConnectionPoint(int connectionI)
+	public Point getWireEndConnectionPoint(int connectionI)
 	{
-		return wireArrayConnectionPoints.get(connectionI);
+		return WireEndConnectionPoints.get(connectionI);
 	}
 }

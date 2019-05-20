@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.gates.OrGate;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire.WireEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -18,31 +18,31 @@ public class GUIOrGate extends OrGate implements BasicGUIComponent
 
 	private final int inputCount;
 	private final double height;
-	private final List<WireArray> connectedWireArrays;
-	private final List<Point> wireArrayConnectionPoints;
+	private final List<WireEnd> connectedWireEnds;
+	private final List<Point> WireEndConnectionPoints;
 
-	public GUIOrGate(int processTime, WireArray out, WireArray... in)
+	public GUIOrGate(int processTime, WireEnd out, WireEnd... in)
 	{
 		super(processTime, out, in);
 
-		List<WireArray> connectedWireArraysModifiable = new ArrayList<>();
-		List<Point> wireArrayConnectionPointsModifiable = new ArrayList<>();
+		List<WireEnd> connectedWireEndsModifiable = new ArrayList<>();
+		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
 
 		this.inputCount = in.length;
 		this.height = inputCount * 10;
 
 		{
-			connectedWireArraysModifiable.addAll(Arrays.asList(in));
+			connectedWireEndsModifiable.addAll(Arrays.asList(in));
 			double inputHeight = 5;
 			for (int i = 0; i < inputCount; i++, inputHeight += 10)
-				wireArrayConnectionPointsModifiable.add(new Point(0, inputHeight));
+				WireEndConnectionPointsModifiable.add(new Point(0, inputHeight));
 		}
 
-		connectedWireArraysModifiable.add(out);
-		wireArrayConnectionPointsModifiable.add(new Point(20, height / 2));
+		connectedWireEndsModifiable.add(out);
+		WireEndConnectionPointsModifiable.add(new Point(20, height / 2));
 
-		this.connectedWireArrays = Collections.unmodifiableList(connectedWireArraysModifiable);
-		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
+		this.connectedWireEnds = Collections.unmodifiableList(connectedWireEndsModifiable);
+		this.WireEndConnectionPoints = Collections.unmodifiableList(WireEndConnectionPointsModifiable);
 	}
 
 	@Override
@@ -64,20 +64,20 @@ public class GUIOrGate extends OrGate implements BasicGUIComponent
 	}
 
 	@Override
-	public int getConnectedWireArraysCount()
+	public int getConnectedWireEndsCount()
 	{
-		return connectedWireArrays.size();
+		return connectedWireEnds.size();
 	}
 
 	@Override
-	public WireArray getConnectedWireArray(int connectionIndex)
+	public WireEnd getConnectedWireEnd(int connectionIndex)
 	{
-		return connectedWireArrays.get(connectionIndex);
+		return connectedWireEnds.get(connectionIndex);
 	}
 
 	@Override
-	public Point getWireArrayConnectionPoint(int connectionI)
+	public Point getWireEndConnectionPoint(int connectionI)
 	{
-		return wireArrayConnectionPoints.get(connectionI);
+		return WireEndConnectionPoints.get(connectionI);
 	}
 }
