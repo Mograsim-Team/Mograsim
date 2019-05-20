@@ -6,7 +6,7 @@ import era.mi.gui.components.GUINotGate;
 import era.mi.gui.components.GUIOrGate;
 import era.mi.gui.wires.WireConnectionPoint;
 import era.mi.logic.Simulation;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 
 public class RSLatchGUIExample
@@ -25,19 +25,19 @@ public class RSLatchGUIExample
 	private static void initComponents(LogicUI ui)
 	{
 		Simulation.TIMELINE.reset();
-		WireArray r = new WireArray(1, WIRE_DELAY);
-		WireArray s = new WireArray(1, WIRE_DELAY);
-		WireArray t2 = new WireArray(1, WIRE_DELAY);
-		WireArray t1 = new WireArray(1, WIRE_DELAY);
-		WireArray q = new WireArray(1, WIRE_DELAY);
-		WireArray nq = new WireArray(1, WIRE_DELAY);
+		Wire r = new Wire(1, WIRE_DELAY);
+		Wire s = new Wire(1, WIRE_DELAY);
+		Wire t2 = new Wire(1, WIRE_DELAY);
+		Wire t1 = new Wire(1, WIRE_DELAY);
+		Wire q = new Wire(1, WIRE_DELAY);
+		Wire nq = new Wire(1, WIRE_DELAY);
 
-		GUIManualSwitch rIn = ui.addComponent(new GUIManualSwitch(r), 100, 100);
-		GUIManualSwitch sIn = ui.addComponent(new GUIManualSwitch(s), 100, 200);
-		GUIOrGate or1 = ui.addComponent(new GUIOrGate(OR_DELAY, t1, r, nq), 160, 102.5);
-		GUIOrGate or2 = ui.addComponent(new GUIOrGate(OR_DELAY, t2, q, s), 160, 192.5);
-		GUINotGate not1 = ui.addComponent(new GUINotGate(NOT_DELAY, t1, q), 200, 107.5);
-		GUINotGate not2 = ui.addComponent(new GUINotGate(NOT_DELAY, t2, nq), 200, 197.5);
+		GUIManualSwitch rIn = ui.addComponent(new GUIManualSwitch(r.createEnd()), 100, 100);
+		GUIManualSwitch sIn = ui.addComponent(new GUIManualSwitch(s.createEnd()), 100, 200);
+		GUIOrGate or1 = ui.addComponent(new GUIOrGate(OR_DELAY, t1.createEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd()), 160, 102.5);
+		GUIOrGate or2 = ui.addComponent(new GUIOrGate(OR_DELAY, t2.createEnd(), q.createReadOnlyEnd(), s.createReadOnlyEnd()), 160, 192.5);
+		GUINotGate not1 = ui.addComponent(new GUINotGate(NOT_DELAY, t1.createReadOnlyEnd(), q.createEnd()), 200, 107.5);
+		GUINotGate not2 = ui.addComponent(new GUINotGate(NOT_DELAY, t2.createReadOnlyEnd(), nq.createEnd()), 200, 197.5);
 
 		WireConnectionPoint p1 = ui.addComponent(new WireConnectionPoint(q, 3), 250, 112.5);
 		WireConnectionPoint p2 = ui.addComponent(new WireConnectionPoint(nq, 3), 250, 202.5);

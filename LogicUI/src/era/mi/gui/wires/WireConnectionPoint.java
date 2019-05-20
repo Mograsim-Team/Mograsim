@@ -1,21 +1,31 @@
 package era.mi.gui.wires;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.swt.graphics.Color;
 
 import era.mi.gui.components.BasicGUIComponent;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire;
+import era.mi.logic.wires.Wire.WireEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class WireConnectionPoint implements BasicGUIComponent
 {
-	private final WireArray wa;
+	private final Wire wire;
+	private final List<WireEnd> wireEnds;
 	private final int wiresCrossing;
 
-	public WireConnectionPoint(WireArray wa, int wiresCrossing)
+	public WireConnectionPoint(Wire wire, int wiresCrossing)
 	{
-		this.wa = wa;
+		this.wire = wire;
+		List<WireEnd> wireEndsModifiable = new ArrayList<>();
+		for (int i = 0; i < wiresCrossing; i++)
+			wireEndsModifiable.add(wire.createReadOnlyEnd());
+		wireEnds = Collections.unmodifiableList(wireEndsModifiable);
 		this.wiresCrossing = wiresCrossing;
 	}
 
@@ -23,8 +33,8 @@ public class WireConnectionPoint implements BasicGUIComponent
 	public void render(GeneralGC gc)
 	{
 		Color oldBG = gc.getBackground();
-		if (wa.length == 1)
-			gc.setBackground(gc.getDevice().getSystemColor(GUIWire.getSWTColorConstantForBit(wa.getValue())));
+		if (wire.length == 1)
+			gc.setBackground(gc.getDevice().getSystemColor(GUIWire.getSWTColorConstantForBit(wire.getValue())));
 		gc.fillOval(-1, -1, 2, 2);
 		gc.setBackground(oldBG);
 	}
@@ -36,19 +46,19 @@ public class WireConnectionPoint implements BasicGUIComponent
 	}
 
 	@Override
-	public int getConnectedWireArraysCount()
+	public int getConnectedWireEndsCount()
 	{
 		return wiresCrossing;
 	}
 
 	@Override
-	public WireArray getConnectedWireArray(int connectionIndex)
+	public WireEnd getConnectedWireEnd(int connectionIndex)
 	{
-		return wa;
+		return wireEnds.get(connectionIndex);
 	}
 
 	@Override
-	public Point getWireArrayConnectionPoint(int connectionIndex)
+	public Point getWireEndConnectionPoint(int connectionIndex)
 	{
 		return new Point(0, 0);
 	}

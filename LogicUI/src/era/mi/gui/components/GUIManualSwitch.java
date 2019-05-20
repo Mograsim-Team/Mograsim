@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import era.mi.logic.Bit;
 import era.mi.logic.components.ManualSwitch;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.types.Bit;
+import era.mi.logic.wires.Wire.WireEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -28,24 +28,24 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 		bitNames = Collections.unmodifiableMap(bitNamesModifiable);
 	}
 
-	private final WireArray wa;
-	private final List<WireArray> connectedWireArrays;
-	private final List<Point> wireArrayConnectionPoints;
+	private final WireEnd we;
+	private final List<WireEnd> connectedWireEnds;
+	private final List<Point> wireEndConnectionPoints;
 
-	public GUIManualSwitch(WireArray output)
+	public GUIManualSwitch(WireEnd output)
 	{
 		super(output);
 
-		this.wa = output;
+		this.we = output;
 
-		List<WireArray> connectedWireArraysModifiable = new ArrayList<>();
-		List<Point> wireArrayConnectionPointsModifiable = new ArrayList<>();
+		List<WireEnd> connectedWireEndsModifiable = new ArrayList<>();
+		List<Point> wireEndConnectionPointsModifiable = new ArrayList<>();
 
-		connectedWireArraysModifiable.add(output);
-		wireArrayConnectionPointsModifiable.add(new Point(20, 7.5));
+		connectedWireEndsModifiable.add(output);
+		wireEndConnectionPointsModifiable.add(new Point(20, 7.5));
 
-		this.connectedWireArrays = Collections.unmodifiableList(connectedWireArraysModifiable);
-		this.wireArrayConnectionPoints = Collections.unmodifiableList(wireArrayConnectionPointsModifiable);
+		this.connectedWireEnds = Collections.unmodifiableList(connectedWireEndsModifiable);
+		this.wireEndConnectionPoints = Collections.unmodifiableList(wireEndConnectionPointsModifiable);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	public void render(GeneralGC gc)
 	{
 		gc.drawRectangle(0, 0, 20, 15);
-		String label = bitNames.get(wa.getValue());
+		String label = bitNames.get(we.getValue());
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), 6, oldFont.getStyle());
 		gc.setFont(labelFont);
@@ -75,20 +75,20 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	}
 
 	@Override
-	public int getConnectedWireArraysCount()
+	public int getConnectedWireEndsCount()
 	{
-		return connectedWireArrays.size();
+		return connectedWireEnds.size();
 	}
 
 	@Override
-	public WireArray getConnectedWireArray(int connectionIndex)
+	public WireEnd getConnectedWireEnd(int connectionIndex)
 	{
-		return connectedWireArrays.get(connectionIndex);
+		return connectedWireEnds.get(connectionIndex);
 	}
 
 	@Override
-	public Point getWireArrayConnectionPoint(int connectionI)
+	public Point getWireEndConnectionPoint(int connectionI)
 	{
-		return wireArrayConnectionPoints.get(connectionI);
+		return wireEndConnectionPoints.get(connectionI);
 	}
 }

@@ -1,6 +1,6 @@
 package era.mi.gui.components;
 
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire.WireEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -30,15 +30,15 @@ public interface BasicGUIComponent
 	 * Returns how many wire arrays are connected to this component. (Connections are static - they can't be removed and no new ones can be
 	 * added)
 	 */
-	public int getConnectedWireArraysCount();
+	public int getConnectedWireEndsCount();
 
 	/**
 	 * Returns the n-th wire array connected to this component.
 	 */
-	public WireArray getConnectedWireArray(int connectionIndex);
+	public WireEnd getConnectedWireEnd(int connectionIndex);
 
 	/**
 	 * Returns relative coordinates where the n-th wire array is connected to this component.
 	 */
-	public Point getWireArrayConnectionPoint(int connectionIndex);
+	public Point getWireEndConnectionPoint(int connectionIndex);
 }
