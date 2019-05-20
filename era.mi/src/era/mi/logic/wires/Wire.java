@@ -60,12 +60,7 @@ public class Wire
 			Bit[] bits = input.getInputValues();
 			for (int i = 0; i < length; i++)
 			{
-				if (Bit.Z.equals(bits[i]) || newValues[i].equals(bits[i]))
-					continue;
-				else if (Bit.Z.equals(newValues[i]))
-					newValues[i] = bits[i];
-				else
-					newValues[i] = Bit.X;
+				newValues[i] = newValues[i].combineWith(bits[i]);
 			}
 		}
 
@@ -247,12 +242,10 @@ public class Wire
 		 */
 		public void feedSignals(Bit... newValues)
 		{
-			if (newValues.length == length)
-			{
-				feedSignals(0, newValues);
-			} else
+			if (newValues.length != length)
 				throw new IllegalArgumentException(
 						String.format("Attempted to input %d bits instead of %d bits.", newValues.length, length));
+			feedSignals(0, newValues);
 		}
 
 		/**
