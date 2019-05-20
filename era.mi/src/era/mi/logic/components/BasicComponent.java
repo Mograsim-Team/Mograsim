@@ -1,7 +1,7 @@
 package era.mi.logic.components;
 
-import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
+import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.WireObserver;
 

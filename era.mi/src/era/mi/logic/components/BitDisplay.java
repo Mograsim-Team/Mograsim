@@ -3,7 +3,7 @@ package era.mi.logic.components;
 import java.util.Arrays;
 import java.util.List;
 
-import era.mi.logic.Bit;
+import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire.WireEnd;
 
 public class BitDisplay extends BasicComponent

@@ -1,16 +1,12 @@
 package era.mi.logic.tests;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import java.util.function.LongConsumer;
 
 import org.junit.jupiter.api.Test;
 
-import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.components.Connector;
 import era.mi.logic.components.Demux;
@@ -22,6 +18,7 @@ import era.mi.logic.components.gates.AndGate;
 import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.components.gates.OrGate;
 import era.mi.logic.components.gates.XorGate;
+import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
 

@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import java.util.Arrays;
 import java.util.function.LongConsumer;
 
-import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.components.BitDisplay;
+import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire.WireEnd;
 
 public final class TestBitDisplay extends BitDisplay

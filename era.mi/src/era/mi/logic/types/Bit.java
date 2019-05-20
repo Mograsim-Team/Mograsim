@@ -1,44 +1,42 @@
-package era.mi.logic;
+package era.mi.logic.types;
 
 import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * stdlogic according to IEEE 1164
  */
-public enum Bit
+public enum Bit implements StrictLogicType<Bit>
 {
-	U, X, ZERO, ONE, Z;
+	U("U"), X("X"), ZERO("0"), ONE("1"), Z("Z");
 
-	public static Bit and(Bit a, Bit b)
+	private final String symbol;
+
+	private Bit(String symbol)
 	{
-		return a.and(b);
+		this.symbol = symbol;
 	}
 
+	@Override
 	public Bit and(Bit other)
 	{
 		return fromTable(AND_TABLE, this, other);
 	}
 
-	public static Bit or(Bit a, Bit b)
-	{
-		return a.or(b);
-	}
-
+	@Override
 	public Bit or(Bit other)
 	{
 		return fromTable(OR_TABLE, this, other);
 	}
 
-	public static Bit xor(Bit a, Bit b)
-	{
-		return a.xor(b);
-	}
-
+	@Override
 	public Bit xor(Bit other)
 	{
 		return fromTable(XOR_TABLE, this, other);
 	}
 
+	@Override
 	public Bit not()
 	{
 		switch (this)
@@ -61,14 +59,38 @@ public enum Bit
 		return bits;
 	}
 
-	public Bit combineWith(Bit other)
+	public BitVector toVector(int length)
+	{
+		return BitVector.of(this, length);
+	}
+
+	@Override
+	public Bit join(Bit other)
 	{
 		return fromTable(JOIN_TABLE, this, other);
 	}
 
-	public static Bit combine(Bit a, Bit b)
+	@Override
+	public String toString()
 	{
-		return a.combineWith(b);
+		return getSymbol();
+	}
+
+	public String getSymbol()
+	{
+		return symbol;
+	}
+
+	public static Bit parse(String s)
+	{
+		Bit bit = SYMBOL_MAP.get(s);
+		Objects.requireNonNull(bit, "No Bit found for symbol " + s);
+		return bit;
+	}
+
+	public static Bit parse(String s, int symbolPosition)
+	{
+		return parse(s.substring(symbolPosition, symbolPosition + 1));
 	}
 
 	private static Bit fromTable(Bit[][] table, Bit a, Bit b)
@@ -76,29 +98,31 @@ public enum Bit
 		return table[a.ordinal()][b.ordinal()];
 	}
 
+	static final Map<String, Bit> SYMBOL_MAP = Map.of(U.symbol, U, X.symbol, X, ZERO.symbol, ZERO, ONE.symbol, ONE, Z.symbol, Z);
+
 	// @formatter:off
-	private static Bit[][] JOIN_TABLE = 
+	private static final Bit[][] JOIN_TABLE = 
 		{ { U, U, U,    U,   U    }, 
 		  { U, X, X,    X,   X    }, 
 		  { U, X, ZERO, X,   ZERO },
 		  { U, X, X,    ONE, ONE  }, 
 		  { U, X, ZERO, ONE, Z    } };
 
-	private static Bit[][] AND_TABLE = 
+	private static final Bit[][] AND_TABLE = 
 		{ { U,    U,    ZERO, U,    U    }, 
 		  { U,    X,    ZERO, X,    X    },
 		  { ZERO, ZERO, ZERO, ZERO, ZERO }, 
 		  { U,    X,    ZERO, ONE,  X    }, 
 		  { U,    X,    ZERO, X,    X    } };
 
-	private static Bit[][] OR_TABLE =
+	private static final Bit[][] OR_TABLE =
     	{ { U,   U,   U,    ONE, U    },    
     	  { U,   X,   X,    ONE, X    },    
     	  { U,   X,   ZERO, ONE, X    },    
     	  { ONE, ONE, ONE,  ONE, ONE  },    
     	  { U,   X,   X,    ONE, X    } };
 	
-	private static Bit[][] XOR_TABLE =
+	private static final Bit[][] XOR_TABLE =
     	{ { U, U, U,    U,    U },    
     	  { U, X, X,    X,    X },    
     	  { U, X, ZERO, ONE,  X },    

@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.Util;
+import era.mi.logic.types.Bit;
 
 /**
  * Represents an array of wires that can store n bits of information.
@@ -60,7 +60,7 @@ public class Wire
 			Bit[] bits = input.getInputValues();
 			for (int i = 0; i < length; i++)
 			{
-				newValues[i] = newValues[i].combineWith(bits[i]);
+				newValues[i] = newValues[i].join(bits[i]);
 			}
 		}
 

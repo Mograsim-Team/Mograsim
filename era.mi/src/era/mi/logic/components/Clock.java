@@ -2,10 +2,10 @@ package era.mi.logic.components;
 
 import java.util.List;
 
-import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.timeline.TimelineEvent;
 import era.mi.logic.timeline.TimelineEventHandler;
+import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
 

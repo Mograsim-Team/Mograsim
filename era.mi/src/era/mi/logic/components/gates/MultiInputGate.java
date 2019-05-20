@@ -2,8 +2,8 @@ package era.mi.logic.components.gates;
 
 import java.util.List;
 
-import era.mi.logic.Bit;
 import era.mi.logic.components.BasicComponent;
+import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire.WireEnd;
 
 public abstract class MultiInputGate extends BasicComponent

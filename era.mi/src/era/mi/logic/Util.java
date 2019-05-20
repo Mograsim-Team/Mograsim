@@ -2,6 +2,8 @@ package era.mi.logic;
 
 import java.util.Arrays;
 
+import era.mi.logic.types.Bit;
+
 public final class Util
 {
 
@@ -50,17 +52,17 @@ public final class Util
 
 	public static Bit[] and(Bit[] a, Bit[] b)
 	{
-		return binBitOp(a, b, (bA, bB) -> Bit.and(bA, bB));
+		return binBitOp(a, b, Bit::and);
 	}
 
 	public static Bit[] or(Bit[] a, Bit[] b)
 	{
-		return binBitOp(a, b, (bA, bB) -> Bit.or(bA, bB));
+		return binBitOp(a, b, Bit::or);
 	}
 
 	public static Bit[] xor(Bit[] a, Bit[] b)
 	{
-		return binBitOp(a, b, (bA, bB) -> Bit.xor(bA, bB));
+		return binBitOp(a, b, Bit::xor);
 	}
 
 	private static Bit[] binBitOp(Bit[] a, Bit[] b, BitOp op)
@@ -96,7 +98,7 @@ public final class Util
 			throw new IllegalArgumentException("Bit Arrays were not of equal length.");
 		for (int i = 0; i < addition.length; i++)
 		{
-			dest[i] = dest[i].combineWith(addition[i]);
+			dest[i] = dest[i].join(addition[i]);
 		}
 		return dest;
 	}

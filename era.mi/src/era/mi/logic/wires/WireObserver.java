@@ -1,6 +1,6 @@
 package era.mi.logic.wires;
 
-import era.mi.logic.Bit;
+import era.mi.logic.types.Bit;
 
 public interface WireObserver
 {
