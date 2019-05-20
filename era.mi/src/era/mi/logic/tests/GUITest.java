@@ -241,7 +241,7 @@ public class GUITest extends JPanel
 			g.setColor(Color.BLACK);
 			break;
 		case U:
-			g.setColor(Color.BLUE);
+			g.setColor(Color.MAGENTA);
 			break;
 		default:
 			throw new IllegalArgumentException();

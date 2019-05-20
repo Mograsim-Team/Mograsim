@@ -1,15 +1,13 @@
 package era.mi.logic.components;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Bit;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
-import era.mi.logic.wires.WireArrayObserver;
+import era.mi.logic.wires.WireObserver;
 
-public class Merger implements WireArrayObserver, Component
+public class Merger implements WireObserver, Component
 {
 	private WireEnd out;
 	private WireEnd[] inputs;
@@ -73,12 +71,12 @@ public class Merger implements WireArrayObserver, Component
 	@Override
 	public List<WireEnd> getAllInputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(inputs));
+		return List.of(inputs);
 	}
 
 	@Override
 	public List<WireEnd> getAllOutputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(out));
+		return List.of(out);
 	}
 }

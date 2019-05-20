@@ -19,7 +19,7 @@ public class Wire
 {
 	private Bit[] values;
 	public final int travelTime;
-	private List<WireArrayObserver> observers = new ArrayList<WireArrayObserver>();
+	private List<WireObserver> observers = new ArrayList<WireObserver>();
 	public final int length;
 	private List<WireEnd> inputs = new ArrayList<WireEnd>();
 
@@ -182,21 +182,21 @@ public class Wire
 	}
 
 	/**
-	 * Adds an {@link WireArrayObserver}, who will be notified when the value of the {@link Wire} is updated.
+	 * Adds an {@link WireObserver}, who will be notified when the value of the {@link Wire} is updated.
 	 * 
-	 * @param ob The {@link WireArrayObserver} to be notified of changes.
-	 * @return true if the given {@link WireArrayObserver} was not already registered, false otherwise
+	 * @param ob The {@link WireObserver} to be notified of changes.
+	 * @return true if the given {@link WireObserver} was not already registered, false otherwise
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public boolean addObserver(WireArrayObserver ob)
+	public boolean addObserver(WireObserver ob)
 	{
 		return observers.add(ob);
 	}
 
 	private void notifyObservers(Bit[] oldValues)
 	{
-		for (WireArrayObserver o : observers)
+		for (WireObserver o : observers)
 			o.update(this, oldValues);
 	}
 
@@ -215,8 +215,8 @@ public class Wire
 
 	/**
 	 * A {@link WireEnd} feeds a constant signal into the {@link Wire} it is tied to. The combination of all inputs determines the
-	 * {@link Wire}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs than
-	 * Z 0 and 1 turn into X when they are mixed
+	 * {@link Wire}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs than Z 0
+	 * and 1 turn into X when they are mixed
 	 * 
 	 * @author Fabian Stemmler
 	 */
@@ -299,16 +299,15 @@ public class Wire
 		{
 			return inputValues[index];
 		}
-		
+
 		/**
-		 * @return A copy (safe to modify) of the values the {@link WireEnd} is currently feeding into the associated
-		 * {@link Wire}.
+		 * @return A copy (safe to modify) of the values the {@link WireEnd} is currently feeding into the associated {@link Wire}.
 		 */
 		public Bit[] getInputValues()
 		{
 			return getInputValues(0, length);
 		}
-		
+
 		public Bit[] getInputValues(int start, int end)
 		{
 			int length = end - start;
@@ -359,7 +358,7 @@ public class Wire
 		{
 			return Wire.this.getValue(index);
 		}
-		
+
 		/**
 		 * @param index Index of the requested bit.
 		 * @return The value of the indexed bit.
@@ -373,8 +372,8 @@ public class Wire
 
 		/**
 		 * @param start Start of the wanted segment. (inclusive)
-		 * @param end End of the wanted segment. (exclusive)
-		 * @return The values of the segment of {@link Bit}s indexed. 
+		 * @param end   End of the wanted segment. (exclusive)
+		 * @return The values of the segment of {@link Bit}s indexed.
 		 * 
 		 * @author Fabian Stemmler
 		 */
@@ -382,13 +381,12 @@ public class Wire
 		{
 			return Wire.this.getValues(start, end);
 		}
-		
 
 		/**
 		 * The {@link Wire} is interpreted as an unsigned integer with n bits.
 		 * 
-		 * @return <code>true</code> if all bits are either <code>Bit.ONE</code> or <code>Bit.ZERO</code> (they do not all have to have the same
-		 *         value), not <code>Bit.X</code> or <code>Bit.Z</code>. <code>false</code> is returned otherwise.
+		 * @return <code>true</code> if all bits are either <code>Bit.ONE</code> or <code>Bit.ZERO</code> (they do not all have to have the
+		 *         same value), not <code>Bit.X</code> or <code>Bit.Z</code>. <code>false</code> is returned otherwise.
 		 * 
 		 * @author Fabian Stemmler
 		 */
@@ -420,12 +418,12 @@ public class Wire
 		{
 			return Wire.this.getSignedValue();
 		}
-		
+
 		@Override
 		public String toString()
 		{
 			return Arrays.toString(values);
-			//return String.format("%s \nFeeding: %s", WireArray.this.toString(), Arrays.toString(inputValues));
+			// return String.format("%s \nFeeding: %s", WireArray.this.toString(), Arrays.toString(inputValues));
 		}
 
 		public void disconnect()
@@ -439,22 +437,22 @@ public class Wire
 			return length;
 		}
 
-		public boolean addObserver(WireArrayObserver ob)
+		public boolean addObserver(WireObserver ob)
 		{
 			return Wire.this.addObserver(ob);
 		}
-		
+
 		public Wire getWire()
 		{
 			return Wire.this;
 		}
 	}
-	
+
 	@Override
 	public String toString()
 	{
 		return String.format("wire 0x%08x value: %s inputs: %s", hashCode(), Arrays.toString(values), inputs);
-		//Arrays.toString(values), inputs.stream().map(i -> Arrays.toString(i.inputValues)).reduce((s1, s2) -> s1 + s2)
+		// Arrays.toString(values), inputs.stream().map(i -> Arrays.toString(i.inputValues)).reduce((s1, s2) -> s1 + s2)
 	}
 
 	public static WireEnd[] extractEnds(Wire[] w)

@@ -88,6 +88,6 @@ public class Mux extends BasicComponent
 	@Override
 	public List<WireEnd> getAllOutputs()
 	{
-		return Collections.unmodifiableList(Arrays.asList(out));
+		return List.of(out);
 	}
 }

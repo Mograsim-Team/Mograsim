@@ -3,9 +3,9 @@ package era.mi.logic.components;
 import era.mi.logic.Bit;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
-import era.mi.logic.wires.WireArrayObserver;
+import era.mi.logic.wires.WireObserver;
 
-public class Splitter implements WireArrayObserver
+public class Splitter implements WireObserver
 {
 	private WireEnd input;
 	private WireEnd[] outputs;

@@ -3,14 +3,14 @@ package era.mi.logic.components;
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.wires.Wire;
-import era.mi.logic.wires.WireArrayObserver;
+import era.mi.logic.wires.WireObserver;
 
 /**
  * A basic component that recomputes all outputs (with a delay), when it is updated.
  * 
  * @author Fabian Stemmler
  */
-public abstract class BasicComponent implements WireArrayObserver, Component
+public abstract class BasicComponent implements WireObserver, Component
 {
 	private int processTime;
 
@@ -28,10 +28,7 @@ public abstract class BasicComponent implements WireArrayObserver, Component
 	@Override
 	public void update(Wire initiator, Bit[] oldValues)
 	{
-		Simulation.TIMELINE.addEvent((e) ->
-		{
-			compute();
-		}, processTime);
+		Simulation.TIMELINE.addEvent(e -> compute(), processTime);
 	}
 
 	protected abstract void compute();

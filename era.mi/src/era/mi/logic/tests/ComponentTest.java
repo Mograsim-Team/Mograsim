@@ -1,6 +1,9 @@
 package era.mi.logic.tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Arrays;
 import java.util.function.LongConsumer;
@@ -9,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
+import era.mi.logic.components.Connector;
 import era.mi.logic.components.Demux;
 import era.mi.logic.components.Merger;
 import era.mi.logic.components.Mux;
@@ -21,6 +25,7 @@ import era.mi.logic.components.gates.XorGate;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.WireEnd;
 
+@SuppressWarnings("unused")
 class ComponentTest
 {
 
@@ -28,9 +33,8 @@ class ComponentTest
 	void circuitExampleTest()
 	{
 		Simulation.TIMELINE.reset();
-		Wire a = new Wire(1, 1), b = new Wire(1, 1), c = new Wire(1, 10), d = new Wire(2, 1),
-				e = new Wire(1, 1), f = new Wire(1, 1), g = new Wire(1, 1), h = new Wire(2, 1), i = new Wire(2, 1),
-				j = new Wire(1, 1), k = new Wire(1, 1);
+		Wire a = new Wire(1, 1), b = new Wire(1, 1), c = new Wire(1, 10), d = new Wire(2, 1), e = new Wire(1, 1), f = new Wire(1, 1),
+				g = new Wire(1, 1), h = new Wire(2, 1), i = new Wire(2, 1), j = new Wire(1, 1), k = new Wire(1, 1);
 		new AndGate(1, f.createEnd(), a.createEnd(), b.createEnd());
 		new NotGate(1, f.createEnd(), g.createEnd());
 		new Merger(h.createEnd(), c.createEnd(), g.createEnd());
@@ -92,6 +96,7 @@ class ComponentTest
 		WireEnd enI = en.createEnd(), aI = a.createEnd(), bI = b.createEnd();
 		enI.feedSignals(Bit.ONE);
 		aI.feedSignals(Bit.ONE);
+		bI.feedSignals(Bit.Z);
 
 		Simulation.TIMELINE.executeAll();
 
@@ -117,8 +122,7 @@ class ComponentTest
 	void muxTest()
 	{
 		Simulation.TIMELINE.reset();
-		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5),
-				out = new Wire(4, 1);
+		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5), out = new Wire(4, 1);
 		WireEnd selectIn = select.createEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
@@ -145,8 +149,7 @@ class ComponentTest
 	void demuxTest()
 	{
 		Simulation.TIMELINE.reset();
-		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5),
-				in = new Wire(4, 1);
+		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5), in = new Wire(4, 1);
 		WireEnd selectIn = select.createEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
@@ -216,7 +219,7 @@ class ComponentTest
 
 		assertBitArrayEquals(d.getValues(), Bit.ZERO, Bit.ONE, Bit.ONE);
 	}
-	
+
 	@Test
 	void notTest()
 	{
@@ -234,8 +237,7 @@ class ComponentTest
 	void rsLatchCircuitTest()
 	{
 		Simulation.TIMELINE.reset();
-		Wire r = new Wire(1, 1), s = new Wire(1, 1), t1 = new Wire(1, 15), t2 = new Wire(1, 1),
-				q = new Wire(1, 1), nq = new Wire(1, 1);
+		Wire r = new Wire(1, 1), s = new Wire(1, 1), t1 = new Wire(1, 15), t2 = new Wire(1, 1), q = new Wire(1, 1), nq = new Wire(1, 1);
 
 		new OrGate(1, t2.createEnd(), r.createEnd(), nq.createEnd());
 		new OrGate(1, t1.createEnd(), s.createEnd(), q.createEnd());
@@ -305,7 +307,7 @@ class ComponentTest
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 	}
 
-//	@Test
+	@Test
 	void wireConnections()
 	{
 		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
@@ -333,7 +335,7 @@ class ComponentTest
 		cI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
 
-		new Connector(b, c);
+		new Connector(b.createEnd(), c.createEnd()).connect();
 		test.assertAfterSimulationIs(print, Bit.Z);
 		System.err.println("ONE");
 		bI.feedSignals(Bit.ONE);
@@ -345,7 +347,7 @@ class ComponentTest
 		bI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
 
-		new Connector(a, b);
+		new Connector(a.createEnd(), b.createEnd()).connect();
 		System.err.println("Z 2");
 		aI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
