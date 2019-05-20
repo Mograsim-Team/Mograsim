@@ -1,51 +1,51 @@
 package era.mi.logic.components.gates;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Util;
 import era.mi.logic.components.BasicComponent;
-import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayEnd;
+import era.mi.logic.wires.Wire.WireEnd;
 
 public class NotGate extends BasicComponent
 {
-	private WireArray in, out;
-	private WireArrayEnd outI;
+	private WireEnd in;
+	private WireEnd out;
 
-	public NotGate(int processTime, WireArray in, WireArray out)
+	public NotGate(int processTime, WireEnd in, WireEnd out)
 	{
 		super(processTime);
 		this.in = in;
 		in.addObserver(this);
 		this.out = out;
-		outI = out.createInput();
 	}
 
 	@Override
-	public void compute()
+	protected void compute()
 	{
-		outI.feedSignals(Util.not(in.getValues()));
+		out.feedSignals(Util.not(in.getValues()));
 	}
 
-	public WireArray getIn()
+	public WireEnd getIn()
 	{
 		return in;
 	}
 
-	public WireArray getOut()
+	public WireEnd getOut()
 	{
 		return out;
 	}
 
 	@Override
-	public List<WireArray> getAllInputs()
+	public List<WireEnd> getAllInputs()
 	{
-		return List.of(in);
+		return Collections.unmodifiableList(Arrays.asList(in));
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs()
+	public List<WireEnd> getAllOutputs()
 	{
-		return List.of(out);
+		return Collections.unmodifiableList(Arrays.asList(out));
 	}
 }

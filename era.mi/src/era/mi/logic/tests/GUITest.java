@@ -20,7 +20,7 @@ import era.mi.logic.components.ManualSwitch;
 import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.components.gates.OrGate;
 import era.mi.logic.timeline.Timeline.ExecutionResult;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire;
 
 public class GUITest extends JPanel
 {
@@ -31,20 +31,20 @@ public class GUITest extends JPanel
 	private static final int OR_DELAY = 100;
 	private static final int NOT_DELAY = 100;
 
-	WireArray r = new WireArray(1, WIRE_DELAY);
-	WireArray s = new WireArray(1, WIRE_DELAY);
-	WireArray t1 = new WireArray(1, WIRE_DELAY);
-	WireArray t2 = new WireArray(1, WIRE_DELAY);
-	WireArray q = new WireArray(1, WIRE_DELAY);
-	WireArray nq = new WireArray(1, WIRE_DELAY);
+	Wire r = new Wire(1, WIRE_DELAY);
+	Wire s = new Wire(1, WIRE_DELAY);
+	Wire t1 = new Wire(1, WIRE_DELAY);
+	Wire t2 = new Wire(1, WIRE_DELAY);
+	Wire q = new Wire(1, WIRE_DELAY);
+	Wire nq = new Wire(1, WIRE_DELAY);
 
-	ManualSwitch rIn = new ManualSwitch(r);
-	ManualSwitch sIn = new ManualSwitch(s);
+	ManualSwitch rIn = new ManualSwitch(r.createEnd());
+	ManualSwitch sIn = new ManualSwitch(s.createEnd());
 
-	OrGate or1 = new OrGate(OR_DELAY, t2, r, nq);
-	OrGate or2 = new OrGate(OR_DELAY, t1, s, q);
-	NotGate not1 = new NotGate(NOT_DELAY, t2, q);
-	NotGate not2 = new NotGate(NOT_DELAY, t1, nq);
+	OrGate or1 = new OrGate(OR_DELAY, t2.createEnd(), r.createEnd(), nq.createEnd());
+	OrGate or2 = new OrGate(OR_DELAY, t1.createEnd(), s.createEnd(), q.createEnd());
+	NotGate not1 = new NotGate(NOT_DELAY, t2.createEnd(), q.createEnd());
+	NotGate not2 = new NotGate(NOT_DELAY, t1.createEnd(), nq.createEnd());
 
 	Map<ManualSwitch, Rectangle> switchMap = new HashMap<>();
 
@@ -170,14 +170,14 @@ public class GUITest extends JPanel
 		g.setFont(g.getFont().deriveFont(Math.min(height, width) / 40f));
 	}
 
-	private static void drawString(Graphics g, String s, int x, int y, double anchorX, double anchorY)
+	private void drawString(Graphics g, String s, int x, int y, double anchorX, double anchorY)
 	{
 		int h = g.getFontMetrics().getAscent();
 		int w = g.getFontMetrics().stringWidth(s);
 		g.drawString(s, x - (int) (w * anchorX), y + (int) (h * anchorY));
 	}
 
-	private void drawWire(Graphics g, WireArray wa, String name, double x1, double y1, double x2, double y2)
+	private void drawWire(Graphics g, Wire wa, String name, double x1, double y1, double x2, double y2)
 	{
 		setTo(g, wa);
 		g.drawLine(gX(x1), gY(y1), gX(x2), gY(y2));
@@ -224,7 +224,7 @@ public class GUITest extends JPanel
 		g.setColor(Color.BLACK);
 	}
 
-	private static void setTo(Graphics g, WireArray wa)
+	private static void setTo(Graphics g, Wire wa)
 	{
 		switch (wa.getValue())
 		{
@@ -241,7 +241,7 @@ public class GUITest extends JPanel
 			g.setColor(Color.BLACK);
 			break;
 		case U:
-			g.setColor(Color.MAGENTA);
+			g.setColor(Color.BLUE);
 			break;
 		default:
 			throw new IllegalArgumentException();
@@ -282,7 +282,7 @@ public class GUITest extends JPanel
 				gt.repaint(12);
 			try
 			{
-				Thread.sleep(Math.max(updateT - System.currentTimeMillis() + lastFrame, 0));
+				Thread.sleep(Math.max(16 - System.currentTimeMillis() + lastFrame, 0));
 			}
 			catch (Exception e)
 			{

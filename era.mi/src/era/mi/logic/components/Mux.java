@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayEnd;
+import era.mi.logic.wires.Wire;
+import era.mi.logic.wires.Wire.WireEnd;
 
 /**
- * Models a multiplexer. Takes an arbitrary amount of input {@link WireArray}s, one of which, as determined by select, is put through to the
+ * Models a multiplexer. Takes an arbitrary amount of input {@link Wire}s, one of which, as determined by select, is put through to the
  * output.
  * 
  * @author Fabian Stemmler
@@ -17,27 +17,27 @@ import era.mi.logic.wires.WireArray.WireArrayEnd;
  */
 public class Mux extends BasicComponent
 {
-	private WireArray select;
-	private WireArrayEnd outI;
-	private WireArray[] inputs;
+	private WireEnd select;
+	private WireEnd out;
+	private WireEnd[] inputs;
 	private final int outputSize;
 
 	/**
-	 * Input {@link WireArray}s and out must be of uniform length
+	 * Input {@link Wire}s and out must be of uniform length
 	 * 
 	 * @param out    Must be of uniform length with all inputs.
 	 * @param select Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
 	 * @param inputs One of these inputs is mapped to the output, depending on the select bits
 	 */
-	public Mux(int processTime, WireArray out, WireArray select, WireArray... inputs)
+	public Mux(int processTime, WireEnd out, WireEnd select, WireEnd... inputs)
 	{
 		super(processTime);
-		outputSize = out.length;
+		outputSize = out.length();
 
 		this.inputs = inputs.clone();
 		for (int i = 0; i < this.inputs.length; i++)
 		{
-			if (inputs[i].length != outputSize)
+			if (inputs[i].length() != outputSize)
 				throw new IllegalArgumentException("All MUX wire arrays must be of uniform length!");
 			inputs[i].addObserver(this);
 		}
@@ -45,20 +45,20 @@ public class Mux extends BasicComponent
 		this.select = select;
 		select.addObserver(this);
 
-		int maxInputs = 1 << select.length;
+		int maxInputs = 1 << select.length();
 		if (this.inputs.length > maxInputs)
 			throw new IllegalArgumentException("There are more inputs (" + this.inputs.length + ") to the MUX than supported by "
-					+ select.length + " select bits (" + maxInputs + ").");
+					+ select.length() + " select bits (" + maxInputs + ").");
 
-		outI = out.createInput();
+		this.out = out;
 	}
 
-	public WireArray getOut()
+	public WireEnd getOut()
 	{
-		return outI.owner;
+		return out;
 	}
 
-	public WireArray getSelect()
+	public WireEnd getSelect()
 	{
 		return select;
 	}
@@ -69,25 +69,25 @@ public class Mux extends BasicComponent
 		int selectValue;
 		if (!select.hasNumericValue() || (selectValue = (int) select.getUnsignedValue()) >= inputs.length)
 		{
-			outI.clearSignals();
+			out.clearSignals();
 			return;
 		}
 
-		WireArray active = inputs[selectValue];
-		outI.feedSignals(active.getValues());
+		WireEnd active = inputs[selectValue];
+		out.feedSignals(active.getValues());
 	}
 
 	@Override
-	public List<WireArray> getAllInputs()
+	public List<WireEnd> getAllInputs()
 	{
-		ArrayList<WireArray> wires = new ArrayList<WireArray>(Arrays.asList(inputs));
+		ArrayList<WireEnd> wires = new ArrayList<WireEnd>(Arrays.asList(inputs));
 		wires.add(select);
 		return Collections.unmodifiableList(wires);
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs()
+	public List<WireEnd> getAllOutputs()
 	{
-		return List.of(outI.owner);
+		return Collections.unmodifiableList(Arrays.asList(out));
 	}
 }

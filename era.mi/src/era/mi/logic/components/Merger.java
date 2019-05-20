@@ -1,82 +1,84 @@
 package era.mi.logic.components;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Bit;
-import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayEnd;
+import era.mi.logic.wires.Wire;
+import era.mi.logic.wires.Wire.WireEnd;
 import era.mi.logic.wires.WireArrayObserver;
 
 public class Merger implements WireArrayObserver, Component
 {
-	private WireArrayEnd outI;
-	private WireArray[] inputs;
+	private WireEnd out;
+	private WireEnd[] inputs;
 	private int[] beginningIndex;
 
 	/**
 	 * 
-	 * @param union  The output of merging n {@link WireArray}s into one. Must have length = a1.length() + a2.length() + ... + an.length().
+	 * @param union  The output of merging n {@link Wire}s into one. Must have length = a1.length() + a2.length() + ... + an.length().
 	 * @param inputs The inputs to be merged into the union
 	 */
-	public Merger(WireArray union, WireArray... inputs)
+	public Merger(WireEnd union, WireEnd... inputs)
 	{
 		this.inputs = inputs;
-		this.outI = union.createInput();
+		this.out = union;
 		this.beginningIndex = new int[inputs.length];
 
 		int length = 0;
 		for (int i = 0; i < inputs.length; i++)
 		{
 			beginningIndex[i] = length;
-			length += inputs[i].length;
+			length += inputs[i].length();
 			inputs[i].addObserver(this);
 		}
 
-		if (length != union.length)
+		if (length != union.length())
 			throw new IllegalArgumentException(
 					"The output of merging n WireArrays into one must have length = a1.length() + a2.length() + ... + an.length().");
 	}
 
-	public WireArray getInput(int index)
+	public WireEnd getInput(int index)
 	{
 		return inputs[index];
 	}
 
-	public WireArray getUnion()
+	public WireEnd getUnion()
 	{
-		return outI.owner;
+		return out;
 	}
 
 	@Override
-	public void update(WireArray initiator, Bit[] oldValues)
+	public void update(Wire initiator, Bit[] oldValues)
 	{
 		int index = find(initiator);
 		int beginning = beginningIndex[index];
-		outI.feedSignals(beginning, initiator.getValues());
+		out.feedSignals(beginning, inputs[index].getValues());
 	}
 
-	private int find(WireArray w)
+	private int find(Wire w)
 	{
 		for (int i = 0; i < inputs.length; i++)
-			if (inputs[i] == w)
+			if (inputs[i].getWire() == w)
 				return i;
 		return -1;
 	}
 
-	public WireArray[] getInputs()
+	public WireEnd[] getInputs()
 	{
 		return inputs.clone();
 	}
 
 	@Override
-	public List<WireArray> getAllInputs()
+	public List<WireEnd> getAllInputs()
 	{
-		return List.of(inputs);
+		return Collections.unmodifiableList(Arrays.asList(inputs));
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs()
+	public List<WireEnd> getAllOutputs()
 	{
-		return List.of(outI.owner);
+		return Collections.unmodifiableList(Arrays.asList(out));
 	}
 }

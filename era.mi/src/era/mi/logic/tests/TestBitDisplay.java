@@ -8,12 +8,12 @@ import java.util.function.LongConsumer;
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.components.BitDisplay;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire.WireEnd;
 
 public final class TestBitDisplay extends BitDisplay
 {
 
-	public TestBitDisplay(WireArray in)
+	public TestBitDisplay(WireEnd in)
 	{
 		super(in);
 	}

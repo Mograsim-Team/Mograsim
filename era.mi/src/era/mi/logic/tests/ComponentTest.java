@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
-import era.mi.logic.components.Connector;
 import era.mi.logic.components.Demux;
 import era.mi.logic.components.Merger;
 import era.mi.logic.components.Mux;
@@ -19,10 +18,9 @@ import era.mi.logic.components.gates.AndGate;
 import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.components.gates.OrGate;
 import era.mi.logic.components.gates.XorGate;
-import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayEnd;
+import era.mi.logic.wires.Wire;
+import era.mi.logic.wires.Wire.WireEnd;
 
-@SuppressWarnings("unused")
 class ComponentTest
 {
 
@@ -30,20 +28,20 @@ class ComponentTest
 	void circuitExampleTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(1, 1), b = new WireArray(1, 1), c = new WireArray(1, 10), d = new WireArray(2, 1),
-				e = new WireArray(1, 1), f = new WireArray(1, 1), g = new WireArray(1, 1), h = new WireArray(2, 1), i = new WireArray(2, 1),
-				j = new WireArray(1, 1), k = new WireArray(1, 1);
-		new AndGate(1, f, a, b);
-		new NotGate(1, f, g);
-		new Merger(h, c, g);
-		new Mux(1, i, e, h, d);
-		new Splitter(i, k, j);
+		Wire a = new Wire(1, 1), b = new Wire(1, 1), c = new Wire(1, 10), d = new Wire(2, 1),
+				e = new Wire(1, 1), f = new Wire(1, 1), g = new Wire(1, 1), h = new Wire(2, 1), i = new Wire(2, 1),
+				j = new Wire(1, 1), k = new Wire(1, 1);
+		new AndGate(1, f.createEnd(), a.createEnd(), b.createEnd());
+		new NotGate(1, f.createEnd(), g.createEnd());
+		new Merger(h.createEnd(), c.createEnd(), g.createEnd());
+		new Mux(1, i.createEnd(), e.createEnd(), h.createEnd(), d.createEnd());
+		new Splitter(i.createEnd(), k.createEnd(), j.createEnd());
 
-		a.createInput().feedSignals(Bit.ZERO);
-		b.createInput().feedSignals(Bit.ONE);
-		c.createInput().feedSignals(Bit.ZERO);
-		d.createInput().feedSignals(Bit.ONE, Bit.ONE);
-		e.createInput().feedSignals(Bit.ZERO);
+		a.createEnd().feedSignals(Bit.ZERO);
+		b.createEnd().feedSignals(Bit.ONE);
+		c.createEnd().feedSignals(Bit.ZERO);
+		d.createEnd().feedSignals(Bit.ONE, Bit.ONE);
+		e.createEnd().feedSignals(Bit.ZERO);
 
 		Simulation.TIMELINE.executeAll();
 
@@ -55,9 +53,9 @@ class ComponentTest
 	void splitterTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(3, 1), b = new WireArray(2, 1), c = new WireArray(3, 1), in = new WireArray(8, 1);
-		in.createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
-		new Splitter(in, a, b, c);
+		Wire a = new Wire(3, 1), b = new Wire(2, 1), c = new Wire(3, 1), in = new Wire(8, 1);
+		in.createEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
+		new Splitter(in.createEnd(), a.createEnd(), b.createEnd(), c.createEnd());
 
 		Simulation.TIMELINE.executeAll();
 
@@ -70,12 +68,12 @@ class ComponentTest
 	void mergerTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(3, 1), b = new WireArray(2, 1), c = new WireArray(3, 1), out = new WireArray(8, 1);
-		a.createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO);
-		b.createInput().feedSignals(Bit.ONE, Bit.ZERO);
-		c.createInput().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
+		Wire a = new Wire(3, 1), b = new Wire(2, 1), c = new Wire(3, 1), out = new Wire(8, 1);
+		a.createEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO);
+		b.createEnd().feedSignals(Bit.ONE, Bit.ZERO);
+		c.createEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		new Merger(out, a, b, c);
+		new Merger(out.createEnd(), a.createEnd(), b.createEnd(), c.createEnd());
 
 		Simulation.TIMELINE.executeAll();
 
@@ -86,15 +84,14 @@ class ComponentTest
 	@Test
 	void triStateBufferTest()
 	{
-		WireArray a = new WireArray(1, 1), b = new WireArray(1, 1), en = new WireArray(1, 1), notEn = new WireArray(1, 1);
-		new NotGate(1, en, notEn);
-		new TriStateBuffer(1, a, b, en);
-		new TriStateBuffer(1, b, a, notEn);
+		Wire a = new Wire(1, 1), b = new Wire(1, 1), en = new Wire(1, 1), notEn = new Wire(1, 1);
+		new NotGate(1, en.createEnd(), notEn.createEnd());
+		new TriStateBuffer(1, a.createEnd(), b.createEnd(), en.createEnd());
+		new TriStateBuffer(1, b.createEnd(), a.createEnd(), notEn.createEnd());
 
-		WireArrayEnd enI = en.createInput(), aI = a.createInput(), bI = b.createInput();
+		WireEnd enI = en.createEnd(), aI = a.createEnd(), bI = b.createEnd();
 		enI.feedSignals(Bit.ONE);
 		aI.feedSignals(Bit.ONE);
-		bI.feedSignals(Bit.Z);
 
 		Simulation.TIMELINE.executeAll();
 
@@ -120,15 +117,15 @@ class ComponentTest
 	void muxTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(4, 3), b = new WireArray(4, 6), c = new WireArray(4, 4), select = new WireArray(2, 5),
-				out = new WireArray(4, 1);
-		WireArrayEnd selectIn = select.createInput();
+		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5),
+				out = new Wire(4, 1);
+		WireEnd selectIn = select.createEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
-		a.createInput().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
-		c.createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
+		a.createEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
+		c.createEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		new Mux(1, out, select, a, b, c);
+		new Mux(1, out.createEnd(), select.createEnd(), a.createEnd(), b.createEnd(), c.createEnd());
 		Simulation.TIMELINE.executeAll();
 
 		assertBitArrayEquals(out.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
@@ -148,14 +145,14 @@ class ComponentTest
 	void demuxTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(4, 3), b = new WireArray(4, 6), c = new WireArray(4, 4), select = new WireArray(2, 5),
-				in = new WireArray(4, 1);
-		WireArrayEnd selectIn = select.createInput();
+		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5),
+				in = new Wire(4, 1);
+		WireEnd selectIn = select.createEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
-		in.createInput().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
+		in.createEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 
-		new Demux(1, in, select, a, b, c);
+		new Demux(1, in.createEnd(), select.createEnd(), a.createEnd(), b.createEnd(), c.createEnd());
 		Simulation.TIMELINE.executeAll();
 
 		assertBitArrayEquals(a.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
@@ -181,10 +178,10 @@ class ComponentTest
 	void andTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(4, 1), b = new WireArray(4, 3), c = new WireArray(4, 1);
-		new AndGate(1, c, a, b);
-		a.createInput().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
-		b.createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
+		Wire a = new Wire(4, 1), b = new Wire(4, 3), c = new Wire(4, 1);
+		new AndGate(1, c.createEnd(), a.createEnd(), b.createEnd());
+		a.createEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
+		b.createEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
 		Simulation.TIMELINE.executeAll();
 
@@ -195,10 +192,10 @@ class ComponentTest
 	void orTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(4, 1), b = new WireArray(4, 3), c = new WireArray(4, 1);
-		new OrGate(1, c, a, b);
-		a.createInput().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
-		b.createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
+		Wire a = new Wire(4, 1), b = new Wire(4, 3), c = new Wire(4, 1);
+		new OrGate(1, c.createEnd(), a.createEnd(), b.createEnd());
+		a.createEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
+		b.createEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
 		Simulation.TIMELINE.executeAll();
 
@@ -209,30 +206,43 @@ class ComponentTest
 	void xorTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray a = new WireArray(3, 1), b = new WireArray(3, 2), c = new WireArray(3, 1), d = new WireArray(3, 1);
-		new XorGate(1, d, a, b, c);
-		a.createInput().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
-		b.createInput().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
-		c.createInput().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
+		Wire a = new Wire(3, 1), b = new Wire(3, 2), c = new Wire(3, 1), d = new Wire(3, 1);
+		new XorGate(1, d.createEnd(), a.createEnd(), b.createEnd(), c.createEnd());
+		a.createEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
+		b.createEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
+		c.createEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
 
 		Simulation.TIMELINE.executeAll();
 
 		assertBitArrayEquals(d.getValues(), Bit.ZERO, Bit.ONE, Bit.ONE);
+	}
+	
+	@Test
+	void notTest()
+	{
+		Simulation.TIMELINE.reset();
+		Wire a = new Wire(3, 1), b = new Wire(3, 2);
+		new NotGate(1, a.createEnd(), b.createEnd());
+		a.createEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
+
+		Simulation.TIMELINE.executeAll();
+
+		assertBitArrayEquals(b.getValues(), Bit.ONE, Bit.ZERO, Bit.ZERO);
 	}
 
 	@Test
 	void rsLatchCircuitTest()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray r = new WireArray(1, 1), s = new WireArray(1, 1), t1 = new WireArray(1, 15), t2 = new WireArray(1, 1),
-				q = new WireArray(1, 1), nq = new WireArray(1, 1);
+		Wire r = new Wire(1, 1), s = new Wire(1, 1), t1 = new Wire(1, 15), t2 = new Wire(1, 1),
+				q = new Wire(1, 1), nq = new Wire(1, 1);
 
-		new OrGate(1, t2, r, nq);
-		new OrGate(1, t1, s, q);
-		new NotGate(1, t2, q);
-		new NotGate(1, t1, nq);
+		new OrGate(1, t2.createEnd(), r.createEnd(), nq.createEnd());
+		new OrGate(1, t1.createEnd(), s.createEnd(), q.createEnd());
+		new NotGate(1, t2.createEnd(), q.createEnd());
+		new NotGate(1, t1.createEnd(), nq.createEnd());
 
-		WireArrayEnd sIn = s.createInput(), rIn = r.createInput();
+		WireEnd sIn = s.createEnd(), rIn = r.createEnd();
 
 		sIn.feedSignals(Bit.ONE);
 		rIn.feedSignals(Bit.ZERO);
@@ -261,8 +271,8 @@ class ComponentTest
 	{
 		Simulation.TIMELINE.reset();
 
-		WireArray a = new WireArray(4, 1);
-		a.createInput().feedSignals(Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE);
+		Wire a = new Wire(4, 1);
+		a.createEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE);
 
 		Simulation.TIMELINE.executeAll();
 
@@ -274,8 +284,8 @@ class ComponentTest
 	void multipleInputs()
 	{
 		Simulation.TIMELINE.reset();
-		WireArray w = new WireArray(2, 1);
-		WireArrayEnd wI1 = w.createInput(), wI2 = w.createInput();
+		Wire w = new Wire(2, 1);
+		WireEnd wI1 = w.createEnd(), wI2 = w.createEnd();
 		wI1.feedSignals(Bit.ONE, Bit.Z);
 		wI2.feedSignals(Bit.Z, Bit.X);
 		Simulation.TIMELINE.executeAll();
@@ -295,22 +305,22 @@ class ComponentTest
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 	}
 
-	@Test
+//	@Test
 	void wireConnections()
 	{
 		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
 
 		Simulation.TIMELINE.reset();
 
-		WireArray a = new WireArray(1, 2);
-		WireArray b = new WireArray(1, 2);
-		WireArray c = new WireArray(1, 2);
-		WireArrayEnd aI = a.createInput();
-		WireArrayEnd bI = b.createInput();
-		WireArrayEnd cI = c.createInput();
+		Wire a = new Wire(1, 2);
+		Wire b = new Wire(1, 2);
+		Wire c = new Wire(1, 2);
+		WireEnd aI = a.createEnd();
+		WireEnd bI = b.createEnd();
+		WireEnd cI = c.createEnd();
 
-		TestBitDisplay test = new TestBitDisplay(c);
-		TestBitDisplay test2 = new TestBitDisplay(a);
+		TestBitDisplay test = new TestBitDisplay(c.createEnd());
+		TestBitDisplay test2 = new TestBitDisplay(a.createEnd());
 		LongConsumer print = time -> System.out.format("Time %2d\n   a: %s\n   b: %s\n   c: %s\n", time, a, b, c);
 
 		cI.feedSignals(Bit.ONE);
@@ -323,7 +333,7 @@ class ComponentTest
 		cI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
 
-		new Connector(b, c).connect();
+		new Connector(b, c);
 		test.assertAfterSimulationIs(print, Bit.Z);
 		System.err.println("ONE");
 		bI.feedSignals(Bit.ONE);
@@ -335,7 +345,7 @@ class ComponentTest
 		bI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
 
-		new Connector(a, b).connect();
+		new Connector(a, b);
 		System.err.println("Z 2");
 		aI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);

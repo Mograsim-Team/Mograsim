@@ -1,54 +1,54 @@
 package era.mi.logic.components;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayEnd;
+import era.mi.logic.wires.Wire;
+import era.mi.logic.wires.Wire.WireEnd;
 
 /**
- * Models a multiplexer. Takes an arbitrary amount of outputs {@link WireArray}s, one of which, as determined by select, receives the input
- * signal.
+ * Models a multiplexer. Takes an arbitrary amount of input {@link Wire}s, one of which, as determined by select, is put through to the
+ * output.
  * 
  * @author Fabian Stemmler
  *
  */
 public class Demux extends BasicComponent
 {
-	private final WireArray select, in;
-	private final WireArray[] outputs;
-	private final WireArrayEnd[] outputsI;
+	private final WireEnd select, in;
+	private final WireEnd[] outputs;
 	private final int outputSize;
 	private int selected = -1;
 
 	/**
-	 * Output {@link WireArray}s and in must be of uniform length
+	 * Input {@link Wire}s and out must be of uniform length
 	 * 
-	 * @param in      Must be of uniform length with all outputs.
-	 * @param select  Indexes the output array to which the input is mapped. Must have enough bits to index all outputs.
-	 * @param outputs One of these outputs receives the input signal, depending on the select bits
+	 * @param out     Must be of uniform length with all inputs.
+	 * @param select  Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
+	 * @param outputs One of these inputs is mapped to the output, depending on the select bits
 	 */
-	public Demux(int processTime, WireArray in, WireArray select, WireArray... outputs)
+	public Demux(int processTime, WireEnd in, WireEnd select, WireEnd... outputs)
 	{
 		super(processTime);
-		outputSize = in.length;
+		outputSize = in.length();
 
 		this.in = in;
 		this.outputs = outputs;
-		this.outputsI = new WireArrayEnd[outputs.length];
-		for (int i = 0; i < this.outputsI.length; i++)
+		for (int i = 0; i < this.outputs.length; i++)
 		{
-			if (outputs[i].length != outputSize)
+			if (outputs[i].length() != outputSize)
 				throw new IllegalArgumentException("All DEMUX wire arrays must be of uniform length!");
-			this.outputsI[i] = outputs[i].createInput();
+			this.outputs[i] = outputs[i];
 		}
 
 		this.select = select;
 		select.addObserver(this);
 
-		int maxInputs = 1 << select.length;
-		if (this.outputsI.length > maxInputs)
-			throw new IllegalArgumentException("There are more outputs (" + this.outputsI.length + ") to the DEMUX than supported by "
-					+ select.length + " select bits (" + maxInputs + ").");
+		int maxInputs = 1 << select.length();
+		if (this.outputs.length > maxInputs)
+			throw new IllegalArgumentException("There are more outputs (" + this.outputs.length + ") to the DEMUX than supported by "
+					+ select.length() + " select bits (" + maxInputs + ").");
 		in.addObserver(this);
 	}
 
@@ -56,27 +56,27 @@ public class Demux extends BasicComponent
 	public void compute()
 	{
 		int selectValue = select.hasNumericValue() ? (int) select.getUnsignedValue() : -1;
-		if (selectValue >= outputsI.length)
+		if (selectValue >= outputs.length)
 			selectValue = -1;
 
 		if (selected != selectValue && selected != -1)
-			outputsI[selected].clearSignals();
+			outputs[selected].clearSignals();
 
 		selected = selectValue;
 
 		if (selectValue != -1)
-			outputsI[selectValue].feedSignals(in.getValues());
+			outputs[selectValue].feedSignals(in.getValues());
 	}
 
 	@Override
-	public List<WireArray> getAllInputs()
+	public List<WireEnd> getAllInputs()
 	{
-		return List.of(in, select);
+		return Collections.unmodifiableList(Arrays.asList(in, select));
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs()
+	public List<WireEnd> getAllOutputs()
 	{
-		return List.of(outputs);
+		return Collections.unmodifiableList(Arrays.asList(outputs));
 	}
 }

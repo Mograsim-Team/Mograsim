@@ -1,7 +1,7 @@
 package era.mi.logic.components.gates;
 
 import era.mi.logic.Util;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire.WireEnd;
 
 /**
  * Outputs 1 when the number of 1 inputs is odd.
@@ -10,7 +10,7 @@ import era.mi.logic.wires.WireArray;
  */
 public class XorGate extends MultiInputGate
 {
-	public XorGate(int processTime, WireArray out, WireArray... in)
+	public XorGate(int processTime, WireEnd out, WireEnd... in)
 	{
 		super(processTime, Util::xor, out, in);
 	}

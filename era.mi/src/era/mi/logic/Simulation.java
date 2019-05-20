@@ -6,4 +6,7 @@ public class Simulation
 {
 	public final static Timeline TIMELINE = new Timeline(11);
 
+	public static void main(String[] args)
+	{
+	}
 }

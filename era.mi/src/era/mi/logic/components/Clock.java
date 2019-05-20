@@ -1,43 +1,45 @@
 package era.mi.logic.components;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Bit;
 import era.mi.logic.Simulation;
 import era.mi.logic.timeline.TimelineEvent;
 import era.mi.logic.timeline.TimelineEventHandler;
-import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayEnd;
+import era.mi.logic.wires.Wire;
+import era.mi.logic.wires.Wire.WireEnd;
 
 public class Clock implements TimelineEventHandler, Component
 {
 	private boolean toggle = false;
-	private WireArrayEnd outI;
+	private WireEnd out;
 	private int delta;
 
 	/**
 	 * 
-	 * @param out   {@link WireArray} the clock's impulses are fed into
+	 * @param out   {@link Wire} the clock's impulses are fed into
 	 * @param delta ticks between rising and falling edge
 	 */
-	public Clock(WireArray out, int delta)
+	public Clock(WireEnd out, int delta)
 	{
 		this.delta = delta;
-		this.outI = out.createInput();
-		Simulation.TIMELINE.addEvent(this, delta);
+		this.out = out;
+		addToTimeline();
 	}
 
 	@Override
 	public void handle(TimelineEvent e)
 	{
 		addToTimeline();
-		outI.feedSignals(toggle ? Bit.ONE : Bit.ZERO);
+		out.feedSignals(new Bit[] { toggle ? Bit.ONE : Bit.ZERO });
 		toggle = !toggle;
 	}
 
-	public WireArray getOut()
+	public WireEnd getOut()
 	{
-		return outI.owner;
+		return out;
 	}
 
 	private void addToTimeline()
@@ -46,14 +48,14 @@ public class Clock implements TimelineEventHandler, Component
 	}
 
 	@Override
-	public List<WireArray> getAllInputs()
+	public List<WireEnd> getAllInputs()
 	{
-		return List.of();
+		return Collections.unmodifiableList(Arrays.asList());
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs()
+	public List<WireEnd> getAllOutputs()
 	{
-		return List.of(outI.owner);
+		return Collections.unmodifiableList(Arrays.asList(out));
 	}
 }

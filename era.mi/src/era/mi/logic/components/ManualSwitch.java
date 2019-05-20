@@ -3,8 +3,7 @@ package era.mi.logic.components;
 import java.util.List;
 
 import era.mi.logic.Bit;
-import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayEnd;
+import era.mi.logic.wires.Wire.WireEnd;
 
 /**
  * This class models a simple on/off (ONE/ZERO) switch for user interaction.
@@ -14,16 +13,14 @@ import era.mi.logic.wires.WireArray.WireArrayEnd;
  */
 public class ManualSwitch implements Component
 {
-	private WireArray output;
-	private WireArrayEnd outputI;
+	private WireEnd output;
 	private boolean isOn;
 
-	public ManualSwitch(WireArray output)
+	public ManualSwitch(WireEnd output)
 	{
-		if (output.length != 1)
+		if (output.length() != 1)
 			throw new IllegalArgumentException("Switch output can be only a single wire");
 		this.output = output;
-		this.outputI = output.createInput();
 	}
 
 	public void switchOn()
@@ -46,7 +43,7 @@ public class ManualSwitch implements Component
 		if (this.isOn == isOn)
 			return;
 		this.isOn = isOn;
-		outputI.feedSignals(getValue());
+		output.feedSignals(getValue());
 	}
 
 	public boolean isOn()
@@ -60,13 +57,13 @@ public class ManualSwitch implements Component
 	}
 
 	@Override
-	public List<WireArray> getAllInputs()
+	public List<WireEnd> getAllInputs()
 	{
 		return List.of();
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs()
+	public List<WireEnd> getAllOutputs()
 	{
 		return List.of(output);
 	}

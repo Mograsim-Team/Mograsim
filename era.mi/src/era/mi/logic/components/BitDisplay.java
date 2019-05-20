@@ -1,17 +1,19 @@
 package era.mi.logic.components;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.Bit;
-import era.mi.logic.wires.WireArray;
+import era.mi.logic.wires.Wire.WireEnd;
 
 public class BitDisplay extends BasicComponent
 {
-	private final WireArray in;
+	private final WireEnd in;
 	private Bit[] displayedValue;
 
-	public BitDisplay(WireArray in)
+	public BitDisplay(WireEnd in)
 	{
 		super(1);
 		this.in = in;
@@ -36,14 +38,14 @@ public class BitDisplay extends BasicComponent
 	}
 
 	@Override
-	public List<WireArray> getAllInputs()
+	public List<WireEnd> getAllInputs()
 	{
-		return List.of(in);
+		return Collections.unmodifiableList(Arrays.asList(in));
 	}
 
 	@Override
-	public List<WireArray> getAllOutputs()
+	public List<WireEnd> getAllOutputs()
 	{
-		return List.of();
+		return Collections.unmodifiableList(new ArrayList<WireEnd>());
 	}
 }

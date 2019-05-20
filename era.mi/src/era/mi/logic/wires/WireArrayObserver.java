@@ -4,5 +4,5 @@ import era.mi.logic.Bit;
 
 public interface WireArrayObserver
 {
-	public void update(WireArray initiator, Bit[] oldValues);
+	public void update(Wire initiator, Bit[] oldValues);
 }

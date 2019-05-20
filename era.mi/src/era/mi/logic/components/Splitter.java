@@ -1,25 +1,25 @@
 package era.mi.logic.components;
 
 import era.mi.logic.Bit;
-import era.mi.logic.wires.WireArray;
-import era.mi.logic.wires.WireArray.WireArrayEnd;
+import era.mi.logic.wires.Wire;
+import era.mi.logic.wires.Wire.WireEnd;
 import era.mi.logic.wires.WireArrayObserver;
 
 public class Splitter implements WireArrayObserver
 {
-	private WireArray input;
-	private WireArrayEnd[] outputs;
+	private WireEnd input;
+	private WireEnd[] outputs;
 
-	public Splitter(WireArray input, WireArray... outputs)
+	public Splitter(WireEnd input, WireEnd... outputs)
 	{
 		this.input = input;
-		this.outputs = WireArray.extractInputs(outputs);
+		this.outputs = outputs;
 		input.addObserver(this);
 		int length = 0;
-		for (WireArray out : outputs)
-			length += out.length;
+		for (WireEnd out : outputs)
+			length += out.length();
 
-		if (input.length != length)
+		if (input.length() != length)
 			throw new IllegalArgumentException(
 					"The input of splitting one into n WireArrays must have length = a1.length() + a2.length() + ... + an.length().");
 	}
@@ -30,15 +30,15 @@ public class Splitter implements WireArrayObserver
 		Bit[] inputBits = input.getValues();
 		for (int i = 0; i < outputs.length; i++)
 		{
-			Bit[] outputBits = new Bit[outputs[i].owner.length];
-			System.arraycopy(inputBits, startIndex, outputBits, 0, outputs[i].owner.length);
+			Bit[] outputBits = new Bit[outputs[i].length()];
+			System.arraycopy(inputBits, startIndex, outputBits, 0, outputs[i].length());
 			outputs[i].feedSignals(outputBits);
-			startIndex += outputs[i].owner.length;
+			startIndex += outputs[i].length();
 		}
 	}
 
 	@Override
-	public void update(WireArray initiator, Bit[] oldValues)
+	public void update(Wire initiator, Bit[] oldValues)
 	{
 		compute();
 	}
