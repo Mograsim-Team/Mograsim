@@ -41,10 +41,10 @@ public class GUITest extends JPanel
 	ManualSwitch rIn = new ManualSwitch(r.createEnd());
 	ManualSwitch sIn = new ManualSwitch(s.createEnd());
 
-	OrGate or1 = new OrGate(OR_DELAY, t2.createEnd(), r.createEnd(), nq.createEnd());
-	OrGate or2 = new OrGate(OR_DELAY, t1.createEnd(), s.createEnd(), q.createEnd());
-	NotGate not1 = new NotGate(NOT_DELAY, t2.createEnd(), q.createEnd());
-	NotGate not2 = new NotGate(NOT_DELAY, t1.createEnd(), nq.createEnd());
+	OrGate or1 = new OrGate(OR_DELAY, t2.createEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
+	OrGate or2 = new OrGate(OR_DELAY, t1.createEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
+	NotGate not1 = new NotGate(NOT_DELAY, t2.createReadOnlyEnd(), q.createEnd());
+	NotGate not2 = new NotGate(NOT_DELAY, t1.createReadOnlyEnd(), nq.createEnd());
 
 	Map<ManualSwitch, Rectangle> switchMap = new HashMap<>();
 
