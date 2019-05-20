@@ -1,0 +1,12 @@
+[submodule "logic"]
+	path = logic
+	url = <address of this repo>
+	branch = logic
+[submodule "logicui"]
+	path = logicui
+	url = <address of this repo>
+	branch = logicui
+[submodule "SampleERCP"]
+	path = SampleERCP
+	url = <address of this repo>
+	branch = SampleERCP
