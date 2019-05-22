@@ -20,13 +20,7 @@ public class Timeline
 
 	public Timeline(int initCapacity)
 	{
-		events = new PriorityQueue<InnerEvent>(initCapacity, (a, b) ->
-		{
-			long difference = a.getTiming() - b.getTiming();
-			if (difference == 0)
-				return 0;
-			return difference < 0 ? -1 : 1;
-		});
+		events = new PriorityQueue<InnerEvent>(initCapacity);
 
 		eventAddedListener = new ArrayList<>();
 	}
@@ -90,7 +84,7 @@ public class Timeline
 	{
 		if (!hasNext())
 			return -1;
-		return events.peek().timing;
+		return events.peek().getTiming();
 	}
 
 	public void reset()
@@ -119,14 +113,12 @@ public class Timeline
 	{
 		long timing = currentTime + relativeTiming;
 		TimelineEvent event = new TimelineEvent(timing);
-		events.add(new InnerEvent(function, event, timing));
+		events.add(new InnerEvent(function, event));
 		eventAddedListener.forEach(l -> l.accept(event));
 	}
 
-	private class InnerEvent
+	private class InnerEvent implements Comparable<InnerEvent>
 	{
-
-		final long timing;
 		private final TimelineEventHandler function;
 		private final TimelineEvent event;
 
@@ -136,16 +128,15 @@ public class Timeline
 		 * @param function {@link TimelineEventHandler} to be executed when the {@link InnerEvent} occurs
 		 * @param timing   Point in the MI simulation {@link Timeline}, at which the {@link InnerEvent} is executed;
 		 */
-		InnerEvent(TimelineEventHandler function, TimelineEvent event, long timing)
+		InnerEvent(TimelineEventHandler function, TimelineEvent event)
 		{
 			this.function = function;
 			this.event = event;
-			this.timing = timing;
 		}
 
 		public long getTiming()
 		{
-			return timing;
+			return event.getTiming();
 		}
 
 		public void run()
@@ -157,6 +148,15 @@ public class Timeline
 		public String toString()
 		{
 			return event.toString();
+		}
+
+		@Override
+		public int compareTo(InnerEvent o)
+		{
+			long difference = getTiming() - o.getTiming();
+			if (difference == 0)
+				return 0;
+			return difference < 0 ? -1 : 1;
 		}
 	}
 
