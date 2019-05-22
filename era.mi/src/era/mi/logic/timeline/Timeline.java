@@ -117,7 +117,7 @@ public class Timeline
 		eventAddedListener.forEach(l -> l.accept(event));
 	}
 
-	private class InnerEvent implements Comparable<InnerEvent>
+	private class InnerEvent implements Runnable, Comparable<InnerEvent>
 	{
 		private final TimelineEventHandler function;
 		private final TimelineEvent event;
@@ -139,6 +139,7 @@ public class Timeline
 			return event.getTiming();
 		}
 
+		@Override
 		public void run()
 		{
 			function.handle(event);
