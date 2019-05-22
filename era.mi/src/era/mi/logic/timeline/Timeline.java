@@ -38,9 +38,9 @@ public class Timeline
 
 	public void executeNext()
 	{
-		InnerEvent first = events.poll();
-		currentTime = first.getTiming();
-		first.run();
+		InnerEvent first = events.peek();
+		if (first != null)
+			executeUpTo(first.getTiming(), -1);
 	}
 
 	public void executeAll()
@@ -53,7 +53,7 @@ public class Timeline
 	 * Executes all events up to a given simulation timestamp. The simulation process can be constrained by a real world timestamp.
 	 * 
 	 * @param timestamp  the simulation timestamp up to which the events will be processed
-	 * @param stopMillis the System.currentTimeMillis() when simulation definitely needs to stop.
+	 * @param stopMillis the System.currentTimeMillis() when simulation definitely needs to stop. A value of -1 means no timeout.
 	 * @return if it was possible to fulfil the goal in the given real world time.
 	 * @author Christian Femers
 	 */
