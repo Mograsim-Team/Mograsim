@@ -3,6 +3,7 @@
 	<name>SampleERCP</name>
 	<comment></comment>
 	<projects>
+		<project>LogicUI</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

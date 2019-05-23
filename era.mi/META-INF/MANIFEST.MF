@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MI
+Bundle-SymbolicName: era.mi
+Bundle-Version: 1.0.0.qualifier
+Export-Package: era.mi.logic,
+ era.mi.logic.components,
+ era.mi.logic.components.gates,
+ era.mi.logic.tests,
+ era.mi.logic.timeline,
+ era.mi.logic.types,
+ era.mi.logic.wires
+Bundle-RequiredExecutionEnvironment: JavaSE-10
+Automatic-Module-Name: era.mi
