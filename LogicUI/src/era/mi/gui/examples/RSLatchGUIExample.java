@@ -1,6 +1,7 @@
 package era.mi.gui.examples;
 
-import era.mi.gui.LogicUI;
+import era.mi.gui.LogicUICanvas;
+import era.mi.gui.LogicUIStandalone;
 import era.mi.gui.components.GUIManualSwitch;
 import era.mi.gui.components.GUINotGate;
 import era.mi.gui.components.GUIOrGate;
@@ -17,12 +18,12 @@ public class RSLatchGUIExample
 
 	public static void main(String[] args)
 	{
-		LogicUI ui = new LogicUI();
-		initComponents(ui);
+		LogicUIStandalone ui = new LogicUIStandalone();
+		initComponents(ui.getLogicUICanvas());
 		ui.run();
 	}
 
-	private static void initComponents(LogicUI ui)
+	private static void initComponents(LogicUICanvas ui)
 	{
 		Simulation.TIMELINE.reset();
 		Wire r = new Wire(1, WIRE_DELAY);
