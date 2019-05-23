@@ -19,11 +19,11 @@ public class RSLatchGUIExample
 	public static void main(String[] args)
 	{
 		LogicUIStandalone ui = new LogicUIStandalone();
-		initComponents(ui.getLogicUICanvas());
+		addComponentsAndWires(ui.getLogicUICanvas());
 		ui.run();
 	}
 
-	private static void initComponents(LogicUICanvas ui)
+	public static void addComponentsAndWires(LogicUICanvas ui)
 	{
 		Simulation.TIMELINE.reset();
 		Wire r = new Wire(1, WIRE_DELAY);
