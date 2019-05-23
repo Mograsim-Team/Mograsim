@@ -32,7 +32,6 @@
       </win>
    </launcher>
 
-
    <vm>
       <linux include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11</linux>
       <macos include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11</macos>
@@ -59,8 +58,13 @@ SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
    </license>
 
    <plugins>
+      <plugin id="LogicUI"/>
+      <plugin id="SWTBufferedCanvas"/>
+      <plugin id="SWTObjectWrappers"/>
+      <plugin id="SWTZoomableCanvas"/>
       <plugin id="SampleERCP"/>
       <plugin id="com.ibm.icu"/>
+      <plugin id="era.mi"/>
       <plugin id="javax.annotation"/>
       <plugin id="javax.inject"/>
       <plugin id="javax.servlet"/>
