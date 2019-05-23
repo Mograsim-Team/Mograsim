@@ -4,6 +4,7 @@
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="Sample.partsashcontainer.sample">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="Sample.partstack.sample">
         <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="Sample.part.sample" contributionURI="bundleclass://SampleERCP/sampleercp.parts.SamplePart" label="Sample Part" iconURI="platform:/plugin/SampleERCP/icons/home.png"/>
+        <children xsi:type="basic:Part" xmi:id="_cldhcH1HEema06ZDPR6BSw" elementId="sampleercp.part.logicui" contributionURI="bundleclass://SampleERCP/sampleercp.parts.LogicUIPart" label="LogicUI part"/>
       </children>
       <children xsi:type="basic:PartStack" xmi:id="_l2EzYG6wEemo__tDmTCqCQ" elementId="sample.partstack.0">
         <children xsi:type="basic:Part" xmi:id="_mW1XEG6wEemo__tDmTCqCQ" elementId="sample.part.none" label="None" tooltip="Something"/>
