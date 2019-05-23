@@ -50,5 +50,10 @@ public class LogicUIPart
 			}
 		});
 		simulationThread.start();
+		Simulation.TIMELINE.addEventAddedListener(event ->
+		{
+			if (event.getTiming() <= System.currentTimeMillis())
+				simulationThread.interrupt();
+		});
 	}
 }
