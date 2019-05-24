@@ -1,6 +1,8 @@
 package era.mi.logic.tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.function.LongConsumer;
 
@@ -20,9 +22,9 @@ import era.mi.logic.components.gates.XorGate;
 import era.mi.logic.types.Bit;
 import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 
-@SuppressWarnings("unused")
 class ComponentTest
 {
 
@@ -89,7 +91,7 @@ class ComponentTest
 		new TriStateBuffer(1, a.createReadOnlyEnd(), b.createEnd(), en.createReadOnlyEnd());
 		new TriStateBuffer(1, b.createReadOnlyEnd(), a.createEnd(), notEn.createReadOnlyEnd());
 
-		WireEnd enI = en.createEnd(), aI = a.createEnd(), bI = b.createEnd();
+		ReadWriteEnd enI = en.createEnd(), aI = a.createEnd(), bI = b.createEnd();
 		enI.feedSignals(Bit.ONE);
 		aI.feedSignals(Bit.ONE);
 		bI.feedSignals(Bit.Z);
@@ -119,7 +121,7 @@ class ComponentTest
 	{
 		Simulation.TIMELINE.reset();
 		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5), out = new Wire(4, 1);
-		WireEnd selectIn = select.createEnd();
+		ReadWriteEnd selectIn = select.createEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
 		a.createEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
@@ -146,7 +148,7 @@ class ComponentTest
 	{
 		Simulation.TIMELINE.reset();
 		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5), in = new Wire(4, 1);
-		WireEnd selectIn = select.createEnd();
+		ReadWriteEnd selectIn = select.createEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
 		in.createEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
@@ -240,7 +242,7 @@ class ComponentTest
 		new NotGate(1, t2.createReadOnlyEnd(), q.createEnd());
 		new NotGate(1, t1.createReadOnlyEnd(), nq.createEnd());
 
-		WireEnd sIn = s.createEnd(), rIn = r.createEnd();
+		ReadWriteEnd sIn = s.createEnd(), rIn = r.createEnd();
 
 		sIn.feedSignals(Bit.ONE);
 		rIn.feedSignals(Bit.ZERO);
@@ -283,7 +285,7 @@ class ComponentTest
 	{
 		Simulation.TIMELINE.reset();
 		Wire w = new Wire(2, 1);
-		WireEnd wI1 = w.createEnd(), wI2 = w.createEnd();
+		ReadWriteEnd wI1 = w.createEnd(), wI2 = w.createEnd();
 		wI1.feedSignals(Bit.ONE, Bit.Z);
 		wI2.feedSignals(Bit.Z, Bit.X);
 		Simulation.TIMELINE.executeAll();
@@ -298,8 +300,14 @@ class ComponentTest
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 
 		wI2.feedSignals(Bit.ONE, Bit.Z);
-		w.addObserver((i, oldValues) -> fail("WireArray notified observer, although value did not change."));
+		ReadEnd rE = w.createReadOnlyEnd();
+		rE.addObserver((i, oldValues) -> fail("WireEnd notified observer, although value did not change."));
 		Simulation.TIMELINE.executeAll();
+		rE.close();
+		wI1.feedSignals(Bit.X, Bit.X);
+		Simulation.TIMELINE.executeAll();
+		wI1.addObserver((i, oldValues) -> fail("WireEnd notified observer, although it was closed."));
+		wI1.close();
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 	}
 
@@ -313,9 +321,9 @@ class ComponentTest
 		Wire a = new Wire(1, 2);
 		Wire b = new Wire(1, 2);
 		Wire c = new Wire(1, 2);
-		WireEnd aI = a.createEnd();
-		WireEnd bI = b.createEnd();
-		WireEnd cI = c.createEnd();
+		ReadWriteEnd aI = a.createEnd();
+		ReadWriteEnd bI = b.createEnd();
+		ReadWriteEnd cI = c.createEnd();
 
 		TestBitDisplay test = new TestBitDisplay(c.createReadOnlyEnd());
 		TestBitDisplay test2 = new TestBitDisplay(a.createReadOnlyEnd());

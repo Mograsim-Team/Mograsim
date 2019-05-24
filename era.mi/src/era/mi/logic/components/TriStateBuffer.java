@@ -3,14 +3,15 @@ package era.mi.logic.components;
 import java.util.List;
 
 import era.mi.logic.types.Bit;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 
 public class TriStateBuffer extends BasicComponent
 {
-	WireEnd in, enable;
-	WireEnd out;
+	ReadEnd in, enable;
+	ReadWriteEnd out;
 
-	public TriStateBuffer(int processTime, WireEnd in, WireEnd out, WireEnd enable)
+	public TriStateBuffer(int processTime, ReadEnd in, ReadWriteEnd out, ReadEnd enable)
 	{
 		super(processTime);
 		if (in.length() != out.length())
@@ -35,13 +36,13 @@ public class TriStateBuffer extends BasicComponent
 	}
 
 	@Override
-	public List<WireEnd> getAllInputs()
+	public List<ReadEnd> getAllInputs()
 	{
 		return List.of(in, enable);
 	}
 
 	@Override
-	public List<WireEnd> getAllOutputs()
+	public List<ReadWriteEnd> getAllOutputs()
 	{
 		return List.of(out);
 	}

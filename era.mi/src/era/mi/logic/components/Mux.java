@@ -6,7 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.wires.Wire;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 
 /**
  * Models a multiplexer. Takes an arbitrary amount of input {@link Wire}s, one of which, as determined by select, is put through to the
@@ -17,9 +18,9 @@ import era.mi.logic.wires.Wire.WireEnd;
  */
 public class Mux extends BasicComponent
 {
-	private WireEnd select;
-	private WireEnd out;
-	private WireEnd[] inputs;
+	private ReadEnd select;
+	private ReadWriteEnd out;
+	private ReadEnd[] inputs;
 	private final int outputSize;
 
 	/**
@@ -29,7 +30,7 @@ public class Mux extends BasicComponent
 	 * @param select Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
 	 * @param inputs One of these inputs is mapped to the output, depending on the select bits
 	 */
-	public Mux(int processTime, WireEnd out, WireEnd select, WireEnd... inputs)
+	public Mux(int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
 	{
 		super(processTime);
 		outputSize = out.length();
@@ -53,12 +54,12 @@ public class Mux extends BasicComponent
 		this.out = out;
 	}
 
-	public WireEnd getOut()
+	public ReadEnd getOut()
 	{
 		return out;
 	}
 
-	public WireEnd getSelect()
+	public ReadEnd getSelect()
 	{
 		return select;
 	}
@@ -73,20 +74,20 @@ public class Mux extends BasicComponent
 			return;
 		}
 
-		WireEnd active = inputs[selectValue];
+		ReadEnd active = inputs[selectValue];
 		out.feedSignals(active.getValues());
 	}
 
 	@Override
-	public List<WireEnd> getAllInputs()
+	public List<ReadEnd> getAllInputs()
 	{
-		ArrayList<WireEnd> wires = new ArrayList<WireEnd>(Arrays.asList(inputs));
+		ArrayList<ReadEnd> wires = new ArrayList<ReadEnd>(Arrays.asList(inputs));
 		wires.add(select);
 		return Collections.unmodifiableList(wires);
 	}
 
 	@Override
-	public List<WireEnd> getAllOutputs()
+	public List<ReadWriteEnd> getAllOutputs()
 	{
 		return List.of(out);
 	}

@@ -3,7 +3,8 @@ package era.mi.logic.components;
 import java.util.List;
 
 import era.mi.logic.wires.Wire;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 
 /**
  * Models a multiplexer. Takes an arbitrary amount of input {@link Wire}s, one of which, as determined by select, is put through to the
@@ -14,8 +15,8 @@ import era.mi.logic.wires.Wire.WireEnd;
  */
 public class Demux extends BasicComponent
 {
-	private final WireEnd select, in;
-	private final WireEnd[] outputs;
+	private final ReadEnd select, in;
+	private final ReadWriteEnd[] outputs;
 	private final int outputSize;
 	private int selected = -1;
 
@@ -26,7 +27,7 @@ public class Demux extends BasicComponent
 	 * @param select  Indexes the output array to which the input is mapped. Must have enough bits to index all outputs.
 	 * @param outputs One of these outputs receives the input signal, depending on the select bits
 	 */
-	public Demux(int processTime, WireEnd in, WireEnd select, WireEnd... outputs)
+	public Demux(int processTime, ReadEnd in, ReadEnd select, ReadWriteEnd... outputs)
 	{
 		super(processTime);
 		outputSize = in.length();
@@ -67,13 +68,13 @@ public class Demux extends BasicComponent
 	}
 
 	@Override
-	public List<WireEnd> getAllInputs()
+	public List<ReadEnd> getAllInputs()
 	{
 		return List.of(in, select);
 	}
 
 	@Override
-	public List<WireEnd> getAllOutputs()
+	public List<ReadWriteEnd> getAllOutputs()
 	{
 		return List.of(outputs);
 	}

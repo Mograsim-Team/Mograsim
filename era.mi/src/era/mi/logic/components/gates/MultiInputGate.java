@@ -5,16 +5,17 @@ import java.util.List;
 import era.mi.logic.components.BasicComponent;
 import era.mi.logic.types.BitVector.BitVectorMutator;
 import era.mi.logic.types.MutationOperation;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 
 public abstract class MultiInputGate extends BasicComponent
 {
-	protected WireEnd[] in;
-	protected WireEnd out;
+	protected ReadEnd[] in;
+	protected ReadWriteEnd out;
 	protected final int length;
 	protected MutationOperation op;
 
-	protected MultiInputGate(int processTime, MutationOperation op, WireEnd out, WireEnd... in)
+	protected MultiInputGate(int processTime, MutationOperation op, ReadWriteEnd out, ReadEnd... in)
 	{
 		super(processTime);
 		this.op = op;
@@ -22,7 +23,7 @@ public abstract class MultiInputGate extends BasicComponent
 		this.in = in.clone();
 		if (in.length < 1)
 			throw new IllegalArgumentException(String.format("Cannot create gate with %d wires.", in.length));
-		for (WireEnd w : in)
+		for (ReadEnd w : in)
 		{
 			if (w.length() != length)
 				throw new IllegalArgumentException("All wires connected to the gate must be of uniform length.");
@@ -32,13 +33,13 @@ public abstract class MultiInputGate extends BasicComponent
 	}
 
 	@Override
-	public List<WireEnd> getAllInputs()
+	public List<ReadEnd> getAllInputs()
 	{
 		return List.of(in);
 	}
 
 	@Override
-	public List<WireEnd> getAllOutputs()
+	public List<ReadWriteEnd> getAllOutputs()
 	{
 		return List.of(out);
 	}
@@ -47,7 +48,7 @@ public abstract class MultiInputGate extends BasicComponent
 	protected void compute()
 	{
 		BitVectorMutator mutator = BitVectorMutator.empty();
-		for (WireEnd w : in)
+		for (ReadEnd w : in)
 			op.apply(mutator, w.getValues());
 		out.feedSignals(mutator.get());
 	}

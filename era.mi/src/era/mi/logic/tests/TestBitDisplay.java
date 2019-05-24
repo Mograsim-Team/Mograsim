@@ -7,12 +7,12 @@ import java.util.function.LongConsumer;
 import era.mi.logic.Simulation;
 import era.mi.logic.components.BitDisplay;
 import era.mi.logic.types.Bit;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
 
 public final class TestBitDisplay extends BitDisplay
 {
 
-	public TestBitDisplay(WireEnd in)
+	public TestBitDisplay(ReadEnd in)
 	{
 		super(in);
 	}
