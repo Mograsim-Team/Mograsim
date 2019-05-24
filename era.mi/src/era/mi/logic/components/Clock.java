@@ -7,12 +7,13 @@ import era.mi.logic.timeline.TimelineEvent;
 import era.mi.logic.timeline.TimelineEventHandler;
 import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 
 public class Clock implements TimelineEventHandler, Component
 {
 	private boolean toggle = false;
-	private WireEnd out;
+	private ReadWriteEnd out;
 	private int delta;
 
 	/**
@@ -20,7 +21,7 @@ public class Clock implements TimelineEventHandler, Component
 	 * @param out   {@link Wire} the clock's impulses are fed into
 	 * @param delta ticks between rising and falling edge
 	 */
-	public Clock(WireEnd out, int delta)
+	public Clock(ReadWriteEnd out, int delta)
 	{
 		this.delta = delta;
 		this.out = out;
@@ -35,7 +36,7 @@ public class Clock implements TimelineEventHandler, Component
 		toggle = !toggle;
 	}
 
-	public WireEnd getOut()
+	public ReadWriteEnd getOut()
 	{
 		return out;
 	}
@@ -46,13 +47,13 @@ public class Clock implements TimelineEventHandler, Component
 	}
 
 	@Override
-	public List<WireEnd> getAllInputs()
+	public List<ReadEnd> getAllInputs()
 	{
 		return List.of();
 	}
 
 	@Override
-	public List<WireEnd> getAllOutputs()
+	public List<ReadWriteEnd> getAllOutputs()
 	{
 		return List.of(out);
 	}

@@ -4,17 +4,17 @@ import java.util.List;
 
 import era.mi.logic.Simulation;
 import era.mi.logic.types.BitVector;
-import era.mi.logic.wires.Wire;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 import era.mi.logic.wires.WireObserver;
 
 public class Connector implements WireObserver, Component
 {
 	private boolean connected;
-	private final WireEnd a;
-	private final WireEnd b;
+	private final ReadWriteEnd a;
+	private final ReadWriteEnd b;
 
-	public Connector(WireEnd a, WireEnd b)
+	public Connector(ReadWriteEnd a, ReadWriteEnd b)
 	{
 		if (a.length() != b.length())
 			throw new IllegalArgumentException(String.format("WireArray width does not match: %d, %d", a.length(), b.length()));
@@ -27,8 +27,8 @@ public class Connector implements WireObserver, Component
 	public void connect()
 	{
 		connected = true;
-		update(a.getWire());
-		update(b.getWire());
+		update(a);
+		update(b);
 	}
 
 	public void disconnect()
@@ -47,28 +47,28 @@ public class Connector implements WireObserver, Component
 	}
 
 	@Override
-	public void update(Wire initiator, BitVector oldValues)
+	public void update(ReadEnd initiator, BitVector oldValues)
 	{
 		if (connected)
 			Simulation.TIMELINE.addEvent(e -> update(initiator), 1);
 	}
 
-	private void update(Wire initiator)
+	private void update(ReadEnd initiator)
 	{
-		if (initiator == a.getWire())
+		if (initiator == a)
 			b.feedSignals(a.wireValuesExcludingMe());
 		else
 			a.feedSignals(b.wireValuesExcludingMe());
 	}
 
 	@Override
-	public List<WireEnd> getAllInputs()
+	public List<ReadEnd> getAllInputs()
 	{
 		return List.of(a, b);
 	}
 
 	@Override
-	public List<WireEnd> getAllOutputs()
+	public List<ReadWriteEnd> getAllOutputs()
 	{
 		return List.of(a, b);
 	}

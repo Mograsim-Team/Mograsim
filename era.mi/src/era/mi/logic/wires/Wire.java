@@ -1,6 +1,7 @@
 package era.mi.logic.wires;
 
-import static era.mi.logic.types.Bit.*;
+import static era.mi.logic.types.Bit.U;
+import static era.mi.logic.types.Bit.Z;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,9 @@ public class Wire
 {
 	private BitVector values;
 	public final int travelTime;
-	private List<WireObserver> observers = new ArrayList<WireObserver>();
+	private List<ReadEnd> attached = new ArrayList<ReadEnd>();
 	public final int length;
-	private List<WireEnd> inputs = new ArrayList<WireEnd>();
+	private List<ReadWriteEnd> inputs = new ArrayList<ReadWriteEnd>();
 
 	public Wire(int length, int travelTime)
 	{
@@ -47,7 +48,7 @@ public class Wire
 	private void recalculateMultipleInputs()
 	{
 		BitVectorMutator mutator = BitVectorMutator.empty();
-		for (WireEnd wireArrayEnd : inputs)
+		for (ReadWriteEnd wireArrayEnd : inputs)
 			mutator.join(wireArrayEnd.getInputValues());
 		setNewValues(mutator.get());
 	}
@@ -112,7 +113,6 @@ public class Wire
 			case Z:
 			case X:
 				return 0; // TODO: Proper handling for getUnsignedValue(), if not all bits are 1 or 0;
-			// Random number?
 			case ONE:
 				val |= mask;
 				break;
@@ -170,168 +170,64 @@ public class Wire
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public boolean addObserver(WireObserver ob)
+	private void attachEnd(ReadEnd end)
 	{
-		return observers.add(ob);
+		attached.add(end);
+	}
+
+	private void detachEnd(ReadEnd end)
+	{
+		attached.remove(end);
 	}
 
 	private void notifyObservers(BitVector oldValues)
 	{
-		for (WireObserver o : observers)
-			o.update(this, oldValues);
+		for (ReadEnd o : attached)
+			o.update(oldValues);
 	}
 
 	/**
-	 * Create and register a {@link WireEnd} object, which is tied to this {@link Wire}.
+	 * Create and register a {@link ReadWriteEnd} object, which is tied to this {@link Wire}. This {@link ReadWriteEnd} can be written to.
 	 */
-	public WireEnd createEnd()
+	public ReadWriteEnd createEnd()
 	{
-		return new WireEnd(false);
+		return new ReadWriteEnd();
 	}
 
 	/**
-	 * Create a {@link WireEnd} object, which is tied to this {@link Wire}. This {@link WireEnd} cannot written to.
+	 * Create a {@link ReadEnd} object, which is tied to this {@link Wire}. This {@link ReadEnd} cannot be written to.
 	 */
-	public WireEnd createReadOnlyEnd()
+	public ReadEnd createReadOnlyEnd()
 	{
-		return new WireEnd(true);
+		return new ReadEnd();
 	}
 
-	private void registerInput(WireEnd toRegister)
+	private void registerInput(ReadWriteEnd toRegister)
 	{
 		inputs.add(toRegister);
 	}
 
 	/**
-	 * A {@link WireEnd} feeds a constant signal into the {@link Wire} it is tied to. The combination of all inputs determines the
+	 * A {@link ReadEnd} feeds a constant signal into the {@link Wire} it is tied to. The combination of all inputs determines the
 	 * {@link Wire}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs than Z 0
 	 * and 1 turn into X when they are mixed
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public class WireEnd
+	public class ReadEnd
 	{
-		private boolean open;
-		private BitVector inputValues;
+		private List<WireObserver> observers = new ArrayList<WireObserver>();
 
-		private WireEnd(boolean readOnly)
+		private ReadEnd()
 		{
 			super();
-			open = !readOnly; // TODO: that makes sense, doesn't it?
-			initValues();
-			if (!readOnly)
-				registerInput(this);
+			Wire.this.attachEnd(this);
 		}
 
-		private void initValues()
+		public void update(BitVector oldValues)
 		{
-			inputValues = U.toVector(length);
-		}
-
-		/**
-		 * Sets the wires values. This takes up time, as specified by the {@link Wire}s travel time.
-		 * 
-		 * @param newValues The new values the wires should take on.
-		 * 
-		 * @author Fabian Stemmler
-		 */
-		public void feedSignals(Bit... newValues)
-		{
-			feedSignals(BitVector.of(newValues));
-		}
-
-		public void feedSignals(BitVector newValues)
-		{
-			if (newValues.length() != length)
-				throw new IllegalArgumentException(
-						String.format("Attempted to input %d bits instead of %d bits.", newValues.length(), length));
-			if (!open)
-				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
-			Simulation.TIMELINE.addEvent(e -> setValues(newValues), travelTime);
-		}
-
-		/**
-		 * Sets values of a subarray of wires. This takes up time, as specified by the {@link Wire}s travel time.
-		 * 
-		 * @param bitVector   The new values the wires should take on.
-		 * @param startingBit The first index of the subarray of wires.
-		 * 
-		 * @author Fabian Stemmler
-		 */
-		public void feedSignals(int startingBit, BitVector bitVector)
-		{
-			if (!open)
-				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
-			Simulation.TIMELINE.addEvent(e -> setValues(startingBit, bitVector), travelTime);
-		}
-
-		private void setValues(int startingBit, BitVector newValues)
-		{
-			// index check covered in equals
-			if (!inputValues.equalsWithOffset(newValues, startingBit))
-			{
-				Bit[] vals = inputValues.getBits();
-				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.length());
-				inputValues = BitVector.of(vals);
-				Wire.this.recalculate();
-			}
-		}
-
-		private void setValues(BitVector newValues)
-		{
-			if (inputValues.equals(newValues))
-				return;
-			inputValues = newValues;
-			Wire.this.recalculate();
-		}
-
-		/**
-		 * @return The value (of bit 0) the {@link WireEnd} is currently feeding into the associated {@link Wire}.
-		 */
-		public Bit getInputValue()
-		{
-			return getInputValue(0);
-		}
-
-		/**
-		 * @return The value which the {@link WireEnd} is currently feeding into the associated {@link Wire} at the indexed {@link Bit}.
-		 */
-		public Bit getInputValue(int index)
-		{
-			return inputValues.getBit(index);
-		}
-
-		/**
-		 * @return A copy (safe to modify) of the values the {@link WireEnd} is currently feeding into the associated {@link Wire}.
-		 */
-		public BitVector getInputValues()
-		{
-			return getInputValues(0, length);
-		}
-
-		public BitVector getInputValues(int start, int end)
-		{
-			return inputValues.subVector(start, end);
-		}
-
-		/**
-		 * {@link WireEnd} now feeds Z into the associated {@link Wire}.
-		 */
-		public void clearSignals()
-		{
-			feedSignals(Z.toVector(length));
-		}
-
-		public BitVector wireValuesExcludingMe()
-		{
-			BitVectorMutator mutator = BitVectorMutator.empty();
-			for (WireEnd wireEnd : inputs)
-			{
-				if (wireEnd == this)
-					continue;
-				mutator.join(wireEnd.inputValues);
-			}
-			return mutator.get();
+			for (WireObserver ob : observers)
+				ob.update(this, oldValues);
 		}
 
 		/**
@@ -420,14 +316,14 @@ public class Wire
 		@Override
 		public String toString()
 		{
-			return inputValues.toString();
-			// return String.format("%s \nFeeding: %s", WireArray.this.toString(), Arrays.toString(inputValues));
+			return Wire.this.toString();
 		}
 
 		public void close()
 		{
 			inputs.remove(this);
-			open = false;
+			detachEnd(this);
+			recalculate();
 		}
 
 		public int length()
@@ -437,12 +333,143 @@ public class Wire
 
 		public boolean addObserver(WireObserver ob)
 		{
-			return Wire.this.addObserver(ob);
+			return observers.add(ob);
 		}
 
 		public Wire getWire()
 		{
 			return Wire.this;
+		}
+	}
+
+	public class ReadWriteEnd extends ReadEnd
+	{
+		private boolean open;
+		private BitVector inputValues;
+
+		private ReadWriteEnd()
+		{
+			super();
+			open = true;
+			initValues();
+			registerInput(this);
+		}
+
+		private void initValues()
+		{
+			inputValues = U.toVector(length);
+		}
+
+		/**
+		 * Sets the wires values. This takes up time, as specified by the {@link Wire}s travel time.
+		 * 
+		 * @param newValues The new values the wires should take on.
+		 * 
+		 * @author Fabian Stemmler
+		 */
+		public void feedSignals(Bit... newValues)
+		{
+			feedSignals(BitVector.of(newValues));
+		}
+
+		public void feedSignals(BitVector newValues)
+		{
+			if (newValues.length() != length)
+				throw new IllegalArgumentException(
+						String.format("Attempted to input %d bits instead of %d bits.", newValues.length(), length));
+			if (!open)
+				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
+			Simulation.TIMELINE.addEvent(e -> setValues(newValues), travelTime);
+		}
+
+		/**
+		 * Sets values of a subarray of wires. This takes up time, as specified by the {@link Wire}s travel time.
+		 * 
+		 * @param bitVector   The new values the wires should take on.
+		 * @param startingBit The first index of the subarray of wires.
+		 * 
+		 * @author Fabian Stemmler
+		 */
+		public void feedSignals(int startingBit, BitVector bitVector)
+		{
+			if (!open)
+				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
+			Simulation.TIMELINE.addEvent(e -> setValues(startingBit, bitVector), travelTime);
+		}
+
+		private void setValues(int startingBit, BitVector newValues)
+		{
+			// index check covered in equals
+			if (!inputValues.equalsWithOffset(newValues, startingBit))
+			{
+				Bit[] vals = inputValues.getBits();
+				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.length());
+				inputValues = BitVector.of(vals);
+				Wire.this.recalculate();
+			}
+		}
+
+		private void setValues(BitVector newValues)
+		{
+			if (inputValues.equals(newValues))
+				return;
+			inputValues = newValues;
+			Wire.this.recalculate();
+		}
+
+		/**
+		 * @return The value (of bit 0) the {@link ReadEnd} is currently feeding into the associated {@link Wire}.
+		 */
+		public Bit getInputValue()
+		{
+			return getInputValue(0);
+		}
+
+		/**
+		 * @return The value which the {@link ReadEnd} is currently feeding into the associated {@link Wire} at the indexed {@link Bit}.
+		 */
+		public Bit getInputValue(int index)
+		{
+			return inputValues.getBit(index);
+		}
+
+		/**
+		 * @return A copy (safe to modify) of the values the {@link ReadEnd} is currently feeding into the associated {@link Wire}.
+		 */
+		public BitVector getInputValues()
+		{
+			return getInputValues(0, length);
+		}
+
+		public BitVector getInputValues(int start, int end)
+		{
+			return inputValues.subVector(start, end);
+		}
+
+		/**
+		 * {@link ReadEnd} now feeds Z into the associated {@link Wire}.
+		 */
+		public void clearSignals()
+		{
+			feedSignals(Z.toVector(length));
+		}
+
+		public BitVector wireValuesExcludingMe()
+		{
+			BitVectorMutator mutator = BitVectorMutator.empty();
+			for (ReadWriteEnd wireEnd : inputs)
+			{
+				if (wireEnd == this)
+					continue;
+				mutator.join(wireEnd.inputValues);
+			}
+			return mutator.get();
+		}
+
+		@Override
+		public String toString()
+		{
+			return inputValues.toString();
 		}
 	}
 
@@ -453,9 +480,9 @@ public class Wire
 		// Arrays.toString(values), inputs.stream().map(i -> Arrays.toString(i.inputValues)).reduce((s1, s2) -> s1 + s2)
 	}
 
-	public static WireEnd[] extractEnds(Wire[] w)
+	public static ReadEnd[] extractEnds(Wire[] w)
 	{
-		WireEnd[] inputs = new WireEnd[w.length];
+		ReadEnd[] inputs = new ReadEnd[w.length];
 		for (int i = 0; i < w.length; i++)
 			inputs[i] = w[i].createEnd();
 		return inputs;

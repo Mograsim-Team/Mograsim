@@ -1,22 +1,24 @@
 package era.mi.logic.components;
 
+import java.util.List;
+
 import era.mi.logic.types.BitVector;
-import era.mi.logic.wires.Wire;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 import era.mi.logic.wires.WireObserver;
 
-public class Splitter implements WireObserver
+public class Splitter implements WireObserver, Component
 {
-	private WireEnd input;
-	private WireEnd[] outputs;
+	private ReadEnd input;
+	private ReadWriteEnd[] outputs;
 
-	public Splitter(WireEnd input, WireEnd... outputs)
+	public Splitter(ReadEnd input, ReadWriteEnd... outputs)
 	{
 		this.input = input;
 		this.outputs = outputs;
 		input.addObserver(this);
 		int length = 0;
-		for (WireEnd out : outputs)
+		for (ReadEnd out : outputs)
 			length += out.length();
 
 		if (input.length() != length)
@@ -36,8 +38,20 @@ public class Splitter implements WireObserver
 	}
 
 	@Override
-	public void update(Wire initiator, BitVector oldValues)
+	public void update(ReadEnd initiator, BitVector oldValues)
 	{
 		compute();
+	}
+
+	@Override
+	public List<ReadEnd> getAllInputs()
+	{
+		return List.of(input);
+	}
+
+	@Override
+	public List<ReadWriteEnd> getAllOutputs()
+	{
+		return List.of(outputs);
 	}
 }

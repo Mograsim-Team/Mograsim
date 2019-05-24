@@ -4,14 +4,15 @@ import java.util.List;
 
 import era.mi.logic.types.Bit;
 import era.mi.logic.types.BitVector;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 
 public class BitDisplay extends BasicComponent
 {
-	private final WireEnd in;
+	private final ReadEnd in;
 	private BitVector displayedValue;
 
-	public BitDisplay(WireEnd in)
+	public BitDisplay(ReadEnd in)
 	{
 		super(1);
 		this.in = in;
@@ -36,13 +37,13 @@ public class BitDisplay extends BasicComponent
 	}
 
 	@Override
-	public List<WireEnd> getAllInputs()
+	public List<ReadEnd> getAllInputs()
 	{
 		return List.of(in);
 	}
 
 	@Override
-	public List<WireEnd> getAllOutputs()
+	public List<ReadWriteEnd> getAllOutputs()
 	{
 		return List.of();
 	}

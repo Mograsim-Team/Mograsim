@@ -2,7 +2,7 @@ package era.mi.logic.components;
 
 import era.mi.logic.Simulation;
 import era.mi.logic.types.BitVector;
-import era.mi.logic.wires.Wire;
+import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.WireObserver;
 
 /**
@@ -26,7 +26,7 @@ public abstract class BasicComponent implements WireObserver, Component
 	}
 
 	@Override
-	public void update(Wire initiator, BitVector oldValues)
+	public void update(ReadEnd initiator, BitVector oldValues)
 	{
 		Simulation.TIMELINE.addEvent(e -> compute(), processTime);
 	}
