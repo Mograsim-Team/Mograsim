@@ -189,7 +189,7 @@ public class Wire
 	/**
 	 * Create and register a {@link ReadWriteEnd} object, which is tied to this {@link Wire}. This {@link ReadWriteEnd} can be written to.
 	 */
-	public ReadWriteEnd createEnd()
+	public ReadWriteEnd createReadWriteEnd()
 	{
 		return new ReadWriteEnd();
 	}
@@ -484,7 +484,7 @@ public class Wire
 	{
 		ReadEnd[] inputs = new ReadEnd[w.length];
 		for (int i = 0; i < w.length; i++)
-			inputs[i] = w[i].createEnd();
+			inputs[i] = w[i].createReadWriteEnd();
 		return inputs;
 	}
 }
