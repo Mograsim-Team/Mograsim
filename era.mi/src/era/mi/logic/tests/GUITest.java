@@ -38,13 +38,13 @@ public class GUITest extends JPanel
 	Wire q = new Wire(1, WIRE_DELAY);
 	Wire nq = new Wire(1, WIRE_DELAY);
 
-	ManualSwitch rIn = new ManualSwitch(r.createEnd());
-	ManualSwitch sIn = new ManualSwitch(s.createEnd());
+	ManualSwitch rIn = new ManualSwitch(r.createReadWriteEnd());
+	ManualSwitch sIn = new ManualSwitch(s.createReadWriteEnd());
 
-	OrGate or1 = new OrGate(OR_DELAY, t2.createEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
-	OrGate or2 = new OrGate(OR_DELAY, t1.createEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
-	NotGate not1 = new NotGate(NOT_DELAY, t2.createReadOnlyEnd(), q.createEnd());
-	NotGate not2 = new NotGate(NOT_DELAY, t1.createReadOnlyEnd(), nq.createEnd());
+	OrGate or1 = new OrGate(OR_DELAY, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
+	OrGate or2 = new OrGate(OR_DELAY, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
+	NotGate not1 = new NotGate(NOT_DELAY, t2.createReadOnlyEnd(), q.createReadWriteEnd());
+	NotGate not2 = new NotGate(NOT_DELAY, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
 
 	Map<ManualSwitch, Rectangle> switchMap = new HashMap<>();
 
