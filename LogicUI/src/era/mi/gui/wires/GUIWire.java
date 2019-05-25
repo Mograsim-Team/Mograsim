@@ -35,7 +35,7 @@ public class GUIWire
 		this.path[this.path.length - 2] = component2Pos.x + component2ConnectionPoint.x;
 		this.path[this.path.length - 1] = component2Pos.y + component2ConnectionPoint.y;
 
-		wire.addObserver((initiator, oldValues) -> redraw.run());
+		wire.createReadOnlyEnd().addObserver((initiator, oldValues) -> redraw.run());
 	}
 
 	public void render(GeneralGC gc)

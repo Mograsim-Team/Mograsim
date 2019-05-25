@@ -6,7 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.Mux;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -14,10 +15,10 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 public class GUIMux extends Mux implements BasicGUIComponent
 {
 	private final double height;
-	private final List<WireEnd> connectedWireEnds;
+	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUIMux(int processTime, WireEnd out, WireEnd select, WireEnd... inputs)
+	public GUIMux(int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
 	{
 		super(processTime, out, select, inputs);
 
@@ -26,7 +27,7 @@ public class GUIMux extends Mux implements BasicGUIComponent
 			height = 10;
 		this.height = height;
 
-		List<WireEnd> connectedWireEndsModifiable = new ArrayList<>();
+		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
 
 		connectedWireEndsModifiable.add(out);
@@ -66,7 +67,7 @@ public class GUIMux extends Mux implements BasicGUIComponent
 	}
 
 	@Override
-	public WireEnd getConnectedWireEnd(int connectionIndex)
+	public ReadEnd getConnectedWireEnd(int connectionIndex)
 	{
 		return connectedWireEnds.get(connectionIndex);
 	}

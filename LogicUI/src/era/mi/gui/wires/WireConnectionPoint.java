@@ -8,7 +8,7 @@ import org.eclipse.swt.graphics.Color;
 
 import era.mi.gui.components.BasicGUIComponent;
 import era.mi.logic.wires.Wire;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -16,13 +16,13 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 public class WireConnectionPoint implements BasicGUIComponent
 {
 	private final Wire wire;
-	private final List<WireEnd> wireEnds;
+	private final List<ReadEnd> wireEnds;
 	private final int wiresCrossing;
 
 	public WireConnectionPoint(Wire wire, int wiresCrossing)
 	{
 		this.wire = wire;
-		List<WireEnd> wireEndsModifiable = new ArrayList<>();
+		List<ReadEnd> wireEndsModifiable = new ArrayList<>();
 		for (int i = 0; i < wiresCrossing; i++)
 			wireEndsModifiable.add(wire.createReadOnlyEnd());
 		wireEnds = Collections.unmodifiableList(wireEndsModifiable);
@@ -52,7 +52,7 @@ public class WireConnectionPoint implements BasicGUIComponent
 	}
 
 	@Override
-	public WireEnd getConnectedWireEnd(int connectionIndex)
+	public ReadEnd getConnectedWireEnd(int connectionIndex)
 	{
 		return wireEnds.get(connectionIndex);
 	}

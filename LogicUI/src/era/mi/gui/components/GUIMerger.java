@@ -6,7 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.Merger;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -15,14 +16,14 @@ public class GUIMerger extends Merger implements BasicGUIComponent
 {
 	private final int inputCount;
 	private final double height;
-	private final List<WireEnd> connectedWireEnds;
+	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUIMerger(WireEnd union, WireEnd... inputs)
+	public GUIMerger(ReadWriteEnd union, ReadEnd... inputs)
 	{
 		super(union, inputs);
 
-		List<WireEnd> connectedWireEndsModifiable = new ArrayList<>();
+		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
 
 		this.inputCount = inputs.length;
@@ -65,7 +66,7 @@ public class GUIMerger extends Merger implements BasicGUIComponent
 	}
 
 	@Override
-	public WireEnd getConnectedWireEnd(int connectionIndex)
+	public ReadEnd getConnectedWireEnd(int connectionIndex)
 	{
 		return connectedWireEnds.get(connectionIndex);
 	}

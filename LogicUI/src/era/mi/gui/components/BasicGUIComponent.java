@@ -1,6 +1,6 @@
 package era.mi.gui.components;
 
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -35,7 +35,7 @@ public interface BasicGUIComponent
 	/**
 	 * Returns the n-th wire array connected to this component.
 	 */
-	public WireEnd getConnectedWireEnd(int connectionIndex);
+	public ReadEnd getConnectedWireEnd(int connectionIndex);
 
 	/**
 	 * Returns relative coordinates where the n-th wire array is connected to this component.

@@ -5,7 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.gates.NotGate;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -15,14 +16,14 @@ public class GUINotGate extends NotGate implements BasicGUIComponent
 {
 	private static final String LABEL = "\u22651";// >=1
 
-	private final List<WireEnd> connectedWireEnds;
+	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUINotGate(int processTime, WireEnd in, WireEnd out)
+	public GUINotGate(int processTime, ReadEnd in, ReadWriteEnd out)
 	{
 		super(processTime, in, out);
 
-		List<WireEnd> connectedWireEndsModifiable = new ArrayList<>();
+		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
 
 		connectedWireEndsModifiable.add(in);
@@ -61,7 +62,7 @@ public class GUINotGate extends NotGate implements BasicGUIComponent
 	}
 
 	@Override
-	public WireEnd getConnectedWireEnd(int connectionIndex)
+	public ReadEnd getConnectedWireEnd(int connectionIndex)
 	{
 		return connectedWireEnds.get(connectionIndex);
 	}
