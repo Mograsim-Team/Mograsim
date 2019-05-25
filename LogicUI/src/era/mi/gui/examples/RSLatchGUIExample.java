@@ -33,12 +33,12 @@ public class RSLatchGUIExample
 		Wire q = new Wire(1, WIRE_DELAY);
 		Wire nq = new Wire(1, WIRE_DELAY);
 
-		GUIManualSwitch rIn = ui.addComponent(new GUIManualSwitch(r.createEnd()), 100, 100);
-		GUIManualSwitch sIn = ui.addComponent(new GUIManualSwitch(s.createEnd()), 100, 200);
-		GUIOrGate or1 = ui.addComponent(new GUIOrGate(OR_DELAY, t1.createEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd()), 160, 102.5);
-		GUIOrGate or2 = ui.addComponent(new GUIOrGate(OR_DELAY, t2.createEnd(), q.createReadOnlyEnd(), s.createReadOnlyEnd()), 160, 192.5);
-		GUINotGate not1 = ui.addComponent(new GUINotGate(NOT_DELAY, t1.createReadOnlyEnd(), q.createEnd()), 200, 107.5);
-		GUINotGate not2 = ui.addComponent(new GUINotGate(NOT_DELAY, t2.createReadOnlyEnd(), nq.createEnd()), 200, 197.5);
+		GUIManualSwitch rIn = ui.addComponent(new GUIManualSwitch(r.createReadWriteEnd()), 100, 100);
+		GUIManualSwitch sIn = ui.addComponent(new GUIManualSwitch(s.createReadWriteEnd()), 100, 200);
+		GUIOrGate or1 = ui.addComponent(new GUIOrGate(OR_DELAY, t1.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd()), 160, 102.5);
+		GUIOrGate or2 = ui.addComponent(new GUIOrGate(OR_DELAY, t2.createReadWriteEnd(), q.createReadOnlyEnd(), s.createReadOnlyEnd()), 160, 192.5);
+		GUINotGate not1 = ui.addComponent(new GUINotGate(NOT_DELAY, t1.createReadOnlyEnd(), q.createReadWriteEnd()), 200, 107.5);
+		GUINotGate not2 = ui.addComponent(new GUINotGate(NOT_DELAY, t2.createReadOnlyEnd(), nq.createReadWriteEnd()), 200, 197.5);
 
 		WireConnectionPoint p1 = ui.addComponent(new WireConnectionPoint(q, 3), 250, 112.5);
 		WireConnectionPoint p2 = ui.addComponent(new WireConnectionPoint(nq, 3), 250, 202.5);

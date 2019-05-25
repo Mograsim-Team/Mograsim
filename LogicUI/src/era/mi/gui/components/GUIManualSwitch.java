@@ -8,7 +8,8 @@ import java.util.Map;
 
 import era.mi.logic.components.ManualSwitch;
 import era.mi.logic.types.Bit;
-import era.mi.logic.wires.Wire.WireEnd;
+import era.mi.logic.wires.Wire.ReadEnd;
+import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -28,17 +29,17 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 		bitNames = Collections.unmodifiableMap(bitNamesModifiable);
 	}
 
-	private final WireEnd we;
-	private final List<WireEnd> connectedWireEnds;
+	private final ReadEnd we;
+	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> wireEndConnectionPoints;
 
-	public GUIManualSwitch(WireEnd output)
+	public GUIManualSwitch(ReadWriteEnd output)
 	{
 		super(output);
 
 		this.we = output;
 
-		List<WireEnd> connectedWireEndsModifiable = new ArrayList<>();
+		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> wireEndConnectionPointsModifiable = new ArrayList<>();
 
 		connectedWireEndsModifiable.add(output);
@@ -81,7 +82,7 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	}
 
 	@Override
-	public WireEnd getConnectedWireEnd(int connectionIndex)
+	public ReadEnd getConnectedWireEnd(int connectionIndex)
 	{
 		return connectedWireEnds.get(connectionIndex);
 	}
