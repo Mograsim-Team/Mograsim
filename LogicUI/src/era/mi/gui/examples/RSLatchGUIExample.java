@@ -15,16 +15,16 @@ public class RSLatchGUIExample
 	private static final int WIRE_DELAY = 10;
 	private static final int OR_DELAY = 50;
 	private static final int NOT_DELAY = 50;
-	private static final Timeline t = new Timeline(11);
 
 	public static void main(String[] args)
 	{
+		Timeline t = new Timeline(11);
 		LogicUIStandalone ui = new LogicUIStandalone(t);
-		addComponentsAndWires(ui.getLogicUICanvas());
+		addComponentsAndWires(ui.getLogicUICanvas(), t);
 		ui.run();
 	}
 
-	public static void addComponentsAndWires(LogicUICanvas ui)
+	public static void addComponentsAndWires(LogicUICanvas ui, Timeline t)
 	{
 		Wire r = new Wire(t, 1, WIRE_DELAY);
 		Wire s = new Wire(t, 1, WIRE_DELAY);
