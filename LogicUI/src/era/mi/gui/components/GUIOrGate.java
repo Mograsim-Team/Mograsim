@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.gates.OrGate;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -22,9 +23,9 @@ public class GUIOrGate extends OrGate implements BasicGUIComponent
 	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUIOrGate(int processTime, ReadWriteEnd out, ReadEnd... in)
+	public GUIOrGate(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd... in)
 	{
-		super(processTime, out, in);
+		super(timeline, processTime, out, in);
 
 		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();

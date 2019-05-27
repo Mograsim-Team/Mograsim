@@ -2,6 +2,7 @@ package era.mi.logic.components;
 
 import java.util.List;
 
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
@@ -27,9 +28,9 @@ public class Demux extends BasicComponent
 	 * @param select  Indexes the output array to which the input is mapped. Must have enough bits to index all outputs.
 	 * @param outputs One of these outputs receives the input signal, depending on the select bits
 	 */
-	public Demux(int processTime, ReadEnd in, ReadEnd select, ReadWriteEnd... outputs)
+	public Demux(Timeline timeline, int processTime, ReadEnd in, ReadEnd select, ReadWriteEnd... outputs)
 	{
-		super(processTime);
+		super(timeline, processTime);
 		outputSize = in.length();
 
 		this.in = in;

@@ -2,7 +2,7 @@ package era.mi.logic.components;
 
 import java.util.List;
 
-import era.mi.logic.Simulation;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.timeline.TimelineEvent;
 import era.mi.logic.timeline.TimelineEventHandler;
 import era.mi.logic.types.Bit;
@@ -10,7 +10,7 @@ import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 
-public class Clock implements TimelineEventHandler, Component
+public class Clock extends Component implements TimelineEventHandler
 {
 	private boolean toggle = false;
 	private ReadWriteEnd out;
@@ -21,8 +21,9 @@ public class Clock implements TimelineEventHandler, Component
 	 * @param out   {@link Wire} the clock's impulses are fed into
 	 * @param delta ticks between rising and falling edge
 	 */
-	public Clock(ReadWriteEnd out, int delta)
+	public Clock(Timeline timeline, ReadWriteEnd out, int delta)
 	{
+		super(timeline);
 		this.delta = delta;
 		this.out = out;
 		addToTimeline();
@@ -43,7 +44,7 @@ public class Clock implements TimelineEventHandler, Component
 
 	private void addToTimeline()
 	{
-		Simulation.TIMELINE.addEvent(this, delta);
+		timeline.addEvent(this, delta);
 	}
 
 	@Override

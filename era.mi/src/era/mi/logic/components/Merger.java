@@ -2,13 +2,14 @@ package era.mi.logic.components;
 
 import java.util.List;
 
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import era.mi.logic.wires.WireObserver;
 
-public class Merger implements WireObserver, Component
+public class Merger extends Component implements WireObserver
 {
 	private ReadWriteEnd out;
 	private ReadEnd[] inputs;
@@ -19,8 +20,9 @@ public class Merger implements WireObserver, Component
 	 * @param union  The output of merging n {@link Wire}s into one. Must have length = a1.length() + a2.length() + ... + an.length().
 	 * @param inputs The inputs to be merged into the union
 	 */
-	public Merger(ReadWriteEnd union, ReadEnd... inputs)
+	public Merger(Timeline timeline, ReadWriteEnd union, ReadEnd... inputs)
 	{
+		super(timeline);
 		this.inputs = inputs;
 		this.out = union;
 		this.beginningIndex = new int[inputs.length];

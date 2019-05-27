@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.Merger;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -19,9 +20,9 @@ public class GUIMerger extends Merger implements BasicGUIComponent
 	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUIMerger(ReadWriteEnd union, ReadEnd... inputs)
+	public GUIMerger(Timeline timeline, ReadWriteEnd union, ReadEnd... inputs)
 	{
-		super(union, inputs);
+		super(timeline, union, inputs);
 
 		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();

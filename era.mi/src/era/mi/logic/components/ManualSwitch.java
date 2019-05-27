@@ -2,6 +2,7 @@ package era.mi.logic.components;
 
 import java.util.List;
 
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
@@ -12,13 +13,14 @@ import era.mi.logic.wires.Wire.ReadWriteEnd;
  * @author Christian Femers
  *
  */
-public class ManualSwitch implements Component
+public class ManualSwitch extends Component
 {
 	private ReadWriteEnd output;
 	private boolean isOn;
 
-	public ManualSwitch(ReadWriteEnd output)
+	public ManualSwitch(Timeline timeline, ReadWriteEnd output)
 	{
+		super(timeline);
 		if (output.length() != 1)
 			throw new IllegalArgumentException("Switch output can be only a single wire");
 		this.output = output;

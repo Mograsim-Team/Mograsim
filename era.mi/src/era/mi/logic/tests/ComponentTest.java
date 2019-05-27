@@ -8,7 +8,6 @@ import java.util.function.LongConsumer;
 
 import org.junit.jupiter.api.Test;
 
-import era.mi.logic.Simulation;
 import era.mi.logic.components.Connector;
 import era.mi.logic.components.Demux;
 import era.mi.logic.components.Merger;
@@ -19,6 +18,7 @@ import era.mi.logic.components.gates.AndGate;
 import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.components.gates.OrGate;
 import era.mi.logic.components.gates.XorGate;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.Bit;
 import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire;
@@ -27,18 +27,19 @@ import era.mi.logic.wires.Wire.ReadWriteEnd;
 
 class ComponentTest
 {
+	private Timeline t = new Timeline(11);
 
 	@Test
 	void circuitExampleTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(1, 1), b = new Wire(1, 1), c = new Wire(1, 10), d = new Wire(2, 1), e = new Wire(1, 1), f = new Wire(1, 1),
-				g = new Wire(1, 1), h = new Wire(2, 1), i = new Wire(2, 1), j = new Wire(1, 1), k = new Wire(1, 1);
-		new AndGate(1, f.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
-		new NotGate(1, f.createReadOnlyEnd(), g.createReadWriteEnd());
-		new Merger(h.createReadWriteEnd(), c.createReadOnlyEnd(), g.createReadOnlyEnd());
-		new Mux(1, i.createReadWriteEnd(), e.createReadOnlyEnd(), h.createReadOnlyEnd(), d.createReadOnlyEnd());
-		new Splitter(i.createReadOnlyEnd(), k.createReadWriteEnd(), j.createReadWriteEnd());
+		Wire a = new Wire(t, 1, 1), b = new Wire(t, 1, 1), c = new Wire(t, 1, 10), d = new Wire(t, 2, 1), e = new Wire(t, 1, 1),
+				f = new Wire(t, 1, 1), g = new Wire(t, 1, 1), h = new Wire(t, 2, 1), i = new Wire(t, 2, 1), j = new Wire(t, 1, 1),
+				k = new Wire(t, 1, 1);
+		new AndGate(t, 1, f.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
+		new NotGate(t, 1, f.createReadOnlyEnd(), g.createReadWriteEnd());
+		new Merger(t, h.createReadWriteEnd(), c.createReadOnlyEnd(), g.createReadOnlyEnd());
+		new Mux(t, 1, i.createReadWriteEnd(), e.createReadOnlyEnd(), h.createReadOnlyEnd(), d.createReadOnlyEnd());
+		new Splitter(t, i.createReadOnlyEnd(), k.createReadWriteEnd(), j.createReadWriteEnd());
 
 		a.createReadWriteEnd().feedSignals(Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ONE);
@@ -46,7 +47,7 @@ class ComponentTest
 		d.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE);
 		e.createReadWriteEnd().feedSignals(Bit.ZERO);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertEquals(Bit.ONE, j.getValue());
 		assertEquals(Bit.ZERO, k.getValue());
@@ -55,12 +56,12 @@ class ComponentTest
 	@Test
 	void splitterTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(3, 1), b = new Wire(2, 1), c = new Wire(3, 1), in = new Wire(8, 1);
+		t.reset();
+		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), in = new Wire(t, 8, 1);
 		in.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
-		new Splitter(in.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(), c.createReadWriteEnd());
+		new Splitter(t, in.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(), c.createReadWriteEnd());
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(a.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO);
 		assertBitArrayEquals(b.getValues(), Bit.ONE, Bit.ZERO);
@@ -70,15 +71,15 @@ class ComponentTest
 	@Test
 	void mergerTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(3, 1), b = new Wire(2, 1), c = new Wire(3, 1), out = new Wire(8, 1);
+		t.reset();
+		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), out = new Wire(t, 8, 1);
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO);
 		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		new Merger(out.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		new Merger(t, out.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(out.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 	}
@@ -86,23 +87,23 @@ class ComponentTest
 	@Test
 	void triStateBufferTest()
 	{
-		Wire a = new Wire(1, 1), b = new Wire(1, 1), en = new Wire(1, 1), notEn = new Wire(1, 1);
-		new NotGate(1, en.createReadOnlyEnd(), notEn.createReadWriteEnd());
-		new TriStateBuffer(1, a.createReadOnlyEnd(), b.createReadWriteEnd(), en.createReadOnlyEnd());
-		new TriStateBuffer(1, b.createReadOnlyEnd(), a.createReadWriteEnd(), notEn.createReadOnlyEnd());
+		Wire a = new Wire(t, 1, 1), b = new Wire(t, 1, 1), en = new Wire(t, 1, 1), notEn = new Wire(t, 1, 1);
+		new NotGate(t, 1, en.createReadOnlyEnd(), notEn.createReadWriteEnd());
+		new TriStateBuffer(t, 1, a.createReadOnlyEnd(), b.createReadWriteEnd(), en.createReadOnlyEnd());
+		new TriStateBuffer(t, 1, b.createReadOnlyEnd(), a.createReadWriteEnd(), notEn.createReadOnlyEnd());
 
 		ReadWriteEnd enI = en.createReadWriteEnd(), aI = a.createReadWriteEnd(), bI = b.createReadWriteEnd();
 		enI.feedSignals(Bit.ONE);
 		aI.feedSignals(Bit.ONE);
 		bI.feedSignals(Bit.Z);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertEquals(Bit.ONE, b.getValue());
 
 		bI.feedSignals(Bit.ZERO);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertEquals(Bit.X, b.getValue());
 		assertEquals(Bit.ONE, a.getValue());
@@ -110,7 +111,7 @@ class ComponentTest
 		aI.clearSignals();
 		enI.feedSignals(Bit.ZERO);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertEquals(Bit.ZERO, a.getValue());
 
@@ -119,25 +120,26 @@ class ComponentTest
 	@Test
 	void muxTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5), out = new Wire(4, 1);
+		t.reset();
+		Wire a = new Wire(t, 4, 3), b = new Wire(t, 4, 6), c = new Wire(t, 4, 4), select = new Wire(t, 2, 5), out = new Wire(t, 4, 1);
 		ReadWriteEnd selectIn = select.createReadWriteEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 		c.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		new Mux(1, out.createReadWriteEnd(), select.createReadOnlyEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
-		Simulation.TIMELINE.executeAll();
+		new Mux(t, 1, out.createReadWriteEnd(), select.createReadOnlyEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(),
+				c.createReadOnlyEnd());
+		t.executeAll();
 
 		assertBitArrayEquals(out.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 		selectIn.feedSignals(Bit.ZERO, Bit.ONE);
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(out.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
 		selectIn.feedSignals(Bit.ONE, Bit.ONE);
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(out.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
 
@@ -146,28 +148,29 @@ class ComponentTest
 	@Test
 	void demuxTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(4, 3), b = new Wire(4, 6), c = new Wire(4, 4), select = new Wire(2, 5), in = new Wire(4, 1);
+		t.reset();
+		Wire a = new Wire(t, 4, 3), b = new Wire(t, 4, 6), c = new Wire(t, 4, 4), select = new Wire(t, 2, 5), in = new Wire(t, 4, 1);
 		ReadWriteEnd selectIn = select.createReadWriteEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
 		in.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 
-		new Demux(1, in.createReadOnlyEnd(), select.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(), c.createReadWriteEnd());
-		Simulation.TIMELINE.executeAll();
+		new Demux(t, 1, in.createReadOnlyEnd(), select.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(),
+				c.createReadWriteEnd());
+		t.executeAll();
 
 		assertBitArrayEquals(a.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U, Bit.U);
 		assertBitArrayEquals(c.getValues(), Bit.U, Bit.U, Bit.U, Bit.U);
 		selectIn.feedSignals(Bit.ZERO, Bit.ONE);
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(a.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
 		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U, Bit.U);
 		assertBitArrayEquals(c.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 
 		selectIn.feedSignals(Bit.ONE, Bit.ONE);
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(a.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
 		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U, Bit.U);
@@ -178,13 +181,13 @@ class ComponentTest
 	@Test
 	void andTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(4, 1), b = new Wire(4, 3), c = new Wire(4, 1);
-		new AndGate(1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
+		t.reset();
+		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1);
+		new AndGate(t, 1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(c.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ZERO);
 	}
@@ -192,13 +195,13 @@ class ComponentTest
 	@Test
 	void orTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(4, 1), b = new Wire(4, 3), c = new Wire(4, 1);
-		new OrGate(1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
+		t.reset();
+		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1);
+		new OrGate(t, 1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(c.getValues(), Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ONE);
 	}
@@ -206,14 +209,14 @@ class ComponentTest
 	@Test
 	void xorTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(3, 1), b = new Wire(3, 2), c = new Wire(3, 1), d = new Wire(3, 1);
-		new XorGate(1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		t.reset();
+		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 2), c = new Wire(t, 3, 1), d = new Wire(t, 3, 1);
+		new XorGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
 		b.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
 		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(d.getValues(), Bit.ZERO, Bit.ONE, Bit.ONE);
 	}
@@ -221,12 +224,12 @@ class ComponentTest
 	@Test
 	void notTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire a = new Wire(3, 1), b = new Wire(3, 2);
-		new NotGate(1, a.createReadOnlyEnd(), b.createReadWriteEnd());
+		t.reset();
+		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 2);
+		new NotGate(t, 1, a.createReadOnlyEnd(), b.createReadWriteEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertBitArrayEquals(b.getValues(), Bit.ONE, Bit.ZERO, Bit.ZERO);
 	}
@@ -234,33 +237,34 @@ class ComponentTest
 	@Test
 	void rsLatchCircuitTest()
 	{
-		Simulation.TIMELINE.reset();
-		Wire r = new Wire(1, 1), s = new Wire(1, 1), t1 = new Wire(1, 15), t2 = new Wire(1, 1), q = new Wire(1, 1), nq = new Wire(1, 1);
+		t.reset();
+		Wire r = new Wire(t, 1, 1), s = new Wire(t, 1, 1), t1 = new Wire(t, 1, 15), t2 = new Wire(t, 1, 1), q = new Wire(t, 1, 1),
+				nq = new Wire(t, 1, 1);
 
-		new OrGate(1, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
-		new OrGate(1, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
-		new NotGate(1, t2.createReadOnlyEnd(), q.createReadWriteEnd());
-		new NotGate(1, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
+		new OrGate(t, 1, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
+		new OrGate(t, 1, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
+		new NotGate(t, 1, t2.createReadOnlyEnd(), q.createReadWriteEnd());
+		new NotGate(t, 1, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
 
 		ReadWriteEnd sIn = s.createReadWriteEnd(), rIn = r.createReadWriteEnd();
 
 		sIn.feedSignals(Bit.ONE);
 		rIn.feedSignals(Bit.ZERO);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertEquals(Bit.ONE, q.getValue());
 		assertEquals(Bit.ZERO, nq.getValue());
 
 		sIn.feedSignals(Bit.ZERO);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 		assertEquals(Bit.ONE, q.getValue());
 		assertEquals(Bit.ZERO, nq.getValue());
 
 		rIn.feedSignals(Bit.ONE);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertEquals(Bit.ZERO, q.getValue());
 		assertEquals(Bit.ONE, nq.getValue());
@@ -269,12 +273,12 @@ class ComponentTest
 	@Test
 	void numericValueTest()
 	{
-		Simulation.TIMELINE.reset();
+		t.reset();
 
-		Wire a = new Wire(4, 1);
+		Wire a = new Wire(t, 4, 1);
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE);
 
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 
 		assertEquals(15, a.getUnsignedValue());
 		assertEquals(-1, a.getSignedValue());
@@ -283,29 +287,29 @@ class ComponentTest
 	@Test
 	void multipleInputs()
 	{
-		Simulation.TIMELINE.reset();
-		Wire w = new Wire(2, 1);
+		t.reset();
+		Wire w = new Wire(t, 2, 1);
 		ReadWriteEnd wI1 = w.createReadWriteEnd(), wI2 = w.createReadWriteEnd();
 		wI1.feedSignals(Bit.ONE, Bit.Z);
 		wI2.feedSignals(Bit.Z, Bit.X);
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.X);
 
 		wI2.feedSignals(Bit.ZERO, Bit.Z);
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 		assertBitArrayEquals(w.getValues(), Bit.X, Bit.Z);
 
 		wI2.feedSignals(Bit.Z, Bit.Z);
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 
 		wI2.feedSignals(Bit.ONE, Bit.Z);
 		ReadEnd rE = w.createReadOnlyEnd();
 		rE.addObserver((i, oldValues) -> fail("WireEnd notified observer, although value did not change."));
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 		rE.close();
 		wI1.feedSignals(Bit.X, Bit.X);
-		Simulation.TIMELINE.executeAll();
+		t.executeAll();
 		wI1.addObserver((i, oldValues) -> fail("WireEnd notified observer, although it was closed."));
 		wI1.close();
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
@@ -316,17 +320,17 @@ class ComponentTest
 	{
 		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
 
-		Simulation.TIMELINE.reset();
+		t.reset();
 
-		Wire a = new Wire(1, 2);
-		Wire b = new Wire(1, 2);
-		Wire c = new Wire(1, 2);
+		Wire a = new Wire(t, 1, 2);
+		Wire b = new Wire(t, 1, 2);
+		Wire c = new Wire(t, 1, 2);
 		ReadWriteEnd aI = a.createReadWriteEnd();
 		ReadWriteEnd bI = b.createReadWriteEnd();
 		ReadWriteEnd cI = c.createReadWriteEnd();
 
-		TestBitDisplay test = new TestBitDisplay(c.createReadOnlyEnd());
-		TestBitDisplay test2 = new TestBitDisplay(a.createReadOnlyEnd());
+		TestBitDisplay test = new TestBitDisplay(t, c.createReadOnlyEnd());
+		TestBitDisplay test2 = new TestBitDisplay(t, a.createReadOnlyEnd());
 		LongConsumer print = time -> System.out.format("Time %2d\n   a: %s\n   b: %s\n   c: %s\n", time, a, b, c);
 
 		cI.feedSignals(Bit.ONE);
@@ -339,7 +343,7 @@ class ComponentTest
 		cI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
 
-		new Connector(b.createReadWriteEnd(), c.createReadWriteEnd()).connect();
+		new Connector(t, b.createReadWriteEnd(), c.createReadWriteEnd()).connect();
 		test.assertAfterSimulationIs(print, Bit.Z);
 		System.err.println("ONE");
 		bI.feedSignals(Bit.ONE);
@@ -351,7 +355,7 @@ class ComponentTest
 		bI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);
 
-		new Connector(a.createReadWriteEnd(), b.createReadWriteEnd()).connect();
+		new Connector(t, a.createReadWriteEnd(), b.createReadWriteEnd()).connect();
 		System.err.println("Z 2");
 		aI.feedSignals(Bit.Z);
 		test.assertAfterSimulationIs(print, Bit.Z);

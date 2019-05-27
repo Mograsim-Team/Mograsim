@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
@@ -30,9 +31,9 @@ public class Mux extends BasicComponent
 	 * @param select Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
 	 * @param inputs One of these inputs is mapped to the output, depending on the select bits
 	 */
-	public Mux(int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
+	public Mux(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
 	{
-		super(processTime);
+		super(timeline, processTime);
 		outputSize = out.length();
 
 		this.inputs = inputs.clone();

@@ -1,6 +1,6 @@
 package era.mi.logic.components;
 
-import era.mi.logic.Simulation;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.WireObserver;
@@ -10,7 +10,7 @@ import era.mi.logic.wires.WireObserver;
  * 
  * @author Fabian Stemmler
  */
-public abstract class BasicComponent implements WireObserver, Component
+public abstract class BasicComponent extends Component implements WireObserver
 {
 	private int processTime;
 
@@ -20,15 +20,16 @@ public abstract class BasicComponent implements WireObserver, Component
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public BasicComponent(int processTime)
+	public BasicComponent(Timeline timeline, int processTime)
 	{
+		super(timeline);
 		this.processTime = processTime > 0 ? processTime : 1;
 	}
 
 	@Override
 	public void update(ReadEnd initiator, BitVector oldValues)
 	{
-		Simulation.TIMELINE.addEvent(e -> compute(), processTime);
+		timeline.addEvent(e -> compute(), processTime);
 	}
 
 	protected abstract void compute();

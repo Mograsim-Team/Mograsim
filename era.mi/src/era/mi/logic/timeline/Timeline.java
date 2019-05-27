@@ -48,7 +48,7 @@ public class Timeline
 	 * 
 	 * @param timestamp  the simulation timestamp up to which the events will be processed
 	 * @param stopMillis the System.currentTimeMillis() when simulation definitely needs to stop. A value of -1 means no timeout.
-	 * @return if it was possible to fulfil the goal in the given real world time.
+	 * @return if it was possible to fulfill the goal in the given real world time.
 	 * @author Christian Femers
 	 */
 	public ExecutionResult executeUpTo(long timestamp, long stopMillis)

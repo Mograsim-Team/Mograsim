@@ -3,6 +3,7 @@ package era.mi.logic.components.gates;
 import java.util.List;
 
 import era.mi.logic.components.BasicComponent;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.BitVector.BitVectorMutator;
 import era.mi.logic.types.MutationOperation;
 import era.mi.logic.wires.Wire.ReadEnd;
@@ -15,9 +16,9 @@ public abstract class MultiInputGate extends BasicComponent
 	protected final int length;
 	protected MutationOperation op;
 
-	protected MultiInputGate(int processTime, MutationOperation op, ReadWriteEnd out, ReadEnd... in)
+	protected MultiInputGate(Timeline timeline, int processTime, MutationOperation op, ReadWriteEnd out, ReadEnd... in)
 	{
-		super(processTime);
+		super(timeline, processTime);
 		this.op = op;
 		length = out.length();
 		this.in = in.clone();

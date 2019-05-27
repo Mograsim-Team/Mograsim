@@ -9,7 +9,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import era.mi.gui.LogicUICanvas;
 import era.mi.gui.examples.RSLatchGUIExample;
-import era.mi.logic.Simulation;
+import era.mi.logic.timeline.Timeline;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 
 public class LogicUIPart
@@ -20,6 +20,7 @@ public class LogicUIPart
 	@PostConstruct
 	public void create(Composite parent)
 	{
+		Timeline timeline = new Timeline(11);
 		LogicUICanvas ui = new LogicUICanvas(parent, SWT.NONE);
 		RSLatchGUIExample.addComponentsAndWires(ui);
 		ui.addTransformListener((x, y, z) -> part.setDirty(z < 1));
@@ -33,10 +34,10 @@ public class LogicUIPart
 			while (!ui.isDisposed())
 			{
 				// always execute to keep timeline from "hanging behind" for too long
-				Simulation.TIMELINE.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
+				timeline.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
 				long sleepTime;
-				if (Simulation.TIMELINE.hasNext())
-					sleepTime = Simulation.TIMELINE.nextEventTime() - System.currentTimeMillis();
+				if (timeline.hasNext())
+					sleepTime = timeline.nextEventTime() - System.currentTimeMillis();
 				else
 					sleepTime = 10;
 				try
@@ -50,7 +51,7 @@ public class LogicUIPart
 			}
 		});
 		simulationThread.start();
-		Simulation.TIMELINE.addEventAddedListener(event ->
+		timeline.addEventAddedListener(event ->
 		{
 			if (event.getTiming() <= System.currentTimeMillis())
 				simulationThread.interrupt();

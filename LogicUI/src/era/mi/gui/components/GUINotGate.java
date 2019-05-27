@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.gates.NotGate;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -19,9 +20,9 @@ public class GUINotGate extends NotGate implements BasicGUIComponent
 	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUINotGate(int processTime, ReadEnd in, ReadWriteEnd out)
+	public GUINotGate(Timeline timeline, int processTime, ReadEnd in, ReadWriteEnd out)
 	{
-		super(processTime, in, out);
+		super(timeline, processTime, in, out);
 
 		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
