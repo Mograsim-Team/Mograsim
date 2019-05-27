@@ -6,7 +6,7 @@ import static era.mi.logic.types.Bit.Z;
 import java.util.ArrayList;
 import java.util.List;
 
-import era.mi.logic.Simulation;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.Bit;
 import era.mi.logic.types.BitVector;
 import era.mi.logic.types.BitVector.BitVectorMutator;
@@ -24,12 +24,14 @@ public class Wire
 	private List<ReadEnd> attached = new ArrayList<ReadEnd>();
 	public final int length;
 	private List<ReadWriteEnd> inputs = new ArrayList<ReadWriteEnd>();
+	private Timeline timeline;
 
-	public Wire(int length, int travelTime)
+	public Wire(Timeline timeline, int length, int travelTime)
 	{
 		if (length < 1)
 			throw new IllegalArgumentException(
 					String.format("Tried to create an array of wires with length %d, but a length of less than 1 makes no sense.", length));
+		this.timeline = timeline;
 		this.length = length;
 		this.travelTime = travelTime;
 		initValues();
@@ -379,7 +381,7 @@ public class Wire
 						String.format("Attempted to input %d bits instead of %d bits.", newValues.length(), length));
 			if (!open)
 				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
-			Simulation.TIMELINE.addEvent(e -> setValues(newValues), travelTime);
+			timeline.addEvent(e -> setValues(newValues), travelTime);
 		}
 
 		/**
@@ -394,7 +396,7 @@ public class Wire
 		{
 			if (!open)
 				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
-			Simulation.TIMELINE.addEvent(e -> setValues(startingBit, bitVector), travelTime);
+			timeline.addEvent(e -> setValues(startingBit, bitVector), travelTime);
 		}
 
 		private void setValues(int startingBit, BitVector newValues)

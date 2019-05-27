@@ -2,18 +2,20 @@ package era.mi.logic.components;
 
 import java.util.List;
 
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import era.mi.logic.wires.WireObserver;
 
-public class Splitter implements WireObserver, Component
+public class Splitter extends Component implements WireObserver
 {
 	private ReadEnd input;
 	private ReadWriteEnd[] outputs;
 
-	public Splitter(ReadEnd input, ReadWriteEnd... outputs)
+	public Splitter(Timeline timeline, ReadEnd input, ReadWriteEnd... outputs)
 	{
+		super(timeline);
 		this.input = input;
 		this.outputs = outputs;
 		input.addObserver(this);

@@ -2,6 +2,7 @@ package era.mi.logic.components;
 
 import java.util.List;
 
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
@@ -11,9 +12,9 @@ public class TriStateBuffer extends BasicComponent
 	ReadEnd in, enable;
 	ReadWriteEnd out;
 
-	public TriStateBuffer(int processTime, ReadEnd in, ReadWriteEnd out, ReadEnd enable)
+	public TriStateBuffer(Timeline timeline, int processTime, ReadEnd in, ReadWriteEnd out, ReadEnd enable)
 	{
-		super(processTime);
+		super(timeline, processTime);
 		if (in.length() != out.length())
 			throw new IllegalArgumentException(
 					"Tri-state output must have the same amount of bits as the input. Input: " + in.length() + " Output: " + out.length());

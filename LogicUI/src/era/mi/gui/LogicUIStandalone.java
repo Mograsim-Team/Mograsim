@@ -7,7 +7,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import era.mi.logic.Simulation;
+import era.mi.logic.timeline.Timeline;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasOverlay;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 
@@ -21,9 +21,11 @@ public class LogicUIStandalone
 	private final Display display;
 	private final Shell shell;
 	private final LogicUICanvas ui;
+	private Timeline timeline;
 
-	public LogicUIStandalone()
+	public LogicUIStandalone(Timeline timeline)
 	{
+		this.timeline = timeline;
 		display = new Display();
 		shell = new Shell(display);
 		shell.setLayout(new FillLayout());
@@ -52,10 +54,10 @@ public class LogicUIStandalone
 			while (running.get())
 			{
 				// always execute to keep timeline from "hanging behind" for too long
-				Simulation.TIMELINE.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
+				timeline.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
 				long sleepTime;
-				if (Simulation.TIMELINE.hasNext())
-					sleepTime = Simulation.TIMELINE.nextEventTime() - System.currentTimeMillis();
+				if (timeline.hasNext())
+					sleepTime = timeline.nextEventTime() - System.currentTimeMillis();
 				else
 					sleepTime = 10;
 				try
@@ -69,7 +71,7 @@ public class LogicUIStandalone
 			}
 		});
 		simulationThread.start();
-		Simulation.TIMELINE.addEventAddedListener(event ->
+		timeline.addEventAddedListener(event ->
 		{
 			if (event.getTiming() <= System.currentTimeMillis())
 				simulationThread.interrupt();

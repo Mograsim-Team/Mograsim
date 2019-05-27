@@ -2,20 +2,21 @@ package era.mi.logic.components;
 
 import java.util.List;
 
-import era.mi.logic.Simulation;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import era.mi.logic.wires.WireObserver;
 
-public class Connector implements WireObserver, Component
+public class Connector extends Component implements WireObserver
 {
 	private boolean connected;
 	private final ReadWriteEnd a;
 	private final ReadWriteEnd b;
 
-	public Connector(ReadWriteEnd a, ReadWriteEnd b)
+	public Connector(Timeline timeline, ReadWriteEnd a, ReadWriteEnd b)
 	{
+		super(timeline);
 		if (a.length() != b.length())
 			throw new IllegalArgumentException(String.format("WireArray width does not match: %d, %d", a.length(), b.length()));
 		this.a = a;
@@ -50,7 +51,7 @@ public class Connector implements WireObserver, Component
 	public void update(ReadEnd initiator, BitVector oldValues)
 	{
 		if (connected)
-			Simulation.TIMELINE.addEvent(e -> update(initiator), 1);
+			timeline.addEvent(e -> update(initiator), 1);
 	}
 
 	private void update(ReadEnd initiator)

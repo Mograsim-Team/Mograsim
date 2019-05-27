@@ -3,6 +3,7 @@ package era.mi.logic.components.gates;
 import java.util.List;
 
 import era.mi.logic.components.BasicComponent;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 
@@ -11,9 +12,9 @@ public class NotGate extends BasicComponent
 	private ReadEnd in;
 	private ReadWriteEnd out;
 
-	public NotGate(int processTime, ReadEnd in, ReadWriteEnd out)
+	public NotGate(Timeline timeline, int processTime, ReadEnd in, ReadWriteEnd out)
 	{
-		super(processTime);
+		super(timeline, processTime);
 		this.in = in;
 		in.addObserver(this);
 		this.out = out;

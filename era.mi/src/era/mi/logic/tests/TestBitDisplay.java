@@ -4,17 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.function.LongConsumer;
 
-import era.mi.logic.Simulation;
 import era.mi.logic.components.BitDisplay;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire.ReadEnd;
 
 public final class TestBitDisplay extends BitDisplay
 {
 
-	public TestBitDisplay(ReadEnd in)
+	public TestBitDisplay(Timeline timeline, ReadEnd in)
 	{
-		super(in);
+		super(timeline, in);
 	}
 
 	public void assertDisplays(Bit... expected)
@@ -24,16 +24,16 @@ public final class TestBitDisplay extends BitDisplay
 
 	public void assertAfterSimulationIs(Bit... expected)
 	{
-		Simulation.TIMELINE.executeAll();
+		timeline.executeAll();
 		assertDisplays(expected);
 	}
 
 	public void assertAfterSimulationIs(LongConsumer r, Bit... expected)
 	{
-		while (Simulation.TIMELINE.hasNext())
+		while (timeline.hasNext())
 		{
-			Simulation.TIMELINE.executeNext();
-			r.accept(Simulation.TIMELINE.getSimulationTime());
+			timeline.executeNext();
+			r.accept(timeline.getSimulationTime());
 		}
 		assertDisplays(expected);
 	}

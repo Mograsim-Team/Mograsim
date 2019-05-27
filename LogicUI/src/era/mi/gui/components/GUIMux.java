@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.Mux;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -18,9 +19,9 @@ public class GUIMux extends Mux implements BasicGUIComponent
 	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUIMux(int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
+	public GUIMux(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
 	{
-		super(processTime, out, select, inputs);
+		super(timeline, processTime, out, select, inputs);
 
 		double height = inputs.length * 5;
 		if (height < 10)

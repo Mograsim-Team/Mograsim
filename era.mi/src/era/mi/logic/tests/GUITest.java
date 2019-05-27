@@ -15,10 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import era.mi.logic.Simulation;
 import era.mi.logic.components.ManualSwitch;
 import era.mi.logic.components.gates.NotGate;
 import era.mi.logic.components.gates.OrGate;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.timeline.Timeline.ExecutionResult;
 import era.mi.logic.wires.Wire;
 
@@ -31,20 +31,22 @@ public class GUITest extends JPanel
 	private static final int OR_DELAY = 100;
 	private static final int NOT_DELAY = 100;
 
-	Wire r = new Wire(1, WIRE_DELAY);
-	Wire s = new Wire(1, WIRE_DELAY);
-	Wire t1 = new Wire(1, WIRE_DELAY);
-	Wire t2 = new Wire(1, WIRE_DELAY);
-	Wire q = new Wire(1, WIRE_DELAY);
-	Wire nq = new Wire(1, WIRE_DELAY);
+	private Timeline t = new Timeline(11);
 
-	ManualSwitch rIn = new ManualSwitch(r.createReadWriteEnd());
-	ManualSwitch sIn = new ManualSwitch(s.createReadWriteEnd());
+	Wire r = new Wire(t, 1, WIRE_DELAY);
+	Wire s = new Wire(t, 1, WIRE_DELAY);
+	Wire t1 = new Wire(t, 1, WIRE_DELAY);
+	Wire t2 = new Wire(t, 1, WIRE_DELAY);
+	Wire q = new Wire(t, 1, WIRE_DELAY);
+	Wire nq = new Wire(t, 1, WIRE_DELAY);
 
-	OrGate or1 = new OrGate(OR_DELAY, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
-	OrGate or2 = new OrGate(OR_DELAY, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
-	NotGate not1 = new NotGate(NOT_DELAY, t2.createReadOnlyEnd(), q.createReadWriteEnd());
-	NotGate not2 = new NotGate(NOT_DELAY, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
+	ManualSwitch rIn = new ManualSwitch(t, r.createReadWriteEnd());
+	ManualSwitch sIn = new ManualSwitch(t, s.createReadWriteEnd());
+
+	OrGate or1 = new OrGate(t, OR_DELAY, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
+	OrGate or2 = new OrGate(t, OR_DELAY, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
+	NotGate not1 = new NotGate(t, NOT_DELAY, t2.createReadOnlyEnd(), q.createReadWriteEnd());
+	NotGate not2 = new NotGate(t, NOT_DELAY, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
 
 	Map<ManualSwitch, Rectangle> switchMap = new HashMap<>();
 
@@ -108,6 +110,11 @@ public class GUITest extends JPanel
 			}
 		});
 	}
+
+	public Timeline getTimeline()
+	{
+		return t;
+	};
 
 	@Override
 	public void paint(Graphics some_g)
@@ -275,9 +282,9 @@ public class GUITest extends JPanel
 
 		while (f.isVisible())
 		{
-			ExecutionResult er = Simulation.TIMELINE.executeUpTo((lastFrame - begin) * 3, lastFrame + 14);
-//				if (Simulation.TIMELINE.hasNext()) 
-//				Simulation.TIMELINE.executeNext();
+			ExecutionResult er = gt.getTimeline().executeUpTo((lastFrame - begin) * 3, lastFrame + 14);
+//				if (t.hasNext()) 
+//				t.executeNext();
 			if (er != ExecutionResult.NOTHING_DONE)
 				gt.repaint(12);
 			try

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import era.mi.logic.components.Splitter;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -19,9 +20,9 @@ public class GUISplitter extends Splitter implements BasicGUIComponent
 	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUISplitter(ReadEnd input, ReadWriteEnd... outputs)
+	public GUISplitter(Timeline timeline, ReadEnd input, ReadWriteEnd... outputs)
 	{
-		super(input, outputs);
+		super(timeline, input, outputs);
 
 		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();

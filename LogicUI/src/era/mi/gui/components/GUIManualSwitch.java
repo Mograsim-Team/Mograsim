@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import era.mi.logic.components.ManualSwitch;
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
@@ -33,9 +34,9 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> wireEndConnectionPoints;
 
-	public GUIManualSwitch(ReadWriteEnd output)
+	public GUIManualSwitch(Timeline timeline, ReadWriteEnd output)
 	{
-		super(output);
+		super(timeline, output);
 
 		this.we = output;
 

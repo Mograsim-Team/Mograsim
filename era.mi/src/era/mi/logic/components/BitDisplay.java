@@ -2,6 +2,7 @@ package era.mi.logic.components;
 
 import java.util.List;
 
+import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.Bit;
 import era.mi.logic.types.BitVector;
 import era.mi.logic.wires.Wire.ReadEnd;
@@ -12,9 +13,9 @@ public class BitDisplay extends BasicComponent
 	private final ReadEnd in;
 	private BitVector displayedValue;
 
-	public BitDisplay(ReadEnd in)
+	public BitDisplay(Timeline timeline, ReadEnd in)
 	{
-		super(1);
+		super(timeline, 1);
 		this.in = in;
 		in.addObserver(this);
 		compute();
