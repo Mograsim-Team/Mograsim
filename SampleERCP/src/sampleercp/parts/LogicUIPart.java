@@ -22,7 +22,7 @@ public class LogicUIPart
 	{
 		Timeline timeline = new Timeline(11);
 		LogicUICanvas ui = new LogicUICanvas(parent, SWT.NONE);
-		RSLatchGUIExample.addComponentsAndWires(ui);
+		RSLatchGUIExample.addComponentsAndWires(ui, timeline);
 		ui.addTransformListener((x, y, z) -> part.setDirty(z < 1));
 		ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(ui);
 		userInput.buttonDrag = 3;
