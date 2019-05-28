@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import era.mi.logic.components.ManualSwitch;
-import era.mi.logic.timeline.Timeline;
 import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
@@ -16,7 +15,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
-public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
+public class GUIManualSwitch extends ManualSwitch implements GUIComponent
 {
 	private static final Map<Bit, String> bitNames;
 	static
@@ -34,9 +33,9 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> wireEndConnectionPoints;
 
-	public GUIManualSwitch(Timeline timeline, ReadWriteEnd output)
+	public GUIManualSwitch(ReadWriteEnd output)
 	{
-		super(timeline, output);
+		super(output);
 
 		this.we = output;
 
