@@ -27,16 +27,27 @@ public class GUIWire
 			this.path[dstI + 0] = path[srcI].x;
 			this.path[dstI + 1] = path[srcI].y;
 		}
-		// TODO support moving pins
-		Point pos;
-		pos = pin1.getPos();
-		this.path[0] = pos.x;
-		this.path[1] = pos.y;
-		pos = pin2.getPos();
-		this.path[this.path.length - 2] = pos.x;
-		this.path[this.path.length - 1] = pos.y;
+
+		pin1.addPinMovedListener(p -> pin1Moved());
+		pin2.addPinMovedListener(p -> pin2Moved());
+		pin1Moved();
+		pin2Moved();
 
 		model.wireCreated(this);
+	}
+
+	private void pin1Moved()
+	{
+		Point pos = pin1.getPos();
+		this.path[0] = pos.x;
+		this.path[1] = pos.y;
+	}
+
+	private void pin2Moved()
+	{
+		Point pos = pin2.getPos();
+		this.path[this.path.length - 2] = pos.x;
+		this.path[this.path.length - 1] = pos.y;
 	}
 
 	public void destroy()
