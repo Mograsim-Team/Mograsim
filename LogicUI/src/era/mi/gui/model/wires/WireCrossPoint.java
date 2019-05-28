@@ -1,16 +1,16 @@
 package era.mi.gui.model.wires;
 
-import org.eclipse.swt.graphics.Color;
-
+import era.mi.gui.ColorHelper;
 import era.mi.gui.model.ViewModel;
 import era.mi.gui.model.components.GUIComponent;
-import era.mi.logic.wires.Wire;
+import era.mi.logic.types.BitVectorFormatter;
+import era.mi.logic.wires.Wire.ReadEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class WireCrossPoint extends GUIComponent
 {
-	private Wire wire;
+	private ReadEnd end;
 
 	public WireCrossPoint(ViewModel model)
 	{
@@ -22,14 +22,12 @@ public class WireCrossPoint extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		Color oldBG = gc.getBackground();
-		gc.setBackground(gc.getDevice().getSystemColor(GUIWire.getSWTColorConstantForWire(wire)));
-		gc.fillOval(-1, -1, 2, 2);
-		gc.setBackground(oldBG);
+		ColorHelper.executeWithDifferentBackground(gc, BitVectorFormatter.formatAsColor(end), () -> gc.fillOval(-1, -1, 2, 2));
 	}
 
-	public void setLogicModelWire(Wire wire)
+	public void setLogicModelBinding(ReadEnd end)
 	{
-		this.wire = wire;
+		this.end = end;
+		end.addObserver((i, o) -> callComponentChangedListeners());
 	}
 }

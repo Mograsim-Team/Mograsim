@@ -56,8 +56,16 @@ public class LogicUICanvas extends ZoomableCanvas
 			c.removePinRemovedListener(pinRemovedListener);
 			redrawThreadsafe();
 		});
-		model.addWireAddedListener(c -> redrawThreadsafe());
-		model.addWireRemovedListener(c -> redrawThreadsafe());
+		model.addWireAddedListener(w ->
+		{
+			w.addWireChangedListener(redrawConsumer);
+			redrawThreadsafe();
+		});
+		model.addWireRemovedListener(w ->
+		{
+			w.removeWireChangedListener(redrawConsumer);
+			redrawThreadsafe();
+		});
 
 		addZoomedRenderer(gc ->
 		{
