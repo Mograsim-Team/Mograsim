@@ -1,11 +1,13 @@
 package era.mi.gui.model.wires;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
+import era.mi.gui.ColorHelper;
 import era.mi.gui.model.ViewModel;
-import era.mi.logic.types.Bit;
-import era.mi.logic.wires.Wire;
+import era.mi.logic.types.BitVectorFormatter;
+import era.mi.logic.wires.Wire.ReadEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 
@@ -16,7 +18,9 @@ public class GUIWire
 	private Pin pin2;
 	private double[] path;
 
-	private Wire wire;
+	private final List<Consumer<? super GUIWire>> wireChangedListeners;
+
+	private ReadEnd end;
 
 	public GUIWire(ViewModel model, Pin pin1, Pin pin2, Point... path)
 	{
@@ -30,6 +34,8 @@ public class GUIWire
 
 		this.pin1 = pin1;
 		this.pin2 = pin2;
+
+		wireChangedListeners = new ArrayList<>();
 
 		pin1.addPinMovedListener(p -> pin1Moved());
 		pin2.addPinMovedListener(p -> pin2Moved());
@@ -60,40 +66,21 @@ public class GUIWire
 
 	public void render(GeneralGC gc)
 	{
-		Color oldFG = gc.getForeground();
-		gc.setForeground(gc.getDevice().getSystemColor(getSWTColorConstantForWire(wire)));
-		gc.drawPolyline(path);
-		gc.setForeground(oldFG);
+		ColorHelper.executeWithDifferentForeground(gc, BitVectorFormatter.formatAsColor(end), () -> gc.drawPolyline(path));
 	}
 
-	public void setLogicModelWire(Wire wire)
+	public void setLogicModelBinding(ReadEnd end)
 	{
-		this.wire = wire;
+		this.end = end;
+		end.addObserver((i, o) -> callWireChangedListeners());
 	}
 
-	public static int getSWTColorConstantForWire(Wire wire)
-	{
-		if (wire != null && wire.length == 1)
-			return getSWTColorConstantForBit(wire.getValue());
-		else
-			return SWT.COLOR_BLACK;
-	}
+	// @formatter:off
+	public void addWireChangedListener   (Consumer<? super GUIWire> listener) {wireChangedListeners.add   (listener);}
 
-	public static int getSWTColorConstantForBit(Bit bit)
-	{
-		switch (bit)
-		{
-		case ONE:
-			return SWT.COLOR_GREEN;
-		case ZERO:
-			return SWT.COLOR_BLUE;
-		case Z:
-			return SWT.COLOR_BLACK;
-		case U:
-		case X:
-			return SWT.COLOR_RED;
-		default:
-			throw new IllegalArgumentException("Unknown enum constant: " + bit);
-		}
-	}
+	public void removeWireChangedListener(Consumer<? super GUIWire> listener) {wireChangedListeners.remove(listener);}
+
+	private void callWireChangedListeners() {wireChangedListeners.forEach(l -> l.accept(this));}
+	// @formatter:on
+
 }

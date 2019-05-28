@@ -86,11 +86,11 @@ public abstract class GUIComponent
 	public void removePinAddedListener        (Consumer<? super Pin         > listener) {pinAddedListeners        .remove(listener);}
 	public void removePinRemovedListener      (Consumer<? super Pin         > listener) {pinRemovedListeners      .remove(listener);}
 
-	private void callComponentChangedListeners(     ) {componentChangedListeners.forEach(l -> l.accept(this));}
-	private void callComponentMovedListeners  (     ) {componentMovedListeners  .forEach(l -> l.accept(this));}
-	private void callPinAddedListeners        (Pin p) {pinAddedListeners        .forEach(l -> l.accept(p   ));}
-	private void callPinRemovedListeners      (Pin p) {pinRemovedListeners      .forEach(l -> l.accept(p   ));}
-	// @formatter:on
+	protected void callComponentChangedListeners(     ) {componentChangedListeners.forEach(l -> l.accept(this));}
+	private   void callComponentMovedListeners  (     ) {componentMovedListeners  .forEach(l -> l.accept(this));}
+	private   void callPinAddedListeners        (Pin p) {pinAddedListeners        .forEach(l -> l.accept(p   ));}
+	private   void callPinRemovedListeners      (Pin p) {pinRemovedListeners      .forEach(l -> l.accept(p   ));}
+	// @form  atter:on
 
 	/**
 	 * Render this component to the given gc.
