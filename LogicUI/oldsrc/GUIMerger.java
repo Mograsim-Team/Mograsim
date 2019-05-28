@@ -5,45 +5,39 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import era.mi.logic.components.Mux;
-import era.mi.logic.timeline.Timeline;
+import era.mi.logic.components.Merger;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
-public class GUIMux extends Mux implements BasicGUIComponent
+public class GUIMerger extends Merger implements GUIComponent
 {
+	private final int inputCount;
 	private final double height;
 	private final List<ReadEnd> connectedWireEnds;
 	private final List<Point> WireEndConnectionPoints;
 
-	public GUIMux(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
+	public GUIMerger(ReadWriteEnd union, ReadEnd... inputs)
 	{
-		super(timeline, processTime, out, select, inputs);
-
-		double height = inputs.length * 5;
-		if (height < 10)
-			height = 10;
-		this.height = height;
+		super(union, inputs);
 
 		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
 		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
 
-		connectedWireEndsModifiable.add(out);
-		WireEndConnectionPointsModifiable.add(new Point(20, 10 + height / 2));
-
-		connectedWireEndsModifiable.add(select);
-		WireEndConnectionPointsModifiable.add(new Point(10, 5));
+		this.inputCount = inputs.length;
+		this.height = (inputCount - 1) * 10;
 
 		{
 			connectedWireEndsModifiable.addAll(Arrays.asList(inputs));
-			double inputHeightIncrement = (height + 20) / inputs.length;
-			double inputHeight = inputHeightIncrement / 2;
-			for (int i = 0; i < inputs.length; i++, inputHeight += inputHeightIncrement)
+			double inputHeight = 0;
+			for (int i = 0; i < inputCount; i++, inputHeight += 10)
 				WireEndConnectionPointsModifiable.add(new Point(0, inputHeight));
 		}
+
+		connectedWireEndsModifiable.add(union);
+		WireEndConnectionPointsModifiable.add(new Point(20, height / 2));
 
 		this.connectedWireEnds = Collections.unmodifiableList(connectedWireEndsModifiable);
 		this.WireEndConnectionPoints = Collections.unmodifiableList(WireEndConnectionPointsModifiable);
@@ -52,13 +46,17 @@ public class GUIMux extends Mux implements BasicGUIComponent
 	@Override
 	public Rectangle getBounds()
 	{
-		return new Rectangle(0, 0, 20, height + 20);
+		return new Rectangle(0, 0, 20, height);
 	}
 
 	@Override
 	public void render(GeneralGC gc)
 	{
-		gc.drawPolygon(new double[] { 0, 0, 20, 10, 20, height + 10, 0, height + 20 });
+		double inputHeight = 0;
+		for (int i = 0; i < inputCount; i++, inputHeight += 10)
+			gc.drawLine(0, inputHeight, 10, inputHeight);
+		gc.drawLine(10, 0, 10, height);
+		gc.drawLine(10, height / 2, 20, height / 2);
 	}
 
 	@Override

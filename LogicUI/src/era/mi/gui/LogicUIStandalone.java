@@ -7,7 +7,7 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import era.mi.logic.timeline.Timeline;
+import era.mi.gui.model.ViewModel;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasOverlay;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 
@@ -18,14 +18,15 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
  */
 public class LogicUIStandalone
 {
+	private ViewModel model;
+
 	private final Display display;
 	private final Shell shell;
 	private final LogicUICanvas ui;
-	private Timeline timeline;
 
-	public LogicUIStandalone(Timeline timeline)
+	public LogicUIStandalone(ViewModel model)
 	{
-		this.timeline = timeline;
+		this.model = model;
 		display = new Display();
 		shell = new Shell(display);
 		shell.setLayout(new FillLayout());
@@ -49,39 +50,39 @@ public class LogicUIStandalone
 	public void run()
 	{
 		AtomicBoolean running = new AtomicBoolean(true);
-		Thread simulationThread = new Thread(() ->
-		{
-			while (running.get())
-			{
-				// always execute to keep timeline from "hanging behind" for too long
-				timeline.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
-				long sleepTime;
-				if (timeline.hasNext())
-					sleepTime = timeline.nextEventTime() - System.currentTimeMillis();
-				else
-					sleepTime = 10;
-				try
-				{
-					if (sleepTime > 0)
-						Thread.sleep(sleepTime);
-				}
-				catch (InterruptedException e)
-				{
-				} // it is normal execution flow to be interrupted
-			}
-		});
-		simulationThread.start();
-		timeline.addEventAddedListener(event ->
-		{
-			if (event.getTiming() <= System.currentTimeMillis())
-				simulationThread.interrupt();
-		});
+//		Thread simulationThread = new Thread(() ->
+//		{
+//			while (running.get())
+//			{
+//				// always execute to keep timeline from "hanging behind" for too long
+//				model.timeline.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
+//				long sleepTime;
+//				if (model.timeline.hasNext())
+//					sleepTime = model.timeline.nextEventTime() - System.currentTimeMillis();
+//				else
+//					sleepTime = 10;
+//				try
+//				{
+//					if (sleepTime > 0)
+//						Thread.sleep(sleepTime);
+//				}
+//				catch (InterruptedException e)
+//				{
+//				} // it is normal execution flow to be interrupted
+//			}
+//		});
+//		simulationThread.start();
+//		model.timeline.addEventAddedListener(event ->
+//		{
+//			if (event.getTiming() <= System.currentTimeMillis())
+//				simulationThread.interrupt();
+//		});
 
 		shell.open();
 		while (!shell.isDisposed())
 			if (!display.readAndDispatch())
 				display.sleep();
 		running.set(false);
-		simulationThread.interrupt();
+//		simulationThread.interrupt();
 	}
 }
