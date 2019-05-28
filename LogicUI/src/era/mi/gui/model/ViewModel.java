@@ -37,7 +37,7 @@ public class ViewModel
 		if (components.contains(component))
 			throw new IllegalStateException("Don't add the same component twice!");
 		components.add(component);
-		componentAddedListeners.forEach(l -> l.accept(component));
+		callComponentAddedListeners(component);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class ViewModel
 		if (!components.contains(component))
 			throw new IllegalStateException("Don't remove the same component twice!");
 		components.remove(component);
-		componentRemovedListeners.forEach(l -> l.accept(component));
+		callComponentRemovedListeners(component);
 	}
 
 	// @formatter:off
@@ -62,5 +62,10 @@ public class ViewModel
 	public void removeComponentRemovedListener(Consumer<GUIComponent> listener){componentRemovedListeners.remove(listener);}
 	public void removeWireAddedListener       (Consumer<GUIWire     > listener){wireAddedListeners       .remove(listener);}
 	public void removeWireRemovedListener     (Consumer<GUIWire     > listener){wireRemovedListeners     .remove(listener);}
+
+	private void callComponentAddedListeners  (GUIComponent c) {componentAddedListeners  .forEach(l -> l.accept(c));}
+	private void callComponentRemovedListeners(GUIComponent c) {componentRemovedListeners.forEach(l -> l.accept(c));}
+	private void callWireAddedListeners       (GUIWire w     ) {wireAddedListeners       .forEach(l -> l.accept(w));}
+	private void callWireRemovedListeners     (GUIWire w     ) {wireRemovedListeners     .forEach(l -> l.accept(w));}
 	// @formatter:on
 }
