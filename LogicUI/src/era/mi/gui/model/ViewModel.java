@@ -15,10 +15,10 @@ public class ViewModel
 	private final List<GUIWire> wires;
 	private final List<GUIWire> wiresUnmodifiable;
 
-	private final List<Consumer<GUIComponent>> componentAddedListeners;
-	private final List<Consumer<GUIComponent>> componentRemovedListeners;
-	private final List<Consumer<GUIWire>> wireAddedListeners;
-	private final List<Consumer<GUIWire>> wireRemovedListeners;
+	private final List<Consumer<? super GUIComponent>> componentAddedListeners;
+	private final List<Consumer<? super GUIComponent>> componentRemovedListeners;
+	private final List<Consumer<? super GUIWire>> wireAddedListeners;
+	private final List<Consumer<? super GUIWire>> wireRemovedListeners;
 
 	public ViewModel()
 	{
@@ -92,15 +92,15 @@ public class ViewModel
 	}
 
 	// @formatter:off
-	public void addComponentAddedListener     (Consumer<GUIComponent> listener){componentAddedListeners  .add   (listener);}
-	public void addComponentRemovedListener   (Consumer<GUIComponent> listener){componentRemovedListeners.add   (listener);}
-	public void addWireAddedListener          (Consumer<GUIWire     > listener){wireAddedListeners       .add   (listener);}
-	public void addWireRemovedListener        (Consumer<GUIWire     > listener){wireRemovedListeners     .add   (listener);}
+	public void addComponentAddedListener     (Consumer<? super GUIComponent> listener){componentAddedListeners  .add   (listener);}
+	public void addComponentRemovedListener   (Consumer<? super GUIComponent> listener){componentRemovedListeners.add   (listener);}
+	public void addWireAddedListener          (Consumer<? super GUIWire     > listener){wireAddedListeners       .add   (listener);}
+	public void addWireRemovedListener        (Consumer<? super GUIWire     > listener){wireRemovedListeners     .add   (listener);}
 
-	public void removeComponentAddedListener  (Consumer<GUIComponent> listener){componentAddedListeners  .remove(listener);}
-	public void removeComponentRemovedListener(Consumer<GUIComponent> listener){componentRemovedListeners.remove(listener);}
-	public void removeWireAddedListener       (Consumer<GUIWire     > listener){wireAddedListeners       .remove(listener);}
-	public void removeWireRemovedListener     (Consumer<GUIWire     > listener){wireRemovedListeners     .remove(listener);}
+	public void removeComponentAddedListener  (Consumer<? super GUIComponent> listener){componentAddedListeners  .remove(listener);}
+	public void removeComponentRemovedListener(Consumer<? super GUIComponent> listener){componentRemovedListeners.remove(listener);}
+	public void removeWireAddedListener       (Consumer<? super GUIWire     > listener){wireAddedListeners       .remove(listener);}
+	public void removeWireRemovedListener     (Consumer<? super GUIWire     > listener){wireRemovedListeners     .remove(listener);}
 
 	private void callComponentAddedListeners  (GUIComponent c) {componentAddedListeners  .forEach(l -> l.accept(c));}
 	private void callComponentRemovedListeners(GUIComponent c) {componentRemovedListeners.forEach(l -> l.accept(c));}

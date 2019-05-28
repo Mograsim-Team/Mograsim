@@ -1,6 +1,5 @@
 package era.mi.gui.examples;
 
-import era.mi.gui.LogicUICanvas;
 import era.mi.gui.LogicUIStandalone;
 import era.mi.gui.model.ViewModel;
 import era.mi.gui.model.components.GUIAndGate;
@@ -17,11 +16,11 @@ public class Playground
 	{
 		ViewModel model = new ViewModel();
 		LogicUIStandalone ui = new LogicUIStandalone(model);
-		addComponentsAndWires(ui.getLogicUICanvas(), model);
+		addComponentsAndWires(model);
 		ui.run();
 	}
 
-	public static void addComponentsAndWires(LogicUICanvas ui, ViewModel model)
+	public static void addComponentsAndWires(ViewModel model)
 	{
 		GUIAndGate andGate = new GUIAndGate(model);
 		andGate.moveTo(10, 10);
