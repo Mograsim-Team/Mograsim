@@ -28,6 +28,9 @@ public class GUIWire
 			this.path[dstI + 1] = path[srcI].y;
 		}
 
+		this.pin1 = pin1;
+		this.pin2 = pin2;
+
 		pin1.addPinMovedListener(p -> pin1Moved());
 		pin2.addPinMovedListener(p -> pin2Moved());
 		pin1Moved();
