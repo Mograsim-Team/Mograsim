@@ -1,6 +1,7 @@
 package era.mi.gui.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -10,7 +11,9 @@ import era.mi.gui.model.wires.GUIWire;
 public class ViewModel
 {
 	private final List<GUIComponent> components;
+	private final List<GUIComponent> componentsUnmodifiable;
 	private final List<GUIWire> wires;
+	private final List<GUIWire> wiresUnmodifiable;
 
 	private final List<Consumer<GUIComponent>> componentAddedListeners;
 	private final List<Consumer<GUIComponent>> componentRemovedListeners;
@@ -20,7 +23,9 @@ public class ViewModel
 	public ViewModel()
 	{
 		components = new ArrayList<>();
+		componentsUnmodifiable = Collections.unmodifiableList(components);
 		wires = new ArrayList<>();
+		wiresUnmodifiable = Collections.unmodifiableList(wires);
 
 		componentAddedListeners = new ArrayList<>();
 		componentRemovedListeners = new ArrayList<>();
@@ -32,7 +37,7 @@ public class ViewModel
 	 * Adds the given component to the list of components and calls all componentAddedListeners. Don't call this method from application
 	 * code as it is automatically called in GUIComponent::new.
 	 */
-	public void addComponent(GUIComponent component)
+	public void componentCreated(GUIComponent component)
 	{
 		if (components.contains(component))
 			throw new IllegalStateException("Don't add the same component twice!");
@@ -44,12 +49,46 @@ public class ViewModel
 	 * Removes the given component from the list of components and calls all componentRemovedListeners. Don't call this method from
 	 * application code as it is automatically called in GUIComponent::destroy.
 	 */
-	public void removeComponent(GUIComponent component)
+	public void componentDestroyed(GUIComponent component)
 	{
 		if (!components.contains(component))
 			throw new IllegalStateException("Don't remove the same component twice!");
 		components.remove(component);
 		callComponentRemovedListeners(component);
+	}
+
+	/**
+	 * Adds the given component to the list of components and calls all componentAddedListeners. Don't call this method from application
+	 * code as it is automatically called in GUIComponent::new.
+	 */
+	public void wireCreated(GUIWire wire)
+	{
+		if (wires.contains(wire))
+			throw new IllegalStateException("Don't add the same wire twice!");
+		wires.add(wire);
+		callWireAddedListeners(wire);
+	}
+
+	/**
+	 * Removes the given component from the list of components and calls all componentRemovedListeners. Don't call this method from
+	 * application code as it is automatically called in GUIComponent::destroy.
+	 */
+	public void wireDestroyed(GUIWire wire)
+	{
+		if (!wires.contains(wire))
+			throw new IllegalStateException("Don't remove the same wire twice!");
+		wires.remove(wire);
+		callWireRemovedListeners(wire);
+	}
+
+	public List<GUIComponent> getComponents()
+	{
+		return componentsUnmodifiable;
+	}
+
+	public List<GUIWire> getWires()
+	{
+		return wiresUnmodifiable;
 	}
 
 	// @formatter:off

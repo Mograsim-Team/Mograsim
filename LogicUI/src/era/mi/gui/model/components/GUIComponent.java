@@ -33,6 +33,8 @@ public abstract class GUIComponent
 		this.componentMovedListeners = new ArrayList<>();
 		this.pinAddedListeners = new ArrayList<>();
 		this.pinRemovedListeners = new ArrayList<>();
+
+		model.componentCreated(this);
 	}
 
 	public void moveTo(double x, double y)
@@ -50,9 +52,9 @@ public abstract class GUIComponent
 		return new Rectangle(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
-	// TODO
 	/**
-	 * Called when this component is clicked. Relative coordinates of the click are given. Returns true if this component has to be redrawn.
+	 * Called when this component is clicked. Absolute coordinates of the click are given. Returns true if this component consumed this
+	 * click.
 	 */
 	public boolean clicked(double x, double y)
 	{
