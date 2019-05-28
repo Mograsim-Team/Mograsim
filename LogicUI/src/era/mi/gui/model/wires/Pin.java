@@ -11,6 +11,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 public class Pin
 {
 	public final GUIComponent component;
+
 	protected double relX;
 	protected double relY;
 

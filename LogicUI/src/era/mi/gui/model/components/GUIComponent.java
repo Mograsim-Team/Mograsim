@@ -37,6 +37,12 @@ public abstract class GUIComponent
 		model.componentCreated(this);
 	}
 
+	public void destroy()
+	{
+		pins.forEach(p -> pinRemovedListeners.forEach(l -> l.accept(p)));
+		model.componentDestroyed(this);
+	}
+
 	public void moveTo(double x, double y)
 	{
 		bounds.x = x;
