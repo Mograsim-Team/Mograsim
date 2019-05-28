@@ -3,6 +3,7 @@ package era.mi.gui.model.components;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 import era.mi.gui.model.ViewModel;
 import era.mi.gui.model.wires.Pin;
@@ -16,18 +17,29 @@ public abstract class GUIComponent
 	private final List<Pin> pins;
 	protected final List<Pin> pinsUnmodifiable;
 
+	private final List<Consumer<GUIComponent>> componentChangedListeners;
+	private final List<Consumer<GUIComponent>> componentMovedListeners;
+	private final List<Consumer<Pin>> pinAddedListeners;
+	private final List<Consumer<Pin>> pinRemovedListeners;
+
 	public GUIComponent(ViewModel model)
 	{
 		this.model = model;
 		this.bounds = new Rectangle(0, 0, 0, 0);
 		this.pins = new ArrayList<>();
 		this.pinsUnmodifiable = Collections.unmodifiableList(pins);
+
+		this.componentChangedListeners = new ArrayList<>();
+		this.componentMovedListeners = new ArrayList<>();
+		this.pinAddedListeners = new ArrayList<>();
+		this.pinRemovedListeners = new ArrayList<>();
 	}
 
 	public void moveTo(double x, double y)
 	{
 		bounds.x = x;
 		bounds.y = y;
+		callComponentMovedListeners();
 	}
 
 	/**
@@ -55,6 +67,23 @@ public abstract class GUIComponent
 		return pinsUnmodifiable;
 	}
 
+	// @formatter:off
+	public void addComponentChangedListener   (Consumer<GUIComponent> listener) {componentChangedListeners.add   (listener);}
+	public void addComponentMovedListener     (Consumer<GUIComponent> listener) {componentMovedListeners  .add   (listener);}
+	public void addPinAddedListener           (Consumer<Pin         > listener) {pinAddedListeners        .add   (listener);}
+	public void addPinRemovedListener         (Consumer<Pin         > listener) {pinRemovedListeners      .add   (listener);}
+
+	public void removeComponentChangedListener(Consumer<GUIComponent> listener) {componentChangedListeners.remove(listener);}
+	public void removeComponentMovedListener  (Consumer<GUIComponent> listener) {componentMovedListeners  .remove(listener);}
+	public void removePinAddedListener        (Consumer<Pin         > listener) {pinAddedListeners        .remove(listener);}
+	public void removePinRemovedListener      (Consumer<Pin         > listener) {pinRemovedListeners      .remove(listener);}
+
+	private void callComponentChangedListeners(     ) {componentChangedListeners.forEach(l -> l.accept(this));}
+	private void callComponentMovedListeners  (     ) {componentMovedListeners  .forEach(l -> l.accept(this));}
+	private void callPinAddedListeners        (Pin p) {pinAddedListeners        .forEach(l -> l.accept(p   ));}
+	private void callPinRemovedListeners      (Pin p) {pinRemovedListeners      .forEach(l -> l.accept(p   ));}
+	// @formatter:on
+
 	/**
 	 * Render this component to the given gc.
 	 */
@@ -64,15 +93,18 @@ public abstract class GUIComponent
 	{
 		bounds.width = width;
 		bounds.height = height;
+		callComponentChangedListeners();
 	}
 
 	protected void addPin(Pin pin)
-	{// TODO notify pins they are "created"
+	{
 		pins.add(pin);
+		callPinAddedListeners(pin);
 	}
 
 	protected void removePin(Pin pin)
-	{// TODO notify pins they are "destroyed"
+	{
 		pins.remove(pin);
+		callPinRemovedListeners(pin);
 	}
 }
