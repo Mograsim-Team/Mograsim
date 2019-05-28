@@ -11,6 +11,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 
 public class GUIWire
 {
+	private final ViewModel model;
 	private Pin pin1;
 	private Pin pin2;
 	private double[] path;
@@ -19,6 +20,7 @@ public class GUIWire
 
 	public GUIWire(ViewModel model, Pin pin1, Pin pin2, Point... path)
 	{
+		this.model = model;
 		this.path = new double[path.length * 2 + 4];
 		for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
 		{
@@ -35,6 +37,11 @@ public class GUIWire
 		this.path[this.path.length - 1] = pos.y;
 
 		model.wireCreated(this);
+	}
+
+	public void destroy()
+	{
+		model.wireDestroyed(this);
 	}
 
 	public void render(GeneralGC gc)

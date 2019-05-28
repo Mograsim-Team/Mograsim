@@ -29,6 +29,8 @@ public class LogicUICanvas extends ZoomableCanvas
 
 		model.addComponentAddedListener(c -> redrawThreadsafe());
 		model.addWireAddedListener(c -> redrawThreadsafe());
+		model.addComponentRemovedListener(c -> redrawThreadsafe());
+		model.addWireRemovedListener(c -> redrawThreadsafe());
 
 		addZoomedRenderer(gc ->
 		{
