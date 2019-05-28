@@ -15,7 +15,7 @@ public class Pin
 	protected double relX;
 	protected double relY;
 
-	private final List<Consumer<Pin>> pinMovedListeners;
+	private final List<Consumer<? super Pin>> pinMovedListeners;
 
 	public Pin(GUIComponent component, double relX, double relY)
 	{
@@ -50,9 +50,9 @@ public class Pin
 	}
 
 	// @formatter:off
-	public void addPinMovedListener   (Consumer<Pin> listener){pinMovedListeners.add   (listener);}
+	public void addPinMovedListener   (Consumer<? super Pin> listener){pinMovedListeners.add   (listener);}
 
-	public void removePinMovedListener(Consumer<Pin> listener){pinMovedListeners.remove(listener);}
+	public void removePinMovedListener(Consumer<? super Pin> listener){pinMovedListeners.remove(listener);}
 
 	private void callPinMovedListeners() {pinMovedListeners.forEach(l -> l.accept(this));}
 	// @formatter:on

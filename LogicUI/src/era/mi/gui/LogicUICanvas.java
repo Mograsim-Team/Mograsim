@@ -1,5 +1,7 @@
 package era.mi.gui;
 
+import java.util.function.Consumer;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
@@ -27,9 +29,34 @@ public class LogicUICanvas extends ZoomableCanvas
 
 		this.model = model;
 
-		model.addComponentAddedListener(c -> redrawThreadsafe());
+		Consumer<Object> redrawConsumer = o -> redrawThreadsafe();
+		Consumer<Pin> pinAddedListener = p ->
+		{
+			p.addPinMovedListener(redrawConsumer);
+			redrawThreadsafe();
+		};
+		Consumer<Pin> pinRemovedListener = p ->
+		{
+			p.removePinMovedListener(redrawConsumer);
+			redrawThreadsafe();
+		};
+		model.addComponentAddedListener(c ->
+		{
+			c.addComponentChangedListener(redrawConsumer);
+			c.addComponentMovedListener(redrawConsumer);
+			c.addPinAddedListener(pinAddedListener);
+			c.addPinRemovedListener(pinRemovedListener);
+			redrawThreadsafe();
+		});
+		model.addComponentRemovedListener(c ->
+		{
+			c.removeComponentChangedListener(redrawConsumer);
+			c.removeComponentMovedListener(redrawConsumer);
+			c.removePinAddedListener(pinAddedListener);
+			c.removePinRemovedListener(pinRemovedListener);
+			redrawThreadsafe();
+		});
 		model.addWireAddedListener(c -> redrawThreadsafe());
-		model.addComponentRemovedListener(c -> redrawThreadsafe());
 		model.addWireRemovedListener(c -> redrawThreadsafe());
 
 		addZoomedRenderer(gc ->
