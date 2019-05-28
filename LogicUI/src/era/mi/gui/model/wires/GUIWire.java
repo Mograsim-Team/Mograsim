@@ -3,6 +3,7 @@ package era.mi.gui.model.wires;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
+import era.mi.gui.model.ViewModel;
 import era.mi.logic.types.Bit;
 import era.mi.logic.wires.Wire;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -16,7 +17,7 @@ public class GUIWire
 
 	private Wire wire;
 
-	public GUIWire(Runnable redraw, Pin pin1, Pin pin2, Point... path)
+	public GUIWire(ViewModel model, Pin pin1, Pin pin2, Point... path)
 	{
 		this.path = new double[path.length * 2 + 4];
 		for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
@@ -32,6 +33,8 @@ public class GUIWire
 		pos = pin2.getPos();
 		this.path[this.path.length - 2] = pos.x;
 		this.path[this.path.length - 1] = pos.y;
+
+		model.wireCreated(this);
 	}
 
 	public void render(GeneralGC gc)

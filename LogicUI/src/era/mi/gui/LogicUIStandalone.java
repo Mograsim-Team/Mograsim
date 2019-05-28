@@ -30,7 +30,7 @@ public class LogicUIStandalone
 		display = new Display();
 		shell = new Shell(display);
 		shell.setLayout(new FillLayout());
-		ui = new LogicUICanvas(shell, SWT.NONE);
+		ui = new LogicUICanvas(shell, SWT.NONE, model);
 
 		ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(ui);
 		userInput.buttonDrag = 3;

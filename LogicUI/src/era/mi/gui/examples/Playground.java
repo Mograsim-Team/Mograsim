@@ -5,6 +5,7 @@ import era.mi.gui.LogicUIStandalone;
 import era.mi.gui.model.ViewModel;
 import era.mi.gui.model.components.GUIAndGate;
 import era.mi.gui.model.components.GUINotGate;
+import era.mi.gui.model.wires.GUIWire;
 
 public class Playground
 {
@@ -22,11 +23,11 @@ public class Playground
 
 	public static void addComponentsAndWires(LogicUICanvas ui, ViewModel model)
 	{
-		GUIAndGate andGate = ui.addComponent(new GUIAndGate(model));
+		GUIAndGate andGate = new GUIAndGate(model);
 		andGate.moveTo(10, 10);
-		GUINotGate notGate = ui.addComponent(new GUINotGate(model));
+		GUINotGate notGate = new GUINotGate(model);
 		notGate.moveTo(10, 40);
 
-		ui.addWire(andGate.getPins().get(0), notGate.getPins().get(1));
+		new GUIWire(model, andGate.getPins().get(0), notGate.getPins().get(1));
 	}
 }
