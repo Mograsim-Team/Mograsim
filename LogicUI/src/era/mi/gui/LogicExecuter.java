@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import era.mi.logic.timeline.Timeline;
 
+//TODO maybe move to logic core?
 public class LogicExecuter
 {
 	// TODO replace with LogicModel when it exists
@@ -26,6 +27,10 @@ public class LogicExecuter
 		simulationThread = new Thread(() ->
 		{
 			isRunningLive.set(true);
+			synchronized (isRunningLive)
+			{
+				isRunningLive.notify();
+			}
 			while (shouldBeRunningLive.get())
 			{
 				// always execute to keep timeline from "hanging behind" for too long
@@ -42,11 +47,15 @@ public class LogicExecuter
 					if (sleepTime > 0)
 						Thread.sleep(sleepTime);
 				}
-				catch (InterruptedException e)
+				catch (@SuppressWarnings("unused") InterruptedException e)
 				{// do nothing; it is normal execution flow to be interrupted
 				}
 			}
 			isRunningLive.set(false);
+			synchronized (isRunningLive)
+			{
+				isRunningLive.notify();
+			}
 		});
 		timeline.addEventAddedListener(event ->
 		{
@@ -67,8 +76,7 @@ public class LogicExecuter
 			return;
 		shouldBeRunningLive.set(true);
 		simulationThread.start();
-		while (!isRunningLive.get())
-			;
+		waitForIsRunning(true);
 	}
 
 	public synchronized void stopLiveExecution()
@@ -77,7 +85,21 @@ public class LogicExecuter
 			return;
 		shouldBeRunningLive.set(false);
 		simulationThread.interrupt();
-		while (isRunningLive.get())
-			;
+		waitForIsRunning(false);
+	}
+
+	private void waitForIsRunning(boolean expectedState)
+	{
+		while (isRunningLive.get() ^ expectedState)
+			try
+			{
+				synchronized (isRunningLive)
+				{
+					isRunningLive.wait();
+				}
+			}
+			catch (@SuppressWarnings("unused") InterruptedException e)
+			{// no need to do anything
+			}
 	}
 }
