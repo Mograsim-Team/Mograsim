@@ -84,7 +84,7 @@ public class LogicUICanvas extends ZoomableCanvas
 	private void drawComponent(GeneralGC gc, GUIComponent component, Rectangle visibleRegion)
 	{
 		component.render(gc, visibleRegion);
-		gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_CYAN));
+		gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_DARK_CYAN));
 		for (Pin p : component.getPins())
 		{
 			Point pos = p.getPos();
