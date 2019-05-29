@@ -16,6 +16,7 @@ public class RSLatchExample
 		SimpleLogicUIStandalone.executeVisualisation(RSLatchExample::createRSLatchExample);
 	}
 
+	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createRSLatchExample(ViewModel model)
 	{
 		GUIManualSwitch rIn = new GUIManualSwitch(model);
