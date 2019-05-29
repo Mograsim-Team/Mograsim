@@ -19,6 +19,7 @@ public class RSLatchGUIExample
 	public static void main(String[] args)
 	{
 		Timeline t = new Timeline(11);
+		t.setTimeFunction(() -> System.currentTimeMillis()); // real time simulation
 		LogicUIStandalone ui = new LogicUIStandalone(t);
 		addComponentsAndWires(ui.getLogicUICanvas(), t);
 		ui.run();
