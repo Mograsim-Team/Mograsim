@@ -11,15 +11,17 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 public class Pin
 {
 	public final GUIComponent component;
+	public final int logicWidth;
 
 	protected double relX;
 	protected double relY;
 
 	private final List<Consumer<? super Pin>> pinMovedListeners;
 
-	public Pin(GUIComponent component, double relX, double relY)
+	public Pin(GUIComponent component, int logicWidth, double relX, double relY)
 	{
 		this.component = component;
+		this.logicWidth = logicWidth;
 		this.relX = relX;
 		this.relY = relY;
 

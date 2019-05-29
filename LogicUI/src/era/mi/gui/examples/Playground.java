@@ -25,9 +25,9 @@ public class Playground
 
 	public static void addComponentsAndWires(LogicUIStandalone ui, ViewModel model)
 	{
-		GUIAndGate andGate = new GUIAndGate(model);
+		GUIAndGate andGate = new GUIAndGate(model, 1);
 		andGate.moveTo(10, 10);
-		GUINotGate notGate = new GUINotGate(model);
+		GUINotGate notGate = new GUINotGate(model, 1);
 		notGate.moveTo(10, 40);
 
 		new GUIWire(model, andGate.getPins().get(0), notGate.getPins().get(1), new Point(20, 50));

@@ -2,11 +2,11 @@ package era.mi.gui.model.components;
 
 import era.mi.gui.model.ViewModel;
 
-public class GUINotGate extends RectangularShapedGUIGate
+public class GUINotGate extends SimpleRectangularGUIGate
 {
-	public GUINotGate(ViewModel model)
+	public GUINotGate(ViewModel model, int logicWidth)
 	{
-		super(model, "1", true);
+		super(model, logicWidth, "1", true);
 		setInputCount(1);
 	}
 }

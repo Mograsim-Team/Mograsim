@@ -11,7 +11,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
-public class RectangularShapedGUIGate extends GUIComponent
+public class SimpleRectangularGUIGate extends GUIComponent
 {
 	private static final double width = 20;
 	private static final double pinDistance = 10;
@@ -19,19 +19,21 @@ public class RectangularShapedGUIGate extends GUIComponent
 	private static final double invertedCircleDiam = 3.5;
 
 	private final String label;
+	protected final int logicWidth;
 	private final boolean isInverted;
 	private final double rectWidth;
 
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
 
-	protected RectangularShapedGUIGate(ViewModel model, String label, boolean isInverted)
+	protected SimpleRectangularGUIGate(ViewModel model, int logicWidth, String label, boolean isInverted)
 	{
 		super(model);
 		this.label = label;
+		this.logicWidth = logicWidth;
 		this.isInverted = isInverted;
 		this.rectWidth = width - (isInverted ? invertedCircleDiam : 0);
-		this.outputPin = new MovablePin(this, width, 0);
+		this.outputPin = new MovablePin(this, logicWidth, width, 0);
 		addPin(outputPin);
 		this.inputPins = new ArrayList<>();
 		setInputCount(1);
@@ -47,7 +49,7 @@ public class RectangularShapedGUIGate extends GUIComponent
 		else if (oldInputCount < inputCount)
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
-				Pin pin = new Pin(this, 0, pinDistance / 2 + i * pinDistance);
+				Pin pin = new Pin(this, logicWidth, 0, pinDistance / 2 + i * pinDistance);
 				inputPins.add(pin);
 				addPin(pin);
 			}
