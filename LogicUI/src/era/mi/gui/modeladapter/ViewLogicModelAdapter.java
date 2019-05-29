@@ -20,6 +20,7 @@ import era.mi.gui.model.wires.GUIWire;
 import era.mi.gui.model.wires.Pin;
 import era.mi.gui.model.wires.WireCrossPoint;
 import era.mi.gui.modeladapter.componentadapters.ComponentAdapter;
+import era.mi.gui.modeladapter.componentadapters.ManualSwitchAdapter;
 import era.mi.gui.modeladapter.componentadapters.SimpleGateAdapter;
 import era.mi.logic.components.Component;
 import era.mi.logic.components.gates.AndGate;
@@ -34,12 +35,14 @@ public class ViewLogicModelAdapter
 	private final static Map<Class<? extends GUIComponent>, ComponentAdapter<? extends GUIComponent>> componentAdapters;
 	static
 	{
-		Map<Class<? extends GUIComponent>, ComponentAdapter<? extends GUIComponent>> componentAdaptersModifiable = new HashMap<>();
-		componentAdaptersModifiable.put(GUIOrGate.class, new SimpleGateAdapter(OrGate::new));
-		componentAdaptersModifiable.put(GUIAndGate.class, new SimpleGateAdapter(AndGate::new));
-		componentAdaptersModifiable.put(GUINotGate.class, new SimpleGateAdapter((t, p, o, i) -> new NotGate(t, p, i[0], o)));
+		Set<ComponentAdapter<? extends GUIComponent>> componentAdaptersModifiable = new HashSet<>();
+		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUIOrGate.class, OrGate::new));
+		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUIAndGate.class, AndGate::new));
+		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUINotGate.class, (t, p, o, i) -> new NotGate(t, p, i[0], o)));
+		componentAdaptersModifiable.add(new ManualSwitchAdapter());
 		// TODO list all "primitive" adapters here
-		componentAdapters = Collections.unmodifiableMap(componentAdaptersModifiable);
+		componentAdapters = Collections.unmodifiableMap(
+				componentAdaptersModifiable.stream().collect(Collectors.toMap(ComponentAdapter::getSupportedClass, Function.identity())));
 	}
 
 	public static Timeline convert(ViewModel viewModel, LogicModelParameters params)
@@ -55,10 +58,14 @@ public class ViewLogicModelAdapter
 		Map<GUIComponent, Component> oneToOneComponents = new HashMap<>();
 		for (GUIComponent guiComp : viewModel.getComponents())
 		{
-			// WireCrossPoints just vanish
 			if (!(guiComp instanceof WireCrossPoint))
 				oneToOneComponents.put(guiComp, createAndLinkComponent(timeline, params, guiComp, logicWiresPerPinUnmodifiable,
 						componentAdapters.get(guiComp.getClass())));
+			else
+			{
+				WireCrossPoint guiCompCasted = (WireCrossPoint) guiComp;
+				guiCompCasted.setLogicModelBinding(logicWiresPerPin.get(guiCompCasted.getPin()).createReadOnlyEnd());
+			}
 		}
 
 		// TODO handle complex components

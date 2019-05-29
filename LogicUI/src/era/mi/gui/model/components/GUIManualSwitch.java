@@ -16,6 +16,8 @@ public class GUIManualSwitch extends GUIComponent
 	private static final double height = 15;
 	private static final double fontHeight = 5;
 
+	private final Pin outputPin;
+
 	private ManualSwitch logicSwitch;
 	private ReadEnd end;
 
@@ -23,19 +25,22 @@ public class GUIManualSwitch extends GUIComponent
 	{
 		super(model);
 		setSize(width, height);
-		addPin(new Pin(this, 1, width, height / 2));
+		addPin(this.outputPin = new Pin(this, 1, width, height / 2));
 	}
 
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		gc.drawRectangle(0, 0, width, height);
+		double posX = getBounds().x;
+		double posY = getBounds().y;
+
+		gc.drawRectangle(posX, posY, width, height);
 		String label = BitVectorFormatter.formatValueAsString(end);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
-		gc.drawText(label, (width - textExtent.x) / 2, (height - textExtent.y) / 2, true);
+		gc.drawText(label, posX + (width - textExtent.x) / 2, posY + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
 	}
 
@@ -52,5 +57,10 @@ public class GUIManualSwitch extends GUIComponent
 	{
 		logicSwitch.toggle();
 		return true;
+	}
+
+	public Pin getOutputPin()
+	{
+		return outputPin;
 	}
 }

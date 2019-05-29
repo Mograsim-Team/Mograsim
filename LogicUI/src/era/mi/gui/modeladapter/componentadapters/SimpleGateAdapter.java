@@ -12,18 +12,25 @@ import era.mi.logic.wires.Wire;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 
-public class SimpleGateAdapter implements ComponentAdapter<SimpleRectangularGUIGate>
+public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements ComponentAdapter<G>
 {
+	private final Class<G> supportedClass;
 	private final ComponentConstructor constructor;
 
-	public SimpleGateAdapter(ComponentConstructor constructor)
+	public SimpleGateAdapter(Class<G> supportedClass, ComponentConstructor constructor)
 	{
+		this.supportedClass = supportedClass;
 		this.constructor = constructor;
 	}
 
 	@Override
-	public Component createAndLinkComponent(Timeline timeline, LogicModelParameters params, SimpleRectangularGUIGate guiComponent,
-			Map<Pin, Wire> logicWiresPerPin)
+	public Class<G> getSupportedClass()
+	{
+		return supportedClass;
+	}
+
+	@Override
+	public Component createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent, Map<Pin, Wire> logicWiresPerPin)
 	{
 		ReadWriteEnd out = logicWiresPerPin.get(guiComponent.getOutputPin()).createReadWriteEnd();
 		List<Pin> inputPins = guiComponent.getInputPins();
@@ -37,4 +44,5 @@ public class SimpleGateAdapter implements ComponentAdapter<SimpleRectangularGUIG
 	{
 		public Component newComponent(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd[] ins);
 	}
+
 }
