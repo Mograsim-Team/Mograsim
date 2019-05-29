@@ -58,10 +58,14 @@ public class ViewLogicModelAdapter
 		Map<GUIComponent, Component> oneToOneComponents = new HashMap<>();
 		for (GUIComponent guiComp : viewModel.getComponents())
 		{
-			// WireCrossPoints just vanish
 			if (!(guiComp instanceof WireCrossPoint))
 				oneToOneComponents.put(guiComp, createAndLinkComponent(timeline, params, guiComp, logicWiresPerPinUnmodifiable,
 						componentAdapters.get(guiComp.getClass())));
+			else
+			{
+				WireCrossPoint guiCompCasted = (WireCrossPoint) guiComp;
+				guiCompCasted.setLogicModelBinding(logicWiresPerPin.get(guiCompCasted.getPin()).createReadOnlyEnd());
+			}
 		}
 
 		// TODO handle complex components
