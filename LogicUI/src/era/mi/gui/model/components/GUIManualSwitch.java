@@ -31,13 +31,16 @@ public class GUIManualSwitch extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		gc.drawRectangle(0, 0, width, height);
+		double posX = getBounds().x;
+		double posY = getBounds().y;
+
+		gc.drawRectangle(posX, posY, width, height);
 		String label = BitVectorFormatter.formatValueAsString(end);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
-		gc.drawText(label, (width - textExtent.x) / 2, (height - textExtent.y) / 2, true);
+		gc.drawText(label, posX + (width - textExtent.x) / 2, posY + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
 	}
 
