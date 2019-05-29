@@ -1,8 +1,7 @@
 package era.mi.gui.examples;
 
-import era.mi.gui.LogicUIStandalone;
+import era.mi.gui.SimpleLogicUIStandalone;
 import era.mi.gui.model.ViewModel;
-import era.mi.gui.model.components.GUIAndGate;
 import era.mi.gui.model.components.GUIManualSwitch;
 import era.mi.gui.model.components.GUINotGate;
 import era.mi.gui.model.components.GUIOrGate;
@@ -10,14 +9,11 @@ import era.mi.gui.model.wires.GUIWire;
 import era.mi.gui.model.wires.WireCrossPoint;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 
-public class Playground
+public class RSLatchExample
 {
 	public static void main(String[] args)
 	{
-		ViewModel model = new ViewModel();
-		createRSLatchExample(model);
-		LogicUIStandalone ui = new LogicUIStandalone(model);
-		ui.run();
+		SimpleLogicUIStandalone.executeVisualisation(RSLatchExample::createRSLatchExample);
 	}
 
 	private static void createRSLatchExample(ViewModel model)
@@ -60,28 +56,5 @@ public class Playground
 		WireCrossPoint o2 = new WireCrossPoint(model, 1);
 		o2.moveTo(270, 202.5);
 		new GUIWire(model, p2.getPin(), o2.getPin());
-	}
-
-	@SuppressWarnings("unused")
-	private static void createBasicExample(ViewModel model)
-	{
-		GUIAndGate andGate = new GUIAndGate(model, 1);
-		andGate.moveTo(10, 10);
-		GUINotGate notGate = new GUINotGate(model, 1);
-		notGate.moveTo(10, 40);
-
-		WireCrossPoint wcp1 = new WireCrossPoint(model, 1);
-		wcp1.moveTo(150, 10);
-
-		new GUIWire(model, andGate.getOutputPin(), notGate.getInputPins().get(0), new Point(60, 50));
-		new GUIWire(model, notGate.getOutputPin(), wcp1.getPin());
-
-		GUIManualSwitch sw1 = new GUIManualSwitch(model);
-		sw1.moveTo(-20, 0);
-		GUIManualSwitch sw2 = new GUIManualSwitch(model);
-		sw2.moveTo(-20, 50);
-
-		new GUIWire(model, sw1.getOutputPin(), andGate.getInputPins().get(0));
-		new GUIWire(model, sw2.getOutputPin(), andGate.getInputPins().get(1));
 	}
 }

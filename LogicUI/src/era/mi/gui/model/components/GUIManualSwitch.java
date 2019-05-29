@@ -55,7 +55,8 @@ public class GUIManualSwitch extends GUIComponent
 	@Override
 	public boolean clicked(double x, double y)
 	{
-		logicSwitch.toggle();
+		if (logicSwitch != null)
+			logicSwitch.toggle();
 		return true;
 	}
 
