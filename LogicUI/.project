@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>LogicUI</name>
+	<name>mograsim.logic.ui</name>
 	<comment></comment>
 	<projects>
-		<project>era.mi</project>
+		<project>mograsim.logic.core</project>
 		<project>SWTZoomableCanvas</project>
 	</projects>
 	<buildSpec>

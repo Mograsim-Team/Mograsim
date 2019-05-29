@@ -11,7 +11,7 @@
             name="Simulator WIP">
          <property
                name="applicationCSS"
-               value="platform:/plugin/SampleERCP/css/default.css">
+               value="platform:/plugin/mograsim.rcp/css/default.css">
          </property>
          <property
                name="appName"
@@ -30,24 +30,16 @@
    <extension
          point="org.eclipse.ui.splashHandlers">
       <splashHandler
-            class="sampleercp.splashHandlers.ExtensibleSplashHandler"
-            id="sampleercp.splashHandlers.extensible">
+            class="mograsim.rcp.splashhandlers.ExtensibleSplashHandler"
+            id="mograsim.rcp.splashHandlers.extensible">
       </splashHandler>
       <splashHandlerProductBinding
-            productId="SampleERCP.product"
-            splashId="sampleercp.splashHandlers.extensible">
-      </splashHandlerProductBinding>
-      <splashHandler
-            class="sampleercp.splashhandlers.ExtensibleSplashHandler"
-            id="sampleercp.splashHandlers.extensible">
-      </splashHandler>
-      <splashHandlerProductBinding
-            productId="SampleERCP.product"
-            splashId="sampleercp.splashHandlers.extensible">
+            productId="mograsim.rcp.product"
+            splashId="mograsim.rcp.splashHandlers.extensible">
       </splashHandlerProductBinding>
    </extension>
    <extension
-         point="SampleERCP.splashExtension">
+         point="mograsim.rcp.splashExtension">
       <splashExtension
             icon="icons/af.png"
             id="af"
