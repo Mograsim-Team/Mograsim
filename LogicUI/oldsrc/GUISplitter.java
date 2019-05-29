@@ -5,27 +5,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import era.mi.gui.ViewModel;
 import era.mi.logic.components.Splitter;
-import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire.ReadEnd;
 import era.mi.logic.wires.Wire.ReadWriteEnd;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
-public class GUISplitter extends Splitter implements BasicGUIComponent
+public class GUISplitter extends GUIComponent
 {
-	private final int outputCount;
-	private final double height;
-	private final List<ReadEnd> connectedWireEnds;
-	private final List<Point> WireEndConnectionPoints;
-
-	public GUISplitter(Timeline timeline, ReadEnd input, ReadWriteEnd... outputs)
+	public GUISplitter(ViewModel model)
 	{
-		super(timeline, input, outputs);
-
-		List<ReadEnd> connectedWireEndsModifiable = new ArrayList<>();
-		List<Point> WireEndConnectionPointsModifiable = new ArrayList<>();
+		super(model);
 
 		this.outputCount = outputs.length;
 		this.height = (outputCount - 1) * 10;

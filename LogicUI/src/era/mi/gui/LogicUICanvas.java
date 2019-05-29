@@ -1,19 +1,17 @@
 package era.mi.gui;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.function.Consumer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 
-import era.mi.gui.components.BasicGUIComponent;
-import era.mi.gui.wires.GUIWire;
+import era.mi.gui.model.ViewModel;
+import era.mi.gui.model.components.GUIComponent;
+import era.mi.gui.model.wires.Pin;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.gcs.TranslatedGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
 
 /**
@@ -23,53 +21,70 @@ import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
  */
 public class LogicUICanvas extends ZoomableCanvas
 {
-	private final Set<BasicGUIComponent> components;
-	private final Map<BasicGUIComponent, Point> componentPositions;
-	private final Set<GUIWire> wires;
+	private final ViewModel model;
 
-	public LogicUICanvas(Composite parent, int style)
+	public LogicUICanvas(Composite parent, int style, ViewModel model)
 	{
 		super(parent, style);
 
-		components = new HashSet<>();
-		componentPositions = new HashMap<>();
-		wires = new HashSet<>();
+		this.model = model;
 
-		addZoomedRenderer(gc -> components.forEach(c -> drawComponent(gc, c)));
-		addZoomedRenderer(gc -> wires.forEach(w -> w.render(gc)));
+		Consumer<Object> redrawConsumer = o -> redrawThreadsafe();
+		Consumer<Pin> pinAddedListener = p ->
+		{
+			p.addPinMovedListener(redrawConsumer);
+			redrawThreadsafe();
+		};
+		Consumer<Pin> pinRemovedListener = p ->
+		{
+			p.removePinMovedListener(redrawConsumer);
+			redrawThreadsafe();
+		};
+		model.addComponentAddedListener(c ->
+		{
+			c.addComponentChangedListener(redrawConsumer);
+			c.addComponentMovedListener(redrawConsumer);
+			c.addPinAddedListener(pinAddedListener);
+			c.addPinRemovedListener(pinRemovedListener);
+			redrawThreadsafe();
+		});
+		model.addComponentRemovedListener(c ->
+		{
+			c.removeComponentChangedListener(redrawConsumer);
+			c.removeComponentMovedListener(redrawConsumer);
+			c.removePinAddedListener(pinAddedListener);
+			c.removePinRemovedListener(pinRemovedListener);
+			redrawThreadsafe();
+		});
+		model.addWireAddedListener(w ->
+		{
+			w.addWireChangedListener(redrawConsumer);
+			redrawThreadsafe();
+		});
+		model.addWireRemovedListener(w ->
+		{
+			w.removeWireChangedListener(redrawConsumer);
+			redrawThreadsafe();
+		});
+
+		addZoomedRenderer(gc ->
+		{
+			Rectangle visibleRegion = new Rectangle(offX, offY, gW / zoom, gH / zoom);
+			model.getComponents().forEach(c -> drawComponent(gc, c, visibleRegion));
+		});
+		addZoomedRenderer(gc -> model.getWires().forEach(w -> w.render(gc)));
 		addListener(SWT.MouseDown, this::mouseDown);
 	}
 
-	/**
-	 * Add a component to be drawn. Returns the given component for convenience.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	public <C extends BasicGUIComponent> C addComponent(C component, double x, double y)
+	private void drawComponent(GeneralGC gc, GUIComponent component, Rectangle visibleRegion)
 	{
-		components.add(component);
-		componentPositions.put(component, new Point(x, y));
-		return component;
-	}
-
-	/**
-	 * Add a graphical wire between the given connection points of the given components. The given components have to be added and the given
-	 * connection points have to be connected logically first.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	public void addWire(BasicGUIComponent component1, int component1ConnectionIndex, BasicGUIComponent component2,
-			int component2ConnectionIndex, Point... path)
-	{
-		wires.add(new GUIWire(this::redrawThreadsafe, component1, component1ConnectionIndex, componentPositions.get(component1), component2,
-				component2ConnectionIndex, componentPositions.get(component2), path));
-	}
-
-	private void drawComponent(GeneralGC gc, BasicGUIComponent component)
-	{
-		TranslatedGC tgc = new TranslatedGC(gc, componentPositions.get(component));
-		component.render(tgc);
-		tgc.setBackground(getDisplay().getSystemColor(SWT.COLOR_BLUE));
+		component.render(gc, visibleRegion);
+		gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_CYAN));
+		for (Pin p : component.getPins())
+		{
+			Point pos = p.getPos();
+			gc.fillOval(pos.x - 1, pos.y - 1, 2, 2);
+		}
 	}
 
 	private void mouseDown(Event e)
@@ -77,11 +92,10 @@ public class LogicUICanvas extends ZoomableCanvas
 		if (e.button == 1)
 		{
 			Point click = displayToWorldCoords(e.x, e.y);
-			for (BasicGUIComponent component : components)
-				if (component.getBounds().translate(componentPositions.get(component)).contains(click))
+			for (GUIComponent component : model.getComponents())
+				if (component.getBounds().contains(click) && component.clicked(click.x, click.y))
 				{
-					if (component.clicked(click.x, click.y))
-						redraw();
+					redraw();
 					break;
 				}
 		}
