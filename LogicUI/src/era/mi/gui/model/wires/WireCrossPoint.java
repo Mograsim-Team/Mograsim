@@ -10,6 +10,8 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public class WireCrossPoint extends GUIComponent
 {
+	private final Pin pin;
+
 	private ReadEnd end;
 	private final int logicWidth;
 
@@ -18,13 +20,15 @@ public class WireCrossPoint extends GUIComponent
 		super(model);
 		this.logicWidth = logicWidth;
 		setSize(0, 0);
-		addPin(new Pin(this, logicWidth, 0, 0));
+		addPin(this.pin = new Pin(this, logicWidth, 0, 0));
 	}
 
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		ColorHelper.executeWithDifferentBackground(gc, BitVectorFormatter.formatAsColor(end), () -> gc.fillOval(-1, -1, 2, 2));
+		Rectangle bounds = getBounds();
+		ColorHelper.executeWithDifferentBackground(gc, BitVectorFormatter.formatAsColor(end),
+				() -> gc.fillOval(bounds.x - 1, bounds.y - 1, 2, 2));
 	}
 
 	public void setLogicModelBinding(ReadEnd end)
@@ -36,5 +40,10 @@ public class WireCrossPoint extends GUIComponent
 	public int getLogicWidth()
 	{
 		return logicWidth;
+	}
+
+	public Pin getPin()
+	{
+		return pin;
 	}
 }
