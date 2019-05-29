@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Event;
 
 import era.mi.gui.model.ViewModel;
 import era.mi.gui.model.components.GUIComponent;
+import era.mi.gui.model.wires.GUIWire;
 import era.mi.gui.model.wires.Pin;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -40,30 +41,34 @@ public class LogicUICanvas extends ZoomableCanvas
 			p.removePinMovedListener(redrawConsumer);
 			redrawThreadsafe();
 		};
-		model.addComponentAddedListener(c ->
+		Consumer<? super GUIComponent> componentAddedListener = c ->
 		{
-			c.addComponentChangedListener(redrawConsumer);
+			c.addComponentLookChangedListener(redrawConsumer);
 			c.addComponentMovedListener(redrawConsumer);
 			c.addPinAddedListener(pinAddedListener);
 			c.addPinRemovedListener(pinRemovedListener);
 			redrawThreadsafe();
-		});
+		};
+		model.addComponentAddedListener(componentAddedListener);
+		model.getComponents().forEach(componentAddedListener);
 		model.addComponentRemovedListener(c ->
 		{
-			c.removeComponentChangedListener(redrawConsumer);
+			c.removeComponentLookChangedListener(redrawConsumer);
 			c.removeComponentMovedListener(redrawConsumer);
 			c.removePinAddedListener(pinAddedListener);
 			c.removePinRemovedListener(pinRemovedListener);
 			redrawThreadsafe();
 		});
-		model.addWireAddedListener(w ->
+		Consumer<? super GUIWire> wireAddedListener = w ->
 		{
-			w.addWireChangedListener(redrawConsumer);
+			w.addWireLookChangedListener(redrawConsumer);
 			redrawThreadsafe();
-		});
+		};
+		model.addWireAddedListener(wireAddedListener);
+		model.getWires().forEach(wireAddedListener);
 		model.addWireRemovedListener(w ->
 		{
-			w.removeWireChangedListener(redrawConsumer);
+			w.removeWireLookChangedListener(redrawConsumer);
 			redrawThreadsafe();
 		});
 

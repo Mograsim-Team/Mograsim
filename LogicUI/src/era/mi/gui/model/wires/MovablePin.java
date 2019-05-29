@@ -4,9 +4,9 @@ import era.mi.gui.model.components.GUIComponent;
 
 public class MovablePin extends Pin
 {
-	public MovablePin(GUIComponent component, double relX, double relY)
+	public MovablePin(GUIComponent component, int logicWidth, double relX, double relY)
 	{
-		super(component, relX, relY);
+		super(component, logicWidth, relX, relY);
 	}
 
 	@Override

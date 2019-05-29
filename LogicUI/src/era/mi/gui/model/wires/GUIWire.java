@@ -14,17 +14,21 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 public class GUIWire
 {
 	private final ViewModel model;
+	public final int logicWidth;
 	private Pin pin1;
 	private Pin pin2;
 	private double[] path;
 
-	private final List<Consumer<? super GUIWire>> wireChangedListeners;
+	private final List<Consumer<? super GUIWire>> wireLookChangedListeners;
 
 	private ReadEnd end;
 
 	public GUIWire(ViewModel model, Pin pin1, Pin pin2, Point... path)
 	{
 		this.model = model;
+		this.logicWidth = pin1.logicWidth;
+		if (pin2.logicWidth != pin1.logicWidth)
+			throw new IllegalArgumentException("Can't connect pins of different logic width");
 		this.path = new double[path.length * 2 + 4];
 		for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
 		{
@@ -35,7 +39,7 @@ public class GUIWire
 		this.pin1 = pin1;
 		this.pin2 = pin2;
 
-		wireChangedListeners = new ArrayList<>();
+		wireLookChangedListeners = new ArrayList<>();
 
 		pin1.addPinMovedListener(p -> pin1Moved());
 		pin2.addPinMovedListener(p -> pin2Moved());
@@ -72,15 +76,25 @@ public class GUIWire
 	public void setLogicModelBinding(ReadEnd end)
 	{
 		this.end = end;
-		end.addObserver((i, o) -> callWireChangedListeners());
+		end.addObserver((i, o) -> callWireLookChangedListeners());
+	}
+
+	public Pin getPin1()
+	{
+		return pin1;
+	}
+
+	public Pin getPin2()
+	{
+		return pin2;
 	}
 
 	// @formatter:off
-	public void addWireChangedListener   (Consumer<? super GUIWire> listener) {wireChangedListeners.add   (listener);}
+	public void addWireLookChangedListener   (Consumer<? super GUIWire> listener) {wireLookChangedListeners.add   (listener);}
 
-	public void removeWireChangedListener(Consumer<? super GUIWire> listener) {wireChangedListeners.remove(listener);}
+	public void removeWireLookChangedListener(Consumer<? super GUIWire> listener) {wireLookChangedListeners.remove(listener);}
 
-	private void callWireChangedListeners() {wireChangedListeners.forEach(l -> l.accept(this));}
+	private void callWireLookChangedListeners() {wireLookChangedListeners.forEach(l -> l.accept(this));}
 	// @formatter:on
 
 }
