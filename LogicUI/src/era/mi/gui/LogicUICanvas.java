@@ -42,7 +42,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		};
 		model.addComponentAddedListener(c ->
 		{
-			c.addComponentChangedListener(redrawConsumer);
+			c.addComponentLookChangedListener(redrawConsumer);
 			c.addComponentMovedListener(redrawConsumer);
 			c.addPinAddedListener(pinAddedListener);
 			c.addPinRemovedListener(pinRemovedListener);
@@ -50,7 +50,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		});
 		model.addComponentRemovedListener(c ->
 		{
-			c.removeComponentChangedListener(redrawConsumer);
+			c.removeComponentLookChangedListener(redrawConsumer);
 			c.removeComponentMovedListener(redrawConsumer);
 			c.removePinAddedListener(pinAddedListener);
 			c.removePinRemovedListener(pinRemovedListener);
@@ -58,12 +58,12 @@ public class LogicUICanvas extends ZoomableCanvas
 		});
 		model.addWireAddedListener(w ->
 		{
-			w.addWireChangedListener(redrawConsumer);
+			w.addWireLookChangedListener(redrawConsumer);
 			redrawThreadsafe();
 		});
 		model.addWireRemovedListener(w ->
 		{
-			w.removeWireChangedListener(redrawConsumer);
+			w.removeWireLookChangedListener(redrawConsumer);
 			redrawThreadsafe();
 		});
 

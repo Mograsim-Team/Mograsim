@@ -18,7 +18,7 @@ public class GUIWire
 	private Pin pin2;
 	private double[] path;
 
-	private final List<Consumer<? super GUIWire>> wireChangedListeners;
+	private final List<Consumer<? super GUIWire>> wireLookChangedListeners;
 
 	private ReadEnd end;
 
@@ -35,7 +35,7 @@ public class GUIWire
 		this.pin1 = pin1;
 		this.pin2 = pin2;
 
-		wireChangedListeners = new ArrayList<>();
+		wireLookChangedListeners = new ArrayList<>();
 
 		pin1.addPinMovedListener(p -> pin1Moved());
 		pin2.addPinMovedListener(p -> pin2Moved());
@@ -72,15 +72,15 @@ public class GUIWire
 	public void setLogicModelBinding(ReadEnd end)
 	{
 		this.end = end;
-		end.addObserver((i, o) -> callWireChangedListeners());
+		end.addObserver((i, o) -> callWireLookChangedListeners());
 	}
 
 	// @formatter:off
-	public void addWireChangedListener   (Consumer<? super GUIWire> listener) {wireChangedListeners.add   (listener);}
+	public void addWireLookChangedListener   (Consumer<? super GUIWire> listener) {wireLookChangedListeners.add   (listener);}
 
-	public void removeWireChangedListener(Consumer<? super GUIWire> listener) {wireChangedListeners.remove(listener);}
+	public void removeWireLookChangedListener(Consumer<? super GUIWire> listener) {wireLookChangedListeners.remove(listener);}
 
-	private void callWireChangedListeners() {wireChangedListeners.forEach(l -> l.accept(this));}
+	private void callWireLookChangedListeners() {wireLookChangedListeners.forEach(l -> l.accept(this));}
 	// @formatter:on
 
 }
