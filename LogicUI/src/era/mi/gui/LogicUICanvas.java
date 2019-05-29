@@ -76,10 +76,11 @@ public class LogicUICanvas extends ZoomableCanvas
 
 		addZoomedRenderer(gc ->
 		{
+			gc.setLineWidth(.5);
+			model.getWires().forEach(w -> w.render(gc));
 			Rectangle visibleRegion = new Rectangle(offX, offY, gW / zoom, gH / zoom);
 			model.getComponents().forEach(c -> drawComponent(gc, c, visibleRegion));
 		});
-		addZoomedRenderer(gc -> model.getWires().forEach(w -> w.render(gc)));
 		addListener(SWT.MouseDown, this::mouseDown);
 	}
 
