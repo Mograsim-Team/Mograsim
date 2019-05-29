@@ -185,7 +185,7 @@ public class Timeline
 		}
 	}
 
-	private static int timeCmp(long a, long b)
+	public static int timeCmp(long a, long b)
 	{
 		return Long.signum(a - b);
 	}
