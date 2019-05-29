@@ -16,7 +16,7 @@ public class RSLatchExample
 		SimpleLogicUIStandalone.executeVisualisation(RSLatchExample::createRSLatchExample);
 	}
 
-	private static void createRSLatchExample(ViewModel model)
+	public static void createRSLatchExample(ViewModel model)
 	{
 		GUIManualSwitch rIn = new GUIManualSwitch(model);
 		rIn.moveTo(100, 100);
