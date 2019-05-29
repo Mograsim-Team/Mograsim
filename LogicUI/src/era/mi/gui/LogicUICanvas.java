@@ -66,6 +66,7 @@ public class LogicUICanvas extends ZoomableCanvas
 			w.removeWireLookChangedListener(redrawConsumer);
 			redrawThreadsafe();
 		});
+		// TODO add listeners for existing components & wires
 
 		addZoomedRenderer(gc ->
 		{
