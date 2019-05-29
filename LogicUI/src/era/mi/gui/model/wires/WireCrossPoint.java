@@ -11,10 +11,12 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 public class WireCrossPoint extends GUIComponent
 {
 	private ReadEnd end;
+	private final int logicWidth;
 
 	public WireCrossPoint(ViewModel model, int logicWidth)
 	{
 		super(model);
+		this.logicWidth = logicWidth;
 		setSize(0, 0);
 		addPin(new Pin(this, logicWidth, 0, 0));
 	}
@@ -29,5 +31,10 @@ public class WireCrossPoint extends GUIComponent
 	{
 		this.end = end;
 		end.addObserver((i, o) -> callComponentLookChangedListeners());
+	}
+
+	public int getLogicWidth()
+	{
+		return logicWidth;
 	}
 }
