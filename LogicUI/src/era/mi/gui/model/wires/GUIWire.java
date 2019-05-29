@@ -79,6 +79,16 @@ public class GUIWire
 		end.addObserver((i, o) -> callWireLookChangedListeners());
 	}
 
+	public Pin getPin1()
+	{
+		return pin1;
+	}
+
+	public Pin getPin2()
+	{
+		return pin2;
+	}
+
 	// @formatter:off
 	public void addWireLookChangedListener   (Consumer<? super GUIWire> listener) {wireLookChangedListeners.add   (listener);}
 
