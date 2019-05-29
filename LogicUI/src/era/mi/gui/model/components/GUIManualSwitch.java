@@ -23,7 +23,7 @@ public class GUIManualSwitch extends GUIComponent
 	{
 		super(model);
 		setSize(width, height);
-		addPin(new Pin(this, width, height / 2));
+		addPin(new Pin(this, 1, width, height / 2));
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class GUIManualSwitch extends GUIComponent
 		this.logicSwitch = logicSwitch;
 		this.end = end;
 		// TODO when ManualSwitch supports it, add listeners
-		end.addObserver((i, o) -> callComponentChangedListeners());
+		end.addObserver((i, o) -> callComponentLookChangedListeners());
 	}
 
 	@Override

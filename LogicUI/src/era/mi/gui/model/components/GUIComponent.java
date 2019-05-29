@@ -17,7 +17,7 @@ public abstract class GUIComponent
 	private final List<Pin> pins;
 	protected final List<Pin> pinsUnmodifiable;
 
-	private final List<Consumer<? super GUIComponent>> componentChangedListeners;
+	private final List<Consumer<? super GUIComponent>> componentLookChangedListeners;
 	private final List<Consumer<? super GUIComponent>> componentMovedListeners;
 	private final List<Consumer<? super Pin>> pinAddedListeners;
 	private final List<Consumer<? super Pin>> pinRemovedListeners;
@@ -29,7 +29,7 @@ public abstract class GUIComponent
 		this.pins = new ArrayList<>();
 		this.pinsUnmodifiable = Collections.unmodifiableList(pins);
 
-		this.componentChangedListeners = new ArrayList<>();
+		this.componentLookChangedListeners = new ArrayList<>();
 		this.componentMovedListeners = new ArrayList<>();
 		this.pinAddedListeners = new ArrayList<>();
 		this.pinRemovedListeners = new ArrayList<>();
@@ -76,20 +76,20 @@ public abstract class GUIComponent
 	}
 
 	// @formatter:off
-	public void addComponentChangedListener   (Consumer<? super GUIComponent> listener) {componentChangedListeners.add   (listener);}
-	public void addComponentMovedListener     (Consumer<? super GUIComponent> listener) {componentMovedListeners  .add   (listener);}
-	public void addPinAddedListener           (Consumer<? super Pin         > listener) {pinAddedListeners        .add   (listener);}
-	public void addPinRemovedListener         (Consumer<? super Pin         > listener) {pinRemovedListeners      .add   (listener);}
+	public void addComponentLookChangedListener   (Consumer<? super GUIComponent> listener) {componentLookChangedListeners.add   (listener);}
+	public void addComponentMovedListener         (Consumer<? super GUIComponent> listener) {componentMovedListeners      .add   (listener);}
+	public void addPinAddedListener               (Consumer<? super Pin         > listener) {pinAddedListeners            .add   (listener);}
+	public void addPinRemovedListener             (Consumer<? super Pin         > listener) {pinRemovedListeners          .add   (listener);}
+                                                  
+	public void removeComponentLookChangedListener(Consumer<? super GUIComponent> listener) {componentLookChangedListeners.remove(listener);}
+	public void removeComponentMovedListener      (Consumer<? super GUIComponent> listener) {componentMovedListeners      .remove(listener);}
+	public void removePinAddedListener            (Consumer<? super Pin         > listener) {pinAddedListeners            .remove(listener);}
+	public void removePinRemovedListener          (Consumer<? super Pin         > listener) {pinRemovedListeners          .remove(listener);}
 
-	public void removeComponentChangedListener(Consumer<? super GUIComponent> listener) {componentChangedListeners.remove(listener);}
-	public void removeComponentMovedListener  (Consumer<? super GUIComponent> listener) {componentMovedListeners  .remove(listener);}
-	public void removePinAddedListener        (Consumer<? super Pin         > listener) {pinAddedListeners        .remove(listener);}
-	public void removePinRemovedListener      (Consumer<? super Pin         > listener) {pinRemovedListeners      .remove(listener);}
-
-	protected void callComponentChangedListeners(     ) {componentChangedListeners.forEach(l -> l.accept(this));}
-	private   void callComponentMovedListeners  (     ) {componentMovedListeners  .forEach(l -> l.accept(this));}
-	private   void callPinAddedListeners        (Pin p) {pinAddedListeners        .forEach(l -> l.accept(p   ));}
-	private   void callPinRemovedListeners      (Pin p) {pinRemovedListeners      .forEach(l -> l.accept(p   ));}
+	protected void callComponentLookChangedListeners(     ) {componentLookChangedListeners.forEach(l -> l.accept(this));}
+	private   void callComponentMovedListeners      (     ) {componentMovedListeners      .forEach(l -> l.accept(this));}
+	private   void callPinAddedListeners            (Pin p) {pinAddedListeners            .forEach(l -> l.accept(p   ));}
+	private   void callPinRemovedListeners          (Pin p) {pinRemovedListeners          .forEach(l -> l.accept(p   ));}
 	// @form  atter:on
 
 	/**
@@ -101,7 +101,7 @@ public abstract class GUIComponent
 	{
 		bounds.width = width;
 		bounds.height = height;
-		callComponentChangedListeners();
+		callComponentLookChangedListeners();
 	}
 
 	protected void addPin(Pin pin)
