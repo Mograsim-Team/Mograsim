@@ -14,6 +14,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 public class GUIWire
 {
 	private final ViewModel model;
+	public final int logicWidth;
 	private Pin pin1;
 	private Pin pin2;
 	private double[] path;
@@ -25,6 +26,9 @@ public class GUIWire
 	public GUIWire(ViewModel model, Pin pin1, Pin pin2, Point... path)
 	{
 		this.model = model;
+		this.logicWidth = pin1.logicWidth;
+		if (pin2.logicWidth != pin1.logicWidth)
+			throw new IllegalArgumentException("Can't connect pins of different logic width");
 		this.path = new double[path.length * 2 + 4];
 		for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
 		{

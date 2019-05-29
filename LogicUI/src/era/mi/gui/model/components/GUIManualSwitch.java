@@ -23,7 +23,7 @@ public class GUIManualSwitch extends GUIComponent
 	{
 		super(model);
 		setSize(width, height);
-		addPin(new Pin(this, width, height / 2));
+		addPin(new Pin(this, 1, width, height / 2));
 	}
 
 	@Override

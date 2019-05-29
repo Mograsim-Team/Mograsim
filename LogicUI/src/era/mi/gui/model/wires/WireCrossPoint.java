@@ -12,11 +12,11 @@ public class WireCrossPoint extends GUIComponent
 {
 	private ReadEnd end;
 
-	public WireCrossPoint(ViewModel model)
+	public WireCrossPoint(ViewModel model, int logicWidth)
 	{
 		super(model);
 		setSize(0, 0);
-		addPin(new Pin(this, 0, 0));
+		addPin(new Pin(this, logicWidth, 0, 0));
 	}
 
 	@Override
