@@ -11,15 +11,19 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 
 public class Playground
 {
-	private static final int WIRE_DELAY = 10;
-	private static final int OR_DELAY = 50;
-	private static final int NOT_DELAY = 50;
-
 	public static void main(String[] args)
 	{
 		ViewModel model = new ViewModel();
+		GUIAndGate andGate = new GUIAndGate(model, 1);
+		andGate.moveTo(10, 10);
+		GUINotGate notGate = new GUINotGate(model, 1);
+		notGate.moveTo(10, 40);
+
+		new GUIWire(model, andGate.getPins().get(0), notGate.getPins().get(1), new Point(20, 50));
+
 		LogicUIStandalone ui = new LogicUIStandalone(model);
-		addComponentsAndWires(ui, model);
+
+		ui.getLogicUICanvas().addListener(SWT.KeyDown, e -> notGate.moveTo(150, 10));
 		ui.run();
 	}
 
