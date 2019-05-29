@@ -4,7 +4,6 @@ Bundle-Name: LogicUI
 Bundle-SymbolicName: LogicUI;singleton:=true
 Bundle-Version: 1.0.0
 Export-Package: era.mi.gui,
- era.mi.gui.components,
  era.mi.gui.examples,
  era.mi.gui.model,
  era.mi.gui.model.components,
