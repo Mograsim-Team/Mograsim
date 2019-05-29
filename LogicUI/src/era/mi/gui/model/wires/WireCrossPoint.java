@@ -26,7 +26,9 @@ public class WireCrossPoint extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		ColorHelper.executeWithDifferentBackground(gc, BitVectorFormatter.formatAsColor(end), () -> gc.fillOval(-1, -1, 2, 2));
+		Rectangle bounds = getBounds();
+		ColorHelper.executeWithDifferentBackground(gc, BitVectorFormatter.formatAsColor(end),
+				() -> gc.fillOval(bounds.x - 1, bounds.y - 1, 2, 2));
 	}
 
 	public void setLogicModelBinding(ReadEnd end)
