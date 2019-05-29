@@ -1,5 +1,6 @@
 package era.mi.logic.tests;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -282,6 +283,42 @@ class ComponentTest
 
 		assertEquals(15, a.getUnsignedValue());
 		assertEquals(-1, a.getSignedValue());
+	}
+
+	boolean flag = false;
+
+	@Test
+	void simpleTimelineTest()
+	{
+		Timeline t = new Timeline(3);
+		flag = false;
+		t.addEvent((e) ->
+		{
+			if (!flag)
+				fail();
+			flag = false;
+		}, 15);
+		t.addEvent((e) ->
+		{
+			if (flag)
+				fail();
+			flag = true;
+		}, 10);
+		t.addEvent((e) ->
+		{
+			if (flag)
+				fail();
+			flag = true;
+		}, 20);
+		t.addEvent((e) ->
+		{
+			fail("Only supposed to execute until timestamp 20, not 25");
+		}, 25);
+
+		t.executeUntil(t.laterThan(20), 100);
+
+		if (!flag)
+			fail();
 	}
 
 	@Test

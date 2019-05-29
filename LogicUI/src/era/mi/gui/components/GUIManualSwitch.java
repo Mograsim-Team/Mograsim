@@ -72,7 +72,7 @@ public class GUIManualSwitch extends ManualSwitch implements BasicGUIComponent
 	@Override
 	public boolean clicked(double x, double y)
 	{
-		toggle();
+		timeline.addEvent((e) -> toggle(), (int) (System.currentTimeMillis() - timeline.getSimulationTime()));
 		return true;
 	}
 

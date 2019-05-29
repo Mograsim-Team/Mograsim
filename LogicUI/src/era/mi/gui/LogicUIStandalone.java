@@ -54,7 +54,7 @@ public class LogicUIStandalone
 			while (running.get())
 			{
 				// always execute to keep timeline from "hanging behind" for too long
-				timeline.executeUpTo(System.currentTimeMillis(), System.currentTimeMillis() + 10);
+				timeline.executeUntil(timeline.laterThan(System.currentTimeMillis()), System.currentTimeMillis() + 10);
 				long sleepTime;
 				if (timeline.hasNext())
 					sleepTime = timeline.nextEventTime() - System.currentTimeMillis();

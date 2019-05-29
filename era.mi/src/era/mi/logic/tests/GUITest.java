@@ -282,7 +282,7 @@ public class GUITest extends JPanel
 
 		while (f.isVisible())
 		{
-			ExecutionResult er = gt.getTimeline().executeUpTo((lastFrame - begin) * 3, lastFrame + 14);
+			ExecutionResult er = gt.getTimeline().executeUntil(gt.getTimeline().laterThan((lastFrame - begin) * 3), lastFrame + 14);
 //				if (t.hasNext()) 
 //				t.executeNext();
 			if (er != ExecutionResult.NOTHING_DONE)

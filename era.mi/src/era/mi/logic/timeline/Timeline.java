@@ -3,7 +3,9 @@ package era.mi.logic.timeline;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
+import java.util.function.LongSupplier;
 
 /**
  * Orders Events by the time they are due to be executed. Can execute Events individually.
@@ -14,7 +16,8 @@ import java.util.function.Consumer;
 public class Timeline
 {
 	private PriorityQueue<InnerEvent> events;
-	private long currentTime = 0;
+	private LongSupplier time;
+	private long lastTimeUpdated = 0;
 
 	private final List<Consumer<TimelineEvent>> eventAddedListener;
 
@@ -23,6 +26,16 @@ public class Timeline
 		events = new PriorityQueue<InnerEvent>(initCapacity);
 
 		eventAddedListener = new ArrayList<>();
+		time = () -> lastTimeUpdated;
+	}
+
+	/**
+	 * @param timestamp exclusive
+	 * @return true if the first event is later than the timestamp
+	 */
+	public BooleanSupplier laterThan(long timestamp)
+	{
+		return () -> timeCmp(events.peek().getTiming(), timestamp) > 0;
 	}
 
 	public boolean hasNext()
@@ -30,11 +43,14 @@ public class Timeline
 		return !events.isEmpty();
 	}
 
+	/**
+	 * Executes all events at the next timestamp, at which there are any
+	 */
 	public void executeNext()
 	{
 		InnerEvent first = events.peek();
 		if (first != null)
-			executeUpTo(first.getTiming(), -1);
+			executeUntil(laterThan(first.getTiming()), -1);
 	}
 
 	public void executeAll()
@@ -44,40 +60,51 @@ public class Timeline
 	}
 
 	/**
-	 * Executes all events up to a given simulation timestamp. The simulation process can be constrained by a real world timestamp.
+	 * Executes all events until a given condition is met. The simulation process can be constrained by a real world timestamp.
 	 * 
-	 * @param timestamp  the simulation timestamp up to which the events will be processed
+	 * @param condition  the condition until which the events are be processed
 	 * @param stopMillis the System.currentTimeMillis() when simulation definitely needs to stop. A value of -1 means no timeout.
-	 * @return if it was possible to fulfill the goal in the given real world time.
-	 * @author Christian Femers
+	 * @return State of the event execution
+	 * @formatter:off
+	 * <code>NOTHING_DONE</code> if the {@link Timeline} was already empty
+	 * <code>EXEC_OUT_OF_TIME</code> if the given maximum time was reached
+	 * <code>EXEC_UNTIL_CONDITION</code> if the condition was met
+	 * <code>EXEC_UNTIL_EMPTY</code> if events were executed until the {@link Timeline} was empty
+	 * @formatter:on
+	 * @author Christian Femers, Fabian Stemmler
 	 */
-	public ExecutionResult executeUpTo(long timestamp, long stopMillis)
+	public ExecutionResult executeUntil(BooleanSupplier condition, long stopMillis)
 	{
 		if (events.isEmpty())
 		{
-			currentTime = timestamp;
+			lastTimeUpdated = getSimulationTime();
 			return ExecutionResult.NOTHING_DONE;
 		}
 		int checkStop = 0;
 		InnerEvent first = events.peek();
-		while (first != null && first.getTiming() <= timestamp)
+		while (hasNext() && !condition.getAsBoolean())
 		{
 			events.remove();
-			currentTime = first.getTiming();
+			lastTimeUpdated = first.getTiming();
 			first.run();
 			// Don't check after every run
 			checkStop = (checkStop + 1) % 10;
 			if (checkStop == 0 && System.currentTimeMillis() >= stopMillis)
-				return ExecutionResult.RAN_OUT_OF_TIME;
+				return ExecutionResult.EXEC_OUT_OF_TIME;
 			first = events.peek();
 		}
-		currentTime = timestamp;
-		return ExecutionResult.DONE_IN_TIME;
+		lastTimeUpdated = getSimulationTime();
+		return hasNext() ? ExecutionResult.EXEC_UNTIL_EMPTY : ExecutionResult.EXEC_UNTIL_CONDITION;
+	}
+
+	public void setTimeFunction(LongSupplier time)
+	{
+		this.time = time;
 	}
 
 	public long getSimulationTime()
 	{
-		return currentTime;
+		return time.getAsLong();
 	}
 
 	public long nextEventTime()
@@ -90,7 +117,7 @@ public class Timeline
 	public void reset()
 	{
 		events.clear();
-		currentTime = 0;
+		lastTimeUpdated = 0;
 	}
 
 	public void addEventAddedListener(Consumer<TimelineEvent> listener)
@@ -111,7 +138,7 @@ public class Timeline
 	 */
 	public void addEvent(TimelineEventHandler function, int relativeTiming)
 	{
-		long timing = currentTime + relativeTiming;
+		long timing = getSimulationTime() + relativeTiming;
 		TimelineEvent event = new TimelineEvent(timing);
 		events.add(new InnerEvent(function, event));
 		eventAddedListener.forEach(l -> l.accept(event));
@@ -154,26 +181,23 @@ public class Timeline
 		@Override
 		public int compareTo(InnerEvent o)
 		{
-			long difference = getTiming() - o.getTiming();
-			if (difference == 0)
-				return 0;
-			return difference < 0 ? -1 : 1;
+			return timeCmp(getTiming(), o.getTiming());
 		}
+	}
+
+	private static int timeCmp(long a, long b)
+	{
+		return Long.signum(a - b);
 	}
 
 	@Override
 	public String toString()
 	{
-		return "simulation time: " + currentTime + ", " + events.toString();
-	}
-
-	public static long toNanoseconds(long ticks)
-	{
-		return ticks; // TODO: Alter this when it has been determined how ticks should relate to real time.
+		return String.format("Simulation time: %s, Last update: %d, Events: %s", getSimulationTime(), lastTimeUpdated, events.toString());
 	}
 
 	public enum ExecutionResult
 	{
-		NOTHING_DONE, DONE_IN_TIME, RAN_OUT_OF_TIME
+		NOTHING_DONE, EXEC_UNTIL_EMPTY, EXEC_UNTIL_CONDITION, EXEC_OUT_OF_TIME
 	}
 }
