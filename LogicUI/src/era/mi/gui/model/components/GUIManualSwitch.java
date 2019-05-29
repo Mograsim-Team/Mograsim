@@ -16,6 +16,8 @@ public class GUIManualSwitch extends GUIComponent
 	private static final double height = 15;
 	private static final double fontHeight = 5;
 
+	private final Pin outputPin;
+
 	private ManualSwitch logicSwitch;
 	private ReadEnd end;
 
@@ -23,7 +25,7 @@ public class GUIManualSwitch extends GUIComponent
 	{
 		super(model);
 		setSize(width, height);
-		addPin(new Pin(this, 1, width, height / 2));
+		addPin(this.outputPin = new Pin(this, 1, width, height / 2));
 	}
 
 	@Override
@@ -52,5 +54,10 @@ public class GUIManualSwitch extends GUIComponent
 	{
 		logicSwitch.toggle();
 		return true;
+	}
+
+	public Pin getOutputPin()
+	{
+		return outputPin;
 	}
 }

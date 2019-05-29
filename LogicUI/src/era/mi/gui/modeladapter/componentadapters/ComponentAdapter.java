@@ -11,6 +11,8 @@ import era.mi.logic.wires.Wire;
 
 public interface ComponentAdapter<G extends GUIComponent>
 {
+	public Class<G> getSupportedClass();
+
 	public Component createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent,
 			Map<Pin, Wire> logicWiresPerPin);
 }
