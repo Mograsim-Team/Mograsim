@@ -1,6 +1,7 @@
 package era.mi.gui.model.components;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import era.mi.gui.model.ViewModel;
@@ -25,6 +26,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
+	private final List<Pin> inputPinsUnmodifiable;
 
 	protected SimpleRectangularGUIGate(ViewModel model, int logicWidth, String label, boolean isInverted)
 	{
@@ -36,6 +38,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		this.outputPin = new MovablePin(this, logicWidth, width, 0);
 		addPin(outputPin);
 		this.inputPins = new ArrayList<>();
+		this.inputPinsUnmodifiable = Collections.unmodifiableList(inputPins);
 		setInputCount(1);
 	}
 
@@ -54,6 +57,16 @@ public class SimpleRectangularGUIGate extends GUIComponent
 				addPin(pin);
 			}
 		outputPin.setRelPos(width, inputCount * pinDistance / 2);
+	}
+
+	public Pin getOutputPin()
+	{
+		return outputPin;
+	}
+
+	public List<Pin> getInputPins()
+	{
+		return inputPinsUnmodifiable;
 	}
 
 	@Override
