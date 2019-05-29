@@ -4,11 +4,13 @@ Bundle-Name: LogicUI
 Bundle-SymbolicName: LogicUI;singleton:=true
 Bundle-Version: 1.0.0
 Export-Package: era.mi.gui,
+ era.mi.gui.components,
  era.mi.gui.examples,
  era.mi.gui.model,
  era.mi.gui.model.components,
  era.mi.gui.model.wires,
- era.mi.gui.modeladapter
+ era.mi.gui.modeladapter,
+ era.mi.gui.modeladapter.componentadapters
 Bundle-RequiredExecutionEnvironment: JavaSE-10
 Require-Bundle: org.eclipse.swt;bundle-version="3.110.0",
  SWTZoomableCanvas;bundle-version="1.0.0";visibility:=reexport,
