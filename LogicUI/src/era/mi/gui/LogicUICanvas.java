@@ -22,6 +22,8 @@ import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
  */
 public class LogicUICanvas extends ZoomableCanvas
 {
+	private static final boolean DRAW_PINS = false;
+
 	private final ViewModel model;
 
 	public LogicUICanvas(Composite parent, int style, ViewModel model)
@@ -84,11 +86,14 @@ public class LogicUICanvas extends ZoomableCanvas
 	private void drawComponent(GeneralGC gc, GUIComponent component, Rectangle visibleRegion)
 	{
 		component.render(gc, visibleRegion);
-		gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_DARK_CYAN));
-		for (Pin p : component.getPins())
+		if (DRAW_PINS)
 		{
-			Point pos = p.getPos();
-			gc.fillOval(pos.x - 1, pos.y - 1, 2, 2);
+			gc.setBackground(getDisplay().getSystemColor(SWT.COLOR_DARK_CYAN));
+			for (Pin p : component.getPins())
+			{
+				Point pos = p.getPos();
+				gc.fillOval(pos.x - 1, pos.y - 1, 2, 2);
+			}
 		}
 	}
 
