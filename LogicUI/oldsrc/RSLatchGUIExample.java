@@ -4,7 +4,7 @@ import era.mi.gui.LogicUICanvas;
 import era.mi.gui.LogicUIStandalone;
 import era.mi.gui.components.GUIManualSwitch;
 import era.mi.gui.components.GUINotGate;
-import era.mi.gui.components.GUIOrGate;
+import era.mi.gui.components.GUIOrGateOld;
 import era.mi.gui.wires.WireConnectionPoint;
 import era.mi.logic.timeline.Timeline;
 import era.mi.logic.wires.Wire;
@@ -36,9 +36,9 @@ public class RSLatchGUIExample
 
 		GUIManualSwitch rIn = ui.addComponent(new GUIManualSwitch(t, r.createReadWriteEnd()), 100, 100);
 		GUIManualSwitch sIn = ui.addComponent(new GUIManualSwitch(t, s.createReadWriteEnd()), 100, 200);
-		GUIOrGate or1 = ui.addComponent(new GUIOrGate(t, OR_DELAY, t1.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd()),
+		GUIOrGateOld or1 = ui.addComponent(new GUIOrGateOld(t, OR_DELAY, t1.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd()),
 				160, 102.5);
-		GUIOrGate or2 = ui.addComponent(new GUIOrGate(t, OR_DELAY, t2.createReadWriteEnd(), q.createReadOnlyEnd(), s.createReadOnlyEnd()),
+		GUIOrGateOld or2 = ui.addComponent(new GUIOrGateOld(t, OR_DELAY, t2.createReadWriteEnd(), q.createReadOnlyEnd(), s.createReadOnlyEnd()),
 				160, 192.5);
 		GUINotGate not1 = ui.addComponent(new GUINotGate(t, NOT_DELAY, t1.createReadOnlyEnd(), q.createReadWriteEnd()), 200, 107.5);
 		GUINotGate not2 = ui.addComponent(new GUINotGate(t, NOT_DELAY, t2.createReadOnlyEnd(), nq.createReadWriteEnd()), 200, 197.5);
