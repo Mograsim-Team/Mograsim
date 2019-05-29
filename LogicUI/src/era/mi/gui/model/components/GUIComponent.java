@@ -62,6 +62,7 @@ public abstract class GUIComponent
 	 * Called when this component is clicked. Absolute coordinates of the click are given. Returns true if this component consumed this
 	 * click.
 	 */
+	@SuppressWarnings({ "static-method", "unused" }) // this method is inteded to be overridden
 	public boolean clicked(double x, double y)
 	{
 		return false;
