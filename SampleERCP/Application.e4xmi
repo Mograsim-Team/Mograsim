@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="Sample.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="Sample.window.main" label="Sample RCP4" iconURI="platform:/plugin/mograsim.rcp/icons/app/ico_16t.png" width="500" height="400">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="Sample.window.main" label="Sample RCP4" iconURI="platform:/plugin/net.mograsim.rcp/icons/app/ico_16t.png" width="500" height="400">
     <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="Sample.partsashcontainer.sample">
       <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="Sample.partstack.sample">
-        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="Sample.part.sample" contributionURI="bundleclass://mograsim.rcp/mograsim.rcp.parts.SamplePart" label="Sample Part" iconURI="platform:/plugin/mograsim.rcp/icons/home.png"/>
-        <children xsi:type="basic:Part" xmi:id="_cldhcH1HEema06ZDPR6BSw" elementId="mograsim.rcp.part.logicui" contributionURI="bundleclass://mograsim.rcp/mograsim.rcp.parts.LogicUIPart" label="LogicUI part"/>
+        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="Sample.part.sample" contributionURI="bundleclass://net.mograsim.rcp/net.mograsim.rcp.parts.SamplePart" label="Sample Part" iconURI="platform:/plugin/net.mograsim.rcp/icons/home.png"/>
+        <children xsi:type="basic:Part" xmi:id="_cldhcH1HEema06ZDPR6BSw" elementId="net.mograsim.rcp.part.logicui" contributionURI="bundleclass://net.mograsim.rcp/net.mograsim.rcp.parts.LogicUIPart" label="LogicUI part"/>
       </children>
       <children xsi:type="basic:PartStack" xmi:id="_l2EzYG6wEemo__tDmTCqCQ" elementId="sample.partstack.0">
         <children xsi:type="basic:Part" xmi:id="_mW1XEG6wEemo__tDmTCqCQ" elementId="sample.part.none" label="None" tooltip="Something"/>
@@ -12,8 +12,8 @@
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="File">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="Sample.handleditem.file.open" label="Open" iconURI="platform:/plugin/mograsim.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="Sample.handleditem.save" label="Save" iconURI="platform:/plugin/mograsim.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="Sample.handleditem.file.open" label="Open" iconURI="platform:/plugin/net.mograsim.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="Sample.handleditem.save" label="Save" iconURI="platform:/plugin/net.mograsim.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="Sample.handleditem.quit" label="Quit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
@@ -22,15 +22,15 @@
     </mainMenu>
     <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="Sample.trimbar.top">
       <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="Sample.handleditem.trimbar.top.save" iconURI="platform:/plugin/mograsim.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="Sample.handleditem.trimbar.top.open" iconURI="platform:/plugin/mograsim.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="Sample.handleditem.trimbar.top.save" iconURI="platform:/plugin/net.mograsim.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="Sample.handleditem.trimbar.top.open" iconURI="platform:/plugin/net.mograsim.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
       </children>
     </trimBars>
   </children>
-  <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="sample.handler.quitCommand" contributionURI="bundleclass://mograsim.rcp/mograsim.rcp.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="sample.handler.openCommand" contributionURI="bundleclass://mograsim.rcp/mograsim.rcp.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="sample.handler.saveCommand" contributionURI="bundleclass://mograsim.rcp/mograsim.rcp.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="sample.handler.aboutCommand" contributionURI="bundleclass://mograsim.rcp/mograsim.rcp.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="sample.handler.quitCommand" contributionURI="bundleclass://net.mograsim.rcp/net.mograsim.rcp.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="sample.handler.openCommand" contributionURI="bundleclass://net.mograsim.rcp/net.mograsim.rcp.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="sample.handler.saveCommand" contributionURI="bundleclass://net.mograsim.rcp/net.mograsim.rcp.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="sample.handler.aboutCommand" contributionURI="bundleclass://net.mograsim.rcp/net.mograsim.rcp.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="Sample.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="Sample.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="Sample.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
