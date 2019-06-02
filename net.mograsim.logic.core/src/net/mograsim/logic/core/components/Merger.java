@@ -2,14 +2,14 @@ package net.mograsim.logic.core.components;
 
 import java.util.List;
 
+import net.mograsim.logic.core.LogicObservable;
+import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.WireObserver;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 
-public class Merger extends Component implements WireObserver
+public class Merger extends Component implements LogicObserver
 {
 	private ReadWriteEnd out;
 	private ReadEnd[] inputs;
@@ -32,7 +32,7 @@ public class Merger extends Component implements WireObserver
 		{
 			beginningIndex[i] = length;
 			length += inputs[i].length();
-			inputs[i].addObserver(this);
+			inputs[i].registerObserver(this);
 		}
 
 		if (length != union.length())
@@ -51,14 +51,14 @@ public class Merger extends Component implements WireObserver
 	}
 
 	@Override
-	public void update(ReadEnd initiator, BitVector oldValues)
+	public void update(LogicObservable initiator)
 	{
 		int index = find(initiator);
 		int beginning = beginningIndex[index];
 		out.feedSignals(beginning, inputs[index].getValues());
 	}
 
-	private int find(ReadEnd r)
+	private int find(LogicObservable r)
 	{
 		for (int i = 0; i < inputs.length; i++)
 			if (inputs[i] == r)

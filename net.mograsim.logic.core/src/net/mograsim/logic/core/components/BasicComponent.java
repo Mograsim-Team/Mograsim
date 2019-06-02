@@ -1,16 +1,15 @@
 package net.mograsim.logic.core.components;
 
+import net.mograsim.logic.core.LogicObservable;
+import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.wires.WireObserver;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
 
 /**
  * A basic component that recomputes all outputs (with a delay), when it is updated.
  * 
  * @author Fabian Stemmler
  */
-public abstract class BasicComponent extends Component implements WireObserver
+public abstract class BasicComponent extends Component implements LogicObserver
 {
 	private int processTime;
 
@@ -27,7 +26,7 @@ public abstract class BasicComponent extends Component implements WireObserver
 	}
 
 	@Override
-	public void update(ReadEnd initiator, BitVector oldValues)
+	public void update(LogicObservable initiator)
 	{
 		timeline.addEvent(e -> compute(), processTime);
 	}

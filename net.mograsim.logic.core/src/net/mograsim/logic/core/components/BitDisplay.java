@@ -17,7 +17,7 @@ public class BitDisplay extends BasicComponent
 	{
 		super(timeline, 1);
 		this.in = in;
-		in.addObserver(this);
+		in.registerObserver(this);
 		compute();
 	}
 

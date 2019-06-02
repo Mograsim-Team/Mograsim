@@ -2,13 +2,14 @@ package net.mograsim.logic.core.components;
 
 import java.util.List;
 
+import net.mograsim.logic.core.LogicObservable;
+import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.wires.WireObserver;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 
-public class Splitter extends Component implements WireObserver
+public class Splitter extends Component implements LogicObserver
 {
 	private ReadEnd input;
 	private ReadWriteEnd[] outputs;
@@ -18,7 +19,7 @@ public class Splitter extends Component implements WireObserver
 		super(timeline);
 		this.input = input;
 		this.outputs = outputs;
-		input.addObserver(this);
+		input.registerObserver(this);
 		int length = 0;
 		for (ReadEnd out : outputs)
 			length += out.length();
@@ -40,7 +41,7 @@ public class Splitter extends Component implements WireObserver
 	}
 
 	@Override
-	public void update(ReadEnd initiator, BitVector oldValues)
+	public void update(LogicObservable initiator)
 	{
 		compute();
 	}

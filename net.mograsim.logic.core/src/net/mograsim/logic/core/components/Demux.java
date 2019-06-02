@@ -43,13 +43,13 @@ public class Demux extends BasicComponent
 		}
 
 		this.select = select;
-		select.addObserver(this);
+		select.registerObserver(this);
 
 		int maxInputs = 1 << select.length();
 		if (this.outputs.length > maxInputs)
 			throw new IllegalArgumentException("There are more outputs (" + this.outputs.length + ") to the DEMUX than supported by "
 					+ select.length() + " select bits (" + maxInputs + ").");
-		in.addObserver(this);
+		in.registerObserver(this);
 	}
 
 	@Override

@@ -41,11 +41,11 @@ public class Mux extends BasicComponent
 		{
 			if (inputs[i].length() != outputSize)
 				throw new IllegalArgumentException("All MUX wire arrays must be of uniform length!");
-			inputs[i].addObserver(this);
+			inputs[i].registerObserver(this);
 		}
 
 		this.select = select;
-		select.addObserver(this);
+		select.registerObserver(this);
 
 		int maxInputs = 1 << select.length();
 		if (this.inputs.length > maxInputs)
