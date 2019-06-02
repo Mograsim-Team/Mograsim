@@ -295,19 +295,19 @@ class ComponentTest
 		t.addEvent((e) ->
 		{
 			if (!flag)
-				fail();
+				fail("Events executed out of order!");
 			flag = false;
 		}, 15);
 		t.addEvent((e) ->
 		{
 			if (flag)
-				fail();
+				fail("Events executed out of order!");
 			flag = true;
 		}, 10);
 		t.addEvent((e) ->
 		{
 			if (flag)
-				fail();
+				fail("Events executed out of order!");
 			flag = true;
 		}, 20);
 		t.addEvent((e) ->
@@ -318,7 +318,7 @@ class ComponentTest
 		t.executeUntil(t.laterThan(20), 100);
 
 		if (!flag)
-			fail();
+			fail("Not all events were executed in order!");
 	}
 
 	@Test
@@ -342,12 +342,12 @@ class ComponentTest
 
 		wI2.feedSignals(Bit.ONE, Bit.Z);
 		ReadEnd rE = w.createReadOnlyEnd();
-		rE.addObserver((i, oldValues) -> fail("WireEnd notified observer, although value did not change."));
+		rE.registerObserver((i) -> fail("WireEnd notified observer, although value did not change."));
 		t.executeAll();
 		rE.close();
 		wI1.feedSignals(Bit.X, Bit.X);
 		t.executeAll();
-		wI1.addObserver((i, oldValues) -> fail("WireEnd notified observer, although it was closed."));
+		wI1.registerObserver((i) -> fail("WireEnd notified observer, although it was closed."));
 		wI1.close();
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 	}

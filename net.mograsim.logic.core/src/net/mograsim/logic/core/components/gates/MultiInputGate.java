@@ -28,7 +28,7 @@ public abstract class MultiInputGate extends BasicComponent
 		{
 			if (w.length() != length)
 				throw new IllegalArgumentException("All wires connected to the gate must be of uniform length.");
-			w.addObserver(this);
+			w.registerObserver(this);
 		}
 		this.out = out;
 	}

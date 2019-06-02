@@ -16,7 +16,7 @@ public class NotGate extends BasicComponent
 	{
 		super(timeline, processTime);
 		this.in = in;
-		in.addObserver(this);
+		in.registerObserver(this);
 		this.out = out;
 	}
 

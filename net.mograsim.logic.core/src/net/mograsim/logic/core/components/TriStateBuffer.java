@@ -21,9 +21,9 @@ public class TriStateBuffer extends BasicComponent
 		if (enable.length() != 1)
 			throw new IllegalArgumentException("Tri-state enable must have exactly one bit, not " + enable.length() + ".");
 		this.in = in;
-		in.addObserver(this);
+		in.registerObserver(this);
 		this.enable = enable;
-		enable.addObserver(this);
+		enable.registerObserver(this);
 		this.out = out;
 	}
 

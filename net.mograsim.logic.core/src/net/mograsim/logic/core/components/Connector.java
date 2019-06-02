@@ -2,13 +2,13 @@ package net.mograsim.logic.core.components;
 
 import java.util.List;
 
+import net.mograsim.logic.core.LogicObservable;
+import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.wires.WireObserver;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 
-public class Connector extends Component implements WireObserver
+public class Connector extends Component implements LogicObserver
 {
 	private boolean connected;
 	private final ReadWriteEnd a;
@@ -21,8 +21,8 @@ public class Connector extends Component implements WireObserver
 			throw new IllegalArgumentException(String.format("WireArray width does not match: %d, %d", a.length(), b.length()));
 		this.a = a;
 		this.b = b;
-		a.addObserver(this);
-		b.addObserver(this);
+		a.registerObserver(this);
+		b.registerObserver(this);
 	}
 
 	public void connect()
@@ -48,13 +48,13 @@ public class Connector extends Component implements WireObserver
 	}
 
 	@Override
-	public void update(ReadEnd initiator, BitVector oldValues)
+	public void update(LogicObservable initiator)
 	{
 		if (connected)
-			timeline.addEvent(e -> update(initiator), 1);
+			timeline.addEvent(e -> innerUpdate(initiator), 1);
 	}
 
-	private void update(ReadEnd initiator)
+	private void innerUpdate(LogicObservable initiator)
 	{
 		if (initiator == a)
 			b.feedSignals(a.wireValuesExcludingMe());

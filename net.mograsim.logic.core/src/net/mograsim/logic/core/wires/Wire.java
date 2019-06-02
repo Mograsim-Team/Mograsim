@@ -6,6 +6,8 @@ import static net.mograsim.logic.core.types.Bit.Z;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.mograsim.logic.core.LogicObservable;
+import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
@@ -165,10 +167,10 @@ public class Wire
 	}
 
 	/**
-	 * Adds an {@link WireObserver}, who will be notified when the value of the {@link Wire} is updated.
+	 * Adds an {@link LogicObserver}, who will be notified when the value of the {@link Wire} is updated.
 	 * 
-	 * @param ob The {@link WireObserver} to be notified of changes.
-	 * @return true if the given {@link WireObserver} was not already registered, false otherwise
+	 * @param ob The {@link LogicObserver} to be notified of changes.
+	 * @return true if the given {@link LogicObserver} was not already registered, false otherwise
 	 * 
 	 * @author Fabian Stemmler
 	 */
@@ -216,9 +218,9 @@ public class Wire
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public class ReadEnd
+	public class ReadEnd implements LogicObservable
 	{
-		private List<WireObserver> observers = new ArrayList<WireObserver>();
+		private List<LogicObserver> observers = new ArrayList<LogicObserver>();
 
 		private ReadEnd()
 		{
@@ -228,8 +230,7 @@ public class Wire
 
 		public void update(BitVector oldValues)
 		{
-			for (WireObserver ob : observers)
-				ob.update(this, oldValues);
+			notifyObservers();
 		}
 
 		/**
@@ -333,14 +334,22 @@ public class Wire
 			return length;
 		}
 
-		public boolean addObserver(WireObserver ob)
-		{
-			return observers.add(ob);
-		}
-
 		public Wire getWire()
 		{
 			return Wire.this;
+		}
+
+		@Override
+		public void registerObserver(LogicObserver ob)
+		{
+			observers.add(ob);
+		}
+
+		@Override
+		public void notifyObservers()
+		{
+			for (LogicObserver ob : observers)
+				ob.update(this);
 		}
 	}
 
@@ -479,7 +488,6 @@ public class Wire
 	public String toString()
 	{
 		return String.format("wire 0x%08x value: %s inputs: %s", hashCode(), values, inputs);
-		// Arrays.toString(values), inputs.stream().map(i -> Arrays.toString(i.inputValues)).reduce((s1, s2) -> s1 + s2)
 	}
 
 	public static ReadEnd[] extractEnds(Wire[] w)
