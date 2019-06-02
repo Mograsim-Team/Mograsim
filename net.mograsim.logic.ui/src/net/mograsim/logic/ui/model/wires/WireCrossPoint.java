@@ -34,7 +34,7 @@ public class WireCrossPoint extends GUIComponent
 	public void setLogicModelBinding(ReadEnd end)
 	{
 		this.end = end;
-		end.addObserver((i, o) -> callComponentLookChangedListeners());
+		end.registerObserver((i) -> callComponentLookChangedListeners());
 	}
 
 	public int getLogicWidth()

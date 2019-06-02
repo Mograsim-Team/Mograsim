@@ -49,7 +49,7 @@ public class GUIManualSwitch extends GUIComponent
 		this.logicSwitch = logicSwitch;
 		this.end = end;
 		// TODO when ManualSwitch supports it, add listeners
-		end.addObserver((i, o) -> callComponentLookChangedListeners());
+		end.registerObserver((i) -> callComponentLookChangedListeners());
 	}
 
 	@Override
