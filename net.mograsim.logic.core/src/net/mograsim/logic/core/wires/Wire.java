@@ -186,8 +186,7 @@ public class Wire
 
 	private void notifyObservers()
 	{
-		for (ReadEnd o : attached)
-			o.update();
+		attached.forEach(r -> r.update());
 	}
 
 	/**
@@ -354,8 +353,7 @@ public class Wire
 		@Override
 		public void notifyObservers()
 		{
-			for (LogicObserver ob : observers)
-				ob.update(this);
+			observers.forEach(ob -> ob.update(this));
 		}
 	}
 

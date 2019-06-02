@@ -76,7 +76,7 @@ public class GUIWire
 	public void setLogicModelBinding(ReadEnd end)
 	{
 		this.end = end;
-		end.addObserver((i, o) -> callWireLookChangedListeners());
+		end.registerObserver((i) -> callWireLookChangedListeners());
 	}
 
 	public Pin getPin1()

@@ -21,23 +21,33 @@ public class Timeline
 
 	private final List<Consumer<TimelineEvent>> eventAddedListener;
 
+	public final LongSupplier stepByStepExec = () -> lastTimeUpdated;
+	public final LongSupplier realTimeExec = () -> System.currentTimeMillis();
+
+	/**
+	 * Constructs a Timeline object. Per default the time function is set to step by step execution.
+	 * 
+	 * @param initCapacity The initial capacity of the event queue.
+	 */
 	public Timeline(int initCapacity)
 	{
 		events = new PriorityQueue<>(initCapacity);
-
 		eventAddedListener = new ArrayList<>();
-		time = () -> lastTimeUpdated;
+		time = stepByStepExec;
 	}
 
 	/**
 	 * @param timestamp exclusive
-	 * @return true if the first event is later than the timestamp
+	 * @return <code>true</code> if the first event in queue is later than the given timestamp
 	 */
 	public BooleanSupplier laterThan(long timestamp)
 	{
 		return () -> timeCmp(events.peek().getTiming(), timestamp) > 0;
 	}
 
+	/**
+	 * @return <code>true</code> if there is at least one event enqueued. <code>false</code> otherwise
+	 */
 	public boolean hasNext()
 	{
 		return !events.isEmpty();
@@ -53,6 +63,9 @@ public class Timeline
 			executeUntil(laterThan(first.getTiming()), -1);
 	}
 
+	/**
+	 * Executes all events enqueued in the {@link Timeline}. Use very carefully! Events may generate new events, causing an infinite loop.
+	 */
 	public void executeAll()
 	{
 		while (hasNext())
@@ -71,7 +84,6 @@ public class Timeline
 	 * <code>EXEC_UNTIL_CONDITION</code> if the condition was met
 	 * <code>EXEC_UNTIL_EMPTY</code> if events were executed until the {@link Timeline} was empty
 	 * @formatter:on
-	 * @author Christian Femers, Fabian Stemmler
 	 */
 	public ExecutionResult executeUntil(BooleanSupplier condition, long stopMillis)
 	{
@@ -97,16 +109,31 @@ public class Timeline
 		return hasNext() ? ExecutionResult.EXEC_UNTIL_EMPTY : ExecutionResult.EXEC_UNTIL_CONDITION;
 	}
 
+	/**
+	 * Sets the function, which defines the current simulation time at any time.
+	 * 
+	 * @param time The return value of calling this function is the current simulation time.
+	 */
 	public void setTimeFunction(LongSupplier time)
 	{
 		this.time = time;
 	}
 
+	/**
+	 * Calculates the current simulation time.
+	 * 
+	 * @return The simulation time as defined by the time function.
+	 */
 	public long getSimulationTime()
 	{
 		return time.getAsLong();
 	}
 
+	/**
+	 * Retrieves the timestamp of the next event.
+	 * 
+	 * @return The timestamp of the next enqueued event, if the {@link Timeline} is not empty, -1 otherwise.
+	 */
 	public long nextEventTime()
 	{
 		if (!hasNext())
@@ -114,17 +141,26 @@ public class Timeline
 		return events.peek().getTiming();
 	}
 
+	/**
+	 * Clears the {@link Timeline} of enqueued events.
+	 */
 	public void reset()
 	{
 		events.clear();
 		lastTimeUpdated = 0;
 	}
 
+	/**
+	 * Adds a listener, that is called when a {@link TimelineEvent} is added.
+	 */
 	public void addEventAddedListener(Consumer<TimelineEvent> listener)
 	{
 		eventAddedListener.add(listener);
 	}
 
+	/**
+	 * Removes the listener, if possible. It will no longer be called when a {@link TimelineEvent} is added.
+	 */
 	public void removeEventAddedListener(Consumer<TimelineEvent> listener)
 	{
 		eventAddedListener.remove(listener);
@@ -185,7 +221,7 @@ public class Timeline
 		}
 	}
 
-	public static int timeCmp(long a, long b)
+	static int timeCmp(long a, long b)
 	{
 		return Long.signum(a - b);
 	}
