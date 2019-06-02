@@ -114,7 +114,7 @@ public class GUITest extends JPanel
 	public Timeline getTimeline()
 	{
 		return t;
-	};
+	}
 
 	@Override
 	public void paint(Graphics some_g)
@@ -177,6 +177,7 @@ public class GUITest extends JPanel
 		g.setFont(g.getFont().deriveFont(Math.min(height, width) / 40f));
 	}
 
+	@SuppressWarnings("static-method")
 	private void drawString(Graphics g, String s, int x, int y, double anchorX, double anchorY)
 	{
 		int h = g.getFontMetrics().getAscent();

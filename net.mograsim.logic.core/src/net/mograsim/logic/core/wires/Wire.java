@@ -23,10 +23,10 @@ public class Wire
 {
 	private BitVector values;
 	public final int travelTime;
-	private List<ReadEnd> attached = new ArrayList<ReadEnd>();
+	private List<ReadEnd> attached = new ArrayList<>();
 	public final int length;
-	private List<ReadWriteEnd> inputs = new ArrayList<ReadWriteEnd>();
-	private Timeline timeline;
+	List<ReadWriteEnd> inputs = new ArrayList<>();
+	Timeline timeline;
 
 	public Wire(Timeline timeline, int length, int travelTime)
 	{
@@ -61,12 +61,12 @@ public class Wire
 	{
 		if (values.equals(newValues))
 			return;
-		BitVector oldValues = values;
+//		BitVector oldValues = values;
 		values = newValues;
-		notifyObservers(oldValues);
+		notifyObservers();
 	}
 
-	private void recalculate()
+	void recalculate()
 	{
 		switch (inputs.size())
 		{
@@ -174,20 +174,20 @@ public class Wire
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	private void attachEnd(ReadEnd end)
+	void attachEnd(ReadEnd end)
 	{
 		attached.add(end);
 	}
 
-	private void detachEnd(ReadEnd end)
+	void detachEnd(ReadEnd end)
 	{
 		attached.remove(end);
 	}
 
-	private void notifyObservers(BitVector oldValues)
+	private void notifyObservers()
 	{
 		for (ReadEnd o : attached)
-			o.update(oldValues);
+			o.update();
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class Wire
 		return new ReadEnd();
 	}
 
-	private void registerInput(ReadWriteEnd toRegister)
+	void registerInput(ReadWriteEnd toRegister)
 	{
 		inputs.add(toRegister);
 	}
@@ -220,15 +220,15 @@ public class Wire
 	 */
 	public class ReadEnd implements LogicObservable
 	{
-		private List<LogicObserver> observers = new ArrayList<LogicObserver>();
+		private List<LogicObserver> observers = new ArrayList<>();
 
-		private ReadEnd()
+		ReadEnd()
 		{
 			super();
 			Wire.this.attachEnd(this);
 		}
 
-		public void update(BitVector oldValues)
+		public void update()
 		{
 			notifyObservers();
 		}
@@ -346,6 +346,12 @@ public class Wire
 		}
 
 		@Override
+		public void deregisterObserver(LogicObserver ob)
+		{
+			observers.remove(ob);
+		}
+
+		@Override
 		public void notifyObservers()
 		{
 			for (LogicObserver ob : observers)
@@ -358,7 +364,7 @@ public class Wire
 		private boolean open;
 		private BitVector inputValues;
 
-		private ReadWriteEnd()
+		ReadWriteEnd()
 		{
 			super();
 			open = true;

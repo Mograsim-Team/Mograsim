@@ -4,7 +4,8 @@ public interface LogicObservable
 {
 	public void registerObserver(LogicObserver ob);
 
+	public void deregisterObserver(LogicObserver ob);
+
 	public void notifyObservers();
 
-//	public InnerState getInnerState();
 }

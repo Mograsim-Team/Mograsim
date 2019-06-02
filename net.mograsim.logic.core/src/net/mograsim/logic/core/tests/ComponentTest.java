@@ -1,6 +1,5 @@
 package net.mograsim.logic.core.tests;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -26,6 +25,7 @@ import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 
+@SuppressWarnings("unused")
 class ComponentTest
 {
 	private Timeline t = new Timeline(11);

@@ -82,7 +82,7 @@ public class Mux extends BasicComponent
 	@Override
 	public List<ReadEnd> getAllInputs()
 	{
-		ArrayList<ReadEnd> wires = new ArrayList<ReadEnd>(Arrays.asList(inputs));
+		ArrayList<ReadEnd> wires = new ArrayList<>(Arrays.asList(inputs));
 		wires.add(select);
 		return Collections.unmodifiableList(wires);
 	}

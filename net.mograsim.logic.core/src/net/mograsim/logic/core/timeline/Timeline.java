@@ -23,7 +23,7 @@ public class Timeline
 
 	public Timeline(int initCapacity)
 	{
-		events = new PriorityQueue<InnerEvent>(initCapacity);
+		events = new PriorityQueue<>(initCapacity);
 
 		eventAddedListener = new ArrayList<>();
 		time = () -> lastTimeUpdated;
