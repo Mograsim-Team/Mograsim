@@ -7,20 +7,20 @@ import net.mograsim.logic.core.components.gates.AndGate;
 import net.mograsim.logic.core.components.gates.NotGate;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.ui.model.components.Am2901NANDBased;
+import net.mograsim.logic.ui.model.components.AtomicAm2901NANDBased;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 
-public class Am2901NANDBasedAdapter implements ComponentAdapter<Am2901NANDBased>
+public class AtomicAm2901NANDBasedAdapter implements ComponentAdapter<AtomicAm2901NANDBased>
 {
 	@Override
-	public Class<Am2901NANDBased> getSupportedClass()
+	public Class<AtomicAm2901NANDBased> getSupportedClass()
 	{
-		return Am2901NANDBased.class;
+		return AtomicAm2901NANDBased.class;
 	}
 
 	@Override
-	public Component createAndLinkComponent(Timeline timeline, LogicModelParameters params, Am2901NANDBased guiComponent,
+	public Component createAndLinkComponent(Timeline timeline, LogicModelParameters params, AtomicAm2901NANDBased guiComponent,
 			Map<Pin, Wire> logicWiresPerPin)
 	{
 		Wire w00 = logicWiresPerPin.get(guiComponent.getPins().get(0));

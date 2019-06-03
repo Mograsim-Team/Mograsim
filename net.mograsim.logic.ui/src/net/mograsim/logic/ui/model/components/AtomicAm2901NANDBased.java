@@ -10,12 +10,12 @@ import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 // TODO make a superclass
-public class Am2901NANDBased extends GUIComponent
+public class AtomicAm2901NANDBased extends GUIComponent
 {
 	public final List<String> inputNames;
 	public final List<String> outputNames;
 
-	public Am2901NANDBased(ViewModelModifiable model)
+	public AtomicAm2901NANDBased(ViewModelModifiable model)
 	{
 		super(model);
 
