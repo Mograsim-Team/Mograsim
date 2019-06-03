@@ -25,6 +25,8 @@ public class SubmodelComponent extends GUIComponent
 	private final SubmodelInterface submodelInterface;
 
 	private double submodelScale;
+	private double maxVisibleRegionFillRatioForAlpha0;
+	private double minVisibleRegionFillRatioForAlpha1;
 	private final LogicUIRenderer renderer;
 
 	public SubmodelComponent(ViewModelModifiable model)
@@ -39,6 +41,8 @@ public class SubmodelComponent extends GUIComponent
 		this.submodelInterface = new SubmodelInterface(submodelModifiable);
 
 		this.submodelScale = 1;
+		this.maxVisibleRegionFillRatioForAlpha0 = 0.1;
+		this.minVisibleRegionFillRatioForAlpha1 = 0.8;
 		this.renderer = new LogicUIRenderer(submodelModifiable);
 
 		submodelModifiable.addRedrawListener(this::requestRedraw);
@@ -134,10 +138,20 @@ public class SubmodelComponent extends GUIComponent
 		GCDefaultConfig conf = new GCDefaultConfig(gc);
 		TranslatedGC tgc = new TranslatedGC(gc, posX, posY, submodelScale, true);
 		conf.reset(tgc);
+		double visibleRegionFillRatio = Math.max(getBounds().width / visibleRegion.width, getBounds().height / visibleRegion.height);
+		double alphaFactor = map(visibleRegionFillRatio, maxVisibleRegionFillRatioForAlpha0, minVisibleRegionFillRatioForAlpha1, 0, 1);
+		alphaFactor = Math.max(0, Math.min(1, alphaFactor));
+		// we need to take the old alpha into account to support nested submodules better.
+		gc.setAlpha(Math.max(0, Math.min(255, (int) (gc.getAlpha() * alphaFactor))));
 		renderer.render(tgc, visibleRegion.translate(posX, posY, submodelScale));
 		conf.reset(gc);
 		// draw the "bounding box" after all other operations to make interface pins look better
 		gc.drawRectangle(getBounds());
+	}
+
+	private static double map(double val, double valMin, double valMax, double mapMin, double mapMax)
+	{
+		return mapMin + (val - valMin) * (mapMax - mapMin) / (valMax - valMin);
 	}
 
 	private static class PinMovable extends Pin
