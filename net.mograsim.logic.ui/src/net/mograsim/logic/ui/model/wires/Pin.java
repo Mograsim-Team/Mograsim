@@ -8,6 +8,7 @@ import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
+//TODO add an ID and/or a name
 public class Pin
 {
 	public final GUIComponent component;
