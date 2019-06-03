@@ -115,7 +115,7 @@ public class ViewLogicModelAdapter
 						else
 							throw new IllegalArgumentException("Two pins to external wires can't be connected directly");
 				}
-				return new Wire(timeline, e.getKey().logicWidth, params.wireTravelTime);
+				return externalWire == null ? new Wire(timeline, e.getKey().logicWidth, params.wireTravelTime) : externalWire;
 			}));
 		return logicWiresPerPin;
 	}
