@@ -40,7 +40,7 @@ public class GUIManualSwitch extends GUIComponent
 		double posY = getBounds().y;
 
 		// TODO maybe draw switch state too?
-		gc.drawRectangle(posX, posY, width, height);
+		gc.drawRectangle(getBounds());
 		String label = BitVectorFormatter.formatValueAsString(end);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
