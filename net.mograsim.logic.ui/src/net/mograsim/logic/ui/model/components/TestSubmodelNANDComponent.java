@@ -8,7 +8,7 @@ public class TestSubmodelNANDComponent extends SubmodelComponent
 {
 	public TestSubmodelNANDComponent(ViewModelModifiable model)
 	{
-		super(model);
+		super(model, "TestNAND");
 		setSize(30, 20);
 		setSubmodelScale(.5);
 		initSubmodelComponents();
