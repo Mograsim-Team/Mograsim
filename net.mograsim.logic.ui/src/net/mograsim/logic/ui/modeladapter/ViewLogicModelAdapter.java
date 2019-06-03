@@ -1,13 +1,11 @@
 package net.mograsim.logic.ui.modeladapter;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -24,6 +22,8 @@ import net.mograsim.logic.ui.model.components.GUIAndGate;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.components.GUINotGate;
 import net.mograsim.logic.ui.model.components.GUIOrGate;
+import net.mograsim.logic.ui.model.components.SubmodelComponent;
+import net.mograsim.logic.ui.model.components.SubmodelInterface;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
@@ -45,7 +45,7 @@ public class ViewLogicModelAdapter
 		componentAdaptersModifiable.add(new ManualSwitchAdapter());
 		componentAdaptersModifiable.add(new BitDisplayAdapter());
 		componentAdaptersModifiable.add(new Am2901NANDBasedAdapter());
-		// TODO list all "primitive" adapters here
+		// TODO list all adapters here
 		componentAdapters = Collections.unmodifiableMap(
 				componentAdaptersModifiable.stream().collect(Collectors.toMap(ComponentAdapter::getSupportedClass, Function.identity())));
 	}
@@ -55,48 +55,68 @@ public class ViewLogicModelAdapter
 		// TODO replace Timeline with LogicModel as soon as it exists
 		Timeline timeline = new Timeline(10);
 
-		Map<Pin, Wire> logicWiresPerPin = convertWires(
-				viewModel.getComponents().stream().flatMap(component -> component.getPins().stream()).collect(Collectors.toSet()),
-				viewModel.getWires(), params, timeline);
-		Map<Pin, Wire> logicWiresPerPinUnmodifiable = Collections.unmodifiableMap(logicWiresPerPin);
-
-		Map<GUIComponent, Component> oneToOneComponents = new HashMap<>();
-		for (GUIComponent guiComp : viewModel.getComponents())
-		{
-			if (!(guiComp instanceof WireCrossPoint))
-				oneToOneComponents.put(guiComp, createAndLinkComponent(timeline, params, guiComp, logicWiresPerPinUnmodifiable,
-						componentAdapters.get(guiComp.getClass())));
-			else
-			{
-				WireCrossPoint guiCompCasted = (WireCrossPoint) guiComp;
-				guiCompCasted.setLogicModelBinding(logicWiresPerPin.get(guiCompCasted.getPin()).createReadOnlyEnd());
-			}
-		}
-
-		// TODO handle complex components
-
-		List<Component> logicComponents = new ArrayList<>();
-		// null means "no one to one mapping"
-		oneToOneComponents.values().stream().filter(Objects::nonNull).forEach(logicComponents::add);
+		convert(viewModel, params, timeline, Map.of());
 
 		return timeline;
 	}
 
-	private static Map<Pin, Wire> convertWires(Set<Pin> allPins, List<GUIWire> wires, LogicModelParameters params, Timeline timeline)
+	private static void convert(ViewModel viewModel, LogicModelParameters params, Timeline timeline, Map<Pin, Wire> externalWires)
+	{
+		Map<Pin, Wire> logicWiresPerPin = convertWires(getAllPins(viewModel), viewModel.getWires(), externalWires, params, timeline);
+		Map<Pin, Wire> logicWiresPerPinUnmodifiable = Collections.unmodifiableMap(logicWiresPerPin);
+
+		for (GUIComponent guiComp : viewModel.getComponents())
+		{
+			if (guiComp instanceof SubmodelComponent)
+			{
+				SubmodelComponent guiCompCasted = (SubmodelComponent) guiComp;
+				Map<Pin, Pin> supermodelPinsPerSubmodelPin = guiCompCasted.getSupermodelPinsPerSubmodelPin();
+				Map<Pin, Wire> externalWiresForSubmodel = supermodelPinsPerSubmodelPin.entrySet().stream()
+						.collect(Collectors.toMap(Entry::getKey, e -> logicWiresPerPin.get(e.getValue())));
+				convert(guiCompCasted.submodel, params, timeline, externalWiresForSubmodel);
+			} else if (guiComp instanceof WireCrossPoint)
+			{
+				WireCrossPoint guiCompCasted = (WireCrossPoint) guiComp;
+				guiCompCasted.setLogicModelBinding(logicWiresPerPin.get(guiCompCasted.getPin()).createReadOnlyEnd());
+			} else if (!(guiComp instanceof SubmodelInterface))// nothing to do for SubmodelInterfaces
+				createAndLinkComponent(timeline, params, guiComp, logicWiresPerPinUnmodifiable, componentAdapters.get(guiComp.getClass()));
+		}
+	}
+
+	private static Set<Pin> getAllPins(ViewModel viewModel)
+	{
+		return viewModel.getComponents().stream().flatMap(component -> component.getPins().stream()).collect(Collectors.toSet());
+	}
+
+	private static Map<Pin, Wire> convertWires(Set<Pin> allPins, List<GUIWire> wires, Map<Pin, Wire> externalWires,
+			LogicModelParameters params, Timeline timeline)
 	{
 		Map<Pin, Set<Pin>> connectedPinGroups = getConnectedPinGroups(allPins, wires);
-		Map<Pin, Wire> logicWiresPerPin = createLogicWires(params, timeline, connectedPinGroups);
+		Map<Pin, Wire> logicWiresPerPin = createLogicWires(params, timeline, connectedPinGroups, externalWires);
 		setGUIWiresLogicModelBinding(wires, logicWiresPerPin);
 		return logicWiresPerPin;
 	}
 
-	private static Map<Pin, Wire> createLogicWires(LogicModelParameters params, Timeline timeline, Map<Pin, Set<Pin>> connectedPinGroups)
+	private static Map<Pin, Wire> createLogicWires(LogicModelParameters params, Timeline timeline, Map<Pin, Set<Pin>> connectedPinGroups,
+			Map<Pin, Wire> externalWires)
 	{
 		Map<Pin, Wire> logicWiresPerPin = new HashMap<>();
 		Map<Set<Pin>, Wire> logicWiresPerPinGroup = new HashMap<>();
 		for (Entry<Pin, Set<Pin>> e : connectedPinGroups.entrySet())
-			logicWiresPerPin.put(e.getKey(), logicWiresPerPinGroup.computeIfAbsent(e.getValue(),
-					set -> new Wire(timeline, e.getKey().logicWidth, params.wireTravelTime)));
+			logicWiresPerPin.put(e.getKey(), logicWiresPerPinGroup.computeIfAbsent(e.getValue(), set ->
+			{
+				Wire externalWire = null;
+				for (Pin p : set)
+				{
+					Wire externalWireCandidate = externalWires.get(p);
+					if (externalWireCandidate != null)
+						if (externalWire == null)
+							externalWire = externalWireCandidate;
+						else
+							throw new IllegalArgumentException("Two pins to external wires can't be connected directly");
+				}
+				return new Wire(timeline, e.getKey().logicWidth, params.wireTravelTime);
+			}));
 		return logicWiresPerPin;
 	}
 
