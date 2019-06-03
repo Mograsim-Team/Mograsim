@@ -11,6 +11,13 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import net.mograsim.logic.core.components.Component;
+import net.mograsim.logic.core.components.gates.AndGate;
+import net.mograsim.logic.core.components.gates.NotGate;
+import net.mograsim.logic.core.components.gates.OrGate;
+import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.wires.Wire;
+import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.components.GUIAndGate;
 import net.mograsim.logic.ui.model.components.GUIComponent;
@@ -19,16 +26,10 @@ import net.mograsim.logic.ui.model.components.GUIOrGate;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
+import net.mograsim.logic.ui.modeladapter.componentadapters.BitDisplayAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ComponentAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ManualSwitchAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.SimpleGateAdapter;
-import net.mograsim.logic.core.components.Component;
-import net.mograsim.logic.core.components.gates.AndGate;
-import net.mograsim.logic.core.components.gates.NotGate;
-import net.mograsim.logic.core.components.gates.OrGate;
-import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
 
 public class ViewLogicModelAdapter
 {
@@ -40,6 +41,7 @@ public class ViewLogicModelAdapter
 		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUIAndGate.class, AndGate::new));
 		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUINotGate.class, (t, p, o, i) -> new NotGate(t, p, i[0], o)));
 		componentAdaptersModifiable.add(new ManualSwitchAdapter());
+		componentAdaptersModifiable.add(new BitDisplayAdapter());
 		// TODO list all "primitive" adapters here
 		componentAdapters = Collections.unmodifiableMap(
 				componentAdaptersModifiable.stream().collect(Collectors.toMap(ComponentAdapter::getSupportedClass, Function.identity())));
