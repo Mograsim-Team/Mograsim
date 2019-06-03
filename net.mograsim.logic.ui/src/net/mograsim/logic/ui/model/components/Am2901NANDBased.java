@@ -35,10 +35,10 @@ public class Am2901NANDBased extends GUIComponent
 		double posX = getBounds().x;
 		double posY = getBounds().y;
 
+		gc.drawRectangle(getBounds());
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), 4, oldFont.getStyle());
 		gc.setFont(labelFont);
-		gc.drawRectangle(posX, posY, 50, getBounds().height);
 		for (int i = 0; i < inputNames.size(); i++)
 		{
 			Point textExtent = gc.textExtent(inputNames.get(i));

@@ -38,7 +38,7 @@ public class GUIBitDisplay extends GUIComponent
 		double posY = getBounds().y;
 
 		// TODO maybe draw switch state too?
-		gc.drawRectangle(posX, posY, width, height);
+		gc.drawRectangle(getBounds());
 		String label = bitDisplay == null ? BitVectorFormatter.formatAsString(null)
 				: BitVectorFormatter.formatAsString(bitDisplay.getDisplayedValue());
 		Font oldFont = gc.getFont();
