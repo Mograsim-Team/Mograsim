@@ -1,13 +1,13 @@
 package net.mograsim.logic.ui.examples;
 
+import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
-import net.mograsim.logic.ui.model.ViewModel;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.GUINotGate;
 import net.mograsim.logic.ui.model.components.GUIOrGate;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 
 public class RSLatchExample
 {
@@ -17,7 +17,7 @@ public class RSLatchExample
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
-	public static void createRSLatchExample(ViewModel model)
+	public static void createRSLatchExample(ViewModelModifiable model)
 	{
 		GUIManualSwitch rIn = new GUIManualSwitch(model);
 		rIn.moveTo(100, 100);

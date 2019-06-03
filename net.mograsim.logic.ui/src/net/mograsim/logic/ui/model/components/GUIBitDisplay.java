@@ -8,7 +8,7 @@ import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.types.BitVectorFormatter;
-import net.mograsim.logic.ui.model.ViewModel;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 public class GUIBitDisplay extends GUIComponent
@@ -22,7 +22,7 @@ public class GUIBitDisplay extends GUIComponent
 	private final LogicObserver logicObs;
 	private BitDisplay bitDisplay;
 
-	public GUIBitDisplay(ViewModel model)
+	public GUIBitDisplay(ViewModelModifiable model)
 	{
 		super(model);
 		logicObs = (i) -> requestRedraw();

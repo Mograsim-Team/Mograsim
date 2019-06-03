@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import net.mograsim.logic.ui.model.ViewModel;
-import net.mograsim.logic.ui.model.wires.MovablePin;
-import net.mograsim.logic.ui.model.wires.Pin;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.wires.MovablePin;
+import net.mograsim.logic.ui.model.wires.Pin;
 
 public class SimpleRectangularGUIGate extends GUIComponent
 {
@@ -28,7 +28,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	private final List<Pin> inputPins;
 	private final List<Pin> inputPinsUnmodifiable;
 
-	protected SimpleRectangularGUIGate(ViewModel model, int logicWidth, String label, boolean isInverted)
+	protected SimpleRectangularGUIGate(ViewModelModifiable model, int logicWidth, String label, boolean isInverted)
 	{
 		super(model);
 		this.label = label;

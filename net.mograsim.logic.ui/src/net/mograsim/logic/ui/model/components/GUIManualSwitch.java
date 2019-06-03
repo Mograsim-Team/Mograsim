@@ -1,7 +1,5 @@
 package net.mograsim.logic.ui.model.components;
 
-import net.mograsim.logic.ui.model.ViewModel;
-import net.mograsim.logic.ui.model.wires.Pin;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -11,6 +9,8 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.ManualSwitch;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.wires.Pin;
 
 public class GUIManualSwitch extends GUIComponent
 {
@@ -24,7 +24,7 @@ public class GUIManualSwitch extends GUIComponent
 	private ManualSwitch logicSwitch;
 	private ReadEnd end;
 
-	public GUIManualSwitch(ViewModel model)
+	public GUIManualSwitch(ViewModelModifiable model)
 	{
 		super(model);
 		logicObs = (i) -> requestRedraw();

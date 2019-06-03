@@ -6,7 +6,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.ui.model.ViewModel;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 // TODO make a superclass
@@ -15,7 +15,7 @@ public class Am2901NANDBased extends GUIComponent
 	public final List<String> inputNames;
 	public final List<String> outputNames;
 
-	public Am2901NANDBased(ViewModel model)
+	public Am2901NANDBased(ViewModelModifiable model)
 	{
 		super(model);
 
