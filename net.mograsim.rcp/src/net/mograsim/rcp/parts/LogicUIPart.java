@@ -7,14 +7,14 @@ import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
+import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
+import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.ui.LogicExecuter;
 import net.mograsim.logic.ui.LogicUICanvas;
 import net.mograsim.logic.ui.examples.RSLatchExample;
-import net.mograsim.logic.ui.model.ViewModel;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
-import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
-import net.mograsim.logic.core.timeline.Timeline;
 
 public class LogicUIPart
 {
@@ -25,7 +25,7 @@ public class LogicUIPart
 	public void create(Composite parent)
 	{
 		// setup view model
-		ViewModel viewModel = new ViewModel();
+		ViewModelModifiable viewModel = new ViewModelModifiable();
 		RSLatchExample.createRSLatchExample(viewModel);
 
 		// convert to logic model
