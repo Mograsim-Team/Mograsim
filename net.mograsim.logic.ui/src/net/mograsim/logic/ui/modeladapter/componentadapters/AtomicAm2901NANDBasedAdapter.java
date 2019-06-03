@@ -2,7 +2,6 @@ package net.mograsim.logic.ui.modeladapter.componentadapters;
 
 import java.util.Map;
 
-import net.mograsim.logic.core.components.Component;
 import net.mograsim.logic.core.components.gates.AndGate;
 import net.mograsim.logic.core.components.gates.NotGate;
 import net.mograsim.logic.core.timeline.Timeline;
@@ -20,7 +19,7 @@ public class AtomicAm2901NANDBasedAdapter implements ComponentAdapter<AtomicAm29
 	}
 
 	@Override
-	public Component createAndLinkComponent(Timeline timeline, LogicModelParameters params, AtomicAm2901NANDBased guiComponent,
+	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, AtomicAm2901NANDBased guiComponent,
 			Map<Pin, Wire> logicWiresPerPin)
 	{
 		Wire w00 = logicWiresPerPin.get(guiComponent.getPins().get(0));
@@ -63,7 +62,6 @@ public class AtomicAm2901NANDBasedAdapter implements ComponentAdapter<AtomicAm29
 		Wire w37 = logicWiresPerPin.get(guiComponent.getPins().get(37));
 		createAm2901(timeline, params, w00, w01, w02, w03, w04, w05, w06, w07, w08, w09, w10, w11, w12, w13, w14, w15, w16, w17, w18, w19,
 				w20, w21, w22, w23, w24, w25, w26, w27, w28, w29, w30, w31, w32, w33, w34, w35, w36, w37);
-		return null;
 	}
 
 	private static void create_rsLatch(Timeline timeline, LogicModelParameters params, Wire _S, Wire _R, Wire Q, Wire _Q)

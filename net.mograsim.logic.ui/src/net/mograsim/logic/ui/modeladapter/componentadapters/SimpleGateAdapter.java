@@ -30,14 +30,14 @@ public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements Co
 	}
 
 	@Override
-	public Component createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent, Map<Pin, Wire> logicWiresPerPin)
+	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent, Map<Pin, Wire> logicWiresPerPin)
 	{
 		ReadWriteEnd out = logicWiresPerPin.get(guiComponent.getOutputPin()).createReadWriteEnd();
 		List<Pin> inputPins = guiComponent.getInputPins();
 		ReadEnd[] ins = new ReadEnd[inputPins.size()];
 		for (int i = 0; i < inputPins.size(); i++)
 			ins[i] = logicWiresPerPin.get(inputPins.get(i)).createReadOnlyEnd();
-		return constructor.newComponent(timeline, params.gateProcessTime, out, ins);
+		constructor.newComponent(timeline, params.gateProcessTime, out, ins);
 	}
 
 	public static interface ComponentConstructor

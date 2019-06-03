@@ -3,7 +3,6 @@ package net.mograsim.logic.ui.modeladapter.componentadapters;
 import java.util.Map;
 
 import net.mograsim.logic.core.components.BitDisplay;
-import net.mograsim.logic.core.components.Component;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
@@ -20,12 +19,11 @@ public class BitDisplayAdapter implements ComponentAdapter<GUIBitDisplay>
 	}
 
 	@Override
-	public Component createAndLinkComponent(Timeline timeline, LogicModelParameters params, GUIBitDisplay guiComponent,
+	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, GUIBitDisplay guiComponent,
 			Map<Pin, Wire> logicWiresPerPin)
 	{
 		ReadEnd end = logicWiresPerPin.get(guiComponent.getInputPin()).createReadOnlyEnd();
 		BitDisplay bitDisplay = new BitDisplay(timeline, end);
 		guiComponent.setLogicModelBinding(bitDisplay);
-		return bitDisplay;
 	}
 }
