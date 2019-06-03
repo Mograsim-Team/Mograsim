@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import net.mograsim.logic.core.components.Component;
 import net.mograsim.logic.core.components.gates.AndGate;
 import net.mograsim.logic.core.components.gates.NotGate;
 import net.mograsim.logic.core.components.gates.OrGate;
@@ -157,12 +156,12 @@ public class ViewLogicModelAdapter
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <G extends GUIComponent> Component createAndLinkComponent(Timeline timeline, LogicModelParameters params,
+	private static <G extends GUIComponent> void createAndLinkComponent(Timeline timeline, LogicModelParameters params,
 			GUIComponent guiComponent, Map<Pin, Wire> logicWiresPerPin, ComponentAdapter<G> adapter)
 	{
 		if (adapter == null)
 			throw new IllegalArgumentException("Unknown component class: " + guiComponent.getClass());
-		return adapter.createAndLinkComponent(timeline, params, (G) guiComponent, logicWiresPerPin);
+		adapter.createAndLinkComponent(timeline, params, (G) guiComponent, logicWiresPerPin);
 	}
 
 	private ViewLogicModelAdapter()
