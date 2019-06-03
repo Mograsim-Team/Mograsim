@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import net.haspamelodica.swt.helper.gcs.GCDefaultConfig;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.LogicUIRenderer;
@@ -149,8 +150,12 @@ public class SubmodelComponent extends GUIComponent
 		gc.setAlpha(Math.max(0, Math.min(255, (int) (oldAlpha * alphaFactor))));
 		renderer.render(tgc, visibleRegion.translate(posX, posY, submodelScale));
 		gc.setAlpha(Math.max(0, Math.min(255, (int) (oldAlpha * (1 - alphaFactor)))));
+		Font oldFont = gc.getFont();
+		Font labelFont = new Font(oldFont.getName(), 6, oldFont.getStyle());
+		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
 		gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
+		gc.setFont(oldFont);
 		conf.reset(gc);
 		// draw the "bounding box" after all other operations to make interface pins look better
 		gc.drawRectangle(getBounds());
