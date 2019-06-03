@@ -1,7 +1,7 @@
 package net.mograsim.logic.ui.examples;
 
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
-import net.mograsim.logic.ui.model.ViewModel;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.Am2901NANDBased;
 import net.mograsim.logic.ui.model.components.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
@@ -19,7 +19,7 @@ public class Am2901Example
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
-	public static void createAm2901Example(ViewModel model)
+	public static void createAm2901Example(ViewModelModifiable model)
 	{
 		Am2901NANDBased am2901 = new Am2901NANDBased(model);
 		am2901.moveTo(100, 0);

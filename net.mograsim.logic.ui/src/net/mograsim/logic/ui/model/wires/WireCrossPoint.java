@@ -7,7 +7,7 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.ColorHelper;
-import net.mograsim.logic.ui.model.ViewModel;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 
 public class WireCrossPoint extends GUIComponent
@@ -18,7 +18,7 @@ public class WireCrossPoint extends GUIComponent
 	private final LogicObserver logicObs;
 	private ReadEnd end;
 
-	public WireCrossPoint(ViewModel model, int logicWidth)
+	public WireCrossPoint(ViewModelModifiable model, int logicWidth)
 	{
 		super(model);
 		logicObs = (i) -> requestRedraw();

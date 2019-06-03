@@ -23,7 +23,7 @@ public class ViewModel
 
 	private final Runnable redrawListenerForSubcomponents;
 
-	public ViewModel()
+	protected ViewModel()
 	{
 		components = new ArrayList<>();
 		componentsUnmodifiable = Collections.unmodifiableList(components);
@@ -43,7 +43,7 @@ public class ViewModel
 	 * Adds the given component to the list of components and calls all componentAddedListeners. Don't call this method from application
 	 * code as it is automatically called in GUIComponent::new.
 	 */
-	public void componentCreated(GUIComponent component)
+	protected void componentCreated(GUIComponent component)
 	{
 		if (components.contains(component))
 			throw new IllegalStateException("Don't add the same component twice!");
@@ -57,7 +57,7 @@ public class ViewModel
 	 * Removes the given component from the list of components and calls all componentRemovedListeners. Don't call this method from
 	 * application code as it is automatically called in GUIComponent::destroy.
 	 */
-	public void componentDestroyed(GUIComponent component)
+	protected void componentDestroyed(GUIComponent component)
 	{
 		if (!components.contains(component))
 			throw new IllegalStateException("Don't remove the same component twice!");
@@ -71,7 +71,7 @@ public class ViewModel
 	 * Adds the given component to the list of components and calls all componentAddedListeners. Don't call this method from application
 	 * code as it is automatically called in GUIComponent::new.
 	 */
-	public void wireCreated(GUIWire wire)
+	protected void wireCreated(GUIWire wire)
 	{
 		if (wires.contains(wire))
 			throw new IllegalStateException("Don't add the same wire twice!");
@@ -85,7 +85,7 @@ public class ViewModel
 	 * Removes the given component from the list of components and calls all componentRemovedListeners. Don't call this method from
 	 * application code as it is automatically called in GUIComponent::destroy.
 	 */
-	public void wireDestroyed(GUIWire wire)
+	protected void wireDestroyed(GUIWire wire)
 	{
 		if (!wires.contains(wire))
 			throw new IllegalStateException("Don't remove the same wire twice!");
@@ -104,11 +104,6 @@ public class ViewModel
 	{
 		return wiresUnmodifiable;
 	}
-
-//	public void requestRedraw()
-//	{
-//		callRedrawListeners();
-//	}
 
 	// @formatter:off
 	public void addComponentAddedListener     (Consumer<? super GUIComponent> listener) {componentAddedListeners  .add   (listener);}

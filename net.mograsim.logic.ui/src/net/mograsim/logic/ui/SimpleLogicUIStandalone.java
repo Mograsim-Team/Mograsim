@@ -3,13 +3,13 @@ package net.mograsim.logic.ui;
 import java.util.function.Consumer;
 
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.ui.model.ViewModel;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 
 public class SimpleLogicUIStandalone
 {
-	public static void executeVisualisation(Consumer<ViewModel> setupViewModel)
+	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel)
 	{
 		LogicModelParameters params = new LogicModelParameters();
 		params.gateProcessTime = 50;
@@ -17,10 +17,10 @@ public class SimpleLogicUIStandalone
 		executeVisualisation(setupViewModel, params);
 	}
 
-	public static void executeVisualisation(Consumer<ViewModel> setupViewModel, LogicModelParameters params)
+	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, LogicModelParameters params)
 	{
 		// setup view model
-		ViewModel viewModel = new ViewModel();
+		ViewModelModifiable viewModel = new ViewModelModifiable();
 		setupViewModel.accept(viewModel);
 
 		// convert to logic model

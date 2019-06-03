@@ -10,11 +10,11 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.ColorHelper;
-import net.mograsim.logic.ui.model.ViewModel;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
 
 public class GUIWire
 {
-	private final ViewModel model;
+	private final ViewModelModifiable model;
 	public final int logicWidth;
 	private Pin pin1;
 	private Pin pin2;
@@ -25,7 +25,7 @@ public class GUIWire
 	private final LogicObserver logicObs;
 	private ReadEnd end;
 
-	public GUIWire(ViewModel model, Pin pin1, Pin pin2, Point... path)
+	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2, Point... path)
 	{
 		logicObs = (i) -> callRedrawListeners();
 		this.model = model;

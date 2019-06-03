@@ -5,14 +5,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-import net.mograsim.logic.ui.model.ViewModel;
-import net.mograsim.logic.ui.model.wires.Pin;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
+import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.wires.Pin;
 
 public abstract class GUIComponent
 {
-	protected final ViewModel model;
+	protected final ViewModelModifiable model;
 	private final Rectangle bounds;
 	private final List<Pin> pins;
 	protected final List<Pin> pinsUnmodifiable;
@@ -24,7 +24,7 @@ public abstract class GUIComponent
 
 	private final Runnable redrawListenerForSubcomponents;
 
-	public GUIComponent(ViewModel model)
+	public GUIComponent(ViewModelModifiable model)
 	{
 		this.model = model;
 		this.bounds = new Rectangle(0, 0, 0, 0);
