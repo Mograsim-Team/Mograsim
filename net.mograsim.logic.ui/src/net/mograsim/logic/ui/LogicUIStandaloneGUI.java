@@ -8,7 +8,6 @@ import org.eclipse.swt.widgets.Shell;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasOverlay;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.ui.model.ViewModel;
-import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 
 /**
  * Standalone simulation visualizer graphical user interface.
@@ -33,12 +32,6 @@ public class LogicUIStandaloneGUI
 		userInput.buttonZoom = 2;
 		userInput.enableUserInput();
 		new ZoomableCanvasOverlay(ui, null).enableScale();
-
-		// TODO don't do this here
-		LogicModelParameters params = new LogicModelParameters();
-		params.gateProcessTime = 50;
-		params.wireTravelTime = 10;
-//		timeline = ViewLogicModelAdapter.convert(model, params);
 	}
 
 	public LogicUICanvas getLogicUICanvas()
