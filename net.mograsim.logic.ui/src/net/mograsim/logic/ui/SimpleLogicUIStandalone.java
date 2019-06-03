@@ -11,14 +11,19 @@ public class SimpleLogicUIStandalone
 {
 	public static void executeVisualisation(Consumer<ViewModel> setupViewModel)
 	{
+		LogicModelParameters params = new LogicModelParameters();
+		params.gateProcessTime = 50;
+		params.wireTravelTime = 10;
+		executeVisualisation(setupViewModel, params);
+	}
+
+	public static void executeVisualisation(Consumer<ViewModel> setupViewModel, LogicModelParameters params)
+	{
 		// setup view model
 		ViewModel viewModel = new ViewModel();
 		setupViewModel.accept(viewModel);
 
 		// convert to logic model
-		LogicModelParameters params = new LogicModelParameters();
-		params.gateProcessTime = 50;
-		params.wireTravelTime = 10;
 		Timeline timeline = ViewLogicModelAdapter.convert(viewModel, params);
 
 		// initialize UI and executer
