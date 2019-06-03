@@ -25,7 +25,7 @@ public class GUIBitDisplay extends GUIComponent
 	public GUIBitDisplay(ViewModel model)
 	{
 		super(model);
-		logicObs = (i) -> callComponentLookChangedListeners();
+		logicObs = (i) -> requestRedraw();
 
 		setSize(width, height);
 		addPin(this.inputPin = new Pin(this, 1, 0, height / 2));
