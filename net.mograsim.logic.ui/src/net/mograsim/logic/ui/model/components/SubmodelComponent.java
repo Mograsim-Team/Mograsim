@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import net.haspamelodica.swt.helper.gcs.GCDefaultConfig;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.LogicUIRenderer;
 import net.mograsim.logic.ui.model.ViewModel;
@@ -24,12 +25,13 @@ public class SubmodelComponent extends GUIComponent
 	private final Map<Pin, Pin> supermodelPinsPerSubmodelPinUnmodifiable;
 	private final SubmodelInterface submodelInterface;
 
+	private final String label;
 	private double submodelScale;
 	private double maxVisibleRegionFillRatioForAlpha0;
 	private double minVisibleRegionFillRatioForAlpha1;
 	private final LogicUIRenderer renderer;
 
-	public SubmodelComponent(ViewModelModifiable model)
+	public SubmodelComponent(ViewModelModifiable model, String label)
 	{
 		super(model);
 		this.submodelModifiable = new ViewModelModifiable();
@@ -40,6 +42,7 @@ public class SubmodelComponent extends GUIComponent
 		this.supermodelPinsPerSubmodelPinUnmodifiable = Collections.unmodifiableMap(supermodelPinsPerSubmodelPin);
 		this.submodelInterface = new SubmodelInterface(submodelModifiable);
 
+		this.label = label;
 		this.submodelScale = 1;
 		this.maxVisibleRegionFillRatioForAlpha0 = 0.1;
 		this.minVisibleRegionFillRatioForAlpha1 = 0.8;
@@ -142,8 +145,12 @@ public class SubmodelComponent extends GUIComponent
 		double alphaFactor = map(visibleRegionFillRatio, maxVisibleRegionFillRatioForAlpha0, minVisibleRegionFillRatioForAlpha1, 0, 1);
 		alphaFactor = Math.max(0, Math.min(1, alphaFactor));
 		// we need to take the old alpha into account to support nested submodules better.
-		gc.setAlpha(Math.max(0, Math.min(255, (int) (gc.getAlpha() * alphaFactor))));
+		int oldAlpha = gc.getAlpha();
+		gc.setAlpha(Math.max(0, Math.min(255, (int) (oldAlpha * alphaFactor))));
 		renderer.render(tgc, visibleRegion.translate(posX, posY, submodelScale));
+		gc.setAlpha(Math.max(0, Math.min(255, (int) (oldAlpha * (1 - alphaFactor)))));
+		Point textExtent = gc.textExtent(label);
+		gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
 		conf.reset(gc);
 		// draw the "bounding box" after all other operations to make interface pins look better
 		gc.drawRectangle(getBounds());
