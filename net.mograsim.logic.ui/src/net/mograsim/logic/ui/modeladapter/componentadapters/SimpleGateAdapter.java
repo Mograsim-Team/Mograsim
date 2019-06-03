@@ -3,14 +3,14 @@ package net.mograsim.logic.ui.modeladapter.componentadapters;
 import java.util.List;
 import java.util.Map;
 
-import net.mograsim.logic.ui.model.components.SimpleRectangularGUIGate;
-import net.mograsim.logic.ui.model.wires.Pin;
-import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 import net.mograsim.logic.core.components.Component;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.ui.model.components.SimpleRectangularGUIGate;
+import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 
 public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements ComponentAdapter<G>
 {

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
+import net.mograsim.logic.ui.model.components.GUIComponent;
 
 //TODO add an ID and/or a name
 public class Pin

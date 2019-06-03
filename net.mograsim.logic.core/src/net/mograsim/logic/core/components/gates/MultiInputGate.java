@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.mograsim.logic.core.components.BasicComponent;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.types.MutationOperation;
 import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
+import net.mograsim.logic.core.types.MutationOperation;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 
