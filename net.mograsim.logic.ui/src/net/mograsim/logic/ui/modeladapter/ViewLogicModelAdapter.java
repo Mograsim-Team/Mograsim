@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -26,6 +27,7 @@ import net.mograsim.logic.ui.model.components.GUIOrGate;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
+import net.mograsim.logic.ui.modeladapter.componentadapters.Am2901NANDBasedAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.BitDisplayAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ComponentAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ManualSwitchAdapter;
@@ -42,6 +44,7 @@ public class ViewLogicModelAdapter
 		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUINotGate.class, (t, p, o, i) -> new NotGate(t, p, i[0], o)));
 		componentAdaptersModifiable.add(new ManualSwitchAdapter());
 		componentAdaptersModifiable.add(new BitDisplayAdapter());
+		componentAdaptersModifiable.add(new Am2901NANDBasedAdapter());
 		// TODO list all "primitive" adapters here
 		componentAdapters = Collections.unmodifiableMap(
 				componentAdaptersModifiable.stream().collect(Collectors.toMap(ComponentAdapter::getSupportedClass, Function.identity())));
@@ -73,7 +76,8 @@ public class ViewLogicModelAdapter
 		// TODO handle complex components
 
 		List<Component> logicComponents = new ArrayList<>();
-		logicComponents.addAll(oneToOneComponents.values());
+		// null means "no one to one mapping"
+		oneToOneComponents.values().stream().filter(Objects::nonNull).forEach(logicComponents::add);
 
 		return timeline;
 	}
