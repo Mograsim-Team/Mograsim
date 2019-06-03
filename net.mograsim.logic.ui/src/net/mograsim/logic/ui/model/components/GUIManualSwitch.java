@@ -27,7 +27,7 @@ public class GUIManualSwitch extends GUIComponent
 	public GUIManualSwitch(ViewModel model)
 	{
 		super(model);
-		logicObs = (i) -> callComponentLookChangedListeners();
+		logicObs = (i) -> requestRedraw();
 
 		setSize(width, height);
 		addPin(this.outputPin = new Pin(this, 1, width, height / 2));
