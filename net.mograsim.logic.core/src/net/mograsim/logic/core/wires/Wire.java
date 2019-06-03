@@ -21,6 +21,7 @@ import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
  */
 public class Wire
 {
+	public final String name;
 	private BitVector values;
 	public final int travelTime;
 	private List<ReadEnd> attached = new ArrayList<>();
@@ -30,9 +31,15 @@ public class Wire
 
 	public Wire(Timeline timeline, int length, int travelTime)
 	{
+		this(timeline, length, travelTime, null);
+	}
+
+	public Wire(Timeline timeline, int length, int travelTime, String name)
+	{
 		if (length < 1)
 			throw new IllegalArgumentException(
 					String.format("Tried to create an array of wires with length %d, but a length of less than 1 makes no sense.", length));
+		this.name = name;
 		this.timeline = timeline;
 		this.length = length;
 		this.travelTime = travelTime;
@@ -491,7 +498,8 @@ public class Wire
 	@Override
 	public String toString()
 	{
-		return String.format("wire 0x%08x value: %s inputs: %s", hashCode(), values, inputs);
+		String name = this.name == null ? String.format("0x%08x", hashCode()) : this.name;
+		return String.format("wire %s value: %s inputs: %s", name, values, inputs);
 	}
 
 	public static ReadEnd[] extractEnds(Wire[] w)
