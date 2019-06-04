@@ -45,7 +45,7 @@ public class SubmodelComponent extends GUIComponent
 
 		this.label = label;
 		this.submodelScale = 1;
-		this.maxVisibleRegionFillRatioForAlpha0 = 0.1;
+		this.maxVisibleRegionFillRatioForAlpha0 = 0.4;
 		this.minVisibleRegionFillRatioForAlpha1 = 0.8;
 		this.renderer = new LogicUIRenderer(submodelModifiable);
 
