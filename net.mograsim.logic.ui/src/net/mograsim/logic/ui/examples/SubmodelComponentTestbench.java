@@ -5,25 +5,25 @@ import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.SubmodelComponent;
-import net.mograsim.logic.ui.model.components.mi.nandbased.GUIand;
+import net.mograsim.logic.ui.model.components.mi.nandbased.GUIand41;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 
-public class ModularAm2901Example
+public class SubmodelComponentTestbench
 {
 	public static void main(String[] args)
 	{
 		LogicModelParameters params = new LogicModelParameters();
 		params.gateProcessTime = 1;
 		params.wireTravelTime = 1;
-		SimpleLogicUIStandalone.executeVisualisation(ModularAm2901Example::createAm2901Example, params);
+		SimpleLogicUIStandalone.executeVisualisation(SubmodelComponentTestbench::createTestbench, params);
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
-	public static void createAm2901Example(ViewModelModifiable model)
+	public static void createTestbench(ViewModelModifiable model)
 	{
-		SubmodelComponent comp = new GUIand(model);
-		int inputCount = 2;
+		SubmodelComponent comp = new GUIand41(model);
+		int inputCount = 5;
 
 		comp.moveTo(100, 0);
 		for (int i = 0; i < inputCount; i++)
