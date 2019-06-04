@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import net.haspamelodica.swt.helper.gcs.GCDefaultConfig;
+import net.haspamelodica.swt.helper.gcs.GCConfig;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
@@ -139,7 +139,7 @@ public class SubmodelComponent extends GUIComponent
 		double posX = getBounds().x;
 		double posY = getBounds().y;
 
-		GCDefaultConfig conf = new GCDefaultConfig(gc);
+		GCConfig conf = new GCConfig(gc);
 		TranslatedGC tgc = new TranslatedGC(gc, posX, posY, submodelScale, true);
 		conf.reset(tgc);
 		double visibleRegionFillRatio = Math.max(getBounds().width / visibleRegion.width, getBounds().height / visibleRegion.height);
@@ -148,7 +148,7 @@ public class SubmodelComponent extends GUIComponent
 		// we need to take the old alpha into account to support nested submodules better.
 		int oldAlpha = gc.getAlpha();
 		gc.setAlpha(Math.max(0, Math.min(255, (int) (oldAlpha * alphaFactor))));
-		renderer.render(tgc, visibleRegion.translate(posX, posY, submodelScale));
+		renderer.render(tgc, visibleRegion.translate(-posX, -posY, 1 / submodelScale));
 		gc.setAlpha(Math.max(0, Math.min(255, (int) (oldAlpha * (1 - alphaFactor)))));
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), 6, oldFont.getStyle());
