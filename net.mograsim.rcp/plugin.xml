@@ -8,14 +8,14 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="org.eclipse.e4.ui.workbench.swt.E4Application"
-            name="Simulator WIP">
+            name="%product.name">
          <property
                name="applicationCSS"
                value="platform:/plugin/net.mograsim.rcp/css/default.css">
          </property>
          <property
                name="appName"
-               value="Simulator WIP">
+               value="%product.name">
          </property>
          <property
                name="windowImages"
@@ -37,34 +37,6 @@
             productId="net.mograsim.rcp.product"
             splashId="net.mograsim.rcp.splashHandlers.extensible">
       </splashHandlerProductBinding>
-   </extension>
-   <extension
-         point="net.mograsim.rcp.splashExtension">
-      <splashExtension
-            icon="icons/af.png"
-            id="af"
-            tooltip="Application Framework">
-      </splashExtension>
-      <splashExtension
-            icon="icons/embedded.png"
-            id="embedded"
-            tooltip="Embedded">
-      </splashExtension>
-      <splashExtension
-            icon="icons/enterprise.png"
-            id="enterprise"
-            tooltip="Enterprise">
-      </splashExtension>
-      <splashExtension
-            icon="icons/languages.png"
-            id="languages"
-            tooltip="Languages">
-      </splashExtension>
-      <splashExtension
-            icon="icons/rcp.png"
-            id="rcp"
-            tooltip="RCP">
-      </splashExtension>
    </extension>
 
 </plugin>
