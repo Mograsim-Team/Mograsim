@@ -5,7 +5,7 @@ import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.SubmodelComponent;
-import net.mograsim.logic.ui.model.components.mi.nandbased.GUI_rsLatch;
+import net.mograsim.logic.ui.model.components.mi.nandbased.GUIand;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 
@@ -22,7 +22,7 @@ public class ModularAm2901Example
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createAm2901Example(ViewModelModifiable model)
 	{
-		SubmodelComponent comp = new GUI_rsLatch(model);
+		SubmodelComponent comp = new GUIand(model);
 		int inputCount = 2;
 
 		comp.moveTo(100, 0);
