@@ -39,13 +39,14 @@ public class GUI_rsLatch extends SubmodelComponent
 	{
 
 		GUINandGate nand1 = new GUINandGate(submodelModifiable, 1);
-		nand1.moveTo(80, 20);
 		GUINandGate nand2 = new GUINandGate(submodelModifiable, 1);
-		nand2.moveTo(80, 85);
 
 		WireCrossPoint cp1 = new WireCrossPoint(submodelModifiable, 1);
-		cp1.moveTo(120, 30);
 		WireCrossPoint cp2 = new WireCrossPoint(submodelModifiable, 1);
+
+		nand1.moveTo(80, 20);
+		nand2.moveTo(80, 85);
+		cp1.moveTo(120, 30);
 		cp2.moveTo(120, 95);
 
 		new GUIWire(submodelModifiable, _S, nand1.getInputPins().get(0));

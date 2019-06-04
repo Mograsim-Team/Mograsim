@@ -35,11 +35,12 @@ public class GUIand extends SubmodelComponent
 	private void initSubmodelComponents(Pin A, Pin B, Pin Y)
 	{
 		GUINandGate nand = new GUINandGate(submodelModifiable, 1);
-		nand.moveTo(20, 21.25);
 		GUINandGate not = new GUINandGate(submodelModifiable, 1);
-		not.moveTo(50, 21.25);
 
 		WireCrossPoint cp1 = new WireCrossPoint(submodelModifiable, 1);
+
+		nand.moveTo(20, 21.25);
+		not.moveTo(50, 21.25);
 		cp1.moveTo(45, 31.25);
 
 		new GUIWire(submodelModifiable, A, nand.getInputPins().get(0), new Point(10, 12.5), new Point(10, 26.25));
