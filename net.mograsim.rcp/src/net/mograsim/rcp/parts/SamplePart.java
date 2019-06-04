@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.eclipse.e4.core.services.nls.Translation;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -17,10 +18,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
+import net.mograsim.rcp.i18n.Messages;
+
 public class SamplePart
 {
 
 	private TableViewer tableViewer;
+	private Text txtInput;
 
 	@Inject
 	private MPart part;
@@ -30,7 +34,7 @@ public class SamplePart
 	{
 		parent.setLayout(new GridLayout(1, false));
 
-		Text txtInput = new Text(parent, SWT.BORDER);
+		txtInput = new Text(parent, SWT.BORDER);
 		txtInput.setMessage("Enter text to mark part as dirty");
 		txtInput.addModifyListener(e -> part.setDirty(true));
 		txtInput.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -57,5 +61,12 @@ public class SamplePart
 	private static List<String> createInitialDataModel()
 	{
 		return Arrays.asList("Sample item 1", "Sample item 2", "Sample item 3", "Sample item 4", "Sample item 5");
+	}
+
+	@Inject
+	public void translate(@Translation Messages m)
+	{
+		if (txtInput != null && !txtInput.isDisposed())
+			txtInput.setMessage(m.sample_part_input_hint);
 	}
 }
