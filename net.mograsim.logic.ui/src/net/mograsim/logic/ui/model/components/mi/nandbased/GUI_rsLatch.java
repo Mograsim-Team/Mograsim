@@ -18,7 +18,7 @@ public class GUI_rsLatch extends SubmodelComponent
 		initSubmodelComponents();
 	}
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
 		Pin _S = addSubmodelInterface(1, 0, 5);
