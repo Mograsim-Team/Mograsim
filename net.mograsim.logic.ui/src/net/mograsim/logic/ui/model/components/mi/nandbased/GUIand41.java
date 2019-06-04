@@ -23,7 +23,7 @@ public class GUIand41 extends SubmodelComponent
 	{
 		super(model, "GUIand41");
 		setSize(35, 55);
-		setSubmodelScale(.2);
+		setSubmodelScale(.4);
 
 		Pin A1 = addSubmodelInterface(1, 0, 5);
 		Pin A2 = addSubmodelInterface(1, 0, 15);
@@ -60,29 +60,29 @@ public class GUIand41 extends SubmodelComponent
 		WireCrossPoint cpB3 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpB4 = new WireCrossPoint(submodelModifiable, 1);
 
-		and1.moveTo(70, 20);
-		and2.moveTo(70, 70);
-		and3.moveTo(70, 120);
-		and4.moveTo(70, 170);
-		cpB2.moveTo(60, 90);
-		cpB3.moveTo(60, 140);
-		cpB4.moveTo(60, 190);
+		and1.moveTo(30, 7.5);
+		and2.moveTo(30, 32.5);
+		and3.moveTo(30, 57.5);
+		and4.moveTo(30, 82.5);
+		cpB2.moveTo(25, 52.5);
+		cpB3.moveTo(25, 77.5);
+		cpB4.moveTo(25, 102.5);
 
 		new GUIWire(submodelModifiable, A1, and1.getPinA());
 		new GUIWire(submodelModifiable, A2, and2.getPinA());
 		new GUIWire(submodelModifiable, A3, and3.getPinA());
 		new GUIWire(submodelModifiable, A4, and4.getPinA());
-		new GUIWire(submodelModifiable, B, cpB4.getPin(), new Point(60, 250));
+		new GUIWire(submodelModifiable, B, cpB4.getPin(), new Point(25, 125));
 		new GUIWire(submodelModifiable, cpB4.getPin(), and4.getPinB());
 		new GUIWire(submodelModifiable, cpB4.getPin(), cpB3.getPin());
 		new GUIWire(submodelModifiable, cpB3.getPin(), and3.getPinB());
 		new GUIWire(submodelModifiable, cpB3.getPin(), cpB2.getPin());
 		new GUIWire(submodelModifiable, cpB2.getPin(), and2.getPinB());
-		new GUIWire(submodelModifiable, cpB2.getPin(), and1.getPinB(), new Point(60, 40));
-		new GUIWire(submodelModifiable, and1.getPinY(), Y1, new Point(150, 32.5), new Point(150, 25));
-		new GUIWire(submodelModifiable, and2.getPinY(), Y2, new Point(150, 82.5), new Point(150, 75));
-		new GUIWire(submodelModifiable, and3.getPinY(), Y3, new Point(150, 132.5), new Point(150, 125));
-		new GUIWire(submodelModifiable, and4.getPinY(), Y4, new Point(150, 182.5), new Point(150, 175));
+		new GUIWire(submodelModifiable, cpB2.getPin(), and1.getPinB(), new Point(25, 27.5));
+		new GUIWire(submodelModifiable, and1.getPinY(), Y1, new Point(75, 20), new Point(75, 12.5));
+		new GUIWire(submodelModifiable, and2.getPinY(), Y2, new Point(75, 45), new Point(75, 37.5));
+		new GUIWire(submodelModifiable, and3.getPinY(), Y3, new Point(75, 70), new Point(75, 62.5));
+		new GUIWire(submodelModifiable, and4.getPinY(), Y4, new Point(75, 95), new Point(75, 87.5));
 	}
 
 	public Pin getPinA1()
