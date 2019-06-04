@@ -7,16 +7,12 @@ import net.mograsim.logic.ui.model.components.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.SubmodelComponent;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUInand3;
 import net.mograsim.logic.ui.model.wires.GUIWire;
-import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 
 public class SubmodelComponentTestbench
 {
 	public static void main(String[] args)
 	{
-		LogicModelParameters params = new LogicModelParameters();
-		params.gateProcessTime = 1;
-		params.wireTravelTime = 1;
-		SimpleLogicUIStandalone.executeVisualisation(SubmodelComponentTestbench::createTestbench, params);
+		SimpleLogicUIStandalone.executeVisualisation(SubmodelComponentTestbench::createTestbench);
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
