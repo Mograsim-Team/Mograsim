@@ -14,7 +14,7 @@ public class TestSubmodelNANDComponent extends SubmodelComponent
 		initSubmodelComponents();
 	}
 
-	@SuppressWarnings("unused") // GUIWires being created
+	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
 		Pin A = addSubmodelInterface(1, 0, 5);

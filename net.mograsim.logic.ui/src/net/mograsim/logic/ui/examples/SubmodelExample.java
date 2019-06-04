@@ -14,7 +14,7 @@ public class SubmodelExample
 		SimpleLogicUIStandalone.executeVisualisation(SubmodelExample::createSubmodelExample);
 	}
 
-	@SuppressWarnings("unused") // GUIWires being created
+	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createSubmodelExample(ViewModelModifiable model)
 	{
 		GUIManualSwitch swA = new GUIManualSwitch(model);
