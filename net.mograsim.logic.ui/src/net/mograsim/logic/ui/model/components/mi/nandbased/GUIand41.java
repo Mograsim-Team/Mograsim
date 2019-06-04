@@ -51,21 +51,21 @@ public class GUIand41 extends SubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents(Pin A1, Pin A2, Pin A3, Pin A4, Pin B, Pin Y1, Pin Y2, Pin Y3, Pin Y4)
 	{
-
 		GUIand and1 = new GUIand(submodelModifiable);
-		and1.moveTo(70, 20);
 		GUIand and2 = new GUIand(submodelModifiable);
-		and2.moveTo(70, 70);
 		GUIand and3 = new GUIand(submodelModifiable);
-		and3.moveTo(70, 120);
 		GUIand and4 = new GUIand(submodelModifiable);
-		and4.moveTo(70, 170);
 
 		WireCrossPoint cpB2 = new WireCrossPoint(submodelModifiable, 1);
-		cpB2.moveTo(60, 90);
 		WireCrossPoint cpB3 = new WireCrossPoint(submodelModifiable, 1);
-		cpB3.moveTo(60, 140);
 		WireCrossPoint cpB4 = new WireCrossPoint(submodelModifiable, 1);
+
+		and1.moveTo(70, 20);
+		and2.moveTo(70, 70);
+		and3.moveTo(70, 120);
+		and4.moveTo(70, 170);
+		cpB2.moveTo(60, 90);
+		cpB3.moveTo(60, 140);
 		cpB4.moveTo(60, 190);
 
 		new GUIWire(submodelModifiable, A1, and1.getPinA());
