@@ -50,9 +50,9 @@ public class GUInand3 extends SubmodelComponent
 
 		new GUIWire(submodelModifiable, A, nandAB.getInputPins().get(0), new Point(5, 12.5), new Point(5, 20));
 		new GUIWire(submodelModifiable, B, nandAB.getInputPins().get(1), new Point(5, 37.5), new Point(5, 30));
-		new GUIWire(submodelModifiable, nandAB.getOutputPin(), cpNandAB.getPin());
-		new GUIWire(submodelModifiable, cpNandAB.getPin(), andAB.getInputPins().get(0), new Point(35, 20));
-		new GUIWire(submodelModifiable, cpNandAB.getPin(), andAB.getInputPins().get(1), new Point(35, 30));
+		new GUIWire(submodelModifiable, nandAB.getOutputPin(), cpNandAB);
+		new GUIWire(submodelModifiable, cpNandAB, andAB.getInputPins().get(0), new Point(35, 20));
+		new GUIWire(submodelModifiable, cpNandAB, andAB.getInputPins().get(1), new Point(35, 30));
 		new GUIWire(submodelModifiable, andAB.getOutputPin(), nandABC.getInputPins().get(0), new Point(65, 25), new Point(65, 32.5));
 		new GUIWire(submodelModifiable, C, nandABC.getInputPins().get(1), new Point(65, 62.5), new Point(65, 42.5));
 		new GUIWire(submodelModifiable, nandABC.getOutputPin(), Y);

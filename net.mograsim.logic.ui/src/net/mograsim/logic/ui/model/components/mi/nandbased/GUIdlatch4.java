@@ -68,13 +68,13 @@ public class GUIdlatch4 extends SubmodelComponent
 		cp3.moveTo(15, 77.5);
 		cp4.moveTo(15, 102.5);
 
-		new GUIWire(submodelModifiable, C, cp4.getPin(), new Point(15, 125));
-		new GUIWire(submodelModifiable, cp4.getPin(), dlatch4.getPinE());
-		new GUIWire(submodelModifiable, cp4.getPin(), cp3.getPin());
-		new GUIWire(submodelModifiable, cp3.getPin(), dlatch3.getPinE());
-		new GUIWire(submodelModifiable, cp3.getPin(), cp2.getPin());
-		new GUIWire(submodelModifiable, cp2.getPin(), dlatch2.getPinE());
-		new GUIWire(submodelModifiable, cp2.getPin(), dlatch1.getPinE(), new Point(15, 27.5));
+		new GUIWire(submodelModifiable, C, cp4, new Point(15, 125));
+		new GUIWire(submodelModifiable, cp4, dlatch4.getPinE());
+		new GUIWire(submodelModifiable, cp4, cp3);
+		new GUIWire(submodelModifiable, cp3, dlatch3.getPinE());
+		new GUIWire(submodelModifiable, cp3, cp2);
+		new GUIWire(submodelModifiable, cp2, dlatch2.getPinE());
+		new GUIWire(submodelModifiable, cp2, dlatch1.getPinE(), new Point(15, 27.5));
 		new GUIWire(submodelModifiable, D1, dlatch1.getPinD());
 		new GUIWire(submodelModifiable, D2, dlatch2.getPinD());
 		new GUIWire(submodelModifiable, D3, dlatch3.getPinD());

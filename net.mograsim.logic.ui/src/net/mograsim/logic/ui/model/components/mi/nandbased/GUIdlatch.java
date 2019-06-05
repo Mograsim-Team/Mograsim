@@ -51,12 +51,12 @@ public class GUIdlatch extends SubmodelComponent
 		cp2.moveTo(35, 17.5);
 
 		new GUIWire(submodelModifiable, D, nand1.getInputPins().get(0));
-		new GUIWire(submodelModifiable, E, cp1.getPin());
-		new GUIWire(submodelModifiable, cp1.getPin(), nand1.getInputPins().get(1), new Point(5, 22.5));
-		new GUIWire(submodelModifiable, cp1.getPin(), nand2.getInputPins().get(1));
-		new GUIWire(submodelModifiable, nand1.getOutputPin(), cp2.getPin());
-		new GUIWire(submodelModifiable, cp2.getPin(), nand2.getInputPins().get(0), new Point(35, 30), new Point(10, 30), new Point(10, 40));
-		new GUIWire(submodelModifiable, cp2.getPin(), _rsLatch.getPin_S(), new Point(35, 12.5));
+		new GUIWire(submodelModifiable, E, cp1);
+		new GUIWire(submodelModifiable, cp1, nand1.getInputPins().get(1), new Point(5, 22.5));
+		new GUIWire(submodelModifiable, cp1, nand2.getInputPins().get(1));
+		new GUIWire(submodelModifiable, nand1.getOutputPin(), cp2);
+		new GUIWire(submodelModifiable, cp2, nand2.getInputPins().get(0), new Point(35, 30), new Point(10, 30), new Point(10, 40));
+		new GUIWire(submodelModifiable, cp2, _rsLatch.getPin_S(), new Point(35, 12.5));
 		new GUIWire(submodelModifiable, nand2.getOutputPin(), _rsLatch.getPin_R(), new Point(40, 45), new Point(40, 27.5));
 		new GUIWire(submodelModifiable, _rsLatch.getPinQ(), Q);
 		new GUIWire(submodelModifiable, _rsLatch.getPin_Q(), _Q, new Point(82.5, 27.5), new Point(82.5, 50));
