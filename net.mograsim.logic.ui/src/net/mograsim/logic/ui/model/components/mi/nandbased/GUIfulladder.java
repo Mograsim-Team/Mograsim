@@ -12,7 +12,6 @@ public class GUIfulladder extends SimpleRectangularSubmodelComponent
 	public GUIfulladder(ViewModelModifiable model)
 	{
 		super(model, 1, "GUIfulladder");
-		setSize(50, 40);
 		setSubmodelScale(.4);
 		setInputCount(3);
 		setOutputCount(2);
