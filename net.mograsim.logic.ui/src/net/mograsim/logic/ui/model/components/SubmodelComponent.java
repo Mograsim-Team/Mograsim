@@ -178,7 +178,11 @@ public class SubmodelComponent extends GUIComponent
 	public boolean clicked(double x, double y)
 	{
 		// TODO
-		System.out.println(((x - getBounds().x) / submodelScale) + "|" + ((y - getBounds().y) / submodelScale));
+		double scaledX = (x - getBounds().x) / submodelScale;
+		double scaledY = (y - getBounds().y) / submodelScale;
+		double roundedScaledX = Math.round(scaledX / 5 * 2) * 5 / 2.;
+		double roundedScaledY = Math.round(scaledY / 5 * 2) * 5 / 2.;
+		System.out.println(scaledX + "|" + scaledY + ", rounded " + roundedScaledX + "|" + roundedScaledY);
 		return true;
 	}
 
