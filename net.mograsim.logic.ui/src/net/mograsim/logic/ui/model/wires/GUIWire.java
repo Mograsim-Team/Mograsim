@@ -47,12 +47,14 @@ public class GUIWire
 		this.logicWidth = pin1.logicWidth;
 		if (pin2.logicWidth != pin1.logicWidth)
 			throw new IllegalArgumentException("Can't connect pins of different logic width");
-		this.path = new double[path.length * 2 + 4];
-		for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
+
+		if (path.length == 0)
 		{
-			this.path[dstI + 0] = path[srcI].x;
-			this.path[dstI + 1] = path[srcI].y;
+			Point pos1 = pin1.getPos(), pos2 = pin2.getPos();
+			path = new Point[] { new Point((pos1.x + pos2.x) / 2, pos1.y), new Point((pos1.x + pos2.x) / 2, pos2.y) };
 		}
+
+		applyPath(path);
 
 		this.pin1 = pin1;
 		this.pin2 = pin2;
@@ -65,6 +67,17 @@ public class GUIWire
 		pin2Moved();
 
 		model.wireCreated(this);
+	}
+
+	private void applyPath(Point... path)
+	{
+		this.path = new double[path.length * 2 + 4];
+
+		for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
+		{
+			this.path[dstI + 0] = path[srcI].x;
+			this.path[dstI + 1] = path[srcI].y;
+		}
 	}
 
 	private void pin1Moved()
