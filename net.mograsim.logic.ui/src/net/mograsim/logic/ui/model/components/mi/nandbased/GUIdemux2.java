@@ -3,46 +3,32 @@ package net.mograsim.logic.ui.model.components.mi.nandbased;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUINandGate;
-import net.mograsim.logic.ui.model.components.SubmodelComponent;
+import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
-public class GUIdemux2 extends SubmodelComponent
+public class GUIdemux2 extends SimpleRectangularSubmodelComponent
 {
-	private final Pin pinS0;
-	private final Pin pinS1;
-	private final Pin pinY00;
-	private final Pin pinY01;
-	private final Pin pinY10;
-	private final Pin pinY11;
-
 	public GUIdemux2(ViewModelModifiable model)
 	{
-		super(model, "GUIdemux2");
-		setSize(40, 42.5);
+		super(model, 1, "GUIdemux2");
 		setSubmodelScale(.4);
-
-		Pin S0 = addSubmodelInterface(1, 0, 5);
-		Pin S1 = addSubmodelInterface(1, 0, 15);
-		Pin Y00 = addSubmodelInterface(1, 40, 5);
-		Pin Y01 = addSubmodelInterface(1, 40, 15);
-		Pin Y10 = addSubmodelInterface(1, 40, 25);
-		Pin Y11 = addSubmodelInterface(1, 40, 35);
-
-		this.pinS0 = getSupermodelPin(S0);
-		this.pinS1 = getSupermodelPin(S1);
-		this.pinY00 = getSupermodelPin(Y00);
-		this.pinY01 = getSupermodelPin(Y01);
-		this.pinY10 = getSupermodelPin(Y10);
-		this.pinY11 = getSupermodelPin(Y11);
-
-		initSubmodelComponents(S0, S1, Y00, Y01, Y10, Y11);
+		setInputCount(2);
+		setOutputCount(4);
+		initSubmodelComponents();
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
-	private void initSubmodelComponents(Pin S0, Pin S1, Pin Y00, Pin Y01, Pin Y10, Pin Y11)
+	private void initSubmodelComponents()
 	{
+		Pin S0 = getInputSubmodelPins().get(0);
+		Pin S1 = getInputSubmodelPins().get(1);
+		Pin Y00 = getOutputSubmodelPins().get(0);
+		Pin Y01 = getOutputSubmodelPins().get(1);
+		Pin Y10 = getOutputSubmodelPins().get(2);
+		Pin Y11 = getOutputSubmodelPins().get(3);
+
 		GUINandGate notS0 = new GUINandGate(submodelModifiable, 1);
 		GUINandGate notS1 = new GUINandGate(submodelModifiable, 1);
 		GUIand andY00 = new GUIand(submodelModifiable);
@@ -59,74 +45,44 @@ public class GUIdemux2 extends SubmodelComponent
 		WireCrossPoint cpNotS0 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpNotS1 = new WireCrossPoint(submodelModifiable, 1);
 
-		notS0.moveTo(15, 2.5);
-		notS1.moveTo(15, 27.5);
-		andY00.moveTo(55, 2.5);
-		andY01.moveTo(55, 27.5);
-		andY10.moveTo(55, 52.5);
-		andY11.moveTo(55, 77.5);
-		cpS01.moveTo(5, 12.5);
-		cpS11.moveTo(10, 37.5);
-		cpS02.moveTo(5, 17.5);
-		cpS12.moveTo(10, 42.5);
-		cpS03.moveTo(50, 67.5);
-		cpS13.moveTo(40, 72.5);
-		cpNotS0.moveTo(40, 12.5);
-		cpNotS1.moveTo(45, 37.5);
+		notS0.moveTo(10, 2.5);
+		notS1.moveTo(10, 27.5);
+		andY00.moveTo(40, 2.5);
+		andY01.moveTo(40, 27.5);
+		andY10.moveTo(40, 52.5);
+		andY11.moveTo(40, 77.5);
+		cpS01.moveTo(7.5, 12.5);
+		cpS11.moveTo(5, 37.5);
+		cpS02.moveTo(7.5, 17.5);
+		cpS12.moveTo(5, 42.5);
+		cpS03.moveTo(37.5, 62.5);
+		cpS13.moveTo(32.5, 67.5);
+		cpNotS0.moveTo(32.5, 12.5);
+		cpNotS1.moveTo(35, 37.5);
 
-		new GUIWire(submodelModifiable, S0, cpS01);
-		new GUIWire(submodelModifiable, S1, cpS11);
-		new GUIWire(submodelModifiable, cpS01, notS0.getInputPins().get(0), new Point(5, 7.5));
-		new GUIWire(submodelModifiable, cpS11, notS1.getInputPins().get(0), new Point(10, 32.5));
-		new GUIWire(submodelModifiable, cpS01, cpS02);
-		new GUIWire(submodelModifiable, cpS11, cpS12);
-		new GUIWire(submodelModifiable, cpS02, notS0.getInputPins().get(1));
-		new GUIWire(submodelModifiable, cpS12, notS1.getInputPins().get(1));
-		new GUIWire(submodelModifiable, cpS02, cpS03, new Point(5, 67.5));
-		new GUIWire(submodelModifiable, cpS12, cpS13, new Point(10, 62.5), new Point(40, 62.5));
-		new GUIWire(submodelModifiable, notS0.getOutputPin(), cpNotS0);
-		new GUIWire(submodelModifiable, notS1.getOutputPin(), cpNotS1);
-		new GUIWire(submodelModifiable, cpNotS0, andY00.getPinA(), new Point(40, 7.5));
-		new GUIWire(submodelModifiable, cpNotS1, andY00.getPinB(), new Point(45, 22.5));
-		new GUIWire(submodelModifiable, cpS03, andY01.getPinA(), new Point(50, 32.5));
-		new GUIWire(submodelModifiable, cpNotS1, andY01.getPinB(), new Point(45, 47.5));
-		new GUIWire(submodelModifiable, cpNotS0, andY10.getPinA(), new Point(40, 57.5));
-		new GUIWire(submodelModifiable, cpS13, andY10.getPinB());
-		new GUIWire(submodelModifiable, cpS03, andY11.getPinA(), new Point(50, 82.5));
-		new GUIWire(submodelModifiable, cpS13, andY11.getPinB(), new Point(40, 97.5));
-		new GUIWire(submodelModifiable, andY00.getPinY(), Y00, new Point(95, 15), new Point(95, 12.5));
-		new GUIWire(submodelModifiable, andY01.getPinY(), Y01, new Point(95, 40), new Point(95, 37.5));
-		new GUIWire(submodelModifiable, andY10.getPinY(), Y10, new Point(95, 65), new Point(95, 62.5));
-		new GUIWire(submodelModifiable, andY11.getPinY(), Y11, new Point(95, 90), new Point(95, 87.5));
-	}
-
-	public Pin getPinS0()
-	{
-		return pinS0;
-	}
-
-	public Pin getPinS1()
-	{
-		return pinS1;
-	}
-
-	public Pin getPinY00()
-	{
-		return pinY00;
-	}
-
-	public Pin getPinY01()
-	{
-		return pinY01;
-	}
-
-	public Pin getPinY10()
-	{
-		return pinY10;
-	}
-
-	public Pin getPinY11()
-	{
-		return pinY11;
+		new GUIWire(submodelModifiable, S0, cpS01, new Point[0]);
+		new GUIWire(submodelModifiable, S1, cpS11, new Point[0]);
+		new GUIWire(submodelModifiable, cpS01, notS0.getInputPins().get(0), new Point(7.5, 7.5));
+		new GUIWire(submodelModifiable, cpS11, notS1.getInputPins().get(0), new Point(5, 32.5));
+		new GUIWire(submodelModifiable, cpS01, cpS02, new Point[0]);
+		new GUIWire(submodelModifiable, cpS11, cpS12, new Point[0]);
+		new GUIWire(submodelModifiable, cpS02, notS0.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cpS12, notS1.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cpS02, cpS03, new Point(7.5, 62.5));
+		new GUIWire(submodelModifiable, cpS12, cpS13, new Point(5, 67.5), new Point(32.5, 67.5));
+		new GUIWire(submodelModifiable, notS0.getOutputPin(), cpNotS0, new Point[0]);
+		new GUIWire(submodelModifiable, notS1.getOutputPin(), cpNotS1, new Point[0]);
+		new GUIWire(submodelModifiable, cpNotS0, andY00.getInputPins().get(0), new Point(32.5, 7.5));
+		new GUIWire(submodelModifiable, cpNotS1, andY00.getInputPins().get(1), new Point(35, 17.5));
+		new GUIWire(submodelModifiable, cpS03, andY01.getInputPins().get(0), new Point(37.5, 32.5));
+		new GUIWire(submodelModifiable, cpNotS1, andY01.getInputPins().get(1), new Point(35, 42.5));
+		new GUIWire(submodelModifiable, cpNotS0, andY10.getInputPins().get(0), new Point(32.5, 57.5));
+		new GUIWire(submodelModifiable, cpS13, andY10.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cpS03, andY11.getInputPins().get(0), new Point(37.5, 82.5));
+		new GUIWire(submodelModifiable, cpS13, andY11.getInputPins().get(1), new Point(32.5, 92.5));
+		new GUIWire(submodelModifiable, andY00.getOutputPins().get(0), Y00);
+		new GUIWire(submodelModifiable, andY01.getOutputPins().get(0), Y01);
+		new GUIWire(submodelModifiable, andY10.getOutputPins().get(0), Y10);
+		new GUIWire(submodelModifiable, andY11.getOutputPins().get(0), Y11);
 	}
 }
