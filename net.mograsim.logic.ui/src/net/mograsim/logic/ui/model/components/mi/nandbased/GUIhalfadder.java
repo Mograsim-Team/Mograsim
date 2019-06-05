@@ -44,18 +44,18 @@ public class GUIhalfadder extends SimpleRectangularSubmodelComponent
 		cpB.moveTo(5, 37.5);
 		cp_Z.moveTo(35, 25);
 
-		new GUIWire(submodelModifiable, A, cpA);
+		new GUIWire(submodelModifiable, A, cpA, new Point[0]);
 		new GUIWire(submodelModifiable, cpA, nandYA.getInputPins().get(0), new Point(5, 7.5));
 		new GUIWire(submodelModifiable, cpA, nand_Z.getInputPins().get(0), new Point(5, 20));
-		new GUIWire(submodelModifiable, B, cpB);
+		new GUIWire(submodelModifiable, B, cpB, new Point[0]);
 		new GUIWire(submodelModifiable, cpB, nandYB.getInputPins().get(1), new Point(5, 42.5));
 		new GUIWire(submodelModifiable, cpB, nand_Z.getInputPins().get(1), new Point(5, 30));
-		new GUIWire(submodelModifiable, nand_Z.getOutputPin(), cp_Z);
+		new GUIWire(submodelModifiable, nand_Z.getOutputPin(), cp_Z, new Point[0]);
 		new GUIWire(submodelModifiable, cp_Z, _Z, new Point(80, 25), new Point(80, 37.5));
 		new GUIWire(submodelModifiable, cp_Z, nandYA.getInputPins().get(1), new Point(35, 17.5));
 		new GUIWire(submodelModifiable, cp_Z, nandYB.getInputPins().get(0), new Point(35, 32.5));
 		new GUIWire(submodelModifiable, nandYA.getOutputPin(), nandY.getInputPins().get(0), new Point(62.5, 12.5), new Point(62.5, 7.5));
 		new GUIWire(submodelModifiable, nandYB.getOutputPin(), nandY.getInputPins().get(1), new Point(62.5, 37.5), new Point(62.5, 17.5));
-		new GUIWire(submodelModifiable, nandY.getOutputPin(), Y);
+		new GUIWire(submodelModifiable, nandY.getOutputPin(), Y, new Point[0]);
 	}
 }
