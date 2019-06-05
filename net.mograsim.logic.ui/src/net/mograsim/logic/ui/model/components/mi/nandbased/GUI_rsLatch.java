@@ -37,7 +37,6 @@ public class GUI_rsLatch extends SubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents(Pin _S, Pin _R, Pin Q, Pin _Q)
 	{
-
 		GUINandGate nand1 = new GUINandGate(submodelModifiable, 1);
 		GUINandGate nand2 = new GUINandGate(submodelModifiable, 1);
 
