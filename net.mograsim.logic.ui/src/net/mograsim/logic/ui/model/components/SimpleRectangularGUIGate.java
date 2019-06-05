@@ -48,7 +48,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		setSize(width, inputCount * pinDistance);
 		if (oldInputCount > inputCount)
 			while (inputPins.size() > inputCount)
-				removePin(inputPins.get(inputCount));
+				removePin(inputPins.remove(inputCount));
 		else if (oldInputCount < inputCount)
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
