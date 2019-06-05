@@ -49,17 +49,20 @@ public class GUImux1_4 extends SimpleRectangularSubmodelComponent
 		GUImux1 mux[] = { mux1, mux2, mux3, mux4 };
 		WireCrossPoint[] cps = new WireCrossPoint[mux.length - 1];
 
-		int muxXOffset = 25, muxYOffset = 20;
+		double muxXOffset = 30, muxYOffset = 7.5, muxYMargin = 5;
 		Pin test = getInputPins().get(0);
 		Pin test2 = mux[0].getInputPins().get(1);
 		for (int i = 0; i < mux.length; i++)
 		{
-			mux[i].moveTo(muxXOffset, muxYOffset + mux[0].getBounds().height * i);
-			Pin inPin = getInputSubmodelPins().get(i + 1), muxPin = mux[i].getInputPins().get(1);
+			mux[i].moveTo(muxXOffset, muxYOffset + (mux[0].getBounds().height + muxYMargin) * i);
+			Pin inPinA = getInputSubmodelPins().get(i + 1);
+			Pin inPinB = getInputSubmodelPins().get(mux.length + i + 1);
+			Pin muxPin = mux[i].getInputPins().get(1);
 
-			new GUIWire(submodelModifiable, inPin, muxPin, new Point(inPin.getPos().x + 5, inPin.getPos().y),
-					new Point(inPin.getPos().x + 5, muxPin.getPos().y));
-			new GUIWire(submodelModifiable, getInputSubmodelPins().get(mux.length + i + 1), mux[i].getInputPins().get(2));
+			new GUIWire(submodelModifiable, inPinA, muxPin, new Point(inPinA.getPos().x + 5, inPinA.getPos().y),
+					new Point(inPinA.getPos().x + 5, muxPin.getPos().y));
+			new GUIWire(submodelModifiable, inPinB, mux[i].getInputPins().get(2), new Point(10 + 5 * i, inPinB.getPos().y),
+					new Point(10 + 5 * i, mux[i].getInputPins().get(2).getPos().y));
 			new GUIWire(submodelModifiable, mux[i].getOutputPins().get(0), getOutputSubmodelPins().get(i));
 
 			if (i != mux.length - 1)
@@ -70,9 +73,9 @@ public class GUImux1_4 extends SimpleRectangularSubmodelComponent
 				cp.moveTo(muxXOffset - 3, p.getPos().y);
 				new GUIWire(submodelModifiable, cp, mux[i].getInputPins().get(0));
 				if (i > 0)
-					new GUIWire(submodelModifiable, cps[i - 1], cp);
+					new GUIWire(submodelModifiable, cps[i - 1], cp, new Point[0]);
 				else
-					new GUIWire(submodelModifiable, getInputSubmodelPins().get(0), cp);
+					new GUIWire(submodelModifiable, getInputSubmodelPins().get(0), cp, new Point[0]);
 			} else
 			{
 				new GUIWire(submodelModifiable, cps[i - 1], mux[i].getInputPins().get(0),
