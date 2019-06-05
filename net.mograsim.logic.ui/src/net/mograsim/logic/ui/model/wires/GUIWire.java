@@ -25,6 +25,21 @@ public class GUIWire
 	private final LogicObserver logicObs;
 	private ReadEnd end;
 
+	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, WireCrossPoint pin2, Point... path)
+	{
+		this(model, pin1.getPin(), pin2.getPin(), path);
+	}
+
+	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, Pin pin2, Point... path)
+	{
+		this(model, pin1.getPin(), pin2, path);
+	}
+
+	public GUIWire(ViewModelModifiable model, Pin pin1, WireCrossPoint pin2, Point... path)
+	{
+		this(model, pin1, pin2.getPin(), path);
+	}
+
 	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2, Point... path)
 	{
 		logicObs = (i) -> callRedrawListeners();
