@@ -15,7 +15,6 @@ public class GUImux1 extends SimpleRectangularSubmodelComponent
 		super(model, 1, "GUImux1");
 		setSize(80, 40);
 		setSubmodelScale(.4);
-
 		setInputCount(3);
 		setOutputCount(1);
 		initSubmodelComponents();
@@ -45,17 +44,17 @@ public class GUImux1 extends SimpleRectangularSubmodelComponent
 		cp0.moveTo(5, 12.5);
 		cp1.moveTo(5, 22.5);
 
-		new GUIWire(submodelModifiable, S0, cp0);
-		new GUIWire(submodelModifiable, cp0, nandS0.getInputPins().get(0));
-		new GUIWire(submodelModifiable, cp0, cp1);
-		new GUIWire(submodelModifiable, cp1, nandS0.getInputPins().get(1));
+		new GUIWire(submodelModifiable, S0, cp0, new Point[0]);
+		new GUIWire(submodelModifiable, cp0, nandS0.getInputPins().get(0), new Point[0]);
+		new GUIWire(submodelModifiable, cp0, cp1, new Point[0]);
+		new GUIWire(submodelModifiable, cp1, nandS0.getInputPins().get(1), new Point[0]);
 
 		new GUIWire(submodelModifiable, nandS0.getOutputPin(), nandI0.getInputPins().get(0));
-		new GUIWire(submodelModifiable, I0, nandI0.getInputPins().get(1));
+		new GUIWire(submodelModifiable, I0, nandI0.getInputPins().get(1), new Point[0]);
 
 		new GUIWire(submodelModifiable, cp1, nandI1.getInputPins().get(0),
 				new Point(cp1.getPin().getPos().x, nandI1.getInputPins().get(0).getPos().y));
-		new GUIWire(submodelModifiable, I1, nandI1.getInputPins().get(1));
+		new GUIWire(submodelModifiable, I1, nandI1.getInputPins().get(1), new Point[0]);
 
 		new GUIWire(submodelModifiable, nandI0.getOutputPin(), nandY.getInputPins().get(0));
 		new GUIWire(submodelModifiable, nandI1.getOutputPin(), nandY.getInputPins().get(1));
