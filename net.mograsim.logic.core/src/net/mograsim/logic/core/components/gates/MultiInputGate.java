@@ -15,6 +15,7 @@ public abstract class MultiInputGate extends BasicComponent
 	protected ReadWriteEnd out;
 	protected final int length;
 	protected MutationOperation op;
+	protected boolean invert = false;
 
 	protected MultiInputGate(Timeline timeline, int processTime, MutationOperation op, ReadWriteEnd out, ReadEnd... in)
 	{
@@ -31,6 +32,12 @@ public abstract class MultiInputGate extends BasicComponent
 			w.registerObserver(this);
 		}
 		this.out = out;
+	}
+
+	protected MultiInputGate(Timeline timeline, int processTime, MutationOperation op, boolean invert, ReadWriteEnd out, ReadEnd... in)
+	{
+		this(timeline, processTime, op, out, in);
+		this.invert = invert;
 	}
 
 	@Override
@@ -51,6 +58,6 @@ public abstract class MultiInputGate extends BasicComponent
 		BitVectorMutator mutator = BitVectorMutator.empty();
 		for (ReadEnd w : in)
 			op.apply(mutator, w.getValues());
-		out.feedSignals(mutator.get());
+		out.feedSignals(invert ? mutator.get().not() : mutator.get());
 	}
 }

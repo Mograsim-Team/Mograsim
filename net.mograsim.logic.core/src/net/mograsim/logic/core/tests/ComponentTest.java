@@ -15,6 +15,8 @@ import net.mograsim.logic.core.components.Mux;
 import net.mograsim.logic.core.components.Splitter;
 import net.mograsim.logic.core.components.TriStateBuffer;
 import net.mograsim.logic.core.components.gates.AndGate;
+import net.mograsim.logic.core.components.gates.NandGate;
+import net.mograsim.logic.core.components.gates.NorGate;
 import net.mograsim.logic.core.components.gates.NotGate;
 import net.mograsim.logic.core.components.gates.OrGate;
 import net.mograsim.logic.core.components.gates.XorGate;
@@ -205,6 +207,36 @@ class ComponentTest
 		t.executeAll();
 
 		assertBitArrayEquals(c.getValues(), Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ONE);
+	}
+
+	@Test
+	void nandTest()
+	{
+		t.reset();
+		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1), d = new Wire(t, 4, 1);
+		new NandGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
+		b.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
+		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
+
+		t.executeAll();
+
+		assertBitArrayEquals(d.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE);
+	}
+
+	@Test
+	void norTest()
+	{
+		t.reset();
+		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1), d = new Wire(t, 4, 1);
+		new NorGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
+		b.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
+		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
+
+		t.executeAll();
+
+		assertBitArrayEquals(d.getValues(), Bit.ZERO, Bit.ZERO, Bit.ONE, Bit.ZERO);
 	}
 
 	@Test
