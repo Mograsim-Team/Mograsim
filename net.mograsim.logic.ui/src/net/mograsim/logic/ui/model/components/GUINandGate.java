@@ -8,6 +8,5 @@ public class GUINandGate extends SimpleRectangularGUIGate
 	{
 		super(model, logicWidth, "&", true);
 		setInputCount(2);// TODO make variable
-		// TODO
 	}
 }
