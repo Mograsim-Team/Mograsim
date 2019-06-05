@@ -14,7 +14,6 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 {
 	private static final double width = 35;
 	private static final double pinDistance = 10;
-	private static final double minHeight = 25;
 	private static final double fontHeight = 5;
 
 	private final String label;
