@@ -1,6 +1,7 @@
 package net.mograsim.logic.ui.model.wires;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -18,12 +19,33 @@ public class GUIWire
 	public final int logicWidth;
 	private Pin pin1;
 	private Pin pin2;
-	private double[] path;
+	private Point[] path;
+	private double[] effectivePath;
 
 	private final List<Runnable> redrawListeners;
 
 	private final LogicObserver logicObs;
 	private ReadEnd end;
+
+	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, WireCrossPoint pin2)
+	{
+		this(model, pin1, pin2, (Point[]) null);
+	}
+
+	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, Pin pin2)
+	{
+		this(model, pin1, pin2, (Point[]) null);
+	}
+
+	public GUIWire(ViewModelModifiable model, Pin pin1, WireCrossPoint pin2)
+	{
+		this(model, pin1, pin2, (Point[]) null);
+	}
+
+	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2)
+	{
+		this(model, pin1, pin2, (Point[]) null);
+	}
 
 	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, WireCrossPoint pin2, Point... path)
 	{
@@ -48,51 +70,50 @@ public class GUIWire
 		if (pin2.logicWidth != pin1.logicWidth)
 			throw new IllegalArgumentException("Can't connect pins of different logic width");
 
-		if (path.length == 0)
-		{
-			Point pos1 = pin1.getPos(), pos2 = pin2.getPos();
-			path = new Point[] { new Point((pos1.x + pos2.x) / 2, pos1.y), new Point((pos1.x + pos2.x) / 2, pos2.y) };
-		}
-
-		applyPath(path);
-
 		this.pin1 = pin1;
 		this.pin2 = pin2;
+
+		this.path = path == null ? null : Arrays.copyOf(path, path.length);
 
 		redrawListeners = new ArrayList<>();
 
 		pin1.addPinMovedListener(p -> pin1Moved());
 		pin2.addPinMovedListener(p -> pin2Moved());
-		pin1Moved();
-		pin2Moved();
+
+		recalculateEffectivePath();
 
 		model.wireCreated(this);
 	}
 
-	private void applyPath(Point... path)
+	private void recalculateEffectivePath()
 	{
-		this.path = new double[path.length * 2 + 4];
-
-		for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
+		Point pos1 = pin1.getPos(), pos2 = pin2.getPos();
+		if (path == null)
+			effectivePath = new double[] { pos1.x, pos1.y, (pos1.x + pos2.x) / 2, pos1.y, (pos1.x + pos2.x) / 2, pos2.y, pos2.x, pos2.y };
+		else
 		{
-			this.path[dstI + 0] = path[srcI].x;
-			this.path[dstI + 1] = path[srcI].y;
+			effectivePath = new double[path.length * 2 + 4];
+			effectivePath[0] = pos1.x;
+			effectivePath[1] = pos1.y;
+			for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
+			{
+				effectivePath[dstI + 0] = path[srcI].x;
+				effectivePath[dstI + 1] = path[srcI].y;
+			}
+			effectivePath[effectivePath.length - 2] = pos2.x;
+			effectivePath[effectivePath.length - 1] = pos2.y;
 		}
 	}
 
 	private void pin1Moved()
 	{
-		Point pos = pin1.getPos();
-		this.path[0] = pos.x;
-		this.path[1] = pos.y;
+		recalculateEffectivePath();
 		callRedrawListeners();
 	}
 
 	private void pin2Moved()
 	{
-		Point pos = pin2.getPos();
-		this.path[this.path.length - 2] = pos.x;
-		this.path[this.path.length - 1] = pos.y;
+		recalculateEffectivePath();
 		callRedrawListeners();
 	}
 
@@ -103,7 +124,7 @@ public class GUIWire
 
 	public void render(GeneralGC gc)
 	{
-		ColorHelper.executeWithDifferentForeground(gc, BitVectorFormatter.formatAsColor(end), () -> gc.drawPolyline(path));
+		ColorHelper.executeWithDifferentForeground(gc, BitVectorFormatter.formatAsColor(end), () -> gc.drawPolyline(effectivePath));
 	}
 
 	public void setLogicModelBinding(ReadEnd end)
