@@ -24,10 +24,10 @@ public class LogicUIRenderer
 	{
 		gc.setLineWidth(.5);
 		model.getWires().forEach(w -> w.render(gc));
-		model.getComponents().forEach(c -> drawComponent(gc, c, visibleRegion));
+		model.getComponents().forEach(c -> renderComponent(gc, c, visibleRegion));
 	}
 
-	private static void drawComponent(GeneralGC gc, GUIComponent component, Rectangle visibleRegion)
+	private static void renderComponent(GeneralGC gc, GUIComponent component, Rectangle visibleRegion)
 	{
 		component.render(gc, visibleRegion);
 		if (DRAW_PINS)
