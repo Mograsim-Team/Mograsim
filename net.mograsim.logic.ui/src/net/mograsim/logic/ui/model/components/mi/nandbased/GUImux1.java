@@ -52,7 +52,7 @@ public class GUImux1 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, nandS0.getOutputPin(), nandI0.getInputPins().get(0));
 		new GUIWire(submodelModifiable, I0, nandI0.getInputPins().get(1), new Point[0]);
 
-		new GUIWire(submodelModifiable, cp1, nandI1.getInputPins().get(0), new Point(5, 52));
+		new GUIWire(submodelModifiable, cp1, nandI1.getInputPins().get(0), new Point(5, 52.5));
 		new GUIWire(submodelModifiable, I1, nandI1.getInputPins().get(1), new Point[0]);
 
 		new GUIWire(submodelModifiable, nandI0.getOutputPin(), nandY.getInputPins().get(0));
