@@ -7,25 +7,6 @@ import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
-/**
- * @formatter:off
- * Inputs:
- * 0: select
- * 1: I0_0
- * 2: I0_1
- * 3: I0_2
- * 4: I0_3
- * 5: I1_0
- * 6: I1_1
- * 7: I1_2
- * 8: I1_3
- * Outputs:
- * 0: Y0
- * 1: Y1
- * 2: Y2
- * 3: Y3
- * @formatter:on
- */
 public class GUImux1_4 extends SimpleRectangularSubmodelComponent
 {
 	public GUImux1_4(ViewModelModifiable model)
