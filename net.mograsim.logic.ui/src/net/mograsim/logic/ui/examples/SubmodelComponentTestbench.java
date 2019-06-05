@@ -4,7 +4,7 @@ import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
-import net.mograsim.logic.ui.model.components.SubmodelComponent;
+import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
@@ -18,21 +18,20 @@ public class SubmodelComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		SubmodelComponent comp = new GUIhalfadder(model);
-		int inputCount = 2;
+		SimpleRectangularSubmodelComponent comp = new GUIhalfadder(model);
 
 		comp.moveTo(100, 0);
-		for (int i = 0; i < inputCount; i++)
+		for (int i = 0; i < comp.getInputPins().size(); i++)
 		{
 			GUIManualSwitch sw = new GUIManualSwitch(model);
 			sw.moveTo(0, 20 * i);
-			new GUIWire(model, comp.getPins().get(i), sw.getOutputPin());
+			new GUIWire(model, comp.getInputPins().get(i), sw.getOutputPin());
 		}
-		for (int i = inputCount; i < comp.getPins().size(); i++)
+		for (int i = 0; i < comp.getOutputPins().size(); i++)
 		{
 			GUIBitDisplay bd = new GUIBitDisplay(model);
-			bd.moveTo(200, 20 * (i - inputCount));
-			new GUIWire(model, comp.getPins().get(i), bd.getInputPin());
+			bd.moveTo(200, 20 * i);
+			new GUIWire(model, comp.getOutputPins().get(i), bd.getInputPin());
 		}
 	}
 }
