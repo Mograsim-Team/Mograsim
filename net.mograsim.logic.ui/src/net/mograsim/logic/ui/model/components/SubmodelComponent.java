@@ -8,15 +8,13 @@ import java.util.Map.Entry;
 import net.haspamelodica.swt.helper.gcs.GCConfig;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.LogicUIRenderer;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 
-public class SubmodelComponent extends GUIComponent
+public abstract class SubmodelComponent extends GUIComponent
 {
 	protected final ViewModelModifiable submodelModifiable;
 	public final ViewModel submodel;
@@ -26,13 +24,12 @@ public class SubmodelComponent extends GUIComponent
 	private final Map<Pin, Pin> supermodelPinsPerSubmodelPinUnmodifiable;
 	private final SubmodelInterface submodelInterface;
 
-	private final String label;
 	private double submodelScale;
 	private double maxVisibleRegionFillRatioForAlpha0;
 	private double minVisibleRegionFillRatioForAlpha1;
 	private final LogicUIRenderer renderer;
 
-	public SubmodelComponent(ViewModelModifiable model, String label)
+	public SubmodelComponent(ViewModelModifiable model)
 	{
 		super(model);
 		this.submodelModifiable = new ViewModelModifiable();
@@ -43,7 +40,6 @@ public class SubmodelComponent extends GUIComponent
 		this.supermodelPinsPerSubmodelPinUnmodifiable = Collections.unmodifiableMap(supermodelPinsPerSubmodelPin);
 		this.submodelInterface = new SubmodelInterface(submodelModifiable);
 
-		this.label = label;
 		this.submodelScale = 1;
 		this.maxVisibleRegionFillRatioForAlpha0 = 0.4;
 		this.minVisibleRegionFillRatioForAlpha1 = 0.8;
@@ -157,17 +153,16 @@ public class SubmodelComponent extends GUIComponent
 		if (labelAlpha != 0)
 		{
 			gc.setAlpha(labelAlpha);
-			Font oldFont = gc.getFont();
-			Font labelFont = new Font(oldFont.getName(), 6, oldFont.getStyle());
-			gc.setFont(labelFont);
-			Point textExtent = gc.textExtent(label);
-			gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
-			gc.setFont(oldFont);
+			renderSymbol(gc);
 		}
 		conf.reset(gc);
-		// draw the "bounding box" after all other operations to make interface pins look better
-		gc.drawRectangle(getBounds());
+		// draw the outline after all other operations to make interface pins look better
+		renderOutline(gc);
 	}
+
+	protected abstract void renderOutline(GeneralGC gc);
+
+	protected abstract void renderSymbol(GeneralGC gc);
 
 	private static double map(double val, double valMin, double valMax, double mapMin, double mapMax)
 	{
