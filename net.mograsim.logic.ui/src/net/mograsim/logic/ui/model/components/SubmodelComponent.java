@@ -147,15 +147,23 @@ public class SubmodelComponent extends GUIComponent
 		alphaFactor = Math.max(0, Math.min(1, alphaFactor));
 		// we need to take the old alpha into account to support nested submodules better.
 		int oldAlpha = gc.getAlpha();
-		gc.setAlpha(Math.max(0, Math.min(255, (int) (oldAlpha * alphaFactor))));
-		renderer.render(tgc, visibleRegion.translate(-posX, -posY, 1 / submodelScale));
-		gc.setAlpha(Math.max(0, Math.min(255, (int) (oldAlpha * (1 - alphaFactor)))));
-		Font oldFont = gc.getFont();
-		Font labelFont = new Font(oldFont.getName(), 6, oldFont.getStyle());
-		gc.setFont(labelFont);
-		Point textExtent = gc.textExtent(label);
-		gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
-		gc.setFont(oldFont);
+		int submodelAlpha = Math.max(0, Math.min(255, (int) (oldAlpha * alphaFactor)));
+		int labelAlpha = Math.max(0, Math.min(255, (int) (oldAlpha * (1 - alphaFactor))));
+		if (submodelAlpha != 0)
+		{
+			gc.setAlpha(submodelAlpha);
+			renderer.render(tgc, visibleRegion.translate(-posX, -posY, 1 / submodelScale));
+		}
+		if (labelAlpha != 0)
+		{
+			gc.setAlpha(labelAlpha);
+			Font oldFont = gc.getFont();
+			Font labelFont = new Font(oldFont.getName(), 6, oldFont.getStyle());
+			gc.setFont(labelFont);
+			Point textExtent = gc.textExtent(label);
+			gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
+			gc.setFont(oldFont);
+		}
 		conf.reset(gc);
 		// draw the "bounding box" after all other operations to make interface pins look better
 		gc.drawRectangle(getBounds());
