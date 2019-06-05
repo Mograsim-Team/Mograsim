@@ -174,6 +174,14 @@ public class SubmodelComponent extends GUIComponent
 		return mapMin + (val - valMin) * (mapMax - mapMin) / (valMax - valMin);
 	}
 
+	@Override
+	public boolean clicked(double x, double y)
+	{
+		// TODO
+		System.out.println(((x - getBounds().x) / submodelScale) + "|" + ((y - getBounds().y) / submodelScale));
+		return true;
+	}
+
 	private static class PinMovable extends Pin
 	{
 		public PinMovable(GUIComponent component, int logicWidth, double relX, double relY)
