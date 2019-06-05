@@ -2,55 +2,35 @@ package net.mograsim.logic.ui.model.components.mi.nandbased;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.SubmodelComponent;
+import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
-public class GUIdlatch4 extends SubmodelComponent
+public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 {
-	private final Pin pinD1;
-	private final Pin pinD2;
-	private final Pin pinD3;
-	private final Pin pinD4;
-	private final Pin pinC;
-	private final Pin pinQ1;
-	private final Pin pinQ2;
-	private final Pin pinQ3;
-	private final Pin pinQ4;
-
 	public GUIdlatch4(ViewModelModifiable model)
 	{
-		super(model, "GUIdlatch4");
-		setSize(35, 55);
+		super(model, 1, "GUIdlatch4");
 		setSubmodelScale(.4);
-
-		Pin D1 = addSubmodelInterface(1, 0, 5);
-		Pin D2 = addSubmodelInterface(1, 0, 15);
-		Pin D3 = addSubmodelInterface(1, 0, 25);
-		Pin D4 = addSubmodelInterface(1, 0, 35);
-		Pin C = addSubmodelInterface(1, 0, 50);
-		Pin Q1 = addSubmodelInterface(1, 35, 5);
-		Pin Q2 = addSubmodelInterface(1, 35, 15);
-		Pin Q3 = addSubmodelInterface(1, 35, 25);
-		Pin Q4 = addSubmodelInterface(1, 35, 35);
-
-		this.pinC = getSupermodelPin(C);
-		this.pinD1 = getSupermodelPin(D1);
-		this.pinD2 = getSupermodelPin(D2);
-		this.pinD3 = getSupermodelPin(D3);
-		this.pinD4 = getSupermodelPin(D4);
-		this.pinQ1 = getSupermodelPin(Q1);
-		this.pinQ2 = getSupermodelPin(Q2);
-		this.pinQ3 = getSupermodelPin(Q3);
-		this.pinQ4 = getSupermodelPin(Q4);
-
-		initSubmodelComponents(C, D1, D2, D3, D4, Q1, Q2, Q3, Q4);
+		setInputCount(5);
+		setOutputCount(4);
+		initSubmodelComponents();
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
-	private void initSubmodelComponents(Pin C, Pin D1, Pin D2, Pin D3, Pin D4, Pin Q1, Pin Q2, Pin Q3, Pin Q4)
+	private void initSubmodelComponents()
 	{
+		Pin D1 = getInputSubmodelPins().get(0);
+		Pin D2 = getInputSubmodelPins().get(1);
+		Pin D3 = getInputSubmodelPins().get(2);
+		Pin D4 = getInputSubmodelPins().get(3);
+		Pin C = getInputSubmodelPins().get(4);
+		Pin Q1 = getOutputSubmodelPins().get(0);
+		Pin Q2 = getOutputSubmodelPins().get(1);
+		Pin Q3 = getOutputSubmodelPins().get(2);
+		Pin Q4 = getOutputSubmodelPins().get(3);
+
 		GUIdlatch dlatch1 = new GUIdlatch(submodelModifiable);
 		GUIdlatch dlatch2 = new GUIdlatch(submodelModifiable);
 		GUIdlatch dlatch3 = new GUIdlatch(submodelModifiable);
@@ -64,69 +44,24 @@ public class GUIdlatch4 extends SubmodelComponent
 		dlatch2.moveTo(30, 32.5);
 		dlatch3.moveTo(30, 57.5);
 		dlatch4.moveTo(30, 82.5);
-		cp2.moveTo(15, 52.5);
-		cp3.moveTo(15, 77.5);
-		cp4.moveTo(15, 102.5);
+		cp2.moveTo(15, 47.5);
+		cp3.moveTo(15, 72.5);
+		cp4.moveTo(15, 97.5);
 
-		new GUIWire(submodelModifiable, C, cp4, new Point(15, 125));
-		new GUIWire(submodelModifiable, cp4, dlatch4.getPinE());
-		new GUIWire(submodelModifiable, cp4, cp3);
-		new GUIWire(submodelModifiable, cp3, dlatch3.getPinE());
-		new GUIWire(submodelModifiable, cp3, cp2);
-		new GUIWire(submodelModifiable, cp2, dlatch2.getPinE());
-		new GUIWire(submodelModifiable, cp2, dlatch1.getPinE(), new Point(15, 27.5));
-		new GUIWire(submodelModifiable, D1, dlatch1.getPinD());
-		new GUIWire(submodelModifiable, D2, dlatch2.getPinD());
-		new GUIWire(submodelModifiable, D3, dlatch3.getPinD());
-		new GUIWire(submodelModifiable, D4, dlatch4.getPinD());
-		new GUIWire(submodelModifiable, dlatch1.getPinQ(), Q1);
-		new GUIWire(submodelModifiable, dlatch2.getPinQ(), Q2);
-		new GUIWire(submodelModifiable, dlatch3.getPinQ(), Q3);
-		new GUIWire(submodelModifiable, dlatch4.getPinQ(), Q4);
-	}
-
-	public Pin getPinC()
-	{
-		return pinC;
-	}
-
-	public Pin getPinD1()
-	{
-		return pinD1;
-	}
-
-	public Pin getPinD2()
-	{
-		return pinD2;
-	}
-
-	public Pin getPinD3()
-	{
-		return pinD3;
-	}
-
-	public Pin getPinD4()
-	{
-		return pinD4;
-	}
-
-	public Pin getPinQ1()
-	{
-		return pinQ1;
-	}
-
-	public Pin getPinQ2()
-	{
-		return pinQ2;
-	}
-
-	public Pin getPinQ3()
-	{
-		return pinQ3;
-	}
-
-	public Pin getPinQ4()
-	{
-		return pinQ4;
+		new GUIWire(submodelModifiable, C, cp4, new Point(15, 112.5));
+		new GUIWire(submodelModifiable, cp4, dlatch4.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cp4, cp3, new Point[0]);
+		new GUIWire(submodelModifiable, cp3, dlatch3.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cp3, cp2, new Point[0]);
+		new GUIWire(submodelModifiable, cp2, dlatch2.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cp2, dlatch1.getInputPins().get(1), new Point(15, 22.5));
+		new GUIWire(submodelModifiable, D1, dlatch1.getInputPins().get(0), new Point[0]);
+		new GUIWire(submodelModifiable, D2, dlatch2.getInputPins().get(0), new Point[0]);
+		new GUIWire(submodelModifiable, D3, dlatch3.getInputPins().get(0), new Point[0]);
+		new GUIWire(submodelModifiable, D4, dlatch4.getInputPins().get(0), new Point[0]);
+		new GUIWire(submodelModifiable, dlatch1.getOutputPins().get(0), Q1, new Point[0]);
+		new GUIWire(submodelModifiable, dlatch2.getOutputPins().get(0), Q2, new Point[0]);
+		new GUIWire(submodelModifiable, dlatch3.getOutputPins().get(0), Q3, new Point[0]);
+		new GUIWire(submodelModifiable, dlatch4.getOutputPins().get(0), Q4, new Point[0]);
 	}
 }
