@@ -9,6 +9,6 @@ public class NandGate extends MultiInputGate
 {
 	public NandGate(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd... in)
 	{
-		super(timeline, processTime, BitVectorMutator::nand, out, in);
+		super(timeline, processTime, BitVectorMutator::and, true, out, in);
 	}
 }

@@ -9,6 +9,6 @@ public class NorGate extends MultiInputGate
 {
 	public NorGate(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd... in)
 	{
-		super(timeline, processTime, BitVectorMutator::nor, out, in);
+		super(timeline, processTime, BitVectorMutator::or, true, out, in);
 	}
 }
