@@ -48,9 +48,9 @@ public class GUImux1_4 extends SimpleRectangularSubmodelComponent
 		mux2.moveTo(30, 42.5);
 		mux3.moveTo(30, 77.5);
 		mux4.moveTo(30, 112.5);
-		cp1.moveTo(25, 12.5);
-		cp2.moveTo(25, 47.5);
-		cp3.moveTo(25, 82.5);
+		cp1.moveCenterTo(25, 12.5);
+		cp2.moveCenterTo(25, 47.5);
+		cp3.moveCenterTo(25, 82.5);
 
 		new GUIWire(submodelModifiable, S0, cp1, new Point[0]);
 		new GUIWire(submodelModifiable, cp1, mux1.getInputPins().get(0), new Point[0]);

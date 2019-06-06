@@ -41,21 +41,21 @@ public class RSLatchExample
 		new GUIWire(model, or2.getOutputPin(), not2.getInputPins().get(0));
 
 		WireCrossPoint p1 = new WireCrossPoint(model, 1);
-		p1.moveTo(250, 112.5);
+		p1.moveCenterTo(250, 112.5);
 		new GUIWire(model, not1.getOutputPin(), p1);
 		new GUIWire(model, p1, or2.getInputPins().get(0), new Point(250, 130), new Point(140, 185), new Point(140, 197.5));
 
 		WireCrossPoint p2 = new WireCrossPoint(model, 1);
-		p2.moveTo(250, 202.5);
+		p2.moveCenterTo(250, 202.5);
 		new GUIWire(model, not2.getOutputPin(), p2);
 		new GUIWire(model, p2, or1.getInputPins().get(1), new Point(250, 185), new Point(140, 130), new Point(140, 117.5));
 
 		WireCrossPoint o1 = new WireCrossPoint(model, 1);
-		o1.moveTo(270, 112.5);
+		o1.moveCenterTo(270, 112.5);
 		new GUIWire(model, p1, o1);
 
 		WireCrossPoint o2 = new WireCrossPoint(model, 1);
-		o2.moveTo(270, 202.5);
+		o2.moveCenterTo(270, 202.5);
 		new GUIWire(model, p2, o2);
 	}
 }

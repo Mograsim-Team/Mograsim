@@ -44,9 +44,9 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 		dlatch2.moveTo(30, 32.5);
 		dlatch3.moveTo(30, 57.5);
 		dlatch4.moveTo(30, 82.5);
-		cp2.moveTo(15, 47.5);
-		cp3.moveTo(15, 72.5);
-		cp4.moveTo(15, 97.5);
+		cp2.moveCenterTo(15, 47.5);
+		cp3.moveCenterTo(15, 72.5);
+		cp4.moveCenterTo(15, 97.5);
 
 		new GUIWire(submodelModifiable, C, cp4, new Point(15, 112.5));
 		new GUIWire(submodelModifiable, cp4, dlatch4.getInputPins().get(1), new Point[0]);

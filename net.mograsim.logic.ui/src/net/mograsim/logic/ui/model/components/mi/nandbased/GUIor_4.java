@@ -69,14 +69,14 @@ public class GUIor_4 extends SimpleRectangularSubmodelComponent
 		nandY2.moveTo(65, 27.5);
 		nandY3.moveTo(65, 52.5);
 		nandY4.moveTo(65, 77.5);
-		cpA1.moveTo(7.5, 12.5);
-		cpA2.moveTo(7.5, 37.5);
-		cpA3.moveTo(7.5, 62.5);
-		cpA4.moveTo(7.5, 87.5);
-		cpB1.moveTo(7.5, 112.5);
-		cpB2.moveTo(7.5, 137.5);
-		cpB3.moveTo(7.5, 162.5);
-		cpB4.moveTo(7.5, 187.5);
+		cpA1.moveCenterTo(7.5, 12.5);
+		cpA2.moveCenterTo(7.5, 37.5);
+		cpA3.moveCenterTo(7.5, 62.5);
+		cpA4.moveCenterTo(7.5, 87.5);
+		cpB1.moveCenterTo(7.5, 112.5);
+		cpB2.moveCenterTo(7.5, 137.5);
+		cpB3.moveCenterTo(7.5, 162.5);
+		cpB4.moveCenterTo(7.5, 187.5);
 
 		new GUIWire(submodelModifiable, A1, cpA1, new Point[0]);
 		new GUIWire(submodelModifiable, A2, cpA2, new Point[0]);

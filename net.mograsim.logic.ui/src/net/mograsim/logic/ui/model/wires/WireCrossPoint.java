@@ -12,6 +12,9 @@ import net.mograsim.logic.ui.model.components.GUIComponent;
 
 public class WireCrossPoint extends GUIComponent
 {
+	private static final int CIRCLE_RADIUS = 1;
+	private static final int CIRCLE_DIAM = CIRCLE_RADIUS * 2;
+
 	private final Pin pin;
 	private final int logicWidth;
 
@@ -24,8 +27,13 @@ public class WireCrossPoint extends GUIComponent
 		logicObs = (i) -> requestRedraw();
 
 		this.logicWidth = logicWidth;
-		setSize(0, 0);
-		addPin(this.pin = new Pin(this, logicWidth, 0, 0));
+		setSize(CIRCLE_DIAM, CIRCLE_DIAM);
+		addPin(this.pin = new Pin(this, logicWidth, CIRCLE_RADIUS, CIRCLE_RADIUS));
+	}
+
+	public void moveCenterTo(double x, double y)
+	{
+		moveTo(x - CIRCLE_RADIUS, y - CIRCLE_RADIUS);
 	}
 
 	@Override
@@ -33,7 +41,7 @@ public class WireCrossPoint extends GUIComponent
 	{
 		Rectangle bounds = getBounds();
 		ColorHelper.executeWithDifferentBackground(gc, BitVectorFormatter.formatAsColor(end),
-				() -> gc.fillOval(bounds.x - 1, bounds.y - 1, 2, 2));
+				() -> gc.fillOval(bounds.x, bounds.y, CIRCLE_DIAM, CIRCLE_DIAM));
 	}
 
 	public void setLogicModelBinding(ReadEnd end)

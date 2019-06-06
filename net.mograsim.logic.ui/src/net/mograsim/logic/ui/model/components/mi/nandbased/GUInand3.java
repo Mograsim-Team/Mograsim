@@ -36,7 +36,7 @@ public class GUInand3 extends SimpleRectangularSubmodelComponent
 		nandAB.moveTo(10, 15);
 		andAB.moveTo(35, 15);
 		nandABC.moveTo(62.5, 2.5);
-		cpNandAB.moveTo(32.5, 25);
+		cpNandAB.moveCenterTo(32.5, 25);
 
 		new GUIWire(submodelModifiable, A, nandAB.getInputPins().get(0));
 		new GUIWire(submodelModifiable, B, nandAB.getInputPins().get(1));

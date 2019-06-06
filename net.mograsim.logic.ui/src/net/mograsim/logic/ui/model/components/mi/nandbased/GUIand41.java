@@ -44,9 +44,9 @@ public class GUIand41 extends SimpleRectangularSubmodelComponent
 		and2.moveTo(30, 32.5);
 		and3.moveTo(30, 57.5);
 		and4.moveTo(30, 82.5);
-		cpB2.moveTo(25, 47.5);
-		cpB3.moveTo(25, 72.5);
-		cpB4.moveTo(25, 97.5);
+		cpB2.moveCenterTo(25, 47.5);
+		cpB3.moveCenterTo(25, 72.5);
+		cpB4.moveCenterTo(25, 97.5);
 
 		new GUIWire(submodelModifiable, A1, and1.getInputPins().get(0), new Point[0]);
 		new GUIWire(submodelModifiable, A2, and2.getInputPins().get(0), new Point[0]);

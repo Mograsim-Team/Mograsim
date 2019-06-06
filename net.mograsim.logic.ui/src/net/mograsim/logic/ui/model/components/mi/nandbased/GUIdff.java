@@ -41,10 +41,10 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 		nand3.moveTo(40, 40);
 		nand2.moveTo(120, 60);
 		_rsLatch2.moveTo(120, 30);
-		cp1.moveTo(10, 25);
-		cp2.moveTo(20, 65);
-		cp3.moveTo(100, 35);
-		cp4.moveTo(100, 45);
+		cp1.moveCenterTo(10, 25);
+		cp2.moveCenterTo(20, 65);
+		cp3.moveCenterTo(100, 35);
+		cp4.moveCenterTo(100, 45);
 
 		new GUIWire(submodelModifiable, C, cp1, new Point[0]);
 		new GUIWire(submodelModifiable, cp1, _rsLatch1.getInputPins().get(1), new Point[0]);
