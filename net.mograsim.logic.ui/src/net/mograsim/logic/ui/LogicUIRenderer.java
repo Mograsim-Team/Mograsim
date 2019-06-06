@@ -29,14 +29,19 @@ public class LogicUIRenderer
 
 	private static void renderComponent(GeneralGC gc, GUIComponent component, Rectangle visibleRegion)
 	{
-		component.render(gc, visibleRegion);
-		if (DRAW_PINS)
+		Rectangle bounds = component.getBounds();
+		double lw = gc.getLineWidth();
+		if (visibleRegion.intersects(bounds.x - lw, bounds.y - lw, bounds.width + lw + lw, bounds.height + lw + lw))
 		{
-			gc.setBackground(gc.getDevice().getSystemColor(SWT.COLOR_DARK_CYAN));
-			for (Pin p : component.getPins())
+			component.render(gc, visibleRegion);
+			if (DRAW_PINS)
 			{
-				Point pos = p.getPos();
-				gc.fillOval(pos.x - 1, pos.y - 1, 2, 2);
+				gc.setBackground(gc.getDevice().getSystemColor(SWT.COLOR_DARK_CYAN));
+				for (Pin p : component.getPins())
+				{
+					Point pos = p.getPos();
+					gc.fillOval(pos.x - 1, pos.y - 1, 2, 2);
+				}
 			}
 		}
 	}
