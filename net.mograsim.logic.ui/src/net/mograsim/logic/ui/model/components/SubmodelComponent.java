@@ -148,7 +148,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		if (submodelAlpha != 0)
 		{
 			gc.setAlpha(submodelAlpha);
-			renderer.render(tgc, visibleRegion.translate(-posX, -posY, 1 / submodelScale));
+			renderer.render(tgc, visibleRegion.translate(posX / submodelScale, posY / submodelScale, 1 / submodelScale));
 		}
 		if (labelAlpha != 0)
 		{

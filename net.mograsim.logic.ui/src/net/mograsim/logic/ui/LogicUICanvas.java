@@ -26,7 +26,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		this.model = model;
 
 		LogicUIRenderer renderer = new LogicUIRenderer(model);
-		addZoomedRenderer(gc -> renderer.render(gc, new Rectangle(offX, offY, gW / zoom, gH / zoom)));
+		addZoomedRenderer(gc -> renderer.render(gc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom)));
 		model.addRedrawListener(this::redrawThreadsafe);
 
 		addListener(SWT.MouseDown, this::mouseDown);
