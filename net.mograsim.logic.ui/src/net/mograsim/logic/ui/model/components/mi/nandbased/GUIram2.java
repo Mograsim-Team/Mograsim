@@ -18,6 +18,7 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		initSubmodelComponents();
 	}
 
+	// TODO clean up D lines
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
@@ -87,6 +88,54 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		WireCrossPoint cpQ211 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpQ311 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpQ411 = new WireCrossPoint(submodelModifiable, 1);
+
+		demuxA.moveTo(50, 50);
+		demuxB.moveTo(50, 150);
+		weAndB.moveTo(125, 150);
+		cell00.moveTo(50, 325);
+		cell01.moveTo(50, 475);
+		cell10.moveTo(50, 625);
+		cell11.moveTo(50, 775);
+		andA00.moveTo(230, 375);
+		andorA01.moveTo(230, 485);
+		andorA10.moveTo(230, 635);
+		andorA11.moveTo(230, 785);
+		andB00.moveTo(145, 325);
+		andorB01.moveTo(145, 435);
+		andorB10.moveTo(145, 585);
+		andorB11.moveTo(145, 735);
+		cpB00.moveCenterTo(105, 155);
+		cpB01.moveCenterTo(100, 165);
+		cpB10.moveCenterTo(95, 175);
+		cpB11.moveCenterTo(90, 185);
+		cpD100.moveCenterTo(45, 330);
+		cpD200.moveCenterTo(40, 340);
+		cpD300.moveCenterTo(35, 350);
+		cpD400.moveCenterTo(30, 360);
+		cpD101.moveCenterTo(45, 480);
+		cpD201.moveCenterTo(40, 490);
+		cpD301.moveCenterTo(35, 500);
+		cpD401.moveCenterTo(30, 510);
+		cpD110.moveCenterTo(45, 630);
+		cpD210.moveCenterTo(40, 640);
+		cpD310.moveCenterTo(35, 650);
+		cpD410.moveCenterTo(30, 660);
+		cpQ100.moveCenterTo(140, 330);
+		cpQ200.moveCenterTo(135, 340);
+		cpQ300.moveCenterTo(130, 350);
+		cpQ400.moveCenterTo(125, 360);
+		cpQ101.moveCenterTo(140, 480);
+		cpQ201.moveCenterTo(135, 490);
+		cpQ301.moveCenterTo(130, 500);
+		cpQ401.moveCenterTo(125, 510);
+		cpQ110.moveCenterTo(140, 630);
+		cpQ210.moveCenterTo(135, 640);
+		cpQ310.moveCenterTo(130, 650);
+		cpQ410.moveCenterTo(125, 660);
+		cpQ111.moveCenterTo(140, 780);
+		cpQ211.moveCenterTo(135, 790);
+		cpQ311.moveCenterTo(130, 800);
+		cpQ411.moveCenterTo(125, 810);
 
 		new GUIWire(submodelModifiable, A0, demuxA.getInputPins().get(0), new Point[0]);
 		new GUIWire(submodelModifiable, A1, demuxA.getInputPins().get(1), new Point[0]);
