@@ -40,9 +40,9 @@ public class GUIhalfadder extends SimpleRectangularSubmodelComponent
 		nandYA.moveTo(40, 2.5);
 		nandYB.moveTo(40, 27.5);
 		nandY.moveTo(65, 2.5);
-		cpA.moveTo(5, 12.5);
-		cpB.moveTo(5, 37.5);
-		cp_Z.moveTo(35, 25);
+		cpA.moveCenterTo(5, 12.5);
+		cpB.moveCenterTo(5, 37.5);
+		cp_Z.moveCenterTo(35, 25);
 
 		new GUIWire(submodelModifiable, A, cpA, new Point[0]);
 		new GUIWire(submodelModifiable, cpA, nandYA.getInputPins().get(0), new Point(5, 7.5));

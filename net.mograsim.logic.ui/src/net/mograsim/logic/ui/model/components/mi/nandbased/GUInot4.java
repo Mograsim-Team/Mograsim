@@ -45,10 +45,10 @@ public class GUInot4 extends SimpleRectangularSubmodelComponent
 		nand2.moveTo(30, 27.5);
 		nand3.moveTo(30, 52.5);
 		nand4.moveTo(30, 77.5);
-		cp1.moveTo(15, 12.5);
-		cp2.moveTo(15, 37.5);
-		cp3.moveTo(15, 62.5);
-		cp4.moveTo(15, 87.5);
+		cp1.moveCenterTo(15, 12.5);
+		cp2.moveCenterTo(15, 37.5);
+		cp3.moveCenterTo(15, 62.5);
+		cp4.moveCenterTo(15, 87.5);
 
 		new GUIWire(submodelModifiable, A1, cp1, new Point[0]);
 		new GUIWire(submodelModifiable, A2, cp2, new Point[0]);

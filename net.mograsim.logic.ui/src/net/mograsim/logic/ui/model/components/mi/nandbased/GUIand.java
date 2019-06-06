@@ -33,7 +33,7 @@ public class GUIand extends SimpleRectangularSubmodelComponent
 
 		nand.moveTo(20, 15);
 		not.moveTo(50, 15);
-		cp1.moveTo(45, 25);
+		cp1.moveCenterTo(45, 25);
 
 		new GUIWire(submodelModifiable, A, nand.getInputPins().get(0));
 		new GUIWire(submodelModifiable, B, nand.getInputPins().get(1));

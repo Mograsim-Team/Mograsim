@@ -51,14 +51,14 @@ public class GUIdemux2 extends SimpleRectangularSubmodelComponent
 		andY01.moveTo(40, 27.5);
 		andY10.moveTo(40, 52.5);
 		andY11.moveTo(40, 77.5);
-		cpS01.moveTo(7.5, 12.5);
-		cpS11.moveTo(5, 37.5);
-		cpS02.moveTo(7.5, 17.5);
-		cpS12.moveTo(5, 42.5);
-		cpS03.moveTo(37.5, 62.5);
-		cpS13.moveTo(32.5, 67.5);
-		cpNotS0.moveTo(32.5, 12.5);
-		cpNotS1.moveTo(35, 37.5);
+		cpS01.moveCenterTo(7.5, 12.5);
+		cpS11.moveCenterTo(5, 37.5);
+		cpS02.moveCenterTo(7.5, 17.5);
+		cpS12.moveCenterTo(5, 42.5);
+		cpS03.moveCenterTo(37.5, 62.5);
+		cpS13.moveCenterTo(32.5, 67.5);
+		cpNotS0.moveCenterTo(32.5, 12.5);
+		cpNotS1.moveCenterTo(35, 37.5);
 
 		new GUIWire(submodelModifiable, S0, cpS01, new Point[0]);
 		new GUIWire(submodelModifiable, S1, cpS11, new Point[0]);

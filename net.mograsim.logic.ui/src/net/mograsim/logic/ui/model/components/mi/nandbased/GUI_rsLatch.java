@@ -35,8 +35,8 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 
 		nand1.moveTo(10, 7.5);
 		nand2.moveTo(40, 12.5);
-		cp1.moveTo(35, 17.5);
-		cp2.moveTo(65, 37.5);
+		cp1.moveCenterTo(35, 17.5);
+		cp2.moveCenterTo(65, 37.5);
 
 		new GUIWire(submodelModifiable, _S, nand1.getInputPins().get(0), new Point[0]);
 		new GUIWire(submodelModifiable, _R, nand2.getInputPins().get(1), new Point(35, 37.5), new Point(35, 27.5));
