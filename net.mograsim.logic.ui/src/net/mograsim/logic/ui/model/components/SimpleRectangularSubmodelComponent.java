@@ -7,6 +7,7 @@ import java.util.List;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 
@@ -103,7 +104,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
-	protected void renderSymbol(GeneralGC gc)
+	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
 	{
 		double posX = getBounds().x;
 		double posY = getBounds().y;
@@ -117,7 +118,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
-	protected void renderOutline(GeneralGC gc)
+	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
 	{
 		gc.drawRectangle(getBounds());
 	}

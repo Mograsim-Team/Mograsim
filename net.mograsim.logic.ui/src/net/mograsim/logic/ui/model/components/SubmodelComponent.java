@@ -153,16 +153,16 @@ public abstract class SubmodelComponent extends GUIComponent
 		if (labelAlpha != 0)
 		{
 			gc.setAlpha(labelAlpha);
-			renderSymbol(gc);
+			renderSymbol(gc, visibleRegion);
 		}
 		conf.reset(gc);
 		// draw the outline after all other operations to make interface pins look better
-		renderOutline(gc);
+		renderOutline(gc, visibleRegion);
 	}
 
-	protected abstract void renderOutline(GeneralGC gc);
+	protected abstract void renderOutline(GeneralGC gc, Rectangle visibleRegion);
 
-	protected abstract void renderSymbol(GeneralGC gc);
+	protected abstract void renderSymbol(GeneralGC gc, Rectangle visibleRegion);
 
 	private static double map(double val, double valMin, double valMax, double mapMin, double mapMax)
 	{
