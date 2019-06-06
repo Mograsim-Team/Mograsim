@@ -23,7 +23,13 @@ public class LogicUIRenderer
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
 		gc.setLineWidth(.5);
-		model.getWires().forEach(w -> w.render(gc));
+		model.getWires().forEach(w ->
+		{
+			Rectangle bounds = w.getBounds();
+			double lw = gc.getLineWidth();
+			if (visibleRegion.intersects(bounds.x - lw, bounds.y - lw, bounds.width + lw + lw, bounds.height + lw + lw))
+				w.render(gc);
+		});
 		model.getComponents().forEach(c -> renderComponent(gc, c, visibleRegion));
 	}
 

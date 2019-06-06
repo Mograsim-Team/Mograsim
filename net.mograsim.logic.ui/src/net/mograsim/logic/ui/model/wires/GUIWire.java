@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVectorFormatter;
@@ -20,6 +21,7 @@ public class GUIWire
 	private Pin pin1;
 	private Pin pin2;
 	private Point[] path;
+	private final Rectangle bounds;
 	private double[] effectivePath;
 
 	private final List<Runnable> redrawListeners;
@@ -74,6 +76,7 @@ public class GUIWire
 		this.pin2 = pin2;
 
 		this.path = path == null ? null : Arrays.copyOf(path, path.length);
+		this.bounds = new Rectangle(0, 0, -1, -1);
 
 		redrawListeners = new ArrayList<>();
 
@@ -88,6 +91,12 @@ public class GUIWire
 	private void recalculateEffectivePath()
 	{
 		Point pos1 = pin1.getPos(), pos2 = pin2.getPos();
+
+		double boundsX1 = Math.min(pos1.x, pos2.x);
+		double boundsY1 = Math.min(pos1.y, pos2.y);
+		double boundsX2 = Math.max(pos1.x, pos2.x);
+		double boundsY2 = Math.max(pos1.y, pos2.y);
+
 		if (path == null)
 			effectivePath = new double[] { pos1.x, pos1.y, (pos1.x + pos2.x) / 2, pos1.y, (pos1.x + pos2.x) / 2, pos2.y, pos2.x, pos2.y };
 		else
@@ -97,12 +106,27 @@ public class GUIWire
 			effectivePath[1] = pos1.y;
 			for (int srcI = 0, dstI = 2; srcI < path.length; srcI++, dstI += 2)
 			{
-				effectivePath[dstI + 0] = path[srcI].x;
-				effectivePath[dstI + 1] = path[srcI].y;
+				double pathX = path[srcI].x;
+				double pathY = path[srcI].y;
+				effectivePath[dstI + 0] = pathX;
+				effectivePath[dstI + 1] = pathY;
+				if (pathX < boundsX1)
+					boundsX1 = pathX;
+				if (pathX > boundsX2)
+					boundsX2 = pathX;
+				if (pathY < boundsY1)
+					boundsY1 = pathY;
+				if (pathY > boundsY2)
+					boundsY2 = pathY;
 			}
 			effectivePath[effectivePath.length - 2] = pos2.x;
 			effectivePath[effectivePath.length - 1] = pos2.y;
 		}
+
+		bounds.x = boundsX1;
+		bounds.y = boundsY1;
+		bounds.width = boundsX2 - boundsX1;
+		bounds.height = boundsY2 - boundsY1;
 	}
 
 	private void pin1Moved()
@@ -120,6 +144,11 @@ public class GUIWire
 	public void destroy()
 	{
 		model.wireDestroyed(this);
+	}
+
+	public Rectangle getBounds()
+	{
+		return new Rectangle(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
 	public void render(GeneralGC gc)
