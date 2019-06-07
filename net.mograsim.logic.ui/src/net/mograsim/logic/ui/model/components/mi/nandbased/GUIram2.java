@@ -18,7 +18,6 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		initSubmodelComponents();
 	}
 
-	// TODO clean up D lines
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
