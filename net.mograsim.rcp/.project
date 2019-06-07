@@ -3,6 +3,7 @@
 	<name>net.mograsim.rcp</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.logic.ui</project>
 		<project>net.mograsim.rcp</project>
 	</projects>
 	<buildSpec>
