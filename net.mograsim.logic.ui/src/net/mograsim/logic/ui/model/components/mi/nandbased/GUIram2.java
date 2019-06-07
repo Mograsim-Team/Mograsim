@@ -22,15 +22,16 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin A0 = getInputSubmodelPins().get(0);
-		Pin A1 = getInputSubmodelPins().get(1);
-		Pin B0 = getInputSubmodelPins().get(2);
-		Pin B1 = getInputSubmodelPins().get(3);
-		Pin WE = getInputSubmodelPins().get(4);
-		Pin D1 = getInputSubmodelPins().get(5);
-		Pin D2 = getInputSubmodelPins().get(6);
-		Pin D3 = getInputSubmodelPins().get(7);
-		Pin D4 = getInputSubmodelPins().get(8);
+		//@formatter:off
+		Pin  A0 = getInputSubmodelPins() .get(0);
+		Pin  A1 = getInputSubmodelPins() .get(1);
+		Pin  B0 = getInputSubmodelPins() .get(2);
+		Pin  B1 = getInputSubmodelPins() .get(3);
+		Pin  WE = getInputSubmodelPins() .get(4);
+		Pin  D1 = getInputSubmodelPins() .get(5);
+		Pin  D2 = getInputSubmodelPins() .get(6);
+		Pin  D3 = getInputSubmodelPins() .get(7);
+		Pin  D4 = getInputSubmodelPins() .get(8);
 		Pin QA1 = getOutputSubmodelPins().get(0);
 		Pin QA2 = getOutputSubmodelPins().get(1);
 		Pin QA3 = getOutputSubmodelPins().get(2);
@@ -40,26 +41,26 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		Pin QB3 = getOutputSubmodelPins().get(6);
 		Pin QB4 = getOutputSubmodelPins().get(7);
 
-		GUIdemux2 demuxA = new GUIdemux2(submodelModifiable);
-		GUIdemux2 demuxB = new GUIdemux2(submodelModifiable);
-		GUIand41 weAndB = new GUIand41(submodelModifiable);
-		GUIdlatch4 cell00 = new GUIdlatch4(submodelModifiable);
-		GUIdlatch4 cell01 = new GUIdlatch4(submodelModifiable);
-		GUIdlatch4 cell10 = new GUIdlatch4(submodelModifiable);
-		GUIdlatch4 cell11 = new GUIdlatch4(submodelModifiable);
-		GUIand41 andA00 = new GUIand41(submodelModifiable);
+		GUIdemux2   demuxA   = new GUIdemux2  (submodelModifiable);
+		GUIdemux2   demuxB   = new GUIdemux2  (submodelModifiable);
+		GUIand41    weAndB   = new GUIand41   (submodelModifiable);
+		GUIdlatch4  cell00   = new GUIdlatch4 (submodelModifiable);
+		GUIdlatch4  cell01   = new GUIdlatch4 (submodelModifiable);
+		GUIdlatch4  cell10   = new GUIdlatch4 (submodelModifiable);
+		GUIdlatch4  cell11   = new GUIdlatch4 (submodelModifiable);
+		GUIand41    andA00   = new GUIand41   (submodelModifiable);
 		GUIandor414 andorA01 = new GUIandor414(submodelModifiable);
 		GUIandor414 andorA10 = new GUIandor414(submodelModifiable);
 		GUIandor414 andorA11 = new GUIandor414(submodelModifiable);
-		GUIand41 andB00 = new GUIand41(submodelModifiable);
+		GUIand41    andB00   = new GUIand41   (submodelModifiable);
 		GUIandor414 andorB01 = new GUIandor414(submodelModifiable);
 		GUIandor414 andorB10 = new GUIandor414(submodelModifiable);
 		GUIandor414 andorB11 = new GUIandor414(submodelModifiable);
 
-		WireCrossPoint cpB00 = new WireCrossPoint(submodelModifiable, 1);
-		WireCrossPoint cpB01 = new WireCrossPoint(submodelModifiable, 1);
-		WireCrossPoint cpB10 = new WireCrossPoint(submodelModifiable, 1);
-		WireCrossPoint cpB11 = new WireCrossPoint(submodelModifiable, 1);
+		WireCrossPoint cpB00  = new WireCrossPoint(submodelModifiable, 1);
+		WireCrossPoint cpB01  = new WireCrossPoint(submodelModifiable, 1);
+		WireCrossPoint cpB10  = new WireCrossPoint(submodelModifiable, 1);
+		WireCrossPoint cpB11  = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpD1in = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpD2in = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpD3in = new WireCrossPoint(submodelModifiable, 1);
@@ -89,37 +90,37 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		WireCrossPoint cpQ311 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpQ411 = new WireCrossPoint(submodelModifiable, 1);
 
-		demuxA.moveTo(55, 45);
-		demuxB.moveTo(55, 150);
-		weAndB.moveTo(130, 150);
-		cell00.moveTo(55, 325);
-		cell01.moveTo(55, 475);
-		cell10.moveTo(55, 625);
-		cell11.moveTo(55, 775);
-		andA00.moveTo(235, 375);
+		demuxA  .moveTo( 55,  45);
+		demuxB  .moveTo( 55, 150);
+		weAndB  .moveTo(130, 150);
+		cell00  .moveTo( 55, 325);
+		cell01  .moveTo( 55, 475);
+		cell10  .moveTo( 55, 625);
+		cell11  .moveTo( 55, 775);
+		andA00  .moveTo(235, 375);
 		andorA01.moveTo(235, 485);
 		andorA10.moveTo(235, 635);
 		andorA11.moveTo(235, 785);
-		andB00.moveTo(135, 325);
+		andB00  .moveTo(135, 325);
 		andorB01.moveTo(135, 435);
 		andorB10.moveTo(135, 585);
 		andorB11.moveTo(135, 735);
-		cpB00.moveCenterTo(110, 155);
-		cpB01.moveCenterTo(105, 165);
-		cpB10.moveCenterTo(100, 175);
-		cpB11.moveCenterTo(95, 185);
-		cpD1in.moveCenterTo(35, 550);
-		cpD2in.moveCenterTo(40, 650);
-		cpD3in.moveCenterTo(45, 750);
-		cpD4in.moveCenterTo(50, 810);
-		cpD101.moveCenterTo(35, 480);
-		cpD201.moveCenterTo(40, 490);
-		cpD301.moveCenterTo(45, 500);
-		cpD401.moveCenterTo(50, 510);
-		cpD110.moveCenterTo(35, 630);
-		cpD210.moveCenterTo(40, 640);
-		cpD310.moveCenterTo(45, 650);
-		cpD410.moveCenterTo(50, 660);
+		cpB00 .moveCenterTo(110, 155);
+		cpB01 .moveCenterTo(105, 165);
+		cpB10 .moveCenterTo(100, 175);
+		cpB11 .moveCenterTo( 95, 185);
+		cpD1in.moveCenterTo( 35, 550);
+		cpD2in.moveCenterTo( 40, 650);
+		cpD3in.moveCenterTo( 45, 750);
+		cpD4in.moveCenterTo( 50, 810);
+		cpD101.moveCenterTo( 35, 480);
+		cpD201.moveCenterTo( 40, 490);
+		cpD301.moveCenterTo( 45, 500);
+		cpD401.moveCenterTo( 50, 510);
+		cpD110.moveCenterTo( 35, 630);
+		cpD210.moveCenterTo( 40, 640);
+		cpD310.moveCenterTo( 45, 650);
+		cpD410.moveCenterTo( 50, 660);
 		cpQ100.moveCenterTo(130, 330);
 		cpQ200.moveCenterTo(125, 340);
 		cpQ300.moveCenterTo(120, 350);
@@ -137,7 +138,6 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		cpQ311.moveCenterTo(120, 800);
 		cpQ411.moveCenterTo(115, 810);
 
-		//@formatter:off
 		new GUIWire(submodelModifiable, A0, demuxA.getInputPins().get(0), new Point[0]);
 		new GUIWire(submodelModifiable, A1, demuxA.getInputPins().get(1), new Point(10, 150), new Point(10,  60));
 		new GUIWire(submodelModifiable, B0, demuxB.getInputPins().get(0), new Point( 5, 250), new Point( 5, 155));
