@@ -2,6 +2,7 @@ package net.mograsim.logic.ui.model.components;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -9,6 +10,10 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.components.ComponentParams.InnerComponentParams;
+import net.mograsim.logic.ui.model.components.ComponentParams.InnerPinParams;
+import net.mograsim.logic.ui.model.components.ComponentParams.InnerWireParams;
+import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
@@ -121,5 +126,57 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
 	{
 		gc.drawRectangle(getBounds());
+	}
+
+	public ComponentParams calculateParams()
+	{
+		ComponentParams params = new ComponentParams();
+		params.displayName = label;
+		params.inputCount = inputSupermodelPins.size();
+		params.outputCount = outputSubmodelPins.size();
+		params.logicWidth = logicWidth;
+		params.innerScale = getSubmodelScale();
+
+		List<GUIComponent> compList = submodelModifiable.getComponents();
+		Iterator<GUIComponent> componentIt = compList.iterator();
+		componentIt.next(); // Skip inner SubmodelInterface
+		InnerComponentParams[] comps = new InnerComponentParams[compList.size() - 1];
+		int i = 0;
+		while (componentIt.hasNext())
+		{
+			GUIComponent component = componentIt.next();
+			InnerComponentParams inner = new InnerComponentParams();
+			comps[i] = inner;
+			inner.logicWidth = component.getPins().get(0).logicWidth; // This could be done a little more elegantly
+			Rectangle bounds = component.getBounds();
+			inner.pos = new Point(bounds.x, bounds.y);
+			if (component instanceof GUICustomComponent)
+				inner.type = "file:" + ((GUICustomComponent) component).getPath();
+			else
+				inner.type = "class:" + component.getClass().getCanonicalName();
+			i++;
+		}
+		params.subComps = comps;
+
+		List<GUIWire> wireList = submodelModifiable.getWires();
+		InnerWireParams wires[] = new InnerWireParams[wireList.size()];
+		i = 0;
+		for (GUIWire wire : wireList)
+		{
+			InnerWireParams inner = new InnerWireParams();
+			wires[i] = inner;
+			InnerPinParams pin1Params = new InnerPinParams(), pin2Params = new InnerPinParams();
+
+			pin1Params.pinIndex = wire.getPin1().component.getPins().indexOf(wire.getPin1());
+			pin1Params.compId = compList.indexOf(wire.getPin1().component);
+			pin2Params.pinIndex = wire.getPin2().component.getPins().indexOf(wire.getPin2());
+			pin2Params.compId = compList.indexOf(wire.getPin2().component);
+			inner.pin1 = pin1Params;
+			inner.pin2 = pin2Params;
+			inner.path = wire.getPath();
+			i++;
+		}
+		params.innerWires = wires;
+		return params;
 	}
 }
