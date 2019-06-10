@@ -185,6 +185,11 @@ public class GUIWire
 		return pin2;
 	}
 
+	public Point[] getPath()
+	{
+		return path == null ? null : path.clone();
+	}
+
 	// @formatter:off
 	public void addRedrawListener   (Runnable listener) {redrawListeners         .add   (listener);}
 

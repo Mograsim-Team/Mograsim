@@ -58,6 +58,11 @@ public abstract class SubmodelComponent extends GUIComponent
 		requestRedraw();// needed if there is no submodel interface pin
 	}
 
+	protected double getSubmodelScale()
+	{
+		return submodelScale;
+	}
+
 	/**
 	 * Returns the submodel pin.
 	 */
