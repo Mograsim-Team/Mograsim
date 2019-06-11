@@ -47,11 +47,11 @@ public class GUIxor extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, B, cpB, new Point[0]);
 		new GUIWire(submodelModifiable, cpA, nandAB.getInputPins().get(0), new Point(5, 20));
 		new GUIWire(submodelModifiable, cpB, nandAB.getInputPins().get(1), new Point(5, 30));
-		new GUIWire(submodelModifiable, nandAB.getOutputPin(), cpAB.getPin());
-		new GUIWire(submodelModifiable, cpAB.getPin(), nandYA.getInputPins().get(1), new Point(30, 17.5));
-		new GUIWire(submodelModifiable, cpAB.getPin(), nandYB.getInputPins().get(0), new Point(30, 32.5));
-		new GUIWire(submodelModifiable, cpA.getPin(), nandYA.getInputPins().get(0), new Point(5, 7.5));
-		new GUIWire(submodelModifiable, cpB.getPin(), nandYB.getInputPins().get(1), new Point(5, 42.5));
+		new GUIWire(submodelModifiable, nandAB.getOutputPin(), cpAB);
+		new GUIWire(submodelModifiable, cpAB, nandYA.getInputPins().get(1), new Point(30, 17.5));
+		new GUIWire(submodelModifiable, cpAB, nandYB.getInputPins().get(0), new Point(30, 32.5));
+		new GUIWire(submodelModifiable, cpA, nandYA.getInputPins().get(0), new Point(5, 7.5));
+		new GUIWire(submodelModifiable, cpB, nandYB.getInputPins().get(1), new Point(5, 42.5));
 		new GUIWire(submodelModifiable, nandYA.getOutputPin(), nandY.getInputPins().get(0));
 		new GUIWire(submodelModifiable, nandYB.getOutputPin(), nandY.getInputPins().get(1));
 		new GUIWire(submodelModifiable, nandY.getOutputPin(), Y);
