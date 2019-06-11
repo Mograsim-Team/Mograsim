@@ -5,7 +5,7 @@ import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
-import net.mograsim.logic.ui.model.components.mi.nandbased.GUIram4;
+import net.mograsim.logic.ui.model.components.mi.nandbased.GUIsel3_4;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
 public class SubmodelComponentTestbench
@@ -18,7 +18,7 @@ public class SubmodelComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		SimpleRectangularSubmodelComponent comp = new GUIram4(model);
+		SimpleRectangularSubmodelComponent comp = new GUIsel3_4(model);
 
 		comp.moveTo(100, 0);
 		for (int i = 0; i < comp.getInputPins().size(); i++)
