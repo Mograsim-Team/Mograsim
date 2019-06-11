@@ -75,8 +75,6 @@ public class GUIsel2_4 extends SimpleRectangularSubmodelComponent
 		cpB2.moveCenterTo(5, 92.5);
 		cpA3.moveCenterTo(7.5, 117.5);
 		cpB3.moveCenterTo(5, 142.5);
-		Point a4 = new Point(7.5, 167.5);
-		Point b4 = new Point(5, 192.5);
 
 		new GUIWire(submodelModifiable, A1, nandA1.getInputPins().get(0), new Point(15, 62.5), new Point(15, 7.5));
 		new GUIWire(submodelModifiable, A2, nandA2.getInputPins().get(0), new Point(17.5, 87.5), new Point(17.5, 57.5));
@@ -93,13 +91,13 @@ public class GUIsel2_4 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpA2, cpA3);
 		new GUIWire(submodelModifiable, cpA2, nandA2.getInputPins().get(1));
 		new GUIWire(submodelModifiable, cpA3, nandA3.getInputPins().get(1));
-		new GUIWire(submodelModifiable, cpA3, nandA4.getInputPins().get(1), a4);
+		new GUIWire(submodelModifiable, cpA3, nandA4.getInputPins().get(1), new Point(7.5, 167.5));
 		new GUIWire(submodelModifiable, cpB1, cpB2);
 		new GUIWire(submodelModifiable, cpB1, nandB1.getInputPins().get(1));
 		new GUIWire(submodelModifiable, cpB2, cpB3);
 		new GUIWire(submodelModifiable, cpB2, nandB2.getInputPins().get(1));
 		new GUIWire(submodelModifiable, cpB3, nandB3.getInputPins().get(1));
-		new GUIWire(submodelModifiable, cpB3, nandB4.getInputPins().get(1), b4);
+		new GUIWire(submodelModifiable, cpB3, nandB4.getInputPins().get(1), new Point(5, 192.5));
 		new GUIWire(submodelModifiable, nandA1.getOutputPin(), nandY1.getInputPins().get(0), new Point(42.5, 12.5), new Point(42.5, 7.5));
 		new GUIWire(submodelModifiable, nandB1.getOutputPin(), nandY1.getInputPins().get(1), new Point(45, 37.5), new Point(45, 17.5));
 		new GUIWire(submodelModifiable, nandA2.getOutputPin(), nandY2.getInputPins().get(0), new Point(47.5, 62.5), new Point(47.5, 32.5));
