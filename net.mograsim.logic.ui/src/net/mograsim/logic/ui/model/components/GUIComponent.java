@@ -129,4 +129,9 @@ public abstract class GUIComponent
 		pin.removeRedrawListener(redrawListenerForSubcomponents);
 		callRedrawListeners();
 	}
+
+	public String getIdentifier()
+	{
+		return "class:".concat(getClass().getCanonicalName());
+	}
 }

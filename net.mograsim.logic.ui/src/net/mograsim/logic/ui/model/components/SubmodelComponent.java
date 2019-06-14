@@ -2,16 +2,26 @@ package net.mograsim.logic.ui.model.components;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import net.haspamelodica.swt.helper.gcs.GCConfig;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.LogicUIRenderer;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.components.params.GeneralComponentParams;
+import net.mograsim.logic.ui.model.components.params.SubComponentParams;
+import net.mograsim.logic.ui.model.components.params.RectComponentParams.InnerComponentParams;
+import net.mograsim.logic.ui.model.components.params.RectComponentParams.InnerPinParams;
+import net.mograsim.logic.ui.model.components.params.RectComponentParams.InnerWireParams;
+import net.mograsim.logic.ui.model.components.params.SubComponentParams.InterfacePinParams;
+import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 public abstract class SubmodelComponent extends GUIComponent
@@ -198,5 +208,74 @@ public abstract class SubmodelComponent extends GUIComponent
 		{
 			super.setRelPos(relX, relY);
 		}
+	}
+
+	public SubComponentParams calculateParams()
+	{
+		SubComponentParams params = new SubComponentParams();
+		params.composition = calculateCompositionParams();
+
+		Rectangle bounds = getBounds();
+		params.width = bounds.width;
+		params.height = bounds.height;
+
+		List<Pin> pinList = pinsUnmodifiable;
+		InterfacePinParams[] iPins = new InterfacePinParams[pinList.size()];
+		int i = 0;
+		for (Pin p : pinList)
+		{
+			InterfacePinParams iPinParams = new InterfacePinParams();
+			iPins[i] = iPinParams;
+			iPinParams.location = p.getRelPos();
+			iPinParams.logicWidth = p.logicWidth;
+			i++;
+		}
+		params.interfacePins = iPins;
+		return params;
+	}
+
+	protected GeneralComponentParams calculateCompositionParams()
+	{
+		GeneralComponentParams params = new GeneralComponentParams();
+		params.innerScale = getSubmodelScale();
+
+		List<GUIComponent> compList = submodelModifiable.getComponents();
+		Iterator<GUIComponent> componentIt = compList.iterator();
+		componentIt.next(); // Skip inner SubmodelInterface
+		InnerComponentParams[] comps = new InnerComponentParams[compList.size() - 1];
+		int i = 0;
+		while (componentIt.hasNext())
+		{
+			GUIComponent component = componentIt.next();
+			InnerComponentParams inner = new InnerComponentParams();
+			comps[i] = inner;
+			inner.logicWidth = component.getPins().get(0).logicWidth; // This could be done a little more elegantly
+			Rectangle bounds = component.getBounds();
+			inner.pos = new Point(bounds.x, bounds.y);
+			inner.type = component.getIdentifier();
+			i++;
+		}
+		params.subComps = comps;
+
+		List<GUIWire> wireList = submodelModifiable.getWires();
+		InnerWireParams wires[] = new InnerWireParams[wireList.size()];
+		i = 0;
+		for (GUIWire wire : wireList)
+		{
+			InnerWireParams inner = new InnerWireParams();
+			wires[i] = inner;
+			InnerPinParams pin1Params = new InnerPinParams(), pin2Params = new InnerPinParams();
+
+			pin1Params.pinIndex = wire.getPin1().component.getPins().indexOf(wire.getPin1());
+			pin1Params.compId = compList.indexOf(wire.getPin1().component);
+			pin2Params.pinIndex = wire.getPin2().component.getPins().indexOf(wire.getPin2());
+			pin2Params.compId = compList.indexOf(wire.getPin2().component);
+			inner.pin1 = pin1Params;
+			inner.pin2 = pin2Params;
+			inner.path = wire.getPath();
+			i++;
+		}
+		params.innerWires = wires;
+		return params;
 	}
 }
