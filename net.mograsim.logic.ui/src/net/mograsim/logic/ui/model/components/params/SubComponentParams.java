@@ -1,20 +1,34 @@
 package net.mograsim.logic.ui.model.components.params;
 
 import java.io.IOException;
+import java.util.Map;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 
 public class SubComponentParams
 {
+	public String type;
 	public final static String fileExtension = ".sc";
 	public double width, height;
 	public InterfacePinParams[] interfacePins;
 	public GeneralComponentParams composition;
+	public Map<String, Object> specialized;
 
 	public static class InterfacePinParams
 	{
 		public Point location;
 		public int logicWidth;
+	}
+
+	public static class InnerWireParams
+	{
+		public InnerPinParams pin1, pin2;
+		public Point[] path;
+	}
+
+	public static class InnerPinParams
+	{
+		public int compId, pinIndex;
 	}
 
 	public static SubComponentParams readJson(String path) throws IOException

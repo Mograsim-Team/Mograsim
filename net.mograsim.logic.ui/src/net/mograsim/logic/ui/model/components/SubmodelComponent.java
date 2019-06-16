@@ -16,13 +16,13 @@ import net.mograsim.logic.ui.LogicUIRenderer;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.params.GeneralComponentParams;
+import net.mograsim.logic.ui.model.components.params.GeneralComponentParams.InnerComponentParams;
 import net.mograsim.logic.ui.model.components.params.SubComponentParams;
-import net.mograsim.logic.ui.model.components.params.RectComponentParams.InnerComponentParams;
-import net.mograsim.logic.ui.model.components.params.RectComponentParams.InnerPinParams;
-import net.mograsim.logic.ui.model.components.params.RectComponentParams.InnerWireParams;
 import net.mograsim.logic.ui.model.components.params.SubComponentParams.InterfacePinParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.model.components.params.SubComponentParams.InnerPinParams;
+import net.mograsim.logic.ui.model.components.params.SubComponentParams.InnerWireParams;
 
 public abstract class SubmodelComponent extends GUIComponent
 {
@@ -213,6 +213,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	public SubComponentParams calculateParams()
 	{
 		SubComponentParams params = new SubComponentParams();
+		params.type = SubmodelComponent.class.getSimpleName();
 		params.composition = calculateCompositionParams();
 
 		Rectangle bounds = getBounds();

@@ -5,18 +5,12 @@ import java.io.IOException;
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIBitDisplay;
-import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.components.GUICustomComponentCreator;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.components.SubmodelComponent;
-import net.mograsim.logic.ui.model.components.mi.nandbased.GUIand;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIfulladder;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder;
-import net.mograsim.logic.ui.model.components.mi.nandbased.GUImux1;
-import net.mograsim.logic.ui.model.components.mi.nandbased.GUImux1_4;
-import net.mograsim.logic.ui.model.components.mi.nandbased.GUIsel2_4;
-import net.mograsim.logic.ui.model.components.params.RectComponentParams;
 import net.mograsim.logic.ui.model.components.params.SubComponentParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
@@ -24,7 +18,7 @@ public class JsonExample
 {
 	public static void main(String[] args)
 	{
-		SimpleLogicUIStandalone.executeVisualisation(JsonExample::createFromJsonExample);
+		SimpleLogicUIStandalone.executeVisualisation(JsonExample::createHalfAdderExample);
 	}
 
 	private static class TestComponent extends SimpleRectangularSubmodelComponent
@@ -52,13 +46,13 @@ public class JsonExample
 	{
 		GUIhalfadder tmp = new GUIhalfadder(model);
 		tmp.moveTo(1000, 50);
-		RectComponentParams p = tmp.calculateRectParams();
+		SubComponentParams p = tmp.calculateParams();
 		SubComponentParams pC = tmp.calculateParams();
 		try
 		{
 			p.writeJson("HalfAdder.rc");
 			pC.writeJson("HalfAdder.sc");
-			p = RectComponentParams.readJson("HalfAdder.rc");
+			p = SubComponentParams.readJson("HalfAdder.rc");
 			pC = SubComponentParams.readJson("HalfAdder.sc");
 		}
 		catch (IOException e)
@@ -76,11 +70,11 @@ public class JsonExample
 	{
 		SimpleRectangularSubmodelComponent tmp = new GUIhalfadder(model);
 		tmp.moveTo(1000, 50);
-		RectComponentParams p = tmp.calculateRectParams();
+		SubComponentParams p = tmp.calculateParams();
 		try
 		{
 			p.writeJson("HalfAdder.rc");
-			p = RectComponentParams.readJson("HalfAdder.rc");
+			p = SubComponentParams.readJson("HalfAdder.rc");
 		}
 		catch (IOException e)
 		{
