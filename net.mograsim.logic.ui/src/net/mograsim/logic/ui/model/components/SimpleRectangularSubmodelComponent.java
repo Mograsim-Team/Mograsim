@@ -3,17 +3,21 @@ package net.mograsim.logic.ui.model.components;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.params.RectComponentParams;
+import net.mograsim.logic.ui.model.components.params.SubComponentParams;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 {
+	public static String kLabel = "label", kInCount = "input_count", kOutCount = "output_count", kLogicWidth = "logic_width";
+
 	private static final double width = 35;
 	private static final double pinDistance = 10;
 	private static final double fontHeight = 5;
@@ -124,14 +128,17 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		gc.drawRectangle(getBounds());
 	}
 
-	public RectComponentParams calculateRectParams()
+	@Override
+	public SubComponentParams calculateParams()
 	{
-		RectComponentParams params = new RectComponentParams();
-		params.displayName = label;
-		params.inputCount = inputSupermodelPins.size();
-		params.outputCount = outputSubmodelPins.size();
-		params.logicWidth = logicWidth;
-		params.composition = calculateCompositionParams();
-		return params;
+		SubComponentParams ret = super.calculateParams();
+		ret.type = SimpleRectangularSubmodelComponent.class.getSimpleName();
+		Map<String, Object> m = new TreeMap<>();
+		m.put(kLabel, label);
+		m.put(kInCount, inputSupermodelPins.size());
+		m.put(kOutCount, outputSupermodelPins.size());
+		m.put(kLogicWidth, logicWidth);
+		ret.specialized = m;
+		return ret;
 	}
 }
