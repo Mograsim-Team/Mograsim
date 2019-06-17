@@ -15,14 +15,14 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.LogicUIRenderer;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.params.GeneralComponentParams;
-import net.mograsim.logic.ui.model.components.params.GeneralComponentParams.InnerComponentParams;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams.InterfacePinParams;
+import net.mograsim.logic.ui.model.components.params.ComponentCompositionParams;
+import net.mograsim.logic.ui.model.components.params.ComponentCompositionParams.InnerComponentParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams.InterfacePinParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams.InnerPinParams;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams.InnerWireParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams.InnerPinParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams.InnerWireParams;
 
 public abstract class SubmodelComponent extends GUIComponent
 {
@@ -210,9 +210,12 @@ public abstract class SubmodelComponent extends GUIComponent
 		}
 	}
 
-	public SubComponentParams calculateParams()
+	/**
+	 * @return {@link SubmodelComponentParams}, which describe this {@link SubmodelComponent}.
+	 */
+	public SubmodelComponentParams calculateParams()
 	{
-		SubComponentParams params = new SubComponentParams();
+		SubmodelComponentParams params = new SubmodelComponentParams();
 		params.type = SubmodelComponent.class.getSimpleName();
 		params.composition = calculateCompositionParams();
 
@@ -235,9 +238,9 @@ public abstract class SubmodelComponent extends GUIComponent
 		return params;
 	}
 
-	protected GeneralComponentParams calculateCompositionParams()
+	protected ComponentCompositionParams calculateCompositionParams()
 	{
-		GeneralComponentParams params = new GeneralComponentParams();
+		ComponentCompositionParams params = new ComponentCompositionParams();
 		params.innerScale = getSubmodelScale();
 
 		List<GUIComponent> compList = submodelModifiable.getComponents();
