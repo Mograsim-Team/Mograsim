@@ -1,0 +1,180 @@
+{
+  "type": "SimpleRectangularSubmodelComponent",
+  "width": 35.0,
+  "height": 30.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 5.0
+      },
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 15.0
+      },
+      "logicWidth": 1
+    }
+  ],
+  "composition": {
+    "innerScale": 0.4,
+    "subComps": [
+      {
+        "pos": {
+          "x": 5.0,
+          "y": 40.0
+        },
+        "type": "class:net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder",
+        "logicWidth": 1
+      },
+      {
+        "pos": {
+          "x": 45.0,
+          "y": 7.5
+        },
+        "type": "class:net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder",
+        "logicWidth": 1
+      },
+      {
+        "pos": {
+          "x": 57.5,
+          "y": 40.0
+        },
+        "type": "class:net.mograsim.logic.ui.model.components.GUINandGate",
+        "logicWidth": 1
+      }
+    ],
+    "innerWires": [
+      {
+        "pin1": {
+          "compId": 0,
+          "pinIndex": 0
+        },
+        "pin2": {
+          "compId": 2,
+          "pinIndex": 0
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinIndex": 1
+        },
+        "pin2": {
+          "compId": 1,
+          "pinIndex": 0
+        }
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinIndex": 2
+        },
+        "pin2": {
+          "compId": 1,
+          "pinIndex": 1
+        }
+      },
+      {
+        "pin1": {
+          "compId": 1,
+          "pinIndex": 2
+        },
+        "pin2": {
+          "compId": 2,
+          "pinIndex": 1
+        }
+      },
+      {
+        "pin1": {
+          "compId": 1,
+          "pinIndex": 3
+        },
+        "pin2": {
+          "compId": 3,
+          "pinIndex": 2
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 2,
+          "pinIndex": 2
+        },
+        "pin2": {
+          "compId": 0,
+          "pinIndex": 3
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 2,
+          "pinIndex": 3
+        },
+        "pin2": {
+          "compId": 3,
+          "pinIndex": 1
+        },
+        "path": [
+          {
+            "x": 82.5,
+            "y": 22.5
+          },
+          {
+            "x": 82.5,
+            "y": 35.0
+          },
+          {
+            "x": 52.5,
+            "y": 35.0
+          },
+          {
+            "x": 52.5,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 3,
+          "pinIndex": 0
+        },
+        "pin2": {
+          "compId": 0,
+          "pinIndex": 4
+        }
+      }
+    ]
+  },
+  "specialized": {
+    "input_count": 3,
+    "label": "GUIfulladder",
+    "logic_width": 1,
+    "output_count": 2
+  }
+}
