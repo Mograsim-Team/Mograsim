@@ -28,7 +28,7 @@ public class GUIBitDisplay extends GUIComponent
 		logicObs = (i) -> requestRedraw();
 
 		setSize(width, height);
-		addPin(this.inputPin = new Pin(this, 1, 0, height / 2));
+		addPin(this.inputPin = new Pin(this, "", 1, 0, height / 2));
 	}
 
 	@Override

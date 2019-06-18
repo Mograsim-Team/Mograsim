@@ -9,6 +9,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 5.0
       },
+      "name": "A",
       "logicWidth": 1
     },
     {
@@ -16,6 +17,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 15.0
       },
+      "name": "B",
       "logicWidth": 1
     },
     {
@@ -23,6 +25,7 @@ mograsim version: 0.1.0
         "x": 35.0,
         "y": 5.0
       },
+      "name": "Y",
       "logicWidth": 1
     },
     {
@@ -30,6 +33,7 @@ mograsim version: 0.1.0
         "x": 35.0,
         "y": 15.0
       },
+      "name": "Z",
       "logicWidth": 1
     }
   ],

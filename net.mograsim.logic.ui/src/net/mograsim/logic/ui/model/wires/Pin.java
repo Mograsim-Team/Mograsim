@@ -8,10 +8,10 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 
-//TODO add an ID and/or a name
 public class Pin
 {
 	public final GUIComponent component;
+	public final String name;
 	public final int logicWidth;
 
 	protected double relX;
@@ -20,9 +20,10 @@ public class Pin
 	private final List<Consumer<? super Pin>> pinMovedListeners;
 	private final List<Runnable> redrawListeners;
 
-	public Pin(GUIComponent component, int logicWidth, double relX, double relY)
+	public Pin(GUIComponent component, String name, int logicWidth, double relX, double relY)
 	{
 		this.component = component;
+		this.name = name;
 		this.logicWidth = logicWidth;
 		this.relX = relX;
 		this.relY = relY;

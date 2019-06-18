@@ -22,6 +22,7 @@ public class LogicUIRenderer
 
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
+		gc.setAntialias(SWT.ON);
 		gc.setClipping(visibleRegion);
 		gc.setLineWidth(.5);
 		model.getWires().forEach(w ->
