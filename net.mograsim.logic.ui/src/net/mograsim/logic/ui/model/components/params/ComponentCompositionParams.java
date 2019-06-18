@@ -1,9 +1,9 @@
 package net.mograsim.logic.ui.model.components.params;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams.InnerWireParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams.InnerWireParams;
 
-public class GeneralComponentParams
+public class ComponentCompositionParams
 {
 	public double innerScale;
 	public InnerComponentParams[] subComps;

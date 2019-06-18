@@ -1,0 +1,34 @@
+{
+  "type": "SimpleRectangularSubmodelComponent",
+  "width": 35.0,
+  "height": 10.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "logicWidth": 1
+    }
+  ],
+  "composition": {
+    "innerScale": 0.4,
+    "subComps": [
+      {
+        "pos": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "type": "file:HalfAdder.json",
+        "logicWidth": 1
+      }
+    ],
+    "innerWires": []
+  },
+  "specialized": {
+    "input_count": 1,
+    "label": "Test",
+    "logic_width": 1,
+    "output_count": 0
+  }
+}

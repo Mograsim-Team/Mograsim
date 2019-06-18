@@ -11,14 +11,14 @@ import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent
 import net.mograsim.logic.ui.model.components.SubmodelComponent;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIfulladder;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
 public class JsonExample
 {
 	public static void main(String[] args)
 	{
-		SimpleLogicUIStandalone.executeVisualisation(JsonExample::createHalfAdderExample);
+		SimpleLogicUIStandalone.executeVisualisation(JsonExample::refJsonFromJsonTest);
 	}
 
 	private static class TestComponent extends SimpleRectangularSubmodelComponent
@@ -28,16 +28,16 @@ public class JsonExample
 			super(model, 1, "Test");
 			setInputCount(1);
 			setSubmodelScale(.4);
-			GUICustomComponentCreator.create(submodelModifiable, "HalfAdder.rc");
+			GUICustomComponentCreator.create(submodelModifiable, "HalfAdder.json");
 		}
 	}
 
-	// Execute only after HalfAdder.rc has been created
+	// Execute only after HalfAdder.json has been created
 	public static void refJsonFromJsonTest(ViewModelModifiable model)
 	{
 		TestComponent t = new TestComponent(model);
-		t.calculateParams().writeJson("Test.sc");
-		SubmodelComponent c = GUICustomComponentCreator.create(model, "Test.sc");
+		t.calculateParams().writeJson("Test.json");
+		SubmodelComponent c = GUICustomComponentCreator.create(model, "Test.json");
 		c.moveTo(0, 50);
 
 	}
@@ -46,47 +46,30 @@ public class JsonExample
 	{
 		GUIhalfadder tmp = new GUIhalfadder(model);
 		tmp.moveTo(1000, 50);
-		SubComponentParams p = tmp.calculateParams();
-		SubComponentParams pC = tmp.calculateParams();
+		SubmodelComponentParams p = tmp.calculateParams();
 		try
 		{
-			p.writeJson("HalfAdder.rc");
-			pC.writeJson("HalfAdder.sc");
-			p = SubComponentParams.readJson("HalfAdder.rc");
-			pC = SubComponentParams.readJson("HalfAdder.sc");
+			p.writeJson("HalfAdder.json");
+			p = SubmodelComponentParams.readJson("HalfAdder.json");
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
 
-		SubmodelComponent adder = GUICustomComponentCreator.create(model, p, "");
-		adder = GUICustomComponentCreator.create(model, pC, "");
-		adder.moveTo(0, 200);
+		GUICustomComponentCreator.create(model, p, "");
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createFromJsonExample(ViewModelModifiable model)
 	{
-		SimpleRectangularSubmodelComponent tmp = new GUIhalfadder(model);
-		tmp.moveTo(1000, 50);
-		SubComponentParams p = tmp.calculateParams();
-		try
-		{
-			p.writeJson("HalfAdder.rc");
-			p = SubComponentParams.readJson("HalfAdder.rc");
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		tmp = new GUIfulladder(model);
-		SubComponentParams pC = tmp.calculateParams();
+		SimpleRectangularSubmodelComponent tmp = new GUIfulladder(model);
+		SubmodelComponentParams pC = tmp.calculateParams();
 		tmp.moveTo(1000, 100);
 		try
 		{
-			pC.writeJson("FullAdder.sc");
-			pC = SubComponentParams.readJson("FullAdder.sc");
+			pC.writeJson("FullAdder.json");
+			pC = SubmodelComponentParams.readJson("FullAdder.json");
 		}
 		catch (IOException e)
 		{
