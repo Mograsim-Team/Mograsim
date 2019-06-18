@@ -35,7 +35,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		this.logicWidth = logicWidth;
 		this.isInverted = isInverted;
 		this.rectWidth = width - (isInverted ? invertedCircleDiam : 0);
-		this.outputPin = new MovablePin(this, logicWidth, width, 0);
+		this.outputPin = new MovablePin(this, "Y", logicWidth, width, 0);
 		addPin(outputPin);
 		this.inputPins = new ArrayList<>();
 		this.inputPinsUnmodifiable = Collections.unmodifiableList(inputPins);
@@ -52,7 +52,8 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		else if (oldInputCount < inputCount)
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
-				Pin pin = new Pin(this, logicWidth, 0, pinDistance / 2 + i * pinDistance);
+				// TODO what for more than 26 input pins?
+				Pin pin = new Pin(this, "A" + i, logicWidth, 0, pinDistance / 2 + i * pinDistance);
 				inputPins.add(pin);
 				addPin(pin);
 			}

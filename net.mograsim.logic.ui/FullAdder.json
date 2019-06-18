@@ -9,6 +9,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 5.0
       },
+      "name": "Input pin #0",
       "logicWidth": 1
     },
     {
@@ -16,6 +17,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 15.0
       },
+      "name": "Input pin #1",
       "logicWidth": 1
     },
     {
@@ -23,6 +25,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 25.0
       },
+      "name": "Input pin #2",
       "logicWidth": 1
     },
     {
@@ -30,6 +33,7 @@ mograsim version: 0.1.0
         "x": 35.0,
         "y": 5.0
       },
+      "name": "Output pin #0",
       "logicWidth": 1
     },
     {
@@ -37,6 +41,7 @@ mograsim version: 0.1.0
         "x": 35.0,
         "y": 15.0
       },
+      "name": "Output pin #1",
       "logicWidth": 1
     }
   ],
