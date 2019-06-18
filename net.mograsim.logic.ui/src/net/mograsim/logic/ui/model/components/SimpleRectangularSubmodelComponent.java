@@ -11,7 +11,6 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent

@@ -9,7 +9,6 @@ import java.util.function.Supplier;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 public abstract class GUIComponent
