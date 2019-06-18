@@ -6,11 +6,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.params.ComponentCompositionParams;
-import net.mograsim.logic.ui.model.components.params.ComponentCompositionParams.InnerComponentParams;
-import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams;
-import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams.InnerWireParams;
-import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams.InterfacePinParams;
+import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
+import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams;
+import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerWireParams;
+import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InterfacePinParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
 /**
@@ -21,8 +20,9 @@ public final class GUICustomComponentCreator
 	private static final String rectC = SimpleRectangularSubmodelComponent.class.getSimpleName();
 
 	/**
-	 * Creates a {@link SubmodelComponent} from the {@link SubmodelComponentParams}, specified at the given path. The returned SubmodelComponent
-	 * can also be e.g. a {@link SimpleRectangularSubmodelComponent}, depending on what the {@link SubmodelComponentParams} describe.
+	 * Creates a {@link SubmodelComponent} from the {@link SubmodelComponentParams}, specified at the given path. The returned
+	 * SubmodelComponent can also be e.g. a {@link SimpleRectangularSubmodelComponent}, depending on what the
+	 * {@link SubmodelComponentParams} describe.
 	 * 
 	 * @param path The path of the file describing the {@link SubmodelComponentParams}, which define the new {@link SubmodelComponent}
 	 * @return A new SubmodelComponent, as described in the file located at the given path
@@ -44,8 +44,8 @@ public final class GUICustomComponentCreator
 	}
 
 	/**
-	 * Creates a {@link SubmodelComponent} from the specified {@link SubmodelComponentParams}. The returned SubmodelComponent can also be e.g. a
-	 * {@link SimpleRectangularSubmodelComponent}, depending on what the {@link SubmodelComponentParams} describe.
+	 * Creates a {@link SubmodelComponent} from the specified {@link SubmodelComponentParams}. The returned SubmodelComponent can also be
+	 * e.g. a {@link SimpleRectangularSubmodelComponent}, depending on what the {@link SubmodelComponentParams} describe.
 	 * 
 	 * @param params The parameters describing the {@link SubmodelComponent}
 	 * @param path   This value is used when the new {@link SubmodelComponent} is an inner component to a different SubmodelComponent, which

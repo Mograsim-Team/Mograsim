@@ -1,21 +1,21 @@
-package net.mograsim.logic.ui.model.components.params;
+package net.mograsim.logic.ui.model.components;
 
 import java.io.IOException;
 import java.util.Map;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.ui.model.components.SubmodelComponent;
+import net.mograsim.logic.ui.util.JsonHandler;
 
 /**
  * This class contains all the information necessary to create a new {@link SubmodelComponent}
  */
 public class SubmodelComponentParams
 {
-	public String type;
-	public double width, height;
-	public InterfacePinParams[] interfacePins;
-	public ComponentCompositionParams composition;
-	public Map<String, Object> specialized;
+	String type;
+	double width, height;
+	InterfacePinParams[] interfacePins;
+	ComponentCompositionParams composition;
+	Map<String, Object> specialized;
 
 	public static class InterfacePinParams
 	{
@@ -32,6 +32,20 @@ public class SubmodelComponentParams
 	public static class InnerPinParams
 	{
 		public int compId, pinIndex;
+	}
+
+	public static class ComponentCompositionParams
+	{
+		double innerScale;
+		InnerComponentParams[] subComps;
+		InnerWireParams[] innerWires;
+
+		public static class InnerComponentParams
+		{
+			public Point pos;
+			public String type;
+			public int logicWidth;
+		}
 	}
 
 	public static SubmodelComponentParams readJson(String path) throws IOException

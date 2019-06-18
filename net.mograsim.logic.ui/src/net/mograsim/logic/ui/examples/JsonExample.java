@@ -9,9 +9,9 @@ import net.mograsim.logic.ui.model.components.GUICustomComponentCreator;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.components.SubmodelComponent;
+import net.mograsim.logic.ui.model.components.SubmodelComponentParams;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIfulladder;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder;
-import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
 public class JsonExample
@@ -76,7 +76,8 @@ public class JsonExample
 			e.printStackTrace();
 		}
 
-		SimpleRectangularSubmodelComponent adder = new GUIfulladder(model);
+		SimpleRectangularSubmodelComponent adder = (SimpleRectangularSubmodelComponent) GUICustomComponentCreator.create(model,
+				"FullAdder.json");
 
 		GUIManualSwitch swA = new GUIManualSwitch(model);
 		swA.moveTo(0, 0);
