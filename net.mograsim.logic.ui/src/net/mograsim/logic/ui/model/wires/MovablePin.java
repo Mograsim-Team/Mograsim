@@ -4,9 +4,9 @@ import net.mograsim.logic.ui.model.components.GUIComponent;
 
 public class MovablePin extends Pin
 {
-	public MovablePin(GUIComponent component, int logicWidth, double relX, double relY)
+	public MovablePin(GUIComponent component, String name, int logicWidth, double relX, double relY)
 	{
-		super(component, logicWidth, relX, relY);
+		super(component, name, logicWidth, relX, relY);
 	}
 
 	@Override

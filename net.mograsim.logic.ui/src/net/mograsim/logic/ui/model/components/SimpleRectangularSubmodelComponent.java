@@ -62,7 +62,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		else if (oldInputCount < inputCount)
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
-				Pin submodelPin = addSubmodelInterface(logicWidth, 0, pinDistance / 2 + i * pinDistance);
+				// TODO pin names
+				Pin submodelPin = addSubmodelInterface("Input pin #" + i, logicWidth, 0, pinDistance / 2 + i * pinDistance);
 				inputSubmodelPins.add(submodelPin);
 				inputSupermodelPins.add(getSupermodelPin(submodelPin));
 			}
@@ -81,7 +82,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		else if (oldOutputCount < outputCount)
 			for (int i = oldOutputCount; i < outputCount; i++)
 			{
-				Pin submodelPin = addSubmodelInterface(logicWidth, width, pinDistance / 2 + i * pinDistance);
+				// TODO pin names
+				Pin submodelPin = addSubmodelInterface("Output pin #" + i, logicWidth, width, pinDistance / 2 + i * pinDistance);
 				outputSubmodelPins.add(submodelPin);
 				outputSupermodelPins.add(getSupermodelPin(submodelPin));
 			}
@@ -119,6 +121,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		Point textExtent = gc.textExtent(label);
 		gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
+		// TODO draw pin names
 	}
 
 	@Override

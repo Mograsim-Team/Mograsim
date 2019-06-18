@@ -7,9 +7,12 @@ Export-Package: net.mograsim.logic.ui,
  net.mograsim.logic.ui.examples,
  net.mograsim.logic.ui.model,
  net.mograsim.logic.ui.model.components,
+ net.mograsim.logic.ui.model.components.mi.nandbased,
+ net.mograsim.logic.ui.model.components.mi.nandbased.am2901,
  net.mograsim.logic.ui.model.wires,
  net.mograsim.logic.ui.modeladapter,
- net.mograsim.logic.ui.modeladapter.componentadapters
+ net.mograsim.logic.ui.modeladapter.componentadapters,
+ net.mograsim.logic.ui.util
 Bundle-RequiredExecutionEnvironment: JavaSE-10
 Require-Bundle: org.eclipse.swt;bundle-version="3.110.0",
  SWTZoomableCanvas;bundle-version="1.0.0";visibility:=reexport,

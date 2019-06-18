@@ -100,7 +100,7 @@ public final class GUICustomComponentCreator
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
 		{
-			comp.addSubmodelInterface(iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y);
+			comp.addSubmodelInterface(iPinParams.name, iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y);
 		}
 		return comp;
 	}

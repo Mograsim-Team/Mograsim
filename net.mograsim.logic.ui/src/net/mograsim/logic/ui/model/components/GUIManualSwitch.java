@@ -30,7 +30,7 @@ public class GUIManualSwitch extends GUIComponent
 		logicObs = (i) -> requestRedraw();
 
 		setSize(width, height);
-		addPin(this.outputPin = new Pin(this, 1, width, height / 2));
+		addPin(this.outputPin = new Pin(this, "", 1, width, height / 2));
 	}
 
 	@Override
