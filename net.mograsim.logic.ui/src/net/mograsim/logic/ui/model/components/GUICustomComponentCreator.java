@@ -6,39 +6,32 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.params.GeneralComponentParams;
-import net.mograsim.logic.ui.model.components.params.GeneralComponentParams.InnerComponentParams;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams.InnerWireParams;
-import net.mograsim.logic.ui.model.components.params.SubComponentParams.InterfacePinParams;
+import net.mograsim.logic.ui.model.components.params.ComponentCompositionParams;
+import net.mograsim.logic.ui.model.components.params.ComponentCompositionParams.InnerComponentParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams.InnerWireParams;
+import net.mograsim.logic.ui.model.components.params.SubmodelComponentParams.InterfacePinParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
-public class GUICustomComponentCreator
+/**
+ * Creates {@link SubmodelComponent}s from {@link SubmodelComponentParams}
+ */
+public final class GUICustomComponentCreator
 {
 	private static final String rectC = SimpleRectangularSubmodelComponent.class.getSimpleName();
 
-	private static class CustomRectComponent extends SimpleRectangularSubmodelComponent
-	{
-		private String path;
-
-		protected CustomRectComponent(ViewModelModifiable model, int logicWidth, String label, String path)
-		{
-			super(model, logicWidth, label);
-			this.path = path;
-		}
-
-		@Override
-		public String getIdentifier()
-		{
-			return "file:".concat(path);
-		}
-	}
-
+	/**
+	 * Creates a {@link SubmodelComponent} from the {@link SubmodelComponentParams}, specified at the given path. The returned SubmodelComponent
+	 * can also be e.g. a {@link SimpleRectangularSubmodelComponent}, depending on what the {@link SubmodelComponentParams} describe.
+	 * 
+	 * @param path The path of the file describing the {@link SubmodelComponentParams}, which define the new {@link SubmodelComponent}
+	 * @return A new SubmodelComponent, as described in the file located at the given path
+	 */
 	public static SubmodelComponent create(ViewModelModifiable model, String path)
 	{
 		try
 		{
-			SubComponentParams params = SubComponentParams.readJson(path);
+			SubmodelComponentParams params = SubmodelComponentParams.readJson(path);
 			SubmodelComponent ret = create(model, params, path);
 			return ret;
 		}
@@ -47,55 +40,73 @@ public class GUICustomComponentCreator
 			System.err.println("Failed to construct GUICustomComponent. Parameters were not found.");
 			e.printStackTrace();
 		}
-		return new CustomRectComponent(model, 0, "ERROR", "NONE");
+		return new SimpleRectangularSubmodelComponent(model, 0, "ERROR");
 	}
 
 	/**
-	 * @param path This value is used when the new SubmodelComponent is an inner component to a different SubmodelComponent, which is being
-	 *             saved to a file; Then, the new SubmodelComponent is referenced by its given path within the file.
+	 * Creates a {@link SubmodelComponent} from the specified {@link SubmodelComponentParams}. The returned SubmodelComponent can also be e.g. a
+	 * {@link SimpleRectangularSubmodelComponent}, depending on what the {@link SubmodelComponentParams} describe.
+	 * 
+	 * @param params The parameters describing the {@link SubmodelComponent}
+	 * @param path   This value is used when the new {@link SubmodelComponent} is an inner component to a different SubmodelComponent, which
+	 *               is being saved to a file; Then, the new {@link SubmodelComponent} is referenced by its given path within the file.
+	 * @return A new SubmodelComponent, as described by the {@link SubmodelComponentParams}
 	 */
-	public static SubmodelComponent create(ViewModelModifiable model, SubComponentParams params, String path)
+	public static SubmodelComponent create(ViewModelModifiable model, SubmodelComponentParams params, String path)
 	{
-		// TODO: Clean up this mess
 		SubmodelComponent comp = null;
 		if (rectC.equals(params.type))
 		{
-			try
-			{
-				Map<String, Object> m = params.specialized;
-				SimpleRectangularSubmodelComponent rect = new CustomRectComponent(model,
-						((Number) m.get(SimpleRectangularSubmodelComponent.kLogicWidth)).intValue(),
-						(String) m.get(SimpleRectangularSubmodelComponent.kLabel), path);
-				rect.setSubmodelScale(params.composition.innerScale);
-				rect.setSize(params.width, params.height);
-				rect.setInputCount(((Number) m.get(SimpleRectangularSubmodelComponent.kInCount)).intValue());
-				rect.setOutputCount(((Number) m.get(SimpleRectangularSubmodelComponent.kOutCount)).intValue());
-				comp = rect;
-			}
-			catch (ClassCastException | NullPointerException e)
-			{
-				System.err.println("Failed to specialize component!");
-				e.printStackTrace();
-			}
+			comp = createRectComponent(model, params);
 		}
+
 		if (comp == null)
 		{
-			// As SubmodelComponent is abstract, for now SubmodelComponents are instantiated as SimpleRectangularSubmodelComponents
-			comp = new CustomRectComponent(model, 0, "", path);
-
-			comp.setSubmodelScale(params.composition.innerScale);
-			comp.setSize(params.width, params.height);
-			for (InterfacePinParams iPinParams : params.interfacePins)
-			{
-				comp.addSubmodelInterface(iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y);
-			}
+			comp = createSubmodelComponent(model, params);
 		}
-		initSubmodelComponents(comp, params.composition);
+		comp.identifierDelegate = () -> "file:".concat(path);
+		initInnerComponents(comp, params.composition);
+		return comp;
+	}
+
+	// May return null
+	private static SimpleRectangularSubmodelComponent createRectComponent(ViewModelModifiable model, SubmodelComponentParams params)
+	{
+		try
+		{
+			Map<String, Object> m = params.specialized;
+			SimpleRectangularSubmodelComponent rect = new SimpleRectangularSubmodelComponent(model,
+					((Number) m.get(SimpleRectangularSubmodelComponent.kLogicWidth)).intValue(),
+					(String) m.get(SimpleRectangularSubmodelComponent.kLabel));
+			rect.setSubmodelScale(params.composition.innerScale);
+			rect.setSize(params.width, params.height);
+			rect.setInputCount(((Number) m.get(SimpleRectangularSubmodelComponent.kInCount)).intValue());
+			rect.setOutputCount(((Number) m.get(SimpleRectangularSubmodelComponent.kOutCount)).intValue());
+			return rect;
+		}
+		catch (ClassCastException | NullPointerException e)
+		{
+			System.err.println("Failed to specialize component!");
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	private static SubmodelComponent createSubmodelComponent(ViewModelModifiable model, SubmodelComponentParams params)
+	{
+		// As SubmodelComponent is abstract, for now SubmodelComponents are instantiated as SimpleRectangularSubmodelComponents
+		SubmodelComponent comp = new SimpleRectangularSubmodelComponent(model, 0, "");
+		comp.setSubmodelScale(params.composition.innerScale);
+		comp.setSize(params.width, params.height);
+		for (InterfacePinParams iPinParams : params.interfacePins)
+		{
+			comp.addSubmodelInterface(iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y);
+		}
 		return comp;
 	}
 
 	@SuppressWarnings("unused")
-	private static void initSubmodelComponents(SubmodelComponent comp, GeneralComponentParams params)
+	private static void initInnerComponents(SubmodelComponent comp, ComponentCompositionParams params)
 	{
 		try
 		{
@@ -127,9 +138,10 @@ public class GUICustomComponentCreator
 						innerWire.path);
 			}
 		}
-		catch (Exception e)
+		catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | SecurityException
+				| ClassNotFoundException | IllegalArgumentException e)
 		{
-			System.err.println("Failed to create custom component!");
+			System.err.println("Failed to initialize custom component!");
 			e.printStackTrace();
 		}
 	}

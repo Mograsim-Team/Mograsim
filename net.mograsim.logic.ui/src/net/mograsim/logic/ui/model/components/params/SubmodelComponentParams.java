@@ -4,14 +4,17 @@ import java.io.IOException;
 import java.util.Map;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.ui.model.components.SubmodelComponent;
 
-public class SubComponentParams
+/**
+ * This class contains all the information necessary to create a new {@link SubmodelComponent}
+ */
+public class SubmodelComponentParams
 {
 	public String type;
-	public final static String fileExtension = ".sc";
 	public double width, height;
 	public InterfacePinParams[] interfacePins;
-	public GeneralComponentParams composition;
+	public ComponentCompositionParams composition;
 	public Map<String, Object> specialized;
 
 	public static class InterfacePinParams
@@ -31,14 +34,14 @@ public class SubComponentParams
 		public int compId, pinIndex;
 	}
 
-	public static SubComponentParams readJson(String path) throws IOException
+	public static SubmodelComponentParams readJson(String path) throws IOException
 	{
-		return JsonHandler.readJson(path, SubComponentParams.class);
+		return JsonHandler.readJson(path, SubmodelComponentParams.class);
 	}
 
 	/**
-	 * Writes this {@link SubComponentParams} object into a file in json format. The correct file extension is important! Check
-	 * {@link SubComponentParams}.fileExtension
+	 * Writes this {@link SubmodelComponentParams} object into a file in json format. The correct file extension is important! Check
+	 * {@link SubmodelComponentParams}.fileExtension
 	 */
 	public void writeJson(String path)
 	{
