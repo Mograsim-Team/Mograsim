@@ -9,7 +9,6 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 
-// TODO make a superclass
 public class AtomicAm2901NANDBased extends GUIComponent
 {
 	public final List<String> inputNames;
@@ -24,9 +23,9 @@ public class AtomicAm2901NANDBased extends GUIComponent
 		this.outputNames = List.of("Y1", "Y2", "Y3", "Y4", "F=0", "Cn+4", "OVR", "F3_ORAMn+3", "ORAMn", "OQn", "OQn+3");
 		setSize(50, inputNames.size() * 10);
 		for (int i = 0; i < inputNames.size(); i++)
-			addPin(new Pin(this, 1, 0, 5 + 10 * i));
+			addPin(new Pin(this, "Input pin #" + i, 1, 0, 5 + 10 * i));
 		for (int i = 0; i < outputNames.size(); i++)
-			addPin(new Pin(this, 1, 50, 5 + 10 * i));
+			addPin(new Pin(this, "Output pin #" + i, 1, 50, 5 + 10 * i));
 	}
 
 	@Override

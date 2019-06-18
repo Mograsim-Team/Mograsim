@@ -28,7 +28,7 @@ public class WireCrossPoint extends GUIComponent
 
 		this.logicWidth = logicWidth;
 		setSize(CIRCLE_DIAM, CIRCLE_DIAM);
-		addPin(this.pin = new Pin(this, logicWidth, CIRCLE_RADIUS, CIRCLE_RADIUS));
+		addPin(this.pin = new Pin(this, "", logicWidth, CIRCLE_RADIUS, CIRCLE_RADIUS));
 	}
 
 	public void moveCenterTo(double x, double y)

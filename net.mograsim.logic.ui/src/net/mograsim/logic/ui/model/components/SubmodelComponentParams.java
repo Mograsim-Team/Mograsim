@@ -20,6 +20,7 @@ public class SubmodelComponentParams
 	public static class InterfacePinParams
 	{
 		public Point location;
+		public String name;
 		public int logicWidth;
 	}
 

@@ -21,15 +21,16 @@ import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerPinPa
 import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerWireParams;
 import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InterfacePinParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
+import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 public abstract class SubmodelComponent extends GUIComponent
 {
 	protected final ViewModelModifiable submodelModifiable;
 	public final ViewModel submodel;
-	private final Map<PinMovable, PinMovable> submodelPinsPerSupermodelPin;
+	private final Map<MovablePin, MovablePin> submodelPinsPerSupermodelPin;
 	private final Map<Pin, Pin> submodelPinsPerSupermodelPinUnmodifiable;
-	private final Map<PinMovable, PinMovable> supermodelPinsPerSubmodelPin;
+	private final Map<MovablePin, MovablePin> supermodelPinsPerSubmodelPin;
 	private final Map<Pin, Pin> supermodelPinsPerSubmodelPinUnmodifiable;
 	private final SubmodelInterface submodelInterface;
 
@@ -61,7 +62,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	{
 		this.submodelScale = submodelScale;
 
-		for (Entry<PinMovable, PinMovable> e : supermodelPinsPerSubmodelPin.entrySet())
+		for (Entry<MovablePin, MovablePin> e : supermodelPinsPerSubmodelPin.entrySet())
 			e.getKey().setRelPos(e.getValue().getRelX() * submodelScale, e.getValue().getRelY() * submodelScale);
 
 		requestRedraw();// needed if there is no submodel interface pin
@@ -75,12 +76,12 @@ public abstract class SubmodelComponent extends GUIComponent
 	/**
 	 * Returns the submodel pin.
 	 */
-	protected Pin addSubmodelInterface(int logicWidth, double relX, double relY)
+	protected Pin addSubmodelInterface(String name, int logicWidth, double relX, double relY)
 	{
-		PinMovable submodelPin = new PinMovable(submodelInterface, logicWidth, relX / submodelScale, relY / submodelScale);
+		MovablePin submodelPin = new MovablePin(submodelInterface, name, logicWidth, relX / submodelScale, relY / submodelScale);
 		submodelInterface.addPin(submodelPin);
 
-		PinMovable supermodelPin = new PinMovable(this, logicWidth, relX, relY);
+		MovablePin supermodelPin = new MovablePin(this, name, logicWidth, relX, relY);
 		addPin(supermodelPin);
 
 		submodelPinsPerSupermodelPin.put(supermodelPin, submodelPin);
@@ -92,8 +93,8 @@ public abstract class SubmodelComponent extends GUIComponent
 
 	protected void moveSubmodelInterface(Pin supermodelPin, double relX, double relY)
 	{
-		PinMovable submodelPin = getSubmodelMovablePin(supermodelPin);
-		PinMovable supermodelPinMovable = getSupermodelMovablePin(submodelPin);
+		MovablePin submodelPin = getSubmodelMovablePin(supermodelPin);
+		MovablePin supermodelPinMovable = getSupermodelMovablePin(submodelPin);
 
 		submodelPin.setRelPos(relX / submodelScale, relY / submodelScale);
 		supermodelPinMovable.setRelPos(relX, relY);
@@ -123,7 +124,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		return getSupermodelMovablePin(submodelPin);
 	}
 
-	protected PinMovable getSupermodelMovablePin(Pin submodelPin)
+	protected MovablePin getSupermodelMovablePin(Pin submodelPin)
 	{
 		return supermodelPinsPerSubmodelPin.get(submodelPin);
 	}
@@ -138,7 +139,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		return getSubmodelMovablePin(supermodelPin);
 	}
 
-	protected PinMovable getSubmodelMovablePin(Pin supermodelPin)
+	protected MovablePin getSubmodelMovablePin(Pin supermodelPin)
 	{
 		return submodelPinsPerSupermodelPin.get(supermodelPin);
 	}
@@ -195,20 +196,6 @@ public abstract class SubmodelComponent extends GUIComponent
 		return true;
 	}
 
-	private static class PinMovable extends Pin
-	{
-		public PinMovable(GUIComponent component, int logicWidth, double relX, double relY)
-		{
-			super(component, logicWidth, relX, relY);
-		}
-
-		@Override
-		protected void setRelPos(double relX, double relY)
-		{
-			super.setRelPos(relX, relY);
-		}
-	}
-
 	/**
 	 * @return {@link SubmodelComponentParams}, which describe this {@link SubmodelComponent}.
 	 */
@@ -230,6 +217,7 @@ public abstract class SubmodelComponent extends GUIComponent
 			InterfacePinParams iPinParams = new InterfacePinParams();
 			iPins[i] = iPinParams;
 			iPinParams.location = p.getRelPos();
+			iPinParams.name = p.name;
 			iPinParams.logicWidth = p.logicWidth;
 			i++;
 		}

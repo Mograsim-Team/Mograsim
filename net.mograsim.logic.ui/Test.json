@@ -9,6 +9,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 5.0
       },
+      "name": "Input pin #0",
       "logicWidth": 1
     }
   ],
