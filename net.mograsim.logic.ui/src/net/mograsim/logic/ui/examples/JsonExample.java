@@ -27,7 +27,7 @@ public class JsonExample
 		{
 			super(model, 1, "Test");
 			setSubmodelScale(.4);
-			setInputPins("Test input pin");
+			setInputPins("Input pin #0");
 			GUICustomComponentCreator.create(submodelModifiable, "HalfAdder.json");
 		}
 	}

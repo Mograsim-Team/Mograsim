@@ -55,17 +55,17 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		int inputCount = pinNames.length;
 		int oldInputCount = inputSupermodelPins.size();
 		double height = Math.max(inputCount, outputSupermodelPins.size()) * pinDistance;
-		setSize(width, height);
+		super.setSize(width, height);
 		if (oldInputCount > inputCount)
 			while (inputSupermodelPins.size() > inputCount)
 			{
 				inputSubmodelPins.remove(inputCount);
-				removeSubmodelInterface(inputSupermodelPins.remove(inputCount));
+				super.removeSubmodelInterface(inputSupermodelPins.remove(inputCount));
 			}
 		else if (oldInputCount < inputCount)
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
-				Pin submodelPin = addSubmodelInterface(pinNames[i], logicWidth, 0, pinDistance / 2 + i * pinDistance);
+				Pin submodelPin = super.addSubmodelInterface(pinNames[i], logicWidth, 0, pinDistance / 2 + i * pinDistance);
 				inputSubmodelPins.add(submodelPin);
 				inputSupermodelPins.add(getSupermodelPin(submodelPin));
 			}
@@ -73,8 +73,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		{
 			if (!inputSubmodelPins.get(i).name.equals(pinNames[i]))
 			{
-				removeSubmodelInterface(inputSupermodelPins.get(i));
-				Pin submodelPin = addSubmodelInterface(pinNames[i], logicWidth, 0, pinDistance / 2 + i * pinDistance);
+				super.removeSubmodelInterface(inputSupermodelPins.get(i));
+				Pin submodelPin = super.addSubmodelInterface(pinNames[i], logicWidth, 0, pinDistance / 2 + i * pinDistance);
 				inputSubmodelPins.set(i, submodelPin);
 				inputSupermodelPins.set(i, getSupermodelPin(submodelPin));
 			}
@@ -85,17 +85,17 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	{
 		int outputCount = pinNames.length;
 		int oldOutputCount = outputSupermodelPins.size();
-		setSize(width, Math.max(inputSupermodelPins.size(), outputCount) * pinDistance);
+		super.setSize(width, Math.max(inputSupermodelPins.size(), outputCount) * pinDistance);
 		if (oldOutputCount > outputCount)
 			while (outputSupermodelPins.size() > outputCount)
 			{
 				outputSubmodelPins.remove(outputCount);
-				removeSubmodelInterface(outputSupermodelPins.get(outputCount));
+				super.removeSubmodelInterface(outputSupermodelPins.get(outputCount));
 			}
 		else if (oldOutputCount < outputCount)
 			for (int i = oldOutputCount; i < outputCount; i++)
 			{
-				Pin submodelPin = addSubmodelInterface(pinNames[i], logicWidth, width, pinDistance / 2 + i * pinDistance);
+				Pin submodelPin = super.addSubmodelInterface(pinNames[i], logicWidth, width, pinDistance / 2 + i * pinDistance);
 				outputSubmodelPins.add(submodelPin);
 				outputSupermodelPins.add(getSupermodelPin(submodelPin));
 			}
@@ -103,8 +103,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		{
 			if (!outputSubmodelPins.get(i).name.equals(pinNames[i]))
 			{
-				removeSubmodelInterface(outputSupermodelPins.get(i));
-				Pin submodelPin = addSubmodelInterface(pinNames[i], logicWidth, width, pinDistance / 2 + i * pinDistance);
+				super.removeSubmodelInterface(outputSupermodelPins.get(i));
+				Pin submodelPin = super.addSubmodelInterface(pinNames[i], logicWidth, width, pinDistance / 2 + i * pinDistance);
 				outputSubmodelPins.set(i, submodelPin);
 				outputSupermodelPins.set(i, getSupermodelPin(submodelPin));
 			}
@@ -176,5 +176,26 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		m.put(kLogicWidth, logicWidth);
 		ret.specialized = m;
 		return ret;
+	}
+
+	@Override
+	protected Pin addSubmodelInterface(String name, int logicWidth, double relX, double relY)
+	{
+		throw new UnsupportedOperationException(
+				"Can't add submodel interfaces to a SimpleRectangularSubmodelComponent directly, call setInputPins / setOutputPins instead");
+	}
+
+	@Override
+	protected void removeSubmodelInterface(Pin supermodelPin)
+	{
+		throw new UnsupportedOperationException(
+				"Can't remove submodel interfaces of a SimpleRectangularSubmodelComponent directly, call setInputPins / setOutputPins instead");
+	}
+
+	@Override
+	protected void setSize(double width, double height)
+	{
+		throw new UnsupportedOperationException(
+				"Can't set the size of a SimpleRectangularSubmodelComponent directly, call setInputPins / setOutputPins instead");
 	}
 }
