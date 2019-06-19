@@ -79,9 +79,9 @@ public final class GUICustomComponentCreator
 					((Number) m.get(SimpleRectangularSubmodelComponent.kLogicWidth)).intValue(),
 					(String) m.get(SimpleRectangularSubmodelComponent.kLabel));
 			rect.setSubmodelScale(params.composition.innerScale);
-			rect.setSize(params.width, params.height);
+			// rect.setSize(params.width, params.height);
 
-			// TODO names
+			// TODO save & restore names
 			int inputCount = ((Number) m.get(SimpleRectangularSubmodelComponent.kInCount)).intValue();
 			String[] inputNames = new String[inputCount];
 			for (int i = 0; i < inputCount; i++)

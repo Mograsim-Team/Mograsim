@@ -82,7 +82,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		submodelInterface.addPin(submodelPin);
 
 		MovablePin supermodelPin = new MovablePin(this, name, logicWidth, relX, relY);
-		addPin(supermodelPin);
+		super.addPin(supermodelPin);
 
 		submodelPinsPerSupermodelPin.put(supermodelPin, submodelPin);
 		supermodelPinsPerSubmodelPin.put(submodelPin, supermodelPin);
@@ -104,7 +104,7 @@ public abstract class SubmodelComponent extends GUIComponent
 
 	protected void removeSubmodelInterface(Pin supermodelPin)
 	{
-		removePin(supermodelPin);
+		super.removePin(supermodelPin);
 		Pin submodelPin = getSubmodelMovablePin(supermodelPin);
 		submodelInterface.removePin(submodelPin);
 
@@ -268,5 +268,17 @@ public abstract class SubmodelComponent extends GUIComponent
 		}
 		params.innerWires = wires;
 		return params;
+	}
+
+	@Override
+	protected void addPin(Pin pin)
+	{
+		throw new UnsupportedOperationException("Can't add pins to a SubmodelComponent directly, call addSubmodelInterface instead");
+	}
+
+	@Override
+	protected void removePin(Pin pin)
+	{
+		throw new UnsupportedOperationException("Can't remove pins of a SubmodelComponent directly, call removeSubmodelInterface instead");
 	}
 }
