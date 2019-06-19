@@ -88,6 +88,36 @@ class ComponentTest
 	}
 
 	@Test
+	void fusionTest()
+	{
+		t.reset();
+		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), out = new Wire(t, 8, 1);
+		Wire.fuse(a, out, 0, 0, a.length);
+		Wire.fuse(b, out, 0, a.length, b.length);
+		Wire.fuse(c, out, 0, a.length + b.length, c.length);
+		ReadWriteEnd rA = a.createReadWriteEnd();
+		rA.feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO);
+		ReadWriteEnd rB = b.createReadWriteEnd();
+		rB.feedSignals(Bit.ONE, Bit.ZERO);
+		ReadWriteEnd rC = c.createReadWriteEnd();
+		rC.feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
+		t.executeAll();
+		assertBitArrayEquals(out.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
+		out.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
+		t.executeAll();
+		assertBitArrayEquals(rA.getValues(), Bit.X, Bit.X, Bit.X);
+		assertBitArrayEquals(rB.getValues(), Bit.X, Bit.X);
+		assertBitArrayEquals(rC.getValues(), Bit.X, Bit.X, Bit.X);
+		rA.clearSignals();
+		rB.clearSignals();
+		rC.clearSignals();
+		t.executeAll();
+		assertBitArrayEquals(rA.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE);
+		assertBitArrayEquals(rB.getValues(), Bit.ZERO, Bit.ONE);
+		assertBitArrayEquals(rC.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO);
+	}
+
+	@Test
 	void triStateBufferTest()
 	{
 		Wire a = new Wire(t, 1, 1), b = new Wire(t, 1, 1), en = new Wire(t, 1, 1), notEn = new Wire(t, 1, 1);

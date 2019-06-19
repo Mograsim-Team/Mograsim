@@ -419,7 +419,11 @@ public class Wire
 			timeline.addEvent(e -> setValues(startingBit, bitVector), travelTime);
 		}
 
-		private void setValues(int startingBit, BitVector newValues)
+		/**
+		 * Sets the values that are being fed into the {@link Wire}. The preferred way of setting {@link ReadWriteEnd} values is via
+		 * feedValues(...) with a delay.
+		 */
+		void setValues(int startingBit, BitVector newValues)
 		{
 			// index check covered in equals
 			if (!inputValues.equalsWithOffset(newValues, startingBit))
@@ -431,7 +435,11 @@ public class Wire
 			}
 		}
 
-		private void setValues(BitVector newValues)
+		/**
+		 * Sets the values that are being fed into the {@link Wire}. The preferred way of setting {@link ReadWriteEnd} values is via
+		 * feedValues(...) with a delay.
+		 */
+		void setValues(BitVector newValues)
 		{
 			if (inputValues.equals(newValues))
 				return;
@@ -508,5 +516,59 @@ public class Wire
 		for (int i = 0; i < w.length; i++)
 			inputs[i] = w[i].createReadWriteEnd();
 		return inputs;
+	}
+
+	/**
+	 * @formatter:off
+	 * Fuses the selected bits of two wires together. If the bits change in one Wire, the other is changed accordingly immediately.
+	 * Warning: The bits are permanently fused together.
+	 * @formatter:on
+	 * @param a The {@link Wire} to be (partially) fused with b
+	 * @param b The {@link Wire} to be (partially) fused with a
+	 * @param fromA The first bit of {@link Wire} a to be fused
+	 * @param fromB	The first bit of {@link Wire} b to be fused
+	 * @param length The amount of bits to fuse
+	 */
+	public static void fuse(Wire a, Wire b, int fromA, int fromB, int length)
+	{
+		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
+		rA.setValues(BitVector.of(Bit.Z, a.length));
+		rB.setValues(BitVector.of(Bit.Z, b.length));
+		rA.registerObserver(new Fusion(rB, fromA, fromB, length));
+		rB.registerObserver(new Fusion(rA, fromB, fromA, length));
+	}
+
+	/**
+	 * @formatter:off
+	 * Fuses the selected bits of two wires together. If the bits change in one Wire, the other is changed accordingly immediately.
+	 * Warning: The bits are permanently fused together.
+	 * @formatter:on
+	 * @param a The {@link Wire} to be fused with b
+	 * @param b The {@link Wire} to be fused with a
+	 */
+	public static void fuse(Wire a, Wire b)
+	{
+		fuse(a, b, 0, 0, a.length);
+	}
+
+	private static class Fusion implements LogicObserver
+	{
+		private ReadWriteEnd target;
+		int fromSource, fromTarget, length;
+
+		public Fusion(ReadWriteEnd target, int fromSource, int fromTarget, int length)
+		{
+			this.target = target;
+			this.fromSource = fromSource;
+			this.fromTarget = fromTarget;
+			this.length = length;
+		}
+
+		@Override
+		public void update(LogicObservable initiator)
+		{
+			ReadWriteEnd read = (ReadWriteEnd) initiator;
+			target.setValues(fromTarget, read.wireValuesExcludingMe().subVector(fromSource, fromSource + length));
+		}
 	}
 }
