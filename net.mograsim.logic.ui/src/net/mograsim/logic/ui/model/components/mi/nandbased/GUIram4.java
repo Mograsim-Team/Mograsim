@@ -13,8 +13,8 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIram4");
 		setSubmodelScale(.1);
-		setInputCount(13);
-		setOutputCount(8);
+		setInputPins("A0", "A1", "A2", "A3", "B0", "B1", "B2", "B3", "WE", "D1", "D2", "D3", "D4");
+		setOutputPins("QA1", "QA2", "QA3", "QA4", "QB1", "QB2", "QB3", "QB4");
 		initSubmodelComponents();
 	}
 

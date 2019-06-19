@@ -14,8 +14,8 @@ public class GUIdlatch extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIdlatch");
 		setSubmodelScale(.4);
-		setInputCount(2);
-		setOutputCount(2);
+		setInputPins("D", "E");
+		setOutputPins("Q", "_Q");
 		initSubmodelComponents();
 	}
 

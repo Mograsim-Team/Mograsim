@@ -14,8 +14,8 @@ public class GUIxor extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIxor");
 		setSubmodelScale(.4);
-		setInputCount(2);
-		setOutputCount(1);
+		setInputPins("A", "B");
+		setOutputPins("Y");
 		initSubmodelComponents();
 	}
 

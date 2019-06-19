@@ -14,8 +14,8 @@ public class GUIAm2901SourceDecode extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "Am2901SourceDecode");
 		setSubmodelScale(.25);
-		setInputCount(3);
-		setOutputCount(5);
+		setInputPins("I2", "I1", "I0");
+		setOutputPins("SQ", "RA", "SB", "SA", "RD");
 		initSubmodelComponents();
 	}
 

@@ -14,8 +14,8 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIdff");
 		setSubmodelScale(.2);
-		setInputCount(2);
-		setOutputCount(2);
+		setInputPins("C", "D");
+		setOutputPins("Q", "_Q");
 		initSubmodelComponents();
 	}
 

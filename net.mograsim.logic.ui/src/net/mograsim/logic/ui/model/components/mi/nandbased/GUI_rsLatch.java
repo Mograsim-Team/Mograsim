@@ -14,8 +14,8 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "_rsLatch");
 		setSubmodelScale(.4);
-		setInputCount(2);
-		setOutputCount(2);
+		setInputPins("_S", "_R");
+		setOutputPins("Q", "_Q");
 		initSubmodelComponents();
 	}
 

@@ -14,8 +14,8 @@ public class GUIor4 extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIor4");
 		setSubmodelScale(.2);
-		setInputCount(4);
-		setOutputCount(1);
+		setInputPins("A1", "A2", "A3", "A4");
+		setOutputPins("Y");
 		initSubmodelComponents();
 	}
 

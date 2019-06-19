@@ -19,7 +19,9 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 
 	private static final double width = 35;
 	private static final double pinDistance = 10;
-	private static final double fontHeight = 5;
+	private static final double pinNameMargin = .5;
+	private static final double labelFontHeight = 5;
+	private static final double pinNameFontHeight = 3.5;
 
 	private final String label;
 	protected final int logicWidth;
@@ -48,8 +50,9 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		this.outputSubmodelPinsUnmodifiable = Collections.unmodifiableList(outputSubmodelPins);
 	}
 
-	protected void setInputCount(int inputCount)
+	protected void setInputPins(String... pinNames)
 	{
+		int inputCount = pinNames.length;
 		int oldInputCount = inputSupermodelPins.size();
 		double height = Math.max(inputCount, outputSupermodelPins.size()) * pinDistance;
 		setSize(width, height);
@@ -57,36 +60,55 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 			while (inputSupermodelPins.size() > inputCount)
 			{
 				inputSubmodelPins.remove(inputCount);
-				removePin(inputSupermodelPins.remove(inputCount));
+				removeSubmodelInterface(inputSupermodelPins.remove(inputCount));
 			}
 		else if (oldInputCount < inputCount)
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
-				// TODO pin names
-				Pin submodelPin = addSubmodelInterface("Input pin #" + i, logicWidth, 0, pinDistance / 2 + i * pinDistance);
+				Pin submodelPin = addSubmodelInterface(pinNames[i], logicWidth, 0, pinDistance / 2 + i * pinDistance);
 				inputSubmodelPins.add(submodelPin);
 				inputSupermodelPins.add(getSupermodelPin(submodelPin));
 			}
+		for (int i = 0; i < Math.min(oldInputCount, inputCount); i++)
+		{
+			if (!inputSubmodelPins.get(i).name.equals(pinNames[i]))
+			{
+				removeSubmodelInterface(inputSupermodelPins.get(i));
+				Pin submodelPin = addSubmodelInterface(pinNames[i], logicWidth, 0, pinDistance / 2 + i * pinDistance);
+				inputSubmodelPins.set(i, submodelPin);
+				inputSupermodelPins.set(i, getSupermodelPin(submodelPin));
+			}
+		}
 	}
 
-	protected void setOutputCount(int outputCount)
+	protected void setOutputPins(String... pinNames)
 	{
+		int outputCount = pinNames.length;
 		int oldOutputCount = outputSupermodelPins.size();
 		setSize(width, Math.max(inputSupermodelPins.size(), outputCount) * pinDistance);
 		if (oldOutputCount > outputCount)
 			while (outputSupermodelPins.size() > outputCount)
 			{
 				outputSubmodelPins.remove(outputCount);
-				removePin(outputSupermodelPins.get(outputCount));
+				removeSubmodelInterface(outputSupermodelPins.get(outputCount));
 			}
 		else if (oldOutputCount < outputCount)
 			for (int i = oldOutputCount; i < outputCount; i++)
 			{
-				// TODO pin names
-				Pin submodelPin = addSubmodelInterface("Output pin #" + i, logicWidth, width, pinDistance / 2 + i * pinDistance);
+				Pin submodelPin = addSubmodelInterface(pinNames[i], logicWidth, width, pinDistance / 2 + i * pinDistance);
 				outputSubmodelPins.add(submodelPin);
 				outputSupermodelPins.add(getSupermodelPin(submodelPin));
 			}
+		for (int i = 0; i < Math.min(oldOutputCount, outputCount); i++)
+		{
+			if (!outputSubmodelPins.get(i).name.equals(pinNames[i]))
+			{
+				removeSubmodelInterface(outputSupermodelPins.get(i));
+				Pin submodelPin = addSubmodelInterface(pinNames[i], logicWidth, width, pinDistance / 2 + i * pinDistance);
+				outputSubmodelPins.set(i, submodelPin);
+				outputSupermodelPins.set(i, getSupermodelPin(submodelPin));
+			}
+		}
 	}
 
 	public List<Pin> getInputPins()
@@ -116,12 +138,24 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		double posY = getBounds().y;
 
 		Font oldFont = gc.getFont();
-		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
-		gc.setFont(labelFont);
+		gc.setFont(new Font(oldFont.getName(), labelFontHeight, oldFont.getStyle()));
 		Point textExtent = gc.textExtent(label);
 		gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
+		gc.setFont(new Font(oldFont.getName(), pinNameFontHeight, oldFont.getStyle()));
+		for (int i = 0; i < inputSupermodelPins.size(); i++)
+		{
+			String pinName = inputSupermodelPins.get(i).name;
+			textExtent = gc.textExtent(pinName);
+			gc.drawText(pinName, posX + pinNameMargin, posY + i * pinDistance + (pinDistance - textExtent.y) / 2, true);
+		}
+		for (int i = 0; i < outputSupermodelPins.size(); i++)
+		{
+			String pinName = outputSupermodelPins.get(i).name;
+			textExtent = gc.textExtent(pinName);
+			gc.drawText(pinName, posX + width - textExtent.x - pinNameMargin, posY + i * pinDistance + (pinDistance - textExtent.y) / 2,
+					true);
+		}
 		gc.setFont(oldFont);
-		// TODO draw pin names
 	}
 
 	@Override

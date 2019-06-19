@@ -15,8 +15,8 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIAm2901QReg");
 		setSubmodelScale(.4);
-		setInputCount(6);
-		setOutputCount(4);
+		setInputPins("C", "WE", "D1", "D2", "D3", "D4");
+		setOutputPins("Q1", "Q2", "Q3", "Q4");
 		initSubmodelComponents();
 	}
 

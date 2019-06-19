@@ -12,8 +12,8 @@ public class GUIandor414 extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIandor414");
 		setSubmodelScale(.4);
-		setInputCount(9);
-		setOutputCount(4);
+		setInputPins("C1", "C2", "C3", "C4", "A1", "A2", "A3", "A4", "B");
+		setOutputPins("Y1", "Y2", "Y3", "Y4");
 		initSubmodelComponents();
 	}
 

@@ -13,8 +13,8 @@ public class GUIfulladder extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIfulladder");
 		setSubmodelScale(.4);
-		setInputCount(3);
-		setOutputCount(2);
+		setInputPins("A", "B", "C");
+		setOutputPins("Y", "Z");
 		initSubmodelComponents();
 	}
 

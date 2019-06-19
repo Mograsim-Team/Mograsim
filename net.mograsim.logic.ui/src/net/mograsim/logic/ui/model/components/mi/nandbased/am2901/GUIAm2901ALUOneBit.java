@@ -18,8 +18,8 @@ public class GUIAm2901ALUOneBit extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIAm2901ALUOneBit");
 		setSubmodelScale(.2);
-		setInputCount(9);
-		setOutputCount(2);
+		setInputPins("Cin", "CoutE", "CinE", "R", "RN", "S", "SN", "FN", "L");
+		setOutputPins("Cout", "F");
 		initSubmodelComponents();
 	}
 
