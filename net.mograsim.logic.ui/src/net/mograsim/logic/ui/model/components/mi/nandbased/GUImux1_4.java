@@ -13,8 +13,8 @@ public class GUImux1_4 extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUImux1_4");
 		setSubmodelScale(.4);
-		setInputCount(9);
-		setOutputCount(4);
+		setInputPins("S0", "I0_1", "I0_2", "I0_3", "I0_4", "I1_1", "I1_2", "I1_3", "I1_4");
+		setOutputPins("Y1", "Y2", "Y3", "Y4");
 		initSubmodelComponents();
 	}
 

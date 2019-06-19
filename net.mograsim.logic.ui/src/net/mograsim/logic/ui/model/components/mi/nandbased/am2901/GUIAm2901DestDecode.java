@@ -14,8 +14,8 @@ public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIAm2901DestDecode");
 		setSubmodelScale(.25);
-		setInputCount(3);
-		setOutputCount(6);
+		setInputPins("I8", "I7", "I6");
+		setOutputPins("NSH", "RSH", "RAMWE", "YF", "LSH", "QWE");
 		initSubmodelComponents();
 	}
 

@@ -14,8 +14,8 @@ public class GUInand3 extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUInand3");
 		setSubmodelScale(.4);
-		setInputCount(3);
-		setOutputCount(1);
+		setInputPins("A", "B", "C");
+		setOutputPins("Y");
 		initSubmodelComponents();
 	}
 

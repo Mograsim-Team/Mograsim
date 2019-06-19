@@ -14,8 +14,8 @@ public class GUIhalfadder extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIhalfadder");
 		setSubmodelScale(.4);
-		setInputCount(2);
-		setOutputCount(2);
+		setInputPins("A", "B");
+		setOutputPins("Y", "_Z");
 		initSubmodelComponents();
 	}
 

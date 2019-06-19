@@ -14,8 +14,8 @@ public class GUIsel2_4 extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIsel2_4");
 		setSubmodelScale(.4);
-		setInputCount(10);
-		setOutputCount(4);
+		setInputPins("SA", "SB", "A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4");
+		setOutputPins("Y1", "Y2", "Y3", "Y4");
 		initSubmodelComponents();
 	}
 

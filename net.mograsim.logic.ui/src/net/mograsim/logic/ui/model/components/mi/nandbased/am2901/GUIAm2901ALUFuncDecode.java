@@ -16,8 +16,8 @@ public class GUIAm2901ALUFuncDecode extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIAm2901ALUFuncDecode");
 		setSubmodelScale(.25);
-		setInputCount(3);
-		setOutputCount(3);
+		setInputPins("I5", "I4", "I3");
+		setOutputPins("CinE", "L", "SBE");
 		initSubmodelComponents();
 	}
 

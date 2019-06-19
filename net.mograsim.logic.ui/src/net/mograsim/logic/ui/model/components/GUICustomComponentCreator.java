@@ -80,8 +80,20 @@ public final class GUICustomComponentCreator
 					(String) m.get(SimpleRectangularSubmodelComponent.kLabel));
 			rect.setSubmodelScale(params.composition.innerScale);
 			rect.setSize(params.width, params.height);
-			rect.setInputCount(((Number) m.get(SimpleRectangularSubmodelComponent.kInCount)).intValue());
-			rect.setOutputCount(((Number) m.get(SimpleRectangularSubmodelComponent.kOutCount)).intValue());
+
+			// TODO names
+			int inputCount = ((Number) m.get(SimpleRectangularSubmodelComponent.kInCount)).intValue();
+			String[] inputNames = new String[inputCount];
+			for (int i = 0; i < inputCount; i++)
+				inputNames[i] = "Input pin #" + i;
+			rect.setInputPins(inputNames);
+
+			int outputCount = ((Number) m.get(SimpleRectangularSubmodelComponent.kOutCount)).intValue();
+			String[] outputPins = new String[outputCount];
+			for (int i = 0; i < outputCount; i++)
+				outputPins[i] = "Output pin #" + i;
+			rect.setOutputPins(outputPins);
+
 			return rect;
 		}
 		catch (ClassCastException | NullPointerException e)

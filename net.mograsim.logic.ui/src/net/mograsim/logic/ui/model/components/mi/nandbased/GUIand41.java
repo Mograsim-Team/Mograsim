@@ -13,8 +13,8 @@ public class GUIand41 extends SimpleRectangularSubmodelComponent
 	{
 		super(model, 1, "GUIand41");
 		setSubmodelScale(.4);
-		setInputCount(5);
-		setOutputCount(4);
+		setInputPins("A1", "A2", "A3", "A4", "B");
+		setOutputPins("Y1", "Y2", "Y3", "Y4");
 		initSubmodelComponents();
 	}
 
