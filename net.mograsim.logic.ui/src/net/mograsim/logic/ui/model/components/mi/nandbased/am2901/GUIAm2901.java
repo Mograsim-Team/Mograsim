@@ -260,6 +260,10 @@ public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpF3Rsh, ramDsel.getPin("C2"), new Point[0]);
 		new GUIWire(submodelModifiable, cpF4Rsh, ramDsel.getPin("C3"), new Point[0]);
 		new GUIWire(submodelModifiable, IRAMnplus3, ramDsel.getPin("C4"), new Point[0]);
+		new GUIWire(submodelModifiable, ramDsel.getPin("Y1"), ram.getPin("D1"), new Point[0]);
+		new GUIWire(submodelModifiable, ramDsel.getPin("Y2"), ram.getPin("D2"), new Point[0]);
+		new GUIWire(submodelModifiable, ramDsel.getPin("Y3"), ram.getPin("D3"), new Point[0]);
+		new GUIWire(submodelModifiable, ramDsel.getPin("Y4"), ram.getPin("D4"), new Point[0]);
 		new GUIWire(submodelModifiable, destDecode.getPin("RAMWE"), ramweAnd.getPin("A"), new Point[0]);
 		new GUIWire(submodelModifiable, notC.getPin("Y"), ramweAnd.getPin("B"), new Point[0]);
 		new GUIWire(submodelModifiable, ramweAnd.getPin("Y"), ram.getPin("WE"), new Point[0]);
