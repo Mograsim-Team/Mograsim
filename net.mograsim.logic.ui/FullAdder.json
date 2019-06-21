@@ -9,7 +9,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 5.0
       },
-      "name": "Input pin #0",
+      "name": "A",
       "logicWidth": 1
     },
     {
@@ -17,7 +17,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 15.0
       },
-      "name": "Input pin #1",
+      "name": "B",
       "logicWidth": 1
     },
     {
@@ -25,7 +25,7 @@ mograsim version: 0.1.0
         "x": 0.0,
         "y": 25.0
       },
-      "name": "Input pin #2",
+      "name": "C",
       "logicWidth": 1
     },
     {
@@ -33,7 +33,7 @@ mograsim version: 0.1.0
         "x": 35.0,
         "y": 5.0
       },
-      "name": "Output pin #0",
+      "name": "Y",
       "logicWidth": 1
     },
     {
@@ -41,7 +41,7 @@ mograsim version: 0.1.0
         "x": 35.0,
         "y": 15.0
       },
-      "name": "Output pin #1",
+      "name": "Z",
       "logicWidth": 1
     }
   ],
@@ -77,74 +77,74 @@ mograsim version: 0.1.0
       {
         "pin1": {
           "compId": 0,
-          "pinIndex": 0
+          "pinName": "A"
         },
         "pin2": {
           "compId": 2,
-          "pinIndex": 0
+          "pinName": "A"
         },
         "path": []
       },
       {
         "pin1": {
           "compId": 0,
-          "pinIndex": 1
+          "pinName": "B"
         },
         "pin2": {
           "compId": 1,
-          "pinIndex": 0
+          "pinName": "A"
         }
       },
       {
         "pin1": {
           "compId": 0,
-          "pinIndex": 2
+          "pinName": "C"
         },
         "pin2": {
           "compId": 1,
-          "pinIndex": 1
+          "pinName": "B"
         }
       },
       {
         "pin1": {
           "compId": 1,
-          "pinIndex": 2
+          "pinName": "Y"
         },
         "pin2": {
           "compId": 2,
-          "pinIndex": 1
+          "pinName": "B"
         }
       },
       {
         "pin1": {
           "compId": 1,
-          "pinIndex": 3
+          "pinName": "_Z"
         },
         "pin2": {
           "compId": 3,
-          "pinIndex": 2
+          "pinName": "B"
         },
         "path": []
       },
       {
         "pin1": {
           "compId": 2,
-          "pinIndex": 2
+          "pinName": "Y"
         },
         "pin2": {
           "compId": 0,
-          "pinIndex": 3
+          "pinName": "Y"
         },
         "path": []
       },
       {
         "pin1": {
           "compId": 2,
-          "pinIndex": 3
+          "pinName": "_Z"
         },
         "pin2": {
           "compId": 3,
-          "pinIndex": 1
+          "pinName": "A"
         },
         "path": [
           {
@@ -168,11 +168,11 @@ mograsim version: 0.1.0
       {
         "pin1": {
           "compId": 3,
-          "pinIndex": 0
+          "pinName": "Y"
         },
         "pin2": {
           "compId": 0,
-          "pinIndex": 4
+          "pinName": "Z"
         }
       }
     ]

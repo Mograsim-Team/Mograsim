@@ -21,15 +21,15 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin D1 = getInputSubmodelPins().get(0);
-		Pin D2 = getInputSubmodelPins().get(1);
-		Pin D3 = getInputSubmodelPins().get(2);
-		Pin D4 = getInputSubmodelPins().get(3);
-		Pin C = getInputSubmodelPins().get(4);
-		Pin Q1 = getOutputSubmodelPins().get(0);
-		Pin Q2 = getOutputSubmodelPins().get(1);
-		Pin Q3 = getOutputSubmodelPins().get(2);
-		Pin Q4 = getOutputSubmodelPins().get(3);
+		Pin D1 = getSubmodelPin("D1");
+		Pin D2 = getSubmodelPin("D2");
+		Pin D3 = getSubmodelPin("D3");
+		Pin D4 = getSubmodelPin("D4");
+		Pin C = getSubmodelPin("C");
+		Pin Q1 = getSubmodelPin("Q1");
+		Pin Q2 = getSubmodelPin("Q2");
+		Pin Q3 = getSubmodelPin("Q3");
+		Pin Q4 = getSubmodelPin("Q4");
 
 		GUIdlatch dlatch1 = new GUIdlatch(submodelModifiable);
 		GUIdlatch dlatch2 = new GUIdlatch(submodelModifiable);
@@ -49,19 +49,19 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 		cp4.moveCenterTo(15, 97.5);
 
 		new GUIWire(submodelModifiable, C, cp4, new Point(15, 112.5));
-		new GUIWire(submodelModifiable, cp4, dlatch4.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cp4, dlatch4.getPin("E"), new Point[0]);
 		new GUIWire(submodelModifiable, cp4, cp3, new Point[0]);
-		new GUIWire(submodelModifiable, cp3, dlatch3.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cp3, dlatch3.getPin("E"), new Point[0]);
 		new GUIWire(submodelModifiable, cp3, cp2, new Point[0]);
-		new GUIWire(submodelModifiable, cp2, dlatch2.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, cp2, dlatch1.getInputPins().get(1), new Point(15, 22.5));
-		new GUIWire(submodelModifiable, D1, dlatch1.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, D2, dlatch2.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, D3, dlatch3.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, D4, dlatch4.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, dlatch1.getOutputPins().get(0), Q1, new Point[0]);
-		new GUIWire(submodelModifiable, dlatch2.getOutputPins().get(0), Q2, new Point[0]);
-		new GUIWire(submodelModifiable, dlatch3.getOutputPins().get(0), Q3, new Point[0]);
-		new GUIWire(submodelModifiable, dlatch4.getOutputPins().get(0), Q4, new Point[0]);
+		new GUIWire(submodelModifiable, cp2, dlatch2.getPin("E"), new Point[0]);
+		new GUIWire(submodelModifiable, cp2, dlatch1.getPin("E"), new Point(15, 22.5));
+		new GUIWire(submodelModifiable, D1, dlatch1.getPin("D"), new Point[0]);
+		new GUIWire(submodelModifiable, D2, dlatch2.getPin("D"), new Point[0]);
+		new GUIWire(submodelModifiable, D3, dlatch3.getPin("D"), new Point[0]);
+		new GUIWire(submodelModifiable, D4, dlatch4.getPin("D"), new Point[0]);
+		new GUIWire(submodelModifiable, dlatch1.getPin("Q"), Q1, new Point[0]);
+		new GUIWire(submodelModifiable, dlatch2.getPin("Q"), Q2, new Point[0]);
+		new GUIWire(submodelModifiable, dlatch3.getPin("Q"), Q3, new Point[0]);
+		new GUIWire(submodelModifiable, dlatch4.getPin("Q"), Q4, new Point[0]);
 	}
 }

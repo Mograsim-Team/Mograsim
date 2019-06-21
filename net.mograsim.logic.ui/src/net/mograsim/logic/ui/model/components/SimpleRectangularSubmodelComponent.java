@@ -1,7 +1,9 @@
 package net.mograsim.logic.ui.model.components;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -26,109 +28,66 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	private final String label;
 	protected final int logicWidth;
 
-	private final List<Pin> inputSupermodelPins;
-	private final List<Pin> inputSupermodelPinsUnmodifiable;
-	private final List<Pin> outputSupermodelPins;
-	private final List<Pin> outputSupermodelPinsUnmodifiable;
-	private final List<Pin> inputSubmodelPins;
-	private final List<Pin> inputSubmodelPinsUnmodifiable;
-	private final List<Pin> outputSubmodelPins;
-	private final List<Pin> outputSubmodelPinsUnmodifiable;
+	private final List<String> inputPinNames;
+	private final List<String> inputPinNamesUnmodifiable;
+	private final List<String> outputPinNames;
+	private final List<String> outputPinNamesUnmodifiable;
 
 	protected SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label)
 	{
 		super(model);
 		this.label = label;
 		this.logicWidth = logicWidth;
-		this.inputSupermodelPins = new ArrayList<>();
-		this.inputSupermodelPinsUnmodifiable = Collections.unmodifiableList(inputSupermodelPins);
-		this.outputSupermodelPins = new ArrayList<>();
-		this.outputSupermodelPinsUnmodifiable = Collections.unmodifiableList(outputSupermodelPins);
-		this.inputSubmodelPins = new ArrayList<>();
-		this.inputSubmodelPinsUnmodifiable = Collections.unmodifiableList(inputSubmodelPins);
-		this.outputSubmodelPins = new ArrayList<>();
-		this.outputSubmodelPinsUnmodifiable = Collections.unmodifiableList(outputSubmodelPins);
+		this.inputPinNames = new ArrayList<>();
+		this.inputPinNamesUnmodifiable = Collections.unmodifiableList(inputPinNames);
+		this.outputPinNames = new ArrayList<>();
+		this.outputPinNamesUnmodifiable = Collections.unmodifiableList(outputPinNames);
 	}
 
 	protected void setInputPins(String... pinNames)
 	{
-		int inputCount = pinNames.length;
-		int oldInputCount = inputSupermodelPins.size();
-		double height = Math.max(inputCount, outputSupermodelPins.size()) * pinDistance;
-		super.setSize(width, height);
-		if (oldInputCount > inputCount)
-			while (inputSupermodelPins.size() > inputCount)
-			{
-				inputSubmodelPins.remove(inputCount);
-				super.removeSubmodelInterface(inputSupermodelPins.remove(inputCount));
-			}
-		else if (oldInputCount < inputCount)
-			for (int i = oldInputCount; i < inputCount; i++)
-			{
-				Pin submodelPin = super.addSubmodelInterface(pinNames[i], logicWidth, 0, pinDistance / 2 + i * pinDistance);
-				inputSubmodelPins.add(submodelPin);
-				inputSupermodelPins.add(getSupermodelPin(submodelPin));
-			}
-		for (int i = 0; i < Math.min(oldInputCount, inputCount); i++)
-		{
-			if (!inputSubmodelPins.get(i).name.equals(pinNames[i]))
-			{
-				super.removeSubmodelInterface(inputSupermodelPins.get(i));
-				Pin submodelPin = super.addSubmodelInterface(pinNames[i], logicWidth, 0, pinDistance / 2 + i * pinDistance);
-				inputSubmodelPins.set(i, submodelPin);
-				inputSupermodelPins.set(i, getSupermodelPin(submodelPin));
-			}
-		}
+		setIOPins(0, inputPinNames, outputPinNames, pinNames);
 	}
 
 	protected void setOutputPins(String... pinNames)
 	{
-		int outputCount = pinNames.length;
-		int oldOutputCount = outputSupermodelPins.size();
-		super.setSize(width, Math.max(inputSupermodelPins.size(), outputCount) * pinDistance);
-		if (oldOutputCount > outputCount)
-			while (outputSupermodelPins.size() > outputCount)
-			{
-				outputSubmodelPins.remove(outputCount);
-				super.removeSubmodelInterface(outputSupermodelPins.get(outputCount));
-			}
-		else if (oldOutputCount < outputCount)
-			for (int i = oldOutputCount; i < outputCount; i++)
-			{
-				Pin submodelPin = super.addSubmodelInterface(pinNames[i], logicWidth, width, pinDistance / 2 + i * pinDistance);
-				outputSubmodelPins.add(submodelPin);
-				outputSupermodelPins.add(getSupermodelPin(submodelPin));
-			}
-		for (int i = 0; i < Math.min(oldOutputCount, outputCount); i++)
+		setIOPins(width, outputPinNames, inputPinNames, pinNames);
+	}
+
+	private void setIOPins(double relX, List<String> pinNamesListThisSide, List<String> pinNamesListOtherSide, String... newPinNames)
+	{
+		int inputCount = newPinNames.length;
+		List<String> newPinNamesList = Arrays.asList(newPinNames);
+		if (new HashSet<>(newPinNamesList).size() != inputCount)
+			throw new IllegalArgumentException("Pin names contain duplicates");
+		for (String pinName : newPinNamesList)
+			if (pinNamesListOtherSide.contains(pinName))
+				throw new IllegalArgumentException("Can't add pin. There is a pin on the other side with the same name: " + pinName);
+		super.setSize(width, Math.max(inputCount, pinNamesListOtherSide.size()) * pinDistance);
+		for (int i = 0; i < inputCount; i++)
 		{
-			if (!outputSubmodelPins.get(i).name.equals(pinNames[i]))
-			{
-				super.removeSubmodelInterface(outputSupermodelPins.get(i));
-				Pin submodelPin = super.addSubmodelInterface(pinNames[i], logicWidth, width, pinDistance / 2 + i * pinDistance);
-				outputSubmodelPins.set(i, submodelPin);
-				outputSupermodelPins.set(i, getSupermodelPin(submodelPin));
-			}
+			String pinName = newPinNames[i];
+			int oldPinIndex = pinNamesListThisSide.indexOf(pinName);
+			if (oldPinIndex == -1)
+				super.addSubmodelInterface(pinName, logicWidth, relX, pinDistance / 2 + i * pinDistance);
+			else
+				getSupermodelMovablePin(pinName).setRelPos(relX, pinDistance / 2 + i * pinDistance);
 		}
+		for (String pinName : pinNamesListThisSide)
+			if (!newPinNamesList.contains(pinName))
+				super.removeSubmodelInterface(pinName);
+		pinNamesListThisSide.clear();
+		pinNamesListThisSide.addAll(newPinNamesList);
 	}
 
-	public List<Pin> getInputPins()
+	public List<String> getInputPinNames()
 	{
-		return inputSupermodelPinsUnmodifiable;
+		return inputPinNamesUnmodifiable;
 	}
 
-	public List<Pin> getOutputPins()
+	public List<String> getOutputPinNames()
 	{
-		return outputSupermodelPinsUnmodifiable;
-	}
-
-	protected List<Pin> getInputSubmodelPins()
-	{
-		return inputSubmodelPinsUnmodifiable;
-	}
-
-	protected List<Pin> getOutputSubmodelPins()
-	{
-		return outputSubmodelPinsUnmodifiable;
+		return outputPinNamesUnmodifiable;
 	}
 
 	@Override
@@ -142,15 +101,15 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		Point textExtent = gc.textExtent(label);
 		gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
 		gc.setFont(new Font(oldFont.getName(), pinNameFontHeight, oldFont.getStyle()));
-		for (int i = 0; i < inputSupermodelPins.size(); i++)
+		for (int i = 0; i < inputPinNames.size(); i++)
 		{
-			String pinName = inputSupermodelPins.get(i).name;
+			String pinName = inputPinNames.get(i);
 			textExtent = gc.textExtent(pinName);
 			gc.drawText(pinName, posX + pinNameMargin, posY + i * pinDistance + (pinDistance - textExtent.y) / 2, true);
 		}
-		for (int i = 0; i < outputSupermodelPins.size(); i++)
+		for (int i = 0; i < outputPinNames.size(); i++)
 		{
-			String pinName = outputSupermodelPins.get(i).name;
+			String pinName = outputPinNames.get(i);
 			textExtent = gc.textExtent(pinName);
 			gc.drawText(pinName, posX + width - textExtent.x - pinNameMargin, posY + i * pinDistance + (pinDistance - textExtent.y) / 2,
 					true);
@@ -171,8 +130,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		ret.type = SimpleRectangularSubmodelComponent.class.getSimpleName();
 		Map<String, Object> m = new TreeMap<>();
 		m.put(kLabel, label);
-		m.put(kInCount, inputSupermodelPins.size());
-		m.put(kOutCount, outputSupermodelPins.size());
+		m.put(kInCount, inputPinNames.size());
+		m.put(kOutCount, outputPinNames.size());
 		m.put(kLogicWidth, logicWidth);
 		ret.specialized = m;
 		return ret;
@@ -186,7 +145,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
-	protected void removeSubmodelInterface(Pin supermodelPin)
+	protected void removeSubmodelInterface(String name)
 	{
 		throw new UnsupportedOperationException(
 				"Can't remove submodel interfaces of a SimpleRectangularSubmodelComponent directly, call setInputPins / setOutputPins instead");

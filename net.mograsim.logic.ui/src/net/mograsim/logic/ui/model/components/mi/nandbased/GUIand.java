@@ -22,9 +22,9 @@ public class GUIand extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin A = getInputSubmodelPins().get(0);
-		Pin B = getInputSubmodelPins().get(1);
-		Pin Y = getOutputSubmodelPins().get(0);
+		Pin A = getSubmodelPin("A");
+		Pin B = getSubmodelPin("B");
+		Pin Y = getSubmodelPin("Y");
 
 		GUINandGate nand = new GUINandGate(submodelModifiable, 1);
 		GUINandGate not = new GUINandGate(submodelModifiable, 1);
@@ -35,11 +35,11 @@ public class GUIand extends SimpleRectangularSubmodelComponent
 		not.moveTo(50, 15);
 		cp1.moveCenterTo(45, 25);
 
-		new GUIWire(submodelModifiable, A, nand.getInputPins().get(0));
-		new GUIWire(submodelModifiable, B, nand.getInputPins().get(1));
-		new GUIWire(submodelModifiable, nand.getOutputPin(), cp1, new Point[0]);
-		new GUIWire(submodelModifiable, cp1, not.getInputPins().get(0), new Point(45, 20));
-		new GUIWire(submodelModifiable, cp1, not.getInputPins().get(1), new Point(45, 30));
-		new GUIWire(submodelModifiable, not.getOutputPin(), Y);
+		new GUIWire(submodelModifiable, A, nand.getPin("A"));
+		new GUIWire(submodelModifiable, B, nand.getPin("B"));
+		new GUIWire(submodelModifiable, nand.getPin("Y"), cp1, new Point[0]);
+		new GUIWire(submodelModifiable, cp1, not.getPin("A"), new Point(45, 20));
+		new GUIWire(submodelModifiable, cp1, not.getPin("B"), new Point(45, 30));
+		new GUIWire(submodelModifiable, not.getPin("Y"), Y);
 	}
 }

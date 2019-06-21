@@ -20,19 +20,19 @@ public class GUIandor414 extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin C1 = getInputSubmodelPins().get(0);
-		Pin C2 = getInputSubmodelPins().get(1);
-		Pin C3 = getInputSubmodelPins().get(2);
-		Pin C4 = getInputSubmodelPins().get(3);
-		Pin A1 = getInputSubmodelPins().get(4);
-		Pin A2 = getInputSubmodelPins().get(5);
-		Pin A3 = getInputSubmodelPins().get(6);
-		Pin A4 = getInputSubmodelPins().get(7);
-		Pin B = getInputSubmodelPins().get(8);
-		Pin Y1 = getOutputSubmodelPins().get(0);
-		Pin Y2 = getOutputSubmodelPins().get(1);
-		Pin Y3 = getOutputSubmodelPins().get(2);
-		Pin Y4 = getOutputSubmodelPins().get(3);
+		Pin C1 = getSubmodelPin("C1");
+		Pin C2 = getSubmodelPin("C2");
+		Pin C3 = getSubmodelPin("C3");
+		Pin C4 = getSubmodelPin("C4");
+		Pin A1 = getSubmodelPin("A1");
+		Pin A2 = getSubmodelPin("A2");
+		Pin A3 = getSubmodelPin("A3");
+		Pin A4 = getSubmodelPin("A4");
+		Pin B = getSubmodelPin("B");
+		Pin Y1 = getSubmodelPin("Y1");
+		Pin Y2 = getSubmodelPin("Y2");
+		Pin Y3 = getSubmodelPin("Y3");
+		Pin Y4 = getSubmodelPin("Y4");
 
 		GUIand41 and = new GUIand41(submodelModifiable);
 		GUIor_4 or = new GUIor_4(submodelModifiable);
@@ -40,26 +40,26 @@ public class GUIandor414 extends SimpleRectangularSubmodelComponent
 		and.moveTo(15, 137.5);
 		or.moveTo(35, 37.5);
 
-		new GUIWire(submodelModifiable, A1, and.getInputPins().get(0), new Point(10, 112.5), new Point(10, 142.5));
-		new GUIWire(submodelModifiable, A2, and.getInputPins().get(1), new Point(5, 137.5), new Point(5, 152.5));
-		new GUIWire(submodelModifiable, A3, and.getInputPins().get(2), new Point[0]);
-		new GUIWire(submodelModifiable, A4, and.getInputPins().get(3), new Point(5, 187.5), new Point(5, 172.5));
-		new GUIWire(submodelModifiable, B, and.getInputPins().get(4), new Point(10, 212.5), new Point(10, 182.5));
-		new GUIWire(submodelModifiable, C1, or.getInputPins().get(0), new Point(10, 12.5), new Point(10, 42.5));
-		new GUIWire(submodelModifiable, C2, or.getInputPins().get(1), new Point(5, 37.5), new Point(5, 52.5));
-		new GUIWire(submodelModifiable, C3, or.getInputPins().get(2), new Point[0]);
-		new GUIWire(submodelModifiable, C4, or.getInputPins().get(3), new Point(5, 87.5), new Point(5, 72.5));
-		new GUIWire(submodelModifiable, and.getOutputPins().get(0), or.getInputPins().get(4), new Point(70, 142.5), new Point(70, 120),
-				new Point(30, 120), new Point(30, 82.5));
-		new GUIWire(submodelModifiable, and.getOutputPins().get(1), or.getInputPins().get(5), new Point(65, 152.5), new Point(65, 125),
-				new Point(25, 125), new Point(25, 92.5));
-		new GUIWire(submodelModifiable, and.getOutputPins().get(2), or.getInputPins().get(6), new Point(60, 162.5), new Point(60, 130),
-				new Point(20, 130), new Point(20, 102.5));
-		new GUIWire(submodelModifiable, and.getOutputPins().get(3), or.getInputPins().get(7), new Point(55, 172.5), new Point(55, 135),
-				new Point(15, 135), new Point(15, 112.5));
-		new GUIWire(submodelModifiable, or.getOutputPins().get(0), Y1, new Point(75, 42.5), new Point(75, 12.5));
-		new GUIWire(submodelModifiable, or.getOutputPins().get(1), Y2, new Point(80, 52.5), new Point(80, 37.5));
-		new GUIWire(submodelModifiable, or.getOutputPins().get(2), Y3, new Point[0]);
-		new GUIWire(submodelModifiable, or.getOutputPins().get(3), Y4, new Point(80, 72.5), new Point(80, 87.5));
+		new GUIWire(submodelModifiable, A1, and.getPin("A1"), new Point(10, 112.5), new Point(10, 142.5));
+		new GUIWire(submodelModifiable, A2, and.getPin("A2"), new Point(5, 137.5), new Point(5, 152.5));
+		new GUIWire(submodelModifiable, A3, and.getPin("A3"), new Point[0]);
+		new GUIWire(submodelModifiable, A4, and.getPin("A4"), new Point(5, 187.5), new Point(5, 172.5));
+		new GUIWire(submodelModifiable, B, and.getPin("B"), new Point(10, 212.5), new Point(10, 182.5));
+		new GUIWire(submodelModifiable, C1, or.getPin("A1"), new Point(10, 12.5), new Point(10, 42.5));
+		new GUIWire(submodelModifiable, C2, or.getPin("A2"), new Point(5, 37.5), new Point(5, 52.5));
+		new GUIWire(submodelModifiable, C3, or.getPin("A3"), new Point[0]);
+		new GUIWire(submodelModifiable, C4, or.getPin("A4"), new Point(5, 87.5), new Point(5, 72.5));
+		new GUIWire(submodelModifiable, and.getPin("Y1"), or.getPin("B1"), new Point(70, 142.5), new Point(70, 120), new Point(30, 120),
+				new Point(30, 82.5));
+		new GUIWire(submodelModifiable, and.getPin("Y2"), or.getPin("B2"), new Point(65, 152.5), new Point(65, 125), new Point(25, 125),
+				new Point(25, 92.5));
+		new GUIWire(submodelModifiable, and.getPin("Y3"), or.getPin("B3"), new Point(60, 162.5), new Point(60, 130), new Point(20, 130),
+				new Point(20, 102.5));
+		new GUIWire(submodelModifiable, and.getPin("Y4"), or.getPin("B4"), new Point(55, 172.5), new Point(55, 135), new Point(15, 135),
+				new Point(15, 112.5));
+		new GUIWire(submodelModifiable, or.getPin("Y1"), Y1, new Point(75, 42.5), new Point(75, 12.5));
+		new GUIWire(submodelModifiable, or.getPin("Y2"), Y2, new Point(80, 52.5), new Point(80, 37.5));
+		new GUIWire(submodelModifiable, or.getPin("Y3"), Y3, new Point[0]);
+		new GUIWire(submodelModifiable, or.getPin("Y4"), Y4, new Point(80, 72.5), new Point(80, 87.5));
 	}
 }

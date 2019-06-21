@@ -1,7 +1,6 @@
 package net.mograsim.logic.ui.model.components;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -26,7 +25,6 @@ public class SimpleRectangularGUIGate extends GUIComponent
 
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
-	private final List<Pin> inputPinsUnmodifiable;
 
 	protected SimpleRectangularGUIGate(ViewModelModifiable model, int logicWidth, String label, boolean isInverted)
 	{
@@ -38,7 +36,6 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		this.outputPin = new MovablePin(this, "Y", logicWidth, width, 0);
 		addPin(outputPin);
 		this.inputPins = new ArrayList<>();
-		this.inputPinsUnmodifiable = Collections.unmodifiableList(inputPins);
 		setInputCount(1);
 	}
 
@@ -48,26 +45,16 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		setSize(width, inputCount * pinDistance);
 		if (oldInputCount > inputCount)
 			while (inputPins.size() > inputCount)
-				removePin(inputPins.remove(inputCount));
+				removePin(inputPins.remove(inputCount).name);
 		else if (oldInputCount < inputCount)
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
-				// TODO what for more than 26 input pins?
-				Pin pin = new Pin(this, "A" + i, logicWidth, 0, pinDistance / 2 + i * pinDistance);
+				// TODO what for more than 24 input pins?
+				Pin pin = new Pin(this, String.valueOf((char) ('A' + i)), logicWidth, 0, pinDistance / 2 + i * pinDistance);
 				inputPins.add(pin);
 				addPin(pin);
 			}
 		outputPin.setRelPos(width, inputCount * pinDistance / 2);
-	}
-
-	public Pin getOutputPin()
-	{
-		return outputPin;
-	}
-
-	public List<Pin> getInputPins()
-	{
-		return inputPinsUnmodifiable;
 	}
 
 	@Override
@@ -76,7 +63,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		double posX = getBounds().x;
 		double posY = getBounds().y;
 
-		double height = inputPins.size() * pinDistance;
+		double height = (getPins().size() - 1) * pinDistance;
 		gc.drawRectangle(posX, posY, rectWidth, height);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
