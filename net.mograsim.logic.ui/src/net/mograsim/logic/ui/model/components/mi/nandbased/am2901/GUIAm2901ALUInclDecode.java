@@ -15,7 +15,7 @@ public class GUIAm2901ALUInclDecode extends SimpleRectangularSubmodelComponent
 		super(model, 1, "GUIAm2901ALUInclDecode");
 		setSubmodelScale(.25);
 		setInputPins("I5", "I4", "I3", "Cn", "R1", "R2", "R3", "R4", "S1", "S2", "S3", "S4");
-		setOutputPins("F1", "F2", "F3", "F4", "Cnplus4", "OVR");
+		setOutputPins("F1", "F2", "F3", "F4", "Cn+4", "OVR");
 		initSubmodelComponents();
 	}
 
@@ -38,7 +38,7 @@ public class GUIAm2901ALUInclDecode extends SimpleRectangularSubmodelComponent
 		Pin F2 = getSubmodelPin("F2");
 		Pin F3 = getSubmodelPin("F3");
 		Pin F4 = getSubmodelPin("F4");
-		Pin Cnplus4 = getSubmodelPin("Cnplus4");
+		Pin Cnplus4 = getSubmodelPin("Cn+4");
 		Pin OVR = getSubmodelPin("OVR");
 
 		GUIAm2901ALUFuncDecode funcDecode = new GUIAm2901ALUFuncDecode(submodelModifiable);
