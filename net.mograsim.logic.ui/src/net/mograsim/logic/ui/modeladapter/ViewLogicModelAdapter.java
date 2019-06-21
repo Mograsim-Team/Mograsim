@@ -28,7 +28,6 @@ import net.mograsim.logic.ui.model.components.SubmodelInterface;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
-import net.mograsim.logic.ui.modeladapter.componentadapters.AtomicAm2901NANDBasedAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.BitDisplayAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ComponentAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ManualSwitchAdapter;
@@ -46,7 +45,6 @@ public class ViewLogicModelAdapter
 		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUINandGate.class, NandGate::new));
 		componentAdaptersModifiable.add(new ManualSwitchAdapter());
 		componentAdaptersModifiable.add(new BitDisplayAdapter());
-		componentAdaptersModifiable.add(new AtomicAm2901NANDBasedAdapter());
 		// TODO list all adapters here
 		componentAdapters = Collections.unmodifiableMap(
 				componentAdaptersModifiable.stream().collect(Collectors.toMap(ComponentAdapter::getSupportedClass, Function.identity())));
