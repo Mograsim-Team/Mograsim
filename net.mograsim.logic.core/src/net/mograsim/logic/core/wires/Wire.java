@@ -556,7 +556,7 @@ public class Wire
 	 * @param fromB  The first bit of {@link Wire} b to be fused
 	 * @param length The amount of bits to fuse
 	 */
-	private static void fuse(Wire a, Wire b, int fromA, int fromB, int length)
+	public static void fuse(Wire a, Wire b, int fromA, int fromB, int length)
 	{
 		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
 		rA.setWriting(false);
