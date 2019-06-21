@@ -31,30 +31,36 @@ public class LogicExecuter
 			{
 				isRunningLive.notify();
 			}
-			while (shouldBeRunningLive.get())
+			try
 			{
-				// always execute to keep timeline from "hanging behind" for too long
-				long current = System.currentTimeMillis();
-				timeline.executeUntil(timeline.laterThan(current), current + 10);
-				long sleepTime;
-				if (timeline.hasNext())
-					sleepTime = timeline.nextEventTime() - current;
-				else
-					sleepTime = 10000;
-				try
+				while (shouldBeRunningLive.get())
 				{
-					nextExecSimulTime.set(current + sleepTime);
-					if (sleepTime > 0)
-						Thread.sleep(sleepTime);
-				}
-				catch (@SuppressWarnings("unused") InterruptedException e)
-				{// do nothing; it is normal execution flow to be interrupted
+					// always execute to keep timeline from "hanging behind" for too long
+					long current = System.currentTimeMillis();
+					timeline.executeUntil(timeline.laterThan(current), current + 10);
+					long sleepTime;
+					if (timeline.hasNext())
+						sleepTime = timeline.nextEventTime() - current;
+					else
+						sleepTime = 10000;
+					try
+					{
+						nextExecSimulTime.set(current + sleepTime);
+						if (sleepTime > 0)
+							Thread.sleep(sleepTime);
+					}
+					catch (@SuppressWarnings("unused") InterruptedException e)
+					{// do nothing; it is normal execution flow to be interrupted
+					}
 				}
 			}
-			isRunningLive.set(false);
-			synchronized (isRunningLive)
+			finally
 			{
-				isRunningLive.notify();
+				isRunningLive.set(false);
+				synchronized (isRunningLive)
+				{
+					isRunningLive.notify();
+				}
 			}
 		});
 		timeline.addEventAddedListener(event ->
