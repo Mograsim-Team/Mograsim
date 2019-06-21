@@ -257,7 +257,7 @@ public abstract class SubmodelComponent extends GUIComponent
 			GUIComponent component = componentIt.next();
 			InnerComponentParams inner = new InnerComponentParams();
 			comps[i] = inner;
-			inner.logicWidth = component.getPins().iterator().next().logicWidth; // TODO This could be done a little more elegantly
+			inner.params = component.getInstantiationParameters();
 			Rectangle bounds = component.getBounds();
 			inner.pos = new Point(bounds.x, bounds.y);
 			inner.type = component.getIdentifier();

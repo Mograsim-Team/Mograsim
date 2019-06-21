@@ -1,4 +1,4 @@
-mograsim version: 0.1.0
+mograsim version: 0.1.1
 {
   "type": "SimpleRectangularSubmodelComponent",
   "width": 35.0,
@@ -22,7 +22,7 @@ mograsim version: 0.1.0
           "y": 0.0
         },
         "type": "file:HalfAdder.json",
-        "logicWidth": 1
+        "params": {}
       }
     ],
     "innerWires": []

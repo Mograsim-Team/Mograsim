@@ -114,11 +114,11 @@ public class JsonExample
 		bdZ = new GUIBitDisplay(model);
 		bdZ.moveTo(90, 85);
 
-		new GUIWire(model, swA.getOutputPin(), adder.getPin("A"));
-		new GUIWire(model, swB.getOutputPin(), adder.getPin("B"));
-		new GUIWire(model, swC.getOutputPin(), adder.getPin("C"));
+		new GUIWire(model, swA.getOutputPin(), adder2.getPin("A"));
+		new GUIWire(model, swB.getOutputPin(), adder2.getPin("B"));
+		new GUIWire(model, swC.getOutputPin(), adder2.getPin("C"));
 
-		new GUIWire(model, adder.getPin("Y"), bdY.getInputPin());
-		new GUIWire(model, adder.getPin("Z"), bdZ.getInputPin());
+		new GUIWire(model, adder2.getPin("Y"), bdY.getInputPin());
+		new GUIWire(model, adder2.getPin("Z"), bdZ.getInputPin());
 	}
 }
