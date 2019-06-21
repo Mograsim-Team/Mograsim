@@ -567,8 +567,11 @@ public class Wire
 		@Override
 		public void update(LogicObservable initiator)
 		{
-			ReadWriteEnd read = (ReadWriteEnd) initiator;
-			target.setValues(fromTarget, read.wireValuesExcludingMe().subVector(fromSource, fromSource + length));
+			ReadWriteEnd source = (ReadWriteEnd) initiator;
+			BitVector targetInput = (source.getWire().inputs.size() > 1)
+					? source.wireValuesExcludingMe().subVector(fromSource, fromSource + length)
+					: BitVector.of(Bit.Z, length);
+			target.setValues(fromTarget, targetInput);
 		}
 	}
 }

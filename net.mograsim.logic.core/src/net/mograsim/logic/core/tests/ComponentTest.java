@@ -88,7 +88,7 @@ class ComponentTest
 	}
 
 	@Test
-	void fusionTest()
+	void fusionTest1()
 	{
 		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), out = new Wire(t, 8, 1);
@@ -115,6 +115,17 @@ class ComponentTest
 		assertBitArrayEquals(rA.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE);
 		assertBitArrayEquals(rB.getValues(), Bit.ZERO, Bit.ONE);
 		assertBitArrayEquals(rC.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO);
+	}
+
+	@Test
+	void fusionTest2()
+	{
+		t.reset();
+		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
+		Wire.fuse(a, b);
+		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.U, Bit.Z);
+		t.executeAll();
+		assertBitArrayEquals(b.getValues(), Bit.ONE, Bit.U, Bit.Z);
 	}
 
 	@Test
@@ -430,7 +441,7 @@ class ComponentTest
 
 		TestBitDisplay test = new TestBitDisplay(t, c.createReadOnlyEnd());
 		TestBitDisplay test2 = new TestBitDisplay(t, a.createReadOnlyEnd());
-		LongConsumer print = time -> System.out.format("Time %2d\n   a: %s\n   b: %s\n   c: %s\n", time, a, b, c);
+		LongConsumer print = time -> System.out.format("Time %2d\n a: %s\n b: %s\n c: %s\n", time, a, b, c);
 
 		cI.feedSignals(Bit.ONE);
 		test.assertAfterSimulationIs(print, Bit.ONE);
