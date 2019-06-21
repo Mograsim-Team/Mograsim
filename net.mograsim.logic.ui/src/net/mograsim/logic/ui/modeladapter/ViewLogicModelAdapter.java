@@ -114,8 +114,11 @@ public class ViewLogicModelAdapter
 					if (externalWireCandidate != null)
 						if (externalWire == null)
 							externalWire = externalWireCandidate;
+						else if (externalWire.length == externalWireCandidate.length)
+							Wire.fuse(externalWire, externalWireCandidate);
 						else
-							throw new IllegalArgumentException("Two pins to external wires can't be connected directly");
+							throw new IllegalArgumentException(
+									"Two pins to external wires with different logicWidths can't be connected directly");
 				}
 				return externalWire == null ? new Wire(timeline, e.getKey().logicWidth, params.wireTravelTime) : externalWire;
 			}));
