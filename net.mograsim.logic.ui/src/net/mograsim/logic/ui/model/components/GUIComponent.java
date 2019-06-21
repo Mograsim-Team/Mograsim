@@ -89,7 +89,10 @@ public abstract class GUIComponent
 
 	public Pin getPin(String name)
 	{
-		return pinsByName.get(name);
+		Pin pin = pinsByName.get(name);
+		if (pin == null)
+			throw new IllegalArgumentException("No pin with the name " + name);
+		return pin;
 	}
 
 	// @formatter:off
