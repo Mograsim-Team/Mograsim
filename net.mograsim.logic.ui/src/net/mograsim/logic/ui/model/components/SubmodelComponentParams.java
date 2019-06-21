@@ -19,21 +19,21 @@ public class SubmodelComponentParams
 
 	public static class InterfacePinParams
 	{
-		public Point location;
-		public String name;
-		public int logicWidth;
+		Point location;
+		String name;
+		int logicWidth;
 	}
 
 	public static class InnerWireParams
 	{
-		public InnerPinParams pin1, pin2;
-		public Point[] path;
+		InnerPinParams pin1, pin2;
+		Point[] path;
 	}
 
 	public static class InnerPinParams
 	{
-		public int compId;
-		public String pinName;
+		int compId;
+		String pinName;
 	}
 
 	public static class ComponentCompositionParams
@@ -44,9 +44,9 @@ public class SubmodelComponentParams
 
 		public static class InnerComponentParams
 		{
-			public Point pos;
-			public String type;
-			public int logicWidth;
+			Point pos;
+			String type;
+			Map<String, Object> params;
 		}
 	}
 

@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -149,5 +150,11 @@ public abstract class GUIComponent
 	public String getIdentifier()
 	{
 		return identifierDelegate.get();
+	}
+
+	@SuppressWarnings("static-method")
+	public Map<String, Object> getInstantiationParameters()
+	{
+		return new TreeMap<>();
 	}
 }

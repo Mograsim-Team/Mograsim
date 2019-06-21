@@ -11,6 +11,7 @@ import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentC
 import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerWireParams;
 import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InterfacePinParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
+import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
 /**
  * Creates {@link SubmodelComponent}s from {@link SubmodelComponentParams}
@@ -130,7 +131,7 @@ public final class GUICustomComponentCreator
 				if (path.startsWith("class:"))
 				{
 					path = path.substring(6);
-					components[i] = createInnerComponentFromClass(comp, path, cParams.logicWidth);
+					components[i] = createInnerComponentFromClass(comp, path, cParams.params);
 					components[i].moveTo(cParams.pos.x, cParams.pos.y);
 				} else if (path.startsWith("file:"))
 				{
@@ -157,25 +158,22 @@ public final class GUICustomComponentCreator
 		}
 	}
 
-	private static GUIComponent createInnerComponentFromClass(SubmodelComponent parent, String classname, int logicWidth)
-			throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException,
-			NoSuchMethodException, SecurityException, ClassNotFoundException
+	private static GUIComponent createInnerComponentFromClass(SubmodelComponent parent, String classname, Map<String, Object> params)
+			throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException,
+			ClassNotFoundException
 	{
 		Class<?> c = Class.forName(classname);
 		Object comp;
-		try
+		if (SimpleRectangularGUIGate.class.isAssignableFrom(c) || WireCrossPoint.class.equals(c))
+		{
+			Constructor<?> constructor = c.getConstructor(ViewModelModifiable.class, int.class);
+			comp = constructor.newInstance(parent.submodelModifiable,
+					((Number) params.get(SimpleRectangularGUIGate.kLogicWidth)).intValue());
+		} else
 		{
 			Constructor<?> constructor = c.getConstructor(ViewModelModifiable.class);
 			comp = constructor.newInstance(parent.submodelModifiable);
 		}
-		catch (@SuppressWarnings("unused") NoSuchMethodException e)
-		{
-			Constructor<?> constructor = c.getConstructor(ViewModelModifiable.class, int.class);
-			comp = constructor.newInstance(parent.submodelModifiable, logicWidth);
-		}
-
-		if (comp instanceof GUIComponent)
-			return (GUIComponent) comp;
-		throw new IllegalArgumentException("Class given as subcomponent was not a GUIComponent!");
+		return (GUIComponent) comp;
 	}
 }

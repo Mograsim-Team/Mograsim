@@ -2,6 +2,7 @@ package net.mograsim.logic.ui.model.components;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
@@ -25,6 +26,8 @@ public class SimpleRectangularGUIGate extends GUIComponent
 
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
+
+	public static final String kLogicWidth = "logicWidth";
 
 	protected SimpleRectangularGUIGate(ViewModelModifiable model, int logicWidth, String label, boolean isInverted)
 	{
@@ -73,5 +76,13 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		gc.setFont(oldFont);
 		if (isInverted)
 			gc.drawOval(posX + rectWidth, posY + (height - invertedCircleDiam) / 2, invertedCircleDiam, invertedCircleDiam);
+	}
+
+	@Override
+	public Map<String, Object> getInstantiationParameters()
+	{
+		Map<String, Object> m = super.getInstantiationParameters();
+		m.put(kLogicWidth, logicWidth);
+		return m;
 	}
 }

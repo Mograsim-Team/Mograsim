@@ -1,5 +1,7 @@
 package net.mograsim.logic.ui.model.wires;
 
+import java.util.Map;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObservable;
@@ -9,6 +11,7 @@ import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.ColorHelper;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
+import net.mograsim.logic.ui.model.components.SimpleRectangularGUIGate;
 
 public class WireCrossPoint extends GUIComponent
 {
@@ -72,4 +75,13 @@ public class WireCrossPoint extends GUIComponent
 	{
 		return pin;
 	}
+
+	@Override
+	public Map<String, Object> getInstantiationParameters()
+	{
+		Map<String, Object> m = super.getInstantiationParameters();
+		m.put(SimpleRectangularGUIGate.kLogicWidth, logicWidth);
+		return m;
+	}
+
 }
