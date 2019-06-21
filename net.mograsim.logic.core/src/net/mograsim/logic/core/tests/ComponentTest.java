@@ -101,6 +101,7 @@ class ComponentTest
 		rB.feedSignals(Bit.ONE, Bit.ZERO);
 		ReadWriteEnd rC = c.createReadWriteEnd();
 		rC.feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
+
 		t.executeAll();
 		assertBitArrayEquals(out.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 		out.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
@@ -123,10 +124,38 @@ class ComponentTest
 		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
 		Wire.fuse(a, b);
-		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.U, Bit.Z);
+		ReadWriteEnd rw = a.createReadWriteEnd();
+		t.executeAll();
+		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U);
+
+		rw.feedSignals(Bit.ONE, Bit.U, Bit.Z);
 		t.executeAll();
 		assertBitArrayEquals(b.getValues(), Bit.ONE, Bit.U, Bit.Z);
 	}
+
+	@Test
+	void fusionTest3()
+	{
+		t.reset();
+		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
+		a.createReadWriteEnd().feedSignals(Bit.Z, Bit.U, Bit.X);
+		t.executeAll();
+		Wire.fuse(a, b);
+		t.executeAll();
+		assertBitArrayEquals(b.getValues(), Bit.Z, Bit.U, Bit.X);
+	}
+
+//	@Test
+//	void connectorTest()
+//	{
+//		t.reset();
+//		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
+//		new Connector(t, a.createReadWriteEnd(), b.createReadWriteEnd()).connect();
+////		b.createReadWriteEnd();
+//		a.createReadWriteEnd();
+//		t.executeAll();
+//		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U);
+//	}
 
 	@Test
 	void triStateBufferTest()
