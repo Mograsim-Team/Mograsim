@@ -21,17 +21,17 @@ public class SubmodelComponentTestbench
 		SimpleRectangularSubmodelComponent comp = new GUIAm2901ALUInclDecode(model);
 
 		comp.moveTo(100, 0);
-		for (int i = 0; i < comp.getInputPins().size(); i++)
+		for (int i = 0; i < comp.getInputPinNames().size(); i++)
 		{
 			GUIManualSwitch sw = new GUIManualSwitch(model);
 			sw.moveTo(0, 20 * i);
-			new GUIWire(model, comp.getInputPins().get(i), sw.getOutputPin());
+			new GUIWire(model, comp.getPin(comp.getInputPinNames().get(i)), sw.getOutputPin());
 		}
-		for (int i = 0; i < comp.getOutputPins().size(); i++)
+		for (int i = 0; i < comp.getOutputPinNames().size(); i++)
 		{
 			GUIBitDisplay bd = new GUIBitDisplay(model);
 			bd.moveTo(200, 20 * i);
-			new GUIWire(model, comp.getOutputPins().get(i), bd.getInputPin());
+			new GUIWire(model, comp.getPin(comp.getOutputPinNames().get(i)), bd.getInputPin());
 		}
 	}
 }

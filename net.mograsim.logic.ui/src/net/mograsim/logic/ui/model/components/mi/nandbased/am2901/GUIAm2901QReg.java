@@ -23,16 +23,16 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin C = getInputSubmodelPins().get(0);
-		Pin WE = getInputSubmodelPins().get(1);
-		Pin D1 = getInputSubmodelPins().get(2);
-		Pin D2 = getInputSubmodelPins().get(3);
-		Pin D3 = getInputSubmodelPins().get(4);
-		Pin D4 = getInputSubmodelPins().get(5);
-		Pin Q1 = getOutputSubmodelPins().get(0);
-		Pin Q2 = getOutputSubmodelPins().get(1);
-		Pin Q3 = getOutputSubmodelPins().get(2);
-		Pin Q4 = getOutputSubmodelPins().get(3);
+		Pin C = getSubmodelPin("C");
+		Pin WE = getSubmodelPin("WE");
+		Pin D1 = getSubmodelPin("D1");
+		Pin D2 = getSubmodelPin("D2");
+		Pin D3 = getSubmodelPin("D3");
+		Pin D4 = getSubmodelPin("D4");
+		Pin Q1 = getSubmodelPin("Q1");
+		Pin Q2 = getSubmodelPin("Q2");
+		Pin Q3 = getSubmodelPin("Q3");
+		Pin Q4 = getSubmodelPin("Q4");
 
 		GUIand and = new GUIand(submodelModifiable);
 		GUIdff dff1 = new GUIdff(submodelModifiable);
@@ -53,23 +53,23 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 		cpC2.moveCenterTo(42.5, 37.5);
 		cpC3.moveCenterTo(42.5, 62.5);
 
-		new GUIWire(submodelModifiable, C, and.getInputPins().get(0));
-		new GUIWire(submodelModifiable, WE, and.getInputPins().get(1));
-		new GUIWire(submodelModifiable, and.getOutputPins().get(0), cpC1, new Point[0]);
-		new GUIWire(submodelModifiable, cpC1, dff1.getInputPins().get(0), new Point(42.5, 12.5));
+		new GUIWire(submodelModifiable, C, and.getPin("A"));
+		new GUIWire(submodelModifiable, WE, and.getPin("B"));
+		new GUIWire(submodelModifiable, and.getPin("Y"), cpC1, new Point[0]);
+		new GUIWire(submodelModifiable, cpC1, dff1.getPin("C"), new Point(42.5, 12.5));
 		new GUIWire(submodelModifiable, cpC1, cpC2, new Point[0]);
-		new GUIWire(submodelModifiable, cpC2, dff2.getInputPins().get(0), new Point[0]);
+		new GUIWire(submodelModifiable, cpC2, dff2.getPin("C"), new Point[0]);
 		new GUIWire(submodelModifiable, cpC2, cpC3, new Point[0]);
-		new GUIWire(submodelModifiable, cpC3, dff3.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, cpC3, dff4.getInputPins().get(0), new Point(42.5, 87.5));
-		new GUIWire(submodelModifiable, D1, dff1.getInputPins().get(1), new Point(17.5, 62.5), new Point(17.5, 42.5), new Point(45, 42.5),
+		new GUIWire(submodelModifiable, cpC3, dff3.getPin("C"), new Point[0]);
+		new GUIWire(submodelModifiable, cpC3, dff4.getPin("C"), new Point(42.5, 87.5));
+		new GUIWire(submodelModifiable, D1, dff1.getPin("D"), new Point(17.5, 62.5), new Point(17.5, 42.5), new Point(45, 42.5),
 				new Point(45, 22.5));
-		new GUIWire(submodelModifiable, D2, dff2.getInputPins().get(1), new Point(22.5, 87.5), new Point(22.5, 47.5));
-		new GUIWire(submodelModifiable, D3, dff3.getInputPins().get(1), new Point(27.5, 112.5), new Point(27.5, 72.5));
-		new GUIWire(submodelModifiable, D4, dff4.getInputPins().get(1), new Point(32.5, 137.5), new Point(32.5, 97.5));
-		new GUIWire(submodelModifiable, dff1.getOutputPins().get(0), Q1, new Point[0]);
-		new GUIWire(submodelModifiable, dff2.getOutputPins().get(0), Q2, new Point[0]);
-		new GUIWire(submodelModifiable, dff3.getOutputPins().get(0), Q3, new Point[0]);
-		new GUIWire(submodelModifiable, dff4.getOutputPins().get(0), Q4, new Point[0]);
+		new GUIWire(submodelModifiable, D2, dff2.getPin("D"), new Point(22.5, 87.5), new Point(22.5, 47.5));
+		new GUIWire(submodelModifiable, D3, dff3.getPin("D"), new Point(27.5, 112.5), new Point(27.5, 72.5));
+		new GUIWire(submodelModifiable, D4, dff4.getPin("D"), new Point(32.5, 137.5), new Point(32.5, 97.5));
+		new GUIWire(submodelModifiable, dff1.getPin("Q"), Q1, new Point[0]);
+		new GUIWire(submodelModifiable, dff2.getPin("Q"), Q2, new Point[0]);
+		new GUIWire(submodelModifiable, dff3.getPin("Q"), Q3, new Point[0]);
+		new GUIWire(submodelModifiable, dff4.getPin("Q"), Q4, new Point[0]);
 	}
 }

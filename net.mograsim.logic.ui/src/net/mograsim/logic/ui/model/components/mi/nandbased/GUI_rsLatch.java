@@ -22,10 +22,10 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin _S = getInputSubmodelPins().get(0);
-		Pin _R = getInputSubmodelPins().get(1);
-		Pin Q = getOutputSubmodelPins().get(0);
-		Pin _Q = getOutputSubmodelPins().get(1);
+		Pin _S = getSubmodelPin("_S");
+		Pin _R = getSubmodelPin("_R");
+		Pin Q = getSubmodelPin("Q");
+		Pin _Q = getSubmodelPin("_Q");
 
 		GUINandGate nand1 = new GUINandGate(submodelModifiable, 1);
 		GUINandGate nand2 = new GUINandGate(submodelModifiable, 1);
@@ -38,12 +38,12 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 		cp1.moveCenterTo(35, 17.5);
 		cp2.moveCenterTo(65, 37.5);
 
-		new GUIWire(submodelModifiable, _S, nand1.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, _R, nand2.getInputPins().get(1), new Point(35, 37.5), new Point(35, 27.5));
-		new GUIWire(submodelModifiable, nand1.getOutputPin(), cp1, new Point[0]);
-		new GUIWire(submodelModifiable, nand2.getOutputPin(), cp2, new Point(65, 22.5));
-		new GUIWire(submodelModifiable, cp1, nand2.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, cp2, nand1.getInputPins().get(1), new Point(65, 42.5), new Point(5, 42.5), new Point(5, 22.5));
+		new GUIWire(submodelModifiable, _S, nand1.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, _R, nand2.getPin("B"), new Point(35, 37.5), new Point(35, 27.5));
+		new GUIWire(submodelModifiable, nand1.getPin("Y"), cp1, new Point[0]);
+		new GUIWire(submodelModifiable, nand2.getPin("Y"), cp2, new Point(65, 22.5));
+		new GUIWire(submodelModifiable, cp1, nand2.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, cp2, nand1.getPin("B"), new Point(65, 42.5), new Point(5, 42.5), new Point(5, 22.5));
 		new GUIWire(submodelModifiable, cp1, Q, new Point(35, 17.5), new Point(35, 7.5), new Point(65, 7.5), new Point(65, 12.5));
 		new GUIWire(submodelModifiable, cp2, _Q, new Point[0]);
 	}

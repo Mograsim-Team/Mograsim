@@ -26,17 +26,17 @@ public class GUIAm2901ALUOneBit extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin Cin = getInputSubmodelPins().get(0);
-		Pin CoutE = getInputSubmodelPins().get(1);
-		Pin CinE = getInputSubmodelPins().get(2);
-		Pin R = getInputSubmodelPins().get(3);
-		Pin RN = getInputSubmodelPins().get(4);
-		Pin S = getInputSubmodelPins().get(5);
-		Pin SN = getInputSubmodelPins().get(6);
-		Pin FN = getInputSubmodelPins().get(7);
-		Pin L = getInputSubmodelPins().get(8);
-		Pin Cout = getOutputSubmodelPins().get(0);
-		Pin F = getOutputSubmodelPins().get(1);
+		Pin Cin = getSubmodelPin("Cin");
+		Pin CoutE = getSubmodelPin("CoutE");
+		Pin CinE = getSubmodelPin("CinE");
+		Pin R = getSubmodelPin("R");
+		Pin RN = getSubmodelPin("RN");
+		Pin S = getSubmodelPin("S");
+		Pin SN = getSubmodelPin("SN");
+		Pin FN = getSubmodelPin("FN");
+		Pin L = getSubmodelPin("L");
+		Pin Cout = getSubmodelPin("Cout");
+		Pin F = getSubmodelPin("F");
 
 		GUIand Cinand = new GUIand(submodelModifiable);
 		GUIxor Rxor = new GUIxor(submodelModifiable);
@@ -61,29 +61,29 @@ public class GUIAm2901ALUOneBit extends SimpleRectangularSubmodelComponent
 		cpRXored.moveCenterTo(50, 60);
 		cpSXored.moveCenterTo(55, 70);
 
-		new GUIWire(submodelModifiable, Cin, Cinand.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, CoutE, Coutand.getInputPins().get(0), new Point(5, 75), new Point(5, 10), new Point(130, 10),
+		new GUIWire(submodelModifiable, Cin, Cinand.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, CoutE, Coutand.getPin("A"), new Point(5, 75), new Point(5, 10), new Point(130, 10),
 				new Point(130, 25));
-		new GUIWire(submodelModifiable, CinE, Cinand.getInputPins().get(1), new Point(7.5, 125), new Point(7.5, 35));
-		new GUIWire(submodelModifiable, R, Rxor.getInputPins().get(0));
-		new GUIWire(submodelModifiable, RN, Rxor.getInputPins().get(1));
-		new GUIWire(submodelModifiable, S, Sxor.getInputPins().get(0));
-		new GUIWire(submodelModifiable, SN, Sxor.getInputPins().get(1));
-		new GUIWire(submodelModifiable, FN, Fxor.getInputPins().get(1), new Point(130, 375), new Point(130, 85));
-		new GUIWire(submodelModifiable, L, Fsel.getInputPins().get(0), new Point(87.5, 425), new Point(87.5, 75));
-		new GUIWire(submodelModifiable, Cinand.getOutputPins().get(0), add.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, Rxor.getOutputPins().get(0), cpRXored, new Point(50, 195));
-		new GUIWire(submodelModifiable, cpRXored, add.getInputPins().get(1), new Point(50, 35));
-		new GUIWire(submodelModifiable, cpRXored, nand.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, Sxor.getOutputPins().get(0), cpSXored, new Point(55, 295));
-		new GUIWire(submodelModifiable, cpSXored, add.getInputPins().get(2), new Point(55, 45));
-		new GUIWire(submodelModifiable, cpSXored, nand.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, add.getOutputPins().get(0), Fsel.getInputPins().get(1), new Point(100, 25), new Point(100, 65),
-				new Point(85, 65), new Point(85, 85));
-		new GUIWire(submodelModifiable, add.getOutputPins().get(1), Coutand.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, nand.getOutputPin(), Fsel.getInputPins().get(2), new Point(82.5, 65), new Point(82.5, 95));
-		new GUIWire(submodelModifiable, Fsel.getOutputPins().get(0), Fxor.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, Coutand.getOutputPins().get(0), Cout, new Point[0]);
-		new GUIWire(submodelModifiable, Fxor.getOutputPins().get(0), F, new Point[0]);
+		new GUIWire(submodelModifiable, CinE, Cinand.getPin("B"), new Point(7.5, 125), new Point(7.5, 35));
+		new GUIWire(submodelModifiable, R, Rxor.getPin("A"));
+		new GUIWire(submodelModifiable, RN, Rxor.getPin("B"));
+		new GUIWire(submodelModifiable, S, Sxor.getPin("A"));
+		new GUIWire(submodelModifiable, SN, Sxor.getPin("B"));
+		new GUIWire(submodelModifiable, FN, Fxor.getPin("B"), new Point(130, 375), new Point(130, 85));
+		new GUIWire(submodelModifiable, L, Fsel.getPin("S0"), new Point(87.5, 425), new Point(87.5, 75));
+		new GUIWire(submodelModifiable, Cinand.getPin("Y"), add.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, Rxor.getPin("Y"), cpRXored, new Point(50, 195));
+		new GUIWire(submodelModifiable, cpRXored, add.getPin("B"), new Point(50, 35));
+		new GUIWire(submodelModifiable, cpRXored, nand.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, Sxor.getPin("Y"), cpSXored, new Point(55, 295));
+		new GUIWire(submodelModifiable, cpSXored, add.getPin("C"), new Point(55, 45));
+		new GUIWire(submodelModifiable, cpSXored, nand.getPin("B"), new Point[0]);
+		new GUIWire(submodelModifiable, add.getPin("Y"), Fsel.getPin("I0"), new Point(100, 25), new Point(100, 65), new Point(85, 65),
+				new Point(85, 85));
+		new GUIWire(submodelModifiable, add.getPin("Z"), Coutand.getPin("B"), new Point[0]);
+		new GUIWire(submodelModifiable, nand.getPin("Y"), Fsel.getPin("I1"), new Point(82.5, 65), new Point(82.5, 95));
+		new GUIWire(submodelModifiable, Fsel.getPin("Y"), Fxor.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, Coutand.getPin("Y"), Cout, new Point[0]);
+		new GUIWire(submodelModifiable, Fxor.getPin("Y"), F, new Point[0]);
 	}
 }

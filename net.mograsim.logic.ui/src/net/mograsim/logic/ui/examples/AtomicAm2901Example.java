@@ -27,13 +27,13 @@ public class AtomicAm2901Example
 		{
 			GUIManualSwitch sw = new GUIManualSwitch(model);
 			sw.moveTo(0, 20 * i);
-			new GUIWire(model, am2901.getPins().get(i), sw.getOutputPin());
+			new GUIWire(model, am2901.getPin(am2901.inputNames.get(i)), sw.getOutputPin());
 		}
 		for (int i = 0; i < am2901.outputNames.size(); i++)
 		{
 			GUIBitDisplay bd = new GUIBitDisplay(model);
 			bd.moveTo(200, 20 * i);
-			new GUIWire(model, am2901.getPins().get(am2901.inputNames.size() + i), bd.getInputPin());
+			new GUIWire(model, am2901.getPin(am2901.outputNames.get(i)), bd.getInputPin());
 		}
 	}
 }

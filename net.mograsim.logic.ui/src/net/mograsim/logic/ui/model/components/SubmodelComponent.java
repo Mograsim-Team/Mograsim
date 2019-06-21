@@ -28,10 +28,12 @@ public abstract class SubmodelComponent extends GUIComponent
 {
 	protected final ViewModelModifiable submodelModifiable;
 	public final ViewModel submodel;
-	private final Map<MovablePin, MovablePin> submodelPinsPerSupermodelPin;
-	private final Map<Pin, Pin> submodelPinsPerSupermodelPinUnmodifiable;
-	private final Map<MovablePin, MovablePin> supermodelPinsPerSubmodelPin;
-	private final Map<Pin, Pin> supermodelPinsPerSubmodelPinUnmodifiable;
+	private final Map<String, MovablePin> submodelPins;
+	private final Map<String, MovablePin> submodelMovablePinsUnmodifiable;
+	private final Map<String, Pin> submodelUnmovablePinsUnmodifiable;
+	private final Map<String, MovablePin> supermodelPins;
+	private final Map<String, MovablePin> supermodelMovablePinsUnmodifiable;
+	private final Map<String, Pin> supermodelUnmovablePinsUnmodifiable;
 	private final SubmodelInterface submodelInterface;
 
 	private double submodelScale;
@@ -44,10 +46,12 @@ public abstract class SubmodelComponent extends GUIComponent
 		super(model);
 		this.submodelModifiable = new ViewModelModifiable();
 		this.submodel = submodelModifiable;
-		this.submodelPinsPerSupermodelPin = new HashMap<>();
-		this.submodelPinsPerSupermodelPinUnmodifiable = Collections.unmodifiableMap(submodelPinsPerSupermodelPin);
-		this.supermodelPinsPerSubmodelPin = new HashMap<>();
-		this.supermodelPinsPerSubmodelPinUnmodifiable = Collections.unmodifiableMap(supermodelPinsPerSubmodelPin);
+		this.submodelPins = new HashMap<>();
+		this.submodelMovablePinsUnmodifiable = Collections.unmodifiableMap(submodelPins);
+		this.submodelUnmovablePinsUnmodifiable = Collections.unmodifiableMap(submodelPins);
+		this.supermodelPins = new HashMap<>();
+		this.supermodelMovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
+		this.supermodelUnmovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
 		this.submodelInterface = new SubmodelInterface(submodelModifiable);
 
 		this.submodelScale = 1;
@@ -62,8 +66,8 @@ public abstract class SubmodelComponent extends GUIComponent
 	{
 		this.submodelScale = submodelScale;
 
-		for (Entry<MovablePin, MovablePin> e : supermodelPinsPerSubmodelPin.entrySet())
-			e.getKey().setRelPos(e.getValue().getRelX() * submodelScale, e.getValue().getRelY() * submodelScale);
+		for (Entry<String, MovablePin> e : supermodelPins.entrySet())
+			getSubmodelMovablePin(e.getKey()).setRelPos(e.getValue().getRelX() * submodelScale, e.getValue().getRelY() * submodelScale);
 
 		requestRedraw();// needed if there is no submodel interface pin
 	}
@@ -79,69 +83,83 @@ public abstract class SubmodelComponent extends GUIComponent
 	protected Pin addSubmodelInterface(String name, int logicWidth, double relX, double relY)
 	{
 		MovablePin submodelPin = new MovablePin(submodelInterface, name, logicWidth, relX / submodelScale, relY / submodelScale);
-		submodelInterface.addPin(submodelPin);
-
 		MovablePin supermodelPin = new MovablePin(this, name, logicWidth, relX, relY);
+
+		submodelPin.addPinMovedListener(p ->
+		{
+			double newRelX = p.getRelX() * submodelScale;
+			double newRelY = p.getRelY() * submodelScale;
+			if (supermodelPin.getRelX() != newRelX || supermodelPin.getRelY() != newRelY)
+				supermodelPin.setRelPos(newRelX, newRelY);
+		});
+		supermodelPin.addPinMovedListener(p ->
+		{
+			double newRelX = p.getRelX() / submodelScale;
+			double newRelY = p.getRelY() / submodelScale;
+			if (submodelPin.getRelX() != newRelX || submodelPin.getRelY() != newRelY)
+				submodelPin.setRelPos(newRelX, newRelY);
+		});
+
+		submodelInterface.addPin(submodelPin);
 		super.addPin(supermodelPin);
 
-		submodelPinsPerSupermodelPin.put(supermodelPin, submodelPin);
-		supermodelPinsPerSubmodelPin.put(submodelPin, supermodelPin);
+		submodelPins.put(name, submodelPin);
+		supermodelPins.put(name, supermodelPin);
 
 		// no need to call requestRedraw() because addPin() will request a redraw
 		return submodelPin;
 	}
 
-	protected void moveSubmodelInterface(Pin supermodelPin, double relX, double relY)
+	protected void removeSubmodelInterface(String name)
 	{
-		MovablePin submodelPin = getSubmodelMovablePin(supermodelPin);
-		MovablePin supermodelPinMovable = getSupermodelMovablePin(submodelPin);
+		super.removePin(name);
+		Pin submodelPin = getSubmodelMovablePin(name);
+		submodelInterface.removePin(submodelPin.name);
 
-		submodelPin.setRelPos(relX / submodelScale, relY / submodelScale);
-		supermodelPinMovable.setRelPos(relX, relY);
-
-		// no need to call requestRedraw() because setRelPos() will request a redraw
-	}
-
-	protected void removeSubmodelInterface(Pin supermodelPin)
-	{
-		super.removePin(supermodelPin);
-		Pin submodelPin = getSubmodelMovablePin(supermodelPin);
-		submodelInterface.removePin(submodelPin);
-
-		submodelPinsPerSupermodelPin.remove(supermodelPin);
-		supermodelPinsPerSubmodelPin.remove(submodelPin);
+		submodelPins.remove(name);
+		supermodelPins.remove(name);
 
 		// no need to call requestRedraw() because removePin() will request a redraw
 	}
 
-	public Map<Pin, Pin> getSupermodelPinsPerSubmodelPin()
+	public Map<String, Pin> getSubmodelPins()
 	{
-		return supermodelPinsPerSubmodelPinUnmodifiable;
+		return submodelUnmovablePinsUnmodifiable;
 	}
 
-	public Pin getSupermodelPin(Pin submodelPin)
+	public Pin getSubmodelPin(String name)
 	{
-		return getSupermodelMovablePin(submodelPin);
+		return getSubmodelMovablePin(name);
 	}
 
-	protected MovablePin getSupermodelMovablePin(Pin submodelPin)
+	protected Map<String, MovablePin> getSubmodelMovablePins()
 	{
-		return supermodelPinsPerSubmodelPin.get(submodelPin);
+		return submodelMovablePinsUnmodifiable;
 	}
 
-	public Map<Pin, Pin> getSubmodelPinsPerSupermodelPin()
+	protected MovablePin getSubmodelMovablePin(String name)
 	{
-		return submodelPinsPerSupermodelPinUnmodifiable;
+		return submodelPins.get(name);
 	}
 
-	public Pin getSubmodelPin(Pin supermodelPin)
+	public Map<String, Pin> getSupermodelPins()
 	{
-		return getSubmodelMovablePin(supermodelPin);
+		return supermodelUnmovablePinsUnmodifiable;
 	}
 
-	protected MovablePin getSubmodelMovablePin(Pin supermodelPin)
+	public Pin getSupermodelPin(String name)
 	{
-		return submodelPinsPerSupermodelPin.get(supermodelPin);
+		return getSupermodelMovablePin(name);
+	}
+
+	protected Map<String, MovablePin> getSupermodelMovablePins()
+	{
+		return supermodelMovablePinsUnmodifiable;
+	}
+
+	protected MovablePin getSupermodelMovablePin(String name)
+	{
+		return supermodelPins.get(name);
 	}
 
 	@Override
@@ -209,10 +227,9 @@ public abstract class SubmodelComponent extends GUIComponent
 		params.width = bounds.width;
 		params.height = bounds.height;
 
-		List<Pin> pinList = pinsUnmodifiable;
-		InterfacePinParams[] iPins = new InterfacePinParams[pinList.size()];
+		InterfacePinParams[] iPins = new InterfacePinParams[getPins().size()];
 		int i = 0;
-		for (Pin p : pinList)
+		for (Pin p : getPins())
 		{
 			InterfacePinParams iPinParams = new InterfacePinParams();
 			iPins[i] = iPinParams;
@@ -240,7 +257,7 @@ public abstract class SubmodelComponent extends GUIComponent
 			GUIComponent component = componentIt.next();
 			InnerComponentParams inner = new InnerComponentParams();
 			comps[i] = inner;
-			inner.logicWidth = component.getPins().get(0).logicWidth; // This could be done a little more elegantly
+			inner.logicWidth = component.getPins().iterator().next().logicWidth; // TODO This could be done a little more elegantly
 			Rectangle bounds = component.getBounds();
 			inner.pos = new Point(bounds.x, bounds.y);
 			inner.type = component.getIdentifier();
@@ -257,9 +274,9 @@ public abstract class SubmodelComponent extends GUIComponent
 			wires[i] = inner;
 			InnerPinParams pin1Params = new InnerPinParams(), pin2Params = new InnerPinParams();
 
-			pin1Params.pinIndex = wire.getPin1().component.getPins().indexOf(wire.getPin1());
+			pin1Params.pinName = wire.getPin1().name;
 			pin1Params.compId = compList.indexOf(wire.getPin1().component);
-			pin2Params.pinIndex = wire.getPin2().component.getPins().indexOf(wire.getPin2());
+			pin2Params.pinName = wire.getPin2().name;
 			pin2Params.compId = compList.indexOf(wire.getPin2().component);
 			inner.pin1 = pin1Params;
 			inner.pin2 = pin2Params;
@@ -277,7 +294,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	}
 
 	@Override
-	protected void removePin(Pin pin)
+	protected void removePin(String name)
 	{
 		throw new UnsupportedOperationException("Can't remove pins of a SubmodelComponent directly, call removeSubmodelInterface instead");
 	}

@@ -21,19 +21,19 @@ public class GUImux1_4 extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused")
 	private void initSubmodelComponents()
 	{
-		Pin S0 = getInputSubmodelPins().get(0);
-		Pin I0_1 = getInputSubmodelPins().get(1);
-		Pin I0_2 = getInputSubmodelPins().get(2);
-		Pin I0_3 = getInputSubmodelPins().get(3);
-		Pin I0_4 = getInputSubmodelPins().get(4);
-		Pin I1_1 = getInputSubmodelPins().get(5);
-		Pin I1_2 = getInputSubmodelPins().get(6);
-		Pin I1_3 = getInputSubmodelPins().get(7);
-		Pin I1_4 = getInputSubmodelPins().get(8);
-		Pin Y1 = getOutputSubmodelPins().get(0);
-		Pin Y2 = getOutputSubmodelPins().get(1);
-		Pin Y3 = getOutputSubmodelPins().get(2);
-		Pin Y4 = getOutputSubmodelPins().get(3);
+		Pin S0 = getSubmodelPin("S0");
+		Pin I0_1 = getSubmodelPin("I0_1");
+		Pin I0_2 = getSubmodelPin("I0_2");
+		Pin I0_3 = getSubmodelPin("I0_3");
+		Pin I0_4 = getSubmodelPin("I0_4");
+		Pin I1_1 = getSubmodelPin("I1_1");
+		Pin I1_2 = getSubmodelPin("I1_2");
+		Pin I1_3 = getSubmodelPin("I1_3");
+		Pin I1_4 = getSubmodelPin("I1_4");
+		Pin Y1 = getSubmodelPin("Y1");
+		Pin Y2 = getSubmodelPin("Y2");
+		Pin Y3 = getSubmodelPin("Y3");
+		Pin Y4 = getSubmodelPin("Y4");
 
 		GUImux1 mux1 = new GUImux1(submodelModifiable);
 		GUImux1 mux2 = new GUImux1(submodelModifiable);
@@ -53,24 +53,24 @@ public class GUImux1_4 extends SimpleRectangularSubmodelComponent
 		cp3.moveCenterTo(25, 82.5);
 
 		new GUIWire(submodelModifiable, S0, cp1, new Point[0]);
-		new GUIWire(submodelModifiable, cp1, mux1.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, I0_1, mux1.getInputPins().get(1), new Point(5, 37.5), new Point(5, 22.5));
-		new GUIWire(submodelModifiable, I1_1, mux1.getInputPins().get(2), new Point(10, 137.5), new Point(10, 32.5));
-		new GUIWire(submodelModifiable, mux1.getOutputPins().get(0), Y1, new Point[0]);
+		new GUIWire(submodelModifiable, cp1, mux1.getPin("S0"), new Point[0]);
+		new GUIWire(submodelModifiable, I0_1, mux1.getPin("I0"), new Point(5, 37.5), new Point(5, 22.5));
+		new GUIWire(submodelModifiable, I1_1, mux1.getPin("I1"), new Point(10, 137.5), new Point(10, 32.5));
+		new GUIWire(submodelModifiable, mux1.getPin("Y"), Y1, new Point[0]);
 		new GUIWire(submodelModifiable, cp1, cp2, new Point[0]);
-		new GUIWire(submodelModifiable, cp2, mux2.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, I0_2, mux2.getInputPins().get(1), new Point(5, 62.5), new Point(5, 57.5));
-		new GUIWire(submodelModifiable, I1_2, mux2.getInputPins().get(2), new Point(15, 162.5), new Point(15, 67.5));
-		new GUIWire(submodelModifiable, mux2.getOutputPins().get(0), Y2);
+		new GUIWire(submodelModifiable, cp2, mux2.getPin("S0"), new Point[0]);
+		new GUIWire(submodelModifiable, I0_2, mux2.getPin("I0"), new Point(5, 62.5), new Point(5, 57.5));
+		new GUIWire(submodelModifiable, I1_2, mux2.getPin("I1"), new Point(15, 162.5), new Point(15, 67.5));
+		new GUIWire(submodelModifiable, mux2.getPin("Y"), Y2);
 		new GUIWire(submodelModifiable, cp2, cp3, new Point[0]);
-		new GUIWire(submodelModifiable, cp3, mux3.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, I0_3, mux3.getInputPins().get(1), new Point(5, 87.5), new Point(5, 92.5));
-		new GUIWire(submodelModifiable, I1_3, mux3.getInputPins().get(2), new Point(20, 187.5), new Point(20, 102.5));
-		new GUIWire(submodelModifiable, mux3.getOutputPins().get(0), Y3);
-		new GUIWire(submodelModifiable, cp3, mux4.getInputPins().get(0), new Point(25, 117.5));
-		new GUIWire(submodelModifiable, I0_4, mux4.getInputPins().get(1), new Point(5, 112.5), new Point(5, 127.5));
-		new GUIWire(submodelModifiable, I1_4, mux4.getInputPins().get(2), new Point(25, 212.5), new Point(25, 137.5));
-		new GUIWire(submodelModifiable, mux4.getOutputPins().get(0), Y4);
+		new GUIWire(submodelModifiable, cp3, mux3.getPin("S0"), new Point[0]);
+		new GUIWire(submodelModifiable, I0_3, mux3.getPin("I0"), new Point(5, 87.5), new Point(5, 92.5));
+		new GUIWire(submodelModifiable, I1_3, mux3.getPin("I1"), new Point(20, 187.5), new Point(20, 102.5));
+		new GUIWire(submodelModifiable, mux3.getPin("Y"), Y3);
+		new GUIWire(submodelModifiable, cp3, mux4.getPin("S0"), new Point(25, 117.5));
+		new GUIWire(submodelModifiable, I0_4, mux4.getPin("I0"), new Point(5, 112.5), new Point(5, 127.5));
+		new GUIWire(submodelModifiable, I1_4, mux4.getPin("I1"), new Point(25, 212.5), new Point(25, 137.5));
+		new GUIWire(submodelModifiable, mux4.getPin("Y"), Y4);
 
 	}
 }

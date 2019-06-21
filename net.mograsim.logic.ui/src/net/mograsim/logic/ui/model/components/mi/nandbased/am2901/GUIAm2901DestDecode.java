@@ -22,15 +22,15 @@ public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin I8 = getInputSubmodelPins().get(0);
-		Pin I7 = getInputSubmodelPins().get(1);
-		Pin I6 = getInputSubmodelPins().get(2);
-		Pin NSH = getOutputSubmodelPins().get(0);
-		Pin RSH = getOutputSubmodelPins().get(1);
-		Pin RAMWE = getOutputSubmodelPins().get(2);
-		Pin YF = getOutputSubmodelPins().get(3);
-		Pin LSH = getOutputSubmodelPins().get(4);
-		Pin QWE = getOutputSubmodelPins().get(5);
+		Pin I8 = getSubmodelPin("I8");
+		Pin I7 = getSubmodelPin("I7");
+		Pin I6 = getSubmodelPin("I6");
+		Pin NSH = getSubmodelPin("NSH");
+		Pin RSH = getSubmodelPin("RSH");
+		Pin RAMWE = getSubmodelPin("RAMWE");
+		Pin YF = getSubmodelPin("YF");
+		Pin LSH = getSubmodelPin("LSH");
+		Pin QWE = getSubmodelPin("QWE");
 
 		GUINandGate notI8 = new GUINandGate(submodelModifiable, 1);
 		GUINandGate notI7 = new GUINandGate(submodelModifiable, 1);
@@ -96,52 +96,52 @@ public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, I8, cpI81, new Point[0]);
 		new GUIWire(submodelModifiable, cpI81, cpI82, new Point[0]);
 		new GUIWire(submodelModifiable, cpI81, cpI83, new Point[0]);
-		new GUIWire(submodelModifiable, cpI82, notI8.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, cpI83, notI8.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cpI82, notI8.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, cpI83, notI8.getPin("B"), new Point[0]);
 		new GUIWire(submodelModifiable, I7, cpI71, new Point[0]);
-		new GUIWire(submodelModifiable, cpI71, notI7.getInputPins().get(0), new Point(10, 55));
+		new GUIWire(submodelModifiable, cpI71, notI7.getPin("A"), new Point(10, 55));
 		new GUIWire(submodelModifiable, cpI71, cpI72, new Point[0]);
-		new GUIWire(submodelModifiable, cpI72, notI7.getInputPins().get(1), new Point[0]);
+		new GUIWire(submodelModifiable, cpI72, notI7.getPin("B"), new Point[0]);
 		new GUIWire(submodelModifiable, cpI72, cpI73, new Point[0]);
-		new GUIWire(submodelModifiable, cpI73, nandI8I7.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, cpI83, nandI8I7.getInputPins().get(0), new Point(5, 95));
+		new GUIWire(submodelModifiable, cpI73, nandI8I7.getPin("B"), new Point[0]);
+		new GUIWire(submodelModifiable, cpI83, nandI8I7.getPin("A"), new Point(5, 95));
 		new GUIWire(submodelModifiable, I6, cpI6, new Point(5, 100));
-		new GUIWire(submodelModifiable, cpI6, notI6.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, cpI6, notI6.getInputPins().get(1), new Point(5, 165));
-		new GUIWire(submodelModifiable, cpI82, nandRSH.getInputPins().get(0), new Point(5, 5), new Point(40, 5), new Point(40, 15));
-		new GUIWire(submodelModifiable, notI7.getOutputPin(), cpNotI7, new Point[0]);
-		new GUIWire(submodelModifiable, cpNotI7, nandRSH.getInputPins().get(1), new Point(40, 25));
-		new GUIWire(submodelModifiable, cpNotI7, nandRAMWE.getInputPins().get(1), new Point(40, 65));
-		new GUIWire(submodelModifiable, notI8.getOutputPin(), cpNotI81, new Point[0]);
+		new GUIWire(submodelModifiable, cpI6, notI6.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, cpI6, notI6.getPin("B"), new Point(5, 165));
+		new GUIWire(submodelModifiable, cpI82, nandRSH.getPin("A"), new Point(5, 5), new Point(40, 5), new Point(40, 15));
+		new GUIWire(submodelModifiable, notI7.getPin("Y"), cpNotI7, new Point[0]);
+		new GUIWire(submodelModifiable, cpNotI7, nandRSH.getPin("B"), new Point(40, 25));
+		new GUIWire(submodelModifiable, cpNotI7, nandRAMWE.getPin("B"), new Point(40, 65));
+		new GUIWire(submodelModifiable, notI8.getPin("Y"), cpNotI81, new Point[0]);
 		new GUIWire(submodelModifiable, cpNotI81, NSH, new Point(45, 5), new Point(135, 5), new Point(135, 20));
 		new GUIWire(submodelModifiable, cpNotI81, cpNotI82, new Point[0]);
-		new GUIWire(submodelModifiable, cpNotI82, nandRAMWE.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, cpNotI82, nandI7NotI8.getInputPins().get(0), new Point(45, 95));
-		new GUIWire(submodelModifiable, cpI73, nandI7NotI8.getInputPins().get(1), new Point(10, 115), new Point(45, 115),
+		new GUIWire(submodelModifiable, cpNotI82, nandRAMWE.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, cpNotI82, nandI7NotI8.getPin("A"), new Point(45, 95));
+		new GUIWire(submodelModifiable, cpI73, nandI7NotI8.getPin("B"), new Point(10, 115), new Point(45, 115),
 				new Point(45, 105));
-		new GUIWire(submodelModifiable, nandI8I7.getOutputPin(), cpNandI8I7, new Point(40, 100));
-		new GUIWire(submodelModifiable, cpNandI8I7, nandLSH.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, cpNandI8I7, nandLSH.getInputPins().get(1), new Point(40, 145));
-		new GUIWire(submodelModifiable, nandRSH.getOutputPin(), cpNotRSH, new Point[0]);
-		new GUIWire(submodelModifiable, cpNotRSH, notRSH.getInputPins().get(0), new Point(75, 15));
-		new GUIWire(submodelModifiable, cpNotRSH, notRSH.getInputPins().get(1), new Point(75, 25));
-		new GUIWire(submodelModifiable, nandRAMWE.getOutputPin(), RAMWE, new Point(125, 60), new Point(125, 100));
-		new GUIWire(submodelModifiable, nandI7NotI8.getOutputPin(), cpNandI7NotI81, new Point[0]);
-		new GUIWire(submodelModifiable, cpNandI7NotI81, andI7NotI8.getInputPins().get(0), new Point(75, 95));
+		new GUIWire(submodelModifiable, nandI8I7.getPin("Y"), cpNandI8I7, new Point(40, 100));
+		new GUIWire(submodelModifiable, cpNandI8I7, nandLSH.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, cpNandI8I7, nandLSH.getPin("B"), new Point(40, 145));
+		new GUIWire(submodelModifiable, nandRSH.getPin("Y"), cpNotRSH, new Point[0]);
+		new GUIWire(submodelModifiable, cpNotRSH, notRSH.getPin("A"), new Point(75, 15));
+		new GUIWire(submodelModifiable, cpNotRSH, notRSH.getPin("B"), new Point(75, 25));
+		new GUIWire(submodelModifiable, nandRAMWE.getPin("Y"), RAMWE, new Point(125, 60), new Point(125, 100));
+		new GUIWire(submodelModifiable, nandI7NotI8.getPin("Y"), cpNandI7NotI81, new Point[0]);
+		new GUIWire(submodelModifiable, cpNandI7NotI81, andI7NotI8.getPin("A"), new Point(75, 95));
 		new GUIWire(submodelModifiable, cpNandI7NotI81, cpNandI7NotI82, new Point[0]);
-		new GUIWire(submodelModifiable, cpNandI7NotI82, andI7NotI8.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, nandLSH.getOutputPin(), LSH, new Point(125, 140), new Point(125, 180));
-		new GUIWire(submodelModifiable, cpNandI7NotI82, nandQWE.getInputPins().get(0), new Point(75, 150));
-		new GUIWire(submodelModifiable, notI6.getOutputPin(), cpNotI6, new Point[0]);
-		new GUIWire(submodelModifiable, cpNotI6, nandQWE.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, notRSH.getOutputPin(), RSH, new Point(130, 20), new Point(130, 60));
-		new GUIWire(submodelModifiable, andI7NotI8.getOutputPin(), nandYF.getInputPins().get(0));
-		new GUIWire(submodelModifiable, cpNotI6, nandYF.getInputPins().get(1), new Point(75, 170), new Point(105, 170),
+		new GUIWire(submodelModifiable, cpNandI7NotI82, andI7NotI8.getPin("B"), new Point[0]);
+		new GUIWire(submodelModifiable, nandLSH.getPin("Y"), LSH, new Point(125, 140), new Point(125, 180));
+		new GUIWire(submodelModifiable, cpNandI7NotI82, nandQWE.getPin("A"), new Point(75, 150));
+		new GUIWire(submodelModifiable, notI6.getPin("Y"), cpNotI6, new Point[0]);
+		new GUIWire(submodelModifiable, cpNotI6, nandQWE.getPin("B"), new Point[0]);
+		new GUIWire(submodelModifiable, notRSH.getPin("Y"), RSH, new Point(130, 20), new Point(130, 60));
+		new GUIWire(submodelModifiable, andI7NotI8.getPin("Y"), nandYF.getPin("A"));
+		new GUIWire(submodelModifiable, cpNotI6, nandYF.getPin("B"), new Point(75, 170), new Point(105, 170),
 				new Point(105, 120));
-		new GUIWire(submodelModifiable, nandQWE.getOutputPin(), cpNandQWE, new Point(110, 155));
-		new GUIWire(submodelModifiable, cpNandQWE, notQWE.getInputPins().get(0), new Point[0]);
-		new GUIWire(submodelModifiable, cpNandQWE, notQWE.getInputPins().get(1), new Point(110, 225));
-		new GUIWire(submodelModifiable, nandYF.getOutputPin(), YF);
-		new GUIWire(submodelModifiable, notQWE.getOutputPin(), QWE, new Point[0]);
+		new GUIWire(submodelModifiable, nandQWE.getPin("Y"), cpNandQWE, new Point(110, 155));
+		new GUIWire(submodelModifiable, cpNandQWE, notQWE.getPin("A"), new Point[0]);
+		new GUIWire(submodelModifiable, cpNandQWE, notQWE.getPin("B"), new Point(110, 225));
+		new GUIWire(submodelModifiable, nandYF.getPin("Y"), YF);
+		new GUIWire(submodelModifiable, notQWE.getPin("Y"), QWE, new Point[0]);
 	}
 }

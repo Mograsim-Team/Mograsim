@@ -72,9 +72,9 @@ public class ViewLogicModelAdapter
 			if (guiComp instanceof SubmodelComponent)
 			{
 				SubmodelComponent guiCompCasted = (SubmodelComponent) guiComp;
-				Map<Pin, Pin> supermodelPinsPerSubmodelPin = guiCompCasted.getSupermodelPinsPerSubmodelPin();
-				Map<Pin, Wire> externalWiresForSubmodel = supermodelPinsPerSubmodelPin.entrySet().stream()
-						.collect(Collectors.toMap(Entry::getKey, e -> logicWiresPerPin.get(e.getValue())));
+				Map<String, Pin> supermodelPins = guiCompCasted.getSupermodelPins();
+				Map<Pin, Wire> externalWiresForSubmodel = supermodelPins.entrySet().stream()
+						.collect(Collectors.toMap(e -> guiCompCasted.getSubmodelPin(e.getKey()), e -> logicWiresPerPin.get(e.getValue())));
 				convert(guiCompCasted.submodel, params, timeline, externalWiresForSubmodel);
 			} else if (guiComp instanceof WireCrossPoint)
 			{

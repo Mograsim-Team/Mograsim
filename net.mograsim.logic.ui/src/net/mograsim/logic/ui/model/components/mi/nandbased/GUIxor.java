@@ -22,9 +22,9 @@ public class GUIxor extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin A = getInputSubmodelPins().get(0);
-		Pin B = getInputSubmodelPins().get(1);
-		Pin Y = getOutputSubmodelPins().get(0);
+		Pin A = getSubmodelPin("A");
+		Pin B = getSubmodelPin("B");
+		Pin Y = getSubmodelPin("Y");
 
 		GUINandGate nandAB = new GUINandGate(submodelModifiable, 1);
 		GUINandGate nandYA = new GUINandGate(submodelModifiable, 1);
@@ -45,15 +45,15 @@ public class GUIxor extends SimpleRectangularSubmodelComponent
 
 		new GUIWire(submodelModifiable, A, cpA, new Point[0]);
 		new GUIWire(submodelModifiable, B, cpB, new Point[0]);
-		new GUIWire(submodelModifiable, cpA, nandAB.getInputPins().get(0), new Point(5, 20));
-		new GUIWire(submodelModifiable, cpB, nandAB.getInputPins().get(1), new Point(5, 30));
-		new GUIWire(submodelModifiable, nandAB.getOutputPin(), cpAB);
-		new GUIWire(submodelModifiable, cpAB, nandYA.getInputPins().get(1), new Point(30, 17.5));
-		new GUIWire(submodelModifiable, cpAB, nandYB.getInputPins().get(0), new Point(30, 32.5));
-		new GUIWire(submodelModifiable, cpA, nandYA.getInputPins().get(0), new Point(5, 7.5));
-		new GUIWire(submodelModifiable, cpB, nandYB.getInputPins().get(1), new Point(5, 42.5));
-		new GUIWire(submodelModifiable, nandYA.getOutputPin(), nandY.getInputPins().get(0));
-		new GUIWire(submodelModifiable, nandYB.getOutputPin(), nandY.getInputPins().get(1));
-		new GUIWire(submodelModifiable, nandY.getOutputPin(), Y);
+		new GUIWire(submodelModifiable, cpA, nandAB.getPin("A"), new Point(5, 20));
+		new GUIWire(submodelModifiable, cpB, nandAB.getPin("B"), new Point(5, 30));
+		new GUIWire(submodelModifiable, nandAB.getPin("Y"), cpAB);
+		new GUIWire(submodelModifiable, cpAB, nandYA.getPin("B"), new Point(30, 17.5));
+		new GUIWire(submodelModifiable, cpAB, nandYB.getPin("A"), new Point(30, 32.5));
+		new GUIWire(submodelModifiable, cpA, nandYA.getPin("A"), new Point(5, 7.5));
+		new GUIWire(submodelModifiable, cpB, nandYB.getPin("B"), new Point(5, 42.5));
+		new GUIWire(submodelModifiable, nandYA.getPin("Y"), nandY.getPin("A"));
+		new GUIWire(submodelModifiable, nandYB.getPin("Y"), nandY.getPin("B"));
+		new GUIWire(submodelModifiable, nandY.getPin("Y"), Y);
 	}
 }

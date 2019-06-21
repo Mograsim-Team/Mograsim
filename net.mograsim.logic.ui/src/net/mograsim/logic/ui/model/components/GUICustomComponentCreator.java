@@ -85,13 +85,13 @@ public final class GUICustomComponentCreator
 			int inputCount = ((Number) m.get(SimpleRectangularSubmodelComponent.kInCount)).intValue();
 			String[] inputNames = new String[inputCount];
 			for (int i = 0; i < inputCount; i++)
-				inputNames[i] = "Input pin #" + i;
+				inputNames[i] = params.interfacePins[i].name;
 			rect.setInputPins(inputNames);
 
 			int outputCount = ((Number) m.get(SimpleRectangularSubmodelComponent.kOutCount)).intValue();
 			String[] outputPins = new String[outputCount];
 			for (int i = 0; i < outputCount; i++)
-				outputPins[i] = "Output pin #" + i;
+				outputPins[i] = params.interfacePins[inputCount + i].name;
 			rect.setOutputPins(outputPins);
 
 			return rect;
@@ -145,9 +145,8 @@ public final class GUICustomComponentCreator
 			{
 				InnerWireParams innerWire = params.innerWires[i];
 				new GUIWire(comp.submodelModifiable,
-						comp.submodelModifiable.getComponents().get(innerWire.pin1.compId).getPins().get(innerWire.pin1.pinIndex),
-						comp.submodelModifiable.getComponents().get(innerWire.pin2.compId).getPins().get(innerWire.pin2.pinIndex),
-						innerWire.path);
+						comp.submodelModifiable.getComponents().get(innerWire.pin1.compId).getPin(innerWire.pin1.pinName),
+						comp.submodelModifiable.getComponents().get(innerWire.pin2.compId).getPin(innerWire.pin2.pinName), innerWire.path);
 			}
 		}
 		catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | SecurityException

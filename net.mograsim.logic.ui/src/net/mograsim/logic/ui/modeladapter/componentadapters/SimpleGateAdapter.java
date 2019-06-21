@@ -1,6 +1,5 @@
 package net.mograsim.logic.ui.modeladapter.componentadapters;
 
-import java.util.List;
 import java.util.Map;
 
 import net.mograsim.logic.core.components.Component;
@@ -32,11 +31,14 @@ public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements Co
 	@Override
 	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent, Map<Pin, Wire> logicWiresPerPin)
 	{
-		ReadWriteEnd out = logicWiresPerPin.get(guiComponent.getOutputPin()).createReadWriteEnd();
-		List<Pin> inputPins = guiComponent.getInputPins();
-		ReadEnd[] ins = new ReadEnd[inputPins.size()];
-		for (int i = 0; i < inputPins.size(); i++)
-			ins[i] = logicWiresPerPin.get(inputPins.get(i)).createReadOnlyEnd();
+		ReadWriteEnd out = logicWiresPerPin.get(guiComponent.getPin("Y")).createReadWriteEnd();
+
+		// TODO can we do this prettier?
+		int inputPinCount = guiComponent.getPins().size() - 1;
+		ReadEnd[] ins = new ReadEnd[inputPinCount];
+		for (int i = 0; i < inputPinCount; i++)
+			ins[i] = logicWiresPerPin.get(guiComponent.getPin(String.valueOf((char) ('A' + i)))).createReadOnlyEnd();
+
 		constructor.newComponent(timeline, params.gateProcessTime, out, ins);
 	}
 

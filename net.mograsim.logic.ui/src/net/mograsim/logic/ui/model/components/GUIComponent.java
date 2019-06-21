@@ -1,8 +1,11 @@
 package net.mograsim.logic.ui.model.components;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -15,8 +18,8 @@ public abstract class GUIComponent
 {
 	protected final ViewModelModifiable model;
 	private final Rectangle bounds;
-	private final List<Pin> pins;
-	protected final List<Pin> pinsUnmodifiable;
+	private final Map<String, Pin> pinsByName;
+	protected final Collection<Pin> pinsUnmodifiable;
 
 	private final List<Consumer<? super GUIComponent>> componentMovedListeners;
 	private final List<Consumer<? super Pin>> pinAddedListeners;
@@ -31,8 +34,8 @@ public abstract class GUIComponent
 	{
 		this.model = model;
 		this.bounds = new Rectangle(0, 0, 0, 0);
-		this.pins = new ArrayList<>();
-		this.pinsUnmodifiable = Collections.unmodifiableList(pins);
+		this.pinsByName = new HashMap<>();
+		this.pinsUnmodifiable = Collections.unmodifiableCollection(pinsByName.values());
 
 		this.componentMovedListeners = new ArrayList<>();
 		this.pinAddedListeners = new ArrayList<>();
@@ -46,7 +49,7 @@ public abstract class GUIComponent
 
 	public void destroy()
 	{
-		pins.forEach(p -> pinRemovedListeners.forEach(l -> l.accept(p)));
+		pinsByName.values().forEach(p -> pinRemovedListeners.forEach(l -> l.accept(p)));
 		model.componentDestroyed(this);
 	}
 
@@ -76,11 +79,16 @@ public abstract class GUIComponent
 	}
 
 	/**
-	 * Returns a list of pins of this component.
+	 * Returns a collection of pins of this component.
 	 */
-	public List<Pin> getPins()
+	public Collection<Pin> getPins()
 	{
 		return pinsUnmodifiable;
+	}
+
+	public Pin getPin(String name)
+	{
+		return pinsByName.get(name);
 	}
 
 	// @formatter:off
@@ -119,15 +127,17 @@ public abstract class GUIComponent
 
 	protected void addPin(Pin pin)
 	{
-		pins.add(pin);
+		if (pinsByName.containsKey(pin.name))
+			throw new IllegalArgumentException("Duplicate pin name: " + pin.name);
+		pinsByName.put(pin.name, pin);
 		callPinAddedListeners(pin);
 		pin.addRedrawListener(redrawListenerForSubcomponents);
 		callRedrawListeners();
 	}
 
-	protected void removePin(Pin pin)
+	protected void removePin(String name)
 	{
-		pins.remove(pin);
+		Pin pin = pinsByName.remove(name);
 		callPinRemovedListeners(pin);
 		pin.removeRedrawListener(redrawListenerForSubcomponents);
 		callRedrawListeners();

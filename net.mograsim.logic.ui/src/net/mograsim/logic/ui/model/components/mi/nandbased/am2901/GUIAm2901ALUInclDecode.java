@@ -22,24 +22,24 @@ public class GUIAm2901ALUInclDecode extends SimpleRectangularSubmodelComponent
 	@SuppressWarnings("unused") // for GUIWires being created
 	private void initSubmodelComponents()
 	{
-		Pin I5 = getInputSubmodelPins().get(0);
-		Pin I4 = getInputSubmodelPins().get(1);
-		Pin I3 = getInputSubmodelPins().get(2);
-		Pin Cn = getInputSubmodelPins().get(3);
-		Pin R1 = getInputSubmodelPins().get(4);
-		Pin R2 = getInputSubmodelPins().get(5);
-		Pin R3 = getInputSubmodelPins().get(6);
-		Pin R4 = getInputSubmodelPins().get(7);
-		Pin S1 = getInputSubmodelPins().get(8);
-		Pin S2 = getInputSubmodelPins().get(9);
-		Pin S3 = getInputSubmodelPins().get(10);
-		Pin S4 = getInputSubmodelPins().get(11);
-		Pin F1 = getOutputSubmodelPins().get(0);
-		Pin F2 = getOutputSubmodelPins().get(1);
-		Pin F3 = getOutputSubmodelPins().get(2);
-		Pin F4 = getOutputSubmodelPins().get(3);
-		Pin Cnplus4 = getOutputSubmodelPins().get(4);
-		Pin OVR = getOutputSubmodelPins().get(5);
+		Pin I5 = getSubmodelPin("I5");
+		Pin I4 = getSubmodelPin("I4");
+		Pin I3 = getSubmodelPin("I3");
+		Pin Cn = getSubmodelPin("Cn");
+		Pin R1 = getSubmodelPin("R1");
+		Pin R2 = getSubmodelPin("R2");
+		Pin R3 = getSubmodelPin("R3");
+		Pin R4 = getSubmodelPin("R4");
+		Pin S1 = getSubmodelPin("S1");
+		Pin S2 = getSubmodelPin("S2");
+		Pin S3 = getSubmodelPin("S3");
+		Pin S4 = getSubmodelPin("S4");
+		Pin F1 = getSubmodelPin("F1");
+		Pin F2 = getSubmodelPin("F2");
+		Pin F3 = getSubmodelPin("F3");
+		Pin F4 = getSubmodelPin("F4");
+		Pin Cnplus4 = getSubmodelPin("Cnplus4");
+		Pin OVR = getSubmodelPin("OVR");
 
 		GUIAm2901ALUFuncDecode funcDecode = new GUIAm2901ALUFuncDecode(submodelModifiable);
 		GUIAm2901ALUOneBit alu1 = new GUIAm2901ALUOneBit(submodelModifiable);
@@ -103,78 +103,78 @@ public class GUIAm2901ALUInclDecode extends SimpleRectangularSubmodelComponent
 		cpCnplus4.moveCenterTo(85, 385);
 
 		new GUIWire(submodelModifiable, I5, cpI5, new Point[0]);
-		new GUIWire(submodelModifiable, cpI5, funcDecode.getInputPins().get(0), new Point(5, 30));
+		new GUIWire(submodelModifiable, cpI5, funcDecode.getPin("I5"), new Point(5, 30));
 		new GUIWire(submodelModifiable, I4, cpI4, new Point[0]);
-		new GUIWire(submodelModifiable, cpI4, funcDecode.getInputPins().get(1), new Point(5, 40));
+		new GUIWire(submodelModifiable, cpI4, funcDecode.getPin("I4"), new Point(5, 40));
 		new GUIWire(submodelModifiable, I3, cpI3, new Point(10, 100));
-		new GUIWire(submodelModifiable, cpI3, funcDecode.getInputPins().get(2), new Point(10, 50));
-		new GUIWire(submodelModifiable, funcDecode.getOutputPins().get(2), cpCoutE1, new Point(52.5, 50), new Point(52.5, 57.5),
+		new GUIWire(submodelModifiable, cpI3, funcDecode.getPin("I3"), new Point(10, 50));
+		new GUIWire(submodelModifiable, funcDecode.getPin("SBE"), cpCoutE1, new Point(52.5, 50), new Point(52.5, 57.5),
 				new Point(25, 57.5));
 		new GUIWire(submodelModifiable, cpCoutE1, cpCoutE2, new Point[0]);
 		new GUIWire(submodelModifiable, cpCoutE2, cpCoutE3, new Point[0]);
-		new GUIWire(submodelModifiable, cpCoutE1, alu1.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, cpCoutE2, alu2.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, cpCoutE3, alu3.getInputPins().get(1), new Point[0]);
-		new GUIWire(submodelModifiable, cpCoutE3, alu4.getInputPins().get(1), new Point(25, 395));
-		new GUIWire(submodelModifiable, funcDecode.getOutputPins().get(0), cpCinE1, new Point(57.5, 30), new Point(57.5, 62.5),
+		new GUIWire(submodelModifiable, cpCoutE1, alu1.getPin("CoutE"), new Point[0]);
+		new GUIWire(submodelModifiable, cpCoutE2, alu2.getPin("CoutE"), new Point[0]);
+		new GUIWire(submodelModifiable, cpCoutE3, alu3.getPin("CoutE"), new Point[0]);
+		new GUIWire(submodelModifiable, cpCoutE3, alu4.getPin("CoutE"), new Point(25, 395));
+		new GUIWire(submodelModifiable, funcDecode.getPin("CinE"), cpCinE1, new Point(57.5, 30), new Point(57.5, 62.5),
 				new Point(27.5, 62.5));
 		new GUIWire(submodelModifiable, cpCinE1, cpCinE2, new Point[0]);
 		new GUIWire(submodelModifiable, cpCinE2, cpCinE3, new Point[0]);
-		new GUIWire(submodelModifiable, cpCinE1, alu1.getInputPins().get(2), new Point[0]);
-		new GUIWire(submodelModifiable, cpCinE2, alu2.getInputPins().get(2), new Point[0]);
-		new GUIWire(submodelModifiable, cpCinE3, alu3.getInputPins().get(2), new Point[0]);
-		new GUIWire(submodelModifiable, cpCinE3, alu4.getInputPins().get(2), new Point(27.5, 405));
+		new GUIWire(submodelModifiable, cpCinE1, alu1.getPin("CinE"), new Point[0]);
+		new GUIWire(submodelModifiable, cpCinE2, alu2.getPin("CinE"), new Point[0]);
+		new GUIWire(submodelModifiable, cpCinE3, alu3.getPin("CinE"), new Point[0]);
+		new GUIWire(submodelModifiable, cpCinE3, alu4.getPin("CinE"), new Point(27.5, 405));
 		new GUIWire(submodelModifiable, cpI3, cpRN1, new Point(30, 65));
 		new GUIWire(submodelModifiable, cpRN1, cpRN2, new Point[0]);
 		new GUIWire(submodelModifiable, cpRN2, cpRN3, new Point[0]);
-		new GUIWire(submodelModifiable, cpRN1, alu1.getInputPins().get(4), new Point[0]);
-		new GUIWire(submodelModifiable, cpRN2, alu2.getInputPins().get(4), new Point[0]);
-		new GUIWire(submodelModifiable, cpRN3, alu3.getInputPins().get(4), new Point[0]);
-		new GUIWire(submodelModifiable, cpRN3, alu4.getInputPins().get(4), new Point(30, 425));
+		new GUIWire(submodelModifiable, cpRN1, alu1.getPin("RN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpRN2, alu2.getPin("RN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpRN3, alu3.getPin("RN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpRN3, alu4.getPin("RN"), new Point(30, 425));
 		new GUIWire(submodelModifiable, cpI4, cpSN1, new Point(32.5, 60));
 		new GUIWire(submodelModifiable, cpSN1, cpSN2, new Point[0]);
 		new GUIWire(submodelModifiable, cpSN2, cpSN3, new Point[0]);
-		new GUIWire(submodelModifiable, cpSN1, alu1.getInputPins().get(6), new Point[0]);
-		new GUIWire(submodelModifiable, cpSN2, alu2.getInputPins().get(6), new Point[0]);
-		new GUIWire(submodelModifiable, cpSN3, alu3.getInputPins().get(6), new Point[0]);
-		new GUIWire(submodelModifiable, cpSN3, alu4.getInputPins().get(6), new Point(32.5, 445));
+		new GUIWire(submodelModifiable, cpSN1, alu1.getPin("SN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpSN2, alu2.getPin("SN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpSN3, alu3.getPin("SN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpSN3, alu4.getPin("SN"), new Point(32.5, 445));
 		new GUIWire(submodelModifiable, cpI5, cpFN1, new Point(60, 20), new Point(60, 65), new Point(35, 65));
 		new GUIWire(submodelModifiable, cpFN1, cpFN2, new Point[0]);
 		new GUIWire(submodelModifiable, cpFN2, cpFN3, new Point[0]);
-		new GUIWire(submodelModifiable, cpFN1, alu1.getInputPins().get(7), new Point[0]);
-		new GUIWire(submodelModifiable, cpFN2, alu2.getInputPins().get(7), new Point[0]);
-		new GUIWire(submodelModifiable, cpFN3, alu3.getInputPins().get(7), new Point[0]);
-		new GUIWire(submodelModifiable, cpFN3, alu4.getInputPins().get(7), new Point(35, 455));
-		new GUIWire(submodelModifiable, funcDecode.getOutputPins().get(1), cpL1, new Point(55, 40), new Point(55, 60), new Point(37.5, 60));
+		new GUIWire(submodelModifiable, cpFN1, alu1.getPin("FN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpFN2, alu2.getPin("FN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpFN3, alu3.getPin("FN"), new Point[0]);
+		new GUIWire(submodelModifiable, cpFN3, alu4.getPin("FN"), new Point(35, 455));
+		new GUIWire(submodelModifiable, funcDecode.getPin("L"), cpL1, new Point(55, 40), new Point(55, 60), new Point(37.5, 60));
 		new GUIWire(submodelModifiable, cpL1, cpL2, new Point[0]);
 		new GUIWire(submodelModifiable, cpL2, cpL3, new Point[0]);
-		new GUIWire(submodelModifiable, cpL1, alu1.getInputPins().get(8), new Point[0]);
-		new GUIWire(submodelModifiable, cpL2, alu2.getInputPins().get(8), new Point[0]);
-		new GUIWire(submodelModifiable, cpL3, alu3.getInputPins().get(8), new Point[0]);
-		new GUIWire(submodelModifiable, cpL3, alu4.getInputPins().get(8), new Point(37.5, 465));
-		new GUIWire(submodelModifiable, R1, alu1.getInputPins().get(3), new Point(10, 180), new Point(10, 115));
-		new GUIWire(submodelModifiable, R2, alu2.getInputPins().get(3), new Point(10, 220), new Point(10, 215));
-		new GUIWire(submodelModifiable, R3, alu3.getInputPins().get(3), new Point(10, 260), new Point(10, 315));
-		new GUIWire(submodelModifiable, R4, alu4.getInputPins().get(3), new Point(20, 300), new Point(20, 415));
-		new GUIWire(submodelModifiable, S1, alu1.getInputPins().get(5), new Point(15, 340), new Point(15, 135));
-		new GUIWire(submodelModifiable, S2, alu2.getInputPins().get(5), new Point(5, 380), new Point(5, 235));
-		new GUIWire(submodelModifiable, S3, alu3.getInputPins().get(5), new Point(10, 420), new Point(10, 335));
-		new GUIWire(submodelModifiable, S4, alu4.getInputPins().get(5), new Point(10, 460), new Point(10, 435));
-		new GUIWire(submodelModifiable, Cn, alu1.getInputPins().get(0), new Point(5, 140), new Point(5, 85));
-		new GUIWire(submodelModifiable, alu1.getOutputPins().get(0), alu2.getInputPins().get(0), new Point(85, 85), new Point(85, 175),
-				new Point(40, 175), new Point(40, 185));
-		new GUIWire(submodelModifiable, alu2.getOutputPins().get(0), alu3.getInputPins().get(0), new Point(85, 185), new Point(85, 275),
-				new Point(40, 275), new Point(40, 285));
-		new GUIWire(submodelModifiable, alu3.getOutputPins().get(0), cpCnplus3, new Point(85, 285));
-		new GUIWire(submodelModifiable, cpCnplus3, alu4.getInputPins().get(0), new Point(40, 375), new Point(40, 385));
-		new GUIWire(submodelModifiable, alu4.getOutputPins().get(0), cpCnplus4, new Point[0]);
-		new GUIWire(submodelModifiable, alu1.getOutputPins().get(1), F1, new Point(90, 95), new Point(90, 20));
-		new GUIWire(submodelModifiable, alu2.getOutputPins().get(1), F2, new Point(95, 195), new Point(95, 60));
-		new GUIWire(submodelModifiable, alu3.getOutputPins().get(1), F3, new Point(100, 295), new Point(100, 100));
-		new GUIWire(submodelModifiable, alu4.getOutputPins().get(1), F4, new Point(105, 395), new Point(105, 140));
-		new GUIWire(submodelModifiable, cpCnplus3, xorOVR.getInputPins().get(0), new Point(90, 375), new Point(90, 405));
-		new GUIWire(submodelModifiable, cpCnplus4, xorOVR.getInputPins().get(1), new Point(85, 415));
+		new GUIWire(submodelModifiable, cpL1, alu1.getPin("L"), new Point[0]);
+		new GUIWire(submodelModifiable, cpL2, alu2.getPin("L"), new Point[0]);
+		new GUIWire(submodelModifiable, cpL3, alu3.getPin("L"), new Point[0]);
+		new GUIWire(submodelModifiable, cpL3, alu4.getPin("L"), new Point(37.5, 465));
+		new GUIWire(submodelModifiable, R1, alu1.getPin("R"), new Point(10, 180), new Point(10, 115));
+		new GUIWire(submodelModifiable, R2, alu2.getPin("R"), new Point(10, 220), new Point(10, 215));
+		new GUIWire(submodelModifiable, R3, alu3.getPin("R"), new Point(10, 260), new Point(10, 315));
+		new GUIWire(submodelModifiable, R4, alu4.getPin("R"), new Point(20, 300), new Point(20, 415));
+		new GUIWire(submodelModifiable, S1, alu1.getPin("S"), new Point(15, 340), new Point(15, 135));
+		new GUIWire(submodelModifiable, S2, alu2.getPin("S"), new Point(5, 380), new Point(5, 235));
+		new GUIWire(submodelModifiable, S3, alu3.getPin("S"), new Point(10, 420), new Point(10, 335));
+		new GUIWire(submodelModifiable, S4, alu4.getPin("S"), new Point(10, 460), new Point(10, 435));
+		new GUIWire(submodelModifiable, Cn, alu1.getPin("Cin"), new Point(5, 140), new Point(5, 85));
+		new GUIWire(submodelModifiable, alu1.getPin("Cout"), alu2.getPin("Cin"), new Point(85, 85), new Point(85, 175), new Point(40, 175),
+				new Point(40, 185));
+		new GUIWire(submodelModifiable, alu2.getPin("Cout"), alu3.getPin("Cin"), new Point(85, 185), new Point(85, 275), new Point(40, 275),
+				new Point(40, 285));
+		new GUIWire(submodelModifiable, alu3.getPin("Cout"), cpCnplus3, new Point(85, 285));
+		new GUIWire(submodelModifiable, cpCnplus3, alu4.getPin("Cin"), new Point(40, 375), new Point(40, 385));
+		new GUIWire(submodelModifiable, alu4.getPin("Cout"), cpCnplus4, new Point[0]);
+		new GUIWire(submodelModifiable, alu1.getPin("F"), F1, new Point(90, 95), new Point(90, 20));
+		new GUIWire(submodelModifiable, alu2.getPin("F"), F2, new Point(95, 195), new Point(95, 60));
+		new GUIWire(submodelModifiable, alu3.getPin("F"), F3, new Point(100, 295), new Point(100, 100));
+		new GUIWire(submodelModifiable, alu4.getPin("F"), F4, new Point(105, 395), new Point(105, 140));
+		new GUIWire(submodelModifiable, cpCnplus3, xorOVR.getPin("A"), new Point(90, 375), new Point(90, 405));
+		new GUIWire(submodelModifiable, cpCnplus4, xorOVR.getPin("B"), new Point(85, 415));
 		new GUIWire(submodelModifiable, cpCnplus4, Cnplus4, new Point(130, 385), new Point(130, 180));
-		new GUIWire(submodelModifiable, xorOVR.getOutputPins().get(0), OVR);
+		new GUIWire(submodelModifiable, xorOVR.getPin("Y"), OVR);
 	}
 }

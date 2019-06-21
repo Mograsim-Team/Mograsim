@@ -32,7 +32,8 @@ public class SubmodelComponentParams
 
 	public static class InnerPinParams
 	{
-		public int compId, pinIndex;
+		public int compId;
+		public String pinName;
 	}
 
 	public static class ComponentCompositionParams

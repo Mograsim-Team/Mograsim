@@ -92,12 +92,12 @@ public class JsonExample
 		GUIBitDisplay bdZ = new GUIBitDisplay(model);
 		bdZ.moveTo(90, 30);
 
-		new GUIWire(model, swA.getOutputPin(), adder.getInputPins().get(0));
-		new GUIWire(model, swB.getOutputPin(), adder.getInputPins().get(1));
-		new GUIWire(model, swC.getOutputPin(), adder.getInputPins().get(2));
+		new GUIWire(model, swA.getOutputPin(), adder.getPin("A"));
+		new GUIWire(model, swB.getOutputPin(), adder.getPin("B"));
+		new GUIWire(model, swC.getOutputPin(), adder.getPin("C"));
 
-		new GUIWire(model, adder.getOutputPins().get(0), bdY.getInputPin());
-		new GUIWire(model, adder.getOutputPins().get(1), bdZ.getInputPin());
+		new GUIWire(model, adder.getPin("Y"), bdY.getInputPin());
+		new GUIWire(model, adder.getPin("Z"), bdZ.getInputPin());
 
 		SubmodelComponent adder2 = GUICustomComponentCreator.create(model, pC, "");
 
@@ -114,11 +114,11 @@ public class JsonExample
 		bdZ = new GUIBitDisplay(model);
 		bdZ.moveTo(90, 85);
 
-		new GUIWire(model, swA.getOutputPin(), adder2.getPins().get(0));
-		new GUIWire(model, swB.getOutputPin(), adder2.getPins().get(1));
-		new GUIWire(model, swC.getOutputPin(), adder2.getPins().get(2));
+		new GUIWire(model, swA.getOutputPin(), adder.getPin("A"));
+		new GUIWire(model, swB.getOutputPin(), adder.getPin("B"));
+		new GUIWire(model, swC.getOutputPin(), adder.getPin("C"));
 
-		new GUIWire(model, adder2.getPins().get(3), bdY.getInputPin());
-		new GUIWire(model, adder2.getPins().get(4), bdZ.getInputPin());
+		new GUIWire(model, adder.getPin("Y"), bdY.getInputPin());
+		new GUIWire(model, adder.getPin("Z"), bdZ.getInputPin());
 	}
 }
