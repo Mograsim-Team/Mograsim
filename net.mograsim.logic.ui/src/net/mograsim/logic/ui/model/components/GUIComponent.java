@@ -81,6 +81,11 @@ public abstract class GUIComponent
 
 	/**
 	 * Adds the given pin to this component and calls pinAddedListeners and redrawListeners.
+	 * 
+	 * @throws IllegalArgumentException if the pin doesn't belong to this component
+	 * @throws IllegalArgumentException if there already is a pin with the given name
+	 * 
+	 * @author Daniel Kirschten
 	 */
 	protected void addPin(Pin pin)
 	{
@@ -97,7 +102,9 @@ public abstract class GUIComponent
 	/**
 	 * Removes the given pin from this component and calls pinAddedListeners and redrawListeners.
 	 * 
-	 * @throws NullPointerException if there was no pin with this name.
+	 * @throws NullPointerException if there was no pin with this name
+	 * 
+	 * @author Daniel Kirschten
 	 */
 	protected void removePin(String name)
 	{
@@ -213,6 +220,8 @@ public abstract class GUIComponent
 	/**
 	 * Called when this component is clicked. Absolute coordinates of the click are given. Returns true if this component consumed this
 	 * click.
+	 * 
+	 * @author Daniel Kirschten
 	 */
 	@SuppressWarnings({ "static-method", "unused" }) // this method is inteded to be overridden
 	public boolean clicked(double x, double y)
