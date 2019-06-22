@@ -10,44 +10,25 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import net.mograsim.logic.core.components.gates.AndGate;
-import net.mograsim.logic.core.components.gates.NandGate;
-import net.mograsim.logic.core.components.gates.NotGate;
-import net.mograsim.logic.core.components.gates.OrGate;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.model.ViewModel;
-import net.mograsim.logic.ui.model.components.GUIAndGate;
 import net.mograsim.logic.ui.model.components.GUIComponent;
-import net.mograsim.logic.ui.model.components.GUINandGate;
-import net.mograsim.logic.ui.model.components.GUINotGate;
-import net.mograsim.logic.ui.model.components.GUIOrGate;
 import net.mograsim.logic.ui.model.components.SubmodelComponent;
 import net.mograsim.logic.ui.model.components.SubmodelInterface;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
-import net.mograsim.logic.ui.modeladapter.componentadapters.BitDisplayAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ComponentAdapter;
-import net.mograsim.logic.ui.modeladapter.componentadapters.ManualSwitchAdapter;
-import net.mograsim.logic.ui.modeladapter.componentadapters.SimpleGateAdapter;
 
 public class ViewLogicModelAdapter
 {
-	private final static Map<Class<? extends GUIComponent>, ComponentAdapter<? extends GUIComponent>> componentAdapters;
-	static
+	private final static Map<Class<? extends GUIComponent>, ComponentAdapter<? extends GUIComponent>> componentAdapters = new HashMap<>();
+
+	public static void addComponentAdapter(ComponentAdapter<? extends GUIComponent> componentAdapter)
 	{
-		Set<ComponentAdapter<? extends GUIComponent>> componentAdaptersModifiable = new HashSet<>();
-		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUIOrGate.class, OrGate::new));
-		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUIAndGate.class, AndGate::new));
-		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUINotGate.class, (t, p, o, i) -> new NotGate(t, p, i[0], o)));
-		componentAdaptersModifiable.add(new SimpleGateAdapter<>(GUINandGate.class, NandGate::new));
-		componentAdaptersModifiable.add(new ManualSwitchAdapter());
-		componentAdaptersModifiable.add(new BitDisplayAdapter());
-		// TODO list all adapters here
-		componentAdapters = Collections.unmodifiableMap(
-				componentAdaptersModifiable.stream().collect(Collectors.toMap(ComponentAdapter::getSupportedClass, Function.identity())));
+		componentAdapters.put(componentAdapter.getSupportedClass(), componentAdapter);
 	}
 
 	public static Timeline convert(ViewModel viewModel, LogicModelParameters params)

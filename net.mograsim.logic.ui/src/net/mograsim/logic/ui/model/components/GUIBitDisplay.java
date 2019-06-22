@@ -10,6 +10,8 @@ import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.ui.modeladapter.componentadapters.BitDisplayAdapter;
 
 public class GUIBitDisplay extends GUIComponent
 {
@@ -67,5 +69,10 @@ public class GUIBitDisplay extends GUIComponent
 	public Pin getInputPin()
 	{
 		return inputPin;
+	}
+
+	static
+	{
+		ViewLogicModelAdapter.addComponentAdapter(new BitDisplayAdapter());
 	}
 }

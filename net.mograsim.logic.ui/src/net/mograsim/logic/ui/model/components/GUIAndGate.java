@@ -1,6 +1,9 @@
 package net.mograsim.logic.ui.model.components;
 
+import net.mograsim.logic.core.components.gates.AndGate;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.ui.modeladapter.componentadapters.SimpleGateAdapter;
 
 public class GUIAndGate extends SimpleRectangularGUIGate
 {
@@ -8,5 +11,10 @@ public class GUIAndGate extends SimpleRectangularGUIGate
 	{
 		super(model, logicWidth, "&", false);
 		setInputCount(2);// TODO make variable
+	}
+
+	static
+	{
+		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUIAndGate.class, AndGate::new));
 	}
 }
