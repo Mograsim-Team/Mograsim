@@ -69,6 +69,26 @@ public abstract class GUIComponent
 		return new Rectangle(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
 
+	public double getPosX()
+	{
+		return bounds.x;
+	}
+
+	public double getPosY()
+	{
+		return bounds.y;
+	}
+
+	public double getWidth()
+	{
+		return bounds.width;
+	}
+
+	public double getHeight()
+	{
+		return bounds.height;
+	}
+
 	/**
 	 * Called when this component is clicked. Absolute coordinates of the click are given. Returns true if this component consumed this
 	 * click.

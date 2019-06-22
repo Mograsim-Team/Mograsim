@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 
 public class Pin
@@ -51,8 +50,7 @@ public class Pin
 
 	public Point getPos()
 	{
-		Rectangle componentBounds = component.getBounds();
-		return new Point(relX + componentBounds.x, relY + componentBounds.y);
+		return new Point(relX + component.getPosX(), relY + component.getPosY());
 	}
 
 	protected void setRelPos(double relX, double relY)

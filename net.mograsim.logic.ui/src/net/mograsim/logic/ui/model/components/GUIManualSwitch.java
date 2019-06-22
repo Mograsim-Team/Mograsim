@@ -36,9 +36,6 @@ public class GUIManualSwitch extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		double posX = getBounds().x;
-		double posY = getBounds().y;
-
 		// TODO maybe draw switch state too?
 		gc.drawRectangle(getBounds());
 		String label = BitVectorFormatter.formatValueAsString(end);
@@ -46,7 +43,7 @@ public class GUIManualSwitch extends GUIComponent
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
-		gc.drawText(label, posX + (width - textExtent.x) / 2, posY + (height - textExtent.y) / 2, true);
+		gc.drawText(label, getPosX() + (width - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
 	}
 
