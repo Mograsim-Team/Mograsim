@@ -224,7 +224,7 @@ public abstract class SubmodelComponent extends GUIComponent
 
 		InterfacePinParams[] iPins = new InterfacePinParams[getPins().size()];
 		int i = 0;
-		for (Pin p : getPins())
+		for (Pin p : getPins().values())
 		{
 			InterfacePinParams iPinParams = new InterfacePinParams();
 			iPins[i] = iPinParams;

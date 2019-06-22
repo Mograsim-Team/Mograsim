@@ -85,7 +85,7 @@ public class ViewLogicModelAdapter
 
 	private static Set<Pin> getAllPins(ViewModel viewModel)
 	{
-		return viewModel.getComponents().stream().flatMap(component -> component.getPins().stream()).collect(Collectors.toSet());
+		return viewModel.getComponents().stream().flatMap(component -> component.getPins().values().stream()).collect(Collectors.toSet());
 	}
 
 	private static Map<Pin, Wire> convertWires(Set<Pin> allPins, List<GUIWire> wires, Map<Pin, Wire> externalWires,

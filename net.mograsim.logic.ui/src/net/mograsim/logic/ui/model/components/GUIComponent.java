@@ -1,7 +1,6 @@
 package net.mograsim.logic.ui.model.components;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -33,9 +32,9 @@ public abstract class GUIComponent
 	 */
 	private final Map<String, Pin> pinsByName;
 	/**
-	 * An unmodifiable view of {@link #pinsByName}<code>.</code>{@link Map#values() values()}.
+	 * An unmodifiable view of {@link #pinsByName}.
 	 */
-	protected final Collection<Pin> pinsUnmodifiable;
+	protected final Map<String, Pin> pinsUnmodifiable;
 
 	private final List<Consumer<? super GUIComponent>> componentMovedListeners;
 	private final List<Consumer<? super Pin>> pinAddedListeners;
@@ -53,7 +52,7 @@ public abstract class GUIComponent
 		this.model = model;
 		this.bounds = new Rectangle(0, 0, 0, 0);
 		this.pinsByName = new HashMap<>();
-		this.pinsUnmodifiable = Collections.unmodifiableCollection(pinsByName.values());
+		this.pinsUnmodifiable = Collections.unmodifiableMap(pinsByName);
 
 		this.componentMovedListeners = new ArrayList<>();
 		this.pinAddedListeners = new ArrayList<>();
@@ -119,7 +118,7 @@ public abstract class GUIComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public Collection<Pin> getPins()
+	public Map<String, Pin> getPins()
 	{
 		return pinsUnmodifiable;
 	}
