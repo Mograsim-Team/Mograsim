@@ -82,7 +82,6 @@ public final class GUICustomComponentCreator
 			rect.setSubmodelScale(params.composition.innerScale);
 			// rect.setSize(params.width, params.height);
 
-			// TODO save & restore names
 			int inputCount = ((Number) m.get(SimpleRectangularSubmodelComponent.kInCount)).intValue();
 			String[] inputNames = new String[inputCount];
 			for (int i = 0; i < inputCount; i++)
