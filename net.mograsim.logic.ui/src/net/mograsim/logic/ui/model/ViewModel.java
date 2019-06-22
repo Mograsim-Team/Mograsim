@@ -68,8 +68,8 @@ public class ViewModel
 	}
 
 	/**
-	 * Adds the given component to the list of components and calls all componentAddedListeners. Don't call this method from application
-	 * code as it is automatically called in GUIComponent::new.
+	 * Adds the given wire to the list of wires and calls all wireAddedListeners. Don't call this method from application code as it is
+	 * automatically called in GUIWire::new.
 	 */
 	protected void wireCreated(GUIWire wire)
 	{
@@ -82,8 +82,8 @@ public class ViewModel
 	}
 
 	/**
-	 * Removes the given component from the list of components and calls all componentRemovedListeners. Don't call this method from
-	 * application code as it is automatically called in GUIComponent::destroy.
+	 * Removes the given wire from the list of wires and calls all wireRemovedListeners. Don't call this method from application code as it
+	 * is automatically called in GUIWire::destroy.
 	 */
 	protected void wireDestroyed(GUIWire wire)
 	{
