@@ -24,22 +24,69 @@ import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
 
+/**
+ * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
+ * inner and outer models.
+ */
 public abstract class SubmodelComponent extends GUIComponent
 {
+	/**
+	 * A modifiable view of {@link #submodel}.
+	 */
 	protected final ViewModelModifiable submodelModifiable;
+	/**
+	 * The model this {@link SubmodelComponent} consists of.
+	 */
 	public final ViewModel submodel;
+	/**
+	 * The list of all submodel interface pins of this {@link SubmodelComponent} on the submodel side.
+	 */
 	private final Map<String, MovablePin> submodelPins;
+	/**
+	 * An unmodifiable view of {@link #submodelPins}.
+	 */
 	private final Map<String, MovablePin> submodelMovablePinsUnmodifiable;
+	/**
+	 * An unmodifiable view of {@link #submodelPins} where pins are not movable.
+	 */
 	private final Map<String, Pin> submodelUnmovablePinsUnmodifiable;
+	/**
+	 * The list of all submodel interface pins of this {@link SubmodelComponent} on the supermodel side.
+	 */
 	private final Map<String, MovablePin> supermodelPins;
+	/**
+	 * An unmodifiable view of {@link #supermodelPins}.
+	 */
 	private final Map<String, MovablePin> supermodelMovablePinsUnmodifiable;
+	/**
+	 * An unmodifiable view of {@link #supermodelPins} where pins are not movable.
+	 */
 	private final Map<String, Pin> supermodelUnmovablePinsUnmodifiable;
+	/**
+	 * A pseudo-component containing all submodel interface pins on the submodel side.
+	 */
 	private final SubmodelInterface submodelInterface;
 
+	/**
+	 * The factor by which the submodel is scaled when rendering.
+	 */
 	private double submodelScale;
+	/**
+	 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel starts to
+	 * be visible.
+	 */
 	private double maxVisibleRegionFillRatioForAlpha0;
+	/**
+	 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel is fully
+	 * visible.
+	 */
 	private double minVisibleRegionFillRatioForAlpha1;
+	/**
+	 * The renderer used for rendering the submodel.
+	 */
 	private final LogicUIRenderer renderer;
+
+	// creation and destruction
 
 	public SubmodelComponent(ViewModelModifiable model)
 	{
@@ -62,23 +109,16 @@ public abstract class SubmodelComponent extends GUIComponent
 		submodelModifiable.addRedrawListener(this::requestRedraw);
 	}
 
-	protected void setSubmodelScale(double submodelScale)
-	{
-		this.submodelScale = submodelScale;
-
-		for (Entry<String, MovablePin> e : supermodelPins.entrySet())
-			getSubmodelMovablePin(e.getKey()).setRelPos(e.getValue().getRelX() * submodelScale, e.getValue().getRelY() * submodelScale);
-
-		requestRedraw();// needed if there is no submodel interface pin
-	}
-
-	protected double getSubmodelScale()
-	{
-		return submodelScale;
-	}
+	// pins
 
 	/**
-	 * Returns the submodel pin.
+	 * Adds a new submodel interface pin.
+	 * 
+	 * @param supermodelPin the submodel interface pin on the supermodel side
+	 * 
+	 * @return the submodel interface pin on the submodel side
+	 * 
+	 * @author Daniel Kirschten
 	 */
 	protected Pin addSubmodelInterface(MovablePin supermodelPin)
 	{
@@ -112,56 +152,127 @@ public abstract class SubmodelComponent extends GUIComponent
 		return submodelPin;
 	}
 
+	/**
+	 * Removes a submodel interface pin.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	protected void removeSubmodelInterface(String name)
 	{
-		super.removePin(name);
-		Pin submodelPin = getSubmodelMovablePin(name);
+		super.removePin(name);// do this first to be fail-fast if this component doesn't have a pin with the given name
+		Pin submodelPin = submodelPins.remove(name);
 		submodelInterface.removePin(submodelPin.name);
-
-		submodelPins.remove(name);
 		supermodelPins.remove(name);
 
 		// no need to call requestRedraw() because removePin() will request a redraw
 	}
 
+	/**
+	 * Returns a collection of submodel interface pins on the submodel side of this component.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	public Map<String, Pin> getSubmodelPins()
 	{
 		return submodelUnmovablePinsUnmodifiable;
 	}
 
+	/**
+	 * Returns the submodel interface pin with the given name on the submodel side of this component.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	public Pin getSubmodelPin(String name)
 	{
 		return getSubmodelMovablePin(name);
 	}
 
+	/**
+	 * Returns a collection of movable submodel interface pins on the submodel side of this component.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	protected Map<String, MovablePin> getSubmodelMovablePins()
 	{
 		return submodelMovablePinsUnmodifiable;
 	}
 
+	/**
+	 * Returns the movable submodel interface pin with the given name on the submodel side of this component.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	protected MovablePin getSubmodelMovablePin(String name)
 	{
 		return submodelPins.get(name);
 	}
 
+	/**
+	 * Returns a collection of submodel interface pins on the supermodel side of this component.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	public Map<String, Pin> getSupermodelPins()
 	{
 		return supermodelUnmovablePinsUnmodifiable;
 	}
 
+	/**
+	 * Returns the submodel interface pin with the given name on the supermodel side of this component.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	public Pin getSupermodelPin(String name)
 	{
 		return getSupermodelMovablePin(name);
 	}
 
+	/**
+	 * Returns a collection of movable submodel interface pins on the supermodel side of this component.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	protected Map<String, MovablePin> getSupermodelMovablePins()
 	{
 		return supermodelMovablePinsUnmodifiable;
 	}
 
+	/**
+	 * Returns the movable submodel interface pin with the given name on the supermodel side of this component.
+	 * 
+	 * @author Daniel Kirschten
+	 */
 	protected MovablePin getSupermodelMovablePin(String name)
 	{
 		return supermodelPins.get(name);
+	}
+
+	// "graphical" operations
+
+	/**
+	 * Sets the factor by which the submodel is scaled when rendering and calls redrawListeners. Note that the submodel interface pins will
+	 * stay at their position relative to the supermodel, which means they will move relative to the submodel.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	protected void setSubmodelScale(double submodelScale)
+	{
+		this.submodelScale = submodelScale;
+
+		for (Entry<String, MovablePin> e : supermodelPins.entrySet())
+			getSubmodelMovablePin(e.getKey()).setRelPos(e.getValue().getRelX() * submodelScale, e.getValue().getRelY() * submodelScale);
+
+		requestRedraw();// needed if there is no submodel interface pin
+	}
+
+	/**
+	 * Returns the current factor by which the submodel is scaled when rendering.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	protected double getSubmodelScale()
+	{
+		return submodelScale;
 	}
 
 	@Override
@@ -211,6 +322,8 @@ public abstract class SubmodelComponent extends GUIComponent
 				return true;
 		return false;
 	}
+
+	// serializing
 
 	/**
 	 * @return {@link SubmodelComponentParams}, which describe this {@link SubmodelComponent}.
@@ -282,6 +395,8 @@ public abstract class SubmodelComponent extends GUIComponent
 		params.innerWires = wires;
 		return params;
 	}
+
+	// operations no longer supported
 
 	@Override
 	protected void addPin(Pin pin)
