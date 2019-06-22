@@ -63,19 +63,16 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		double posX = getBounds().x;
-		double posY = getBounds().y;
-
 		double height = (getPins().size() - 1) * pinDistance;
-		gc.drawRectangle(posX, posY, rectWidth, height);
+		gc.drawRectangle(getPosX(), getPosY(), rectWidth, height);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
-		gc.drawText(label, posX + (rectWidth - textExtent.x) / 2, posY + (height - textExtent.y) / 2, true);
+		gc.drawText(label, getPosX() + (rectWidth - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
 		if (isInverted)
-			gc.drawOval(posX + rectWidth, posY + (height - invertedCircleDiam) / 2, invertedCircleDiam, invertedCircleDiam);
+			gc.drawOval(getPosX() + rectWidth, getPosY() + (height - invertedCircleDiam) / 2, invertedCircleDiam, invertedCircleDiam);
 	}
 
 	@Override

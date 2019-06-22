@@ -93,25 +93,22 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	@Override
 	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
 	{
-		double posX = getBounds().x;
-		double posY = getBounds().y;
-
 		Font oldFont = gc.getFont();
 		gc.setFont(new Font(oldFont.getName(), labelFontHeight, oldFont.getStyle()));
 		Point textExtent = gc.textExtent(label);
-		gc.drawText(label, posX + (getBounds().width - textExtent.x) / 2, posY + (getBounds().height - textExtent.y) / 2, true);
+		gc.drawText(label, getPosX() + (getWidth() - textExtent.x) / 2, getPosY() + (getHeight() - textExtent.y) / 2, true);
 		gc.setFont(new Font(oldFont.getName(), pinNameFontHeight, oldFont.getStyle()));
 		for (int i = 0; i < inputPinNames.size(); i++)
 		{
 			String pinName = inputPinNames.get(i);
 			textExtent = gc.textExtent(pinName);
-			gc.drawText(pinName, posX + pinNameMargin, posY + i * pinDistance + (pinDistance - textExtent.y) / 2, true);
+			gc.drawText(pinName, getPosX() + pinNameMargin, getPosY() + i * pinDistance + (pinDistance - textExtent.y) / 2, true);
 		}
 		for (int i = 0; i < outputPinNames.size(); i++)
 		{
 			String pinName = outputPinNames.get(i);
 			textExtent = gc.textExtent(pinName);
-			gc.drawText(pinName, posX + width - textExtent.x - pinNameMargin, posY + i * pinDistance + (pinDistance - textExtent.y) / 2,
+			gc.drawText(pinName, getPosX() + width - textExtent.x - pinNameMargin, getPosY() + i * pinDistance + (pinDistance - textExtent.y) / 2,
 					true);
 		}
 		gc.setFont(oldFont);

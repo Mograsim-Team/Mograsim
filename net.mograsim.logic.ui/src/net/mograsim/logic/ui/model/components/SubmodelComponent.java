@@ -165,13 +165,10 @@ public abstract class SubmodelComponent extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		double posX = getBounds().x;
-		double posY = getBounds().y;
-
 		GCConfig conf = new GCConfig(gc);
-		TranslatedGC tgc = new TranslatedGC(gc, posX, posY, submodelScale, true);
+		TranslatedGC tgc = new TranslatedGC(gc, getPosX(), getPosY(), submodelScale, true);
 		conf.reset(tgc);
-		double visibleRegionFillRatio = Math.max(getBounds().width / visibleRegion.width, getBounds().height / visibleRegion.height);
+		double visibleRegionFillRatio = Math.max(getWidth() / visibleRegion.width, getHeight() / visibleRegion.height);
 		double alphaFactor = map(visibleRegionFillRatio, maxVisibleRegionFillRatioForAlpha0, minVisibleRegionFillRatioForAlpha1, 0, 1);
 		alphaFactor = Math.max(0, Math.min(1, alphaFactor));
 		// we need to take the old alpha into account to support nested submodules better.
@@ -181,7 +178,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		if (submodelAlpha != 0)
 		{
 			gc.setAlpha(submodelAlpha);
-			renderer.render(tgc, visibleRegion.translate(posX / submodelScale, posY / submodelScale, 1 / submodelScale));
+			renderer.render(tgc, visibleRegion.translate(getPosX() / submodelScale, getPosY() / submodelScale, 1 / submodelScale));
 		}
 		if (labelAlpha != 0)
 		{
@@ -205,8 +202,8 @@ public abstract class SubmodelComponent extends GUIComponent
 	@Override
 	public boolean clicked(double x, double y)
 	{
-		double scaledX = (x - getBounds().x) / submodelScale;
-		double scaledY = (y - getBounds().y) / submodelScale;
+		double scaledX = (x - getPosX()) / submodelScale;
+		double scaledY = (y - getPosY()) / submodelScale;
 		for (GUIComponent component : submodel.getComponents())
 			if (component.getBounds().contains(scaledX, scaledY) && component.clicked(scaledX, scaledY))
 				return true;
@@ -222,9 +219,8 @@ public abstract class SubmodelComponent extends GUIComponent
 		params.type = SubmodelComponent.class.getSimpleName();
 		params.composition = calculateCompositionParams();
 
-		Rectangle bounds = getBounds();
-		params.width = bounds.width;
-		params.height = bounds.height;
+		params.width = getWidth();
+		params.height = getHeight();
 
 		InterfacePinParams[] iPins = new InterfacePinParams[getPins().size()];
 		int i = 0;
@@ -257,8 +253,7 @@ public abstract class SubmodelComponent extends GUIComponent
 			InnerComponentParams inner = new InnerComponentParams();
 			comps[i] = inner;
 			inner.params = component.getInstantiationParameters();
-			Rectangle bounds = component.getBounds();
-			inner.pos = new Point(bounds.x, bounds.y);
+			inner.pos = new Point(getPosX(), getPosY());
 			inner.type = component.getIdentifier();
 			i++;
 		}
