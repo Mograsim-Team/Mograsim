@@ -45,7 +45,7 @@ public class LogicUIRenderer
 			if (DRAW_PINS)
 			{
 				gc.setBackground(gc.getDevice().getSystemColor(SWT.COLOR_DARK_CYAN));
-				for (Pin p : component.getPins())
+				for (Pin p : component.getPins().values())
 				{
 					Point pos = p.getPos();
 					gc.fillOval(pos.x - 1, pos.y - 1, 2, 2);
