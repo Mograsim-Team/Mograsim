@@ -84,6 +84,8 @@ public abstract class GUIComponent
 	 */
 	protected void addPin(Pin pin)
 	{
+		if (pin.component != this)
+			throw new IllegalArgumentException("Can't add a pin not belonging to this component!");
 		if (pinsByName.containsKey(pin.name))
 			throw new IllegalArgumentException("Duplicate pin name: " + pin.name);
 		pinsByName.put(pin.name, pin);
