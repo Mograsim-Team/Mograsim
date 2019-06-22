@@ -205,13 +205,12 @@ public abstract class SubmodelComponent extends GUIComponent
 	@Override
 	public boolean clicked(double x, double y)
 	{
-		// TODO
 		double scaledX = (x - getBounds().x) / submodelScale;
 		double scaledY = (y - getBounds().y) / submodelScale;
-		double roundedScaledX = Math.round(scaledX / 5 * 2) * 5 / 2.;
-		double roundedScaledY = Math.round(scaledY / 5 * 2) * 5 / 2.;
-		System.out.println(scaledX + "|" + scaledY + ", rounded " + roundedScaledX + "|" + roundedScaledY);
-		return true;
+		for (GUIComponent component : submodel.getComponents())
+			if (component.getBounds().contains(scaledX, scaledY) && component.clicked(scaledX, scaledY))
+				return true;
+		return false;
 	}
 
 	/**
