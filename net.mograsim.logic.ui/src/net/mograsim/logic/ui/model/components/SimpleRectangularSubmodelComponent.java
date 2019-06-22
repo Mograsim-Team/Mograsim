@@ -13,6 +13,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
@@ -69,7 +70,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 			String pinName = newPinNames[i];
 			int oldPinIndex = pinNamesListThisSide.indexOf(pinName);
 			if (oldPinIndex == -1)
-				super.addSubmodelInterface(pinName, logicWidth, relX, pinDistance / 2 + i * pinDistance);
+				super.addSubmodelInterface(new MovablePin(this, pinName, logicWidth, relX, pinDistance / 2 + i * pinDistance));
 			else
 				getSupermodelMovablePin(pinName).setRelPos(relX, pinDistance / 2 + i * pinDistance);
 		}
@@ -108,8 +109,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		{
 			String pinName = outputPinNames.get(i);
 			textExtent = gc.textExtent(pinName);
-			gc.drawText(pinName, getPosX() + width - textExtent.x - pinNameMargin, getPosY() + i * pinDistance + (pinDistance - textExtent.y) / 2,
-					true);
+			gc.drawText(pinName, getPosX() + width - textExtent.x - pinNameMargin,
+					getPosY() + i * pinDistance + (pinDistance - textExtent.y) / 2, true);
 		}
 		gc.setFont(oldFont);
 	}
@@ -135,7 +136,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
-	protected Pin addSubmodelInterface(String name, int logicWidth, double relX, double relY)
+	protected Pin addSubmodelInterface(MovablePin supermodelPin)
 	{
 		throw new UnsupportedOperationException(
 				"Can't add submodel interfaces to a SimpleRectangularSubmodelComponent directly, call setInputPins / setOutputPins instead");

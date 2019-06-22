@@ -6,11 +6,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
 import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams;
+import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
 import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerWireParams;
 import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InterfacePinParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
+import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
 /**
@@ -112,7 +113,8 @@ public final class GUICustomComponentCreator
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
 		{
-			comp.addSubmodelInterface(iPinParams.name, iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y);
+			comp.addSubmodelInterface(
+					new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y));
 		}
 		return comp;
 	}

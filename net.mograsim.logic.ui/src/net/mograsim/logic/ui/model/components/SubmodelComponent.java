@@ -80,10 +80,13 @@ public abstract class SubmodelComponent extends GUIComponent
 	/**
 	 * Returns the submodel pin.
 	 */
-	protected Pin addSubmodelInterface(String name, int logicWidth, double relX, double relY)
+	protected Pin addSubmodelInterface(MovablePin supermodelPin)
 	{
-		MovablePin submodelPin = new MovablePin(submodelInterface, name, logicWidth, relX / submodelScale, relY / submodelScale);
-		MovablePin supermodelPin = new MovablePin(this, name, logicWidth, relX, relY);
+		super.addPin(supermodelPin);// do this first to be fail-fast if the supermodel does not belong to this component
+
+		String name = supermodelPin.name;
+		MovablePin submodelPin = new MovablePin(submodelInterface, name, supermodelPin.logicWidth, supermodelPin.getRelX() / submodelScale,
+				supermodelPin.getRelY() / submodelScale);
 
 		submodelPin.addPinMovedListener(p ->
 		{
@@ -101,7 +104,6 @@ public abstract class SubmodelComponent extends GUIComponent
 		});
 
 		submodelInterface.addPin(submodelPin);
-		super.addPin(supermodelPin);
 
 		submodelPins.put(name, submodelPin);
 		supermodelPins.put(name, supermodelPin);
