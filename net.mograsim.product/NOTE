@@ -1,0 +1,2 @@
+Not really necessary, but you could still build it as an Eclipse RCP product (by using an appropriate target platform).
+This would then be comparable to the pre-configured packages offered at eclipse.org. 
