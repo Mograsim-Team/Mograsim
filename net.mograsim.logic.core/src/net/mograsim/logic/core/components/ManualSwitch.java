@@ -56,6 +56,16 @@ public class ManualSwitch extends Component implements LogicObservable
 		notifyObservers();
 	}
 
+	public void setToValueOf(Bit bit)
+	{
+		if (bit == Bit.ONE)
+			switchOn();
+		else if (bit == Bit.ZERO)
+			switchOff();
+		else
+			throw new IllegalArgumentException("Cannot set ManualSwitch to the value of Bit " + bit);
+	}
+
 	public boolean isOn()
 	{
 		return isOn;

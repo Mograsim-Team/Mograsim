@@ -396,6 +396,16 @@ public abstract class SubmodelComponent extends GUIComponent
 		return params;
 	}
 
+	public List<GUIComponent> getComponents()
+	{
+		return submodel.getComponents();
+	}
+
+	public List<GUIWire> getWires()
+	{
+		return submodel.getWires();
+	}
+
 	// operations no longer supported
 
 	@Override

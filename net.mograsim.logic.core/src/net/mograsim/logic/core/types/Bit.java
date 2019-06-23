@@ -81,6 +81,11 @@ public enum Bit implements StrictLogicType<Bit>
 		return symbol;
 	}
 
+	public static Bit lastBitOf(int value)
+	{
+		return values()[2 + (value & 1)];
+	}
+
 	public static Bit parse(String s)
 	{
 		Bit bit = SYMBOL_MAP.get(s);

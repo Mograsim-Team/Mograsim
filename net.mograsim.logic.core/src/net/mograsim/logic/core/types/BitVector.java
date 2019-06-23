@@ -140,7 +140,6 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	 *
 	 * @author Christian Femers
 	 */
-	@SuppressWarnings("synthetic-access")
 	public static final class BitVectorMutator implements LogicType<BitVectorMutator, BitVector>
 	{
 		private Bit[] bits;
@@ -156,8 +155,15 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		}
 
 		/**
+		 * Returns a new mutator of the specified length, <b>with all bits set to <code>null</code></b>. Use with care!
+		 */
+		public static BitVectorMutator ofLength(int length)
+		{
+			return new BitVectorMutator(new Bit[length]);
+		}
+
+		/**
 		 * Returns an empty mutator which has no bits set and will simply copy the values from the first binary operation performed.
-		 * 
 		 */
 		public static BitVectorMutator empty()
 		{
@@ -169,7 +175,7 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		 * 
 		 * @throws IllegalStateException if the mutator is (still) empty
 		 */
-		public BitVector get()
+		public BitVector toBitVector()
 		{
 			if (bits == null)
 				throw new IllegalStateException("cannot create a BitVector from an empty mutator");
@@ -213,6 +219,21 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		{
 			unOp(bits, Bit::not);
 			return this;
+		}
+
+		public void setBit(int bitIndex, Bit bit)
+		{
+			bits[bitIndex] = bit;
+		}
+
+		public Bit getBit(int bitIndex)
+		{
+			return bits[bitIndex];
+		}
+
+		public int length()
+		{
+			return bits.length;
 		}
 
 		private void checkCompatibility(BitVector bv)

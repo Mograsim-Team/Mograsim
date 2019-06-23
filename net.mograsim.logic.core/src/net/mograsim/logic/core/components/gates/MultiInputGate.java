@@ -58,6 +58,6 @@ public abstract class MultiInputGate extends BasicComponent
 		BitVectorMutator mutator = BitVectorMutator.empty();
 		for (ReadEnd w : in)
 			op.apply(mutator, w.getValues());
-		out.feedSignals(invert ? mutator.get().not() : mutator.get());
+		out.feedSignals(invert ? mutator.toBitVector().not() : mutator.toBitVector());
 	}
 }
