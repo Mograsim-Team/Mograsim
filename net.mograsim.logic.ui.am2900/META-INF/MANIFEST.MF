@@ -4,6 +4,7 @@ Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.mograsim.logic.ui.am2900;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Export-Package: net.mograsim.logic.ui.examples,
+ net.mograsim.logic.ui.model.components.mi.nandbased,
  net.mograsim.logic.ui.model.components.mi.nandbased.am2901
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: net.mograsim.logic.ui;bundle-version="0.1.0";visibility:=reexport
