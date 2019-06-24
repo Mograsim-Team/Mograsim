@@ -1,8 +1,6 @@
 package net.mograsim.logic.ui.model.components;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -14,7 +12,6 @@ import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerWireP
 import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InterfacePinParams;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.MovablePin;
-import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
 /**
  * Creates {@link SubmodelComponent}s from {@link SubmodelComponentParams}

@@ -13,7 +13,8 @@ import net.mograsim.logic.ui.util.JsonHandler;
 public class GUIComponentCreator
 {
 	private final static Map<String, String> componentMapping;
-	private final static String componentMappingPath = "components/mapping.json"; // TODO: manage this somewhere else
+	private final static String componentMappingPath = "../net.mograsim.logic.ui.am2900/components/mapping.json"; // TODO: manage this
+																													// somewhere else
 
 	static
 	{

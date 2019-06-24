@@ -1,10 +1,12 @@
 package net.mograsim.logic.ui.examples;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIBitDisplay;
+import net.mograsim.logic.ui.model.components.GUIComponentCreator;
 import net.mograsim.logic.ui.model.components.GUICustomComponentCreator;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
@@ -18,7 +20,12 @@ public class JsonExample
 {
 	public static void main(String[] args)
 	{
-		SimpleLogicUIStandalone.executeVisualisation(JsonExample::refJsonFromJsonTest);
+		SimpleLogicUIStandalone.executeVisualisation(JsonExample::mappingTest);
+	}
+
+	public static void mappingTest(ViewModelModifiable model)
+	{
+		GUIComponentCreator.create(model, "GUIAm2901", new HashMap<String, Object>());
 	}
 
 	private static class TestComponent extends SimpleRectangularSubmodelComponent
@@ -39,7 +46,6 @@ public class JsonExample
 		t.calculateParams().writeJson("Test.json");
 		SubmodelComponent c = GUICustomComponentCreator.create(model, "Test.json");
 		c.moveTo(0, 50);
-
 	}
 
 	public static void createHalfAdderExample(ViewModelModifiable model)
@@ -57,7 +63,7 @@ public class JsonExample
 			e.printStackTrace();
 		}
 
-		GUICustomComponentCreator.create(model, p, "");
+		GUICustomComponentCreator.create(model, p);
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
@@ -99,7 +105,7 @@ public class JsonExample
 		new GUIWire(model, adder.getPin("Y"), bdY.getInputPin());
 		new GUIWire(model, adder.getPin("Z"), bdZ.getInputPin());
 
-		SubmodelComponent adder2 = GUICustomComponentCreator.create(model, pC, "");
+		SubmodelComponent adder2 = GUICustomComponentCreator.create(model, pC);
 
 		swA = new GUIManualSwitch(model);
 		swA.moveTo(0, 70);

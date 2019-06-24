@@ -2,7 +2,7 @@ package net.mograsim.logic.ui.util;
 
 public final class Version
 {
-	public final static Version jsonCompVersion = new Version(0, 1, 1);
+	public final static Version jsonCompVersion = new Version(0, 1, 2);
 	public final int major, minor, patch;
 
 	public Version(int major, int minor, int patch)

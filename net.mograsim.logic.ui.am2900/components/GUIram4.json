@@ -1,0 +1,3248 @@
+mograsim version: 0.1.2
+{
+  "type": "SimpleRectangularSubmodelComponent",
+  "name": "GUIram4",
+  "width": 35.0,
+  "height": 130.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 35.0,
+        "y": 5.0
+      },
+      "name": "QA1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 55.0
+      },
+      "name": "QB2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 45.0
+      },
+      "name": "QB1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 25.0
+      },
+      "name": "QA3",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 75.0
+      },
+      "name": "QB4",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 15.0
+      },
+      "name": "QA2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 65.0
+      },
+      "name": "QB3",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 35.0
+      },
+      "name": "QA4",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 95.0
+      },
+      "name": "D1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 45.0
+      },
+      "name": "B0",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 85.0
+      },
+      "name": "WE",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 105.0
+      },
+      "name": "D2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "A0",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 55.0
+      },
+      "name": "B1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 115.0
+      },
+      "name": "D3",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "A1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 65.0
+      },
+      "name": "B2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 125.0
+      },
+      "name": "D4",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "A2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 75.0
+      },
+      "name": "B3",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 35.0
+      },
+      "name": "A3",
+      "logicWidth": 1
+    }
+  ],
+  "composition": {
+    "innerScale": 0.1,
+    "subComps": [
+      {
+        "pos": {
+          "x": 55.0,
+          "y": 45.0
+        },
+        "name": "GUIdemux2",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 55.0,
+          "y": 150.0
+        },
+        "name": "GUIdemux2",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 235.0,
+          "y": 150.0
+        },
+        "name": "GUIand41",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 80.0,
+          "y": 330.0
+        },
+        "name": "GUIram2",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 80.0,
+          "y": 480.0
+        },
+        "name": "GUIram2",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 80.0,
+          "y": 630.0
+        },
+        "name": "GUIram2",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 80.0,
+          "y": 780.0
+        },
+        "name": "GUIram2",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 250.0,
+          "y": 375.0
+        },
+        "name": "GUIand41",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 250.0,
+          "y": 485.0
+        },
+        "name": "GUIandor414",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 250.0,
+          "y": 635.0
+        },
+        "name": "GUIandor414",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 250.0,
+          "y": 785.0
+        },
+        "name": "GUIandor414",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 155.0,
+          "y": 325.0
+        },
+        "name": "GUIand41",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 155.0,
+          "y": 435.0
+        },
+        "name": "GUIandor414",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 155.0,
+          "y": 585.0
+        },
+        "name": "GUIandor414",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 155.0,
+          "y": 735.0
+        },
+        "name": "GUIandor414",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 229.0,
+          "y": 154.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 224.0,
+          "y": 164.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 219.0,
+          "y": 174.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 214.0,
+          "y": 184.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 59.0,
+          "y": 534.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 64.0,
+          "y": 544.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 69.0,
+          "y": 554.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 74.0,
+          "y": 564.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 59.0,
+          "y": 684.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 64.0,
+          "y": 694.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 69.0,
+          "y": 704.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 74.0,
+          "y": 714.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 59.0,
+          "y": 834.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 64.0,
+          "y": 844.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 69.0,
+          "y": 854.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 74.0,
+          "y": 864.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 39.0,
+          "y": 484.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 44.0,
+          "y": 494.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 49.0,
+          "y": 504.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 54.0,
+          "y": 514.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 39.0,
+          "y": 634.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 44.0,
+          "y": 644.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 49.0,
+          "y": 654.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 54.0,
+          "y": 664.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 39.0,
+          "y": 334.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 44.0,
+          "y": 349.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 49.0,
+          "y": 649.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 54.0,
+          "y": 749.0
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      }
+    ],
+    "innerWires": [
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "A0"
+        },
+        "pin2": {
+          "compId": 1,
+          "pinName": "S0"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "A1"
+        },
+        "pin2": {
+          "compId": 1,
+          "pinName": "S1"
+        },
+        "path": [
+          {
+            "x": 10.0,
+            "y": 150.0
+          },
+          {
+            "x": 10.0,
+            "y": 60.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "B0"
+        },
+        "pin2": {
+          "compId": 2,
+          "pinName": "S0"
+        },
+        "path": [
+          {
+            "x": 5.0,
+            "y": 450.0
+          },
+          {
+            "x": 5.0,
+            "y": 155.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "B1"
+        },
+        "pin2": {
+          "compId": 2,
+          "pinName": "S1"
+        },
+        "path": [
+          {
+            "x": 10.0,
+            "y": 550.0
+          },
+          {
+            "x": 10.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 2,
+          "pinName": "Y00"
+        },
+        "pin2": {
+          "compId": 16,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 2,
+          "pinName": "Y01"
+        },
+        "pin2": {
+          "compId": 17,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 2,
+          "pinName": "Y10"
+        },
+        "pin2": {
+          "compId": 18,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 2,
+          "pinName": "Y11"
+        },
+        "pin2": {
+          "compId": 19,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 16,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 3,
+          "pinName": "A1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 17,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 3,
+          "pinName": "A2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 18,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 3,
+          "pinName": "A3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 19,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 3,
+          "pinName": "A4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "WE"
+        },
+        "pin2": {
+          "compId": 3,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 15.0,
+            "y": 850.0
+          },
+          {
+            "x": 15.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 3,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "WE"
+        },
+        "path": [
+          {
+            "x": 290.0,
+            "y": 155.0
+          },
+          {
+            "x": 290.0,
+            "y": 230.0
+          },
+          {
+            "x": 35.0,
+            "y": 230.0
+          },
+          {
+            "x": 35.0,
+            "y": 375.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 3,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "WE"
+        },
+        "path": [
+          {
+            "x": 285.0,
+            "y": 165.0
+          },
+          {
+            "x": 285.0,
+            "y": 225.0
+          },
+          {
+            "x": 30.0,
+            "y": 225.0
+          },
+          {
+            "x": 30.0,
+            "y": 525.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 3,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "WE"
+        },
+        "path": [
+          {
+            "x": 280.0,
+            "y": 175.0
+          },
+          {
+            "x": 280.0,
+            "y": 220.0
+          },
+          {
+            "x": 25.0,
+            "y": 220.0
+          },
+          {
+            "x": 25.0,
+            "y": 675.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 3,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "WE"
+        },
+        "path": [
+          {
+            "x": 275.0,
+            "y": 185.0
+          },
+          {
+            "x": 275.0,
+            "y": 215.0
+          },
+          {
+            "x": 20.0,
+            "y": 215.0
+          },
+          {
+            "x": 20.0,
+            "y": 825.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 32,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 40,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 40,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "A0"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 33,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 41,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 41,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 45.0,
+            "y": 345.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 34,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "B0"
+        },
+        "path": [
+          {
+            "x": 50.0,
+            "y": 355.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 35,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "B1"
+        },
+        "path": [
+          {
+            "x": 55.0,
+            "y": 365.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 32,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "A0"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 33,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "A1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 34,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "B0"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 35,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "B1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 32,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 36,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 33,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 37,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 34,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 42,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "B2"
+        },
+        "pin2": {
+          "compId": 42,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 42,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 38,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 35,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 39,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 36,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "A0"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 37,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "A1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 38,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "B0"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 39,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "B1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 36,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "A0"
+        },
+        "path": [
+          {
+            "x": 40.0,
+            "y": 785.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 37,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 45.0,
+            "y": 795.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 38,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "B0"
+        },
+        "path": [
+          {
+            "x": 50.0,
+            "y": 805.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 39,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 43,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 43,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "B1"
+        },
+        "path": [
+          {
+            "x": 55.0,
+            "y": 815.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "A2"
+        },
+        "pin2": {
+          "compId": 40,
+          "pinName": ""
+        },
+        "path": [
+          {
+            "x": 40.0,
+            "y": 250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "A3"
+        },
+        "pin2": {
+          "compId": 41,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "B3"
+        },
+        "pin2": {
+          "compId": 43,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 20,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "D1"
+        },
+        "path": [
+          {
+            "x": 60.0,
+            "y": 385.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 21,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "D2"
+        },
+        "path": [
+          {
+            "x": 65.0,
+            "y": 395.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 22,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "D3"
+        },
+        "path": [
+          {
+            "x": 70.0,
+            "y": 405.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 23,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "D4"
+        },
+        "path": [
+          {
+            "x": 75.0,
+            "y": 415.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 20,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "D1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 21,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "D2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 22,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "D3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 23,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": "D4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 20,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 24,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 21,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 25,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 22,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 26,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 23,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 27,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 24,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "D1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 25,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "D2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 26,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "D3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 27,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": "D4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 24,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 28,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 25,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 29,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 26,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 30,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 27,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 31,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 28,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "D1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 29,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "D2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 30,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "D3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 31,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": "D4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "D1"
+        },
+        "pin2": {
+          "compId": 28,
+          "pinName": ""
+        },
+        "path": [
+          {
+            "x": 60.0,
+            "y": 950.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "D2"
+        },
+        "pin2": {
+          "compId": 29,
+          "pinName": ""
+        },
+        "path": [
+          {
+            "x": 65.0,
+            "y": 1050.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "D3"
+        },
+        "pin2": {
+          "compId": 30,
+          "pinName": ""
+        },
+        "path": [
+          {
+            "x": 70.0,
+            "y": 1150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "D4"
+        },
+        "pin2": {
+          "compId": 31,
+          "pinName": ""
+        },
+        "path": [
+          {
+            "x": 75.0,
+            "y": 1250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 1,
+          "pinName": "Y00"
+        },
+        "pin2": {
+          "compId": 12,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 135.0,
+            "y": 50.0
+          },
+          {
+            "x": 135.0,
+            "y": 370.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 1,
+          "pinName": "Y01"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 130.0,
+            "y": 60.0
+          },
+          {
+            "x": 130.0,
+            "y": 520.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 1,
+          "pinName": "Y10"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 125.0,
+            "y": 70.0
+          },
+          {
+            "x": 125.0,
+            "y": 670.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 1,
+          "pinName": "Y11"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 120.0,
+            "y": 80.0
+          },
+          {
+            "x": 120.0,
+            "y": 820.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 16,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 8,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 230.0,
+            "y": 420.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 17,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 225.0,
+            "y": 570.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 18,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 220.0,
+            "y": 720.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 19,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 215.0,
+            "y": 870.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "QB1"
+        },
+        "pin2": {
+          "compId": 8,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 375.0
+          },
+          {
+            "x": 140.0,
+            "y": 380.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "QB2"
+        },
+        "pin2": {
+          "compId": 8,
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 385.0
+          },
+          {
+            "x": 140.0,
+            "y": 390.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "QB3"
+        },
+        "pin2": {
+          "compId": 8,
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 395.0
+          },
+          {
+            "x": 140.0,
+            "y": 400.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "QB4"
+        },
+        "pin2": {
+          "compId": 8,
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 405.0
+          },
+          {
+            "x": 140.0,
+            "y": 410.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": "QB1"
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 525.0
+          },
+          {
+            "x": 140.0,
+            "y": 530.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": "QB2"
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 535.0
+          },
+          {
+            "x": 140.0,
+            "y": 540.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": "QB3"
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 545.0
+          },
+          {
+            "x": 140.0,
+            "y": 550.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": "QB4"
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 555.0
+          },
+          {
+            "x": 140.0,
+            "y": 560.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": "QB1"
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 675.0
+          },
+          {
+            "x": 140.0,
+            "y": 680.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": "QB2"
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 685.0
+          },
+          {
+            "x": 140.0,
+            "y": 690.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": "QB3"
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 695.0
+          },
+          {
+            "x": 140.0,
+            "y": 700.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": "QB4"
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 705.0
+          },
+          {
+            "x": 140.0,
+            "y": 710.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": "QB1"
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 825.0
+          },
+          {
+            "x": 140.0,
+            "y": 830.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": "QB2"
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 835.0
+          },
+          {
+            "x": 140.0,
+            "y": 840.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": "QB3"
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 845.0
+          },
+          {
+            "x": 140.0,
+            "y": 850.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": "QB4"
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 855.0
+          },
+          {
+            "x": 140.0,
+            "y": 860.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "QA1"
+        },
+        "pin2": {
+          "compId": 12,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 335.0
+          },
+          {
+            "x": 140.0,
+            "y": 330.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compId": 12,
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 345.0
+          },
+          {
+            "x": 140.0,
+            "y": 340.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compId": 12,
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 355.0
+          },
+          {
+            "x": 140.0,
+            "y": 350.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compId": 12,
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 365.0
+          },
+          {
+            "x": 140.0,
+            "y": 360.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": "QA1"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 485.0
+          },
+          {
+            "x": 140.0,
+            "y": 480.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 495.0
+          },
+          {
+            "x": 140.0,
+            "y": 490.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 505.0
+          },
+          {
+            "x": 140.0,
+            "y": 500.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 515.0
+          },
+          {
+            "x": 140.0,
+            "y": 510.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": "QA1"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 635.0
+          },
+          {
+            "x": 140.0,
+            "y": 630.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 645.0
+          },
+          {
+            "x": 140.0,
+            "y": 640.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 655.0
+          },
+          {
+            "x": 140.0,
+            "y": 650.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 665.0
+          },
+          {
+            "x": 140.0,
+            "y": 660.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": "QA1"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 785.0
+          },
+          {
+            "x": 140.0,
+            "y": 780.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 795.0
+          },
+          {
+            "x": 140.0,
+            "y": 790.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 805.0
+          },
+          {
+            "x": 140.0,
+            "y": 800.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 140.0,
+            "y": 815.0
+          },
+          {
+            "x": 140.0,
+            "y": 810.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 8,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 305.0,
+            "y": 380.0
+          },
+          {
+            "x": 305.0,
+            "y": 445.0
+          },
+          {
+            "x": 245.0,
+            "y": 445.0
+          },
+          {
+            "x": 245.0,
+            "y": 490.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 8,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 300.0,
+            "y": 390.0
+          },
+          {
+            "x": 300.0,
+            "y": 440.0
+          },
+          {
+            "x": 240.0,
+            "y": 440.0
+          },
+          {
+            "x": 240.0,
+            "y": 500.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 8,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 295.0,
+            "y": 400.0
+          },
+          {
+            "x": 295.0,
+            "y": 435.0
+          },
+          {
+            "x": 235.0,
+            "y": 435.0
+          },
+          {
+            "x": 235.0,
+            "y": 510.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 8,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 9,
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 290.0,
+            "y": 410.0
+          },
+          {
+            "x": 290.0,
+            "y": 430.0
+          },
+          {
+            "x": 230.0,
+            "y": 430.0
+          },
+          {
+            "x": 230.0,
+            "y": 520.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 9,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 305.0,
+            "y": 490.0
+          },
+          {
+            "x": 305.0,
+            "y": 595.0
+          },
+          {
+            "x": 245.0,
+            "y": 595.0
+          },
+          {
+            "x": 245.0,
+            "y": 640.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 9,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 300.0,
+            "y": 500.0
+          },
+          {
+            "x": 300.0,
+            "y": 590.0
+          },
+          {
+            "x": 240.0,
+            "y": 590.0
+          },
+          {
+            "x": 240.0,
+            "y": 650.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 9,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 295.0,
+            "y": 510.0
+          },
+          {
+            "x": 295.0,
+            "y": 585.0
+          },
+          {
+            "x": 235.0,
+            "y": 585.0
+          },
+          {
+            "x": 235.0,
+            "y": 660.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 9,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 10,
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 290.0,
+            "y": 520.0
+          },
+          {
+            "x": 290.0,
+            "y": 580.0
+          },
+          {
+            "x": 230.0,
+            "y": 580.0
+          },
+          {
+            "x": 230.0,
+            "y": 670.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 10,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 305.0,
+            "y": 640.0
+          },
+          {
+            "x": 305.0,
+            "y": 745.0
+          },
+          {
+            "x": 245.0,
+            "y": 745.0
+          },
+          {
+            "x": 245.0,
+            "y": 790.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 10,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 300.0,
+            "y": 650.0
+          },
+          {
+            "x": 300.0,
+            "y": 740.0
+          },
+          {
+            "x": 240.0,
+            "y": 740.0
+          },
+          {
+            "x": 240.0,
+            "y": 800.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 10,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 295.0,
+            "y": 660.0
+          },
+          {
+            "x": 295.0,
+            "y": 735.0
+          },
+          {
+            "x": 235.0,
+            "y": 735.0
+          },
+          {
+            "x": 235.0,
+            "y": 810.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 10,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 11,
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 290.0,
+            "y": 670.0
+          },
+          {
+            "x": 290.0,
+            "y": 730.0
+          },
+          {
+            "x": 230.0,
+            "y": 730.0
+          },
+          {
+            "x": 230.0,
+            "y": 820.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 11,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "QB1"
+        },
+        "path": [
+          {
+            "x": 330.0,
+            "y": 790.0
+          },
+          {
+            "x": 330.0,
+            "y": 450.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 11,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "QB2"
+        },
+        "path": [
+          {
+            "x": 335.0,
+            "y": 800.0
+          },
+          {
+            "x": 335.0,
+            "y": 550.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 11,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "QB3"
+        },
+        "path": [
+          {
+            "x": 340.0,
+            "y": 810.0
+          },
+          {
+            "x": 340.0,
+            "y": 650.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 11,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "QB4"
+        },
+        "path": [
+          {
+            "x": 345.0,
+            "y": 820.0
+          },
+          {
+            "x": 345.0,
+            "y": 750.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 12,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 210.0,
+            "y": 330.0
+          },
+          {
+            "x": 210.0,
+            "y": 430.0
+          },
+          {
+            "x": 150.0,
+            "y": 430.0
+          },
+          {
+            "x": 150.0,
+            "y": 440.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 12,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 205.0,
+            "y": 340.0
+          },
+          {
+            "x": 205.0,
+            "y": 425.0
+          },
+          {
+            "x": 145.0,
+            "y": 425.0
+          },
+          {
+            "x": 145.0,
+            "y": 450.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 12,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 200.0,
+            "y": 350.0
+          },
+          {
+            "x": 200.0,
+            "y": 420.0
+          },
+          {
+            "x": 140.0,
+            "y": 420.0
+          },
+          {
+            "x": 140.0,
+            "y": 460.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 12,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 13,
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 195.0,
+            "y": 360.0
+          },
+          {
+            "x": 195.0,
+            "y": 415.0
+          },
+          {
+            "x": 135.0,
+            "y": 415.0
+          },
+          {
+            "x": 135.0,
+            "y": 470.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 13,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 210.0,
+            "y": 440.0
+          },
+          {
+            "x": 210.0,
+            "y": 580.0
+          },
+          {
+            "x": 150.0,
+            "y": 580.0
+          },
+          {
+            "x": 150.0,
+            "y": 590.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 13,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 205.0,
+            "y": 450.0
+          },
+          {
+            "x": 205.0,
+            "y": 575.0
+          },
+          {
+            "x": 145.0,
+            "y": 575.0
+          },
+          {
+            "x": 145.0,
+            "y": 600.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 13,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 200.0,
+            "y": 460.0
+          },
+          {
+            "x": 200.0,
+            "y": 570.0
+          },
+          {
+            "x": 140.0,
+            "y": 570.0
+          },
+          {
+            "x": 140.0,
+            "y": 610.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 13,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 14,
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 195.0,
+            "y": 470.0
+          },
+          {
+            "x": 195.0,
+            "y": 565.0
+          },
+          {
+            "x": 135.0,
+            "y": 565.0
+          },
+          {
+            "x": 135.0,
+            "y": 620.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 14,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 210.0,
+            "y": 590.0
+          },
+          {
+            "x": 210.0,
+            "y": 730.0
+          },
+          {
+            "x": 150.0,
+            "y": 730.0
+          },
+          {
+            "x": 150.0,
+            "y": 740.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 14,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 205.0,
+            "y": 600.0
+          },
+          {
+            "x": 205.0,
+            "y": 725.0
+          },
+          {
+            "x": 145.0,
+            "y": 725.0
+          },
+          {
+            "x": 145.0,
+            "y": 750.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 14,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 200.0,
+            "y": 610.0
+          },
+          {
+            "x": 200.0,
+            "y": 720.0
+          },
+          {
+            "x": 140.0,
+            "y": 720.0
+          },
+          {
+            "x": 140.0,
+            "y": 760.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 14,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 15,
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 195.0,
+            "y": 620.0
+          },
+          {
+            "x": 195.0,
+            "y": 715.0
+          },
+          {
+            "x": 135.0,
+            "y": 715.0
+          },
+          {
+            "x": 135.0,
+            "y": 770.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 15,
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "QA1"
+        },
+        "path": [
+          {
+            "x": 210.0,
+            "y": 740.0
+          },
+          {
+            "x": 210.0,
+            "y": 880.0
+          },
+          {
+            "x": 310.0,
+            "y": 880.0
+          },
+          {
+            "x": 310.0,
+            "y": 50.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 15,
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "QA2"
+        },
+        "path": [
+          {
+            "x": 205.0,
+            "y": 750.0
+          },
+          {
+            "x": 205.0,
+            "y": 885.0
+          },
+          {
+            "x": 315.0,
+            "y": 885.0
+          },
+          {
+            "x": 315.0,
+            "y": 150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 15,
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "QA3"
+        },
+        "path": [
+          {
+            "x": 200.0,
+            "y": 760.0
+          },
+          {
+            "x": 200.0,
+            "y": 890.0
+          },
+          {
+            "x": 320.0,
+            "y": 890.0
+          },
+          {
+            "x": 320.0,
+            "y": 250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 15,
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "QA4"
+        },
+        "path": [
+          {
+            "x": 195.0,
+            "y": 770.0
+          },
+          {
+            "x": 195.0,
+            "y": 895.0
+          },
+          {
+            "x": 325.0,
+            "y": 895.0
+          },
+          {
+            "x": 325.0,
+            "y": 350.0
+          }
+        ]
+      }
+    ]
+  },
+  "specialized": {
+    "input_count": [
+      "A0",
+      "A1",
+      "A2",
+      "A3",
+      "B0",
+      "B1",
+      "B2",
+      "B3",
+      "WE",
+      "D1",
+      "D2",
+      "D3",
+      "D4"
+    ],
+    "label": "GUIram4",
+    "logic_width": 1,
+    "output_count": [
+      "QA1",
+      "QA2",
+      "QA3",
+      "QA4",
+      "QB1",
+      "QB2",
+      "QB3",
+      "QB4"
+    ]
+  }
+}
