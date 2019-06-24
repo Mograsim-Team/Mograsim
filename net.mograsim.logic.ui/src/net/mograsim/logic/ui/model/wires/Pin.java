@@ -72,4 +72,9 @@ public class Pin
 	private void callRedrawListeners  () {redrawListeners  .forEach(l -> l.run   (    ));}
 	// @formatter:on
 
+	@Override
+	public String toString()
+	{
+		return "Pin [" + name + ", point=" + getPos() + "]";
+	}
 }

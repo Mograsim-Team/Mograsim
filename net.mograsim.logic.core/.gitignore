@@ -1,5 +1,4 @@
 /bin/
-*.class
 *.log
 
 # package files
