@@ -11,7 +11,7 @@ import net.mograsim.logic.ui.util.JsonHandler;
  */
 public class SubmodelComponentParams
 {
-	String type;
+	String type, name;
 	double width, height;
 	InterfacePinParams[] interfacePins;
 	ComponentCompositionParams composition;
@@ -45,7 +45,7 @@ public class SubmodelComponentParams
 		public static class InnerComponentParams
 		{
 			Point pos;
-			String type;
+			String name;
 			Map<String, Object> params;
 		}
 	}

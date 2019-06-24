@@ -3,6 +3,8 @@ package net.mograsim.logic.ui.model.components;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
@@ -34,7 +36,7 @@ public final class GUICustomComponentCreator
 		try
 		{
 			SubmodelComponentParams params = SubmodelComponentParams.readJson(path);
-			SubmodelComponent ret = create(model, params, path);
+			SubmodelComponent ret = create(model, params);
 			return ret;
 		}
 		catch (IOException e)
@@ -50,11 +52,10 @@ public final class GUICustomComponentCreator
 	 * e.g. a {@link SimpleRectangularSubmodelComponent}, depending on what the {@link SubmodelComponentParams} describe.
 	 * 
 	 * @param params The parameters describing the {@link SubmodelComponent}
-	 * @param path   This value is used when the new {@link SubmodelComponent} is an inner component to a different SubmodelComponent, which
-	 *               is being saved to a file; Then, the new {@link SubmodelComponent} is referenced by its given path within the file.
+	 * 
 	 * @return A new SubmodelComponent, as described by the {@link SubmodelComponentParams}
 	 */
-	public static SubmodelComponent create(ViewModelModifiable model, SubmodelComponentParams params, String path)
+	public static SubmodelComponent create(ViewModelModifiable model, SubmodelComponentParams params)
 	{
 		SubmodelComponent comp = null;
 		if (rectC.equals(params.type))
@@ -66,12 +67,13 @@ public final class GUICustomComponentCreator
 		{
 			comp = createSubmodelComponent(model, params);
 		}
-		comp.identifierDelegate = () -> "file:".concat(path);
+		comp.identifierDelegate = () -> params.name;
 		initInnerComponents(comp, params.composition);
 		return comp;
 	}
 
 	// May return null
+	@SuppressWarnings("unchecked")
 	private static SimpleRectangularSubmodelComponent createRectComponent(ViewModelModifiable model, SubmodelComponentParams params)
 	{
 		try
@@ -81,19 +83,12 @@ public final class GUICustomComponentCreator
 					((Number) m.get(SimpleRectangularSubmodelComponent.kLogicWidth)).intValue(),
 					(String) m.get(SimpleRectangularSubmodelComponent.kLabel));
 			rect.setSubmodelScale(params.composition.innerScale);
-			// rect.setSize(params.width, params.height);
 
-			int inputCount = ((Number) m.get(SimpleRectangularSubmodelComponent.kInCount)).intValue();
-			String[] inputNames = new String[inputCount];
-			for (int i = 0; i < inputCount; i++)
-				inputNames[i] = params.interfacePins[i].name;
-			rect.setInputPins(inputNames);
+			Object[] names = ((ArrayList<Object>) m.get(SimpleRectangularSubmodelComponent.kInCount)).toArray();
+			rect.setInputPins(Arrays.copyOf(names, names.length, String[].class));
 
-			int outputCount = ((Number) m.get(SimpleRectangularSubmodelComponent.kOutCount)).intValue();
-			String[] outputPins = new String[outputCount];
-			for (int i = 0; i < outputCount; i++)
-				outputPins[i] = params.interfacePins[inputCount + i].name;
-			rect.setOutputPins(outputPins);
+			names = ((ArrayList<Object>) m.get(SimpleRectangularSubmodelComponent.kOutCount)).toArray();
+			rect.setOutputPins(Arrays.copyOf(names, names.length, String[].class));
 
 			return rect;
 		}
@@ -122,59 +117,21 @@ public final class GUICustomComponentCreator
 	@SuppressWarnings("unused")
 	private static void initInnerComponents(SubmodelComponent comp, ComponentCompositionParams params)
 	{
-		try
+		GUIComponent[] components = new GUIComponent[params.subComps.length];
+		for (int i = 0; i < components.length; i++)
 		{
-			GUIComponent[] components = new GUIComponent[params.subComps.length];
-			for (int i = 0; i < components.length; i++)
-			{
-				InnerComponentParams cParams = params.subComps[i];
-				String path = cParams.type;
-				if (path.startsWith("class:"))
-				{
-					path = path.substring(6);
-					components[i] = createInnerComponentFromClass(comp, path, cParams.params);
-					components[i].moveTo(cParams.pos.x, cParams.pos.y);
-				} else if (path.startsWith("file:"))
-				{
-					path = path.substring(5);
-					components[i] = create(comp.submodelModifiable, path);
-					components[i].moveTo(cParams.pos.x, cParams.pos.y);
-				} else
-					throw new IllegalArgumentException("Invalid submodel type! Type was neither prefixed by 'class:' nor by 'file:'");
-			}
+			InnerComponentParams cParams = params.subComps[i];
+			String path = cParams.name;
+			components[i] = GUIComponentCreator.create(comp.submodelModifiable, cParams.name, cParams.params);
+			components[i].moveTo(cParams.pos.x, cParams.pos.y);
+		}
 
-			for (int i = 0; i < params.innerWires.length; i++)
-			{
-				InnerWireParams innerWire = params.innerWires[i];
-				new GUIWire(comp.submodelModifiable,
-						comp.submodelModifiable.getComponents().get(innerWire.pin1.compId).getPin(innerWire.pin1.pinName),
-						comp.submodelModifiable.getComponents().get(innerWire.pin2.compId).getPin(innerWire.pin2.pinName), innerWire.path);
-			}
-		}
-		catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | SecurityException
-				| ClassNotFoundException | IllegalArgumentException e)
+		for (int i = 0; i < params.innerWires.length; i++)
 		{
-			System.err.println("Failed to initialize custom component!");
-			e.printStackTrace();
+			InnerWireParams innerWire = params.innerWires[i];
+			new GUIWire(comp.submodelModifiable,
+					comp.submodelModifiable.getComponents().get(innerWire.pin1.compId).getPin(innerWire.pin1.pinName),
+					comp.submodelModifiable.getComponents().get(innerWire.pin2.compId).getPin(innerWire.pin2.pinName), innerWire.path);
 		}
-	}
-
-	private static GUIComponent createInnerComponentFromClass(SubmodelComponent parent, String classname, Map<String, Object> params)
-			throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException,
-			ClassNotFoundException
-	{
-		Class<?> c = Class.forName(classname);
-		Object comp;
-		if (SimpleRectangularGUIGate.class.isAssignableFrom(c) || WireCrossPoint.class.equals(c))
-		{
-			Constructor<?> constructor = c.getConstructor(ViewModelModifiable.class, int.class);
-			comp = constructor.newInstance(parent.submodelModifiable,
-					((Number) params.get(SimpleRectangularGUIGate.kLogicWidth)).intValue());
-		} else
-		{
-			Constructor<?> constructor = c.getConstructor(ViewModelModifiable.class);
-			comp = constructor.newInstance(parent.submodelModifiable);
-		}
-		return (GUIComponent) comp;
 	}
 }
