@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: German translation
+Bundle-SymbolicName: net.mograsim.plugin.core.nl_de;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: Mograsim Team
+Fragment-Host: net.mograsim.plugin.core;bundle-version="0.1.0"
+Automatic-Module-Name: net.mograsim.plugin.core.nl_de
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-Localization: OSGI-INF/l10n/bundle

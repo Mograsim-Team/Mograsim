@@ -13,14 +13,16 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.ColorHelper;
+import net.mograsim.logic.ui.model.ModelVisitor;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.Visitable;
 
 /**
  * A wire connecting exactly two {@link Pin}s.
  * 
  * @author Daniel Kirschten
  */
-public class GUIWire
+public class GUIWire implements Visitable
 {
 	/**
 	 * The model this wire is a part of.
@@ -318,4 +320,15 @@ public class GUIWire
 	private void callRedrawListeners() {redrawListeners.forEach(l -> l.run());}
 	// @formatter:on
 
+	@Override
+	public String toString()
+	{
+		return "GUIWire [" + pin1 + "---" + pin2 + ", value=" + (end == null ? "null" : end.getValues()) + "]";
+	}
+
+	@Override
+	public void accept(ModelVisitor mv)
+	{
+		mv.visit(this);
+	}
 }

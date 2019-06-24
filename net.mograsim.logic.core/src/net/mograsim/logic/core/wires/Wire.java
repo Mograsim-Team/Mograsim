@@ -61,7 +61,7 @@ public class Wire
 		BitVectorMutator mutator = BitVectorMutator.empty();
 		for (ReadWriteEnd wireArrayEnd : inputs)
 			mutator.join(wireArrayEnd.getInputValues());
-		setNewValues(mutator.get());
+		setNewValues(mutator.toBitVector());
 	}
 
 	private void setNewValues(BitVector newValues)
@@ -495,7 +495,7 @@ public class Wire
 					continue;
 				mutator.join(wireEnd.inputValues);
 			}
-			return mutator.get();
+			return mutator.toBitVector();
 		}
 
 		@Override
