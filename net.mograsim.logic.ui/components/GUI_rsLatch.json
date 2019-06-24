@@ -1,0 +1,232 @@
+mograsim version: 0.1.1
+{
+  "type": "SimpleRectangularSubmodelComponent",
+  "name": "GUI_rsLatch",
+  "width": 35.0,
+  "height": 20.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 35.0,
+        "y": 5.0
+      },
+      "name": "Q",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 15.0
+      },
+      "name": "_Q",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "_R",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "_S",
+      "logicWidth": 1
+    }
+  ],
+  "composition": {
+    "innerScale": 0.4,
+    "subComps": [
+      {
+        "pos": {
+          "x": 10.0,
+          "y": 7.5
+        },
+        "name": "GUINandGate",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 40.0,
+          "y": 12.5
+        },
+        "name": "GUINandGate",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 34.0,
+          "y": 16.5
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 64.0,
+          "y": 36.5
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      }
+    ],
+    "innerWires": [
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "_S"
+        },
+        "pin2": {
+          "compId": 1,
+          "pinName": "A"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "_R"
+        },
+        "pin2": {
+          "compId": 2,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 35.0,
+            "y": 37.5
+          },
+          {
+            "x": 35.0,
+            "y": 27.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 1,
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compId": 3,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 2,
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": ""
+        },
+        "path": [
+          {
+            "x": 65.0,
+            "y": 22.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 3,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 2,
+          "pinName": "A"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 1,
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 65.0,
+            "y": 42.5
+          },
+          {
+            "x": 5.0,
+            "y": 42.5
+          },
+          {
+            "x": 5.0,
+            "y": 22.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 3,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "Q"
+        },
+        "path": [
+          {
+            "x": 35.0,
+            "y": 17.5
+          },
+          {
+            "x": 35.0,
+            "y": 7.5
+          },
+          {
+            "x": 65.0,
+            "y": 7.5
+          },
+          {
+            "x": 65.0,
+            "y": 12.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "_Q"
+        },
+        "path": []
+      }
+    ]
+  },
+  "specialized": {
+    "input_count": [
+      "_S",
+      "_R"
+    ],
+    "label": "_rsLatch",
+    "logic_width": 1,
+    "output_count": [
+      "Q",
+      "_Q"
+    ]
+  }
+}

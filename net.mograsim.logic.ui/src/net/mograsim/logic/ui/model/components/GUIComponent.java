@@ -43,7 +43,7 @@ public abstract class GUIComponent
 
 	private final Runnable redrawListenerForSubcomponents;
 	// Defines how the GUIComponent is referenced in SubmodelComponentParams
-	protected Supplier<String> identifierDelegate = () -> "class:".concat(getClass().getCanonicalName());
+	protected Supplier<String> identifierDelegate = () -> getClass().getSimpleName();
 
 	// creation and destruction
 

@@ -128,8 +128,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		ret.type = SimpleRectangularSubmodelComponent.class.getSimpleName();
 		Map<String, Object> m = new TreeMap<>();
 		m.put(kLabel, label);
-		m.put(kInCount, inputPinNames.size());
-		m.put(kOutCount, outputPinNames.size());
+		m.put(kInCount, inputPinNames.toArray());
+		m.put(kOutCount, outputPinNames.toArray());
 		m.put(kLogicWidth, logicWidth);
 		ret.specialized = m;
 		return ret;

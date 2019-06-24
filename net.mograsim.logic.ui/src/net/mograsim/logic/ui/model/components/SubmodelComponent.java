@@ -331,6 +331,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	public SubmodelComponentParams calculateParams()
 	{
 		SubmodelComponentParams params = new SubmodelComponentParams();
+		params.name = getIdentifier();
 		params.type = SubmodelComponent.class.getSimpleName();
 		params.composition = calculateCompositionParams();
 
@@ -368,8 +369,8 @@ public abstract class SubmodelComponent extends GUIComponent
 			InnerComponentParams inner = new InnerComponentParams();
 			comps[i] = inner;
 			inner.params = component.getInstantiationParameters();
-			inner.pos = new Point(getPosX(), getPosY());
-			inner.type = component.getIdentifier();
+			inner.pos = new Point(component.getPosX(), component.getPosY());
+			inner.name = component.getIdentifier();
 			i++;
 		}
 		params.subComps = comps;
