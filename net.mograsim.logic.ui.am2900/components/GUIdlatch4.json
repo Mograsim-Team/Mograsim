@@ -1,0 +1,342 @@
+mograsim version: 0.1.2
+{
+  "type": "SimpleRectangularSubmodelComponent",
+  "name": "GUIdlatch4",
+  "width": 35.0,
+  "height": 50.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 35.0
+      },
+      "name": "D4",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 5.0
+      },
+      "name": "Q1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 15.0
+      },
+      "name": "Q2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 25.0
+      },
+      "name": "Q3",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 45.0
+      },
+      "name": "C",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 35.0
+      },
+      "name": "Q4",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "D1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "D2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "D3",
+      "logicWidth": 1
+    }
+  ],
+  "composition": {
+    "innerScale": 0.4,
+    "subComps": [
+      {
+        "pos": {
+          "x": 30.0,
+          "y": 7.5
+        },
+        "name": "GUIdlatch",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 30.0,
+          "y": 32.5
+        },
+        "name": "GUIdlatch",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 30.0,
+          "y": 57.5
+        },
+        "name": "GUIdlatch",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 30.0,
+          "y": 82.5
+        },
+        "name": "GUIdlatch",
+        "params": {}
+      },
+      {
+        "pos": {
+          "x": 14.0,
+          "y": 46.5
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 14.0,
+          "y": 71.5
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      },
+      {
+        "pos": {
+          "x": 14.0,
+          "y": 96.5
+        },
+        "name": "WireCrossPoint",
+        "params": {
+          "logicWidth": 1
+        }
+      }
+    ],
+    "innerWires": [
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "C"
+        },
+        "pin2": {
+          "compId": 7,
+          "pinName": ""
+        },
+        "path": [
+          {
+            "x": 15.0,
+            "y": 112.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "E"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 7,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 6,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 3,
+          "pinName": "E"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 6,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 5,
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 2,
+          "pinName": "E"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 5,
+          "pinName": ""
+        },
+        "pin2": {
+          "compId": 1,
+          "pinName": "E"
+        },
+        "path": [
+          {
+            "x": 15.0,
+            "y": 22.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "D1"
+        },
+        "pin2": {
+          "compId": 1,
+          "pinName": "D"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "D2"
+        },
+        "pin2": {
+          "compId": 2,
+          "pinName": "D"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "D3"
+        },
+        "pin2": {
+          "compId": 3,
+          "pinName": "D"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 0,
+          "pinName": "D4"
+        },
+        "pin2": {
+          "compId": 4,
+          "pinName": "D"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 1,
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "Q1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 2,
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "Q2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 3,
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "Q3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compId": 4,
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compId": 0,
+          "pinName": "Q4"
+        },
+        "path": []
+      }
+    ]
+  },
+  "specialized": {
+    "input_count": [
+      "D1",
+      "D2",
+      "D3",
+      "D4",
+      "C"
+    ],
+    "label": "GUIdlatch4",
+    "logic_width": 1,
+    "output_count": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4"
+    ]
+  }
+}
