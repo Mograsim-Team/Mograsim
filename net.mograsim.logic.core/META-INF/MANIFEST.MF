@@ -11,4 +11,4 @@ Export-Package: net.mograsim.logic.core,
  net.mograsim.logic.core.wires
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: net.mograsim.logic.core
-Bundle-Vendor: %Bundle-Vendor
+Bundle-Vendor: Mograsim Team

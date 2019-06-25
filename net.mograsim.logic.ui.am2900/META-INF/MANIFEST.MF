@@ -9,4 +9,4 @@ Export-Package: net.mograsim.logic.ui.examples,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: net.mograsim.logic.ui;bundle-version="0.1.0";visibility:=reexport
 Automatic-Module-Name: net.mograsim.logic.ui
-Bundle-Vendor: %Bundle-Vendor
+Bundle-Vendor: Mograsim Team

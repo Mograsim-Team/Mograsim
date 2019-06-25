@@ -24,4 +24,4 @@ Require-Bundle: org.eclipse.core.runtime,
  javax.annotation;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: net.mograsim.plugin.core
-Bundle-Vendor: %Bundle-Vendor
+Bundle-Vendor: Mograsim Team
