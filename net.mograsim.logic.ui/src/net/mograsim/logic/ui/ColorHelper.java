@@ -23,12 +23,17 @@ public class ColorHelper
 
 	private static void executeWithDifferentColor(ColorDefinition col, Supplier<Color> getColor, Consumer<Color> setColor, Runnable exec)
 	{
-		ColorManager cm = ColorManager.current();
-		Color oldColor = getColor.get();
-		Color newColor = cm.toColor(col);
-		setColor.accept(newColor);
-		exec.run();
-		setColor.accept(oldColor);
+		if (col == null)
+			exec.run();
+		else
+		{
+			ColorManager cm = ColorManager.current();
+			Color oldColor = getColor.get();
+			Color newColor = cm.toColor(col);
+			setColor.accept(newColor);
+			exec.run();
+			setColor.accept(oldColor);
+		}
 	}
 
 	private ColorHelper()
