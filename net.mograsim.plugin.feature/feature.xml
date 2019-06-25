@@ -754,4 +754,11 @@ exception as provided by Oracle in the LICENSE file that accompanied this code.&
          version="0.1.0.qualifier"
          unpack="false"/>
 
+   <plugin
+         id="net.mograsim.preferences"
+         download-size="1"
+         install-size="1"
+         version="0.1.0.qualifier"
+         unpack="false"/>
+
 </feature>
