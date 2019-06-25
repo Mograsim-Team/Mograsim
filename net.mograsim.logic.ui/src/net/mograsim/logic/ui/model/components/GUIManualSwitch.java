@@ -9,7 +9,6 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.ManualSwitch;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.ui.model.ModelVisitor;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
@@ -88,12 +87,6 @@ public class GUIManualSwitch extends GUIComponent
 	public Pin getOutputPin()
 	{
 		return outputPin;
-	}
-
-	@Override
-	public void accept(ModelVisitor mv)
-	{
-		mv.visit(this);
 	}
 
 	static

@@ -12,7 +12,6 @@ import java.util.function.Supplier;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.Visitable;
 import net.mograsim.logic.ui.model.wires.Pin;
 
 /**
@@ -21,7 +20,7 @@ import net.mograsim.logic.ui.model.wires.Pin;
  * 
  * @author Daniel Kirschten
  */
-public abstract class GUIComponent implements Visitable
+public abstract class GUIComponent
 {
 	/**
 	 * The model this component is a part of.

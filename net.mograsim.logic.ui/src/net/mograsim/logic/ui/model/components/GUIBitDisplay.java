@@ -8,7 +8,6 @@ import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.types.BitVectorFormatter;
-import net.mograsim.logic.ui.model.ModelVisitor;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
@@ -75,12 +74,6 @@ public class GUIBitDisplay extends GUIComponent
 	public Pin getInputPin()
 	{
 		return inputPin;
-	}
-
-	@Override
-	public void accept(ModelVisitor mv)
-	{
-		mv.visit(this);
 	}
 
 	static

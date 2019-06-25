@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
-public class ViewModel implements Visitable
+public class ViewModel
 {
 	private final List<GUIComponent> components;
 	private final List<GUIComponent> componentsUnmodifiable;
@@ -103,12 +103,6 @@ public class ViewModel implements Visitable
 	public List<GUIWire> getWires()
 	{
 		return wiresUnmodifiable;
-	}
-
-	@Override
-	public void accept(ModelVisitor mv)
-	{
-		mv.visit(this);
 	}
 
 	// @formatter:off

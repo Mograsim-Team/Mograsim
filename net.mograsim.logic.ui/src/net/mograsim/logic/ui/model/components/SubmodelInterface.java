@@ -2,7 +2,6 @@ package net.mograsim.logic.ui.model.components;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.ui.model.ModelVisitor;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 
 public class SubmodelInterface extends GUIComponent
@@ -15,11 +14,5 @@ public class SubmodelInterface extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{// nothing to do here
-	}
-
-	@Override
-	public void accept(ModelVisitor mv)
-	{
-		mv.visit(this);
 	}
 }
