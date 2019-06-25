@@ -28,7 +28,6 @@ import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.preferences.ColorDefinition;
-import net.mograsim.preferences.ColorDefinition.BuiltInColor;
 import net.mograsim.preferences.Preferences;
 
 public class LogicUIPart extends ViewPart
@@ -59,7 +58,7 @@ public class LogicUIPart extends ViewPart
 				if (rgb == null)
 				{
 					StatusManager.getManager().handle(new Status(IStatus.ERROR, "net.mograsim.plugin.core", "No color for name " + name));
-					return new ColorDefinition(BuiltInColor.COLOR_BLACK);
+					return null;
 				}
 				return new ColorDefinition(rgb.red, rgb.green, rgb.blue);
 			}
