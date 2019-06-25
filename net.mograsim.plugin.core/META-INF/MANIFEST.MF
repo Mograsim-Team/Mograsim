@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.themes;bundle-version="1.2.400",
  net.mograsim.logic.ui;bundle-version="0.1.0";visibility:=reexport,
  net.mograsim.logic.ui.am2900;bundle-version="0.1.0";visibility:=reexport,
- javax.annotation;bundle-version="1.0.0"
+ javax.annotation;bundle-version="1.0.0",
+ net.mograsim.preferences;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: net.mograsim.plugin.core
 Bundle-Vendor: Mograsim Team

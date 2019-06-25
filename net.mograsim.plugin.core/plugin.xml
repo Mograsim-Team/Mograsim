@@ -221,54 +221,95 @@
    <extension
          point="org.eclipse.ui.themes">
       <themeElementCategory
-            class="net.mograsim.plugin.MograsimPreview"
+            class="net.mograsim.plugin.SimulationPreview"
             id="net.mograsim.plugin.mograsim"
             label="%themeElementCategory.label">
       </themeElementCategory>
+      <themeElementCategory
+            class="net.mograsim.plugin.SimulationPreview"
+            id="net.mograsim.logic.ui"
+            label="Simulation"
+            parentId="net.mograsim.plugin.mograsim">
+      </themeElementCategory>
       <colorDefinition
-            categoryId="net.mograsim.plugin.mograsim"
-            defaultsTo="COLOR_WHITE"
+            categoryId="net.mograsim.logic.ui"
             id="net.mograsim.plugin.sim_backgound"
             isEditable="true"
-            label="%colorDefinition.label">
+            label="%colorDefinition.label"
+            value="COLOR_WHITE">
          <description>
             %colorDefinition.description
          </description>
       </colorDefinition>
       <colorDefinition
-            categoryId="net.mograsim.plugin.mograsim"
-            defaultsTo="COLOR_BLACK"
+            categoryId="net.mograsim.logic.ui"
             id="net.mograsim.plugin.sim_text_color"
             isEditable="true"
-            label="%colorDefinition.label.0">
+            label="%colorDefinition.label.0"
+            value="COLOR_BLACK">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="net.mograsim.logic.ui"
+            id="net.mograsim.logic.ui.color.bit.one"
+            isEditable="true"
+            label="Simulation Farbe 1"
+            value="COLOR_GREEN">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="net.mograsim.logic.ui"
+            id="net.mograsim.logic.ui.color.bit.u"
+            isEditable="true"
+            label="Simulation Farbe U"
+            value="COLOR_CYAN">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="net.mograsim.logic.ui"
+            id="net.mograsim.logic.ui.color.bit.x"
+            isEditable="true"
+            label="Simulation Farbe X"
+            value="COLOR_RED">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="net.mograsim.logic.ui"
+            id="net.mograsim.logic.ui.color.bit.z"
+            isEditable="true"
+            label="Simulation Farbe Z"
+            value="COLOR_YELLOW">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="net.mograsim.logic.ui"
+            id="net.mograsim.logic.ui.color.bit.zero"
+            isEditable="true"
+            label="Simulation Farbe 0"
+            value="COLOR_GRAY">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.plugin.mograsim"
-            defaultsTo="COLOR_GREEN"
             id="net.mograsim.plugin.asm_comment_color"
             isEditable="true"
-            label="%colorDefinition.label.1">
+            label="%colorDefinition.label.1"
+            value="COLOR_GREEN">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.plugin.mograsim"
-            defaultsTo="COLOR_BLUE"
             id="net.mograsim.plugin.asm_label_color"
             isEditable="true"
-            label="%colorDefinition.label.2">
+            label="%colorDefinition.label.2"
+            value="COLOR_BLUE">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.plugin.mograsim"
-            defaultsTo="COLOR_RED"
             id="net.mograsim.plugin.asm_operation_color"
             isEditable="true"
-            label="%colorDefinition.label.3">
+            label="%colorDefinition.label.3"
+            value="COLOR_RED">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.plugin.mograsim"
-            defaultsTo="COLOR_MAGENTA"
             id="net.mograsim.plugin.asm_number_color"
             isEditable="true"
-            label="%colorDefinition.label.4">
+            label="%colorDefinition.label.4"
+            value="COLOR_MAGENTA">
       </colorDefinition>
       <fontDefinition
             categoryId="net.mograsim.plugin.mograsim"
