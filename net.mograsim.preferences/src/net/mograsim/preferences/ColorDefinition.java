@@ -1,10 +1,12 @@
-package net.mograsim.logic.core.types;
+package net.mograsim.preferences;
 
 /**
  * A way to define a color with the possibility to use colors built into the system (called "system colors" in SWT).
  * <p>
  * A {@link ColorDefinition} is defined either by a {@link BuiltInColor} constant, in which case <code>r==g==b==-1</code>, or by red / green
  * / blue components, in which case <code>builtInColor==null</code>
+ * 
+ * @author Daniel Kirschten
  */
 public class ColorDefinition
 {

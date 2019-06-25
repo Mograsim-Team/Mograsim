@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>net.mograsim.logic.core</name>
+	<name>net.mograsim.preferences</name>
 	<comment></comment>
 	<projects>
-		<project>net.mograsim.preferences</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
