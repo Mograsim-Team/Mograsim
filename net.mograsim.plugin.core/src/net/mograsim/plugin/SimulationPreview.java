@@ -17,17 +17,25 @@ import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.preferences.Preferences;
 
 public class SimulationPreview implements IThemePreview
 {
-
 	private LogicUICanvas ui;
 	private LogicExecuter exec;
+	private Preferences oldPreferences;
+	private Preferences currentThemePreferences;
 
 	@Override
 	@SuppressWarnings("unused")
 	public void createControl(Composite parent, ITheme currentTheme)
 	{
+		oldPreferences = Preferences.current();
+
+		currentThemePreferences = new ThemePreferences(currentTheme);
+		// TODO this will change the global preferences; so if another LogicUICanvas redraws, it will use the "new" colors too.
+		Preferences.setPreferences(currentThemePreferences);
+
 		ViewModelModifiable model = new ViewModelModifiable();
 		LogicModelParameters params = new LogicModelParameters();
 		params.gateProcessTime = 50;
@@ -81,11 +89,15 @@ public class SimulationPreview implements IThemePreview
 
 		ui.zoom(3.5, 10, 10);
 		exec.startLiveExecution();
+
+		currentTheme.addPropertyChangeListener(e -> ui.redraw());
 	}
 
 	@Override
 	public void dispose()
 	{
 		exec.stopLiveExecution();
+		if (Preferences.current() == currentThemePreferences)
+			Preferences.setPreferences(oldPreferences);
 	}
 }
