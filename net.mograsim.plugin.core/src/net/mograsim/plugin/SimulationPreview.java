@@ -19,7 +19,7 @@ import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 
-public class MograsimPreview implements IThemePreview
+public class SimulationPreview implements IThemePreview
 {
 
 	private LogicUICanvas ui;
