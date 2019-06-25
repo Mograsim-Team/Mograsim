@@ -1,7 +1,9 @@
 package net.mograsim.logic.core.types;
 
-import net.mograsim.logic.core.types.ColorDefinition.BuiltInColor;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
+import net.mograsim.preferences.ColorDefinition;
+import net.mograsim.preferences.Preferences;
+import net.mograsim.preferences.ColorDefinition.BuiltInColor;
 
 public class BitVectorFormatter
 {
@@ -17,6 +19,7 @@ public class BitVectorFormatter
 		return bitVector.toString();
 	}
 
+	// TODO doesn't this belong to logic.ui?
 	public static ColorDefinition formatAsColor(ReadEnd end)
 	{
 		return formatAsColor(end == null ? null : end.getValues());
@@ -30,15 +33,15 @@ public class BitVectorFormatter
 		switch (bitVector.getBit(0))
 		{
 		case ONE:
-			return new ColorDefinition(BuiltInColor.COLOR_GREEN);
+			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.one");
 		case U:
-			return new ColorDefinition(BuiltInColor.COLOR_CYAN);
+			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.u");
 		case X:
-			return new ColorDefinition(BuiltInColor.COLOR_RED);
+			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.x");
 		case Z:
-			return new ColorDefinition(BuiltInColor.COLOR_YELLOW);
+			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.z");
 		case ZERO:
-			return new ColorDefinition(BuiltInColor.COLOR_GRAY);
+			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.zero");
 		default:
 			throw new IllegalArgumentException("Unknown enum constant: " + bitVector.getBit(0));
 		}

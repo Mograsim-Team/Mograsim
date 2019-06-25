@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: net.mograsim.preferences
+Bundle-Version: 0.1.0.qualifier
+Export-Package: net.mograsim.preferences
+Bundle-Vendor: Mograsim Team
+Automatic-Module-Name: net.mograsim.preferences
+Import-Package: org.eclipse.swt,
+ org.eclipse.swt.graphics
