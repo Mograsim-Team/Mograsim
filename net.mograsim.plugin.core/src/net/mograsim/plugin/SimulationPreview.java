@@ -6,7 +6,6 @@ import org.eclipse.ui.themes.ITheme;
 import org.eclipse.ui.themes.IThemePreview;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.ui.LogicExecuter;
 import net.mograsim.logic.ui.LogicUICanvas;
@@ -79,21 +78,9 @@ public class SimulationPreview implements IThemePreview
 		rIn.clicked(0, 0);
 
 		ui = new LogicUICanvas(parent, SWT.NONE, model);
-		ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(ui);
-		userInput.buttonDrag = 3;
-		userInput.buttonZoom = 2;
-		userInput.enableUserInput();
-		update(currentTheme);
-		currentTheme.getColorRegistry().addListener(e -> update(currentTheme));
 
-		ui.zoomSteps(12, 10, 10);
+		ui.zoom(3.5, 10, 10);
 		exec.startLiveExecution();
-	}
-
-	private void update(ITheme currentTheme)
-	{
-		ui.setBackground(currentTheme.getColorRegistry().get("net.mograsim.plugin.sim_backgound"));
-		ui.setForeground(currentTheme.getColorRegistry().get("net.mograsim.plugin.sim_text_color"));
 	}
 
 	@Override
