@@ -1,5 +1,7 @@
 package net.mograsim.logic.ui.model.components;
 
+import org.eclipse.swt.graphics.Color;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -13,6 +15,7 @@ import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ManualSwitchAdapter;
+import net.mograsim.preferences.Preferences;
 
 public class GUIManualSwitch extends GUIComponent
 {
@@ -39,12 +42,18 @@ public class GUIManualSwitch extends GUIComponent
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
 		// TODO maybe draw switch state too?
+		Color foreground = Preferences.current().getColor("net.mograsim.logic.ui.color.foreground");
+		if (foreground != null)
+			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
 		String label = BitVectorFormatter.formatValueAsString(end);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
+		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
+		if (textColor != null)
+			gc.setForeground(textColor);
 		gc.drawText(label, getPosX() + (width - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
 	}

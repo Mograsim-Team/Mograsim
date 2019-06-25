@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.swt.graphics.Color;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -11,6 +13,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularGUIGate extends GUIComponent
 {
@@ -63,16 +66,22 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
+		Color foreground = Preferences.current().getColor("net.mograsim.logic.ui.color.foreground");
+		if (foreground != null)
+			gc.setForeground(foreground);
 		double height = (getPins().size() - 1) * pinDistance;
 		gc.drawRectangle(getPosX(), getPosY(), rectWidth, height);
+		if (isInverted)
+			gc.drawOval(getPosX() + rectWidth, getPosY() + (height - invertedCircleDiam) / 2, invertedCircleDiam, invertedCircleDiam);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
+		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
+		if (textColor != null)
+			gc.setForeground(textColor);
 		gc.drawText(label, getPosX() + (rectWidth - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
-		if (isInverted)
-			gc.drawOval(getPosX() + rectWidth, getPosY() + (height - invertedCircleDiam) / 2, invertedCircleDiam, invertedCircleDiam);
 	}
 
 	@Override

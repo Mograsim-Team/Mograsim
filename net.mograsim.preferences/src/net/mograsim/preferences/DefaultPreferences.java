@@ -19,10 +19,16 @@ public class DefaultPreferences extends Preferences
 			return new ColorDefinition(BuiltInColor.COLOR_YELLOW);
 		case "net.mograsim.logic.ui.color.bit.zero":
 			return new ColorDefinition(BuiltInColor.COLOR_GRAY);
+		case "net.mograsim.logic.ui.color.background":
+			return new ColorDefinition(BuiltInColor.COLOR_WHITE);
+		case "net.mograsim.logic.ui.color.foreground":
+			return new ColorDefinition(BuiltInColor.COLOR_BLACK);
+		case "net.mograsim.logic.ui.color.text":
+			return new ColorDefinition(BuiltInColor.COLOR_BLACK);
 		default:
 			// TODO proper logging here...
 			System.err.println("Unknown color name: " + name);
-			return new ColorDefinition(BuiltInColor.COLOR_BLACK);
+			return null;
 		}
 	}
 }

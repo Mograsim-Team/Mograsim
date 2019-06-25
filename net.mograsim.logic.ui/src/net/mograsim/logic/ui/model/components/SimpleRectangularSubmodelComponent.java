@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.eclipse.swt.graphics.Color;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -15,6 +17,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 {
@@ -97,6 +100,9 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		Font oldFont = gc.getFont();
 		gc.setFont(new Font(oldFont.getName(), labelFontHeight, oldFont.getStyle()));
 		Point textExtent = gc.textExtent(label);
+		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
+		if (textColor != null)
+			gc.setForeground(textColor);
 		gc.drawText(label, getPosX() + (getWidth() - textExtent.x) / 2, getPosY() + (getHeight() - textExtent.y) / 2, true);
 		gc.setFont(new Font(oldFont.getName(), pinNameFontHeight, oldFont.getStyle()));
 		for (int i = 0; i < inputPinNames.size(); i++)
@@ -118,6 +124,9 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	@Override
 	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
 	{
+		Color foreground = Preferences.current().getColor("net.mograsim.logic.ui.color.foreground");
+		if (foreground != null)
+			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
 	}
 
