@@ -3,7 +3,7 @@
 	<name>net.mograsim.logic.ui.am2900</name>
 	<comment></comment>
 	<projects>
-		<project>net.mograsim.logic.core</project>
+		<project>net.mograsim.logic.ui</project>
 		<project>SWTZoomableCanvas</project>
 	</projects>
 	<buildSpec>

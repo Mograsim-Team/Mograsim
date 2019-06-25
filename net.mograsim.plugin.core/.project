@@ -3,6 +3,8 @@
 	<name>net.mograsim.plugin.core</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.logic.ui</project>
+		<project>net.mograsim.logic.ui.am2900</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
