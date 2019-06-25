@@ -47,6 +47,39 @@ public class ColorDefinition
 		this.b = b;
 	}
 
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + b;
+		result = prime * result + ((builtInColor == null) ? 0 : builtInColor.hashCode());
+		result = prime * result + g;
+		result = prime * result + r;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ColorDefinition other = (ColorDefinition) obj;
+		if (b != other.b)
+			return false;
+		if (builtInColor != other.builtInColor)
+			return false;
+		if (g != other.g)
+			return false;
+		if (r != other.r)
+			return false;
+		return true;
+	}
+
 	public static enum BuiltInColor
 	{
 		COLOR_WHITE, COLOR_BLACK, COLOR_RED, COLOR_DARK_RED, COLOR_GREEN, COLOR_DARK_GREEN, COLOR_YELLOW, COLOR_DARK_YELLOW, COLOR_BLUE,

@@ -1,7 +1,6 @@
 package net.mograsim.preferences;
 
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Device;
 
 public abstract class ColorManager
 {
@@ -21,7 +20,10 @@ public abstract class ColorManager
 		return currentManager;
 	}
 
-	public abstract Color toColor(Device device, ColorDefinition col);
+	public abstract Color toColor(ColorDefinition col);
 
-	public abstract void dispose(Color col);
+	public void clearCache()
+	{
+		// this method is intended to be overridden
+	}
 }

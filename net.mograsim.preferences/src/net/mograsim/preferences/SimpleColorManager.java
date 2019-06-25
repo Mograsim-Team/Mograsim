@@ -2,39 +2,54 @@ package net.mograsim.preferences;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Device;
+import org.eclipse.swt.widgets.Display;
 
 import net.mograsim.preferences.ColorDefinition.BuiltInColor;
 
 public class SimpleColorManager extends ColorManager
 {
-	private static final Map<BuiltInColor, Color> systemColors = new HashMap<>();
-	private static final Map<Color, BuiltInColor> systemColorConstants = new HashMap<>();
+	private static final Map<ColorDefinition, Color> systemColors = new HashMap<>();
 
-	@Override
-	public Color toColor(Device device, ColorDefinition col)
+	private final Device device;
+	private final Map<ColorDefinition, Color> cachedColors;
+
+	public SimpleColorManager()
 	{
-		Color systemColor = systemColors.get(col.builtInColor);
-		if (systemColor != null)
-			return systemColor;
-		if (col.builtInColor != null)
-		{
-			systemColor = device.getSystemColor(toSWTColorConstant(col.builtInColor));
-			systemColors.put(col.builtInColor, systemColor);
-			systemColorConstants.put(systemColor, col.builtInColor);
-			return systemColor;
-		}
-		return new Color(device, col.r, col.g, col.b);
+		this.device = Display.getCurrent();
+		this.cachedColors = new HashMap<>(systemColors);
 	}
 
 	@Override
-	public void dispose(Color col)
+	public Color toColor(ColorDefinition col)
 	{
-		if (!systemColorConstants.containsKey(col))
-			col.dispose();
+		if (col == null)
+			return null;
+		Color cachedColor = cachedColors.get(col);
+		if (cachedColor != null)
+			return cachedColor;
+		if (col.builtInColor != null)
+		{
+			Color systemColor = device.getSystemColor(toSWTColorConstant(col.builtInColor));
+			systemColors.put(col, systemColor);
+			cachedColors.put(col, systemColor);
+			return systemColor;
+		}
+		Color nonSystemColor = new Color(device, col.r, col.g, col.b);
+		cachedColors.put(col, nonSystemColor);
+		return nonSystemColor;
+	}
+
+	@Override
+	public void clearCache()
+	{
+		cachedColors.entrySet().stream().filter(e -> !systemColors.containsKey(e.getKey())).map(Entry::getValue).forEach(Color::dispose);
+		cachedColors.clear();
+		cachedColors.putAll(systemColors);
 	}
 
 	public static int toSWTColorConstant(BuiltInColor col)

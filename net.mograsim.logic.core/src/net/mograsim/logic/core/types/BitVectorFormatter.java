@@ -33,15 +33,15 @@ public class BitVectorFormatter
 		switch (bitVector.getBit(0))
 		{
 		case ONE:
-			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.one");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.one");
 		case U:
-			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.u");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.u");
 		case X:
-			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.x");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.x");
 		case Z:
-			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.z");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.z");
 		case ZERO:
-			return Preferences.current().getColor("net.mograsim.logic.ui.wire.bit.zero");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.zero");
 		default:
 			throw new IllegalArgumentException("Unknown enum constant: " + bitVector.getBit(0));
 		}

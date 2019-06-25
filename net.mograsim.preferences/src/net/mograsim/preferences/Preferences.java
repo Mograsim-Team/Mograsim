@@ -1,5 +1,7 @@
 package net.mograsim.preferences;
 
+import org.eclipse.swt.graphics.Color;
+
 public abstract class Preferences
 {
 	private static Preferences currentPreferences;
@@ -18,5 +20,10 @@ public abstract class Preferences
 		return currentPreferences;
 	}
 
-	public abstract ColorDefinition getColor(String name);
+	public abstract ColorDefinition getColorDefinition(String name);
+
+	public Color getColor(String name)
+	{
+		return ColorManager.current().toColor(getColorDefinition(name));
+	}
 }
