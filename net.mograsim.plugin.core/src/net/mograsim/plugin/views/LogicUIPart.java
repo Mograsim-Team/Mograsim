@@ -13,7 +13,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.statushandlers.StatusManager;
-import org.eclipse.ui.themes.ITheme;
 
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.core.timeline.Timeline;
@@ -93,21 +92,11 @@ public class LogicUIPart extends ViewPart
 		userInput.buttonZoom = 2;
 		userInput.enableUserInput();
 
-		ITheme currentTheme = PlatformUI.getWorkbench().getThemeManager().getCurrentTheme();
-		update(currentTheme);
-		currentTheme.getColorRegistry().addListener(e -> update(currentTheme));
-
 		// initialize executer
 		exec = new LogicExecuter(timeline);
 
 		// run it
 		exec.startLiveExecution();
-	}
-
-	private void update(ITheme currentTheme)
-	{
-		ui.setBackground(currentTheme.getColorRegistry().get("net.mograsim.plugin.sim_backgound"));
-		ui.setForeground(currentTheme.getColorRegistry().get("net.mograsim.plugin.sim_text_color"));
 	}
 
 	@Override

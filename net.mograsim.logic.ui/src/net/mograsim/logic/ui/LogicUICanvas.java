@@ -1,6 +1,7 @@
 package net.mograsim.logic.ui;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 
@@ -9,6 +10,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.components.GUIComponent;
+import net.mograsim.preferences.Preferences;
 
 /**
  * Simulation visualizer canvas.
@@ -26,7 +28,13 @@ public class LogicUICanvas extends ZoomableCanvas
 		this.model = model;
 
 		LogicUIRenderer renderer = new LogicUIRenderer(model);
-		addZoomedRenderer(gc -> renderer.render(gc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom)));
+		addZoomedRenderer(gc ->
+		{
+			Color background = Preferences.current().getColor("net.mograsim.logic.ui.color.background");
+			if (background != null)
+				setBackground(background);// this.setBackground, not gc.setBackground to have the background fill the canvas
+			renderer.render(gc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom));
+		});
 		model.addRedrawListener(this::redrawThreadsafe);
 
 		addListener(SWT.MouseDown, this::mouseDown);

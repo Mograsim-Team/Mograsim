@@ -85,7 +85,7 @@
             icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
             id="net.mograsim.plugin.core.view1"
             inject="true"
-            name="Simulation View"
+            name="%view.name.0"
             restorable="true">
       </view>
    </extension>
@@ -228,12 +228,12 @@
       <themeElementCategory
             class="net.mograsim.plugin.SimulationPreview"
             id="net.mograsim.logic.ui"
-            label="Simulation"
+            label="%themeElementCategory.label.0"
             parentId="net.mograsim.plugin.mograsim">
       </themeElementCategory>
       <colorDefinition
             categoryId="net.mograsim.logic.ui"
-            id="net.mograsim.plugin.sim_backgound"
+            id="net.mograsim.logic.ui.color.background"
             isEditable="true"
             label="%colorDefinition.label"
             value="COLOR_WHITE">
@@ -243,44 +243,50 @@
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.logic.ui"
-            id="net.mograsim.plugin.sim_text_color"
+            id="net.mograsim.logic.ui.color.foreground"
             isEditable="true"
             label="%colorDefinition.label.0"
             value="COLOR_BLACK">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.logic.ui"
+            id="net.mograsim.logic.ui.color.text"
+            label="%colorDefinition.label.10"
+            value="COLOR_BLACK">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="net.mograsim.logic.ui"
             id="net.mograsim.logic.ui.color.bit.one"
             isEditable="true"
-            label="Simulation Farbe 1"
+            label="%colorDefinition.label.5"
             value="COLOR_GREEN">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.logic.ui"
             id="net.mograsim.logic.ui.color.bit.u"
             isEditable="true"
-            label="Simulation Farbe U"
+            label="%colorDefinition.label.6"
             value="COLOR_CYAN">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.logic.ui"
             id="net.mograsim.logic.ui.color.bit.x"
             isEditable="true"
-            label="Simulation Farbe X"
+            label="%colorDefinition.label.7"
             value="COLOR_RED">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.logic.ui"
             id="net.mograsim.logic.ui.color.bit.z"
             isEditable="true"
-            label="Simulation Farbe Z"
+            label="%colorDefinition.label.8"
             value="COLOR_YELLOW">
       </colorDefinition>
       <colorDefinition
             categoryId="net.mograsim.logic.ui"
             id="net.mograsim.logic.ui.color.bit.zero"
             isEditable="true"
-            label="Simulation Farbe 0"
+            label="%colorDefinition.label.9"
             value="COLOR_GRAY">
       </colorDefinition>
       <colorDefinition
