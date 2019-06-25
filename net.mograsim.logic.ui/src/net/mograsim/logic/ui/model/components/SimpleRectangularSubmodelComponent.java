@@ -12,7 +12,6 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.ui.model.ModelVisitor;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
@@ -155,11 +154,5 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	{
 		throw new UnsupportedOperationException(
 				"Can't set the size of a SimpleRectangularSubmodelComponent directly, call setInputPins / setOutputPins instead");
-	}
-
-	@Override
-	public void accept(ModelVisitor mv)
-	{
-		mv.visit(this);
 	}
 }

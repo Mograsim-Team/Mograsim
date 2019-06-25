@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -15,18 +17,14 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
-import net.mograsim.logic.ui.model.ModelVisitor;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.components.GUIManualSwitch;
-import net.mograsim.logic.ui.model.components.SimpleRectangularGUIGate;
-import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
-import net.mograsim.logic.ui.model.components.SubmodelInterface;
+import net.mograsim.logic.ui.model.components.SubmodelComponent;
 import net.mograsim.logic.ui.model.components.mi.nandbased.am2901.GUIAm2901;
 import net.mograsim.logic.ui.model.wires.GUIWire;
-import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 
@@ -44,9 +42,6 @@ public class TestableAm2901Impl implements TestableAm2901
 	private BitDisplay Y1, Y2, Y3, Y4;
 	private BitDisplay F_0, Cn_4, OVR, F3;
 	private BitDisplay ORAMn, ORAMn_3, OQn, OQn_3;
-
-	private Set<GUIWire> allWires;
-	private Set<GUIComponent> allComponents;
 
 	private Set<String> wireDebugChangeSet;
 	private boolean debugWires = false;
@@ -136,11 +131,18 @@ public class TestableAm2901Impl implements TestableAm2901
 		C.switchOff();
 
 		// Debug code
-		allWires = new HashSet<>();
-		allComponents = new HashSet<>();
-		ModelAccumulator accumulator = new ModelAccumulator();
-		accumulator.visit(viewModel);
-		allWires.forEach(w -> w.addRedrawListener(() ->
+		HashSet<GUIWire> wiresIncludingSubmodels = new HashSet<>();
+		Queue<ViewModel> modelsToIterate = new LinkedList<>();
+		modelsToIterate.add(viewModel);
+		while (modelsToIterate.size() > 0)
+		{
+			ViewModel model = modelsToIterate.poll();
+			wiresIncludingSubmodels.addAll(model.getWires());
+			for (GUIComponent comp : model.getComponents())
+				if (comp instanceof SubmodelComponent)
+					modelsToIterate.offer(((SubmodelComponent) comp).submodel);
+		}
+		wiresIncludingSubmodels.forEach(w -> w.addRedrawListener(() ->
 		{
 			if (debugWires)
 			{
@@ -344,59 +346,5 @@ public class TestableAm2901Impl implements TestableAm2901
 			val >>>= 1;
 		}
 		return mutator.toBitVector();
-	}
-
-	class ModelAccumulator implements ModelVisitor
-	{
-		@Override
-		public void visit(GUIWire w)
-		{
-			allWires.add(w);
-		}
-
-		@Override
-		public void visit(SimpleRectangularGUIGate simpleRectangularGUIGate)
-		{
-			allComponents.add(simpleRectangularGUIGate);
-		}
-
-		@Override
-		public void visit(SimpleRectangularSubmodelComponent simpleRectangularSubmodelComponent)
-		{
-			allComponents.add(simpleRectangularSubmodelComponent);
-			simpleRectangularSubmodelComponent.getWires().forEach(w -> w.accept(this));
-			simpleRectangularSubmodelComponent.getComponents().forEach(w -> w.accept(this));
-		}
-
-		@Override
-		public void visit(WireCrossPoint wireCrossPoint)
-		{
-			// nothing
-		}
-
-		@Override
-		public void visit(GUIBitDisplay guiBitDisplay)
-		{
-			allComponents.add(guiBitDisplay);
-		}
-
-		@Override
-		public void visit(GUIManualSwitch guiManualSwitch)
-		{
-			allComponents.add(guiManualSwitch);
-		}
-
-		@Override
-		public void visit(SubmodelInterface submodelInterface)
-		{
-			// nothing
-		}
-
-		@Override
-		public void visit(ViewModel viewModel)
-		{
-			viewModel.getWires().forEach(w -> w.accept(this));
-			viewModel.getComponents().forEach(w -> w.accept(this));
-		}
 	}
 }

@@ -9,7 +9,6 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.ColorHelper;
-import net.mograsim.logic.ui.model.ModelVisitor;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.components.SimpleRectangularGUIGate;
@@ -82,11 +81,5 @@ public class WireCrossPoint extends GUIComponent
 		Map<String, Object> m = super.getInstantiationParameters();
 		m.put(SimpleRectangularGUIGate.kLogicWidth, logicWidth);
 		return m;
-	}
-
-	@Override
-	public void accept(ModelVisitor mv)
-	{
-		mv.visit(this);
 	}
 }
