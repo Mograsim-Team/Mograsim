@@ -51,19 +51,6 @@ public class Wire
 		values = U.toVector(length);
 	}
 
-	private void recalculateSingleInput()
-	{
-		setNewValues(inputs.get(0).getInputValues());
-	}
-
-	private void recalculateMultipleInputs()
-	{
-		BitVectorMutator mutator = BitVectorMutator.empty();
-		for (ReadWriteEnd wireArrayEnd : inputs)
-			mutator.join(wireArrayEnd.getInputValues());
-		setNewValues(mutator.toBitVector());
-	}
-
 	private void setNewValues(BitVector newValues)
 	{
 		if (values.equals(newValues))
@@ -75,17 +62,26 @@ public class Wire
 
 	void recalculate()
 	{
-		switch (inputs.size())
-		{
-		case 0:
+		if (inputs.size() == 0)
 			setNewValues(BitVector.of(Bit.U, length));
-			break;
-		case 1:
-			recalculateSingleInput();
-			break;
-		default:
-			recalculateMultipleInputs();
+		else
+		{
+			BitVectorMutator mutator = BitVectorMutator.empty();
+			for (ReadWriteEnd wireArrayEnd : inputs)
+				mutator.join(wireArrayEnd.getInputValues());
+			setNewValues(mutator.toBitVector());
 		}
+	}
+
+	/**
+	 * Forces a Wire to take on specific values. If the new values differ from the old ones, the observers of the Wire will be notified.
+	 * WARNING! Use this with care! The preferred way of writing the values is ReadWriteEnd.feedSignals(BitVector)
+	 * 
+	 * @param values The values the <code>Wire</code> will have immediately after this method is called
+	 */
+	public void forceValues(BitVector values)
+	{
+		setNewValues(values);
 	}
 
 	/**
