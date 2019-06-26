@@ -95,6 +95,14 @@ public class WireCrossPoint extends GUIComponent
 			end.registerObserver(logicObs);
 	}
 
+	/**
+	 * Returns whether this {@link WireCrossPoint} has a logic model binding or not.
+	 */
+	public boolean hasLogicModelBinding()
+	{
+		return end != null;
+	}
+
 	// serializing
 
 	@Override

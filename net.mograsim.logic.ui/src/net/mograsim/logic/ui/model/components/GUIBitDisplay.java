@@ -6,7 +6,6 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.types.BitVectorFormatter;
@@ -58,21 +57,16 @@ public class GUIBitDisplay extends GUIComponent
 
 	public void setLogicModelBinding(BitDisplay bitDisplay)
 	{
-		deregisterLogicObs(this.bitDisplay);
+		if (this.bitDisplay != null)
+			this.bitDisplay.deregisterObserver(logicObs);
 		this.bitDisplay = bitDisplay;
-		registerLogicObs(bitDisplay);
+		if (bitDisplay != null)
+			bitDisplay.registerObserver(logicObs);
 	}
 
-	private void registerLogicObs(LogicObservable observable)
+	public boolean hasLogicModelBinding()
 	{
-		if (observable != null)
-			observable.registerObserver(logicObs);
-	}
-
-	private void deregisterLogicObs(LogicObservable observable)
-	{
-		if (observable != null)
-			observable.deregisterObserver(logicObs);
+		return bitDisplay != null;
 	}
 
 	public BitDisplay getBitDisplay()

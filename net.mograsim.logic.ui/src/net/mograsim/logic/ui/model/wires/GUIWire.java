@@ -10,7 +10,9 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
+import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.ColorHelper;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
@@ -306,6 +308,23 @@ public class GUIWire
 		this.end = end;
 		if (end != null)
 			end.registerObserver(logicObs);
+	}
+
+	/**
+	 * Returns whether this {@link GUIWire} has a logic model binding or not.
+	 */
+	public boolean hasLogicModelBinding()
+	{
+		return end != null;
+	}
+
+	/**
+	 * If this {@link GUIWire} has a logic model binding, delegates to {@link Wire#forceValues(BitVector)} for the {@link Wire}
+	 * corresponding to this {@link GUIWire}.
+	 */
+	public void forceWireValues(BitVector values)
+	{
+		end.getWire().forceValues(values);
 	}
 
 	// listeners

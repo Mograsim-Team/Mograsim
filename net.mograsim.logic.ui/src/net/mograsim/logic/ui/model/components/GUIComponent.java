@@ -138,6 +138,14 @@ public abstract class GUIComponent
 		return pin;
 	}
 
+	// high-level access
+
+	@SuppressWarnings({ "static-method", "unused" }) // this method is intended to be overridden
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		throw new IllegalArgumentException("No high level state with ID " + stateID);
+	}
+
 	// "graphical" operations
 
 	/**
