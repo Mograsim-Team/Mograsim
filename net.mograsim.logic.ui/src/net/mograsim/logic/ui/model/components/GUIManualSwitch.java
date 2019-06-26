@@ -68,6 +68,11 @@ public class GUIManualSwitch extends GUIComponent
 		registerLogicObs(logicSwitch);
 	}
 
+	public boolean hasLogicModelBinding()
+	{
+		return logicSwitch != null;
+	}
+
 	private void registerLogicObs(LogicObservable observable)
 	{
 		if (observable != null)
