@@ -2,6 +2,11 @@ package net.mograsim.logic.ui.model.wires;
 
 import net.mograsim.logic.ui.model.components.GUIComponent;
 
+/**
+ * Exactly like {@link Pin}, but {@link #setRelPos(double, double) setRelPos(...)} is public.
+ * 
+ * @author Daniel Kirschten
+ */
 public class MovablePin extends Pin
 {
 	public MovablePin(GUIComponent component, String name, int logicWidth, double relX, double relY)
