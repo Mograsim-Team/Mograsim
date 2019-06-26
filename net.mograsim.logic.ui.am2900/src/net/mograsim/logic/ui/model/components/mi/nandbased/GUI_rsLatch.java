@@ -1,6 +1,7 @@
 package net.mograsim.logic.ui.model.components.mi.nandbased;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUINandGate;
@@ -54,18 +55,41 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 	@Override
 	public void setHighLevelState(String stateID, Object newState)
 	{
-		if ("q".equals(stateID))
+		switch (stateID)
 		{
-			// TODO force this to happen without any Timeline updates in the meantime.
-			// Maybe make it a requirement of setHighLevelState that the Timeline is "halted" during a call?
-			BitVector newStateCasted = (BitVector) newState;
-			if (wireQ.hasLogicModelBinding())
-				wireQ.forceWireValues(newStateCasted);
-			// We set both wires because then both outputs go to their correct state at the same time, and to avoid problems when not both
-			// inputs are 1
-			if (wire_Q.hasLogicModelBinding())
-				wire_Q.forceWireValues(newStateCasted.not());
-		} else
+		case "q":
+			if (wireQ != null)
+			{
+				// TODO force this to happen without any Timeline updates in the meantime.
+				// Maybe make it a requirement of setHighLevelState that the Timeline is "halted" during a call?
+				Bit newStateCasted = (Bit) newState;
+				BitVector newStateVector = BitVector.of(newStateCasted);
+				if (wireQ.hasLogicModelBinding())
+					wireQ.forceWireValues(newStateVector);
+				// We set both wires because then both outputs go to their correct state at the same time, and to avoid problems when not
+				// both
+				// inputs are 1
+				if (wire_Q.hasLogicModelBinding())
+					wire_Q.forceWireValues(newStateVector.not());
+			}
+			break;
+		default:
 			super.setHighLevelState(stateID, newState);
+			break;
+		}
+	}
+
+	@Override
+	public Object getHighLevelState(String stateID)
+	{
+		switch (stateID)
+		{
+		case "q":
+			if (wireQ.hasLogicModelBinding())
+				return wireQ.getWireValues().getBit(0);
+			return null;
+		default:
+			return super.getHighLevelState(stateID);
+		}
 	}
 }

@@ -77,12 +77,30 @@ public class GUIManualSwitch extends GUIComponent
 	@Override
 	public void setHighLevelState(String stateID, Object newState)
 	{
-		if ("out".equals(stateID))
+		switch (stateID)
 		{
+		case "out":
 			if (logicSwitch != null)
 				logicSwitch.setToValueOf((Bit) newState);
-		} else
+			break;
+		default:
 			super.setHighLevelState(stateID, newState);
+			break;
+		}
+	}
+
+	@Override
+	public Object getHighLevelState(String stateID)
+	{
+		switch (stateID)
+		{
+		case "out":
+			if (logicSwitch != null)
+				return logicSwitch.getValue();
+			return null;
+		default:
+			return super.getHighLevelState(stateID);
+		}
 	}
 
 	private void registerLogicObs(LogicObservable observable)

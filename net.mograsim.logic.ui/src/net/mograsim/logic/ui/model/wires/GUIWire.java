@@ -327,6 +327,15 @@ public class GUIWire
 		end.getWire().forceValues(values);
 	}
 
+	/**
+	 * If this {@link GUIWire} has a logic model binding, delegates to {@link ReadEnd#getValues()} for the {@link ReadEnd} corresponding to
+	 * this {@link GUIWire}.
+	 */
+	public BitVector getWireValues()
+	{
+		return end.getValues();
+	}
+
 	// listeners
 
 	// @formatter:off
