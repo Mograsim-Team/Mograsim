@@ -23,6 +23,9 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 
 	private BitVector(Bit[] bits)
 	{
+		for (Bit bit : bits)
+			if (bit == null)
+				throw new NullPointerException();
 		this.bits = Objects.requireNonNull(bits);
 	}
 
