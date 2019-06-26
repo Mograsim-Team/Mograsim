@@ -312,6 +312,8 @@ public class GUIWire
 
 	/**
 	 * Returns whether this {@link GUIWire} has a logic model binding or not.
+	 * 
+	 * @author Daniel Kirschten
 	 */
 	public boolean hasLogicModelBinding()
 	{
@@ -321,6 +323,8 @@ public class GUIWire
 	/**
 	 * If this {@link GUIWire} has a logic model binding, delegates to {@link Wire#forceValues(BitVector)} for the {@link Wire}
 	 * corresponding to this {@link GUIWire}.
+	 * 
+	 * @author Daniel Kirschten
 	 */
 	public void forceWireValues(BitVector values)
 	{
@@ -330,6 +334,8 @@ public class GUIWire
 	/**
 	 * If this {@link GUIWire} has a logic model binding, delegates to {@link ReadEnd#getValues()} for the {@link ReadEnd} corresponding to
 	 * this {@link GUIWire}.
+	 * 
+	 * @author Daniel Kirschten
 	 */
 	public BitVector getWireValues()
 	{
