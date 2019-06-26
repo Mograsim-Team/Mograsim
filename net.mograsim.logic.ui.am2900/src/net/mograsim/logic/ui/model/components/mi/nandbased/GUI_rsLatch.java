@@ -1,6 +1,7 @@
 package net.mograsim.logic.ui.model.components.mi.nandbased;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUINandGate;
 import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
@@ -10,6 +11,8 @@ import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
 public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 {
+	private GUIWire wireQ, wire_Q;
+
 	public GUI_rsLatch(ViewModelModifiable model)
 	{
 		super(model, 1, "_rsLatch");
@@ -44,7 +47,25 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, nand2.getPin("Y"), cp2, new Point(65, 22.5));
 		new GUIWire(submodelModifiable, cp1, nand2.getPin("A"), new Point[0]);
 		new GUIWire(submodelModifiable, cp2, nand1.getPin("B"), new Point(65, 42.5), new Point(5, 42.5), new Point(5, 22.5));
-		new GUIWire(submodelModifiable, cp1, Q, new Point(35, 17.5), new Point(35, 7.5), new Point(65, 7.5), new Point(65, 12.5));
-		new GUIWire(submodelModifiable, cp2, _Q, new Point[0]);
+		wireQ = new GUIWire(submodelModifiable, cp1, Q, new Point(35, 17.5), new Point(35, 7.5), new Point(65, 7.5), new Point(65, 12.5));
+		wire_Q = new GUIWire(submodelModifiable, cp2, _Q, new Point[0]);
+	}
+
+	@Override
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		if ("q".equals(stateID))
+		{
+			// TODO force this to happen without any Timeline updates in the meantime.
+			// Maybe make it a requirement of setHighLevelState that the Timeline is "halted" during a call?
+			BitVector newStateCasted = (BitVector) newState;
+			if (wireQ.hasLogicModelBinding())
+				wireQ.forceWireValues(newStateCasted);
+			// We set both wires because then both outputs go to their correct state at the same time, and to avoid problems when not both
+			// inputs are 1
+			if (wire_Q.hasLogicModelBinding())
+				wire_Q.forceWireValues(newStateCasted.not());
+		} else
+			super.setHighLevelState(stateID, newState);
 	}
 }
