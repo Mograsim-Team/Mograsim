@@ -10,6 +10,8 @@ import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
 public class GUIdlatch extends SimpleRectangularSubmodelComponent
 {
+	private GUI_rsLatch _rsLatch;
+
 	public GUIdlatch(ViewModelModifiable model)
 	{
 		super(model, 1, "GUIdlatch");
@@ -29,7 +31,7 @@ public class GUIdlatch extends SimpleRectangularSubmodelComponent
 
 		GUINandGate nand1 = new GUINandGate(submodelModifiable, 1);
 		GUINandGate nand2 = new GUINandGate(submodelModifiable, 1);
-		GUI_rsLatch _rsLatch = new GUI_rsLatch(submodelModifiable);
+		_rsLatch = new GUI_rsLatch(submodelModifiable);
 
 		WireCrossPoint cp1 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cp2 = new WireCrossPoint(submodelModifiable, 1);
@@ -50,5 +52,31 @@ public class GUIdlatch extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, nand2.getPin("Y"), _rsLatch.getPin("_R"), new Point(40, 37.5), new Point(40, 22.5));
 		new GUIWire(submodelModifiable, _rsLatch.getPin("Q"), Q, new Point[0]);
 		new GUIWire(submodelModifiable, _rsLatch.getPin("_Q"), _Q);
+	}
+
+	@Override
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		switch (stateID)
+		{
+		case "q":
+			_rsLatch.setHighLevelState("q", newState);
+			break;
+		default:
+			super.setHighLevelState(stateID, newState);
+			break;
+		}
+	}
+
+	@Override
+	public Object getHighLevelState(String stateID)
+	{
+		switch (stateID)
+		{
+		case "q":
+			return _rsLatch.getHighLevelState("q");
+		default:
+			return super.getHighLevelState(stateID);
+		}
 	}
 }

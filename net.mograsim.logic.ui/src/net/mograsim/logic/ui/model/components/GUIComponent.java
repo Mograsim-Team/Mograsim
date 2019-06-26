@@ -146,6 +146,12 @@ public abstract class GUIComponent
 		throw new IllegalArgumentException("No high level state with ID " + stateID);
 	}
 
+	@SuppressWarnings("static-method") // this method is intended to be overridden
+	public Object getHighLevelState(String stateID)
+	{
+		throw new IllegalArgumentException("No high level state with ID " + stateID);
+	}
+
 	// "graphical" operations
 
 	/**

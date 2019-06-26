@@ -104,9 +104,11 @@ public class LogicUICanvas extends ZoomableCanvas
 		Text valueText = new Text(debugShell, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
 		valueText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		Button send = new Button(debugShell, SWT.PUSH);
-		Text lastError = new Text(debugShell, SWT.READ_ONLY);
-		lastError.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		send.setText("Send!");
+		Button get = new Button(debugShell, SWT.PUSH);
+		get.setText("Get!");
+		Text output = new Text(debugShell, SWT.READ_ONLY);
+		output.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		Listener sendAction = e ->
 		{
 			try
@@ -123,16 +125,30 @@ public class LogicUICanvas extends ZoomableCanvas
 				else
 					throw new RuntimeException("No value type selected");
 				target.setHighLevelState(stateIDText.getText(), value);
-				lastError.setText("Success!");
+				output.setText("Success!");
 			}
 			catch (Exception x)
 			{
-				lastError.setText(x.getMessage());
+				output.setText(x.getClass().getSimpleName() + (x.getMessage() == null ? "" : ": " + x.getMessage()));
 			}
 		};
-		stateIDText.addListener(SWT.DefaultSelection, sendAction);
-		valueText.addListener(SWT.DefaultSelection, sendAction);
+		Listener getAction = e ->
+		{
+			try
+			{
+				if (componentSelector.getSelectionIndex() >= componentsByItemIndex.size())
+					throw new RuntimeException("No valid component selected");
+				output.setText("Success! Value: \r\n" + componentsByItemIndex.get(componentSelector.getSelectionIndex()).getHighLevelState(stateIDText.getText()));
+			}
+			catch (Exception x)
+			{
+				output.setText(x.getClass().getSimpleName() + (x.getMessage() == null ? "" : ": " + x.getMessage()));
+			}
+		};
 		send.addListener(SWT.Selection, sendAction);
+		valueText.addListener(SWT.DefaultSelection, sendAction);
+		get.addListener(SWT.Selection, getAction);
+		stateIDText.addListener(SWT.DefaultSelection, getAction);
 		debugShell.open();
 	}
 

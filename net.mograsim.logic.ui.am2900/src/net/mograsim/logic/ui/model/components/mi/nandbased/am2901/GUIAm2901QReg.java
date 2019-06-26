@@ -1,6 +1,8 @@
 package net.mograsim.logic.ui.model.components.mi.nandbased.am2901;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIand;
@@ -11,6 +13,11 @@ import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
 public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 {
+	private GUIdff dff1;
+	private GUIdff dff2;
+	private GUIdff dff3;
+	private GUIdff dff4;
+
 	public GUIAm2901QReg(ViewModelModifiable model)
 	{
 		super(model, 1, "GUIAm2901QReg");
@@ -35,10 +42,10 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 		Pin Q4 = getSubmodelPin("Q4");
 
 		GUIand and = new GUIand(submodelModifiable);
-		GUIdff dff1 = new GUIdff(submodelModifiable);
-		GUIdff dff2 = new GUIdff(submodelModifiable);
-		GUIdff dff3 = new GUIdff(submodelModifiable);
-		GUIdff dff4 = new GUIdff(submodelModifiable);
+		dff1 = new GUIdff(submodelModifiable);
+		dff2 = new GUIdff(submodelModifiable);
+		dff3 = new GUIdff(submodelModifiable);
+		dff4 = new GUIdff(submodelModifiable);
 
 		WireCrossPoint cpC1 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpC2 = new WireCrossPoint(submodelModifiable, 1);
@@ -71,5 +78,59 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, dff2.getPin("Q"), Q2, new Point[0]);
 		new GUIWire(submodelModifiable, dff3.getPin("Q"), Q3, new Point[0]);
 		new GUIWire(submodelModifiable, dff4.getPin("Q"), Q4, new Point[0]);
+	}
+
+	@Override
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		switch (stateID)
+		{
+		case "q1":
+			dff1.setHighLevelState("q", newState);
+			break;
+		case "q2":
+			dff2.setHighLevelState("q", newState);
+			break;
+		case "q3":
+			dff3.setHighLevelState("q", newState);
+			break;
+		case "q4":
+			dff4.setHighLevelState("q", newState);
+			break;
+		case "q":
+			BitVector newStateCasted = (BitVector) newState;
+			setHighLevelState("q1", newStateCasted.getBit(0));
+			setHighLevelState("q2", newStateCasted.getBit(1));
+			setHighLevelState("q3", newStateCasted.getBit(2));
+			setHighLevelState("q4", newStateCasted.getBit(3));
+			break;
+		default:
+			super.setHighLevelState(stateID, newState);
+			break;
+		}
+	}
+
+	@Override
+	public Object getHighLevelState(String stateID)
+	{
+		switch (stateID)
+		{
+		case "q1":
+			return dff1.getHighLevelState("q");
+		case "q2":
+			return dff2.getHighLevelState("q");
+		case "q3":
+			return dff3.getHighLevelState("q");
+		case "q4":
+			return dff4.getHighLevelState("q");
+		case "q":
+			Bit q1 = (Bit) getHighLevelState("q1");
+			Bit q2 = (Bit) getHighLevelState("q2");
+			Bit q3 = (Bit) getHighLevelState("q3");
+			Bit q4 = (Bit) getHighLevelState("q4");
+			return BitVector.of(q1, q2, q3, q4);
+		default:
+			return super.getHighLevelState(stateID);
+		}
 	}
 }
