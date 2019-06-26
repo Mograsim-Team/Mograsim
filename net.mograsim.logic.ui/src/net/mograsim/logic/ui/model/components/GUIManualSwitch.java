@@ -9,6 +9,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
@@ -71,6 +72,17 @@ public class GUIManualSwitch extends GUIComponent
 	public boolean hasLogicModelBinding()
 	{
 		return logicSwitch != null;
+	}
+
+	@Override
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		if ("out".equals(stateID))
+		{
+			if (logicSwitch != null)
+				logicSwitch.setToValueOf((Bit) newState);
+		} else
+			super.setHighLevelState(stateID, newState);
 	}
 
 	private void registerLogicObs(LogicObservable observable)
