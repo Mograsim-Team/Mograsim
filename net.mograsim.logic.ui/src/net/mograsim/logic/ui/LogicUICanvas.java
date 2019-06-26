@@ -1,15 +1,31 @@
 package net.mograsim.logic.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
+import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.components.GUIComponent;
+import net.mograsim.logic.ui.model.components.SubmodelComponent;
+import net.mograsim.logic.ui.model.components.SubmodelInterface;
+import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 import net.mograsim.preferences.Preferences;
 
 /**
@@ -19,6 +35,8 @@ import net.mograsim.preferences.Preferences;
  */
 public class LogicUICanvas extends ZoomableCanvas
 {
+	private static final boolean OPEN_DEBUG_SETHIGHLEVELSTATE_SHELL = false;
+
 	private final ViewModel model;
 
 	public LogicUICanvas(Composite parent, int style, ViewModel model)
@@ -38,6 +56,9 @@ public class LogicUICanvas extends ZoomableCanvas
 		model.addRedrawListener(this::redrawThreadsafe);
 
 		addListener(SWT.MouseDown, this::mouseDown);
+
+		if (OPEN_DEBUG_SETHIGHLEVELSTATE_SHELL)
+			openDebugSetHighLevelStateShell(model);
 	}
 
 	private void mouseDown(Event e)
@@ -53,4 +74,86 @@ public class LogicUICanvas extends ZoomableCanvas
 				}
 		}
 	}
+
+	private void openDebugSetHighLevelStateShell(ViewModel model)
+	{
+		Shell debugShell = new Shell();
+		debugShell.setLayout(new GridLayout(2, false));
+		new Label(debugShell, SWT.NONE).setText("Target component: ");
+		Combo componentSelector = new Combo(debugShell, SWT.DROP_DOWN | SWT.READ_ONLY);
+		componentSelector.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		List<GUIComponent> componentsByItemIndex = new ArrayList<>();
+		model.addComponentAddedListener(c -> recalculateComponentSelector(componentsByItemIndex, componentSelector, model));
+		model.addComponentRemovedListener(c -> recalculateComponentSelector(componentsByItemIndex, componentSelector, model));
+		recalculateComponentSelector(componentsByItemIndex, componentSelector, model);
+		new Label(debugShell, SWT.NONE).setText("Target state ID: ");
+		Text stateIDText = new Text(debugShell, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		stateIDText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		new Label(debugShell, SWT.NONE).setText("Value type: ");
+		Composite radioGroup = new Composite(debugShell, SWT.NONE);
+		radioGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		GridLayout radioGroupLayout = new GridLayout(2, false);
+		radioGroupLayout.marginHeight = 0;
+		radioGroupLayout.marginWidth = 0;
+		radioGroup.setLayout(radioGroupLayout);
+		Button radioBit = new Button(radioGroup, SWT.RADIO);
+		radioBit.setText("Single bit");
+		Button radioBitVector = new Button(radioGroup, SWT.RADIO);
+		radioBitVector.setText("Bitvector");
+		new Label(debugShell, SWT.NONE).setText("Value string representation: ");
+		Text valueText = new Text(debugShell, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		valueText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		Button send = new Button(debugShell, SWT.PUSH);
+		Text lastError = new Text(debugShell, SWT.READ_ONLY);
+		lastError.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		send.setText("Send!");
+		Listener sendAction = e ->
+		{
+			try
+			{
+				if (componentSelector.getSelectionIndex() >= componentsByItemIndex.size())
+					throw new RuntimeException("No valid component selected");
+				GUIComponent target = componentsByItemIndex.get(componentSelector.getSelectionIndex());
+				String valueString = valueText.getText();
+				Object value;
+				if (radioBit.getSelection())
+					value = Bit.parse(valueString);
+				else if (radioBitVector.getSelection())
+					value = BitVector.parse(valueString);
+				else
+					throw new RuntimeException("No value type selected");
+				target.setHighLevelState(stateIDText.getText(), value);
+				lastError.setText("Success!");
+			}
+			catch (Exception x)
+			{
+				lastError.setText(x.getMessage());
+			}
+		};
+		stateIDText.addListener(SWT.DefaultSelection, sendAction);
+		valueText.addListener(SWT.DefaultSelection, sendAction);
+		send.addListener(SWT.Selection, sendAction);
+		debugShell.open();
+	}
+
+	private void recalculateComponentSelector(List<GUIComponent> componentsByItemIndex, Combo componentSelector, ViewModel model)
+	{
+		componentsByItemIndex.clear();
+		componentSelector.setItems();
+		addComponentSelectorItems(componentsByItemIndex, "", componentSelector, model);
+	}
+
+	private void addComponentSelectorItems(List<GUIComponent> componentsByItemIndex, String base, Combo componentSelector, ViewModel model)
+	{
+		for (GUIComponent c : model.getComponents())
+			if (!(c instanceof WireCrossPoint || c instanceof SubmodelInterface))
+			{
+				String item = base + c.getIdentifier();
+				componentsByItemIndex.add(c);
+				componentSelector.add(item);
+				if (c instanceof SubmodelComponent)
+					addComponentSelectorItems(componentsByItemIndex, item + " -> ", componentSelector, ((SubmodelComponent) c).submodel);
+			}
+	}
+
 }
