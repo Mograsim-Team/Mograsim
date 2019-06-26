@@ -1,6 +1,7 @@
 package net.mograsim.logic.ui.model.components;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -13,15 +14,13 @@ import net.mograsim.logic.ui.util.JsonHandler;
 public class GUIComponentCreator
 {
 	private final static Map<String, String> componentMapping;
-	private final static String componentMappingPath = "../net.mograsim.logic.ui.am2900/components/mapping.json"; // TODO: manage this
-																													// somewhere else
 
 	static
 	{
 		Map<String, String> tmp;
-		try
+		try (InputStream s = GUIComponentCreator.class.getResourceAsStream("./mapping.json"))
 		{
-			tmp = JsonHandler.readJson(componentMappingPath, Map.class);
+			tmp = JsonHandler.readJson(s, Map.class);
 		}
 		catch (IOException e)
 		{
