@@ -1,9 +1,11 @@
 package net.mograsim.logic.ui.util;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,7 +16,18 @@ public class JsonHandler
 
 	public static <T> T readJson(String path, Class<T> type) throws IOException
 	{
-		try (FileReader reader = new FileReader(path); BufferedReader bf = new BufferedReader(reader))
+		try (FileInputStream jsonStream = new FileInputStream(path))
+		{
+			return readJson(jsonStream, type);
+		}
+	}
+
+	/**
+	 * @param input The Stream is closed after being read
+	 */
+	public static <T> T readJson(InputStream input, Class<T> type) throws IOException
+	{
+		try (InputStreamReader reader = new InputStreamReader(input); BufferedReader bf = new BufferedReader(reader))
 		{
 			String json = bf.lines().dropWhile(s -> s.length() == 0 || s.charAt(0) != '{').reduce("", (x, y) -> x.concat(y));
 			T params = parser.fromJson(json, type);
