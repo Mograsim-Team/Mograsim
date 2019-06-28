@@ -14,7 +14,7 @@ import net.mograsim.logic.ui.model.ViewModel;
  * 
  * @author Daniel Kirschten
  */
-public class LogicUIStandaloneGUI
+public class LogicUIStandaloneGUI implements Runnable
 {
 	private final Display display;
 	private final Shell shell;
@@ -42,6 +42,7 @@ public class LogicUIStandaloneGUI
 	/**
 	 * Opens the UI shell. Returns when the shell is closed.
 	 */
+	@Override
 	public void run()
 	{
 		shell.open();
