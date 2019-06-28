@@ -73,37 +73,7 @@ public class GUIWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, WireCrossPoint pin2)
-	{
-		this(model, pin1, pin2, (Point[]) null);
-	}
-
-	/**
-	 * Creates a new {@link GUIWire} with automatic interpolation.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, Pin pin2)
-	{
-		this(model, pin1, pin2, (Point[]) null);
-	}
-
-	/**
-	 * Creates a new {@link GUIWire} with automatic interpolation.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	public GUIWire(ViewModelModifiable model, Pin pin1, WireCrossPoint pin2)
-	{
-		this(model, pin1, pin2, (Point[]) null);
-	}
-
-	/**
-	 * Creates a new {@link GUIWire} with automatic interpolation.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2)
+	public GUIWire(ViewModelModifiable model, ConnectionPoint pin1, ConnectionPoint pin2)
 	{
 		this(model, pin1, pin2, (Point[]) null);
 	}
@@ -113,7 +83,7 @@ public class GUIWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, WireCrossPoint pin2, Point... path)
+	public GUIWire(ViewModelModifiable model, ConnectionPoint pin1, ConnectionPoint pin2, Point... path)
 	{
 		this(model, pin1.getPin(), pin2.getPin(), path);
 	}
@@ -123,27 +93,7 @@ public class GUIWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, Pin pin2, Point... path)
-	{
-		this(model, pin1.getPin(), pin2, path);
-	}
-
-	/**
-	 * Creates a new {@link GUIWire} without automatic interpolation.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	public GUIWire(ViewModelModifiable model, Pin pin1, WireCrossPoint pin2, Point... path)
-	{
-		this(model, pin1, pin2.getPin(), path);
-	}
-
-	/**
-	 * Creates a new {@link GUIWire} without automatic interpolation.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2, Point... path)
+	GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2, Point... path)
 	{
 		logicObs = (i) -> callRedrawListeners();
 		this.model = model;
