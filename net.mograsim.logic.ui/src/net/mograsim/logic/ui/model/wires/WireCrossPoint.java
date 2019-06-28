@@ -21,7 +21,7 @@ import net.mograsim.logic.ui.model.components.SimpleRectangularGUIGate;
  * 
  * @author Daniel Kirschten
  */
-public class WireCrossPoint extends GUIComponent
+public class WireCrossPoint extends GUIComponent implements ConnectionPoint
 {
 	private static final int CIRCLE_RADIUS = 1;
 	private static final int CIRCLE_DIAM = CIRCLE_RADIUS * 2;
@@ -53,6 +53,7 @@ public class WireCrossPoint extends GUIComponent
 
 	// pins
 
+	@Override
 	public Pin getPin()
 	{
 		return pin;
