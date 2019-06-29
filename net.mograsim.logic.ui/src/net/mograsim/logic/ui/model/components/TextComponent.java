@@ -13,6 +13,7 @@ import net.mograsim.preferences.Preferences;
 public class TextComponent extends GUIComponent
 {
 	private final String text;
+	private Point textExtent;
 
 	public TextComponent(ViewModelModifiable model, String text)
 	{
@@ -23,11 +24,19 @@ public class TextComponent extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		Point textExtent = gc.textExtent(text);
+		textExtent = gc.textExtent(text);
 		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
 		if (textColor != null)
 			gc.setForeground(textColor);
 		gc.drawText(text, getPosX() - textExtent.x / 2, getPosY() - textExtent.y / 2, true);
+	}
+
+	@Override
+	public Rectangle getBounds()
+	{
+		if (textExtent == null)
+			return super.getBounds();
+		return new Rectangle(getPosX() - textExtent.x / 2, getPosY() - textExtent.y / 2, textExtent.x, textExtent.y);
 	}
 
 	static
