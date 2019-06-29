@@ -1,4 +1,4 @@
-package net.mograsim.plugin.asm.editor;
+package net.mograsim.plugin.asm.editor.rules;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.text.rules.ICharacterScanner;
@@ -6,9 +6,7 @@ import org.eclipse.jface.text.rules.IRule;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
-import net.mograsim.plugin.asm.AsmNumberUtil;
-
-public class AsmNumberRule implements IRule
+public class AsmLabelRule implements IRule
 {
 
 	/** The token to be returned when this rule is successful */
@@ -19,7 +17,7 @@ public class AsmNumberRule implements IRule
 	 *
 	 * @param token the token to be returned
 	 */
-	public AsmNumberRule(IToken token)
+	public AsmLabelRule(IToken token)
 	{
 		Assert.isNotNull(token);
 		fToken = token;
@@ -28,25 +26,21 @@ public class AsmNumberRule implements IRule
 	@Override
 	public IToken evaluate(ICharacterScanner scanner)
 	{
-		int i = 1;
 		int c = scanner.read();
-		if (!AsmNumberUtil.isStart(c))
-			return abort(scanner, i);
-		StringBuilder sb = new StringBuilder();
-		sb.appendCodePoint(c);
-		while (true)
+		int i = 1;
+		if (Character.isJavaIdentifierStart(c))
 		{
-			c = scanner.read();
-			i++;
-			if (AsmNumberUtil.isPart(c))
-				sb.appendCodePoint(c);
-			else
-				break;
-		}
-		if (!AsmNumberUtil.isNumber(sb))
+			do
+			{
+				c = scanner.read();
+				i++;
+			} while (Character.isJavaIdentifierPart(c));
+			if (c == ':')
+				return fToken;
 			return abort(scanner, i);
+		}
 		scanner.unread();
-		return fToken;
+		return Token.UNDEFINED;
 	}
 
 	private static IToken abort(ICharacterScanner scanner, int i)
@@ -55,5 +49,4 @@ public class AsmNumberRule implements IRule
 			scanner.unread();
 		return Token.UNDEFINED;
 	}
-
 }
