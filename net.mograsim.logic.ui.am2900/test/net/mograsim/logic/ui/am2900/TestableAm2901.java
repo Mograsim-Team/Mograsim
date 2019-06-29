@@ -1,5 +1,14 @@
 package net.mograsim.logic.ui.am2900;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
+
 public interface TestableAm2901
 {
 	void setup();
@@ -30,7 +39,9 @@ public interface TestableAm2901
 
 	void setRAM_3(String val_1_bit);
 
-	void toogleClock();
+	void clockOn(boolean isClockOn);
+
+	void setDirectly(Register r, String val_4_bit);
 
 	String getQ_0();
 
@@ -53,6 +64,22 @@ public interface TestableAm2901
 	String getOverflow();
 
 	String getY();
+
+	String getDirectly(Register r);
+
+	default void assertRunSuccess()
+	{
+		assertEquals(Result.SUCCESS, run());
+	}
+
+	default void assertFullCycleSuccess()
+	{
+		assertRunSuccess();
+		clockOn(false);
+		assertRunSuccess();
+		clockOn(true);
+		assertRunSuccess();
+	}
 
 	public enum Result
 	{
@@ -87,5 +114,33 @@ public interface TestableAm2901
 	public enum Am2901_Src
 	{
 		AQ, AB, ZQ, ZB, ZA, DA, DQ, DZ;
+	}
+
+	public enum Register
+	{
+		r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, rA, rB, rC, rD, rE, rF, Q;
+
+		public String toBitString()
+		{
+			if (this.ordinal() > 0xF)
+				throw new UnsupportedOperationException();
+			return TestUtil.to4bitBin(this.ordinal());
+		}
+
+		public static Stream<Register> stream()
+		{
+			return Arrays.stream(values());
+		}
+	}
+
+	public static class RegisterProvider implements ArgumentsProvider
+	{
+
+		@Override
+		public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception
+		{
+			return Register.stream().map(Arguments::of);
+		}
+
 	}
 }
