@@ -1,7 +1,5 @@
 package net.mograsim.plugin.asm.editor;
 
-import java.util.Set;
-
 import org.eclipse.jface.resource.ColorRegistry;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.text.IDocument;
@@ -10,14 +8,14 @@ import org.eclipse.jface.text.presentation.PresentationReconciler;
 import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.rules.EndOfLineRule;
 import org.eclipse.jface.text.rules.IRule;
-import org.eclipse.jface.text.rules.IWordDetector;
 import org.eclipse.jface.text.rules.RuleBasedScanner;
 import org.eclipse.jface.text.rules.Token;
-import org.eclipse.jface.text.rules.WordRule;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.themes.ITheme;
 
-import net.mograsim.plugin.AsmOps;
+import net.mograsim.plugin.asm.editor.rules.AsmLabelRule;
+import net.mograsim.plugin.asm.editor.rules.AsmNumberRule;
+import net.mograsim.plugin.asm.editor.rules.InstructionRule;
 
 public class AsmPresentationReconciler extends PresentationReconciler
 {
@@ -36,33 +34,7 @@ public class AsmPresentationReconciler extends PresentationReconciler
 		rules = new IRule[4];
 		rules[0] = new EndOfLineRule(";", comment);
 		rules[1] = new AsmLabelRule(label);
-		WordRule ops = new WordRule(new IWordDetector()
-		{
-
-			@Override
-			public boolean isWordStart(char c)
-			{
-				return Character.isJavaIdentifierStart(c);
-			}
-
-			@Override
-			public boolean isWordPart(char c)
-			{
-				return Character.isJavaIdentifierPart(c);
-			}
-		}, std, true)
-		{
-			{
-				AsmOps.addListener(this::update);
-			}
-
-			void update(Set<String> words)
-			{
-				fWords.clear();
-				words.forEach(s -> fWords.put(s, op));
-			}
-		};
-		rules[2] = ops;
+		rules[2] = new InstructionRule(op, true);
 		rules[3] = new AsmNumberRule(number);
 
 		scanner.setRules(rules);
