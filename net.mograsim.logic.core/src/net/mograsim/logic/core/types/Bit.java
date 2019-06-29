@@ -18,6 +18,11 @@ public enum Bit implements StrictLogicType<Bit>
 		this.symbol = symbol;
 	}
 
+	public boolean isBinary()
+	{
+		return this == ONE || this == ZERO;
+	}
+
 	@Override
 	public Bit and(Bit other)
 	{
