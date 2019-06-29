@@ -21,7 +21,6 @@ public class ManualSwitch extends Component implements LogicObservable
 {
 	private Collection<LogicObserver> observers;
 	private ReadWriteEnd output;
-	private boolean isOn;
 
 	public ManualSwitch(Timeline timeline, ReadWriteEnd output)
 	{
@@ -44,36 +43,32 @@ public class ManualSwitch extends Component implements LogicObservable
 
 	public void toggle()
 	{
-		setState(!isOn);
+		setState(!isOn());
 	}
 
 	public void setState(boolean isOn)
 	{
-		if (this.isOn == isOn)
-			return;
-		this.isOn = isOn;
-		output.feedSignals(getValue());
-		notifyObservers();
+		setToValueOf(isOn ? Bit.ONE : Bit.ZERO);
 	}
 
 	public void setToValueOf(Bit bit)
 	{
-		if (bit == Bit.ONE)
-			switchOn();
-		else if (bit == Bit.ZERO)
-			switchOff();
-		else
+		if (!bit.isBinary())
 			throw new IllegalArgumentException("Cannot set ManualSwitch to the value of Bit " + bit);
+		if (bit == output.getInputValue())
+			return;
+		output.feedSignals(bit);
+		notifyObservers();
 	}
 
 	public boolean isOn()
 	{
-		return isOn;
+		return output.getInputValue() == Bit.ONE;
 	}
 
 	public Bit getValue()
 	{
-		return isOn ? Bit.ONE : Bit.ZERO;
+		return output.getInputValue();
 	}
 
 	@Override
