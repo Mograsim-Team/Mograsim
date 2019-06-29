@@ -62,7 +62,7 @@ public class TestableAm2901Impl implements TestableAm2901
 			timeline.executeNext();
 			if (!timeline.hasNext())
 			{
-				System.out.println("run() took " + eventCounter + " events");
+//				System.out.println("run() took " + eventCounter + " events");
 				return Result.SUCCESS;
 			}
 		}

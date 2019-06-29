@@ -49,8 +49,6 @@ public class Am2901Test
 
 	void setRegisterToZero(Register r)
 	{
-		System.out.println("Setting reg " + r + " to zero");
-
 		am2901.setD("0000");
 		am2901.setSrc(DZ);
 		am2901.setFunc(AND);
