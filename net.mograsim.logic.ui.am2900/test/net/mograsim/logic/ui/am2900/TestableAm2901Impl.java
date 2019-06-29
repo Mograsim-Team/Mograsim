@@ -114,6 +114,7 @@ public class TestableAm2901Impl implements TestableAm2901
 		for (String id : am2901.getOutputPinNames())
 		{
 			GUIBitDisplay bd = new GUIBitDisplay(viewModel);
+//			bd.addRedrawListener(() -> System.out.println(id + " " + bd.getBitDisplay().getDisplayedValue()));
 			new GUIWire(viewModel, am2901.getPin(id), bd.getInputPin());
 			idDisplayMap.put(id, bd);
 		}
@@ -127,8 +128,6 @@ public class TestableAm2901Impl implements TestableAm2901
 			setField(entry.getKey().replaceAll("\\+|=", "_"), entry.getValue().getManualSwitch());
 		for (var entry : idDisplayMap.entrySet())
 			setField(entry.getKey().replaceAll("\\+|=", "_"), entry.getValue().getBitDisplay());
-		// Switch Clock off first
-		C.switchOff();
 
 		// Debug code
 		HashSet<GUIWire> wiresIncludingSubmodels = new HashSet<>();
@@ -146,7 +145,6 @@ public class TestableAm2901Impl implements TestableAm2901
 		{
 			if (debugWires)
 			{
-				System.out.println(w);
 				wireDebugChangeSet.add(w.toString());
 			}
 		}));
@@ -247,9 +245,9 @@ public class TestableAm2901Impl implements TestableAm2901
 	}
 
 	@Override
-	public void toogleClock()
+	public void clockOn(boolean isClockOn)
 	{
-		C.toggle();
+		C.setState(isClockOn);
 	}
 
 	@Override
@@ -346,5 +344,24 @@ public class TestableAm2901Impl implements TestableAm2901
 			val >>>= 1;
 		}
 		return mutator.toBitVector();
+	}
+
+	@Override
+	public void setDirectly(Register r, String val_4_bit)
+	{
+		am2901.setHighLevelState(regToStateID(r), BitVector.parse(val_4_bit));
+	}
+
+	@Override
+	public String getDirectly(Register r)
+	{
+		return am2901.getHighLevelState(regToStateID(r)).toString();
+	}
+
+	private static String regToStateID(Register r)
+	{
+		if (r == Register.Q)
+			return "qreg.q";
+		return "regs.c" + r.toBitString() + ".q";
 	}
 }
