@@ -203,7 +203,7 @@ public abstract class GUIComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public Rectangle getBounds()
+	public final Rectangle getBounds()
 	{
 		return new Rectangle(bounds.x, bounds.y, bounds.width, bounds.height);
 	}
