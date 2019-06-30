@@ -41,6 +41,6 @@ public class TextComponent extends GUIComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(NoLogicAdapter.forClass(TextComponent.class));
+		ViewLogicModelAdapter.addComponentAdapter(new NoLogicAdapter<>(TextComponent.class));
 	}
 }
