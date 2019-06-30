@@ -78,10 +78,16 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, dff2.getPin("Q"), Q2, new Point[0]);
 		new GUIWire(submodelModifiable, dff3.getPin("Q"), Q3, new Point[0]);
 		new GUIWire(submodelModifiable, dff4.getPin("Q"), Q4, new Point[0]);
+
+		addAtomicHighLevelStateID("q1");
+		addAtomicHighLevelStateID("q2");
+		addAtomicHighLevelStateID("q3");
+		addAtomicHighLevelStateID("q4");
+		addAtomicHighLevelStateID("q");
 	}
 
 	@Override
-	public void setHighLevelState(String stateID, Object newState)
+	public void setAtomicHighLevelState(String stateID, Object newState)
 	{
 		switch (stateID)
 		{
@@ -105,13 +111,13 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 			setHighLevelState("q4", newStateCasted.getBit(3));
 			break;
 		default:
-			super.setHighLevelState(stateID, newState);
-			break;
+			// should not happen because we tell SubmodelComponent to only allow these state IDs.
+			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
 		}
 	}
 
 	@Override
-	public Object getHighLevelState(String stateID)
+	public Object getAtomicHighLevelState(String stateID)
 	{
 		switch (stateID)
 		{
@@ -130,7 +136,8 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 			Bit q4 = (Bit) getHighLevelState("q4");
 			return BitVector.of(q1, q2, q3, q4);
 		default:
-			return super.getHighLevelState(stateID);
+			// should not happen because we tell SubmodelComponent to only allow these state IDs.
+			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
 		}
 	}
 }

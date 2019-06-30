@@ -16,8 +16,6 @@ import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
 public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 {
-	private GUIram4 ram;
-	private GUIAm2901QReg qreg;
 
 	public GUIAm2901(ViewModelModifiable model)
 	{
@@ -79,12 +77,12 @@ public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 		GUIAm2901ALUInclSourceDecodeInclFunctionDecode alu = new GUIAm2901ALUInclSourceDecodeInclFunctionDecode(submodelModifiable);
 		GUIor4 Fneq0 = new GUIor4(submodelModifiable);
 		GUINandGate notFneq0 = new GUINandGate(submodelModifiable, 1);
-		ram = new GUIram4(submodelModifiable);
+		GUIram4 ram = new GUIram4(submodelModifiable);
 		GUIdlatch4 QAlatch = new GUIdlatch4(submodelModifiable);
 		GUIdlatch4 QBlatch = new GUIdlatch4(submodelModifiable);
 		GUIsel3_4 ramDsel = new GUIsel3_4(submodelModifiable);
 		GUIsel3_4 qregDsel = new GUIsel3_4(submodelModifiable);
-		qreg = new GUIAm2901QReg(submodelModifiable);
+		GUIAm2901QReg qreg = new GUIAm2901QReg(submodelModifiable);
 
 		WireCrossPoint cpC1 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cpC2 = new WireCrossPoint(submodelModifiable, 1);
@@ -342,54 +340,8 @@ public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpFneq0, notFneq0.getPin("A"), new Point(315, 445));
 		new GUIWire(submodelModifiable, cpFneq0, notFneq0.getPin("B"), new Point(315, 455));
 		new GUIWire(submodelModifiable, notFneq0.getPin("Y"), Feq0, new Point[0]);
-	}
 
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		switch (stateID)
-		{
-		default:
-			int indexOfDot = stateID.indexOf('.');
-			if (indexOfDot != -1)
-			{
-				switch (stateID.substring(0, indexOfDot))
-				{
-				case "regs":
-					ram.setHighLevelState(stateID.substring(indexOfDot + 1), newState);
-					break;
-				case "qreg":
-					qreg.setHighLevelState(stateID.substring(indexOfDot + 1), newState);
-					break;
-				default:
-					super.setHighLevelState(stateID, newState);
-					break;
-				}
-			} else
-				super.setHighLevelState(stateID, newState);
-		}
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		switch (stateID)
-		{
-		default:
-			int indexOfDot = stateID.indexOf('.');
-			if (indexOfDot != -1)
-			{
-				switch (stateID.substring(0, indexOfDot))
-				{
-				case "regs":
-					return ram.getHighLevelState(stateID.substring(indexOfDot + 1));
-				case "qreg":
-					return qreg.getHighLevelState(stateID.substring(indexOfDot + 1));
-				default:
-					return super.getHighLevelState(stateID);
-				}
-			}
-			return super.getHighLevelState(stateID);
-		}
+		addHighLevelStateSubcomponentID("regs", ram);
+		addHighLevelStateSubcomponentID("qreg", qreg);
 	}
 }

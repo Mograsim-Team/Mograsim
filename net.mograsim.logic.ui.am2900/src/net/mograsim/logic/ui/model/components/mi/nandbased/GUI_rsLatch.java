@@ -50,10 +50,12 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cp2, nand1.getPin("B"), new Point(65, 42.5), new Point(5, 42.5), new Point(5, 22.5));
 		wireQ = new GUIWire(submodelModifiable, cp1, Q, new Point(35, 17.5), new Point(35, 7.5), new Point(65, 7.5), new Point(65, 12.5));
 		wire_Q = new GUIWire(submodelModifiable, cp2, _Q, new Point[0]);
+
+		addAtomicHighLevelStateID("q");
 	}
 
 	@Override
-	public void setHighLevelState(String stateID, Object newState)
+	public void setAtomicHighLevelState(String stateID, Object newState)
 	{
 		switch (stateID)
 		{
@@ -74,22 +76,23 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 			}
 			break;
 		default:
-			super.setHighLevelState(stateID, newState);
-			break;
+			// should not happen because we tell SubmodelComponent to only allow these state IDs.
+			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
 		}
 	}
 
 	@Override
-	public Object getHighLevelState(String stateID)
+	public Object getAtomicHighLevelState(String stateID)
 	{
 		switch (stateID)
 		{
 		case "q":
 			if (wireQ.hasLogicModelBinding())
-				return wireQ.getWireValues().getBit(0).join(wire_Q.getWireValues().getBit(0).not());
+				return wireQ.getWireValues().getBit(0);
 			return null;
 		default:
-			return super.getHighLevelState(stateID);
+			// should not happen because we tell SubmodelComponent to only allow these state IDs.
+			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
 		}
 	}
 }

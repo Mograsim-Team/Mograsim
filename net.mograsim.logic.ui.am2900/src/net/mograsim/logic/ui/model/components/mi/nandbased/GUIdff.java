@@ -63,10 +63,12 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cp4, nand2.getPin("A"), new Point(100, 65));
 		new GUIWire(submodelModifiable, _rsLatch2.getPin("Q"), Q);
 		new GUIWire(submodelModifiable, _rsLatch2.getPin("_Q"), _Q);
+
+		addAtomicHighLevelStateID("q");
 	}
 
 	@Override
-	public void setHighLevelState(String stateID, Object newState)
+	public void setAtomicHighLevelState(String stateID, Object newState)
 	{
 		switch (stateID)
 		{
@@ -74,20 +76,21 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 			_rsLatch.setHighLevelState("q", newState);
 			break;
 		default:
-			super.setHighLevelState(stateID, newState);
-			break;
+			// should not happen because we tell SubmodelComponent to only allow these state IDs.
+			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
 		}
 	}
 
 	@Override
-	public Object getHighLevelState(String stateID)
+	public Object getAtomicHighLevelState(String stateID)
 	{
 		switch (stateID)
 		{
 		case "q":
 			return _rsLatch.getHighLevelState("q");
 		default:
-			return super.getHighLevelState(stateID);
+			// should not happen because we tell SubmodelComponent to only allow these state IDs.
+			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
 		}
 	}
 }
