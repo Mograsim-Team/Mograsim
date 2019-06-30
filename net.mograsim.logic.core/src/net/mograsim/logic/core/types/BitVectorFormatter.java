@@ -16,7 +16,7 @@ public class BitVectorFormatter
 	{
 		if (bitVector == null)
 			return "null";
-		return bitVector.toString();
+		return bitVector.toBitStringMSBFirst();
 	}
 
 	// TODO doesn't this belong to logic.ui?

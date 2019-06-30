@@ -286,13 +286,18 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return Arrays.equals(bits, offset, offset + other.length(), other.bits, 0, other.length());
 	}
 
+	@Override
+	public String toString()
+	{
+		return toBitStringMSBFirst();
+	}
+
 	/**
 	 * All {@link Bit}s symbols concatenated together
 	 * 
 	 * @see #parse(String)
 	 */
-	@Override
-	public String toString()
+	public String toBitStringLSBFirst()
 	{
 		StringBuilder sb = new StringBuilder(bits.length);
 		for (Bit bit : bits)
@@ -301,16 +306,45 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	}
 
 	/**
+	 * All {@link Bit}s symbols concatenated together, with the MSB coming first (like a binary number)
+	 * 
+	 * @see #parse(String)
+	 */
+	public String toBitStringMSBFirst()
+	{
+		StringBuilder sb = new StringBuilder(bits.length);
+		for (Bit bit : bits)
+			sb.append(bit);
+		sb.reverse();
+		return sb.toString();
+	}
+
+	/**
 	 * Parses a String containing solely {@link Bit} symbols
 	 * 
-	 * @see #toString()
+	 * @see #toBitStringLSBFirst()
 	 */
-	public static BitVector parse(String s)
+	public static BitVector parseLSBFirst(String s)
 	{
 		Bit[] values = new Bit[s.length()];
 		for (int i = 0; i < s.length(); i++)
 		{
 			values[i] = Bit.parse(s, i);
+		}
+		return new BitVector(values);
+	}
+
+	/**
+	 * Parses a String containing solely {@link Bit} symbols, with the MSB coming first (like a binary number)
+	 * 
+	 * @see #toBitStringLSBFirst()
+	 */
+	public static BitVector parseMSBFirst(String s)
+	{
+		Bit[] values = new Bit[s.length()];
+		for (int i = 0, j = s.length() - 1; j >= 0; i++, j--)
+		{
+			values[i] = Bit.parse(s, j);
 		}
 		return new BitVector(values);
 	}
