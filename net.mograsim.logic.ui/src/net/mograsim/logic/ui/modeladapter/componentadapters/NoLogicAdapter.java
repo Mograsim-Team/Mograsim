@@ -33,14 +33,4 @@ public class NoLogicAdapter<T extends GUIComponent> implements ComponentAdapter<
 	{
 		// do nothing
 	}
-
-	/**
-	 * Creates a new {@link NoLogicAdapter} for the given GUIComponent class.
-	 * 
-	 * @author Christian Femers
-	 */
-	public static <T extends GUIComponent> NoLogicAdapter<T> forClass(Class<T> guiComponentClass)
-	{
-		return new NoLogicAdapter<>(guiComponentClass);
-	}
 }
