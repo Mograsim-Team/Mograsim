@@ -28,7 +28,7 @@ public class TextComponent extends GUIComponent
 		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
 		if (textColor != null)
 			gc.setForeground(textColor);
-		gc.drawText(text, getPosX() - textExtent.x / 2, getPosY() - textExtent.y / 2, true);
+		gc.drawText(text, getPosX(), getPosY(), true);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class TextComponent extends GUIComponent
 	{
 		if (textExtent == null)
 			return super.getBounds();
-		return new Rectangle(getPosX() - textExtent.x / 2, getPosY() - textExtent.y / 2, textExtent.x, textExtent.y);
+		return new Rectangle(getPosX(), getPosY(), textExtent.x, textExtent.y);
 	}
 
 	static
