@@ -113,9 +113,10 @@ public class LogicUICanvas extends ZoomableCanvas
 		{
 			try
 			{
-				if (componentSelector.getSelectionIndex() >= componentsByItemIndex.size())
-					throw new RuntimeException("No valid component selected");
-				GUIComponent target = componentsByItemIndex.get(componentSelector.getSelectionIndex());
+				int componentIndex = componentSelector.getSelectionIndex();
+				if (componentIndex < 0 || componentIndex >= componentsByItemIndex.size())
+					throw new RuntimeException("No component selected");
+				GUIComponent target = componentsByItemIndex.get(componentIndex);
 				String valueString = valueText.getText();
 				Object value;
 				if (radioBit.getSelection())
