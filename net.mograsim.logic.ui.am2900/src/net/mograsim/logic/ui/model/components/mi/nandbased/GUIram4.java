@@ -302,7 +302,7 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 			BitVector newStateCasted = (BitVector) newState;
 			setHighLevelState("c00.q", newStateCasted.subVector(0, 16));
 			setHighLevelState("c01.q", newStateCasted.subVector(16, 32));
-			setHighLevelState("c11.q", newStateCasted.subVector(32, 48));
+			setHighLevelState("c10.q", newStateCasted.subVector(32, 48));
 			setHighLevelState("c11.q", newStateCasted.subVector(48, 64));
 			break;
 		default:
