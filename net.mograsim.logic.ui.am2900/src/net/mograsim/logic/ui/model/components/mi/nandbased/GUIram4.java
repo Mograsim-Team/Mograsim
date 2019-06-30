@@ -294,20 +294,20 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 		{
 		case "q":
 			BitVector q0000 = (BitVector) getHighLevelState("c0000.q");
-			BitVector q0001 = (BitVector) getHighLevelState("c0100.q");
-			BitVector q0010 = (BitVector) getHighLevelState("c1000.q");
-			BitVector q0011 = (BitVector) getHighLevelState("c1100.q");
-			BitVector q0100 = (BitVector) getHighLevelState("c0001.q");
+			BitVector q0001 = (BitVector) getHighLevelState("c0001.q");
+			BitVector q0010 = (BitVector) getHighLevelState("c0010.q");
+			BitVector q0011 = (BitVector) getHighLevelState("c0011.q");
+			BitVector q0100 = (BitVector) getHighLevelState("c0100.q");
 			BitVector q0101 = (BitVector) getHighLevelState("c0101.q");
-			BitVector q0110 = (BitVector) getHighLevelState("c1001.q");
-			BitVector q0111 = (BitVector) getHighLevelState("c1101.q");
-			BitVector q1000 = (BitVector) getHighLevelState("c0010.q");
-			BitVector q1001 = (BitVector) getHighLevelState("c0110.q");
+			BitVector q0110 = (BitVector) getHighLevelState("c0110.q");
+			BitVector q0111 = (BitVector) getHighLevelState("c0111.q");
+			BitVector q1000 = (BitVector) getHighLevelState("c1000.q");
+			BitVector q1001 = (BitVector) getHighLevelState("c1001.q");
 			BitVector q1010 = (BitVector) getHighLevelState("c1010.q");
-			BitVector q1011 = (BitVector) getHighLevelState("c1110.q");
-			BitVector q1100 = (BitVector) getHighLevelState("c0011.q");
-			BitVector q1101 = (BitVector) getHighLevelState("c1011.q");
-			BitVector q1110 = (BitVector) getHighLevelState("c0111.q");
+			BitVector q1011 = (BitVector) getHighLevelState("c1011.q");
+			BitVector q1100 = (BitVector) getHighLevelState("c1100.q");
+			BitVector q1101 = (BitVector) getHighLevelState("c1101.q");
+			BitVector q1110 = (BitVector) getHighLevelState("c1110.q");
 			BitVector q1111 = (BitVector) getHighLevelState("c1111.q");
 			return q0000.concat(q0001).concat(q0010).concat(q0011).concat(q0100).concat(q0101).concat(q0110).concat(q0111).concat(q1000)
 					.concat(q1001).concat(q1010).concat(q1011).concat(q1100).concat(q1101).concat(q1110).concat(q1111);
@@ -319,25 +319,25 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 				switch (cellID)
 				{
 				case "c0000":
-				case "c0100":
-				case "c1000":
-				case "c1100":
-					return cell00.getHighLevelState(cellID.substring(0, 3) + stateID.substring(indexOfDot));
 				case "c0001":
-				case "c0101":
-				case "c1001":
-				case "c1101":
-					return cell01.getHighLevelState(cellID.substring(0, 3) + stateID.substring(indexOfDot));
 				case "c0010":
-				case "c0110":
-				case "c1010":
-				case "c1110":
-					return cell10.getHighLevelState(cellID.substring(0, 3) + stateID.substring(indexOfDot));
 				case "c0011":
+					return cell00.getHighLevelState('c' + cellID.substring(3, 5) + stateID.substring(indexOfDot));
+				case "c0100":
+				case "c0101":
+				case "c0110":
 				case "c0111":
+					return cell01.getHighLevelState('c' + cellID.substring(3, 5) + stateID.substring(indexOfDot));
+				case "c1000":
+				case "c1001":
+				case "c1010":
 				case "c1011":
+					return cell10.getHighLevelState('c' + cellID.substring(3, 5) + stateID.substring(indexOfDot));
+				case "c1100":
+				case "c1101":
+				case "c1110":
 				case "c1111":
-					return cell11.getHighLevelState(cellID.substring(0, 3) + stateID.substring(indexOfDot));
+					return cell11.getHighLevelState('c' + cellID.substring(3, 5) + stateID.substring(indexOfDot));
 				default:
 					return super.getHighLevelState(stateID);
 				}
@@ -354,20 +354,20 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 		case "q":
 			BitVector newStateCasted = (BitVector) newState;
 			setHighLevelState("c0000.q", newStateCasted.subVector(0, 4));
-			setHighLevelState("c0100.q", newStateCasted.subVector(4, 8));
-			setHighLevelState("c1000.q", newStateCasted.subVector(8, 12));
-			setHighLevelState("c1100.q", newStateCasted.subVector(12, 16));
-			setHighLevelState("c0001.q", newStateCasted.subVector(16, 20));
+			setHighLevelState("c0001.q", newStateCasted.subVector(4, 8));
+			setHighLevelState("c0010.q", newStateCasted.subVector(8, 12));
+			setHighLevelState("c0011.q", newStateCasted.subVector(12, 16));
+			setHighLevelState("c0100.q", newStateCasted.subVector(16, 20));
 			setHighLevelState("c0101.q", newStateCasted.subVector(20, 24));
-			setHighLevelState("c1001.q", newStateCasted.subVector(24, 28));
-			setHighLevelState("c1101.q", newStateCasted.subVector(28, 32));
-			setHighLevelState("c0010.q", newStateCasted.subVector(32, 36));
-			setHighLevelState("c0110.q", newStateCasted.subVector(36, 40));
+			setHighLevelState("c0110.q", newStateCasted.subVector(24, 28));
+			setHighLevelState("c0111.q", newStateCasted.subVector(28, 32));
+			setHighLevelState("c1000.q", newStateCasted.subVector(32, 36));
+			setHighLevelState("c1001.q", newStateCasted.subVector(36, 40));
 			setHighLevelState("c1010.q", newStateCasted.subVector(40, 44));
-			setHighLevelState("c1110.q", newStateCasted.subVector(44, 48));
-			setHighLevelState("c0011.q", newStateCasted.subVector(48, 52));
-			setHighLevelState("c1011.q", newStateCasted.subVector(52, 56));
-			setHighLevelState("c0111.q", newStateCasted.subVector(56, 60));
+			setHighLevelState("c1011.q", newStateCasted.subVector(44, 48));
+			setHighLevelState("c1100.q", newStateCasted.subVector(48, 52));
+			setHighLevelState("c1101.q", newStateCasted.subVector(52, 56));
+			setHighLevelState("c1110.q", newStateCasted.subVector(56, 60));
 			setHighLevelState("c1111.q", newStateCasted.subVector(60, 64));
 			break;
 		default:
@@ -378,28 +378,28 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 				switch (cellID)
 				{
 				case "c0000":
-				case "c0100":
-				case "c1000":
-				case "c1100":
-					cell00.setHighLevelState(cellID.substring(0, 3) + stateID.substring(indexOfDot), newState);
-					break;
 				case "c0001":
-				case "c0101":
-				case "c1001":
-				case "c1101":
-					cell01.setHighLevelState(cellID.substring(0, 3) + stateID.substring(indexOfDot), newState);
-					break;
 				case "c0010":
-				case "c0110":
-				case "c1010":
-				case "c1110":
-					cell10.setHighLevelState(cellID.substring(0, 3) + stateID.substring(indexOfDot), newState);
-					break;
 				case "c0011":
+					cell00.setHighLevelState('c' + cellID.substring(3, 5) + stateID.substring(indexOfDot), newState);
+					break;
+				case "c0100":
+				case "c0101":
+				case "c0110":
 				case "c0111":
+					cell01.setHighLevelState('c' + cellID.substring(3, 5) + stateID.substring(indexOfDot), newState);
+					break;
+				case "c1000":
+				case "c1001":
+				case "c1010":
 				case "c1011":
+					cell10.setHighLevelState('c' + cellID.substring(3, 5) + stateID.substring(indexOfDot), newState);
+					break;
+				case "c1100":
+				case "c1101":
+				case "c1110":
 				case "c1111":
-					cell11.setHighLevelState(cellID.substring(0, 3) + stateID.substring(indexOfDot), newState);
+					cell11.setHighLevelState('c' + cellID.substring(3, 5) + stateID.substring(indexOfDot), newState);
 					break;
 				default:
 					super.setHighLevelState(stateID, newState);
