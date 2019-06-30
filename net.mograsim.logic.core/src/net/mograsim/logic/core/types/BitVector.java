@@ -23,10 +23,10 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 
 	private BitVector(Bit[] bits)
 	{
+		this.bits = Objects.requireNonNull(bits);// do this first to "catch" bits==null before the foreach loop
 		for (Bit bit : bits)
 			if (bit == null)
 				throw new NullPointerException();
-		this.bits = Objects.requireNonNull(bits);
 	}
 
 	public static BitVector of(Bit... bits)
