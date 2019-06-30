@@ -100,7 +100,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		radioBit.setText("Single bit");
 		Button radioBitVector = new Button(radioGroup, SWT.RADIO);
 		radioBitVector.setText("Bitvector");
-		new Label(debugShell, SWT.NONE).setText("Value string representation: ");
+		new Label(debugShell, SWT.NONE).setText("Value string representation: \n(Bit vectors: MSBit...LSBit)");
 		Text valueText = new Text(debugShell, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
 		valueText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		Button send = new Button(debugShell, SWT.PUSH);
@@ -121,7 +121,7 @@ public class LogicUICanvas extends ZoomableCanvas
 				if (radioBit.getSelection())
 					value = Bit.parse(valueString);
 				else if (radioBitVector.getSelection())
-					value = BitVector.parse(valueString);
+					value = BitVector.parse(new StringBuilder(valueString).reverse().toString());
 				else
 					throw new RuntimeException("No value type selected");
 				target.setHighLevelState(stateIDText.getText(), value);
@@ -138,7 +138,8 @@ public class LogicUICanvas extends ZoomableCanvas
 			{
 				if (componentSelector.getSelectionIndex() >= componentsByItemIndex.size())
 					throw new RuntimeException("No valid component selected");
-				output.setText("Success! Value: \r\n" + componentsByItemIndex.get(componentSelector.getSelectionIndex()).getHighLevelState(stateIDText.getText()));
+				output.setText("Success! Value: \r\n"
+						+ componentsByItemIndex.get(componentSelector.getSelectionIndex()).getHighLevelState(stateIDText.getText()));
 			}
 			catch (Exception x)
 			{
