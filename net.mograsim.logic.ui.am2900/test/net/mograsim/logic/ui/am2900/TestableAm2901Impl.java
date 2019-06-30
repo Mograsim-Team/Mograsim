@@ -181,21 +181,23 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setReg_A(String val_4_bit)
 	{
-		var bits = BitVector.parse(val_4_bit);
-		A3.setToValueOf(bits.getBit(0));
-		A2.setToValueOf(bits.getBit(1));
-		A1.setToValueOf(bits.getBit(2));
-		A0.setToValueOf(bits.getBit(3));
+		// reverse because the BitVector.parse() expects the LSBit at the beginning and the MSBit at the end
+		var bits = BitVector.parse(new StringBuilder(val_4_bit).reverse().toString());
+		A3.setToValueOf(bits.getBit(3));
+		A2.setToValueOf(bits.getBit(2));
+		A1.setToValueOf(bits.getBit(1));
+		A0.setToValueOf(bits.getBit(0));
 	}
 
 	@Override
 	public void setReg_B(String val_4_bit)
 	{
-		var bits = BitVector.parse(val_4_bit);
-		B3.setToValueOf(bits.getBit(0));
-		B2.setToValueOf(bits.getBit(1));
-		B1.setToValueOf(bits.getBit(2));
-		B0.setToValueOf(bits.getBit(3));
+		// reverse because the BitVector.parse() expects the LSBit at the beginning and the MSBit at the end
+		var bits = BitVector.parse(new StringBuilder(val_4_bit).reverse().toString());
+		B3.setToValueOf(bits.getBit(3));
+		B2.setToValueOf(bits.getBit(2));
+		B1.setToValueOf(bits.getBit(1));
+		B0.setToValueOf(bits.getBit(0));
 	}
 
 	@Override
@@ -213,11 +215,12 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setD(String val_4_bit)
 	{
-		var bits = BitVector.parse(val_4_bit);
-		D4.setToValueOf(bits.getBit(0));
-		D3.setToValueOf(bits.getBit(1));
-		D2.setToValueOf(bits.getBit(2));
-		D1.setToValueOf(bits.getBit(3));
+		// reverse because the BitVector.parse() expects the LSBit at the beginning and the MSBit at the end
+		var bits = BitVector.parse(new StringBuilder(val_4_bit).reverse().toString());
+		D4.setToValueOf(bits.getBit(3));
+		D3.setToValueOf(bits.getBit(2));
+		D2.setToValueOf(bits.getBit(1));
+		D1.setToValueOf(bits.getBit(0));
 	}
 
 	@Override
@@ -317,7 +320,8 @@ public class TestableAm2901Impl implements TestableAm2901
 		var y2 = Y3.getDisplayedValue();
 		var y1 = Y2.getDisplayedValue();
 		var y0 = Y1.getDisplayedValue();
-		return y3.concat(y2).concat(y1).concat(y0).toString();
+		// reverse because BitVector.toString() returns the LSBit at the beginning and the MSBit at the end
+		return new StringBuilder(y0.concat(y1).concat(y2).concat(y3).toString()).reverse().toString();
 	}
 
 	private void setField(String name, Object value)
@@ -349,13 +353,15 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setDirectly(Register r, String val_4_bit)
 	{
-		am2901.setHighLevelState(regToStateID(r), BitVector.parse(val_4_bit));
+		// reverse because the BitVector.parse() expects the LSBit at the beginning and the MSBit at the end
+		am2901.setHighLevelState(regToStateID(r), BitVector.parse(new StringBuilder(val_4_bit).reverse().toString()));
 	}
 
 	@Override
 	public String getDirectly(Register r)
 	{
-		return am2901.getHighLevelState(regToStateID(r)).toString();
+		// reverse because BitVector.toString() returns the LSBit at the beginning and the MSBit at the end
+		return new StringBuilder(am2901.getHighLevelState(regToStateID(r)).toString()).reverse().toString();
 	}
 
 	private static String regToStateID(Register r)

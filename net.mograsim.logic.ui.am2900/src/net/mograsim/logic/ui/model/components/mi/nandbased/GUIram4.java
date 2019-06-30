@@ -10,11 +10,6 @@ import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 
 public class GUIram4 extends SimpleRectangularSubmodelComponent
 {
-	private GUIram2 cell00;
-	private GUIram2 cell01;
-	private GUIram2 cell10;
-	private GUIram2 cell11;
-
 	public GUIram4(ViewModelModifiable model)
 	{
 		super(model, 1, "GUIram4");
@@ -53,10 +48,10 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 		GUIdemux2   demuxA   = new GUIdemux2  (submodelModifiable);
 		GUIdemux2   demuxB   = new GUIdemux2  (submodelModifiable);
 		GUIand41    weAndB   = new GUIand41   (submodelModifiable);
-		  cell00   = new GUIram2    (submodelModifiable);
-		  cell01   = new GUIram2    (submodelModifiable);
-		  cell10   = new GUIram2    (submodelModifiable);
-		  cell11   = new GUIram2    (submodelModifiable);
+		GUIram2     cell00   = new GUIram2    (submodelModifiable);
+		GUIram2     cell01   = new GUIram2    (submodelModifiable);
+		GUIram2     cell10   = new GUIram2    (submodelModifiable);
+		GUIram2     cell11   = new GUIram2    (submodelModifiable);
 		GUIand41    andB00   = new GUIand41   (submodelModifiable);
 		GUIandor414 andorB01 = new GUIandor414(submodelModifiable);
 		GUIandor414 andorB10 = new GUIandor414(submodelModifiable);
@@ -287,8 +282,8 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 		//@formatter:on
 
 		addHighLevelStateSubcomponentID("c00", cell00);
-		addHighLevelStateSubcomponentID("c10", cell01);
-		addHighLevelStateSubcomponentID("c01", cell10);
+		addHighLevelStateSubcomponentID("c01", cell01);
+		addHighLevelStateSubcomponentID("c10", cell10);
 		addHighLevelStateSubcomponentID("c11", cell11);
 		addAtomicHighLevelStateID("q");
 	}
@@ -314,36 +309,11 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 	@Override
 	protected void setSubcomponentHighLevelState(String subcomponentID, String subcomponentHighLevelStateID, Object newState)
 	{
-		switch (subcomponentID)
-		{
-		case "c0000":
-		case "c0001":
-		case "c0010":
-		case "c0011":
-			cell00.setHighLevelState('c' + subcomponentID.substring(3, 5) + "." + subcomponentHighLevelStateID, newState);
-			break;
-		case "c1000":
-		case "c1001":
-		case "c1010":
-		case "c1011":
-			cell01.setHighLevelState('c' + subcomponentID.substring(3, 5) + "." + subcomponentHighLevelStateID, newState);
-			break;
-		case "c0100":
-		case "c0101":
-		case "c0110":
-		case "c0111":
-			cell10.setHighLevelState('c' + subcomponentID.substring(3, 5) + "." + subcomponentHighLevelStateID, newState);
-			break;
-		case "c1100":
-		case "c1101":
-		case "c1110":
-		case "c1111":
-			cell11.setHighLevelState('c' + subcomponentID.substring(3, 5) + "." + subcomponentHighLevelStateID, newState);
-			break;
-		default:
+		if (checkSubcomponentID(subcomponentID))
+			setHighLevelState(translateDirectCellAccess(subcomponentID, subcomponentHighLevelStateID), newState);
+		else
 			super.setSubcomponentHighLevelState(subcomponentID, subcomponentHighLevelStateID, newState);
-			break;
-		}
+
 	}
 
 	@Override
@@ -366,30 +336,25 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 	@Override
 	protected Object getSubcomponentHighLevelState(String subcomponentID, String subcomponentHighLevelStateID)
 	{
-		switch (subcomponentID)
-		{
-		case "c0000":
-		case "c0001":
-		case "c0010":
-		case "c0011":
-			return cell00.getHighLevelState('c' + subcomponentID.substring(3, 5) + "." + subcomponentHighLevelStateID);
-		case "c0100":
-		case "c0101":
-		case "c0110":
-		case "c0111":
-			return cell01.getHighLevelState('c' + subcomponentID.substring(3, 5) + "." + subcomponentHighLevelStateID);
-		case "c1000":
-		case "c1001":
-		case "c1010":
-		case "c1011":
-			return cell10.getHighLevelState('c' + subcomponentID.substring(3, 5) + "." + subcomponentHighLevelStateID);
-		case "c1100":
-		case "c1101":
-		case "c1110":
-		case "c1111":
-			return cell11.getHighLevelState('c' + subcomponentID.substring(3, 5) + "." + subcomponentHighLevelStateID);
-		default:
-			return super.getSubcomponentHighLevelState(subcomponentID, subcomponentHighLevelStateID);
-		}
+		if (checkSubcomponentID(subcomponentID))
+			return getHighLevelState(translateDirectCellAccess(subcomponentID, subcomponentHighLevelStateID));
+		return super.getSubcomponentHighLevelState(subcomponentID, subcomponentHighLevelStateID);
+	}
+
+	private static String translateDirectCellAccess(String subcomponentID, String subcomponentHighLevelStateID)
+	{
+		return 'c' + subcomponentID.substring(3, 5) + "." + subcomponentID.substring(0, 3) + '.' + subcomponentHighLevelStateID;
+	}
+
+	private static boolean checkSubcomponentID(String subcomponentID)
+	{
+		if (subcomponentID.length() != 5 || subcomponentID.charAt(0) != 'c')
+			return false;
+		char addr3 = subcomponentID.charAt(1);
+		char addr2 = subcomponentID.charAt(2);
+		char addr1 = subcomponentID.charAt(3);
+		char addr0 = subcomponentID.charAt(4);
+		return (addr3 == '0' || addr3 == '1') || (addr2 == '0' || addr2 == '1') || (addr1 == '0' || addr1 == '1')
+				|| (addr0 == '0' || addr0 == '1');
 	}
 }
