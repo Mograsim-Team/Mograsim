@@ -6,7 +6,7 @@ import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.ui.model.components.GUIBitDisplay;
+import net.mograsim.logic.ui.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 

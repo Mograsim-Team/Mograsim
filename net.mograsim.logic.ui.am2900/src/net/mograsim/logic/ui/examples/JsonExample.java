@@ -5,16 +5,16 @@ import java.util.HashMap;
 
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.GUIBitDisplay;
-import net.mograsim.logic.ui.model.components.GUIComponentCreator;
-import net.mograsim.logic.ui.model.components.GUICustomComponentCreator;
-import net.mograsim.logic.ui.model.components.GUIManualSwitch;
-import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
-import net.mograsim.logic.ui.model.components.SubmodelComponent;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams;
+import net.mograsim.logic.ui.model.components.atomic.GUIBitDisplay;
+import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIfulladder;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder;
+import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
+import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.ui.serializing.SubmodelComponentDeserializer;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
 
 public class JsonExample
 {
@@ -25,7 +25,7 @@ public class JsonExample
 
 	public static void mappingTest(ViewModelModifiable model)
 	{
-		GUIComponentCreator.create(model, "GUIAm2901", new HashMap<String, Object>());
+		IndirectGUIComponentCreator.create(model, "GUIAm2901", new HashMap<String, Object>());
 	}
 
 	private static class TestComponent extends SimpleRectangularSubmodelComponent
@@ -35,7 +35,7 @@ public class JsonExample
 			super(model, 1, "Test");
 			setSubmodelScale(.4);
 			setInputPins("Input pin #0");
-			GUICustomComponentCreator.create(submodelModifiable, "HalfAdder.json");
+			SubmodelComponentDeserializer.create(submodelModifiable, "HalfAdder.json");
 		}
 	}
 
@@ -44,7 +44,7 @@ public class JsonExample
 	{
 		TestComponent t = new TestComponent(model);
 		t.calculateParams().writeJson("Test.json");
-		SubmodelComponent c = GUICustomComponentCreator.create(model, "Test.json");
+		SubmodelComponent c = SubmodelComponentDeserializer.create(model, "Test.json");
 		c.moveTo(0, 50);
 	}
 
@@ -63,7 +63,7 @@ public class JsonExample
 			e.printStackTrace();
 		}
 
-		GUICustomComponentCreator.create(model, p);
+		SubmodelComponentDeserializer.create(model, p);
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
@@ -82,7 +82,7 @@ public class JsonExample
 			e.printStackTrace();
 		}
 
-		SimpleRectangularSubmodelComponent adder = (SimpleRectangularSubmodelComponent) GUICustomComponentCreator.create(model,
+		SimpleRectangularSubmodelComponent adder = (SimpleRectangularSubmodelComponent) SubmodelComponentDeserializer.create(model,
 				"FullAdder.json");
 
 		GUIManualSwitch swA = new GUIManualSwitch(model);
@@ -105,7 +105,7 @@ public class JsonExample
 		new GUIWire(model, adder.getPin("Y"), bdY.getInputPin());
 		new GUIWire(model, adder.getPin("Z"), bdZ.getInputPin());
 
-		SubmodelComponent adder2 = GUICustomComponentCreator.create(model, pC);
+		SubmodelComponent adder2 = SubmodelComponentDeserializer.create(model, pC);
 
 		swA = new GUIManualSwitch(model);
 		swA.moveTo(0, 70);

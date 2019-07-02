@@ -1,4 +1,4 @@
-package net.mograsim.logic.ui.model.components;
+package net.mograsim.logic.ui.serializing;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,17 +8,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.components.GUIComponent;
+import net.mograsim.logic.ui.model.components.atomic.SimpleRectangularGUIGate;
+import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 import net.mograsim.logic.ui.util.JsonHandler;
 
-public class GUIComponentCreator
+public class IndirectGUIComponentCreator
 {
 	private final static Map<String, String> componentMapping;
 
 	static
 	{
 		Map<String, String> tmp;
-		try (InputStream s = GUIComponentCreator.class.getResourceAsStream("./mapping.json"))
+		try (InputStream s = IndirectGUIComponentCreator.class.getResourceAsStream("./mapping.json"))
 		{
 			tmp = JsonHandler.readJson(s, Map.class);
 		}
@@ -43,7 +46,7 @@ public class GUIComponentCreator
 			} else if (path.startsWith("file:"))
 			{
 				path = path.substring(5);
-				return GUICustomComponentCreator.create(model, path);
+				return SubmodelComponentDeserializer.create(model, path);
 			} else
 				throw new IllegalArgumentException("Invalid submodel type! Type was neither prefixed by 'class:' nor by 'file:'");
 		}

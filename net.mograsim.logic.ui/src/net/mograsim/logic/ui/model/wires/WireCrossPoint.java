@@ -10,7 +10,7 @@ import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.ColorHelper;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
-import net.mograsim.logic.ui.model.components.SimpleRectangularGUIGate;
+import net.mograsim.logic.ui.model.components.atomic.SimpleRectangularGUIGate;
 
 /**
  * A {@link GUIComponent} with only one pin. Is used to create wires connecting more than two pins. <br>

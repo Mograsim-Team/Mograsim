@@ -1,4 +1,4 @@
-package net.mograsim.logic.ui.model.components;
+package net.mograsim.logic.ui.model.components.submodels;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,6 +17,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
 import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
@@ -37,7 +38,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	private final List<String> outputPinNames;
 	private final List<String> outputPinNamesUnmodifiable;
 
-	protected SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label)
+	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label)
 	{
 		super(model);
 		this.label = label;

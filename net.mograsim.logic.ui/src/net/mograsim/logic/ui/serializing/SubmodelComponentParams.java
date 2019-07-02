@@ -1,9 +1,10 @@
-package net.mograsim.logic.ui.model.components;
+package net.mograsim.logic.ui.serializing;
 
 import java.io.IOException;
 import java.util.Map;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.ui.util.JsonHandler;
 
 /**
@@ -11,42 +12,42 @@ import net.mograsim.logic.ui.util.JsonHandler;
  */
 public class SubmodelComponentParams
 {
-	String type, name;
-	double width, height;
-	InterfacePinParams[] interfacePins;
-	ComponentCompositionParams composition;
-	Map<String, Object> specialized;
+	public String type, name;
+	public double width, height;
+	public InterfacePinParams[] interfacePins;
+	public ComponentCompositionParams composition;
+	public Map<String, Object> specialized;
 
 	public static class InterfacePinParams
 	{
-		Point location;
-		String name;
-		int logicWidth;
+		public Point location;
+		public String name;
+		public int logicWidth;
 	}
 
 	public static class InnerWireParams
 	{
-		InnerPinParams pin1, pin2;
-		Point[] path;
+		public InnerPinParams pin1, pin2;
+		public Point[] path;
 	}
 
 	public static class InnerPinParams
 	{
-		int compId;
-		String pinName;
+		public int compId;
+		public String pinName;
 	}
 
 	public static class ComponentCompositionParams
 	{
-		double innerScale;
-		InnerComponentParams[] subComps;
-		InnerWireParams[] innerWires;
+		public double innerScale;
+		public InnerComponentParams[] subComps;
+		public InnerWireParams[] innerWires;
 
 		public static class InnerComponentParams
 		{
-			Point pos;
-			String name;
-			Map<String, Object> params;
+			public Point pos;
+			public String name;
+			public Map<String, Object> params;
 		}
 	}
 

@@ -2,10 +2,10 @@ package net.mograsim.logic.ui.examples;
 
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.GUIBitDisplay;
-import net.mograsim.logic.ui.model.components.GUIManualSwitch;
-import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
+import net.mograsim.logic.ui.model.components.atomic.GUIBitDisplay;
+import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.mi.nandbased.am2901.GUIAm2901;
+import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 
 public class SubmodelComponentTestbench

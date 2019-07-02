@@ -1,4 +1,4 @@
-package net.mograsim.logic.ui.model.components;
+package net.mograsim.logic.ui.model.components.atomic;
 
 import org.eclipse.swt.graphics.Color;
 
@@ -10,6 +10,7 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.BitDisplayAdapter;

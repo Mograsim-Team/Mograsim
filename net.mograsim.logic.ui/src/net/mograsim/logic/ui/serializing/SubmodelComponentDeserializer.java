@@ -1,4 +1,4 @@
-package net.mograsim.logic.ui.model.components;
+package net.mograsim.logic.ui.serializing;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,17 +6,20 @@ import java.util.Arrays;
 import java.util.Map;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerWireParams;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InterfacePinParams;
+import net.mograsim.logic.ui.model.components.GUIComponent;
+import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
+import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.MovablePin;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.ComponentCompositionParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InnerWireParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InterfacePinParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
 
 /**
  * Creates {@link SubmodelComponent}s from {@link SubmodelComponentParams}
  */
-public final class GUICustomComponentCreator
+public final class SubmodelComponentDeserializer
 {
 	private static final String rectC = SimpleRectangularSubmodelComponent.class.getSimpleName();
 
@@ -54,7 +57,7 @@ public final class GUICustomComponentCreator
 	 */
 	public static SubmodelComponent create(ViewModelModifiable model, SubmodelComponentParams params)
 	{
-		SubmodelComponent comp = null;
+		DeserializedSubmodelComponentI comp = null;
 		if (rectC.equals(params.type))
 		{
 			comp = createRectComponent(model, params);
@@ -64,19 +67,20 @@ public final class GUICustomComponentCreator
 		{
 			comp = createSubmodelComponent(model, params);
 		}
-		comp.identifierDelegate = () -> params.name;
+		comp.setIdentifierDelegate(() -> params.name);
 		initInnerComponents(comp, params.composition);
-		return comp;
+		return (SubmodelComponent) comp;
 	}
 
 	// May return null
 	@SuppressWarnings("unchecked")
-	private static SimpleRectangularSubmodelComponent createRectComponent(ViewModelModifiable model, SubmodelComponentParams params)
+	private static DeserializedSimpleRectangularSubmodelComponent createRectComponent(ViewModelModifiable model,
+			SubmodelComponentParams params)
 	{
 		try
 		{
 			Map<String, Object> m = params.specialized;
-			SimpleRectangularSubmodelComponent rect = new SimpleRectangularSubmodelComponent(model,
+			DeserializedSimpleRectangularSubmodelComponent rect = new DeserializedSimpleRectangularSubmodelComponent(model,
 					((Number) m.get(SimpleRectangularSubmodelComponent.kLogicWidth)).intValue(),
 					(String) m.get(SimpleRectangularSubmodelComponent.kLabel));
 			rect.setSubmodelScale(params.composition.innerScale);
@@ -97,10 +101,9 @@ public final class GUICustomComponentCreator
 		}
 	}
 
-	private static SubmodelComponent createSubmodelComponent(ViewModelModifiable model, SubmodelComponentParams params)
+	private static DeserializedSubmodelComponent createSubmodelComponent(ViewModelModifiable model, SubmodelComponentParams params)
 	{
-		// As SubmodelComponent is abstract, for now SubmodelComponents are instantiated as SimpleRectangularSubmodelComponents
-		SubmodelComponent comp = new SimpleRectangularSubmodelComponent(model, 0, "");
+		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model);
 		comp.setSubmodelScale(params.composition.innerScale);
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
@@ -112,23 +115,23 @@ public final class GUICustomComponentCreator
 	}
 
 	@SuppressWarnings("unused")
-	private static void initInnerComponents(SubmodelComponent comp, ComponentCompositionParams params)
+	private static void initInnerComponents(DeserializedSubmodelComponentI comp, ComponentCompositionParams params)
 	{
 		GUIComponent[] components = new GUIComponent[params.subComps.length];
 		for (int i = 0; i < components.length; i++)
 		{
 			InnerComponentParams cParams = params.subComps[i];
 			String path = cParams.name;
-			components[i] = GUIComponentCreator.create(comp.submodelModifiable, cParams.name, cParams.params);
+			components[i] = IndirectGUIComponentCreator.create(comp.getSubmodelModifiable(), cParams.name, cParams.params);
 			components[i].moveTo(cParams.pos.x, cParams.pos.y);
 		}
 
 		for (int i = 0; i < params.innerWires.length; i++)
 		{
 			InnerWireParams innerWire = params.innerWires[i];
-			new GUIWire(comp.submodelModifiable,
-					comp.submodelModifiable.getComponents().get(innerWire.pin1.compId).getPin(innerWire.pin1.pinName),
-					comp.submodelModifiable.getComponents().get(innerWire.pin2.compId).getPin(innerWire.pin2.pinName), innerWire.path);
+			new GUIWire(comp.getSubmodelModifiable(),
+					comp.getSubmodelModifiable().getComponents().get(innerWire.pin1.compId).getPin(innerWire.pin1.pinName),
+					comp.getSubmodelModifiable().getComponents().get(innerWire.pin2.compId).getPin(innerWire.pin2.pinName), innerWire.path);
 		}
 	}
 }

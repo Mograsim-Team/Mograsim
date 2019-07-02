@@ -1,4 +1,4 @@
-package net.mograsim.logic.ui.model.components;
+package net.mograsim.logic.ui.model.components.submodels;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,14 +17,16 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.LogicUIRenderer;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerPinParams;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InnerWireParams;
-import net.mograsim.logic.ui.model.components.SubmodelComponentParams.InterfacePinParams;
+import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.ComponentCompositionParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InnerPinParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InnerWireParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InterfacePinParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
 
 /**
  * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
@@ -464,6 +466,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		renderOutline(gc, visibleRegion);
 	}
 
+	// TODO make this a path
 	/**
 	 * Render the outline of this {@link SubmodelComponent}, e.g. the graphical elements that should stay visible if the submodel is drawn.
 	 * 
