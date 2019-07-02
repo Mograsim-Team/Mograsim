@@ -23,8 +23,8 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.ui.model.ViewModel;
 import net.mograsim.logic.ui.model.components.GUIComponent;
-import net.mograsim.logic.ui.model.components.SubmodelComponent;
-import net.mograsim.logic.ui.model.components.SubmodelInterface;
+import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.ui.model.components.submodels.SubmodelInterface;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 import net.mograsim.preferences.Preferences;
 

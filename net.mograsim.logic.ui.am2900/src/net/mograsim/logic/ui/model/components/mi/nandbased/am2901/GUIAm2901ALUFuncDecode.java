@@ -2,10 +2,10 @@ package net.mograsim.logic.ui.model.components.mi.nandbased.am2901;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.GUINandGate;
-import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
+import net.mograsim.logic.ui.model.components.atomic.GUINandGate;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIand;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUInand3;
+import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;

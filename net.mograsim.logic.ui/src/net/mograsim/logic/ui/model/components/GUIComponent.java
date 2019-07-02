@@ -13,6 +13,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
 
 /**
  * The base class for all GUI components.<br>

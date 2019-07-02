@@ -2,9 +2,9 @@ package net.mograsim.logic.ui.examples;
 
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.GUIBitDisplay;
-import net.mograsim.logic.ui.model.components.GUIManualSwitch;
-import net.mograsim.logic.ui.model.components.SimpleRectangularSubmodelComponent;
+import net.mograsim.logic.ui.model.components.atomic.GUIBitDisplay;
+import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
 
 public class ClickableSubmodelComponentsTest
 {

@@ -3,9 +3,9 @@ package net.mograsim.logic.ui.examples;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.GUIManualSwitch;
-import net.mograsim.logic.ui.model.components.GUINotGate;
-import net.mograsim.logic.ui.model.components.GUIOrGate;
+import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.ui.model.components.atomic.GUINotGate;
+import net.mograsim.logic.ui.model.components.atomic.GUIOrGate;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 

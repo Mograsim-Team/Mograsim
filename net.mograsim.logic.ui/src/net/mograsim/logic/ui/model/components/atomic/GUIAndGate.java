@@ -1,4 +1,4 @@
-package net.mograsim.logic.ui.model.components;
+package net.mograsim.logic.ui.model.components.atomic;
 
 import net.mograsim.logic.core.components.gates.AndGate;
 import net.mograsim.logic.ui.model.ViewModelModifiable;

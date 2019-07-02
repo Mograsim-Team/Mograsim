@@ -1,4 +1,4 @@
-package net.mograsim.logic.ui.model.components;
+package net.mograsim.logic.ui.model.components.atomic;
 
 import org.eclipse.swt.graphics.Color;
 
@@ -6,6 +6,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.NoLogicAdapter;
 import net.mograsim.preferences.Preferences;
