@@ -1,7 +1,5 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
-  "type": "SimpleRectangularSubmodelComponent",
-  "name": "GUIdff",
   "width": 35.0,
   "height": 20.0,
   "interfacePins": [
@@ -38,7 +36,7 @@ mograsim version: 0.1.2
       "logicWidth": 1
     }
   ],
-  "composition": {
+  "submodel": {
     "innerScale": 0.2,
     "subComps": [
       {
@@ -46,74 +44,61 @@ mograsim version: 0.1.2
           "x": 40.0,
           "y": 10.0
         },
-        "name": "GUI_rsLatch",
-        "params": {}
+        "id": "GUI_rsLatch"
       },
       {
         "pos": {
           "x": 40.0,
           "y": 40.0
         },
-        "name": "GUInand3",
-        "params": {}
+        "id": "GUInand3"
       },
       {
         "pos": {
           "x": 120.0,
           "y": 60.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 120.0,
           "y": 30.0
         },
-        "name": "GUI_rsLatch",
-        "params": {}
+        "id": "GUI_rsLatch"
       },
       {
         "pos": {
           "x": 9.0,
           "y": 24.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 19.0,
           "y": 64.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 99.0,
           "y": 34.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 99.0,
           "y": 44.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       }
     ],
     "innerWires": [
@@ -322,18 +307,6 @@ mograsim version: 0.1.2
           "pinName": "_Q"
         }
       }
-    ]
-  },
-  "specialized": {
-    "input_count": [
-      "C",
-      "D"
-    ],
-    "label": "GUIdff",
-    "logic_width": 1,
-    "output_count": [
-      "Q",
-      "_Q"
     ]
   }
 }

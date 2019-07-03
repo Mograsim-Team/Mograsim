@@ -1,7 +1,5 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
-  "type": "SimpleRectangularSubmodelComponent",
-  "name": "GUIfulladder",
   "width": 35.0,
   "height": 30.0,
   "interfacePins": [
@@ -46,7 +44,7 @@ mograsim version: 0.1.2
       "logicWidth": 1
     }
   ],
-  "composition": {
+  "submodel": {
     "innerScale": 0.4,
     "subComps": [
       {
@@ -54,26 +52,22 @@ mograsim version: 0.1.2
           "x": 5.0,
           "y": 40.0
         },
-        "name": "GUIhalfadder",
-        "params": {}
+        "id": "GUIhalfadder"
       },
       {
         "pos": {
           "x": 45.0,
           "y": 7.5
         },
-        "name": "GUIhalfadder",
-        "params": {}
+        "id": "GUIhalfadder"
       },
       {
         "pos": {
           "x": 57.5,
           "y": 40.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       }
     ],
     "innerWires": [
@@ -178,19 +172,6 @@ mograsim version: 0.1.2
           "pinName": "Z"
         }
       }
-    ]
-  },
-  "specialized": {
-    "input_count": [
-      "A",
-      "B",
-      "C"
-    ],
-    "label": "GUIfulladder",
-    "logic_width": 1,
-    "output_count": [
-      "Y",
-      "Z"
     ]
   }
 }

@@ -1,7 +1,5 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
-  "type": "SimpleRectangularSubmodelComponent",
-  "name": "GUIdemux2",
   "width": 35.0,
   "height": 40.0,
   "interfacePins": [
@@ -54,7 +52,7 @@ mograsim version: 0.1.2
       "logicWidth": 1
     }
   ],
-  "composition": {
+  "submodel": {
     "innerScale": 0.4,
     "subComps": [
       {
@@ -62,132 +60,108 @@ mograsim version: 0.1.2
           "x": 10.0,
           "y": 2.5
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 10.0,
           "y": 27.5
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 40.0,
           "y": 2.5
         },
-        "name": "GUIand",
-        "params": {}
+        "id": "GUIand"
       },
       {
         "pos": {
           "x": 40.0,
           "y": 27.5
         },
-        "name": "GUIand",
-        "params": {}
+        "id": "GUIand"
       },
       {
         "pos": {
           "x": 40.0,
           "y": 52.5
         },
-        "name": "GUIand",
-        "params": {}
+        "id": "GUIand"
       },
       {
         "pos": {
           "x": 40.0,
           "y": 77.5
         },
-        "name": "GUIand",
-        "params": {}
+        "id": "GUIand"
       },
       {
         "pos": {
           "x": 6.5,
           "y": 11.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 6.5,
           "y": 16.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 36.5,
           "y": 61.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 4.0,
           "y": 36.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 4.0,
           "y": 41.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 31.5,
           "y": 66.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 31.5,
           "y": 11.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 34.0,
           "y": 36.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       }
     ],
     "innerWires": [
@@ -510,20 +484,6 @@ mograsim version: 0.1.2
           "pinName": "Y11"
         }
       }
-    ]
-  },
-  "specialized": {
-    "input_count": [
-      "S0",
-      "S1"
-    ],
-    "label": "GUIdemux2",
-    "logic_width": 1,
-    "output_count": [
-      "Y00",
-      "Y01",
-      "Y10",
-      "Y11"
     ]
   }
 }
