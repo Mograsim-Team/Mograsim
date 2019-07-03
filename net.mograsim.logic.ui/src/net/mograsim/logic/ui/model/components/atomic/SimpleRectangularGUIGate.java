@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.eclipse.swt.graphics.Color;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -29,8 +32,6 @@ public class SimpleRectangularGUIGate extends GUIComponent
 
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
-
-	public static final String kLogicWidth = "logicWidth";
 
 	protected SimpleRectangularGUIGate(ViewModelModifiable model, int logicWidth, String label, boolean isInverted)
 	{
@@ -82,5 +83,19 @@ public class SimpleRectangularGUIGate extends GUIComponent
 			gc.setForeground(textColor);
 		gc.drawText(label, getPosX() + (rectWidth - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
+	}
+
+	// serializing
+
+	/**
+	 * {@link SimpleRectangularGUIGate}s implementation returns a {@link JsonPrimitive} of type int containing the {@link #logicWidth} of
+	 * this component.
+	 * 
+	 * @see GUIComponent#getParams()
+	 */
+	@Override
+	public JsonElement getParams()
+	{
+		return new JsonPrimitive(logicWidth);
 	}
 }

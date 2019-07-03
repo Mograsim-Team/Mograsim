@@ -4,6 +4,7 @@ import net.mograsim.logic.core.components.gates.NotGate;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.SimpleGateAdapter;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUINotGate extends SimpleRectangularGUIGate
 {
@@ -16,5 +17,6 @@ public class GUINotGate extends SimpleRectangularGUIGate
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUINotGate.class, (t, p, o, i) -> new NotGate(t, p, i[0], o)));
+		IndirectGUIComponentCreator.setComponentProvider(GUINotGate.class.getCanonicalName(), (m, p) -> new GUINotGate(m, p.getAsInt()));
 	}
 }

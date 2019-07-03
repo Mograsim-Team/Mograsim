@@ -1,5 +1,8 @@
 package net.mograsim.logic.ui.model.wires;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
@@ -105,9 +108,17 @@ public class WireCrossPoint extends GUIComponent implements ConnectionPoint
 		return end != null;
 	}
 
+	// serializing
+
+	@Override
+	public JsonElement getParams()
+	{
+		return new JsonPrimitive(pin.logicWidth);
+	}
+
 	static
 	{
-		// TODO read params
-		IndirectGUIComponentCreator.setComponentProvider(WireCrossPoint.class.getCanonicalName(), (m, p) -> new WireCrossPoint(m, 1));
+		IndirectGUIComponentCreator.setComponentProvider(WireCrossPoint.class.getCanonicalName(),
+				(m, p) -> new WireCrossPoint(m, p.getAsInt()));
 	}
 }

@@ -498,7 +498,9 @@ public abstract class SubmodelComponent extends GUIComponent
 		return false;
 	}
 
-	// serializing; TODO move to serializing classes
+	// serializing
+
+	// TODO move the methods below to serializing classes
 
 	public SubmodelComponentParams calculateParams()
 	{
@@ -548,6 +550,7 @@ public abstract class SubmodelComponent extends GUIComponent
 			comps[i] = inner;
 			inner.pos = new Point(component.getPosX(), component.getPosY());
 			inner.id = getIdentifier.apply(component);
+			inner.params = component.getParams();
 			i++;
 		}
 		params.subComps = comps;

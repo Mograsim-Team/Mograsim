@@ -4,6 +4,7 @@ import net.mograsim.logic.core.components.gates.AndGate;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.SimpleGateAdapter;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIAndGate extends SimpleRectangularGUIGate
 {
@@ -16,5 +17,6 @@ public class GUIAndGate extends SimpleRectangularGUIGate
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUIAndGate.class, AndGate::new));
+		IndirectGUIComponentCreator.setComponentProvider(GUIAndGate.class.getCanonicalName(), (m, p) -> new GUIAndGate(m, p.getAsInt()));
 	}
 }

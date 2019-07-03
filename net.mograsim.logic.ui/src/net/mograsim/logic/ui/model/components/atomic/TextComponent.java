@@ -2,6 +2,9 @@ package net.mograsim.logic.ui.model.components.atomic;
 
 import org.eclipse.swt.graphics.Color;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -9,6 +12,7 @@ import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.NoLogicAdapter;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.Preferences;
 
 //TODO clean size calculation mess
@@ -37,8 +41,17 @@ public class TextComponent extends GUIComponent
 		gc.drawText(text, getPosX(), getPosY(), true);
 	}
 
+	// serializing
+
+	@Override
+	public JsonElement getParams()
+	{
+		return new JsonPrimitive(text);
+	}
+
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new NoLogicAdapter<>(TextComponent.class));
+		IndirectGUIComponentCreator.setComponentProvider(TextComponent.class.getName(), (m, p) -> new TextComponent(m, p.getAsString()));
 	}
 }

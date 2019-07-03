@@ -14,6 +14,7 @@ import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.BitDisplayAdapter;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.Preferences;
 
 public class GUIBitDisplay extends GUIComponent
@@ -83,5 +84,6 @@ public class GUIBitDisplay extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new BitDisplayAdapter());
+		IndirectGUIComponentCreator.setComponentProvider(GUIBitDisplay.class.getCanonicalName(), (m, p) -> new GUIBitDisplay(m));
 	}
 }
