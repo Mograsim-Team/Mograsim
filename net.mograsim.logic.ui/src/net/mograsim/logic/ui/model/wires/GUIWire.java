@@ -14,8 +14,9 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.ui.ColorHelper;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.preferences.ColorDefinition;
+import net.mograsim.preferences.ColorManager;
 
 /**
  * A wire connecting exactly two {@link Pin}s.
@@ -226,7 +227,10 @@ public class GUIWire
 	 */
 	public void render(GeneralGC gc)
 	{
-		ColorHelper.executeWithDifferentForeground(gc, BitVectorFormatter.formatAsColor(end), () -> gc.drawPolyline(effectivePath));
+		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(end);
+		if (wireColor != null)
+			gc.setForeground(ColorManager.current().toColor(wireColor));
+		gc.drawPolyline(effectivePath);
 	}
 
 	/**

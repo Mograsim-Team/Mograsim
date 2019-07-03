@@ -7,10 +7,11 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.ui.ColorHelper;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.components.atomic.SimpleRectangularGUIGate;
+import net.mograsim.preferences.ColorDefinition;
+import net.mograsim.preferences.ColorManager;
 
 /**
  * A {@link GUIComponent} with only one pin. Is used to create wires connecting more than two pins. <br>
@@ -74,8 +75,10 @@ public class WireCrossPoint extends GUIComponent implements ConnectionPoint
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		ColorHelper.executeWithDifferentBackground(gc, BitVectorFormatter.formatAsColor(end),
-				() -> gc.fillOval(getPosX(), getPosY(), CIRCLE_DIAM, CIRCLE_DIAM));
+		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(end);
+		if (wireColor != null)
+			gc.setBackground(ColorManager.current().toColor(wireColor));
+		gc.fillOval(getPosX(), getPosY(), CIRCLE_DIAM, CIRCLE_DIAM);
 	}
 
 	// logic model binding
