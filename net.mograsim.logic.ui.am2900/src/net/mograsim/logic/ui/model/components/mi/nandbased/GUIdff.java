@@ -7,6 +7,7 @@ import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmode
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIdff extends SimpleRectangularSubmodelComponent
 {
@@ -92,5 +93,10 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 			// should not happen because we tell SubmodelComponent to only allow these state IDs.
 			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
 		}
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentProvider(GUIdff.class.getCanonicalName(), (m, p) -> new GUIdff(m));
 	}
 }

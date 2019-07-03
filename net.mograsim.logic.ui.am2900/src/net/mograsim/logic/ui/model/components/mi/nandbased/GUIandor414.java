@@ -5,6 +5,7 @@ import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIandor414 extends SimpleRectangularSubmodelComponent
 {
@@ -61,5 +62,10 @@ public class GUIandor414 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, or.getPin("Y2"), Y2, new Point(80, 52.5), new Point(80, 37.5));
 		new GUIWire(submodelModifiable, or.getPin("Y3"), Y3, new Point[0]);
 		new GUIWire(submodelModifiable, or.getPin("Y4"), Y4, new Point(80, 72.5), new Point(80, 87.5));
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentProvider(GUIandor414.class.getCanonicalName(), (m, p) -> new GUIandor414(m));
 	}
 }

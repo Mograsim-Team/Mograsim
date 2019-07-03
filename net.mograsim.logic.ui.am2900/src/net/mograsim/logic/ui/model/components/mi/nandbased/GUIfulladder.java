@@ -6,6 +6,7 @@ import net.mograsim.logic.ui.model.components.atomic.GUINandGate;
 import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIfulladder extends SimpleRectangularSubmodelComponent
 {
@@ -44,5 +45,10 @@ public class GUIfulladder extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, halfAY.getPin("_Z"), nandZ.getPin("A"), new Point(82.5, 22.5), new Point(82.5, 35),
 				new Point(52.5, 35), new Point(52.5, 45));
 		new GUIWire(submodelModifiable, nandZ.getPin("Y"), Z);
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentProvider(GUIfulladder.class.getCanonicalName(), (m, p) -> new GUIfulladder(m));
 	}
 }

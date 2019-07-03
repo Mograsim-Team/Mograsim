@@ -7,6 +7,7 @@ import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmode
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIxor extends SimpleRectangularSubmodelComponent
 {
@@ -55,5 +56,10 @@ public class GUIxor extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, nandYA.getPin("Y"), nandY.getPin("A"));
 		new GUIWire(submodelModifiable, nandYB.getPin("Y"), nandY.getPin("B"));
 		new GUIWire(submodelModifiable, nandY.getPin("Y"), Y);
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentProvider(GUIxor.class.getCanonicalName(), (m, p) -> new GUIxor(m));
 	}
 }

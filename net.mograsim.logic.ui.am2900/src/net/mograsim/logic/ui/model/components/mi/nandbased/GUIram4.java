@@ -7,6 +7,7 @@ import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmode
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIram4 extends SimpleRectangularSubmodelComponent
 {
@@ -356,5 +357,10 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 		char addr0 = subcomponentID.charAt(4);
 		return (addr3 == '0' || addr3 == '1') || (addr2 == '0' || addr2 == '1') || (addr1 == '0' || addr1 == '1')
 				|| (addr0 == '0' || addr0 == '1');
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentProvider(GUIram4.class.getCanonicalName(), (m, p) -> new GUIram4(m));
 	}
 }
