@@ -2,8 +2,8 @@ package net.mograsim.logic.core.types;
 
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.preferences.ColorDefinition;
-import net.mograsim.preferences.Preferences;
 import net.mograsim.preferences.ColorDefinition.BuiltInColor;
+import net.mograsim.preferences.Preferences;
 
 public class BitVectorFormatter
 {
