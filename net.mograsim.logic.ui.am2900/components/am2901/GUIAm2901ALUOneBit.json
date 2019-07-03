@@ -1,7 +1,5 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
-  "type": "SimpleRectangularSubmodelComponent",
-  "name": "GUIAm2901ALUOneBit",
   "width": 35.0,
   "height": 90.0,
   "interfacePins": [
@@ -94,7 +92,7 @@ mograsim version: 0.1.2
       "logicWidth": 1
     }
   ],
-  "composition": {
+  "submodel": {
     "innerScale": 0.2,
     "subComps": [
       {
@@ -102,86 +100,73 @@ mograsim version: 0.1.2
           "x": 10.0,
           "y": 20.0
         },
-        "name": "GUIand",
-        "params": {}
+        "id": "GUIand"
       },
       {
         "pos": {
           "x": 10.0,
           "y": 190.0
         },
-        "name": "GUIxor",
-        "params": {}
+        "id": "GUIxor"
       },
       {
         "pos": {
           "x": 10.0,
           "y": 290.0
         },
-        "name": "GUIxor",
-        "params": {}
+        "id": "GUIxor"
       },
       {
         "pos": {
           "x": 60.0,
           "y": 20.0
         },
-        "name": "GUIfulladder",
-        "params": {}
+        "id": "GUIfulladder"
       },
       {
         "pos": {
           "x": 60.0,
           "y": 55.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 135.0,
           "y": 20.0
         },
-        "name": "GUIand",
-        "params": {}
+        "id": "GUIand"
       },
       {
         "pos": {
           "x": 90.0,
           "y": 70.0
         },
-        "name": "GUImux1",
-        "params": {}
+        "id": "GUImux1"
       },
       {
         "pos": {
           "x": 135.0,
           "y": 70.0
         },
-        "name": "GUIxor",
-        "params": {}
+        "id": "GUIxor"
       },
       {
         "pos": {
           "x": 49.0,
           "y": 59.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 54.0,
           "y": 69.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       }
     ],
     "innerWires": [
@@ -513,25 +498,6 @@ mograsim version: 0.1.2
         },
         "path": []
       }
-    ]
-  },
-  "specialized": {
-    "input_count": [
-      "Cin",
-      "CoutE",
-      "CinE",
-      "R",
-      "RN",
-      "S",
-      "SN",
-      "FN",
-      "L"
-    ],
-    "label": "GUIAm2901ALUOneBit",
-    "logic_width": 1,
-    "output_count": [
-      "Cout",
-      "F"
     ]
   }
 }

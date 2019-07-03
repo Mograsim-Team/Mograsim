@@ -1,7 +1,5 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
-  "type": "SimpleRectangularSubmodelComponent",
-  "name": "GUIdlatch",
   "width": 35.0,
   "height": 20.0,
   "interfacePins": [
@@ -38,7 +36,7 @@ mograsim version: 0.1.2
       "logicWidth": 1
     }
   ],
-  "composition": {
+  "submodel": {
     "innerScale": 0.4,
     "subComps": [
       {
@@ -46,48 +44,39 @@ mograsim version: 0.1.2
           "x": 10.0,
           "y": 2.5
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 15.0,
           "y": 27.5
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 45.0,
           "y": 7.5
         },
-        "name": "GUI_rsLatch",
-        "params": {}
+        "id": "GUI_rsLatch"
       },
       {
         "pos": {
           "x": 4.0,
           "y": 36.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 34.0,
           "y": 11.5
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       }
     ],
     "innerWires": [
@@ -231,18 +220,6 @@ mograsim version: 0.1.2
           "pinName": "_Q"
         }
       }
-    ]
-  },
-  "specialized": {
-    "input_count": [
-      "D",
-      "E"
-    ],
-    "label": "GUIdlatch",
-    "logic_width": 1,
-    "output_count": [
-      "Q",
-      "_Q"
     ]
   }
 }

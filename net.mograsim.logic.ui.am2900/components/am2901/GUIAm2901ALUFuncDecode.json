@@ -1,7 +1,5 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
-  "type": "SimpleRectangularSubmodelComponent",
-  "name": "GUIAm2901ALUFuncDecode",
   "width": 35.0,
   "height": 60.0,
   "interfacePins": [
@@ -78,7 +76,7 @@ mograsim version: 0.1.2
       "logicWidth": 1
     }
   ],
-  "composition": {
+  "submodel": {
     "innerScale": 0.25,
     "subComps": [
       {
@@ -86,176 +84,142 @@ mograsim version: 0.1.2
           "x": 15.0,
           "y": 10.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 15.0,
           "y": 50.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 55.0,
           "y": 10.0
         },
-        "name": "GUInand3",
-        "params": {}
+        "id": "GUInand3"
       },
       {
         "pos": {
           "x": 55.0,
           "y": 45.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 55.0,
           "y": 70.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 100.0,
           "y": 50.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 100.0,
           "y": 135.0
         },
-        "name": "GUIand",
-        "params": {}
+        "id": "GUIand"
       },
       {
         "pos": {
           "x": 4.0,
           "y": 19.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 4.0,
           "y": 24.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 4.0,
           "y": 44.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 9.0,
           "y": 59.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 9.0,
           "y": 54.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 9.0,
           "y": 64.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 9.0,
           "y": 84.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 49.0,
           "y": 99.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 49.0,
           "y": 74.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 39.0,
           "y": 19.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 39.0,
           "y": 34.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       }
     ],
     "innerWires": [
@@ -686,23 +650,6 @@ mograsim version: 0.1.2
         },
         "path": []
       }
-    ]
-  },
-  "specialized": {
-    "input_count": [
-      "I5",
-      "I4",
-      "I3"
-    ],
-    "label": "GUIAm2901ALUFuncDecode",
-    "logic_width": 1,
-    "output_count": [
-      "CinE",
-      "L",
-      "SN",
-      "SBE",
-      "FN",
-      "RN"
     ]
   }
 }

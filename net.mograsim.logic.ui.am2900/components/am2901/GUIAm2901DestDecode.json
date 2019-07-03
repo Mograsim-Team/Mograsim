@@ -1,7 +1,5 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
-  "type": "SimpleRectangularSubmodelComponent",
-  "name": "GUIAm2901DestDecode",
   "width": 35.0,
   "height": 60.0,
   "interfacePins": [
@@ -78,7 +76,7 @@ mograsim version: 0.1.2
       "logicWidth": 1
     }
   ],
-  "composition": {
+  "submodel": {
     "innerScale": 0.25,
     "subComps": [
       {
@@ -86,290 +84,232 @@ mograsim version: 0.1.2
           "x": 15.0,
           "y": 10.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 15.0,
           "y": 50.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 15.0,
           "y": 90.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 15.0,
           "y": 150.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 50.0,
           "y": 10.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 50.0,
           "y": 50.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 50.0,
           "y": 90.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 50.0,
           "y": 130.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 80.0,
           "y": 10.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 80.0,
           "y": 90.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 80.0,
           "y": 145.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 110.0,
           "y": 105.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 115.0,
           "y": 210.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 4.0,
           "y": 19.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 4.0,
           "y": 14.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 4.0,
           "y": 24.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 9.0,
           "y": 59.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 9.0,
           "y": 64.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 9.0,
           "y": 104.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 4.0,
           "y": 154.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 39.0,
           "y": 59.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 44.0,
           "y": 19.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 44.0,
           "y": 54.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 39.0,
           "y": 134.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 74.0,
           "y": 19.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 74.0,
           "y": 99.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 74.0,
           "y": 104.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 74.0,
           "y": 159.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       },
       {
         "pos": {
           "x": 109.0,
           "y": 214.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       }
     ],
     "innerWires": [
@@ -1053,23 +993,6 @@ mograsim version: 0.1.2
         },
         "path": []
       }
-    ]
-  },
-  "specialized": {
-    "input_count": [
-      "I8",
-      "I7",
-      "I6"
-    ],
-    "label": "GUIAm2901DestDecode",
-    "logic_width": 1,
-    "output_count": [
-      "NSH",
-      "RSH",
-      "RAMWE",
-      "YF",
-      "LSH",
-      "QWE"
     ]
   }
 }

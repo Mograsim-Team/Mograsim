@@ -1,7 +1,5 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
-  "type": "SimpleRectangularSubmodelComponent",
-  "name": "GUInand3",
   "width": 35.0,
   "height": 30.0,
   "interfacePins": [
@@ -38,7 +36,7 @@ mograsim version: 0.1.2
       "logicWidth": 1
     }
   ],
-  "composition": {
+  "submodel": {
     "innerScale": 0.4,
     "subComps": [
       {
@@ -46,40 +44,32 @@ mograsim version: 0.1.2
           "x": 10.0,
           "y": 15.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 35.0,
           "y": 15.0
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 62.5,
           "y": 2.5
         },
-        "name": "GUINandGate",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "GUINandGate",
+        "params": 1
       },
       {
         "pos": {
           "x": 31.5,
           "y": 24.0
         },
-        "name": "WireCrossPoint",
-        "params": {
-          "logicWidth": 1
-        }
+        "id": "WireCrossPoint",
+        "params": 1
       }
     ],
     "innerWires": [
@@ -197,18 +187,6 @@ mograsim version: 0.1.2
         },
         "path": []
       }
-    ]
-  },
-  "specialized": {
-    "input_count": [
-      "A",
-      "B",
-      "C"
-    ],
-    "label": "GUInand3",
-    "logic_width": 1,
-    "output_count": [
-      "Y"
     ]
   }
 }
