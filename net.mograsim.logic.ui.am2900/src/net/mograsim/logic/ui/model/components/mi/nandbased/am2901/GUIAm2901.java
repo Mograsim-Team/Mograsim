@@ -13,6 +13,7 @@ import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmode
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 {
@@ -343,5 +344,10 @@ public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 
 		addHighLevelStateSubcomponentID("regs", ram);
 		addHighLevelStateSubcomponentID("qreg", qreg);
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentProvider(GUIAm2901.class.getCanonicalName(), (m, p) -> new GUIAm2901(m));
 	}
 }

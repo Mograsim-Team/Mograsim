@@ -7,6 +7,7 @@ import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmode
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIAm2901SourceDecode extends SimpleRectangularSubmodelComponent
 {
@@ -111,8 +112,7 @@ public class GUIAm2901SourceDecode extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpI01, notI0.getPin("A"), new Point(7.5, 95));
 		new GUIWire(submodelModifiable, cpI01, cpI02, new Point[0]);
 		new GUIWire(submodelModifiable, cpI02, notI0.getPin("B"), new Point[0]);
-		new GUIWire(submodelModifiable, cpI02, nand23.getPin("B"), new Point(7.5, 112.5), new Point(32.5, 112.5),
-				new Point(32.5, 105));
+		new GUIWire(submodelModifiable, cpI02, nand23.getPin("B"), new Point(7.5, 112.5), new Point(32.5, 112.5), new Point(32.5, 105));
 		new GUIWire(submodelModifiable, notI2.getPin("Y"), cpNotI2, new Point(32.5, 20));
 		new GUIWire(submodelModifiable, cpNotI2, nand22.getPin("A"), new Point[0]);
 		new GUIWire(submodelModifiable, cpNotI2, nand23.getPin("A"), new Point(32.5, 95));
@@ -148,5 +148,11 @@ public class GUIAm2901SourceDecode extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpNand35, nand42.getPin("B"), new Point(95, 185));
 		new GUIWire(submodelModifiable, nand41.getPin("Y"), SQ, new Point[0]);
 		new GUIWire(submodelModifiable, nand42.getPin("Y"), RD, new Point[0]);
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentProvider(GUIAm2901SourceDecode.class.getCanonicalName(),
+				(m, p) -> new GUIAm2901SourceDecode(m));
 	}
 }

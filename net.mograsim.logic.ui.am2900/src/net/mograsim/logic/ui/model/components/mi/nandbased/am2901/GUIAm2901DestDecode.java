@@ -7,6 +7,7 @@ import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmode
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 {
@@ -117,8 +118,7 @@ public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpNotI81, cpNotI82, new Point[0]);
 		new GUIWire(submodelModifiable, cpNotI82, nandRAMWE.getPin("A"), new Point[0]);
 		new GUIWire(submodelModifiable, cpNotI82, nandI7NotI8.getPin("A"), new Point(45, 95));
-		new GUIWire(submodelModifiable, cpI73, nandI7NotI8.getPin("B"), new Point(10, 115), new Point(45, 115),
-				new Point(45, 105));
+		new GUIWire(submodelModifiable, cpI73, nandI7NotI8.getPin("B"), new Point(10, 115), new Point(45, 115), new Point(45, 105));
 		new GUIWire(submodelModifiable, nandI8I7.getPin("Y"), cpNandI8I7, new Point(40, 100));
 		new GUIWire(submodelModifiable, cpNandI8I7, nandLSH.getPin("A"), new Point[0]);
 		new GUIWire(submodelModifiable, cpNandI8I7, nandLSH.getPin("B"), new Point(40, 145));
@@ -136,12 +136,17 @@ public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpNotI6, nandQWE.getPin("B"), new Point[0]);
 		new GUIWire(submodelModifiable, notRSH.getPin("Y"), RSH, new Point(130, 20), new Point(130, 60));
 		new GUIWire(submodelModifiable, andI7NotI8.getPin("Y"), nandYF.getPin("A"));
-		new GUIWire(submodelModifiable, cpNotI6, nandYF.getPin("B"), new Point(75, 170), new Point(105, 170),
-				new Point(105, 120));
+		new GUIWire(submodelModifiable, cpNotI6, nandYF.getPin("B"), new Point(75, 170), new Point(105, 170), new Point(105, 120));
 		new GUIWire(submodelModifiable, nandQWE.getPin("Y"), cpNandQWE, new Point(110, 155));
 		new GUIWire(submodelModifiable, cpNandQWE, notQWE.getPin("A"), new Point[0]);
 		new GUIWire(submodelModifiable, cpNandQWE, notQWE.getPin("B"), new Point(110, 225));
 		new GUIWire(submodelModifiable, nandYF.getPin("Y"), YF);
 		new GUIWire(submodelModifiable, notQWE.getPin("Y"), QWE, new Point[0]);
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentProvider(GUIAm2901DestDecode.class.getCanonicalName(),
+				(m, p) -> new GUIAm2901DestDecode(m));
 	}
 }
