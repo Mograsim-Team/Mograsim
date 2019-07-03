@@ -49,7 +49,7 @@ public class CodeSnippetSupplier
 
 	static
 	{
-		try (InputStream s = IndirectGUIComponentCreator.class.getResourceAsStream("./mapping.json"))
+		try (InputStream s = IndirectGUIComponentCreator.class.getResourceAsStream("./standardSnippetIDMapping.json"))
 		{
 			if (s == null)
 				throw new IOException("Resource not found");
