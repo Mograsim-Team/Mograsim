@@ -166,7 +166,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		for (GUIComponent c : model.getComponents())
 			if (!(c instanceof WireCrossPoint || c instanceof SubmodelInterface))
 			{
-				String item = base + c.getIdentifier();
+				String item = base + c.getClass().getSimpleName();
 				componentsByItemIndex.add(c);
 				componentSelector.add(item);
 				if (c instanceof SubmodelComponent)

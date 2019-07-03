@@ -1,12 +1,16 @@
 package net.mograsim.logic.ui.examples;
 
 import java.io.IOException;
-import java.util.HashMap;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonNull;
 
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.ui.model.components.mi.nandbased.GUI_rsLatch;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIfulladder;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder;
 import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
@@ -20,12 +24,12 @@ public class JsonExample
 {
 	public static void main(String[] args)
 	{
-		SimpleLogicUIStandalone.executeVisualisation(JsonExample::mappingTest);
+		SimpleLogicUIStandalone.executeVisualisation(JsonExample::basicTest);
 	}
 
 	public static void mappingTest(ViewModelModifiable model)
 	{
-		IndirectGUIComponentCreator.create(model, "GUIAm2901", new HashMap<String, Object>());
+		IndirectGUIComponentCreator.createComponent(model, "Am2901", JsonNull.INSTANCE);
 	}
 
 	private static class TestComponent extends SimpleRectangularSubmodelComponent
@@ -36,6 +40,41 @@ public class JsonExample
 			setSubmodelScale(.4);
 			setInputPins("Input pin #0");
 			SubmodelComponentDeserializer.create(submodelModifiable, "HalfAdder.json");
+		}
+	}
+
+	@SuppressWarnings("unused") // GUIWires being created
+	private static void basicTest(ViewModelModifiable viewModel)
+	{
+		GUI_rsLatch comp = new GUI_rsLatch(viewModel);
+		comp.moveTo(30, 0);
+		SubmodelComponentParams params = comp.calculateParams();
+		String jsonString = new GsonBuilder().setPrettyPrinting().create().toJson(params);
+		System.out.println(jsonString);
+		SubmodelComponent deserialized = SubmodelComponentDeserializer.create(viewModel,
+				new Gson().fromJson(jsonString, SubmodelComponentParams.class));
+		deserialized.moveTo(30, 50);
+		double h = 0;
+		for (String s : comp.getInputPinNames())
+		{
+			GUIManualSwitch sw = new GUIManualSwitch(viewModel);
+			sw.moveTo(0, h);
+			new GUIWire(viewModel, sw.getOutputPin(), comp.getPin(s));
+			sw = new GUIManualSwitch(viewModel);
+			sw.moveTo(0, h + 50);
+			new GUIWire(viewModel, sw.getOutputPin(), deserialized.getPin(s));
+			h += 20;
+		}
+		h = 0;
+		for (String s : comp.getOutputPinNames())
+		{
+			GUIBitDisplay bd = new GUIBitDisplay(viewModel);
+			bd.moveTo(80, h);
+			new GUIWire(viewModel, bd.getInputPin(), comp.getPin(s));
+			bd = new GUIBitDisplay(viewModel);
+			bd.moveTo(80, h + 50);
+			new GUIWire(viewModel, bd.getInputPin(), deserialized.getPin(s));
+			h += 20;
 		}
 	}
 

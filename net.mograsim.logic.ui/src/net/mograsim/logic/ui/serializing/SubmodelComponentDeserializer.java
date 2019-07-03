@@ -1,9 +1,6 @@
 package net.mograsim.logic.ui.serializing;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
@@ -11,18 +8,16 @@ import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmode
 import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.MovablePin;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams.ComponentCompositionParams;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InnerWireParams;
 import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InterfacePinParams;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParameters;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParameters.InnerComponentParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams;
 
 /**
  * Creates {@link SubmodelComponent}s from {@link SubmodelComponentParams}
  */
 public final class SubmodelComponentDeserializer
 {
-	private static final String rectC = SimpleRectangularSubmodelComponent.class.getSimpleName();
-
 	/**
 	 * Creates a {@link SubmodelComponent} from the {@link SubmodelComponentParams}, specified at the given path. The returned
 	 * SubmodelComponent can also be e.g. a {@link SimpleRectangularSubmodelComponent}, depending on what the
@@ -57,72 +52,36 @@ public final class SubmodelComponentDeserializer
 	 */
 	public static SubmodelComponent create(ViewModelModifiable model, SubmodelComponentParams params)
 	{
-		DeserializedSubmodelComponentI comp = null;
-		if (rectC.equals(params.type))
-		{
-			comp = createRectComponent(model, params);
-		}
-
-		if (comp == null)
-		{
-			comp = createSubmodelComponent(model, params);
-		}
-		comp.setIdentifierDelegate(() -> params.name);
-		initInnerComponents(comp, params.composition);
-		return (SubmodelComponent) comp;
-	}
-
-	// May return null
-	@SuppressWarnings("unchecked")
-	private static DeserializedSimpleRectangularSubmodelComponent createRectComponent(ViewModelModifiable model,
-			SubmodelComponentParams params)
-	{
-		try
-		{
-			Map<String, Object> m = params.specialized;
-			DeserializedSimpleRectangularSubmodelComponent rect = new DeserializedSimpleRectangularSubmodelComponent(model,
-					((Number) m.get(SimpleRectangularSubmodelComponent.kLogicWidth)).intValue(),
-					(String) m.get(SimpleRectangularSubmodelComponent.kLabel));
-			rect.setSubmodelScale(params.composition.innerScale);
-
-			Object[] names = ((ArrayList<Object>) m.get(SimpleRectangularSubmodelComponent.kInCount)).toArray();
-			rect.setInputPins(Arrays.copyOf(names, names.length, String[].class));
-
-			names = ((ArrayList<Object>) m.get(SimpleRectangularSubmodelComponent.kOutCount)).toArray();
-			rect.setOutputPins(Arrays.copyOf(names, names.length, String[].class));
-
-			return rect;
-		}
-		catch (ClassCastException | NullPointerException e)
-		{
-			System.err.println("Failed to specialize component!");
-			e.printStackTrace();
-			return null;
-		}
+		DeserializedSubmodelComponent comp = createSubmodelComponent(model, params);
+		initSubmodel(comp, params.submodel);
+		return comp;
 	}
 
 	private static DeserializedSubmodelComponent createSubmodelComponent(ViewModelModifiable model, SubmodelComponentParams params)
 	{
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model);
-		comp.setSubmodelScale(params.composition.innerScale);
+		comp.setSubmodelScale(params.submodel.innerScale);
+		comp.setOutlineRenderer(
+				CodeSnippetSupplier.createOutlineRenderer(params.outlineRendererSnippetClass, comp, params.outlineRendererParams));
+		comp.setSymbolRenderer(
+				CodeSnippetSupplier.createSymbolRenderer(params.symbolRendererSnippetClass, comp, params.symbolRendererParams));
+		// TODO high level states
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
-		{
 			comp.addSubmodelInterface(
 					new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y));
-		}
 		return comp;
 	}
 
 	@SuppressWarnings("unused")
-	private static void initInnerComponents(DeserializedSubmodelComponentI comp, ComponentCompositionParams params)
+	private static void initSubmodel(DeserializedSubmodelComponent comp, SubmodelParameters params)
 	{
 		GUIComponent[] components = new GUIComponent[params.subComps.length];
 		for (int i = 0; i < components.length; i++)
 		{
 			InnerComponentParams cParams = params.subComps[i];
-			String path = cParams.name;
-			components[i] = IndirectGUIComponentCreator.create(comp.getSubmodelModifiable(), cParams.name, cParams.params);
+			String path = cParams.id;
+			components[i] = IndirectGUIComponentCreator.createComponent(comp.getSubmodelModifiable(), cParams.id, cParams.params);
 			components[i].moveTo(cParams.pos.x, cParams.pos.y);
 		}
 

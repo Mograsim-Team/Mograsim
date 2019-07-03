@@ -2,78 +2,90 @@ package net.mograsim.logic.ui.serializing;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gson.JsonElement;
+
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
-import net.mograsim.logic.ui.model.components.atomic.SimpleRectangularGUIGate;
-import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
-import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 import net.mograsim.logic.ui.util.JsonHandler;
 
 public class IndirectGUIComponentCreator
 {
-	private final static Map<String, String> componentMapping;
+	private static final Map<String, String> standardComponentIDs = new HashMap<>();
+
+	private static final Map<String, ComponentProvider> componentProviders = new HashMap<>();
 
 	static
 	{
-		Map<String, String> tmp;
-		try (InputStream s = IndirectGUIComponentCreator.class.getResourceAsStream("./mapping.json"))
+		try (InputStream s = IndirectGUIComponentCreator.class.getResourceAsStream("./standardComponentIDMapping.json"))
 		{
-			tmp = JsonHandler.readJson(s, Map.class);
+			if (s == null)
+				throw new IOException("Resource not found");
+			Map<String, String> tmp = JsonHandler.readJson(s, Map.class);
+			// don't use putAll to apply sanity checks
+			tmp.forEach((st, id) ->
+			{
+				try
+				{
+					addStandardComponentID(st, id);
+				}
+				catch (IllegalArgumentException e)
+				{
+					System.err.println("Component ID mapping contained illegal entry: " + e.getMessage());
+				}
+			});
 		}
 		catch (IOException e)
 		{
-			System.err.println("Failed to initialize component mapping; Components cannot be created from file.");
-			e.printStackTrace();
-			tmp = new HashMap<>();
+			System.err.println("Failed to initialize standard snippet ID mapping: " + e.getMessage());
 		}
-		componentMapping = tmp;
 	}
 
-	public static GUIComponent create(ViewModelModifiable model, String name, Map<String, Object> params)
+	public static void addStandardComponentID(String standardComponentID, String associatedComponentID)
 	{
-		try
+		if (!associatedComponentID.startsWith("file:") && !associatedComponentID.startsWith("class:"))
+			throw new IllegalArgumentException("Unrecognized component ID format: " + associatedComponentID);
+		standardComponentIDs.put(standardComponentID, associatedComponentID);
+	}
+
+	public static void setComponentProvider(String className, ComponentProvider componentProvider)
+	{
+		componentProviders.put(className, componentProvider);
+	}
+
+	public static GUIComponent createComponent(ViewModelModifiable model, String id, JsonElement params)
+	{
+		if (id != null)
 		{
-			String path = componentMapping.get(name);
-			if (path.startsWith("class:"))
+			String resolvedID;
+			if (id.startsWith("class:") || id.startsWith("file:"))
+				resolvedID = id;
+			else
+				resolvedID = standardComponentIDs.get(id);
+			if (resolvedID.startsWith("class:"))
 			{
-				path = path.substring(6);
-				return createComponentFromClass(model, path, params);
-			} else if (path.startsWith("file:"))
-			{
-				path = path.substring(5);
-				return SubmodelComponentDeserializer.create(model, path);
+				String className = resolvedID.substring(6);
+				tryLoadComponentClass(className);
+				ComponentProvider componentProvider = componentProviders.get(className);
+				if (componentProvider != null)
+					return componentProvider.create(model, params);
 			} else
-				throw new IllegalArgumentException("Invalid submodel type! Type was neither prefixed by 'class:' nor by 'file:'");
+				// we know id has to start with "file:" here
+				// because standardComponentIDs only contains strings starting with "class:" or "file:"
+				return SubmodelComponentDeserializer.create(model, resolvedID.substring(5));
 		}
-		catch (NullPointerException | InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException
-				| SecurityException | ClassNotFoundException | IllegalArgumentException e)
-		{
-			System.err.println("Failed to create requested component!");
-			e.printStackTrace();
-			return new SimpleRectangularSubmodelComponent(model, 1, "ERROR");
-		}
+		throw new RuntimeException("Could not get component provider for ID " + id);
 	}
 
-	private static GUIComponent createComponentFromClass(ViewModelModifiable model, String classname, Map<String, Object> params)
-			throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException,
-			ClassNotFoundException
+	private static void tryLoadComponentClass(String componentClassName)
 	{
-		Class<?> c = Class.forName(classname);
-		Object comp;
-		if (SimpleRectangularGUIGate.class.isAssignableFrom(c) || WireCrossPoint.class.equals(c))
-		{
-			Constructor<?> constructor = c.getConstructor(ViewModelModifiable.class, int.class);
-			comp = constructor.newInstance(model, ((Number) params.get(SimpleRectangularGUIGate.kLogicWidth)).intValue());
-		} else
-		{
-			Constructor<?> constructor = c.getConstructor(ViewModelModifiable.class);
-			comp = constructor.newInstance(model);
-		}
-		return (GUIComponent) comp;
+		CodeSnippetSupplier.tryLoadClass(componentClassName, "Error loading component class %s\n");
+	}
+
+	public static interface ComponentProvider
+	{
+		public GUIComponent create(ViewModelModifiable model, JsonElement params);
 	}
 }

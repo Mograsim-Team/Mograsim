@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 import org.eclipse.swt.graphics.Color;
 
@@ -17,7 +15,6 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
 import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
@@ -129,20 +126,6 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-	}
-
-	@Override
-	public SubmodelComponentParams calculateParams()
-	{
-		SubmodelComponentParams ret = super.calculateParams();
-		ret.type = SimpleRectangularSubmodelComponent.class.getSimpleName();
-		Map<String, Object> m = new TreeMap<>();
-		m.put(kLabel, label);
-		m.put(kInCount, inputPinNames.toArray());
-		m.put(kOutCount, outputPinNames.toArray());
-		m.put(kLogicWidth, logicWidth);
-		ret.specialized = m;
-		return ret;
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 package net.mograsim.logic.ui.model.wires;
 
-import java.util.Map;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
@@ -9,7 +7,7 @@ import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
-import net.mograsim.logic.ui.model.components.atomic.SimpleRectangularGUIGate;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
 
@@ -107,13 +105,9 @@ public class WireCrossPoint extends GUIComponent implements ConnectionPoint
 		return end != null;
 	}
 
-	// serializing
-
-	@Override
-	public Map<String, Object> getInstantiationParameters()
+	static
 	{
-		Map<String, Object> m = super.getInstantiationParameters();
-		m.put(SimpleRectangularGUIGate.kLogicWidth, pin.logicWidth);
-		return m;
+		// TODO read params
+		IndirectGUIComponentCreator.setComponentProvider(WireCrossPoint.class.getCanonicalName(), (m, p) -> new WireCrossPoint(m, 1));
 	}
 }
