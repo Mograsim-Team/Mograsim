@@ -81,7 +81,7 @@ public class IndirectGUIComponentCreator
 
 	private static void tryLoadComponentClass(String componentClassName)
 	{
-		CodeSnippetSupplier.tryLoadClass(componentClassName, "Error loading component class %s\n");
+		CodeSnippetSupplier.tryInvokeStaticInitializer(componentClassName, "Error loading component class %s: %s\n");
 	}
 
 	public static interface ComponentProvider

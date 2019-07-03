@@ -110,18 +110,18 @@ public class CodeSnippetSupplier
 
 	private static void tryLoadSnippetClass(String snippetClassName)
 	{
-		tryLoadClass(snippetClassName, "Error getting snippet code for component class: %s\n");
+		tryInvokeStaticInitializer(snippetClassName, "Error getting snippet code for component class: %s: %s\n");
 	}
 
-	public static void tryLoadClass(String className, String errorMessageFormat)
+	public static void tryInvokeStaticInitializer(String className, String errorMessageFormat)
 	{
 		try
 		{
-			CodeSnippetSupplier.class.getClassLoader().loadClass(className);
+			Class.forName(className, true, CodeSnippetSupplier.class.getClassLoader());
 		}
-		catch (@SuppressWarnings("unused") ClassNotFoundException e)
+		catch (ClassNotFoundException e)
 		{
-			System.err.printf(errorMessageFormat, className);
+			System.err.printf(errorMessageFormat, className, "ClassNotFoundException thrown: " + e.getMessage());
 		}
 	}
 }
