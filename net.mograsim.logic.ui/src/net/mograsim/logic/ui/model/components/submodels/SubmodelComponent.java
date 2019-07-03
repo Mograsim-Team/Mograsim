@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.Function;
 
 import net.haspamelodica.swt.helper.gcs.GCConfig;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -22,11 +23,11 @@ import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams.ComponentCompositionParams;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InnerPinParams;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InnerWireParams;
 import net.mograsim.logic.ui.serializing.SubmodelComponentParams.InterfacePinParams;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams.ComponentCompositionParams.InnerComponentParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParameters;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParameters.InnerComponentParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams.InnerPinParams;
 
 /**
  * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
@@ -497,17 +498,20 @@ public abstract class SubmodelComponent extends GUIComponent
 		return false;
 	}
 
-	// serializing
+	// serializing; TODO move to serializing classes
+
+	public SubmodelComponentParams calculateParams()
+	{
+		return calculateParams(c -> "class:" + c.getClass().getCanonicalName());
+	}
 
 	/**
 	 * @return {@link SubmodelComponentParams}, which describe this {@link SubmodelComponent}.
 	 */
-	public SubmodelComponentParams calculateParams()
+	public SubmodelComponentParams calculateParams(Function<GUIComponent, String> getIdentifier)
 	{
 		SubmodelComponentParams params = new SubmodelComponentParams();
-		params.name = getIdentifier();
-		params.type = SubmodelComponent.class.getSimpleName();
-		params.composition = calculateCompositionParams();
+		params.submodel = calculateSubmodelParams(getIdentifier);
 
 		params.width = getWidth();
 		params.height = getHeight();
@@ -527,12 +531,12 @@ public abstract class SubmodelComponent extends GUIComponent
 		return params;
 	}
 
-	protected ComponentCompositionParams calculateCompositionParams()
+	private SubmodelParameters calculateSubmodelParams(Function<GUIComponent, String> getIdentifier)
 	{
-		ComponentCompositionParams params = new ComponentCompositionParams();
+		SubmodelParameters params = new SubmodelParameters();
 		params.innerScale = getSubmodelScale();
 
-		List<GUIComponent> compList = submodelModifiable.getComponents();
+		List<GUIComponent> compList = submodel.getComponents();
 		Iterator<GUIComponent> componentIt = compList.iterator();
 		componentIt.next(); // Skip inner SubmodelInterface
 		InnerComponentParams[] comps = new InnerComponentParams[compList.size() - 1];
@@ -542,14 +546,13 @@ public abstract class SubmodelComponent extends GUIComponent
 			GUIComponent component = componentIt.next();
 			InnerComponentParams inner = new InnerComponentParams();
 			comps[i] = inner;
-			inner.params = component.getInstantiationParameters();
 			inner.pos = new Point(component.getPosX(), component.getPosY());
-			inner.name = component.getIdentifier();
+			inner.id = getIdentifier.apply(component);
 			i++;
 		}
 		params.subComps = comps;
 
-		List<GUIWire> wireList = submodelModifiable.getWires();
+		List<GUIWire> wireList = submodel.getWires();
 		InnerWireParams wires[] = new InnerWireParams[wireList.size()];
 		i = 0;
 		for (GUIWire wire : wireList)

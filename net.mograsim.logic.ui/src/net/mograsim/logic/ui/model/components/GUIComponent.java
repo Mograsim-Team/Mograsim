@@ -5,15 +5,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
-import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
 
 /**
  * The base class for all GUI components.<br>
@@ -43,8 +40,6 @@ public abstract class GUIComponent
 	private final List<Runnable> redrawListeners;
 
 	private final Runnable redrawListenerForSubcomponents;
-	// Defines how the GUIComponent is referenced in SubmodelComponentParams
-	protected Supplier<String> identifierDelegate = () -> getClass().getSimpleName();
 
 	// creation and destruction
 
@@ -267,22 +262,6 @@ public abstract class GUIComponent
 	 * @author Daniel Kirschten
 	 */
 	public abstract void render(GeneralGC gc, Rectangle visibleRegion);
-
-	// serializing
-
-	/**
-	 * @return an identifier used to reference this GUIComponent inside of {@link SubmodelComponentParams}
-	 */
-	public String getIdentifier()
-	{
-		return identifierDelegate.get();
-	}
-
-	@SuppressWarnings("static-method")
-	public Map<String, Object> getInstantiationParameters()
-	{
-		return new TreeMap<>();
-	}
 
 	// listeners
 

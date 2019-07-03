@@ -2,7 +2,6 @@ package net.mograsim.logic.ui.model.components.atomic;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.swt.graphics.Color;
 
@@ -83,13 +82,5 @@ public class SimpleRectangularGUIGate extends GUIComponent
 			gc.setForeground(textColor);
 		gc.drawText(label, getPosX() + (rectWidth - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
-	}
-
-	@Override
-	public Map<String, Object> getInstantiationParameters()
-	{
-		Map<String, Object> m = super.getInstantiationParameters();
-		m.put(kLogicWidth, logicWidth);
-		return m;
 	}
 }

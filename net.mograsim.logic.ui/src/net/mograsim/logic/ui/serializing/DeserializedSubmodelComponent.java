@@ -1,16 +1,18 @@
 package net.mograsim.logic.ui.serializing;
 
-import java.util.function.Supplier;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.serializing.snippets.Renderer;
 
-public class DeserializedSubmodelComponent extends SubmodelComponent implements DeserializedSubmodelComponentI
+public class DeserializedSubmodelComponent extends SubmodelComponent
 {
+	public Renderer outlineRenderer;
+	public Renderer symbolRenderer;
+
 	public DeserializedSubmodelComponent(ViewModelModifiable model)
 	{
 		super(model);
@@ -19,25 +21,30 @@ public class DeserializedSubmodelComponent extends SubmodelComponent implements 
 	@Override
 	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
 	{
-		// TODO
+		if (outlineRenderer != null)
+			outlineRenderer.render(gc, visibleRegion);
 	}
 
 	@Override
 	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
 	{
-		// TODO
+		if (symbolRenderer != null)
+			symbolRenderer.render(gc, visibleRegion);
 	}
 
-	@Override
+	public void setOutlineRenderer(Renderer outlineRenderer)
+	{
+		this.outlineRenderer = outlineRenderer;
+	}
+
+	public void setSymbolRenderer(Renderer symbolRenderer)
+	{
+		this.symbolRenderer = symbolRenderer;
+	}
+
 	public ViewModelModifiable getSubmodelModifiable()
 	{
 		return submodelModifiable;
-	}
-
-	@Override
-	public void setIdentifierDelegate(Supplier<String> identifierDelegate)
-	{
-		this.identifierDelegate = identifierDelegate;
 	}
 
 	@Override
