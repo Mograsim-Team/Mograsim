@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -29,18 +30,27 @@ public class JsonHandler
 	{
 		try (InputStreamReader reader = new InputStreamReader(input); BufferedReader bf = new BufferedReader(reader))
 		{
-			String json = bf.lines().dropWhile(s -> s.length() == 0 || s.charAt(0) != '{').reduce("", (x, y) -> x.concat(y));
-			T params = parser.fromJson(json, type);
-			return params;
+			return fromJson(bf.lines().collect(Collectors.joining("\n")), type);
 		}
+	}
+
+	public static <T> T fromJson(String src, Class<T> type)
+	{
+		// TODO actually parse and compare version
+		String rawJson = src.lines().dropWhile(s -> s.length() == 0 || s.charAt(0) != '{').collect(Collectors.joining());
+		return parser.fromJson(rawJson, type);
 	}
 
 	public static void writeJson(Object o, String path) throws IOException
 	{
 		try (FileWriter writer = new FileWriter(path))
 		{
-			writer.write(String.format("mograsim version: %s\n", Version.jsonCompVersion.toString()));
-			writer.write(parser.toJson(o));
+			writer.write(toJson(o));
 		}
+	}
+
+	public static String toJson(Object o)
+	{
+		return String.format("mograsim version: %s\n%s", Version.jsonCompVersion.toString(), parser.toJson(o));
 	}
 }

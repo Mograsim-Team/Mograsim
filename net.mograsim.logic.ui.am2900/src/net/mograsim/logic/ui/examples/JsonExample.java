@@ -2,8 +2,6 @@ package net.mograsim.logic.ui.examples;
 
 import java.io.IOException;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonNull;
 
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
@@ -19,6 +17,7 @@ import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.ui.serializing.SubmodelComponentDeserializer;
 import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
+import net.mograsim.logic.ui.util.JsonHandler;
 
 public class JsonExample
 {
@@ -49,11 +48,11 @@ public class JsonExample
 		GUI_rsLatch comp = new GUI_rsLatch(viewModel);
 		comp.moveTo(30, 0);
 		SubmodelComponentParams params = comp.calculateParams();
-		String jsonString = new GsonBuilder().setPrettyPrinting().create().toJson(params);
+		String jsonString = JsonHandler.toJson(params);
 		System.out.println(jsonString);
-		SubmodelComponent deserialized = SubmodelComponentDeserializer.create(viewModel,
-				new Gson().fromJson(jsonString, SubmodelComponentParams.class));
-		deserialized.moveTo(30, 50);
+		SubmodelComponentParams paramsD = JsonHandler.fromJson(jsonString, SubmodelComponentParams.class);
+		SubmodelComponent componentD = SubmodelComponentDeserializer.create(viewModel, paramsD);
+		componentD.moveTo(30, 50);
 		double h = 0;
 		for (String s : comp.getInputPinNames())
 		{
@@ -62,7 +61,7 @@ public class JsonExample
 			new GUIWire(viewModel, sw.getOutputPin(), comp.getPin(s));
 			sw = new GUIManualSwitch(viewModel);
 			sw.moveTo(0, h + 50);
-			new GUIWire(viewModel, sw.getOutputPin(), deserialized.getPin(s));
+			new GUIWire(viewModel, sw.getOutputPin(), componentD.getPin(s));
 			h += 20;
 		}
 		h = 0;
@@ -73,7 +72,7 @@ public class JsonExample
 			new GUIWire(viewModel, bd.getInputPin(), comp.getPin(s));
 			bd = new GUIBitDisplay(viewModel);
 			bd.moveTo(80, h + 50);
-			new GUIWire(viewModel, bd.getInputPin(), deserialized.getPin(s));
+			new GUIWire(viewModel, bd.getInputPin(), componentD.getPin(s));
 			h += 20;
 		}
 	}

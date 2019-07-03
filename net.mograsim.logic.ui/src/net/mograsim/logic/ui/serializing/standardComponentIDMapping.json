@@ -1,4 +1,4 @@
-mograsim version: 0.1.2
+mograsim version: 0.1.3
 {
   "GUIAm2901": "file:components/am2901/GUIAm2901.json",
   "GUIAm2901ALUFuncDecode": "file:components/am2901/GUIAm2901ALUFuncDecode.json",
