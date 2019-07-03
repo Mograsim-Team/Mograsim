@@ -19,8 +19,6 @@ import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 {
-	public static String kLabel = "label", kInCount = "input_count", kOutCount = "output_count", kLogicWidth = "logic_width";
-
 	private static final double width = 35;
 	private static final double pinDistance = 10;
 	private static final double pinNameMargin = .5;

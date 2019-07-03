@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
@@ -262,6 +265,14 @@ public abstract class GUIComponent
 	 * @author Daniel Kirschten
 	 */
 	public abstract void render(GeneralGC gc, Rectangle visibleRegion);
+
+	// serializing
+
+	@SuppressWarnings("static-method") // this method is intended to be overridden
+	public JsonElement getParams()
+	{
+		return JsonNull.INSTANCE;
+	}
 
 	// listeners
 

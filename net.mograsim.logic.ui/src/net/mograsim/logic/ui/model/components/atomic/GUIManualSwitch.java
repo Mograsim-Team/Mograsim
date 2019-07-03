@@ -17,6 +17,7 @@ import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.ui.modeladapter.componentadapters.ManualSwitchAdapter;
+import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.Preferences;
 
 public class GUIManualSwitch extends GUIComponent
@@ -137,5 +138,6 @@ public class GUIManualSwitch extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new ManualSwitchAdapter());
+		IndirectGUIComponentCreator.setComponentProvider(GUIManualSwitch.class.getName(), (m, p) -> new GUIManualSwitch(m));
 	}
 }
