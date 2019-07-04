@@ -77,7 +77,7 @@ public class SimpleRectangularLikeSymbolRendererProvider implements RendererProv
 
 	static
 	{
-		CodeSnippetSupplier.setSymbolRendererProvider(SimpleRectangularLikeSymbolRendererProvider.class.getCanonicalName(),
-				new SimpleRectangularLikeSymbolRendererProvider());
+		CodeSnippetSupplier.symbolRendererProviderSupplier.setSnippetProvider(
+				SimpleRectangularLikeSymbolRendererProvider.class.getCanonicalName(), new SimpleRectangularLikeSymbolRendererProvider());
 	}
 }

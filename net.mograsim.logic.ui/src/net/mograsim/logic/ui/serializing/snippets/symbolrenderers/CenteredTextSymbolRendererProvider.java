@@ -51,7 +51,7 @@ public class CenteredTextSymbolRendererProvider implements RendererProvider
 
 	static
 	{
-		CodeSnippetSupplier.setSymbolRendererProvider(CenteredTextSymbolRendererProvider.class.getCanonicalName(),
+		CodeSnippetSupplier.symbolRendererProviderSupplier.setSnippetProvider(CenteredTextSymbolRendererProvider.class.getCanonicalName(),
 				new CenteredTextSymbolRendererProvider());
 	}
 }
