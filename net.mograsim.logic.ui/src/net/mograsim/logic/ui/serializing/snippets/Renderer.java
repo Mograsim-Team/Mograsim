@@ -5,5 +5,5 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 
 public interface Renderer
 {
-	public void render(GeneralGC t, Rectangle u);
+	public void render(GeneralGC gc, Rectangle visibleRegion);
 }
