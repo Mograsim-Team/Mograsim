@@ -14,6 +14,8 @@ Export-Package: net.mograsim.logic.ui,
  net.mograsim.logic.ui.modeladapter.componentadapters,
  net.mograsim.logic.ui.serializing,
  net.mograsim.logic.ui.serializing.snippets,
+ net.mograsim.logic.ui.serializing.snippets.outlinerenderers,
+ net.mograsim.logic.ui.serializing.snippets.symbolrenderers,
  net.mograsim.logic.ui.util
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.swt;bundle-version="3.0.0";visibility:=reexport,
