@@ -312,9 +312,9 @@ mograsim version: 0.1.3
   },
   "symbolRendererSnippetID": "SimpleRectangularLikeSymbolRenderer",
   "symbolRendererParams": {
-    "centerText": "dlatch4",
+    "centerText": "GUIdlatch4",
     "horizontalComponentCenter": 17.5,
-    "centerTextHeight": 5,
+    "centerTextHeight": 5.0,
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   }

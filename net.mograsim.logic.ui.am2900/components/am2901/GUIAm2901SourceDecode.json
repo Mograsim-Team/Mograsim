@@ -1038,7 +1038,7 @@ mograsim version: 0.1.3
   "symbolRendererParams": {
     "centerText": "Am2901SourceDecode",
     "horizontalComponentCenter": 17.5,
-    "centerTextHeight": 5,
+    "centerTextHeight": 5.0,
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   }
