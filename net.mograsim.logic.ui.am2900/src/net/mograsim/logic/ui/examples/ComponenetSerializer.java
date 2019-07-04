@@ -3,8 +3,6 @@ package net.mograsim.logic.ui.examples;
 import java.io.IOException;
 import java.util.function.Function;
 
-import com.google.gson.JsonObject;
-
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUI_rsLatch;
@@ -59,15 +57,6 @@ public class ComponenetSerializer
 		for (SubmodelComponent comp : components)
 		{
 			SubmodelComponentParams params = comp.calculateParams(getIdentifier);
-			JsonObject symbolRendererParams = new JsonObject();
-			symbolRendererParams.addProperty("centerText", comp.getClass().getSimpleName().substring(3)); // cut away the "GUI" part
-			symbolRendererParams.addProperty("horizontalComponentCenter", comp.getWidth() / 2);
-			// use the defaults from SimpleRectangularSubmodelComponent
-			symbolRendererParams.addProperty("centerTextHeight", 5);
-			symbolRendererParams.addProperty("pinLabelHeight", 3.5);
-			symbolRendererParams.addProperty("pinLabelMargin", .5);
-			params.symbolRendererSnippetID = "SimpleRectangularLikeSymbolRenderer";
-			params.symbolRendererParams = symbolRendererParams;
 			JsonHandler.writeJson(params, "components/"
 					+ comp.getClass().getName().substring("net.mograsim.logic.ui.model.components.mi.nandbased.".length()).replace('.', '/')
 					+ ".json");

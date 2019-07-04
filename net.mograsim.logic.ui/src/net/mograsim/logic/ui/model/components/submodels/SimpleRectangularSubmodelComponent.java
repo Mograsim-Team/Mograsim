@@ -5,16 +5,21 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.function.Function;
 
 import org.eclipse.swt.graphics.Color;
+
+import com.google.gson.JsonObject;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
 import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
@@ -125,6 +130,23 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
+	}
+
+	// serializing
+
+	@Override
+	public SubmodelComponentParams calculateParams(Function<GUIComponent, String> getIdentifier)
+	{
+		SubmodelComponentParams params = super.calculateParams(getIdentifier);
+		JsonObject symbolRendererParams = new JsonObject();
+		symbolRendererParams.addProperty("centerText", label);
+		symbolRendererParams.addProperty("horizontalComponentCenter", getWidth() / 2);
+		symbolRendererParams.addProperty("centerTextHeight", labelFontHeight);
+		symbolRendererParams.addProperty("pinLabelHeight", pinNameFontHeight);
+		symbolRendererParams.addProperty("pinLabelMargin", pinNameMargin);
+		params.symbolRendererSnippetID = "SimpleRectangularLikeSymbolRenderer";
+		params.symbolRendererParams = symbolRendererParams;
+		return params;
 	}
 
 	@Override
