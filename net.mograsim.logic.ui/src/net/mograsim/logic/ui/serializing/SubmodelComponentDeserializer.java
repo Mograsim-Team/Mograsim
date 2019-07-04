@@ -61,9 +61,10 @@ public final class SubmodelComponentDeserializer
 	{
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model);
 		comp.setSubmodelScale(params.submodel.innerScale);
-		comp.setOutlineRenderer(
-				CodeSnippetSupplier.createOutlineRenderer(params.outlineRendererSnippetID, comp, params.outlineRendererParams));
-		comp.setSymbolRenderer(CodeSnippetSupplier.createSymbolRenderer(params.symbolRendererSnippetID, comp, params.symbolRendererParams));
+		comp.setOutlineRenderer(CodeSnippetSupplier.outlineRendererProviderSupplier.getSnippetProvider(params.outlineRendererSnippetID)
+				.create(comp, params.outlineRendererParams));
+		comp.setSymbolRenderer(CodeSnippetSupplier.symbolRendererProviderSupplier.getSnippetProvider(params.symbolRendererSnippetID)
+				.create(comp, params.symbolRendererParams));
 		// TODO high level states
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)

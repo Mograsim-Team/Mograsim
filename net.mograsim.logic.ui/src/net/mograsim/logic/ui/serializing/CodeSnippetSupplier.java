@@ -5,28 +5,67 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gson.JsonElement;
-
-import net.mograsim.logic.ui.serializing.snippets.Renderer;
 import net.mograsim.logic.ui.serializing.snippets.RendererProvider;
 import net.mograsim.logic.ui.serializing.snippets.outlinerenderers.DefaultOutlineRendererProvider;
 import net.mograsim.logic.ui.serializing.snippets.symbolrenderers.DefaultSymbolRendererProvider;
 import net.mograsim.logic.ui.util.JsonHandler;
 
-public class CodeSnippetSupplier
+public class CodeSnippetSupplier<S>
 {
-	private static final Map<String, String> standardSnippetIDClassNames = new HashMap<>();
+	// public static members
+	public static final CodeSnippetSupplier<RendererProvider> symbolRendererProviderSupplier;
+	public static final CodeSnippetSupplier<RendererProvider> outlineRendererProviderSupplier;
 
-	private static final Map<String, RendererProvider> outlineRendererProvidersForComponentClassNames = new HashMap<>();
-	private static final Map<String, RendererProvider> symbolRendererProvidersForComponentClassNames = new HashMap<>();
-
-	private static final RendererProvider defaultOutlineRendererProvider;
-	private static final RendererProvider defaultSymbolRendererProvider;
 	static
 	{
-		defaultOutlineRendererProvider = new DefaultOutlineRendererProvider();
-		defaultSymbolRendererProvider = new DefaultSymbolRendererProvider();
+		symbolRendererProviderSupplier = new CodeSnippetSupplier<>(new DefaultSymbolRendererProvider());
+		outlineRendererProviderSupplier = new CodeSnippetSupplier<>(new DefaultOutlineRendererProvider());
 	}
+
+	// per-instance members
+
+	private final Map<String, String> standardSnippetIDClassNames = new HashMap<>();
+	private final Map<String, S> snippetProvidersForClassNames = new HashMap<>();
+	private final S defaultSnippetProvider;
+
+	private CodeSnippetSupplier(S defaultSnippetProvider)
+	{
+		this.defaultSnippetProvider = defaultSnippetProvider;
+	}
+
+	public void addStandardSnippetID(String standardSnippetID, String associatedSnippetClassName)
+	{
+		standardSnippetIDClassNames.put(standardSnippetID, associatedSnippetClassName);
+	}
+
+	public void setSnippetProvider(String id, S snippetProvider)
+	{
+		snippetProvidersForClassNames.put(id, snippetProvider);
+	}
+
+	// TODO report errors
+	public S getSnippetProvider(String id)
+	{
+		if (id != null)
+		{
+			String snippetProviderClassName;
+			if (id.startsWith("class:"))
+				snippetProviderClassName = id.substring(6);
+			else
+				snippetProviderClassName = standardSnippetIDClassNames.get(id);
+			if (snippetProviderClassName != null)
+			{
+				tryLoadSnippetClass(snippetProviderClassName);
+				S snippetProvider = snippetProvidersForClassNames.get(snippetProviderClassName);
+				if (snippetProvider != null)
+					return snippetProvider;
+			}
+		}
+		System.err.println("Couldn't load snippet " + id + "; using default");
+		return defaultSnippetProvider;
+	}
+
+	// static helpers
 
 	static
 	{
@@ -34,60 +73,21 @@ public class CodeSnippetSupplier
 		{
 			if (s == null)
 				throw new IOException("Resource not found");
-			Map<String, String> tmp = JsonHandler.readJson(s, Map.class);
-			standardSnippetIDClassNames.putAll(tmp);
+			SnippetIDClassNames tmp = JsonHandler.readJson(s, SnippetIDClassNames.class);
+			tmp.standardOutlineRendererProviders.forEach(outlineRendererProviderSupplier::addStandardSnippetID);
+			tmp.standardSymbolRendererProviders.forEach(symbolRendererProviderSupplier::addStandardSnippetID);
 		}
-		catch (IOException e)
+		catch (Exception e)
 		{
-			System.err.println("Failed to initialize standard snippet ID mapping: " + e.getMessage());
+			System.err.println("Failed to initialize standard snippet ID mapping: ");
+			e.printStackTrace();
 		}
 	}
 
-	public static void addStandardSnippetID(String standardSnippetID, String associatedSnippetClassName)
+	private static class SnippetIDClassNames
 	{
-		standardSnippetIDClassNames.put(standardSnippetID, associatedSnippetClassName);
-	}
-
-	public static void setOutlineRendererProvider(String id, RendererProvider outlineRendererProvider)
-	{
-		outlineRendererProvidersForComponentClassNames.put(id, outlineRendererProvider);
-	}
-
-	public static void setSymbolRendererProvider(String id, RendererProvider symbolRendererProvider)
-	{
-		symbolRendererProvidersForComponentClassNames.put(id, symbolRendererProvider);
-	}
-
-	public static Renderer createOutlineRenderer(String id, DeserializedSubmodelComponent component, JsonElement params)
-	{
-		return getSnippet(id, outlineRendererProvidersForComponentClassNames, defaultOutlineRendererProvider).create(component, params);
-	}
-
-	public static Renderer createSymbolRenderer(String id, DeserializedSubmodelComponent component, JsonElement params)
-	{
-		return getSnippet(id, symbolRendererProvidersForComponentClassNames, defaultSymbolRendererProvider).create(component, params);
-	}
-
-	// TODO report errors
-	private static <C> C getSnippet(String id, Map<String, C> specializedCodeMap, C defaultSnippet)
-	{
-		if (id != null)
-		{
-			String snippetClassName;
-			if (id.startsWith("class:"))
-				snippetClassName = id.substring(6);
-			else
-				snippetClassName = standardSnippetIDClassNames.get(id);
-			if (snippetClassName != null)
-			{
-				tryLoadSnippetClass(snippetClassName);
-				C specializedCode = specializedCodeMap.get(snippetClassName);
-				if (specializedCode != null)
-					return specializedCode;
-			}
-		}
-		System.err.println("Couldn't load snippet " + id + "; using default");
-		return defaultSnippet;
+		public Map<String, String> standardOutlineRendererProviders;
+		public Map<String, String> standardSymbolRendererProviders;
 	}
 
 	private static void tryLoadSnippetClass(String snippetClassName)
@@ -106,4 +106,5 @@ public class CodeSnippetSupplier
 			System.err.printf(errorMessageFormat, className, "ClassNotFoundException thrown: " + e.getMessage());
 		}
 	}
+
 }
