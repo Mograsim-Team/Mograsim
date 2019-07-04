@@ -19,10 +19,10 @@ public class SubmodelComponentParams
 	public SubmodelParameters submodel;
 
 	// functionality that needs to be expressed in Java code
-	public String outlineRendererSnippetClass;
+	public String outlineRendererSnippetID;
 	public JsonElement outlineRendererParams;
 
-	public String symbolRendererSnippetClass;
+	public String symbolRendererSnippetID;
 	public JsonElement symbolRendererParams;
 
 	public static class InterfacePinParams

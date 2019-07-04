@@ -7,14 +7,11 @@ import java.util.Map;
 
 import com.google.gson.JsonElement;
 
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.serializing.snippets.Renderer;
 import net.mograsim.logic.ui.serializing.snippets.RendererProvider;
+import net.mograsim.logic.ui.serializing.snippets.outlinerenderers.DefaultOutlineRendererProvider;
+import net.mograsim.logic.ui.serializing.snippets.symbolrenderers.DefaultSymbolRendererProvider;
 import net.mograsim.logic.ui.util.JsonHandler;
-import net.mograsim.preferences.ColorDefinition;
-import net.mograsim.preferences.ColorManager;
-import net.mograsim.preferences.Preferences;
 
 public class CodeSnippetSupplier
 {
@@ -27,24 +24,8 @@ public class CodeSnippetSupplier
 	private static final RendererProvider defaultSymbolRendererProvider;
 	static
 	{
-		// TODO this code does not belong here
-		defaultOutlineRendererProvider = (comp, params) -> (gc, visReg) ->
-		{
-			ColorDefinition fg = Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.foreground");
-			if (fg != null)
-				gc.setForeground(ColorManager.current().toColor(fg));
-			gc.drawRectangle(comp.getBounds());
-		};
-		defaultSymbolRendererProvider = (comp, params) -> (gc, visReg) ->
-		{
-			ColorDefinition fg = Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.text");
-			if (fg != null)
-				gc.setForeground(ColorManager.current().toColor(fg));
-			String id = "TODO";// TODO add an ID of sorts to DeserializedSubmodelComponent
-			Point idSize = gc.textExtent(id);
-			Rectangle bounds = comp.getBounds();
-			gc.drawText(id, bounds.x + (bounds.width - idSize.x) / 2, bounds.y + (bounds.height - idSize.y) / 2, true);
-		};
+		defaultOutlineRendererProvider = new DefaultOutlineRendererProvider();
+		defaultSymbolRendererProvider = new DefaultSymbolRendererProvider();
 	}
 
 	static
@@ -105,12 +86,13 @@ public class CodeSnippetSupplier
 					return specializedCode;
 			}
 		}
+		System.err.println("Couldn't load snippet " + id + "; using default");
 		return defaultSnippet;
 	}
 
 	private static void tryLoadSnippetClass(String snippetClassName)
 	{
-		tryInvokeStaticInitializer(snippetClassName, "Error getting snippet code for component class: %s: %s\n");
+		tryInvokeStaticInitializer(snippetClassName, "Error getting snippet class: %s: %s\n");
 	}
 
 	public static void tryInvokeStaticInitializer(String className, String errorMessageFormat)

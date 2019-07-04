@@ -93,6 +93,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	@Override
 	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
 	{
+		// TODO code duplication: see SimpleRectagularLikeSymbolRendererProvider
 		Font oldFont = gc.getFont();
 		gc.setFont(new Font(oldFont.getName(), labelFontHeight, oldFont.getStyle()));
 		Point textExtent = gc.textExtent(label);
