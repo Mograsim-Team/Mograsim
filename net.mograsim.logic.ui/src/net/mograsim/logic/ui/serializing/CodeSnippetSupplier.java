@@ -5,30 +5,31 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.mograsim.logic.ui.serializing.snippets.RendererProvider;
-import net.mograsim.logic.ui.serializing.snippets.outlinerenderers.DefaultOutlineRendererProvider;
-import net.mograsim.logic.ui.serializing.snippets.symbolrenderers.DefaultSymbolRendererProvider;
+import net.mograsim.logic.ui.serializing.snippets.Renderer;
+import net.mograsim.logic.ui.serializing.snippets.SnippetSupplier;
+import net.mograsim.logic.ui.serializing.snippets.outlinerenderers.DefaultOutlineRenderer;
+import net.mograsim.logic.ui.serializing.snippets.symbolrenderers.DefaultSymbolRenderer;
 import net.mograsim.logic.ui.util.JsonHandler;
 
 public class CodeSnippetSupplier<S>
 {
 	// public static members
-	public static final CodeSnippetSupplier<RendererProvider> symbolRendererProviderSupplier;
-	public static final CodeSnippetSupplier<RendererProvider> outlineRendererProviderSupplier;
+	public static final CodeSnippetSupplier<Renderer> symbolRendererProviderSupplier;
+	public static final CodeSnippetSupplier<Renderer> outlineRendererProviderSupplier;
 
 	static
 	{
-		symbolRendererProviderSupplier = new CodeSnippetSupplier<>(new DefaultSymbolRendererProvider());
-		outlineRendererProviderSupplier = new CodeSnippetSupplier<>(new DefaultOutlineRendererProvider());
+		symbolRendererProviderSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultSymbolRenderer::new));
+		outlineRendererProviderSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultOutlineRenderer::new));
 	}
 
 	// per-instance members
 
 	private final Map<String, String> standardSnippetIDClassNames = new HashMap<>();
-	private final Map<String, S> snippetProvidersForClassNames = new HashMap<>();
-	private final S defaultSnippetProvider;
+	private final Map<String, SnippetSupplier<?, S>> snippetProvidersForClassNames = new HashMap<>();
+	private final SnippetSupplier<?, S> defaultSnippetProvider;
 
-	private CodeSnippetSupplier(S defaultSnippetProvider)
+	private CodeSnippetSupplier(SnippetSupplier<?, S> defaultSnippetProvider)
 	{
 		this.defaultSnippetProvider = defaultSnippetProvider;
 	}
@@ -38,13 +39,13 @@ public class CodeSnippetSupplier<S>
 		standardSnippetIDClassNames.put(standardSnippetID, associatedSnippetClassName);
 	}
 
-	public void setSnippetProvider(String id, S snippetProvider)
+	public void setSnippetProvider(String id, SnippetSupplier<?, S> snippetProvider)
 	{
 		snippetProvidersForClassNames.put(id, snippetProvider);
 	}
 
 	// TODO report errors
-	public S getSnippetProvider(String id)
+	public SnippetSupplier<?, S> getSnippetProvider(String id)
 	{
 		if (id != null)
 		{
@@ -56,7 +57,7 @@ public class CodeSnippetSupplier<S>
 			if (snippetProviderClassName != null)
 			{
 				tryLoadSnippetClass(snippetProviderClassName);
-				S snippetProvider = snippetProvidersForClassNames.get(snippetProviderClassName);
+				SnippetSupplier<?, S> snippetProvider = snippetProvidersForClassNames.get(snippetProviderClassName);
 				if (snippetProvider != null)
 					return snippetProvider;
 			}
