@@ -2,6 +2,7 @@ package net.mograsim.logic.ui.am2900;
 
 import net.mograsim.logic.ui.SimpleLogicUIStandalone;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
+import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.components.atomic.GUIAndGate;
 import net.mograsim.logic.ui.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
@@ -10,7 +11,7 @@ import net.mograsim.logic.ui.model.components.atomic.TextComponent;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIdff;
 import net.mograsim.logic.ui.model.components.mi.nandbased.am2901.GUIAm2901;
 import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
-import net.mograsim.logic.ui.model.wires.ConnectionPoint;
+import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.model.wires.WireCrossPoint;
 import net.mograsim.logic.ui.util.ModellingTool;
 
@@ -46,7 +47,7 @@ public class Am2901Testbench
 		not2.moveTo(80, -20);
 		not3.moveTo(110, -20);
 		and.moveTo(135, -30);
-		ConnectionPoint last = and.getPin("Y");
+		Pin last = and.getPin("Y");
 
 		for (int i = 0; i < comp.getInputPinNames().size(); i++)
 		{
@@ -54,7 +55,7 @@ public class Am2901Testbench
 			double y = 10 * i;
 
 			WireCrossPoint wcp = new WireCrossPoint(model, 1);
-			GUIdff d_ff = new GUIdff(model);
+			GUIComponent d_ff = new GUIdff(model);
 			GUIManualSwitch sw = new GUIManualSwitch(model);
 
 			tool.connect(last, wcp);

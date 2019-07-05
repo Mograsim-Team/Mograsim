@@ -23,7 +23,7 @@ import net.mograsim.preferences.ColorManager;
  * 
  * @author Daniel Kirschten
  */
-public class WireCrossPoint extends GUIComponent implements ConnectionPoint
+public class WireCrossPoint extends GUIComponent
 {
 	private static final int CIRCLE_RADIUS = 1;
 	private static final int CIRCLE_DIAM = CIRCLE_RADIUS * 2;
@@ -55,7 +55,6 @@ public class WireCrossPoint extends GUIComponent implements ConnectionPoint
 
 	// pins
 
-	@Override
 	public Pin getPin()
 	{
 		return pin;
