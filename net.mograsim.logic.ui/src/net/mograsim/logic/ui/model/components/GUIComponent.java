@@ -38,12 +38,12 @@ public abstract class GUIComponent
 	protected final Map<String, Pin> pinsUnmodifiable;
 
 	private final List<Consumer<? super GUIComponent>> componentMovedListeners;
+	private final List<Consumer<? super GUIComponent>> componentResizedListeners;
 	private final List<Consumer<? super Pin>> pinAddedListeners;
 	private final List<Consumer<? super Pin>> pinRemovedListeners;
 	private final List<Runnable> redrawListeners;
 
 	private final Runnable redrawListenerForSubcomponents;
-
 	// creation and destruction
 
 	public GUIComponent(ViewModelModifiable model)
@@ -54,6 +54,7 @@ public abstract class GUIComponent
 		this.pinsUnmodifiable = Collections.unmodifiableMap(pinsByName);
 
 		this.componentMovedListeners = new ArrayList<>();
+		this.componentResizedListeners = new ArrayList<>();
 		this.pinAddedListeners = new ArrayList<>();
 		this.pinRemovedListeners = new ArrayList<>();
 		this.redrawListeners = new ArrayList<>();
@@ -193,6 +194,7 @@ public abstract class GUIComponent
 	{
 		bounds.width = width;
 		bounds.height = height;
+		callComponentResizedListener();
 		requestRedraw();
 	}
 
@@ -287,19 +289,22 @@ public abstract class GUIComponent
 	}
 
 	// @formatter:off
-	public void addComponentMovedListener   (Consumer<? super GUIComponent> listener) {componentMovedListeners.add   (listener);}
-	public void addPinAddedListener         (Consumer<? super Pin         > listener) {pinAddedListeners      .add   (listener);}
-	public void addPinRemovedListener       (Consumer<? super Pin         > listener) {pinRemovedListeners    .add   (listener);}
-	public void addRedrawListener           (Runnable                       listener) {redrawListeners        .add   (listener);}
+	public void addComponentMovedListener      (Consumer<? super GUIComponent> listener) {componentMovedListeners  .add   (listener);}
+	public void addComponentResizedListener    (Consumer<? super GUIComponent> listener) {componentResizedListeners.add   (listener);}
+	public void addPinAddedListener            (Consumer<? super Pin         > listener) {pinAddedListeners        .add   (listener);}
+	public void addPinRemovedListener          (Consumer<? super Pin         > listener) {pinRemovedListeners      .add   (listener);}
+	public void addRedrawListener              (Runnable                       listener) {redrawListeners          .add   (listener);}
 
-	public void removeComponentMovedListener(Consumer<? super GUIComponent> listener) {componentMovedListeners .remove(listener);}
-	public void removePinAddedListener      (Consumer<? super Pin         > listener) {pinAddedListeners       .remove(listener);}
-	public void removePinRemovedListener    (Consumer<? super Pin         > listener) {pinRemovedListeners     .remove(listener);}
-	public void removeRedrawListener        (Runnable                       listener) {redrawListeners         .remove(listener);}
+	public void removeComponentMovedListener   (Consumer<? super GUIComponent> listener) {componentMovedListeners  .remove(listener);}
+	public void removeComponentResizedListener (Consumer<? super GUIComponent> listener) {componentResizedListeners.remove(listener);}
+	public void removePinAddedListener         (Consumer<? super Pin         > listener) {pinAddedListeners        .remove(listener);}
+	public void removePinRemovedListener       (Consumer<? super Pin         > listener) {pinRemovedListeners      .remove(listener);}
+	public void removeRedrawListener           (Runnable                       listener) {redrawListeners          .remove(listener);}
 
-	private void callComponentMovedListeners(     ) {componentMovedListeners.forEach(l -> l.accept(this));}
-	private void callPinAddedListeners      (Pin p) {pinAddedListeners      .forEach(l -> l.accept(p   ));}
-	private void callPinRemovedListeners    (Pin p) {pinRemovedListeners    .forEach(l -> l.accept(p   ));}
-	private void callRedrawListeners        (     ) {redrawListeners        .forEach(l -> l.run(       ));}
+	private void callComponentMovedListeners (     ) {componentMovedListeners  .forEach(l -> l.accept(this));}
+	private void callComponentResizedListener(     ) {componentResizedListeners.forEach(l -> l.accept(this));}
+	private void callPinAddedListeners       (Pin p) {pinAddedListeners        .forEach(l -> l.accept(p   ));}
+	private void callPinRemovedListeners     (Pin p) {pinRemovedListeners      .forEach(l -> l.accept(p   ));}
+	private void callRedrawListeners         (     ) {redrawListeners          .forEach(l -> l.run(       ));}
 	// @formatter:on
 }
