@@ -12,14 +12,15 @@ import org.eclipse.swt.graphics.Color;
 import com.google.gson.JsonObject;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
 import net.mograsim.logic.ui.model.wires.MovablePin;
 import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.serializing.SubmodelComponentParams;
+import net.mograsim.logic.ui.serializing.snippets.Renderer;
+import net.mograsim.logic.ui.serializing.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
+import net.mograsim.logic.ui.serializing.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
 import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
@@ -38,6 +39,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	private final List<String> outputPinNames;
 	private final List<String> outputPinNamesUnmodifiable;
 
+	private Renderer symbolRenderer;
+
 	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label)
 	{
 		super(model);
@@ -47,6 +50,14 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		this.inputPinNamesUnmodifiable = Collections.unmodifiableList(inputPinNames);
 		this.outputPinNames = new ArrayList<>();
 		this.outputPinNamesUnmodifiable = Collections.unmodifiableList(outputPinNames);
+
+		SimpleRectangularLikeParams rendererParams = new SimpleRectangularLikeParams();
+		rendererParams.centerText = label;
+		rendererParams.centerTextHeight = labelFontHeight;
+		rendererParams.horizontalComponentCenter = getWidth() / 2;
+		rendererParams.pinLabelHeight = pinNameFontHeight;
+		rendererParams.pinLabelMargin = pinNameMargin;
+		symbolRenderer = new SimpleRectangularLikeSymbolRenderer(this, rendererParams);
 	}
 
 	protected void setInputPins(String... pinNames)
@@ -98,29 +109,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	@Override
 	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
 	{
-		// TODO code duplication: see SimpleRectagularLikeSymbolRendererProvider
-		Font oldFont = gc.getFont();
-		gc.setFont(new Font(oldFont.getName(), labelFontHeight, oldFont.getStyle()));
-		Point textExtent = gc.textExtent(label);
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
-		if (textColor != null)
-			gc.setForeground(textColor);
-		gc.drawText(label, getPosX() + (getWidth() - textExtent.x) / 2, getPosY() + (getHeight() - textExtent.y) / 2, true);
-		gc.setFont(new Font(oldFont.getName(), pinNameFontHeight, oldFont.getStyle()));
-		for (int i = 0; i < inputPinNames.size(); i++)
-		{
-			String pinName = inputPinNames.get(i);
-			textExtent = gc.textExtent(pinName);
-			gc.drawText(pinName, getPosX() + pinNameMargin, getPosY() + i * pinDistance + (pinDistance - textExtent.y) / 2, true);
-		}
-		for (int i = 0; i < outputPinNames.size(); i++)
-		{
-			String pinName = outputPinNames.get(i);
-			textExtent = gc.textExtent(pinName);
-			gc.drawText(pinName, getPosX() + width - textExtent.x - pinNameMargin,
-					getPosY() + i * pinDistance + (pinDistance - textExtent.y) / 2, true);
-		}
-		gc.setFont(oldFont);
+		symbolRenderer.render(gc, visibleRegion);
 	}
 
 	@Override
