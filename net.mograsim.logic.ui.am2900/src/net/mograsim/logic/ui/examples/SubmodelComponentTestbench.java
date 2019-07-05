@@ -25,6 +25,7 @@ public class SubmodelComponentTestbench
 		SubmodelComponent comp = SubmodelComponentDeserializer.create(model, "components/am2901/GUIAm2901.json");
 
 		// guess which pins are outputs and which are inputs
+		// TODO this code exists three times... but it seems too "hacky" to put it in a helper class
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
 		for (Pin p : comp.getPins().values())

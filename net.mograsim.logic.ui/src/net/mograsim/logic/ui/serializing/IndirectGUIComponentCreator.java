@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
@@ -53,6 +54,11 @@ public class IndirectGUIComponentCreator
 	public static void setComponentProvider(String className, ComponentProvider componentProvider)
 	{
 		componentProviders.put(className, componentProvider);
+	}
+
+	public static GUIComponent createComponent(ViewModelModifiable model, String id)
+	{
+		return createComponent(model, id, JsonNull.INSTANCE);
 	}
 
 	public static GUIComponent createComponent(ViewModelModifiable model, String id, JsonElement params)

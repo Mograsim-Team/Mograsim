@@ -3,9 +3,11 @@ package net.mograsim.logic.ui.am2900;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.Set;
@@ -25,12 +27,13 @@ import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.mi.nandbased.am2901.GUIAm2901;
 import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
+import net.mograsim.logic.ui.model.wires.Pin;
 import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
 import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
 
 public class TestableAm2901Impl implements TestableAm2901
 {
-	private GUIAm2901 am2901;
+	private GUIComponent am2901;
 	private Timeline timeline;
 	private ManualSwitch I8, I7, I6, I5, I4, I3, I2, I1, I0;
 	private ManualSwitch C;
@@ -100,10 +103,21 @@ public class TestableAm2901Impl implements TestableAm2901
 	{
 		// Create view model
 		ViewModelModifiable viewModel = new ViewModelModifiable();
+		// TODO replace with deserialized version as soon as high level states work for deserialized components
 		am2901 = new GUIAm2901(viewModel);
+//		am2901 = IndirectGUIComponentCreator.createComponent(viewModel, "GUIAm2901");
+		// guess which pins are outputs and which are inputs
+		// TODO this code exists three times... but it seems too "hacky" to put it in a helper class
+		List<String> inputPinNames = new ArrayList<>();
+		List<String> outputPinNames = new ArrayList<>();
+		for (Pin p : am2901.getPins().values())
+			if (p.getRelX() == 0)
+				inputPinNames.add(p.name);
+			else
+				outputPinNames.add(p.name);
 		// Get switches
 		HashMap<String, GUIManualSwitch> idSwitchMap = new HashMap<>();
-		for (String id : am2901.getInputPinNames())
+		for (String id : inputPinNames)
 		{
 			GUIManualSwitch sw = new GUIManualSwitch(viewModel);
 			new GUIWire(viewModel, am2901.getPin(id), sw.getOutputPin());
@@ -111,7 +125,7 @@ public class TestableAm2901Impl implements TestableAm2901
 		}
 		// Get displays
 		HashMap<String, GUIBitDisplay> idDisplayMap = new HashMap<>();
-		for (String id : am2901.getOutputPinNames())
+		for (String id : outputPinNames)
 		{
 			GUIBitDisplay bd = new GUIBitDisplay(viewModel);
 //			bd.addRedrawListener(() -> System.out.println(id + " " + bd.getBitDisplay().getDisplayedValue()));
