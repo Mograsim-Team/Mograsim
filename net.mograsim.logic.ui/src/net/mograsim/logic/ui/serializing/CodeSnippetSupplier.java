@@ -61,8 +61,8 @@ public class CodeSnippetSupplier<S>
 				if (snippetProvider != null)
 					return snippetProvider;
 			}
+			System.err.println("Couldn't load snippet " + id + "; using default");
 		}
-		System.err.println("Couldn't load snippet " + id + "; using default");
 		return defaultSnippetProvider;
 	}
 
