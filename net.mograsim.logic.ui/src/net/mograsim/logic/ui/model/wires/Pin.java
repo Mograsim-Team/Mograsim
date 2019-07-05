@@ -15,7 +15,7 @@ import net.mograsim.logic.ui.model.components.GUIComponent;
  * 
  * @author Daniel Kirschten
  */
-public class Pin implements ConnectionPoint
+public class Pin
 {
 	/**
 	 * The {@link GUIComponent} this pin belongs to
@@ -135,11 +135,5 @@ public class Pin implements ConnectionPoint
 	public String toString()
 	{
 		return "Pin [" + name + ", point=" + getPos() + "]";
-	}
-
-	@Override
-	public Pin getPin()
-	{
-		return this;
 	}
 }
