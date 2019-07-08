@@ -5,8 +5,10 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.mograsim.logic.ui.serializing.snippets.HighLevelStateHandler;
 import net.mograsim.logic.ui.serializing.snippets.Renderer;
 import net.mograsim.logic.ui.serializing.snippets.SnippetSupplier;
+import net.mograsim.logic.ui.serializing.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
 import net.mograsim.logic.ui.serializing.snippets.outlinerenderers.DefaultOutlineRenderer;
 import net.mograsim.logic.ui.serializing.snippets.symbolrenderers.DefaultSymbolRenderer;
 import net.mograsim.logic.ui.util.JsonHandler;
@@ -16,11 +18,13 @@ public class CodeSnippetSupplier<S>
 	// public static members
 	public static final CodeSnippetSupplier<Renderer> symbolRendererSupplier;
 	public static final CodeSnippetSupplier<Renderer> outlineRendererSupplier;
+	public static final CodeSnippetSupplier<HighLevelStateHandler> highLevelStateHandlerSupplier;
 
 	static
 	{
 		symbolRendererSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultSymbolRenderer::new));
 		outlineRendererSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultOutlineRenderer::new));
+		highLevelStateHandlerSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultHighLevelStateHandler::new));
 	}
 
 	// per-instance members
@@ -77,6 +81,7 @@ public class CodeSnippetSupplier<S>
 			SnippetIDClassNames tmp = JsonHandler.readJson(s, SnippetIDClassNames.class);
 			tmp.standardOutlineRendererSuppliers.forEach(outlineRendererSupplier::addStandardSnippetID);
 			tmp.standardSymbolRendererSuppliers.forEach(symbolRendererSupplier::addStandardSnippetID);
+			tmp.standardHighLevelStateHandlerSuppliers.forEach(highLevelStateHandlerSupplier::addStandardSnippetID);
 		}
 		catch (Exception e)
 		{
@@ -89,6 +94,7 @@ public class CodeSnippetSupplier<S>
 	{
 		public Map<String, String> standardOutlineRendererSuppliers;
 		public Map<String, String> standardSymbolRendererSuppliers;
+		public Map<String, String> standardHighLevelStateHandlerSuppliers;
 	}
 
 	private static void tryLoadSnippetClass(String snippetClassName)

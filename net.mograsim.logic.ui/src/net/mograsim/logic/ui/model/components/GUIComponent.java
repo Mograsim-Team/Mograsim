@@ -14,6 +14,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.wires.Pin;
+import net.mograsim.logic.ui.serializing.snippets.HighLevelStateHandler;
 
 /**
  * The base class for all GUI components.<br>
@@ -142,13 +143,10 @@ public abstract class GUIComponent
 
 	/**
 	 * Sets the given high-level state to the given value. <br>
-	 * A high level state ID consists of parts separated by dots ('.').<br>
-	 * The last part (the part after the last dot) is called "atomic high level state ID". The parts before that part are called
-	 * "subcomponent ID"s.<br>
-	 * If there is no dot in a high level state ID, the whole high level state ID is called atomic.<br>
-	 * Note that subcomponent IDs don't have to correspond to actual subcomponents. For example, a RAM component may supply subcomponent IDs
-	 * "c0000", "c0001" ... "cFFFF" without actually having a subcomponent for each cell. It also is allowed for an atomic high level state
-	 * ID to be delegated to a subcomponent.
+	 * See {@link HighLevelStateHandler#setHighLevelState(String, Object)} for an explanation of high-level state IDs.
+	 * 
+	 * @see #getHighLevelState(String)
+	 * @see HighLevelStateHandler#setHighLevelState(String, Object)
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -160,7 +158,10 @@ public abstract class GUIComponent
 
 	/**
 	 * Gets the current value of the given high-level state. <br>
-	 * See {@link #setHighLevelState(String, Object)} for an explanation of high-level state IDs.
+	 * See {@link HighLevelStateHandler#setHighLevelState(String, Object)} for an explanation of high-level state IDs.
+	 * 
+	 * @see #setHighLevelState(String, Object)
+	 * @see HighLevelStateHandler#getHighLevelState(String)
 	 * 
 	 * @author Daniel Kirschten
 	 */
