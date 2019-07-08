@@ -13,7 +13,12 @@ public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 {
 	public GUIAm2901DestDecode(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIAm2901DestDecode");
+		this(model, null);
+	}
+
+	public GUIAm2901DestDecode(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIAm2901DestDecode", name);
 		setSubmodelScale(.25);
 		setInputPins("I8", "I7", "I6");
 		setOutputPins("NSH", "RSH", "RAMWE", "YF", "LSH", "QWE");
@@ -147,6 +152,6 @@ public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 	static
 	{
 		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901DestDecode.class.getCanonicalName(),
-				(m, p) -> new GUIAm2901DestDecode(m));
+				(m, p, n) -> new GUIAm2901DestDecode(m, n));
 	}
 }

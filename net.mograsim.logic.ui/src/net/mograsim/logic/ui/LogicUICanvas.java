@@ -66,7 +66,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		if (e.button == 1)
 		{
 			Point click = displayToWorldCoords(e.x, e.y);
-			for (GUIComponent component : model.getComponents())
+			for (GUIComponent component : model.getComponentsByName().values())
 				if (component.getBounds().contains(click) && component.clicked(click.x, click.y))
 				{
 					redraw();
@@ -163,10 +163,10 @@ public class LogicUICanvas extends ZoomableCanvas
 
 	private void addComponentSelectorItems(List<GUIComponent> componentsByItemIndex, String base, Combo componentSelector, ViewModel model)
 	{
-		for (GUIComponent c : model.getComponents())
+		for (GUIComponent c : model.getComponentsByName().values())
 			if (!(c instanceof WireCrossPoint || c instanceof SubmodelInterface))
 			{
-				String item = base + c.getClass().getSimpleName();
+				String item = base + c.name;
 				componentsByItemIndex.add(c);
 				componentSelector.add(item);
 				if (c instanceof SubmodelComponent)

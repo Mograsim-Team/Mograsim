@@ -13,7 +13,12 @@ public class GUIAm2901SourceDecode extends SimpleRectangularSubmodelComponent
 {
 	public GUIAm2901SourceDecode(ViewModelModifiable model)
 	{
-		super(model, 1, "Am2901SourceDecode");
+		this(model, null);
+	}
+
+	public GUIAm2901SourceDecode(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "Am2901SourceDecode", name);
 		setSubmodelScale(.25);
 		setInputPins("I2", "I1", "I0");
 		setOutputPins("SQ", "RA", "SB", "SA", "RD");
@@ -153,6 +158,6 @@ public class GUIAm2901SourceDecode extends SimpleRectangularSubmodelComponent
 	static
 	{
 		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901SourceDecode.class.getCanonicalName(),
-				(m, p) -> new GUIAm2901SourceDecode(m));
+				(m, p, n) -> new GUIAm2901SourceDecode(m, n));
 	}
 }

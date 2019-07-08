@@ -3,7 +3,6 @@ package net.mograsim.logic.ui.model.components.submodels;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -35,6 +34,7 @@ import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParamet
  */
 public abstract class SubmodelComponent extends GUIComponent
 {
+	private static final String SUBMODEL_INTERFACE_NAME = "_submodelinterface";
 	/**
 	 * A modifiable view of {@link #submodel}.
 	 */
@@ -102,9 +102,9 @@ public abstract class SubmodelComponent extends GUIComponent
 
 	// creation and destruction
 
-	public SubmodelComponent(ViewModelModifiable model)
+	public SubmodelComponent(ViewModelModifiable model, String name)
 	{
-		super(model);
+		super(model, name);
 		this.submodelModifiable = new ViewModelModifiable();
 		this.submodel = submodelModifiable;
 		this.submodelPins = new HashMap<>();
@@ -113,7 +113,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		this.supermodelPins = new HashMap<>();
 		this.supermodelMovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
 		this.supermodelUnmovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
-		this.submodelInterface = new SubmodelInterface(submodelModifiable);
+		this.submodelInterface = new SubmodelInterface(submodelModifiable, SUBMODEL_INTERFACE_NAME);
 
 		this.highLevelAtomicStates = new HashSet<>();
 		this.subcomponentsByHighLevelStateSubcomponentID = new HashMap<>();
@@ -492,7 +492,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	{
 		double scaledX = (x - getPosX()) / submodelScale;
 		double scaledY = (y - getPosY()) / submodelScale;
-		for (GUIComponent component : submodel.getComponents())
+		for (GUIComponent component : submodel.getComponentsByName().values())
 			if (component.getBounds().contains(scaledX, scaledY) && component.clicked(scaledX, scaledY))
 				return true;
 		return false;
@@ -538,19 +538,18 @@ public abstract class SubmodelComponent extends GUIComponent
 		SubmodelParameters params = new SubmodelParameters();
 		params.innerScale = getSubmodelScale();
 
-		List<GUIComponent> compList = submodel.getComponents();
-		Iterator<GUIComponent> componentIt = compList.iterator();
-		componentIt.next(); // Skip inner SubmodelInterface
-		InnerComponentParams[] comps = new InnerComponentParams[compList.size() - 1];
+		Map<String, GUIComponent> components = new HashMap<>(submodel.getComponentsByName());
+		components.remove(SUBMODEL_INTERFACE_NAME);
+		InnerComponentParams[] comps = new InnerComponentParams[components.size()];
 		int i = 0;
-		while (componentIt.hasNext())
+		for (GUIComponent component : components.values())
 		{
-			GUIComponent component = componentIt.next();
 			InnerComponentParams inner = new InnerComponentParams();
 			comps[i] = inner;
 			inner.pos = new Point(component.getPosX(), component.getPosY());
 			inner.id = getIdentifier.apply(component);
 			inner.params = component.getParams();
+			inner.name = component.name;
 			i++;
 		}
 		params.subComps = comps;
@@ -565,9 +564,9 @@ public abstract class SubmodelComponent extends GUIComponent
 			InnerPinParams pin1Params = new InnerPinParams(), pin2Params = new InnerPinParams();
 
 			pin1Params.pinName = wire.getPin1().name;
-			pin1Params.compId = compList.indexOf(wire.getPin1().component);
+			pin1Params.compName = wire.getPin1().component.name;
 			pin2Params.pinName = wire.getPin2().name;
-			pin2Params.compId = compList.indexOf(wire.getPin2().component);
+			pin2Params.compName = wire.getPin2().component.name;
 			inner.pin1 = pin1Params;
 			inner.pin2 = pin2Params;
 			inner.path = wire.getPath();

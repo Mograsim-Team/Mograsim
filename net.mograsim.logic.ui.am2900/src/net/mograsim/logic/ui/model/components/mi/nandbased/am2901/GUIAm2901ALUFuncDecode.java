@@ -15,7 +15,12 @@ public class GUIAm2901ALUFuncDecode extends SimpleRectangularSubmodelComponent
 {
 	public GUIAm2901ALUFuncDecode(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIAm2901ALUFuncDecode");
+		this(model, null);
+	}
+
+	public GUIAm2901ALUFuncDecode(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIAm2901ALUFuncDecode", name);
 		setSubmodelScale(.25);
 		setInputPins("I5", "I4", "I3");
 		setOutputPins("CinE", "L", "SN", "SBE", "FN", "RN");
@@ -111,6 +116,6 @@ public class GUIAm2901ALUFuncDecode extends SimpleRectangularSubmodelComponent
 	static
 	{
 		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901ALUFuncDecode.class.getCanonicalName(),
-				(m, p) -> new GUIAm2901ALUFuncDecode(m));
+				(m, p, n) -> new GUIAm2901ALUFuncDecode(m, n));
 	}
 }

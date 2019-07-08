@@ -46,7 +46,7 @@ public class ViewLogicModelAdapter
 		Map<Pin, Wire> logicWiresPerPin = convertWires(getAllPins(viewModel), viewModel.getWires(), externalWires, params, timeline);
 		Map<Pin, Wire> logicWiresPerPinUnmodifiable = Collections.unmodifiableMap(logicWiresPerPin);
 
-		for (GUIComponent guiComp : viewModel.getComponents())
+		for (GUIComponent guiComp : viewModel.getComponentsByName().values())
 		{
 			if (guiComp instanceof SubmodelComponent)
 			{
@@ -66,7 +66,8 @@ public class ViewLogicModelAdapter
 
 	private static Set<Pin> getAllPins(ViewModel viewModel)
 	{
-		return viewModel.getComponents().stream().flatMap(component -> component.getPins().values().stream()).collect(Collectors.toSet());
+		return viewModel.getComponentsByName().values().stream().flatMap(component -> component.getPins().values().stream())
+				.collect(Collectors.toSet());
 	}
 
 	private static Map<Pin, Wire> convertWires(Set<Pin> allPins, List<GUIWire> wires, Map<Pin, Wire> externalWires,

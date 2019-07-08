@@ -15,7 +15,12 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 
 	public GUIdff(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIdff");
+		this(model, null);
+	}
+
+	public GUIdff(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIdff", name);
 		setSubmodelScale(.2);
 		setInputPins("C", "D");
 		setOutputPins("Q", "_Q");
@@ -97,6 +102,6 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIdff.class.getCanonicalName(), (m, p) -> new GUIdff(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIdff.class.getCanonicalName(), (m, p, n) -> new GUIdff(m, n));
 	}
 }

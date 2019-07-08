@@ -8,9 +8,9 @@ import net.mograsim.logic.ui.model.wires.Pin;
 
 public class SubmodelInterface extends GUIComponent
 {
-	public SubmodelInterface(ViewModelModifiable model)
+	public SubmodelInterface(ViewModelModifiable model, String name)
 	{
-		super(model);
+		super(model, name);
 	}
 
 	@Override

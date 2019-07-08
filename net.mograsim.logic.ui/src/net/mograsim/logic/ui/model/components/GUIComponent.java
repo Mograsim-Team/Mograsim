@@ -28,6 +28,10 @@ public abstract class GUIComponent
 	 * The model this component is a part of.
 	 */
 	protected final ViewModelModifiable model;
+	/**
+	 * The name of this component. Is unique in its model.
+	 */
+	public final String name;
 	private final Rectangle bounds;
 	/**
 	 * The list of all pins of this component by name.
@@ -47,9 +51,10 @@ public abstract class GUIComponent
 	private final Runnable redrawListenerForSubcomponents;
 	// creation and destruction
 
-	public GUIComponent(ViewModelModifiable model)
+	public GUIComponent(ViewModelModifiable model, String name)
 	{
 		this.model = model;
+		this.name = name == null ? model.getDefaultComponentName(this) : name;
 		this.bounds = new Rectangle(0, 0, 0, 0);
 		this.pinsByName = new HashMap<>();
 		this.pinsUnmodifiable = Collections.unmodifiableMap(pinsByName);

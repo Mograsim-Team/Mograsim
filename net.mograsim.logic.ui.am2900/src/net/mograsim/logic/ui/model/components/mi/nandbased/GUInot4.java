@@ -13,7 +13,12 @@ public class GUInot4 extends SimpleRectangularSubmodelComponent
 {
 	public GUInot4(ViewModelModifiable model)
 	{
-		super(model, 1, "GUInot4");
+		this(model, null);
+	}
+
+	public GUInot4(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUInot4", name);
 		setSubmodelScale(.4);
 		setInputPins("A1", "A2", "A3", "A4");
 		setOutputPins("Y1", "Y2", "Y3", "Y4");
@@ -71,6 +76,6 @@ public class GUInot4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUInot4.class.getCanonicalName(), (m, p) -> new GUInot4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUInot4.class.getCanonicalName(), (m, p, n) -> new GUInot4(m, n));
 	}
 }

@@ -17,10 +17,14 @@ import net.mograsim.logic.ui.serializing.IndirectGUIComponentCreator;
 
 public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 {
-
 	public GUIAm2901(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIAm2901");
+		this(model, null);
+	}
+
+	public GUIAm2901(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIAm2901", name);
 		setSubmodelScale(.1);
 		setInputPins("I8", "I7", "I6", "I5", "I4", "I3", "I2", "I1", "I0", "C", "Cn", "D1", "D2", "D3", "D4", "A0", "A1", "A2", "A3", "B0",
 				"B1", "B2", "B3", "IRAMn", "IRAMn+3", "IQn", "IQn+3");
@@ -348,6 +352,6 @@ public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901.class.getCanonicalName(), (m, p) -> new GUIAm2901(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901.class.getCanonicalName(), (m, p, n) -> new GUIAm2901(m, n));
 	}
 }

@@ -43,7 +43,12 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 
 	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label)
 	{
-		super(model);
+		this(model, logicWidth, label, null);
+	}
+
+	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label, String name)
+	{
+		super(model, name);
 		this.label = label;
 		this.logicWidth = logicWidth;
 		this.inputPinNames = new ArrayList<>();

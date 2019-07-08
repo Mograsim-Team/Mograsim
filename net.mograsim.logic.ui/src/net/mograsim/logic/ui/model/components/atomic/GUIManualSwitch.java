@@ -34,7 +34,12 @@ public class GUIManualSwitch extends GUIComponent
 
 	public GUIManualSwitch(ViewModelModifiable model)
 	{
-		super(model);
+		this(model, null);
+	}
+
+	public GUIManualSwitch(ViewModelModifiable model, String name)
+	{
+		super(model, name);
 		logicObs = (i) -> requestRedraw();
 
 		setSize(width, height);
@@ -138,6 +143,6 @@ public class GUIManualSwitch extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new ManualSwitchAdapter());
-		IndirectGUIComponentCreator.setComponentSupplier(GUIManualSwitch.class.getName(), (m, p) -> new GUIManualSwitch(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIManualSwitch.class.getName(), (m, p, n) -> new GUIManualSwitch(m, n));
 	}
 }

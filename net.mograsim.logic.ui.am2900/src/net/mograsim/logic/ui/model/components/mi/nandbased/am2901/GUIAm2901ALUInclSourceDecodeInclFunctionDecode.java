@@ -14,7 +14,12 @@ public class GUIAm2901ALUInclSourceDecodeInclFunctionDecode extends SimpleRectan
 {
 	public GUIAm2901ALUInclSourceDecodeInclFunctionDecode(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIAm2901ALUInclSourceDecodeInclFunctionDecode");
+		this(model, null);
+	}
+
+	public GUIAm2901ALUInclSourceDecodeInclFunctionDecode(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIAm2901ALUInclSourceDecodeInclFunctionDecode", name);
 		setSubmodelScale(.25);
 		setInputPins("I5", "I4", "I3", "I2", "I1", "I0", "Cn", "D1", "D2", "D3", "D4", "A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "Q1",
 				"Q2", "Q3", "Q4");
@@ -142,6 +147,6 @@ public class GUIAm2901ALUInclSourceDecodeInclFunctionDecode extends SimpleRectan
 	static
 	{
 		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901ALUInclSourceDecodeInclFunctionDecode.class.getCanonicalName(),
-				(m, p) -> new GUIAm2901ALUInclSourceDecodeInclFunctionDecode(m));
+				(m, p, n) -> new GUIAm2901ALUInclSourceDecodeInclFunctionDecode(m, n));
 	}
 }

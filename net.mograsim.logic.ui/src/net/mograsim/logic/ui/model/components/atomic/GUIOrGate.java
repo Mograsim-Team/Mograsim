@@ -10,13 +10,19 @@ public class GUIOrGate extends SimpleRectangularGUIGate
 {
 	public GUIOrGate(ViewModelModifiable model, int logicWidth)
 	{
-		super(model, logicWidth, "\u22651", false);// ">=1"
+		this(model, logicWidth, null);
+	}
+
+	public GUIOrGate(ViewModelModifiable model, int logicWidth, String name)
+	{
+		super(model, "\u22651", false, logicWidth, name);// ">=1"
 		setInputCount(2);
 	}
 
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUIOrGate.class, OrGate::new));
-		IndirectGUIComponentCreator.setComponentSupplier(GUIOrGate.class.getCanonicalName(), (m, p) -> new GUIOrGate(m, p.getAsInt()));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIOrGate.class.getCanonicalName(),
+				(m, p, n) -> new GUIOrGate(m, p.getAsInt(), n));
 	}
 }

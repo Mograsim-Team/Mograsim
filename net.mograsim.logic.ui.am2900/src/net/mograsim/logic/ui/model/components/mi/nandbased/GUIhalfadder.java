@@ -13,7 +13,12 @@ public class GUIhalfadder extends SimpleRectangularSubmodelComponent
 {
 	public GUIhalfadder(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIhalfadder");
+		this(model, null);
+	}
+
+	public GUIhalfadder(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIhalfadder", name);
 		setSubmodelScale(.4);
 		setInputPins("A", "B");
 		setOutputPins("Y", "_Z");
@@ -62,6 +67,6 @@ public class GUIhalfadder extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIhalfadder.class.getCanonicalName(), (m, p) -> new GUIhalfadder(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIhalfadder.class.getCanonicalName(), (m, p, n) -> new GUIhalfadder(m, n));
 	}
 }

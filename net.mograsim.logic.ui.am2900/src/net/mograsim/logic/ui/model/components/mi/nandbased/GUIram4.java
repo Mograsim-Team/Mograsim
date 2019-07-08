@@ -13,7 +13,12 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 {
 	public GUIram4(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIram4");
+		this(model, null);
+	}
+
+	public GUIram4(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIram4", name);
 		setSubmodelScale(.1);
 		setInputPins("A0", "A1", "A2", "A3", "B0", "B1", "B2", "B3", "WE", "D1", "D2", "D3", "D4");
 		setOutputPins("QA1", "QA2", "QA3", "QA4", "QB1", "QB2", "QB3", "QB4");
@@ -361,6 +366,6 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIram4.class.getCanonicalName(), (m, p) -> new GUIram4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIram4.class.getCanonicalName(), (m, p, n) -> new GUIram4(m, n));
 	}
 }
