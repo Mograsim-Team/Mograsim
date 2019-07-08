@@ -17,6 +17,6 @@ public class GUIOrGate extends SimpleRectangularGUIGate
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUIOrGate.class, OrGate::new));
-		IndirectGUIComponentCreator.setComponentProvider(GUIOrGate.class.getCanonicalName(), (m, p) -> new GUIOrGate(m, p.getAsInt()));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIOrGate.class.getCanonicalName(), (m, p) -> new GUIOrGate(m, p.getAsInt()));
 	}
 }

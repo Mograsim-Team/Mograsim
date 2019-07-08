@@ -141,7 +141,7 @@ public class GUIAm2901ALUInclSourceDecodeInclFunctionDecode extends SimpleRectan
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIAm2901ALUInclSourceDecodeInclFunctionDecode.class.getCanonicalName(),
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901ALUInclSourceDecodeInclFunctionDecode.class.getCanonicalName(),
 				(m, p) -> new GUIAm2901ALUInclSourceDecodeInclFunctionDecode(m));
 	}
 }

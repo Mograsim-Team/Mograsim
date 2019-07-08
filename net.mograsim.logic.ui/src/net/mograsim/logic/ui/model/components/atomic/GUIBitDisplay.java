@@ -84,6 +84,6 @@ public class GUIBitDisplay extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new BitDisplayAdapter());
-		IndirectGUIComponentCreator.setComponentProvider(GUIBitDisplay.class.getCanonicalName(), (m, p) -> new GUIBitDisplay(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIBitDisplay.class.getCanonicalName(), (m, p) -> new GUIBitDisplay(m));
 	}
 }

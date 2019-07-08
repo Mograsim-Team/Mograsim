@@ -31,7 +31,7 @@ public class DefaultOutlineRenderer implements Renderer
 
 	static
 	{
-		CodeSnippetSupplier.outlineRendererProviderSupplier.setSnippetProvider(DefaultOutlineRenderer.class.getCanonicalName(),
+		CodeSnippetSupplier.outlineRendererSupplier.setSnippetSupplier(DefaultOutlineRenderer.class.getCanonicalName(),
 				SnippetSupplier.create(Void.class, DefaultOutlineRenderer::new));
 	}
 }

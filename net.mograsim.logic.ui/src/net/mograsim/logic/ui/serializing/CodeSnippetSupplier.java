@@ -14,24 +14,24 @@ import net.mograsim.logic.ui.util.JsonHandler;
 public class CodeSnippetSupplier<S>
 {
 	// public static members
-	public static final CodeSnippetSupplier<Renderer> symbolRendererProviderSupplier;
-	public static final CodeSnippetSupplier<Renderer> outlineRendererProviderSupplier;
+	public static final CodeSnippetSupplier<Renderer> symbolRendererSupplier;
+	public static final CodeSnippetSupplier<Renderer> outlineRendererSupplier;
 
 	static
 	{
-		symbolRendererProviderSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultSymbolRenderer::new));
-		outlineRendererProviderSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultOutlineRenderer::new));
+		symbolRendererSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultSymbolRenderer::new));
+		outlineRendererSupplier = new CodeSnippetSupplier<>(SnippetSupplier.create(Void.class, DefaultOutlineRenderer::new));
 	}
 
 	// per-instance members
 
 	private final Map<String, String> standardSnippetIDClassNames = new HashMap<>();
-	private final Map<String, SnippetSupplier<?, S>> snippetProvidersForClassNames = new HashMap<>();
-	private final SnippetSupplier<?, S> defaultSnippetProvider;
+	private final Map<String, SnippetSupplier<?, S>> snippetSuppliersForClassNames = new HashMap<>();
+	private final SnippetSupplier<?, S> defaultSnippetSupplier;
 
-	private CodeSnippetSupplier(SnippetSupplier<?, S> defaultSnippetProvider)
+	private CodeSnippetSupplier(SnippetSupplier<?, S> defaultSnippetSupplier)
 	{
-		this.defaultSnippetProvider = defaultSnippetProvider;
+		this.defaultSnippetSupplier = defaultSnippetSupplier;
 	}
 
 	public void addStandardSnippetID(String standardSnippetID, String associatedSnippetClassName)
@@ -39,31 +39,31 @@ public class CodeSnippetSupplier<S>
 		standardSnippetIDClassNames.put(standardSnippetID, associatedSnippetClassName);
 	}
 
-	public void setSnippetProvider(String id, SnippetSupplier<?, S> snippetProvider)
+	public void setSnippetSupplier(String id, SnippetSupplier<?, S> snippetSupplier)
 	{
-		snippetProvidersForClassNames.put(id, snippetProvider);
+		snippetSuppliersForClassNames.put(id, snippetSupplier);
 	}
 
 	// TODO report errors
-	public SnippetSupplier<?, S> getSnippetProvider(String id)
+	public SnippetSupplier<?, S> getSnippetSupplier(String id)
 	{
 		if (id != null)
 		{
-			String snippetProviderClassName;
+			String snippetClassName;
 			if (id.startsWith("class:"))
-				snippetProviderClassName = id.substring(6);
+				snippetClassName = id.substring(6);
 			else
-				snippetProviderClassName = standardSnippetIDClassNames.get(id);
-			if (snippetProviderClassName != null)
+				snippetClassName = standardSnippetIDClassNames.get(id);
+			if (snippetClassName != null)
 			{
-				tryLoadSnippetClass(snippetProviderClassName);
-				SnippetSupplier<?, S> snippetProvider = snippetProvidersForClassNames.get(snippetProviderClassName);
-				if (snippetProvider != null)
-					return snippetProvider;
+				tryLoadSnippetClass(snippetClassName);
+				SnippetSupplier<?, S> snippetSupplier = snippetSuppliersForClassNames.get(snippetClassName);
+				if (snippetSupplier != null)
+					return snippetSupplier;
 			}
 			System.err.println("Couldn't load snippet " + id + "; using default");
 		}
-		return defaultSnippetProvider;
+		return defaultSnippetSupplier;
 	}
 
 	// static helpers
@@ -75,8 +75,8 @@ public class CodeSnippetSupplier<S>
 			if (s == null)
 				throw new IOException("Resource not found");
 			SnippetIDClassNames tmp = JsonHandler.readJson(s, SnippetIDClassNames.class);
-			tmp.standardOutlineRendererProviders.forEach(outlineRendererProviderSupplier::addStandardSnippetID);
-			tmp.standardSymbolRendererProviders.forEach(symbolRendererProviderSupplier::addStandardSnippetID);
+			tmp.standardOutlineRendererSuppliers.forEach(outlineRendererSupplier::addStandardSnippetID);
+			tmp.standardSymbolRendererSuppliers.forEach(symbolRendererSupplier::addStandardSnippetID);
 		}
 		catch (Exception e)
 		{
@@ -87,8 +87,8 @@ public class CodeSnippetSupplier<S>
 
 	private static class SnippetIDClassNames
 	{
-		public Map<String, String> standardOutlineRendererProviders;
-		public Map<String, String> standardSymbolRendererProviders;
+		public Map<String, String> standardOutlineRendererSuppliers;
+		public Map<String, String> standardSymbolRendererSuppliers;
 	}
 
 	private static void tryLoadSnippetClass(String snippetClassName)

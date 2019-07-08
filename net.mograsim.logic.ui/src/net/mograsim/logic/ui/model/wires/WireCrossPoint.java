@@ -117,7 +117,7 @@ public class WireCrossPoint extends GUIComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(WireCrossPoint.class.getCanonicalName(),
+		IndirectGUIComponentCreator.setComponentSupplier(WireCrossPoint.class.getCanonicalName(),
 				(m, p) -> new WireCrossPoint(m, p.getAsInt()));
 	}
 }

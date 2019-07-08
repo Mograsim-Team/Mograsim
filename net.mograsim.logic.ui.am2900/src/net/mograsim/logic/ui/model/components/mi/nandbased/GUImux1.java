@@ -58,6 +58,6 @@ public class GUImux1 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUImux1.class.getCanonicalName(), (m, p) -> new GUImux1(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUImux1.class.getCanonicalName(), (m, p) -> new GUImux1(m));
 	}
 }

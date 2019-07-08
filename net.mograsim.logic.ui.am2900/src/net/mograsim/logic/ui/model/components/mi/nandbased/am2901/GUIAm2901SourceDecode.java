@@ -152,7 +152,7 @@ public class GUIAm2901SourceDecode extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIAm2901SourceDecode.class.getCanonicalName(),
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901SourceDecode.class.getCanonicalName(),
 				(m, p) -> new GUIAm2901SourceDecode(m));
 	}
 }

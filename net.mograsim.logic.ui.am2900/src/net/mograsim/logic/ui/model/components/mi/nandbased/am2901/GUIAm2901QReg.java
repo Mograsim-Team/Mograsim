@@ -144,6 +144,6 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIAm2901QReg.class.getCanonicalName(), (m, p) -> new GUIAm2901QReg(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901QReg.class.getCanonicalName(), (m, p) -> new GUIAm2901QReg(m));
 	}
 }

@@ -99,6 +99,6 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUI_rsLatch.class.getCanonicalName(), (m, p) -> new GUI_rsLatch(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUI_rsLatch.class.getCanonicalName(), (m, p) -> new GUI_rsLatch(m));
 	}
 }

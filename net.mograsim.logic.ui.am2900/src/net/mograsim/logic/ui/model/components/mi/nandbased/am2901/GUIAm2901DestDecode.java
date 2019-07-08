@@ -146,7 +146,7 @@ public class GUIAm2901DestDecode extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIAm2901DestDecode.class.getCanonicalName(),
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901DestDecode.class.getCanonicalName(),
 				(m, p) -> new GUIAm2901DestDecode(m));
 	}
 }

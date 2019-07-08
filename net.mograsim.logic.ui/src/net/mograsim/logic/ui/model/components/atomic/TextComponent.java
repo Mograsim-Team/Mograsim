@@ -52,6 +52,6 @@ public class TextComponent extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new NoLogicAdapter<>(TextComponent.class));
-		IndirectGUIComponentCreator.setComponentProvider(TextComponent.class.getName(), (m, p) -> new TextComponent(m, p.getAsString()));
+		IndirectGUIComponentCreator.setComponentSupplier(TextComponent.class.getName(), (m, p) -> new TextComponent(m, p.getAsString()));
 	}
 }
