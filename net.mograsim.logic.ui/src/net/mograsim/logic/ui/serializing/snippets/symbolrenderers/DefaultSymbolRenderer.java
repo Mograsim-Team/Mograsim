@@ -36,7 +36,7 @@ public class DefaultSymbolRenderer implements Renderer
 
 	static
 	{
-		CodeSnippetSupplier.symbolRendererProviderSupplier.setSnippetProvider(DefaultSymbolRenderer.class.getCanonicalName(),
+		CodeSnippetSupplier.symbolRendererSupplier.setSnippetSupplier(DefaultSymbolRenderer.class.getCanonicalName(),
 				SnippetSupplier.create(Void.class, DefaultSymbolRenderer::new));
 	}
 }

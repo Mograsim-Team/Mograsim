@@ -90,6 +90,6 @@ public class GUIAm2901ALUOneBit extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIAm2901ALUOneBit.class.getCanonicalName(), (m, p) -> new GUIAm2901ALUOneBit(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901ALUOneBit.class.getCanonicalName(), (m, p) -> new GUIAm2901ALUOneBit(m));
 	}
 }

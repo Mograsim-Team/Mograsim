@@ -115,6 +115,6 @@ public class GUIsel2_4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIsel2_4.class.getCanonicalName(), (m, p) -> new GUIsel2_4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIsel2_4.class.getCanonicalName(), (m, p) -> new GUIsel2_4(m));
 	}
 }

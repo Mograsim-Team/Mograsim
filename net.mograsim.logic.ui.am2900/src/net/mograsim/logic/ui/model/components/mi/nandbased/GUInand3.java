@@ -51,6 +51,6 @@ public class GUInand3 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUInand3.class.getCanonicalName(), (m, p) -> new GUInand3(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUInand3.class.getCanonicalName(), (m, p) -> new GUInand3(m));
 	}
 }

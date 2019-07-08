@@ -52,7 +52,7 @@ public class CenteredTextSymbolRenderer implements Renderer
 
 	static
 	{
-		CodeSnippetSupplier.symbolRendererProviderSupplier.setSnippetProvider(CenteredTextSymbolRenderer.class.getCanonicalName(),
+		CodeSnippetSupplier.symbolRendererSupplier.setSnippetSupplier(CenteredTextSymbolRenderer.class.getCanonicalName(),
 				SnippetSupplier.create(CenteredTextParams.class, CenteredTextSymbolRenderer::new));
 	}
 }

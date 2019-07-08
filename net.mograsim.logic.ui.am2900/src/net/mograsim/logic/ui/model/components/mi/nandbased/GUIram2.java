@@ -323,6 +323,6 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIram2.class.getCanonicalName(), (m, p) -> new GUIram2(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIram2.class.getCanonicalName(), (m, p) -> new GUIram2(m));
 	}
 }

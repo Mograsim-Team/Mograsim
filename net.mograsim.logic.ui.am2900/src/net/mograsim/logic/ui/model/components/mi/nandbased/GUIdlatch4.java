@@ -136,6 +136,6 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIdlatch4.class.getCanonicalName(), (m, p) -> new GUIdlatch4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIdlatch4.class.getCanonicalName(), (m, p) -> new GUIdlatch4(m));
 	}
 }

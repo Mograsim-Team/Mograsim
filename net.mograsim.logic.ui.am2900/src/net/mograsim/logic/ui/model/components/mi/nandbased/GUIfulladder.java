@@ -49,6 +49,6 @@ public class GUIfulladder extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIfulladder.class.getCanonicalName(), (m, p) -> new GUIfulladder(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIfulladder.class.getCanonicalName(), (m, p) -> new GUIfulladder(m));
 	}
 }

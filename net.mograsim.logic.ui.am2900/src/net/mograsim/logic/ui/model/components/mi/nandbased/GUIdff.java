@@ -97,6 +97,6 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIdff.class.getCanonicalName(), (m, p) -> new GUIdff(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIdff.class.getCanonicalName(), (m, p) -> new GUIdff(m));
 	}
 }

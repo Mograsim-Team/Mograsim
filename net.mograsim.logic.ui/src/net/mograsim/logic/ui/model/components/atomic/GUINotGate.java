@@ -17,6 +17,6 @@ public class GUINotGate extends SimpleRectangularGUIGate
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUINotGate.class, (t, p, o, i) -> new NotGate(t, p, i[0], o)));
-		IndirectGUIComponentCreator.setComponentProvider(GUINotGate.class.getCanonicalName(), (m, p) -> new GUINotGate(m, p.getAsInt()));
+		IndirectGUIComponentCreator.setComponentSupplier(GUINotGate.class.getCanonicalName(), (m, p) -> new GUINotGate(m, p.getAsInt()));
 	}
 }

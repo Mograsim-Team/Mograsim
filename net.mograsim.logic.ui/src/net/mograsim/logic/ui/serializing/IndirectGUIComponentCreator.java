@@ -16,7 +16,7 @@ public class IndirectGUIComponentCreator
 {
 	private static final Map<String, String> standardComponentIDs = new HashMap<>();
 
-	private static final Map<String, ComponentProvider> componentProviders = new HashMap<>();
+	private static final Map<String, ComponentSupplier> componentSuppliers = new HashMap<>();
 
 	static
 	{
@@ -51,9 +51,9 @@ public class IndirectGUIComponentCreator
 		standardComponentIDs.put(standardComponentID, associatedComponentID);
 	}
 
-	public static void setComponentProvider(String className, ComponentProvider componentProvider)
+	public static void setComponentSupplier(String className, ComponentSupplier componentSupplier)
 	{
-		componentProviders.put(className, componentProvider);
+		componentSuppliers.put(className, componentSupplier);
 	}
 
 	public static GUIComponent createComponent(ViewModelModifiable model, String id)
@@ -74,15 +74,15 @@ public class IndirectGUIComponentCreator
 			{
 				String className = resolvedID.substring(6);
 				tryLoadComponentClass(className);
-				ComponentProvider componentProvider = componentProviders.get(className);
-				if (componentProvider != null)
-					return componentProvider.create(model, params);
+				ComponentSupplier componentSupplier = componentSuppliers.get(className);
+				if (componentSupplier != null)
+					return componentSupplier.create(model, params);
 			} else
 				// we know id has to start with "file:" here
 				// because standardComponentIDs only contains strings starting with "class:" or "file:"
 				return SubmodelComponentDeserializer.create(model, resolvedID.substring(5));
 		}
-		throw new RuntimeException("Could not get component provider for ID " + id);
+		throw new RuntimeException("Could not get component supplier for ID " + id);
 	}
 
 	private static void tryLoadComponentClass(String componentClassName)
@@ -90,7 +90,7 @@ public class IndirectGUIComponentCreator
 		CodeSnippetSupplier.tryInvokeStaticInitializer(componentClassName, "Error loading component class %s: %s\n");
 	}
 
-	public static interface ComponentProvider
+	public static interface ComponentSupplier
 	{
 		public GUIComponent create(ViewModelModifiable model, JsonElement params);
 	}

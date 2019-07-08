@@ -60,6 +60,6 @@ public class GUIxor extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIxor.class.getCanonicalName(), (m, p) -> new GUIxor(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIxor.class.getCanonicalName(), (m, p) -> new GUIxor(m));
 	}
 }

@@ -71,6 +71,6 @@ public class GUInot4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUInot4.class.getCanonicalName(), (m, p) -> new GUInot4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUInot4.class.getCanonicalName(), (m, p) -> new GUInot4(m));
 	}
 }

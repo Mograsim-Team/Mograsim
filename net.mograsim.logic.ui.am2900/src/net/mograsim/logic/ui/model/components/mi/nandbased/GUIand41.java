@@ -68,6 +68,6 @@ public class GUIand41 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIand41.class.getCanonicalName(), (m, p) -> new GUIand41(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIand41.class.getCanonicalName(), (m, p) -> new GUIand41(m));
 	}
 }

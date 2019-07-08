@@ -66,6 +66,6 @@ public class GUIandor414 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIandor414.class.getCanonicalName(), (m, p) -> new GUIandor414(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIandor414.class.getCanonicalName(), (m, p) -> new GUIandor414(m));
 	}
 }

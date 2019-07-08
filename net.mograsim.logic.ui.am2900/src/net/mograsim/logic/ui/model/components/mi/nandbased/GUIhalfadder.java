@@ -62,6 +62,6 @@ public class GUIhalfadder extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIhalfadder.class.getCanonicalName(), (m, p) -> new GUIhalfadder(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIhalfadder.class.getCanonicalName(), (m, p) -> new GUIhalfadder(m));
 	}
 }

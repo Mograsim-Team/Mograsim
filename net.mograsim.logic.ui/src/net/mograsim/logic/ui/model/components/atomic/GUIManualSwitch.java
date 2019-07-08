@@ -138,6 +138,6 @@ public class GUIManualSwitch extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new ManualSwitchAdapter());
-		IndirectGUIComponentCreator.setComponentProvider(GUIManualSwitch.class.getName(), (m, p) -> new GUIManualSwitch(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIManualSwitch.class.getName(), (m, p) -> new GUIManualSwitch(m));
 	}
 }

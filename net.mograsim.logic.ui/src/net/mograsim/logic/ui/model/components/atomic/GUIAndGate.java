@@ -17,6 +17,6 @@ public class GUIAndGate extends SimpleRectangularGUIGate
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUIAndGate.class, AndGate::new));
-		IndirectGUIComponentCreator.setComponentProvider(GUIAndGate.class.getCanonicalName(), (m, p) -> new GUIAndGate(m, p.getAsInt()));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAndGate.class.getCanonicalName(), (m, p) -> new GUIAndGate(m, p.getAsInt()));
 	}
 }

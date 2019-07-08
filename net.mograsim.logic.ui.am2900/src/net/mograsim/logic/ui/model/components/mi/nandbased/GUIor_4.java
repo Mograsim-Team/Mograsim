@@ -119,6 +119,6 @@ public class GUIor_4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentProvider(GUIor_4.class.getCanonicalName(), (m, p) -> new GUIor_4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIor_4.class.getCanonicalName(), (m, p) -> new GUIor_4(m));
 	}
 }
