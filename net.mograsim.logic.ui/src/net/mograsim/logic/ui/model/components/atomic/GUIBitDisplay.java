@@ -30,7 +30,12 @@ public class GUIBitDisplay extends GUIComponent
 
 	public GUIBitDisplay(ViewModelModifiable model)
 	{
-		super(model);
+		this(model, null);
+	}
+
+	public GUIBitDisplay(ViewModelModifiable model, String name)
+	{
+		super(model, name);
 		logicObs = (i) -> requestRedraw();
 
 		setSize(width, height);
@@ -84,6 +89,6 @@ public class GUIBitDisplay extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new BitDisplayAdapter());
-		IndirectGUIComponentCreator.setComponentSupplier(GUIBitDisplay.class.getCanonicalName(), (m, p) -> new GUIBitDisplay(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIBitDisplay.class.getCanonicalName(), (m, p, n) -> new GUIBitDisplay(m, n));
 	}
 }

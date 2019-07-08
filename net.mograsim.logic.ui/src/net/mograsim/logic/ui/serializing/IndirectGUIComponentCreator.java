@@ -58,10 +58,20 @@ public class IndirectGUIComponentCreator
 
 	public static GUIComponent createComponent(ViewModelModifiable model, String id)
 	{
-		return createComponent(model, id, JsonNull.INSTANCE);
+		return createComponent(model, id, (String) null);
+	}
+
+	public static GUIComponent createComponent(ViewModelModifiable model, String id, String name)
+	{
+		return createComponent(model, id, JsonNull.INSTANCE, name);
 	}
 
 	public static GUIComponent createComponent(ViewModelModifiable model, String id, JsonElement params)
+	{
+		return createComponent(model, id, params, null);
+	}
+
+	public static GUIComponent createComponent(ViewModelModifiable model, String id, JsonElement params, String name)
 	{
 		if (id != null)
 		{
@@ -76,11 +86,11 @@ public class IndirectGUIComponentCreator
 				tryLoadComponentClass(className);
 				ComponentSupplier componentSupplier = componentSuppliers.get(className);
 				if (componentSupplier != null)
-					return componentSupplier.create(model, params);
+					return componentSupplier.create(model, params, name);
 			} else
 				// we know id has to start with "file:" here
 				// because standardComponentIDs only contains strings starting with "class:" or "file:"
-				return SubmodelComponentDeserializer.create(model, resolvedID.substring(5));
+				return SubmodelComponentDeserializer.create(model, resolvedID.substring(5), name);
 		}
 		throw new RuntimeException("Could not get component supplier for ID " + id);
 	}
@@ -92,6 +102,6 @@ public class IndirectGUIComponentCreator
 
 	public static interface ComponentSupplier
 	{
-		public GUIComponent create(ViewModelModifiable model, JsonElement params);
+		public GUIComponent create(ViewModelModifiable model, JsonElement params, String name);
 	}
 }

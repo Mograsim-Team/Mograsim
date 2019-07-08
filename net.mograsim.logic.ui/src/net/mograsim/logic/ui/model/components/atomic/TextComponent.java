@@ -22,7 +22,12 @@ public class TextComponent extends GUIComponent
 
 	public TextComponent(ViewModelModifiable model, String text)
 	{
-		super(model);
+		this(model, text, null);
+	}
+
+	public TextComponent(ViewModelModifiable model, String text, String name)
+	{
+		super(model, name);
 		this.text = text;
 		// If size is unset, it defaults to 0, which could prohibit this component from being rendered, which would prohibit the size being
 		// set to a better guess
@@ -52,6 +57,7 @@ public class TextComponent extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new NoLogicAdapter<>(TextComponent.class));
-		IndirectGUIComponentCreator.setComponentSupplier(TextComponent.class.getName(), (m, p) -> new TextComponent(m, p.getAsString()));
+		IndirectGUIComponentCreator.setComponentSupplier(TextComponent.class.getName(),
+				(m, p, n) -> new TextComponent(m, p.getAsString(), n));
 	}
 }

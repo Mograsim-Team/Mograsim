@@ -13,7 +13,12 @@ public class GUImux1 extends SimpleRectangularSubmodelComponent
 {
 	public GUImux1(ViewModelModifiable model)
 	{
-		super(model, 1, "GUImux1");
+		this(model, null);
+	}
+
+	public GUImux1(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUImux1", name);
 		setSubmodelScale(.4);
 		setInputPins("S0", "I0", "I1");
 		setOutputPins("Y");
@@ -58,6 +63,6 @@ public class GUImux1 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUImux1.class.getCanonicalName(), (m, p) -> new GUImux1(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUImux1.class.getCanonicalName(), (m, p, n) -> new GUImux1(m, n));
 	}
 }

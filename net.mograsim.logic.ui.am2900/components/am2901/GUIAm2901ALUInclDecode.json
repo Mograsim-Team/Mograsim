@@ -153,148 +153,11 @@ mograsim version: 0.1.3
     "subComps": [
       {
         "pos": {
-          "x": 20.0,
-          "y": 2.5
-        },
-        "id": "GUIAm2901ALUFuncDecode"
-      },
-      {
-        "pos": {
-          "x": 45.0,
-          "y": 80.0
-        },
-        "id": "GUIAm2901ALUOneBit"
-      },
-      {
-        "pos": {
-          "x": 45.0,
-          "y": 180.0
-        },
-        "id": "GUIAm2901ALUOneBit"
-      },
-      {
-        "pos": {
-          "x": 45.0,
-          "y": 280.0
-        },
-        "id": "GUIAm2901ALUOneBit"
-      },
-      {
-        "pos": {
-          "x": 45.0,
-          "y": 380.0
-        },
-        "id": "GUIAm2901ALUOneBit"
-      },
-      {
-        "pos": {
-          "x": 95.0,
-          "y": 400.0
-        },
-        "id": "GUIxor"
-      },
-      {
-        "pos": {
-          "x": 24.0,
-          "y": 94.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 24.0,
-          "y": 194.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 24.0,
-          "y": 294.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 26.5,
-          "y": 104.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 26.5,
-          "y": 204.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 26.5,
-          "y": 304.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 29.0,
-          "y": 124.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 29.0,
-          "y": 224.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 29.0,
-          "y": 324.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 31.5,
-          "y": 144.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 31.5,
-          "y": 244.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 31.5,
-          "y": 344.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
           "x": 34.0,
-          "y": 154.0
+          "y": 354.0
         },
         "id": "WireCrossPoint",
+        "name": "WireCrossPoint#14",
         "params": 1
       },
       {
@@ -303,22 +166,7 @@ mograsim version: 0.1.3
           "y": 254.0
         },
         "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 34.0,
-          "y": 354.0
-        },
-        "id": "WireCrossPoint",
-        "params": 1
-      },
-      {
-        "pos": {
-          "x": 36.5,
-          "y": 164.0
-        },
-        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#13",
         "params": 1
       },
       {
@@ -327,14 +175,16 @@ mograsim version: 0.1.3
           "y": 264.0
         },
         "id": "WireCrossPoint",
+        "name": "WireCrossPoint#16",
         "params": 1
       },
       {
         "pos": {
           "x": 36.5,
-          "y": 364.0
+          "y": 164.0
         },
         "id": "WireCrossPoint",
+        "name": "WireCrossPoint#15",
         "params": 1
       },
       {
@@ -343,7 +193,33 @@ mograsim version: 0.1.3
           "y": 374.0
         },
         "id": "WireCrossPoint",
+        "name": "WireCrossPoint#18",
         "params": 1
+      },
+      {
+        "pos": {
+          "x": 36.5,
+          "y": 364.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#17",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 20.0,
+          "y": 2.5
+        },
+        "id": "GUIAm2901ALUFuncDecode",
+        "name": "GUIAm2901ALUFuncDecode#0"
+      },
+      {
+        "pos": {
+          "x": 45.0,
+          "y": 80.0
+        },
+        "id": "GUIAm2901ALUOneBit",
+        "name": "GUIAm2901ALUOneBit#0"
       },
       {
         "pos": {
@@ -351,17 +227,167 @@ mograsim version: 0.1.3
           "y": 384.0
         },
         "id": "WireCrossPoint",
+        "name": "WireCrossPoint#19",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 95.0,
+          "y": 400.0
+        },
+        "id": "GUIxor",
+        "name": "GUIxor#0"
+      },
+      {
+        "pos": {
+          "x": 24.0,
+          "y": 194.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 24.0,
+          "y": 94.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 26.5,
+          "y": 104.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 24.0,
+          "y": 294.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 26.5,
+          "y": 304.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#5",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 26.5,
+          "y": 204.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#4",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 45.0,
+          "y": 180.0
+        },
+        "id": "GUIAm2901ALUOneBit",
+        "name": "GUIAm2901ALUOneBit#1"
+      },
+      {
+        "pos": {
+          "x": 29.0,
+          "y": 224.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#7",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 45.0,
+          "y": 280.0
+        },
+        "id": "GUIAm2901ALUOneBit",
+        "name": "GUIAm2901ALUOneBit#2"
+      },
+      {
+        "pos": {
+          "x": 29.0,
+          "y": 124.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#6",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 45.0,
+          "y": 380.0
+        },
+        "id": "GUIAm2901ALUOneBit",
+        "name": "GUIAm2901ALUOneBit#3"
+      },
+      {
+        "pos": {
+          "x": 31.5,
+          "y": 144.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#9",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 29.0,
+          "y": 324.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#8",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 31.5,
+          "y": 244.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 34.0,
+          "y": 154.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#12",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 31.5,
+          "y": 344.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#11",
         "params": 1
       }
     ],
     "innerWires": [
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "I5"
         },
         "pin2": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "I5"
         },
         "path": [
@@ -377,11 +403,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "I4"
         },
         "pin2": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "I4"
         },
         "path": [
@@ -397,11 +423,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "I3"
         },
         "pin2": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "I3"
         },
         "path": [
@@ -417,11 +443,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "SBE"
         },
         "pin2": {
-          "compId": 7,
+          "compName": "WireCrossPoint#0",
           "pinName": ""
         },
         "path": [
@@ -441,66 +467,66 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 7,
+          "compName": "WireCrossPoint#0",
           "pinName": ""
         },
         "pin2": {
-          "compId": 8,
+          "compName": "WireCrossPoint#1",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 8,
+          "compName": "WireCrossPoint#1",
           "pinName": ""
         },
         "pin2": {
-          "compId": 9,
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 7,
+          "compName": "WireCrossPoint#0",
           "pinName": ""
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "CoutE"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 8,
+          "compName": "WireCrossPoint#1",
           "pinName": ""
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "CoutE"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 9,
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "CoutE"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 9,
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "CoutE"
         },
         "path": [
@@ -512,11 +538,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "CinE"
         },
         "pin2": {
-          "compId": 10,
+          "compName": "WireCrossPoint#3",
           "pinName": ""
         },
         "path": [
@@ -536,66 +562,66 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 10,
+          "compName": "WireCrossPoint#3",
           "pinName": ""
         },
         "pin2": {
-          "compId": 11,
+          "compName": "WireCrossPoint#4",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 11,
+          "compName": "WireCrossPoint#4",
           "pinName": ""
         },
         "pin2": {
-          "compId": 12,
+          "compName": "WireCrossPoint#5",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 10,
+          "compName": "WireCrossPoint#3",
           "pinName": ""
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "CinE"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 11,
+          "compName": "WireCrossPoint#4",
           "pinName": ""
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "CinE"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 12,
+          "compName": "WireCrossPoint#5",
           "pinName": ""
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "CinE"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 12,
+          "compName": "WireCrossPoint#5",
           "pinName": ""
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "CinE"
         },
         "path": [
@@ -607,11 +633,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "RN"
         },
         "pin2": {
-          "compId": 13,
+          "compName": "WireCrossPoint#6",
           "pinName": ""
         },
         "path": [
@@ -631,66 +657,66 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 13,
+          "compName": "WireCrossPoint#6",
           "pinName": ""
         },
         "pin2": {
-          "compId": 14,
+          "compName": "WireCrossPoint#7",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 14,
+          "compName": "WireCrossPoint#7",
           "pinName": ""
         },
         "pin2": {
-          "compId": 15,
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 13,
+          "compName": "WireCrossPoint#6",
           "pinName": ""
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "RN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 14,
+          "compName": "WireCrossPoint#7",
           "pinName": ""
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "RN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 15,
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "RN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 15,
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "RN"
         },
         "path": [
@@ -702,11 +728,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "SN"
         },
         "pin2": {
-          "compId": 16,
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "path": [
@@ -726,66 +752,66 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 16,
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "pin2": {
-          "compId": 17,
+          "compName": "WireCrossPoint#10",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 17,
+          "compName": "WireCrossPoint#10",
           "pinName": ""
         },
         "pin2": {
-          "compId": 18,
+          "compName": "WireCrossPoint#11",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 16,
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "SN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 17,
+          "compName": "WireCrossPoint#10",
           "pinName": ""
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "SN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 18,
+          "compName": "WireCrossPoint#11",
           "pinName": ""
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "SN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 18,
+          "compName": "WireCrossPoint#11",
           "pinName": ""
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "SN"
         },
         "path": [
@@ -797,11 +823,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "FN"
         },
         "pin2": {
-          "compId": 19,
+          "compName": "WireCrossPoint#12",
           "pinName": ""
         },
         "path": [
@@ -821,66 +847,66 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 19,
+          "compName": "WireCrossPoint#12",
           "pinName": ""
         },
         "pin2": {
-          "compId": 20,
+          "compName": "WireCrossPoint#13",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 20,
+          "compName": "WireCrossPoint#13",
           "pinName": ""
         },
         "pin2": {
-          "compId": 21,
+          "compName": "WireCrossPoint#14",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 19,
+          "compName": "WireCrossPoint#12",
           "pinName": ""
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "FN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 20,
+          "compName": "WireCrossPoint#13",
           "pinName": ""
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "FN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 21,
+          "compName": "WireCrossPoint#14",
           "pinName": ""
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "FN"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 21,
+          "compName": "WireCrossPoint#14",
           "pinName": ""
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "FN"
         },
         "path": [
@@ -892,11 +918,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 1,
+          "compName": "GUIAm2901ALUFuncDecode#0",
           "pinName": "L"
         },
         "pin2": {
-          "compId": 22,
+          "compName": "WireCrossPoint#15",
           "pinName": ""
         },
         "path": [
@@ -916,66 +942,66 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 22,
+          "compName": "WireCrossPoint#15",
           "pinName": ""
         },
         "pin2": {
-          "compId": 23,
+          "compName": "WireCrossPoint#16",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 23,
+          "compName": "WireCrossPoint#16",
           "pinName": ""
         },
         "pin2": {
-          "compId": 24,
+          "compName": "WireCrossPoint#17",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 22,
+          "compName": "WireCrossPoint#15",
           "pinName": ""
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "L"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 23,
+          "compName": "WireCrossPoint#16",
           "pinName": ""
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "L"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 24,
+          "compName": "WireCrossPoint#17",
           "pinName": ""
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "L"
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 24,
+          "compName": "WireCrossPoint#17",
           "pinName": ""
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "L"
         },
         "path": [
@@ -987,11 +1013,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "R1"
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "R"
         },
         "path": [
@@ -1007,11 +1033,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "R2"
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "R"
         },
         "path": [
@@ -1027,11 +1053,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "R3"
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "R"
         },
         "path": [
@@ -1047,11 +1073,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "R4"
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "R"
         },
         "path": [
@@ -1067,11 +1093,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "S1"
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "S"
         },
         "path": [
@@ -1087,11 +1113,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "S2"
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "S"
         },
         "path": [
@@ -1107,11 +1133,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "S3"
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "S"
         },
         "path": [
@@ -1127,11 +1153,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "S4"
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "S"
         },
         "path": [
@@ -1147,11 +1173,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "Cn"
         },
         "pin2": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "Cin"
         },
         "path": [
@@ -1167,11 +1193,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "Cout"
         },
         "pin2": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "Cin"
         },
         "path": [
@@ -1195,11 +1221,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "Cout"
         },
         "pin2": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "Cin"
         },
         "path": [
@@ -1223,11 +1249,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "Cout"
         },
         "pin2": {
-          "compId": 25,
+          "compName": "WireCrossPoint#18",
           "pinName": ""
         },
         "path": [
@@ -1239,11 +1265,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 25,
+          "compName": "WireCrossPoint#18",
           "pinName": ""
         },
         "pin2": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "Cin"
         },
         "path": [
@@ -1259,22 +1285,22 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "Cout"
         },
         "pin2": {
-          "compId": 26,
+          "compName": "WireCrossPoint#19",
           "pinName": ""
         },
         "path": []
       },
       {
         "pin1": {
-          "compId": 2,
+          "compName": "GUIAm2901ALUOneBit#0",
           "pinName": "F"
         },
         "pin2": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "F1"
         },
         "path": [
@@ -1290,11 +1316,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 3,
+          "compName": "GUIAm2901ALUOneBit#1",
           "pinName": "F"
         },
         "pin2": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "F2"
         },
         "path": [
@@ -1310,11 +1336,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 4,
+          "compName": "GUIAm2901ALUOneBit#2",
           "pinName": "F"
         },
         "pin2": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "F3"
         },
         "path": [
@@ -1330,11 +1356,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 5,
+          "compName": "GUIAm2901ALUOneBit#3",
           "pinName": "F"
         },
         "pin2": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "F4"
         },
         "path": [
@@ -1350,11 +1376,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 25,
+          "compName": "WireCrossPoint#18",
           "pinName": ""
         },
         "pin2": {
-          "compId": 6,
+          "compName": "GUIxor#0",
           "pinName": "A"
         },
         "path": [
@@ -1370,11 +1396,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 26,
+          "compName": "WireCrossPoint#19",
           "pinName": ""
         },
         "pin2": {
-          "compId": 6,
+          "compName": "GUIxor#0",
           "pinName": "B"
         },
         "path": [
@@ -1386,11 +1412,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 26,
+          "compName": "WireCrossPoint#19",
           "pinName": ""
         },
         "pin2": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "Cn+4"
         },
         "path": [
@@ -1406,11 +1432,11 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compId": 6,
+          "compName": "GUIxor#0",
           "pinName": "Y"
         },
         "pin2": {
-          "compId": 0,
+          "compName": "_submodelinterface",
           "pinName": "OVR"
         }
       }

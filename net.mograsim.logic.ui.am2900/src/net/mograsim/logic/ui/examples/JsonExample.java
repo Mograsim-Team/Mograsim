@@ -10,7 +10,6 @@ import net.mograsim.logic.ui.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUI_rsLatch;
 import net.mograsim.logic.ui.model.components.mi.nandbased.GUIfulladder;
-import net.mograsim.logic.ui.model.components.mi.nandbased.GUIhalfadder;
 import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
@@ -28,30 +27,30 @@ public class JsonExample
 
 	public static void mappingTest(ViewModelModifiable model)
 	{
-		IndirectGUIComponentCreator.createComponent(model, "Am2901", JsonNull.INSTANCE);
+		IndirectGUIComponentCreator.createComponent(model, "Am2901", JsonNull.INSTANCE, "Am2901 instance");
 	}
 
 	private static class TestComponent extends SimpleRectangularSubmodelComponent
 	{
-		protected TestComponent(ViewModelModifiable model)
+		protected TestComponent(ViewModelModifiable model, String name)
 		{
-			super(model, 1, "Test");
+			super(model, 1, "Test", name);
 			setSubmodelScale(.4);
 			setInputPins("Input pin #0");
-			SubmodelComponentDeserializer.create(submodelModifiable, "HalfAdder.json");
+			SubmodelComponentDeserializer.create(submodelModifiable, "HalfAdder.json", "halfadder");
 		}
 	}
 
 	@SuppressWarnings("unused") // GUIWires being created
 	private static void basicTest(ViewModelModifiable viewModel)
 	{
-		GUI_rsLatch comp = new GUI_rsLatch(viewModel);
+		GUI_rsLatch comp = new GUI_rsLatch(viewModel, "Original RS latch");
 		comp.moveTo(30, 0);
 		SubmodelComponentParams params = comp.calculateParams();
 		String jsonString = JsonHandler.toJson(params);
 		System.out.println(jsonString);
 		SubmodelComponentParams paramsD = JsonHandler.fromJson(jsonString, SubmodelComponentParams.class);
-		SubmodelComponent componentD = SubmodelComponentDeserializer.create(viewModel, paramsD);
+		SubmodelComponent componentD = SubmodelComponentDeserializer.create(viewModel, paramsD, "Deserialized RS latch");
 		componentD.moveTo(30, 50);
 		double h = 0;
 		for (String s : comp.getInputPinNames())
@@ -80,34 +79,16 @@ public class JsonExample
 	// Execute only after HalfAdder.json has been created
 	public static void refJsonFromJsonTest(ViewModelModifiable model)
 	{
-		TestComponent t = new TestComponent(model);
+		TestComponent t = new TestComponent(model, "Original component");
 		t.calculateParams().writeJson("Test.json");
-		SubmodelComponent c = SubmodelComponentDeserializer.create(model, "Test.json");
+		SubmodelComponent c = SubmodelComponentDeserializer.create(model, "Test.json", "Deserialized component");
 		c.moveTo(0, 50);
-	}
-
-	public static void createHalfAdderExample(ViewModelModifiable model)
-	{
-		GUIhalfadder tmp = new GUIhalfadder(model);
-		tmp.moveTo(1000, 50);
-		SubmodelComponentParams p = tmp.calculateParams();
-		try
-		{
-			p.writeJson("HalfAdder.json");
-			p = SubmodelComponentParams.readJson("HalfAdder.json");
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
-		SubmodelComponentDeserializer.create(model, p);
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createFromJsonExample(ViewModelModifiable model)
 	{
-		SimpleRectangularSubmodelComponent tmp = new GUIfulladder(model);
+		SimpleRectangularSubmodelComponent tmp = new GUIfulladder(model, "Original full adder");
 		SubmodelComponentParams pC = tmp.calculateParams();
 		tmp.moveTo(1000, 100);
 		try
@@ -121,7 +102,7 @@ public class JsonExample
 		}
 
 		SimpleRectangularSubmodelComponent adder = (SimpleRectangularSubmodelComponent) SubmodelComponentDeserializer.create(model,
-				"FullAdder.json");
+				"FullAdder.json", "Deserialized full adder");
 
 		GUIManualSwitch swA = new GUIManualSwitch(model);
 		swA.moveTo(0, 0);
@@ -143,7 +124,7 @@ public class JsonExample
 		new GUIWire(model, adder.getPin("Y"), bdY.getInputPin());
 		new GUIWire(model, adder.getPin("Z"), bdZ.getInputPin());
 
-		SubmodelComponent adder2 = SubmodelComponentDeserializer.create(model, pC);
+		SubmodelComponent adder2 = SubmodelComponentDeserializer.create(model, pC, "Full adder created from params instance");
 
 		swA = new GUIManualSwitch(model);
 		swA.moveTo(0, 70);

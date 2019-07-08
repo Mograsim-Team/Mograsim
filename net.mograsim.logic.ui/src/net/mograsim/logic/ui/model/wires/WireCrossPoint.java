@@ -46,7 +46,12 @@ public class WireCrossPoint extends GUIComponent
 
 	public WireCrossPoint(ViewModelModifiable model, int logicWidth)
 	{
-		super(model);
+		this(model, logicWidth, null);
+	}
+
+	public WireCrossPoint(ViewModelModifiable model, int logicWidth, String name)
+	{
+		super(model, name);
 		logicObs = (i) -> requestRedraw();
 
 		setSize(CIRCLE_DIAM, CIRCLE_DIAM);
@@ -118,6 +123,6 @@ public class WireCrossPoint extends GUIComponent
 	static
 	{
 		IndirectGUIComponentCreator.setComponentSupplier(WireCrossPoint.class.getCanonicalName(),
-				(m, p) -> new WireCrossPoint(m, p.getAsInt()));
+				(m, p, n) -> new WireCrossPoint(m, p.getAsInt(), n));
 	}
 }

@@ -42,6 +42,7 @@ public class SubmodelComponentParams
 		{
 			public Point pos;
 			public String id;
+			public String name;
 			public JsonElement params;
 		}
 
@@ -52,7 +53,7 @@ public class SubmodelComponentParams
 
 			public static class InnerPinParams
 			{
-				public int compId;
+				public String compName;
 				public String pinName;
 			}
 		}

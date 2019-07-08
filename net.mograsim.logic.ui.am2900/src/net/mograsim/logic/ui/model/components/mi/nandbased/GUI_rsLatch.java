@@ -17,7 +17,12 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 
 	public GUI_rsLatch(ViewModelModifiable model)
 	{
-		super(model, 1, "_rsLatch");
+		this(model, null);
+	}
+
+	public GUI_rsLatch(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "_rsLatch", name);
 		setSubmodelScale(.4);
 		setInputPins("_S", "_R");
 		setOutputPins("Q", "_Q");
@@ -99,6 +104,6 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUI_rsLatch.class.getCanonicalName(), (m, p) -> new GUI_rsLatch(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUI_rsLatch.class.getCanonicalName(), (m, p, n) -> new GUI_rsLatch(m, n));
 	}
 }

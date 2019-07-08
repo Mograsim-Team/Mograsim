@@ -26,16 +26,16 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	private static final double invertedCircleDiam = 3.5;
 
 	private final String label;
-	protected final int logicWidth;
 	private final boolean isInverted;
+	protected final int logicWidth;
 	private final double rectWidth;
 
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
 
-	protected SimpleRectangularGUIGate(ViewModelModifiable model, int logicWidth, String label, boolean isInverted)
+	protected SimpleRectangularGUIGate(ViewModelModifiable model, String label, boolean isInverted, int logicWidth, String name)
 	{
-		super(model);
+		super(model, name);
 		this.label = label;
 		this.logicWidth = logicWidth;
 		this.isInverted = isInverted;

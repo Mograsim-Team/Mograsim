@@ -32,7 +32,7 @@ public class LogicUIRenderer
 			if (visibleRegion.intersects(bounds.x - lw, bounds.y - lw, bounds.width + lw + lw, bounds.height + lw + lw))
 				w.render(gc);
 		});
-		model.getComponents().forEach(c -> renderComponent(gc, c, visibleRegion));
+		model.getComponentsByName().values().forEach(c -> renderComponent(gc, c, visibleRegion));
 	}
 
 	private static void renderComponent(GeneralGC gc, GUIComponent component, Rectangle visibleRegion)

@@ -21,7 +21,12 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 
 	public GUIAm2901QReg(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIAm2901QReg");
+		this(model, null);
+	}
+
+	public GUIAm2901QReg(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIAm2901QReg", name);
 		setSubmodelScale(.4);
 		setInputPins("C", "WE", "D1", "D2", "D3", "D4");
 		setOutputPins("Q1", "Q2", "Q3", "Q4");
@@ -144,6 +149,6 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901QReg.class.getCanonicalName(), (m, p) -> new GUIAm2901QReg(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901QReg.class.getCanonicalName(), (m, p, n) -> new GUIAm2901QReg(m, n));
 	}
 }

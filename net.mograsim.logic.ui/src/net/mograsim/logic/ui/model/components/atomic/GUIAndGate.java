@@ -10,13 +10,19 @@ public class GUIAndGate extends SimpleRectangularGUIGate
 {
 	public GUIAndGate(ViewModelModifiable model, int logicWidth)
 	{
-		super(model, logicWidth, "&", false);
+		this(model, logicWidth, null);
+	}
+
+	public GUIAndGate(ViewModelModifiable model, int logicWidth, String name)
+	{
+		super(model, "&", false, logicWidth, name);
 		setInputCount(2);// TODO make variable
 	}
 
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUIAndGate.class, AndGate::new));
-		IndirectGUIComponentCreator.setComponentSupplier(GUIAndGate.class.getCanonicalName(), (m, p) -> new GUIAndGate(m, p.getAsInt()));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAndGate.class.getCanonicalName(),
+				(m, p, n) -> new GUIAndGate(m, p.getAsInt(), n));
 	}
 }

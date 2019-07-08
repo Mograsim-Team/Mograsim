@@ -13,7 +13,12 @@ public class GUIand extends SimpleRectangularSubmodelComponent
 {
 	public GUIand(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIand");
+		this(model, null);
+	}
+
+	public GUIand(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIand", name);
 		setSubmodelScale(.4);
 		setInputPins("A", "B");
 		setOutputPins("Y");
@@ -46,6 +51,6 @@ public class GUIand extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIand.class.getCanonicalName(), (m, p) -> new GUIand(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIand.class.getCanonicalName(), (m, p, n) -> new GUIand(m, n));
 	}
 }

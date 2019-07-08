@@ -1,10 +1,10 @@
 package net.mograsim.logic.ui.serializing;
 
 import java.io.IOException;
+import java.util.Map;
 
 import net.mograsim.logic.ui.model.ViewModelModifiable;
 import net.mograsim.logic.ui.model.components.GUIComponent;
-import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.ui.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.ui.model.wires.GUIWire;
 import net.mograsim.logic.ui.model.wires.MovablePin;
@@ -19,47 +19,53 @@ import net.mograsim.logic.ui.serializing.SubmodelComponentParams.SubmodelParamet
 public final class SubmodelComponentDeserializer
 {
 	/**
-	 * Creates a {@link SubmodelComponent} from the {@link SubmodelComponentParams}, specified at the given path. The returned
-	 * SubmodelComponent can also be e.g. a {@link SimpleRectangularSubmodelComponent}, depending on what the
-	 * {@link SubmodelComponentParams} describe.
+	 * Like {@link #create(ViewModelModifiable, String, String)}, but using the default name.
+	 */
+	public static SubmodelComponent create(ViewModelModifiable model, String path)
+	{
+		return create(model, path, null);
+	}
+
+	/**
+	 * Creates a {@link SubmodelComponent} from the {@link SubmodelComponentParams} located at the given path as a JSON file. The returned
+	 * SubmodelComponent is a {@link DeserializedSubmodelComponent}.
 	 * 
 	 * @param path The path of the file describing the {@link SubmodelComponentParams}, which define the new {@link SubmodelComponent}
 	 * @return A new SubmodelComponent, as described in the file located at the given path
 	 */
-	public static SubmodelComponent create(ViewModelModifiable model, String path)
+	public static SubmodelComponent create(ViewModelModifiable model, String path, String name)
 	{
 		try
 		{
 			SubmodelComponentParams params = SubmodelComponentParams.readJson(path);
-			SubmodelComponent ret = create(model, params);
+			SubmodelComponent ret = create(model, params, name);
 			return ret;
 		}
 		catch (IOException e)
 		{
-			System.err.println("Failed to construct GUICustomComponent. Parameters were not found.");
-			e.printStackTrace();
+			throw new RuntimeException("Failed to construct GUICustomComponent. Parameters were not found.", e);
 		}
-		return new SimpleRectangularSubmodelComponent(model, 0, "ERROR");
 	}
 
 	/**
-	 * Creates a {@link SubmodelComponent} from the specified {@link SubmodelComponentParams}. The returned SubmodelComponent can also be
-	 * e.g. a {@link SimpleRectangularSubmodelComponent}, depending on what the {@link SubmodelComponentParams} describe.
+	 * Creates a {@link SubmodelComponent} from the specified {@link SubmodelComponentParams}. The returned SubmodelComponent is a
+	 * {@link DeserializedSubmodelComponent}.
 	 * 
 	 * @param params The parameters describing the {@link SubmodelComponent}
 	 * 
 	 * @return A new SubmodelComponent, as described by the {@link SubmodelComponentParams}
 	 */
-	public static SubmodelComponent create(ViewModelModifiable model, SubmodelComponentParams params)
+	public static SubmodelComponent create(ViewModelModifiable model, SubmodelComponentParams params, String name)
 	{
-		DeserializedSubmodelComponent comp = createSubmodelComponent(model, params);
+		DeserializedSubmodelComponent comp = createSubmodelComponent(model, params, name);
 		initSubmodel(comp, params.submodel);
 		return comp;
 	}
 
-	private static DeserializedSubmodelComponent createSubmodelComponent(ViewModelModifiable model, SubmodelComponentParams params)
+	private static DeserializedSubmodelComponent createSubmodelComponent(ViewModelModifiable model, SubmodelComponentParams params,
+			String name)
 	{
-		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model);
+		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model, name);
 		comp.setSubmodelScale(params.submodel.innerScale);
 		comp.setOutlineRenderer(CodeSnippetSupplier.outlineRendererSupplier.getSnippetSupplier(params.outlineRendererSnippetID).create(comp,
 				params.outlineRendererParams));
@@ -73,24 +79,24 @@ public final class SubmodelComponentDeserializer
 		return comp;
 	}
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unused") // GUIWire being created
 	private static void initSubmodel(DeserializedSubmodelComponent comp, SubmodelParameters params)
 	{
+		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
+		Map<String, GUIComponent> componentsByName = submodelModifiable.getComponentsByName();
 		GUIComponent[] components = new GUIComponent[params.subComps.length];
 		for (int i = 0; i < components.length; i++)
 		{
 			InnerComponentParams cParams = params.subComps[i];
-			String path = cParams.id;
-			components[i] = IndirectGUIComponentCreator.createComponent(comp.getSubmodelModifiable(), cParams.id, cParams.params);
+			components[i] = IndirectGUIComponentCreator.createComponent(submodelModifiable, cParams.id, cParams.params, cParams.name);
 			components[i].moveTo(cParams.pos.x, cParams.pos.y);
 		}
 
 		for (int i = 0; i < params.innerWires.length; i++)
 		{
 			InnerWireParams innerWire = params.innerWires[i];
-			new GUIWire(comp.getSubmodelModifiable(),
-					comp.getSubmodelModifiable().getComponents().get(innerWire.pin1.compId).getPin(innerWire.pin1.pinName),
-					comp.getSubmodelModifiable().getComponents().get(innerWire.pin2.compId).getPin(innerWire.pin2.pinName), innerWire.path);
+			new GUIWire(submodelModifiable, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
+					componentsByName.get(innerWire.pin2.compName).getPin(innerWire.pin2.pinName), innerWire.path);
 		}
 	}
 }

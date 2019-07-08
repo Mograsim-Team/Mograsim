@@ -13,9 +13,9 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	public Renderer outlineRenderer;
 	public Renderer symbolRenderer;
 
-	public DeserializedSubmodelComponent(ViewModelModifiable model)
+	public DeserializedSubmodelComponent(ViewModelModifiable model, String name)
 	{
-		super(model);
+		super(model, name);
 	}
 
 	@Override

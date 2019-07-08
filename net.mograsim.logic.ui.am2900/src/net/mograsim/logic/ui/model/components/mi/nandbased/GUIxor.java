@@ -13,7 +13,12 @@ public class GUIxor extends SimpleRectangularSubmodelComponent
 {
 	public GUIxor(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIxor");
+		this(model, null);
+	}
+
+	public GUIxor(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIxor", name);
 		setSubmodelScale(.4);
 		setInputPins("A", "B");
 		setOutputPins("Y");
@@ -60,6 +65,6 @@ public class GUIxor extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIxor.class.getCanonicalName(), (m, p) -> new GUIxor(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIxor.class.getCanonicalName(), (m, p, n) -> new GUIxor(m, n));
 	}
 }

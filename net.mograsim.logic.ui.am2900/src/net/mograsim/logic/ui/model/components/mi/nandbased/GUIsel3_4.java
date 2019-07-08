@@ -13,7 +13,12 @@ public class GUIsel3_4 extends SimpleRectangularSubmodelComponent
 {
 	public GUIsel3_4(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIsel3_4");
+		this(model, null);
+	}
+
+	public GUIsel3_4(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIsel3_4", name);
 		setSubmodelScale(.2);
 		setInputPins("SA", "SB", "SC", "A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4", "C1", "C2", "C3", "C4");
 		setOutputPins("Y1", "Y2", "Y3", "Y4");
@@ -113,6 +118,6 @@ public class GUIsel3_4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIsel3_4.class.getCanonicalName(), (m, p) -> new GUIsel3_4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIsel3_4.class.getCanonicalName(), (m, p, n) -> new GUIsel3_4(m, n));
 	}
 }

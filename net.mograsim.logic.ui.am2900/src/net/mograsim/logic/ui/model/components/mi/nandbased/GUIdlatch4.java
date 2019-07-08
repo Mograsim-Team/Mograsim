@@ -19,7 +19,12 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 
 	public GUIdlatch4(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIdlatch4");
+		this(model, null);
+	}
+
+	public GUIdlatch4(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIdlatch4", name);
 		setSubmodelScale(.4);
 		setInputPins("D1", "D2", "D3", "D4", "C");
 		setOutputPins("Q1", "Q2", "Q3", "Q4");
@@ -136,6 +141,6 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIdlatch4.class.getCanonicalName(), (m, p) -> new GUIdlatch4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIdlatch4.class.getCanonicalName(), (m, p, n) -> new GUIdlatch4(m, n));
 	}
 }

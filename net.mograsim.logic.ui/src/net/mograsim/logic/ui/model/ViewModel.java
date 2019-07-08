@@ -2,7 +2,9 @@ package net.mograsim.logic.ui.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import net.mograsim.logic.ui.model.components.GUIComponent;
@@ -10,8 +12,8 @@ import net.mograsim.logic.ui.model.wires.GUIWire;
 
 public class ViewModel
 {
-	private final List<GUIComponent> components;
-	private final List<GUIComponent> componentsUnmodifiable;
+	private final Map<String, GUIComponent> components;
+	private final Map<String, GUIComponent> componentsUnmodifiable;
 	private final List<GUIWire> wires;
 	private final List<GUIWire> wiresUnmodifiable;
 
@@ -25,8 +27,8 @@ public class ViewModel
 
 	protected ViewModel()
 	{
-		components = new ArrayList<>();
-		componentsUnmodifiable = Collections.unmodifiableList(components);
+		components = new HashMap<>();
+		componentsUnmodifiable = Collections.unmodifiableMap(components);
 		wires = new ArrayList<>();
 		wiresUnmodifiable = Collections.unmodifiableList(wires);
 
@@ -45,9 +47,9 @@ public class ViewModel
 	 */
 	protected void componentCreated(GUIComponent component)
 	{
-		if (components.contains(component))
+		if (components.containsKey(component.name))
 			throw new IllegalStateException("Don't add the same component twice!");
-		components.add(component);
+		components.put(component.name, component);
 		callComponentAddedListeners(component);
 		component.addRedrawListener(redrawListenerForSubcomponents);
 		callRedrawListeners();
@@ -59,9 +61,9 @@ public class ViewModel
 	 */
 	protected void componentDestroyed(GUIComponent component)
 	{
-		if (!components.contains(component))
+		if (!components.containsKey(component.name))
 			throw new IllegalStateException("Don't remove the same component twice!");
-		components.remove(component);
+		components.remove(component.name);
 		callComponentRemovedListeners(component);
 		component.removeRedrawListener(redrawListenerForSubcomponents);
 		callRedrawListeners();
@@ -95,7 +97,7 @@ public class ViewModel
 		callRedrawListeners();
 	}
 
-	public List<GUIComponent> getComponents()
+	public Map<String, GUIComponent> getComponentsByName()
 	{
 		return componentsUnmodifiable;
 	}

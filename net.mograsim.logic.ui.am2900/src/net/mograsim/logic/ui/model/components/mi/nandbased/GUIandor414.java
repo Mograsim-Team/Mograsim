@@ -11,7 +11,12 @@ public class GUIandor414 extends SimpleRectangularSubmodelComponent
 {
 	public GUIandor414(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIandor414");
+		this(model, null);
+	}
+
+	public GUIandor414(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIandor414", name);
 		setSubmodelScale(.4);
 		setInputPins("C1", "C2", "C3", "C4", "A1", "A2", "A3", "A4", "B");
 		setOutputPins("Y1", "Y2", "Y3", "Y4");
@@ -66,6 +71,6 @@ public class GUIandor414 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIandor414.class.getCanonicalName(), (m, p) -> new GUIandor414(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIandor414.class.getCanonicalName(), (m, p, n) -> new GUIandor414(m, n));
 	}
 }

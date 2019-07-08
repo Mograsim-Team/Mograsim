@@ -13,7 +13,12 @@ public class GUIor_4 extends SimpleRectangularSubmodelComponent
 {
 	public GUIor_4(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIor_4");
+		this(model, null);
+	}
+
+	public GUIor_4(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIor_4", name);
 		setSubmodelScale(.4);
 		setInputPins("A1", "A2", "A3", "A4", "B1", "B2", "B3", "B4");
 		setOutputPins("Y1", "Y2", "Y3", "Y4");
@@ -119,6 +124,6 @@ public class GUIor_4 extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIor_4.class.getCanonicalName(), (m, p) -> new GUIor_4(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIor_4.class.getCanonicalName(), (m, p, n) -> new GUIor_4(m, n));
 	}
 }

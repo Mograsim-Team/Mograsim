@@ -12,7 +12,12 @@ public class GUIfulladder extends SimpleRectangularSubmodelComponent
 {
 	public GUIfulladder(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIfulladder");
+		this(model, null);
+	}
+
+	public GUIfulladder(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIfulladder", name);
 		setSubmodelScale(.4);
 		setInputPins("A", "B", "C");
 		setOutputPins("Y", "Z");
@@ -49,6 +54,6 @@ public class GUIfulladder extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIfulladder.class.getCanonicalName(), (m, p) -> new GUIfulladder(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIfulladder.class.getCanonicalName(), (m, p, n) -> new GUIfulladder(m, n));
 	}
 }

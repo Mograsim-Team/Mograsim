@@ -17,7 +17,12 @@ public class GUIAm2901ALUOneBit extends SimpleRectangularSubmodelComponent
 {
 	public GUIAm2901ALUOneBit(ViewModelModifiable model)
 	{
-		super(model, 1, "GUIAm2901ALUOneBit");
+		this(model, null);
+	}
+
+	public GUIAm2901ALUOneBit(ViewModelModifiable model, String name)
+	{
+		super(model, 1, "GUIAm2901ALUOneBit", name);
 		setSubmodelScale(.2);
 		setInputPins("Cin", "CoutE", "CinE", "R", "RN", "S", "SN", "FN", "L");
 		setOutputPins("Cout", "F");
@@ -90,6 +95,7 @@ public class GUIAm2901ALUOneBit extends SimpleRectangularSubmodelComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901ALUOneBit.class.getCanonicalName(), (m, p) -> new GUIAm2901ALUOneBit(m));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2901ALUOneBit.class.getCanonicalName(),
+				(m, p, n) -> new GUIAm2901ALUOneBit(m, n));
 	}
 }
