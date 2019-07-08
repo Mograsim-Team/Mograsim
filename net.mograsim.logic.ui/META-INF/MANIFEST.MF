@@ -14,6 +14,7 @@ Export-Package: net.mograsim.logic.ui,
  net.mograsim.logic.ui.modeladapter.componentadapters,
  net.mograsim.logic.ui.serializing,
  net.mograsim.logic.ui.serializing.snippets,
+ net.mograsim.logic.ui.serializing.snippets.highlevelstatehandlers,
  net.mograsim.logic.ui.serializing.snippets.outlinerenderers,
  net.mograsim.logic.ui.serializing.snippets.symbolrenderers,
  net.mograsim.logic.ui.util
