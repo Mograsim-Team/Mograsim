@@ -7,16 +7,16 @@ import org.eclipse.ui.themes.IThemePreview;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.ui.LogicExecuter;
-import net.mograsim.logic.ui.LogicUICanvas;
-import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
-import net.mograsim.logic.ui.model.components.atomic.GUINotGate;
-import net.mograsim.logic.ui.model.components.atomic.GUIOrGate;
-import net.mograsim.logic.ui.model.wires.GUIWire;
-import net.mograsim.logic.ui.model.wires.WireCrossPoint;
-import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
-import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.LogicExecuter;
+import net.mograsim.logic.model.LogicUICanvas;
+import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.components.atomic.GUINotGate;
+import net.mograsim.logic.model.model.components.atomic.GUIOrGate;
+import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.WireCrossPoint;
+import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.preferences.Preferences;
 
 public class SimulationPreview implements IThemePreview
