@@ -65,7 +65,7 @@ public class LogicUICanvas extends ZoomableCanvas
 	{
 		if (e.button == 1)
 		{
-			Point click = displayToWorldCoords(e.x, e.y);
+			Point click = canvasToWorldCoords(e.x, e.y);
 			for (GUIComponent component : model.getComponentsByName().values())
 				if (component.getBounds().contains(click) && component.clicked(click.x, click.y))
 				{
