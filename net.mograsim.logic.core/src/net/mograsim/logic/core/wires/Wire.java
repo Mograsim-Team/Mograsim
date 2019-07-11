@@ -150,14 +150,20 @@ public class Wire
 		return val;
 	}
 
+	/**
+	 * Returns the least significant bit (LSB)
+	 */
 	public Bit getValue()
 	{
 		return getValue(0);
 	}
 
+	/**
+	 * Returns the least significant bit (LSB) of the given index
+	 */
 	public Bit getValue(int index)
 	{
-		return values.getBit(index);
+		return values.getLSBit(index);
 	}
 
 	public BitVector getValues(int start, int end)
@@ -446,7 +452,8 @@ public class Wire
 		}
 
 		/**
-		 * @return The value (of bit 0) the {@link ReadEnd} is currently feeding into the associated {@link Wire}.
+		 * @return The value (of bit 0) the {@link ReadEnd} is currently feeding into the associated {@link Wire}.Returns the least
+		 *         significant bit (LSB)
 		 */
 		public Bit getInputValue()
 		{
@@ -455,10 +462,12 @@ public class Wire
 
 		/**
 		 * @return The value which the {@link ReadEnd} is currently feeding into the associated {@link Wire} at the indexed {@link Bit}.
+		 *         Returns the least significant bit (LSB)
+		 * 
 		 */
 		public Bit getInputValue(int index)
 		{
-			return inputValues.getBit(index);
+			return inputValues.getLSBit(index);
 		}
 
 		/**
@@ -466,7 +475,7 @@ public class Wire
 		 */
 		public BitVector getInputValues()
 		{
-			return getInputValues(0, length);
+			return inputValues;
 		}
 
 		public BitVector getInputValues(int start, int end)

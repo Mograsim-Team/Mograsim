@@ -103,10 +103,10 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 			break;
 		case "q":
 			BitVector newStateCasted = (BitVector) newState;
-			setHighLevelState("q1", newStateCasted.getBit(0));
-			setHighLevelState("q2", newStateCasted.getBit(1));
-			setHighLevelState("q3", newStateCasted.getBit(2));
-			setHighLevelState("q4", newStateCasted.getBit(3));
+			setHighLevelState("q1", newStateCasted.getLSBit(0));
+			setHighLevelState("q2", newStateCasted.getLSBit(1));
+			setHighLevelState("q3", newStateCasted.getLSBit(2));
+			setHighLevelState("q4", newStateCasted.getLSBit(3));
 			break;
 		default:
 			// should not happen because we tell SubmodelComponent to only allow these state IDs.
@@ -132,7 +132,7 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 			Bit q2 = (Bit) getHighLevelState("q2");
 			Bit q3 = (Bit) getHighLevelState("q3");
 			Bit q4 = (Bit) getHighLevelState("q4");
-			return BitVector.of(q1, q2, q3, q4);
+			return BitVector.of(q4, q3, q2, q1);
 		default:
 			// should not happen because we tell SubmodelComponent to only allow these state IDs.
 			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
