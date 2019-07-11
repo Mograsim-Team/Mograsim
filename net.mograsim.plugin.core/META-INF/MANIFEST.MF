@@ -7,7 +7,6 @@ Export-Package: net.mograsim.plugin;uses:="org.eclipse.ui.themes,org.eclipse.swt
  net.mograsim.plugin.asm,
  net.mograsim.plugin.asm.editor,
  net.mograsim.plugin.asm.editor.rules,
- net.mograsim.plugin.asm.model,
  net.mograsim.plugin.nature,
  net.mograsim.plugin.views
 Require-Bundle: org.eclipse.core.runtime,
