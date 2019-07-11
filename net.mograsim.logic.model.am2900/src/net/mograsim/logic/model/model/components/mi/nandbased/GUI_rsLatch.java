@@ -94,7 +94,7 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 		{
 		case "q":
 			if (wireQ.hasLogicModelBinding())
-				return wireQ.getWireValues().getBit(0);
+				return wireQ.getWireValues().getLSBit(0);
 			return null;
 		default:
 			// should not happen because we tell SubmodelComponent to only allow these state IDs.

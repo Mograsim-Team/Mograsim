@@ -122,7 +122,7 @@ public class LogicUICanvas extends ZoomableCanvas
 				if (radioBit.getSelection())
 					value = Bit.parse(valueString);
 				else if (radioBitVector.getSelection())
-					value = BitVector.parseMSBFirst(valueString);
+					value = BitVector.parse(valueString);
 				else
 					throw new RuntimeException("No value type selected");
 				target.setHighLevelState(stateIDText.getText(), value);

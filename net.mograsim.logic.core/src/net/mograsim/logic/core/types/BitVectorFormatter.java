@@ -16,7 +16,7 @@ public class BitVectorFormatter
 	{
 		if (bitVector == null)
 			return "null";
-		return bitVector.toBitStringMSBFirst();
+		return bitVector.toString();
 	}
 
 	// TODO doesn't this belong to logic.ui?
@@ -30,7 +30,7 @@ public class BitVectorFormatter
 		// TODO maybe find a color assignment for multiple-bit bit vectors?
 		if (bitVector == null || bitVector.length() != 1)
 			return new ColorDefinition(BuiltInColor.COLOR_BLACK);
-		switch (bitVector.getBit(0))
+		switch (bitVector.getLSBit(0))
 		{
 		case ONE:
 			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.one");
@@ -43,7 +43,7 @@ public class BitVectorFormatter
 		case ZERO:
 			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.zero");
 		default:
-			throw new IllegalArgumentException("Unknown enum constant: " + bitVector.getBit(0));
+			throw new IllegalArgumentException("Unknown enum constant: " + bitVector.getLSBit(0));
 		}
 	}
 

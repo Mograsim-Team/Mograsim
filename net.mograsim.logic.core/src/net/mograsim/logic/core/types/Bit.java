@@ -91,6 +91,11 @@ public enum Bit implements StrictLogicType<Bit>
 		return values()[2 + (value & 1)];
 	}
 
+	public static Bit of(boolean binaryValue)
+	{
+		return binaryValue ? ONE : ZERO;
+	}
+
 	public static Bit parse(String s)
 	{
 		Bit bit = SYMBOL_MAP.get(s);
