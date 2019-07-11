@@ -169,47 +169,47 @@ public class TestableAm2901Impl implements TestableAm2901
 	public void setDest(Am2901_Dest dest)
 	{
 		var bits = of(dest.ordinal(), 3);
-		I8.setToValueOf(bits.getBit(0));
-		I7.setToValueOf(bits.getBit(1));
-		I6.setToValueOf(bits.getBit(2));
+		I8.setToValueOf(bits.getLSBit(2));
+		I7.setToValueOf(bits.getLSBit(1));
+		I6.setToValueOf(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setFunc(Am2901_Func func)
 	{
 		var bits = of(func.ordinal(), 3);
-		I5.setToValueOf(bits.getBit(0));
-		I4.setToValueOf(bits.getBit(1));
-		I3.setToValueOf(bits.getBit(2));
+		I5.setToValueOf(bits.getLSBit(2));
+		I4.setToValueOf(bits.getLSBit(1));
+		I3.setToValueOf(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setSrc(Am2901_Src src)
 	{
 		var bits = of(src.ordinal(), 3);
-		I2.setToValueOf(bits.getBit(0));
-		I1.setToValueOf(bits.getBit(1));
-		I0.setToValueOf(bits.getBit(2));
+		I2.setToValueOf(bits.getLSBit(2));
+		I1.setToValueOf(bits.getLSBit(1));
+		I0.setToValueOf(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setReg_A(String val_4_bit)
 	{
-		var bits = BitVector.parseMSBFirst(val_4_bit);
-		A3.setToValueOf(bits.getBit(3));
-		A2.setToValueOf(bits.getBit(2));
-		A1.setToValueOf(bits.getBit(1));
-		A0.setToValueOf(bits.getBit(0));
+		var bits = BitVector.parse(val_4_bit);
+		A3.setToValueOf(bits.getLSBit(3));
+		A2.setToValueOf(bits.getLSBit(2));
+		A1.setToValueOf(bits.getLSBit(1));
+		A0.setToValueOf(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setReg_B(String val_4_bit)
 	{
-		var bits = BitVector.parseMSBFirst(val_4_bit);
-		B3.setToValueOf(bits.getBit(3));
-		B2.setToValueOf(bits.getBit(2));
-		B1.setToValueOf(bits.getBit(1));
-		B0.setToValueOf(bits.getBit(0));
+		var bits = BitVector.parse(val_4_bit);
+		B3.setToValueOf(bits.getLSBit(3));
+		B2.setToValueOf(bits.getLSBit(2));
+		B1.setToValueOf(bits.getLSBit(1));
+		B0.setToValueOf(bits.getLSBit(0));
 	}
 
 	@Override
@@ -227,11 +227,11 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setD(String val_4_bit)
 	{
-		var bits = BitVector.parseMSBFirst(val_4_bit);
-		D4.setToValueOf(bits.getBit(3));
-		D3.setToValueOf(bits.getBit(2));
-		D2.setToValueOf(bits.getBit(1));
-		D1.setToValueOf(bits.getBit(0));
+		var bits = BitVector.parse(val_4_bit);
+		D4.setToValueOf(bits.getLSBit(3));
+		D3.setToValueOf(bits.getLSBit(2));
+		D2.setToValueOf(bits.getLSBit(1));
+		D1.setToValueOf(bits.getLSBit(0));
 	}
 
 	@Override
@@ -331,7 +331,7 @@ public class TestableAm2901Impl implements TestableAm2901
 		var y2 = Y3.getDisplayedValue();
 		var y1 = Y2.getDisplayedValue();
 		var y0 = Y1.getDisplayedValue();
-		return y0.concat(y1).concat(y2).concat(y3).toBitStringMSBFirst();
+		return y3.concat(y2).concat(y1).concat(y0).toString();
 	}
 
 	private void setField(String name, Object value)
@@ -354,7 +354,7 @@ public class TestableAm2901Impl implements TestableAm2901
 		int val = value;
 		for (int i = length - 1; i >= 0; i--)
 		{
-			mutator.setBit(i, Bit.lastBitOf(val));
+			mutator.setMSBit(i, Bit.lastBitOf(val));
 			val >>>= 1;
 		}
 		return mutator.toBitVector();
@@ -363,13 +363,13 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setDirectly(Register r, String val_4_bit)
 	{
-		am2901.setHighLevelState(regToStateID(r), BitVector.parseMSBFirst(val_4_bit));
+		am2901.setHighLevelState(regToStateID(r), BitVector.parse(val_4_bit));
 	}
 
 	@Override
 	public String getDirectly(Register r)
 	{
-		return ((BitVector) am2901.getHighLevelState(regToStateID(r))).toBitStringMSBFirst();
+		return ((BitVector) am2901.getHighLevelState(regToStateID(r))).toString();
 	}
 
 	private static String regToStateID(Register r)
