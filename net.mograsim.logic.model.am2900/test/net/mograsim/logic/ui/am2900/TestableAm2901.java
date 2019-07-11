@@ -5,10 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.extension.ExtensionContext;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.ArgumentsProvider;
-
 public interface TestableAm2901
 {
 	void setup();
@@ -131,16 +127,5 @@ public interface TestableAm2901
 		{
 			return Arrays.stream(values());
 		}
-	}
-
-	public static class RegisterProvider implements ArgumentsProvider
-	{
-
-		@Override
-		public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception
-		{
-			return Register.stream().map(Arguments::of);
-		}
-
 	}
 }

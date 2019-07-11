@@ -12,14 +12,17 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.EnumSource;
+
 import net.mograsim.logic.ui.am2900.TestableAm2901.Register;
 
+@DisplayName("Am2901 Tests")
 @TestMethodOrder(OrderAnnotation.class)
 public class Am2901Test
 {
@@ -87,9 +90,10 @@ public class Am2901Test
 		am2901.assertRunSuccess();
 	}
 
+	@ParameterizedTest(name = "{0}")
 	@Order(1)
-	@ParameterizedTest
-	@ArgumentsSource(TestableAm2901.RegisterProvider.class)
+	@DisplayName("Direct / high level access")
+	@EnumSource(Register.class)
 	void testDirectAccess(Register r)
 	{
 		assertEquals("UUUU", am2901.getDirectly(r));
@@ -99,9 +103,10 @@ public class Am2901Test
 		assertEquals("1011", am2901.getDirectly(r));
 	}
 
+	@ParameterizedTest(name = "{0}")
 	@Order(2)
-	@ParameterizedTest
-	@ArgumentsSource(TestableAm2901.RegisterProvider.class)
+	@DisplayName("Setting each register to 0")
+	@EnumSource(Register.class)
 	void testSetToZero(Register r)
 	{
 		assertEquals("UUUU", am2901.getDirectly(r));
@@ -116,8 +121,9 @@ public class Am2901Test
 		assertEquals("1", am2901.getZero());
 	}
 
-	@Order(3)
 	@Test
+	@Order(3)
+	@DisplayName("Setting all registers to 0")
 	void testSetAllToZero()
 	{
 		setRegistersToZero();
@@ -138,8 +144,9 @@ public class Am2901Test
 		}));
 	}
 
-	@Order(4)
 	@Test
+	@Order(4)
+	@DisplayName("ADD operation")
 	void testADD()
 	{
 		am2901.setSrc(DA);
@@ -159,18 +166,18 @@ public class Am2901Test
 			int res32Bit_sgn = signed4ToSigned32(xy.x) + signed4ToSigned32(xy.y);
 			int res4Bit_sgn = signed4ToSigned32(res32Bit_sgn);
 
-			String desc = xy.x + " + " + xy.y + " = " + res4Bit + ": ";
-
-			assertEquals(to4bitBin(res4Bit & 0b1111), am2901.getY(), desc + "Y");
-			assertEquals(to1bitBin(res4Bit == 0), am2901.getZero(), desc + "F=0");
-			assertEquals(to1bitBin(res4Bit & 0b1000), am2901.getSign(), desc + "F3");
-			assertEquals(to1bitBin(res32Bit & 0b1_0000), am2901.getCarryOut(), desc + "Cn+4");
-			assertEquals(to1bitBin(res4Bit_sgn != res32Bit_sgn), am2901.getOverflow(), desc + "OVR");
+			assertAll("Result of " + xy.x + " + " + xy.y + " = " + res32Bit,
+					() -> assertEquals(to4bitBin(res32Bit), am2901.getY(), "    Y"),
+					() -> assertEquals(to1bitBin(res4Bit == 0), am2901.getZero(), "    F=0"),
+					() -> assertEquals(to1bitBin(res4Bit & 0b1000), am2901.getSign(), "    F3"),
+					() -> assertEquals(to1bitBin(res32Bit > 15), am2901.getCarryOut(), "    Cn+4"),
+					() -> assertEquals(to1bitBin(res4Bit_sgn != res32Bit_sgn), am2901.getOverflow(), "    OVR"));
 		}));
 	}
 
-	@Order(4)
 	@Test
+	@Order(4)
+	@DisplayName("AND operation")
 	void testAND()
 	{
 		am2901.setSrc(DA);
@@ -187,18 +194,19 @@ public class Am2901Test
 
 			int res32Bit = xy.x & xy.y;
 
-			String desc = xy.x + " & " + xy.y + " = " + res32Bit + ": ";
-
-			assertEquals(to4bitBin(res32Bit), am2901.getY(), desc + "Y");
-			assertEquals(to1bitBin(res32Bit == 0), am2901.getZero(), desc + "F=0");
-			assertEquals(to1bitBin(res32Bit & 0b1000), am2901.getSign(), desc + "F3");
-//			assertEquals(to1bitBin(res32Bit), am2901.getCarryOut(), desc + "Cn+4"); // TODO
-//			assertEquals(to1bitBin(res32Bit), am2901.getOverflow(), desc + "OVR"); // TODO
+			assertAll("Result of " + xy.x + " & " + xy.y + " = " + res32Bit,
+					() -> assertEquals(to4bitBin(res32Bit), am2901.getY(), "    Y"),
+					() -> assertEquals(to1bitBin(res32Bit == 0), am2901.getZero(), "    F=0"),
+					() -> assertEquals(to1bitBin(res32Bit & 0b1000), am2901.getSign(), "    F3")
+//					() -> assertEquals(to1bitBin(res32Bit), am2901.getCarryOut(), "    Cn+4"), // TODO
+//					() -> assertEquals(to1bitBin(res32Bit), am2901.getOverflow(), "    OVR") // TODO
+			);
 		}));
 	}
 
-	@Order(4)
 	@Test
+	@Order(4)
+	@DisplayName("OR operation")
 	void testOR()
 	{
 		am2901.setSrc(DA);
@@ -215,18 +223,19 @@ public class Am2901Test
 
 			int res32Bit = xy.x | xy.y;
 
-			String desc = xy.x + " | " + xy.y + " = " + res32Bit + ": ";
-
-			assertEquals(to4bitBin(res32Bit), am2901.getY(), desc + "Y");
-			assertEquals(to1bitBin(res32Bit == 0), am2901.getZero(), desc + "F=0");
-			assertEquals(to1bitBin(res32Bit & 0b1000), am2901.getSign(), desc + "F3");
-//			assertEquals(to1bitBin(res32Bit != 0b1111), am2901.getCarryOut(), desc + "Cn+4"); // TODO
-//			assertEquals(to1bitBin(res32Bit != 0b1111), am2901.getOverflow(), desc + "OVR"); // TODO
+			assertAll("Result of " + xy.x + " | " + xy.y + " = " + res32Bit,
+					() -> assertEquals(to4bitBin(res32Bit), am2901.getY(), "    Y"),
+					() -> assertEquals(to1bitBin(res32Bit == 0), am2901.getZero(), "    F=0"),
+					() -> assertEquals(to1bitBin(res32Bit & 0b1000), am2901.getSign(), "    F3")
+//					() -> assertEquals(to1bitBin(res32Bit != 0b1111), am2901.getCarryOut(), "    Cn+4"), // TODO
+//					() -> assertEquals(to1bitBin(res32Bit != 0b1111), am2901.getOverflow(), "    OVR") // TODO
+			);
 		}));
 	}
 
-	@Order(4)
 	@Test
+	@Order(4)
+	@DisplayName("XOR operation")
 	void testXOR()
 	{
 		am2901.setSrc(DA);
@@ -243,18 +252,16 @@ public class Am2901Test
 
 			int res32Bit = xy.x ^ xy.y;
 
-			String desc = xy.x + " ^ " + xy.y + " = " + res32Bit + ": ";
-
-			assertEquals(to4bitBin(res32Bit), am2901.getY(), desc + "Y");
-			assertEquals(to1bitBin(res32Bit == 0), am2901.getZero(), desc + "F=0");
-			assertEquals(to1bitBin(res32Bit & 0b1000), am2901.getSign(), desc + "F3");
-//			assertEquals(to1bitBin(res32Bit != 0b1111), am2901.getCarryOut(), desc + "Cn+4"); // TODO
-//			assertEquals(to1bitBin(res32Bit != 0b1111), am2901.getOverflow(), desc + "OVR"); // TODO
+			assertAll("Result of " + xy.x + " ^ " + xy.y + " = " + res32Bit,
+					() -> assertEquals(to4bitBin(res32Bit), am2901.getY(), "    Y"),
+					() -> assertEquals(to1bitBin(res32Bit == 0), am2901.getZero(), "    F=0"),
+					() -> assertEquals(to1bitBin(res32Bit & 0b1000), am2901.getSign(), "    F3"));
 		}));
 	}
 
-	@Order(4)
 	@Test
+	@Order(4)
+	@DisplayName("SUB operation")
 	void testSUB()
 	{
 		am2901.setSrc(DA);
@@ -275,13 +282,12 @@ public class Am2901Test
 			int res32Bit_sgn = signed4ToSigned32(xy.x) - signed4ToSigned32(xy.y);
 			int res4Bit_sgn = signed4ToSigned32(res32Bit_sgn);
 
-			String desc = xy.x + " - " + xy.y + " = " + res4Bit + ": ";
-
-			assertEquals(to4bitBin(res4Bit & 0b1111), am2901.getY(), desc + "Y");
-			assertEquals(to1bitBin(res4Bit == 0), am2901.getZero(), desc + "F=0");
-			assertEquals(to1bitBin(res4Bit & 0b1000), am2901.getSign(), desc + "F3");
-			assertEquals(to1bitBin(xy.x >= xy.y), am2901.getCarryOut(), desc + "Cn+4");
-			assertEquals(to1bitBin(res4Bit_sgn != res32Bit_sgn), am2901.getOverflow(), desc + "OVR");
+			assertAll("Result of " + xy.x + " - " + xy.y + " = " + res32Bit,
+					() -> assertEquals(to4bitBin(res32Bit), am2901.getY(), "    Y"),
+					() -> assertEquals(to1bitBin(res4Bit == 0), am2901.getZero(), "    F=0"),
+					() -> assertEquals(to1bitBin(res4Bit & 0b1000), am2901.getSign(), "    F3"),
+					() -> assertEquals(to1bitBin(xy.x >= xy.y), am2901.getCarryOut(), "    Cn+4"),
+					() -> assertEquals(to1bitBin(res4Bit_sgn != res32Bit_sgn), am2901.getOverflow(), "    OVR"));
 		}));
 	}
 
