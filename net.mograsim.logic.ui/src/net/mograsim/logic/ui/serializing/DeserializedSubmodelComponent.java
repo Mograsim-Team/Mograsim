@@ -1,5 +1,7 @@
 package net.mograsim.logic.ui.serializing;
 
+import java.util.Map;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.ui.model.ViewModelModifiable;
@@ -54,14 +56,32 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
+	public double getSubmodelScale()
+	{
+		return super.getSubmodelScale();
+	}
+
+	@Override
+	public Map<String, MovablePin> getSubmodelMovablePins()
+	{
+		return super.getSubmodelMovablePins();
+	}
+
+	@Override
 	public void setSize(double width, double height)
 	{
 		super.setSize(width, height);
 	}
 
 	@Override
-	protected Pin addSubmodelInterface(MovablePin supermodelPin)
+	public Pin addSubmodelInterface(MovablePin supermodelPin)
 	{
 		return super.addSubmodelInterface(supermodelPin);
+	}
+
+	@Override
+	public void removeSubmodelInterface(String name)
+	{
+		super.removeSubmodelInterface(name);
 	}
 }
