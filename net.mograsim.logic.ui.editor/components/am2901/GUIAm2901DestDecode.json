@@ -1,0 +1,1006 @@
+mograsim version: 0.1.3
+{
+	"width": 35.0,
+	"height": 60.0,
+	"interfacePins": [
+		{
+			"location": {
+				"x": 35.0,
+				"y": 45.0
+			},
+			"name": "LSH",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 35.0,
+				"y": 5.0
+			},
+			"name": "NSH",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 35.0,
+				"y": 15.0
+			},
+			"name": "RSH",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 25.0
+			},
+			"name": "I6",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 35.0,
+				"y": 35.0
+			},
+			"name": "YF",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 15.0
+			},
+			"name": "I7",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 35.0,
+				"y": 25.0
+			},
+			"name": "RAMWE",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 35.0,
+				"y": 55.0
+			},
+			"name": "QWE",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 5.0
+			},
+			"name": "I8",
+			"logicWidth": 1
+		}
+	],
+	"submodel": {
+		"innerScale": 0.25,
+		"subComps": [
+			{
+				"pos": {
+					"x": 15.0,
+					"y": 10.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 15.0,
+					"y": 50.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 15.0,
+					"y": 90.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 15.0,
+					"y": 150.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 50.0,
+					"y": 10.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 50.0,
+					"y": 50.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 50.0,
+					"y": 90.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 50.0,
+					"y": 130.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 80.0,
+					"y": 10.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 80.0,
+					"y": 90.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 80.0,
+					"y": 145.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 110.0,
+					"y": 105.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 115.0,
+					"y": 210.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 4.0,
+					"y": 19.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 4.0,
+					"y": 14.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 4.0,
+					"y": 24.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 9.0,
+					"y": 59.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 9.0,
+					"y": 64.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 9.0,
+					"y": 104.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 4.0,
+					"y": 154.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 39.0,
+					"y": 59.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 44.0,
+					"y": 19.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 44.0,
+					"y": 54.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 39.0,
+					"y": 134.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 74.0,
+					"y": 19.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 74.0,
+					"y": 99.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 74.0,
+					"y": 104.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 74.0,
+					"y": 159.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 109.0,
+					"y": 214.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			}
+		],
+		"innerWires": [
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "I8"
+				},
+				"pin2": {
+					"compId": 14,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 14,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 15,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 14,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 16,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 15,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 1,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 16,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 1,
+					"pinName": "B"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "I7"
+				},
+				"pin2": {
+					"compId": 17,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 17,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 2,
+					"pinName": "A"
+				},
+				"path": [
+					{
+						"x": 10.0,
+						"y": 55.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 17,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 18,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 18,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 2,
+					"pinName": "B"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 18,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 19,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 19,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 3,
+					"pinName": "B"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 16,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 3,
+					"pinName": "A"
+				},
+				"path": [
+					{
+						"x": 5.0,
+						"y": 95.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "I6"
+				},
+				"pin2": {
+					"compId": 20,
+					"pinName": ""
+				},
+				"path": [
+					{
+						"x": 5.0,
+						"y": 100.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 20,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 4,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 20,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 4,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 5.0,
+						"y": 165.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 15,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 5,
+					"pinName": "A"
+				},
+				"path": [
+					{
+						"x": 5.0,
+						"y": 5.0
+					},
+					{
+						"x": 40.0,
+						"y": 5.0
+					},
+					{
+						"x": 40.0,
+						"y": 15.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 2,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 21,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 21,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 5,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 40.0,
+						"y": 25.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 21,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 6,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 40.0,
+						"y": 65.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 1,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 22,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 22,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 0,
+					"pinName": "NSH"
+				},
+				"path": [
+					{
+						"x": 45.0,
+						"y": 5.0
+					},
+					{
+						"x": 135.0,
+						"y": 5.0
+					},
+					{
+						"x": 135.0,
+						"y": 20.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 22,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 23,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 23,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 6,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 23,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 7,
+					"pinName": "A"
+				},
+				"path": [
+					{
+						"x": 45.0,
+						"y": 95.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 19,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 7,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 10.0,
+						"y": 115.0
+					},
+					{
+						"x": 45.0,
+						"y": 115.0
+					},
+					{
+						"x": 45.0,
+						"y": 105.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 3,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 24,
+					"pinName": ""
+				},
+				"path": [
+					{
+						"x": 40.0,
+						"y": 100.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 24,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 8,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 24,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 8,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 40.0,
+						"y": 145.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 5,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 25,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 25,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 9,
+					"pinName": "A"
+				},
+				"path": [
+					{
+						"x": 75.0,
+						"y": 15.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 25,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 9,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 75.0,
+						"y": 25.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 6,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 0,
+					"pinName": "RAMWE"
+				},
+				"path": [
+					{
+						"x": 125.0,
+						"y": 60.0
+					},
+					{
+						"x": 125.0,
+						"y": 100.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 7,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 26,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 26,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 10,
+					"pinName": "A"
+				},
+				"path": [
+					{
+						"x": 75.0,
+						"y": 95.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 26,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 27,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 27,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 10,
+					"pinName": "B"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 8,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 0,
+					"pinName": "LSH"
+				},
+				"path": [
+					{
+						"x": 125.0,
+						"y": 140.0
+					},
+					{
+						"x": 125.0,
+						"y": 180.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 27,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 11,
+					"pinName": "A"
+				},
+				"path": [
+					{
+						"x": 75.0,
+						"y": 150.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 4,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 28,
+					"pinName": ""
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 28,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 11,
+					"pinName": "B"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 9,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 0,
+					"pinName": "RSH"
+				},
+				"path": [
+					{
+						"x": 130.0,
+						"y": 20.0
+					},
+					{
+						"x": 130.0,
+						"y": 60.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 10,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 12,
+					"pinName": "A"
+				}
+			},
+			{
+				"pin1": {
+					"compId": 28,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 12,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 75.0,
+						"y": 170.0
+					},
+					{
+						"x": 105.0,
+						"y": 170.0
+					},
+					{
+						"x": 105.0,
+						"y": 120.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 11,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 29,
+					"pinName": ""
+				},
+				"path": [
+					{
+						"x": 110.0,
+						"y": 155.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 29,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 13,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 29,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 13,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 110.0,
+						"y": 225.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 12,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 0,
+					"pinName": "YF"
+				}
+			},
+			{
+				"pin1": {
+					"compId": 13,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 0,
+					"pinName": "QWE"
+				},
+				"path": []
+			}
+		]
+	},
+	"symbolRendererSnippetID": "SimpleRectangularLikeSymbolRenderer",
+	"symbolRendererParams": {
+		"centerText": "GUIAm2901DestDecode",
+		"horizontalComponentCenter": 17.5,
+		"centerTextHeight": 5.0,
+		"pinLabelHeight": 3.5,
+		"pinLabelMargin": 0.5
+	}
+}

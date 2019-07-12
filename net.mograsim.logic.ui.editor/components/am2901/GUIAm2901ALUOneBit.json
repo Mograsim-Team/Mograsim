@@ -1,0 +1,511 @@
+mograsim version: 0.1.3
+{
+	"width": 35.0,
+	"height": 90.0,
+	"interfacePins": [
+		{
+			"location": {
+				"x": 0.0,
+				"y": 35.0
+			},
+			"name": "R",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 55.0
+			},
+			"name": "S",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 35.0,
+				"y": 15.0
+			},
+			"name": "F",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 75.0
+			},
+			"name": "FN",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 5.0
+			},
+			"name": "Cin",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 65.0
+			},
+			"name": "SN",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 35.0,
+				"y": 5.0
+			},
+			"name": "Cout",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 45.0
+			},
+			"name": "RN",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 85.0
+			},
+			"name": "L",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 25.0
+			},
+			"name": "CinE",
+			"logicWidth": 1
+		},
+		{
+			"location": {
+				"x": 0.0,
+				"y": 15.0
+			},
+			"name": "CoutE",
+			"logicWidth": 1
+		}
+	],
+	"submodel": {
+		"innerScale": 0.2,
+		"subComps": [
+			{
+				"pos": {
+					"x": 10.0,
+					"y": 20.0
+				},
+				"id": "GUIand"
+			},
+			{
+				"pos": {
+					"x": 10.0,
+					"y": 190.0
+				},
+				"id": "GUIxor"
+			},
+			{
+				"pos": {
+					"x": 10.0,
+					"y": 290.0
+				},
+				"id": "GUIxor"
+			},
+			{
+				"pos": {
+					"x": 60.0,
+					"y": 20.0
+				},
+				"id": "GUIfulladder"
+			},
+			{
+				"pos": {
+					"x": 60.0,
+					"y": 55.0
+				},
+				"id": "GUINandGate",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 135.0,
+					"y": 20.0
+				},
+				"id": "GUIand"
+			},
+			{
+				"pos": {
+					"x": 90.0,
+					"y": 70.0
+				},
+				"id": "GUImux1"
+			},
+			{
+				"pos": {
+					"x": 135.0,
+					"y": 70.0
+				},
+				"id": "GUIxor"
+			},
+			{
+				"pos": {
+					"x": 49.0,
+					"y": 59.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			},
+			{
+				"pos": {
+					"x": 54.0,
+					"y": 69.0
+				},
+				"id": "WireCrossPoint",
+				"params": 1
+			}
+		],
+		"innerWires": [
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "Cin"
+				},
+				"pin2": {
+					"compId": 1,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "CoutE"
+				},
+				"pin2": {
+					"compId": 6,
+					"pinName": "A"
+				},
+				"path": [
+					{
+						"x": 5.0,
+						"y": 75.0
+					},
+					{
+						"x": 5.0,
+						"y": 10.0
+					},
+					{
+						"x": 130.0,
+						"y": 10.0
+					},
+					{
+						"x": 130.0,
+						"y": 25.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "CinE"
+				},
+				"pin2": {
+					"compId": 1,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 7.5,
+						"y": 125.0
+					},
+					{
+						"x": 7.5,
+						"y": 35.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "R"
+				},
+				"pin2": {
+					"compId": 2,
+					"pinName": "A"
+				}
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "RN"
+				},
+				"pin2": {
+					"compId": 2,
+					"pinName": "B"
+				}
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "S"
+				},
+				"pin2": {
+					"compId": 3,
+					"pinName": "A"
+				}
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "SN"
+				},
+				"pin2": {
+					"compId": 3,
+					"pinName": "B"
+				}
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "FN"
+				},
+				"pin2": {
+					"compId": 8,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 130.0,
+						"y": 375.0
+					},
+					{
+						"x": 130.0,
+						"y": 85.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 0,
+					"pinName": "L"
+				},
+				"pin2": {
+					"compId": 7,
+					"pinName": "S0"
+				},
+				"path": [
+					{
+						"x": 87.5,
+						"y": 425.0
+					},
+					{
+						"x": 87.5,
+						"y": 75.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 1,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 4,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 2,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 9,
+					"pinName": ""
+				},
+				"path": [
+					{
+						"x": 50.0,
+						"y": 195.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 9,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 4,
+					"pinName": "B"
+				},
+				"path": [
+					{
+						"x": 50.0,
+						"y": 35.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 9,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 5,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 3,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 10,
+					"pinName": ""
+				},
+				"path": [
+					{
+						"x": 55.0,
+						"y": 295.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 10,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 4,
+					"pinName": "C"
+				},
+				"path": [
+					{
+						"x": 55.0,
+						"y": 45.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 10,
+					"pinName": ""
+				},
+				"pin2": {
+					"compId": 5,
+					"pinName": "B"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 4,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 7,
+					"pinName": "I0"
+				},
+				"path": [
+					{
+						"x": 100.0,
+						"y": 25.0
+					},
+					{
+						"x": 100.0,
+						"y": 65.0
+					},
+					{
+						"x": 85.0,
+						"y": 65.0
+					},
+					{
+						"x": 85.0,
+						"y": 85.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 4,
+					"pinName": "Z"
+				},
+				"pin2": {
+					"compId": 6,
+					"pinName": "B"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 5,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 7,
+					"pinName": "I1"
+				},
+				"path": [
+					{
+						"x": 82.5,
+						"y": 65.0
+					},
+					{
+						"x": 82.5,
+						"y": 95.0
+					}
+				]
+			},
+			{
+				"pin1": {
+					"compId": 7,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 8,
+					"pinName": "A"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 6,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 0,
+					"pinName": "Cout"
+				},
+				"path": []
+			},
+			{
+				"pin1": {
+					"compId": 8,
+					"pinName": "Y"
+				},
+				"pin2": {
+					"compId": 0,
+					"pinName": "F"
+				},
+				"path": []
+			}
+		]
+	},
+	"symbolRendererSnippetID": "SimpleRectangularLikeSymbolRenderer",
+	"symbolRendererParams": {
+		"centerText": "GUIAm2901ALUOneBit",
+		"horizontalComponentCenter": 17.5,
+		"centerTextHeight": 5.0,
+		"pinLabelHeight": 3.5,
+		"pinLabelMargin": 0.5
+	}
+}
