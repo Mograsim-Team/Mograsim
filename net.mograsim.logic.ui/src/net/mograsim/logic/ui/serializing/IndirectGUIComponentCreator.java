@@ -2,6 +2,7 @@ package net.mograsim.logic.ui.serializing;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +42,11 @@ public class IndirectGUIComponentCreator
 		{
 			System.err.println("Failed to initialize standard snippet ID mapping: " + e.getMessage());
 		}
+	}
+
+	public static Collection<String> getStandardComponentIDs()
+	{
+		return standardComponentIDs.keySet();
 	}
 
 	public static void addStandardComponentID(String standardComponentID, String associatedComponentID)
