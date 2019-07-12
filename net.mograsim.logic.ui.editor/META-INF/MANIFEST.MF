@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Editor
+Bundle-SymbolicName: net.mograsim.logic.ui.editor
+Bundle-Version: 0.1.0.qualifier
+Export-Package: net.mograsim.logic.ui.editor,
+ net.mograsim.logic.ui.editor.handles,
+ net.mograsim.logic.ui.editor.states
+Require-Bundle: net.mograsim.logic.ui;bundle-version="0.1.0",
+ net.mograsim.preferences;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: net.mograsim.logic.ui
+Bundle-Vendor: Mograsim Team
