@@ -10,16 +10,16 @@ import org.eclipse.ui.part.ViewPart;
 
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.ui.LogicExecuter;
-import net.mograsim.logic.ui.LogicUICanvas;
-import net.mograsim.logic.ui.model.ViewModelModifiable;
-import net.mograsim.logic.ui.model.components.atomic.GUIBitDisplay;
-import net.mograsim.logic.ui.model.components.atomic.GUIManualSwitch;
-import net.mograsim.logic.ui.model.components.mi.nandbased.am2901.GUIAm2901;
-import net.mograsim.logic.ui.model.components.submodels.SimpleRectangularSubmodelComponent;
-import net.mograsim.logic.ui.model.wires.GUIWire;
-import net.mograsim.logic.ui.modeladapter.LogicModelParameters;
-import net.mograsim.logic.ui.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.LogicExecuter;
+import net.mograsim.logic.model.LogicUICanvas;
+import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
+import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.components.mi.nandbased.am2901.GUIAm2901;
+import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubmodelComponent;
+import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.plugin.ThemePreferences;
 import net.mograsim.preferences.Preferences;
 

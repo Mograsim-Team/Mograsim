@@ -1,0 +1,2829 @@
+mograsim version: 0.1.3
+{
+  "width": 35.0,
+  "height": 90.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 35.0,
+        "y": 5.0
+      },
+      "name": "QA1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 55.0
+      },
+      "name": "QB2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 45.0
+      },
+      "name": "QB1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 25.0
+      },
+      "name": "QA3",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 75.0
+      },
+      "name": "QB4",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 15.0
+      },
+      "name": "QA2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 65.0
+      },
+      "name": "QB3",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 35.0
+      },
+      "name": "QA4",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 55.0
+      },
+      "name": "D1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "B0",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 45.0
+      },
+      "name": "WE",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 65.0
+      },
+      "name": "D2",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "A0",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 35.0
+      },
+      "name": "B1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 75.0
+      },
+      "name": "D3",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "A1",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 85.0
+      },
+      "name": "D4",
+      "logicWidth": 1
+    }
+  ],
+  "submodel": {
+    "innerScale": 0.1,
+    "subComps": [
+      {
+        "pos": {
+          "x": 44.0,
+          "y": 649.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#14",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 39.0,
+          "y": 639.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#13",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 129.0,
+          "y": 329.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#16",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 49.0,
+          "y": 659.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#15",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 119.0,
+          "y": 349.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#18",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 124.0,
+          "y": 339.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#17",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 114.0,
+          "y": 359.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#19",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 104.0,
+          "y": 164.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 109.0,
+          "y": 154.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 94.0,
+          "y": 184.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 99.0,
+          "y": 174.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 39.0,
+          "y": 649.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#5",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 34.0,
+          "y": 549.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#4",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 49.0,
+          "y": 809.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#7",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 44.0,
+          "y": 749.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#6",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 39.0,
+          "y": 489.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#9",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 34.0,
+          "y": 479.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#8",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 44.0,
+          "y": 499.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 34.0,
+          "y": 629.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#12",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 49.0,
+          "y": 509.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#11",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 135.0,
+          "y": 735.0
+        },
+        "id": "GUIandor414",
+        "name": "GUIandor414#5"
+      },
+      {
+        "pos": {
+          "x": 135.0,
+          "y": 435.0
+        },
+        "id": "GUIandor414",
+        "name": "GUIandor414#3"
+      },
+      {
+        "pos": {
+          "x": 135.0,
+          "y": 585.0
+        },
+        "id": "GUIandor414",
+        "name": "GUIandor414#4"
+      },
+      {
+        "pos": {
+          "x": 235.0,
+          "y": 635.0
+        },
+        "id": "GUIandor414",
+        "name": "GUIandor414#1"
+      },
+      {
+        "pos": {
+          "x": 235.0,
+          "y": 785.0
+        },
+        "id": "GUIandor414",
+        "name": "GUIandor414#2"
+      },
+      {
+        "pos": {
+          "x": 235.0,
+          "y": 485.0
+        },
+        "id": "GUIandor414",
+        "name": "GUIandor414#0"
+      },
+      {
+        "pos": {
+          "x": 55.0,
+          "y": 475.0
+        },
+        "id": "GUIdlatch4",
+        "name": "GUIdlatch4#1"
+      },
+      {
+        "pos": {
+          "x": 55.0,
+          "y": 325.0
+        },
+        "id": "GUIdlatch4",
+        "name": "GUIdlatch4#0"
+      },
+      {
+        "pos": {
+          "x": 55.0,
+          "y": 775.0
+        },
+        "id": "GUIdlatch4",
+        "name": "GUIdlatch4#3"
+      },
+      {
+        "pos": {
+          "x": 55.0,
+          "y": 625.0
+        },
+        "id": "GUIdlatch4",
+        "name": "GUIdlatch4#2"
+      },
+      {
+        "pos": {
+          "x": 135.0,
+          "y": 325.0
+        },
+        "id": "GUIand41",
+        "name": "GUIand41#2"
+      },
+      {
+        "pos": {
+          "x": 119.0,
+          "y": 799.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#30",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 114.0,
+          "y": 809.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#31",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 130.0,
+          "y": 150.0
+        },
+        "id": "GUIand41",
+        "name": "GUIand41#0"
+      },
+      {
+        "pos": {
+          "x": 235.0,
+          "y": 375.0
+        },
+        "id": "GUIand41",
+        "name": "GUIand41#1"
+      },
+      {
+        "pos": {
+          "x": 124.0,
+          "y": 639.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#25",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 129.0,
+          "y": 629.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#24",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 114.0,
+          "y": 659.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#27",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 119.0,
+          "y": 649.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#26",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 124.0,
+          "y": 789.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#29",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 129.0,
+          "y": 779.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#28",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 55.0,
+          "y": 150.0
+        },
+        "id": "GUIdemux2",
+        "name": "GUIdemux2#1"
+      },
+      {
+        "pos": {
+          "x": 55.0,
+          "y": 45.0
+        },
+        "id": "GUIdemux2",
+        "name": "GUIdemux2#0"
+      },
+      {
+        "pos": {
+          "x": 124.0,
+          "y": 489.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#21",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 129.0,
+          "y": 479.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#20",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 114.0,
+          "y": 509.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#23",
+        "params": 1
+      },
+      {
+        "pos": {
+          "x": 119.0,
+          "y": 499.0
+        },
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#22",
+        "params": 1
+      }
+    ],
+    "innerWires": [
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A0"
+        },
+        "pin2": {
+          "compName": "GUIdemux2#0",
+          "pinName": "S0"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A1"
+        },
+        "pin2": {
+          "compName": "GUIdemux2#0",
+          "pinName": "S1"
+        },
+        "path": [
+          {
+            "x": 10.0,
+            "y": 150.0
+          },
+          {
+            "x": 10.0,
+            "y": 60.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "B0"
+        },
+        "pin2": {
+          "compName": "GUIdemux2#1",
+          "pinName": "S0"
+        },
+        "path": [
+          {
+            "x": 5.0,
+            "y": 250.0
+          },
+          {
+            "x": 5.0,
+            "y": 155.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "B1"
+        },
+        "pin2": {
+          "compName": "GUIdemux2#1",
+          "pinName": "S1"
+        },
+        "path": [
+          {
+            "x": 10.0,
+            "y": 350.0
+          },
+          {
+            "x": 10.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#1",
+          "pinName": "Y00"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#1",
+          "pinName": "Y01"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#1",
+          "pinName": "Y10"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#1",
+          "pinName": "Y11"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "A1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "A2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "A3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "A4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "WE"
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 5.0,
+            "y": 450.0
+          },
+          {
+            "x": 5.0,
+            "y": 300.0
+          },
+          {
+            "x": 125.0,
+            "y": 300.0
+          },
+          {
+            "x": 125.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#0",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "C"
+        },
+        "path": [
+          {
+            "x": 185.0,
+            "y": 155.0
+          },
+          {
+            "x": 185.0,
+            "y": 250.0
+          },
+          {
+            "x": 30.0,
+            "y": 250.0
+          },
+          {
+            "x": 30.0,
+            "y": 370.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#0",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "C"
+        },
+        "path": [
+          {
+            "x": 180.0,
+            "y": 165.0
+          },
+          {
+            "x": 180.0,
+            "y": 245.0
+          },
+          {
+            "x": 25.0,
+            "y": 245.0
+          },
+          {
+            "x": 25.0,
+            "y": 520.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#0",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "C"
+        },
+        "path": [
+          {
+            "x": 175.0,
+            "y": 175.0
+          },
+          {
+            "x": 175.0,
+            "y": 240.0
+          },
+          {
+            "x": 20.0,
+            "y": 240.0
+          },
+          {
+            "x": 20.0,
+            "y": 670.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#0",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "C"
+        },
+        "path": [
+          {
+            "x": 170.0,
+            "y": 185.0
+          },
+          {
+            "x": 170.0,
+            "y": 235.0
+          },
+          {
+            "x": 15.0,
+            "y": 235.0
+          },
+          {
+            "x": 15.0,
+            "y": 820.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "path": [
+          {
+            "x": 50.0,
+            "y": 850.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "D1"
+        },
+        "path": [
+          {
+            "x": 35.0,
+            "y": 330.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "D2"
+        },
+        "path": [
+          {
+            "x": 40.0,
+            "y": 340.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "D3"
+        },
+        "path": [
+          {
+            "x": 45.0,
+            "y": 350.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "D4"
+        },
+        "path": [
+          {
+            "x": 50.0,
+            "y": 360.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "D1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "D2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "D3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "D4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "D1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "D2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "D3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "D4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "D1"
+        },
+        "path": [
+          {
+            "x": 35.0,
+            "y": 780.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "D2"
+        },
+        "path": [
+          {
+            "x": 40.0,
+            "y": 790.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "D3"
+        },
+        "path": [
+          {
+            "x": 45.0,
+            "y": 800.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "D4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "Q1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#16",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "Q2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#17",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "Q3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#18",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#0",
+          "pinName": "Q4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "Q1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#20",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "Q2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "Q3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#22",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#1",
+          "pinName": "Q4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#23",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "Q1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#24",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "Q2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#25",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "Q3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#26",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#2",
+          "pinName": "Q4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#27",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "Q1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#28",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "Q2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#29",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "Q3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#30",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdlatch4#3",
+          "pinName": "Q4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#31",
+          "pinName": ""
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#0",
+          "pinName": "Y00"
+        },
+        "pin2": {
+          "compName": "GUIand41#1",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 210.0,
+            "y": 50.0
+          },
+          {
+            "x": 210.0,
+            "y": 420.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#0",
+          "pinName": "Y01"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 205.0,
+            "y": 60.0
+          },
+          {
+            "x": 205.0,
+            "y": 570.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#0",
+          "pinName": "Y10"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 200.0,
+            "y": 70.0
+          },
+          {
+            "x": 200.0,
+            "y": 720.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#0",
+          "pinName": "Y11"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 195.0,
+            "y": 80.0
+          },
+          {
+            "x": 195.0,
+            "y": 870.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 110.0,
+            "y": 370.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 105.0,
+            "y": 520.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 100.0,
+            "y": 670.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "B"
+        },
+        "path": [
+          {
+            "x": 95.0,
+            "y": 820.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#16",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#1",
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 130.0,
+            "y": 380.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#17",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#1",
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 125.0,
+            "y": 390.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#18",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#1",
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 120.0,
+            "y": 400.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#1",
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 115.0,
+            "y": 410.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#20",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 130.0,
+            "y": 530.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 125.0,
+            "y": 540.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#22",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 120.0,
+            "y": 550.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#23",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 115.0,
+            "y": 560.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#24",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 130.0,
+            "y": 680.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#25",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 125.0,
+            "y": 690.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#26",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 120.0,
+            "y": 700.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#27",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 115.0,
+            "y": 710.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#28",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "A1"
+        },
+        "path": [
+          {
+            "x": 130.0,
+            "y": 830.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#29",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "A2"
+        },
+        "path": [
+          {
+            "x": 125.0,
+            "y": 840.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#30",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "A3"
+        },
+        "path": [
+          {
+            "x": 120.0,
+            "y": 850.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#31",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "A4"
+        },
+        "path": [
+          {
+            "x": 115.0,
+            "y": 860.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#16",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "A1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#17",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "A2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#18",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "A3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "A4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#20",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "A1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "A2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#22",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "A3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#23",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "A4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#24",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "A1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#25",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "A2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#26",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "A3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#27",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "A4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#28",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "A1"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#29",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "A2"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#30",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "A3"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#31",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "A4"
+        },
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#1",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 290.0,
+            "y": 380.0
+          },
+          {
+            "x": 290.0,
+            "y": 445.0
+          },
+          {
+            "x": 230.0,
+            "y": 445.0
+          },
+          {
+            "x": 230.0,
+            "y": 490.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#1",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 285.0,
+            "y": 390.0
+          },
+          {
+            "x": 285.0,
+            "y": 440.0
+          },
+          {
+            "x": 225.0,
+            "y": 440.0
+          },
+          {
+            "x": 225.0,
+            "y": 500.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#1",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 280.0,
+            "y": 400.0
+          },
+          {
+            "x": 280.0,
+            "y": 435.0
+          },
+          {
+            "x": 220.0,
+            "y": 435.0
+          },
+          {
+            "x": 220.0,
+            "y": 510.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#1",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 275.0,
+            "y": 410.0
+          },
+          {
+            "x": 275.0,
+            "y": 430.0
+          },
+          {
+            "x": 215.0,
+            "y": 430.0
+          },
+          {
+            "x": 215.0,
+            "y": 520.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#0",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 290.0,
+            "y": 490.0
+          },
+          {
+            "x": 290.0,
+            "y": 595.0
+          },
+          {
+            "x": 230.0,
+            "y": 595.0
+          },
+          {
+            "x": 230.0,
+            "y": 640.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#0",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 285.0,
+            "y": 500.0
+          },
+          {
+            "x": 285.0,
+            "y": 590.0
+          },
+          {
+            "x": 225.0,
+            "y": 590.0
+          },
+          {
+            "x": 225.0,
+            "y": 650.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#0",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 280.0,
+            "y": 510.0
+          },
+          {
+            "x": 280.0,
+            "y": 585.0
+          },
+          {
+            "x": 220.0,
+            "y": 585.0
+          },
+          {
+            "x": 220.0,
+            "y": 660.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#0",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 275.0,
+            "y": 520.0
+          },
+          {
+            "x": 275.0,
+            "y": 580.0
+          },
+          {
+            "x": 215.0,
+            "y": 580.0
+          },
+          {
+            "x": 215.0,
+            "y": 670.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#1",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 290.0,
+            "y": 640.0
+          },
+          {
+            "x": 290.0,
+            "y": 745.0
+          },
+          {
+            "x": 230.0,
+            "y": 745.0
+          },
+          {
+            "x": 230.0,
+            "y": 790.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#1",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 285.0,
+            "y": 650.0
+          },
+          {
+            "x": 285.0,
+            "y": 740.0
+          },
+          {
+            "x": 225.0,
+            "y": 740.0
+          },
+          {
+            "x": 225.0,
+            "y": 800.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#1",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 280.0,
+            "y": 660.0
+          },
+          {
+            "x": 280.0,
+            "y": 735.0
+          },
+          {
+            "x": 220.0,
+            "y": 735.0
+          },
+          {
+            "x": 220.0,
+            "y": 810.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#1",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 275.0,
+            "y": 670.0
+          },
+          {
+            "x": 275.0,
+            "y": 730.0
+          },
+          {
+            "x": 215.0,
+            "y": 730.0
+          },
+          {
+            "x": 215.0,
+            "y": 820.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#2",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QA1"
+        },
+        "path": [
+          {
+            "x": 300.0,
+            "y": 790.0
+          },
+          {
+            "x": 300.0,
+            "y": 50.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#2",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QA2"
+        },
+        "path": [
+          {
+            "x": 305.0,
+            "y": 800.0
+          },
+          {
+            "x": 305.0,
+            "y": 150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#2",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QA3"
+        },
+        "path": [
+          {
+            "x": 310.0,
+            "y": 810.0
+          },
+          {
+            "x": 310.0,
+            "y": 250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#2",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QA4"
+        },
+        "path": [
+          {
+            "x": 315.0,
+            "y": 820.0
+          },
+          {
+            "x": 315.0,
+            "y": 350.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#2",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 190.0,
+            "y": 330.0
+          },
+          {
+            "x": 190.0,
+            "y": 430.0
+          },
+          {
+            "x": 130.0,
+            "y": 430.0
+          },
+          {
+            "x": 130.0,
+            "y": 440.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#2",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 185.0,
+            "y": 340.0
+          },
+          {
+            "x": 185.0,
+            "y": 425.0
+          },
+          {
+            "x": 125.0,
+            "y": 425.0
+          },
+          {
+            "x": 125.0,
+            "y": 450.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#2",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 180.0,
+            "y": 350.0
+          },
+          {
+            "x": 180.0,
+            "y": 420.0
+          },
+          {
+            "x": 120.0,
+            "y": 420.0
+          },
+          {
+            "x": 120.0,
+            "y": 460.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#2",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 175.0,
+            "y": 360.0
+          },
+          {
+            "x": 175.0,
+            "y": 415.0
+          },
+          {
+            "x": 115.0,
+            "y": 415.0
+          },
+          {
+            "x": 115.0,
+            "y": 470.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#3",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 190.0,
+            "y": 440.0
+          },
+          {
+            "x": 190.0,
+            "y": 580.0
+          },
+          {
+            "x": 130.0,
+            "y": 580.0
+          },
+          {
+            "x": 130.0,
+            "y": 590.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#3",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 185.0,
+            "y": 450.0
+          },
+          {
+            "x": 185.0,
+            "y": 575.0
+          },
+          {
+            "x": 125.0,
+            "y": 575.0
+          },
+          {
+            "x": 125.0,
+            "y": 600.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#3",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 180.0,
+            "y": 460.0
+          },
+          {
+            "x": 180.0,
+            "y": 570.0
+          },
+          {
+            "x": 120.0,
+            "y": 570.0
+          },
+          {
+            "x": 120.0,
+            "y": 610.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#3",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 175.0,
+            "y": 470.0
+          },
+          {
+            "x": 175.0,
+            "y": 565.0
+          },
+          {
+            "x": 115.0,
+            "y": 565.0
+          },
+          {
+            "x": 115.0,
+            "y": 620.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#4",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "C1"
+        },
+        "path": [
+          {
+            "x": 190.0,
+            "y": 590.0
+          },
+          {
+            "x": 190.0,
+            "y": 730.0
+          },
+          {
+            "x": 130.0,
+            "y": 730.0
+          },
+          {
+            "x": 130.0,
+            "y": 740.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#4",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "C2"
+        },
+        "path": [
+          {
+            "x": 185.0,
+            "y": 600.0
+          },
+          {
+            "x": 185.0,
+            "y": 725.0
+          },
+          {
+            "x": 125.0,
+            "y": 725.0
+          },
+          {
+            "x": 125.0,
+            "y": 750.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#4",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "C3"
+        },
+        "path": [
+          {
+            "x": 180.0,
+            "y": 610.0
+          },
+          {
+            "x": 180.0,
+            "y": 720.0
+          },
+          {
+            "x": 120.0,
+            "y": 720.0
+          },
+          {
+            "x": 120.0,
+            "y": 760.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#4",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "C4"
+        },
+        "path": [
+          {
+            "x": 175.0,
+            "y": 620.0
+          },
+          {
+            "x": 175.0,
+            "y": 715.0
+          },
+          {
+            "x": 115.0,
+            "y": 715.0
+          },
+          {
+            "x": 115.0,
+            "y": 770.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#5",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QB1"
+        },
+        "path": [
+          {
+            "x": 190.0,
+            "y": 740.0
+          },
+          {
+            "x": 190.0,
+            "y": 880.0
+          },
+          {
+            "x": 325.0,
+            "y": 880.0
+          },
+          {
+            "x": 325.0,
+            "y": 450.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#5",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QB2"
+        },
+        "path": [
+          {
+            "x": 185.0,
+            "y": 750.0
+          },
+          {
+            "x": 185.0,
+            "y": 885.0
+          },
+          {
+            "x": 330.0,
+            "y": 885.0
+          },
+          {
+            "x": 330.0,
+            "y": 550.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#5",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QB3"
+        },
+        "path": [
+          {
+            "x": 180.0,
+            "y": 760.0
+          },
+          {
+            "x": 180.0,
+            "y": 890.0
+          },
+          {
+            "x": 335.0,
+            "y": 890.0
+          },
+          {
+            "x": 335.0,
+            "y": 650.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#5",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QB4"
+        },
+        "path": [
+          {
+            "x": 175.0,
+            "y": 770.0
+          },
+          {
+            "x": 175.0,
+            "y": 895.0
+          },
+          {
+            "x": 340.0,
+            "y": 895.0
+          },
+          {
+            "x": 340.0,
+            "y": 750.0
+          }
+        ]
+      }
+    ]
+  },
+  "symbolRendererSnippetID": "SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererParams": {
+    "centerText": "GUIram2",
+    "horizontalComponentCenter": 17.5,
+    "centerTextHeight": 5.0,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  }
+}

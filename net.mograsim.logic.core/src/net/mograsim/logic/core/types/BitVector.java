@@ -13,7 +13,6 @@ import java.util.function.UnaryOperator;
 /**
  * Immutable class representing a {@link Bit}Vector
  *
- *
  * @author Christian Femers
  *
  */
@@ -23,7 +22,7 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 
 	private BitVector(Bit[] bits)
 	{
-		this.bits = Objects.requireNonNull(bits);// do this first to "catch" bits==null before the foreach loop
+		this.bits = Objects.requireNonNull(bits); // do this first to "catch" bits==null before the foreach loop
 		for (Bit bit : bits)
 			if (bit == null)
 				throw new NullPointerException();
@@ -44,9 +43,20 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return BitVectorMutator.of(this);
 	}
 
-	public Bit getBit(int bitIndex)
+	/**
+	 * Returns the most significant bit at <code>bitIndex</code>. (leftmost bit of a binary number at the given index)
+	 */
+	public Bit getMSBit(int bitIndex)
 	{
 		return bits[bitIndex];
+	}
+
+	/**
+	 * Returns the least significant bit at <code>bitIndex</code>. (rightmost bit of a binary number at the given index)
+	 */
+	public Bit getLSBit(int bitIndex)
+	{
+		return bits[bits.length - bitIndex - 1];
 	}
 
 	public Bit[] getBits()
@@ -224,14 +234,36 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 			return this;
 		}
 
-		public void setBit(int bitIndex, Bit bit)
+		/**
+		 * Set the most significant bit at <code>bitIndex</code>. (leftmost bit of a binary number at the given index)
+		 */
+		public void setMSBit(int bitIndex, Bit bit)
 		{
 			bits[bitIndex] = bit;
 		}
 
-		public Bit getBit(int bitIndex)
+		/**
+		 * Set the least significant bit at <code>bitIndex</code>. (rightmost bit of a binary number at the given index)
+		 */
+		public void setLSBit(int bitIndex, Bit bit)
+		{
+			bits[bits.length - bitIndex - 1] = bit;
+		}
+
+		/**
+		 * Returns the most significant bit at <code>bitIndex</code>. (leftmost bit of a binary number at the given index)
+		 */
+		public Bit getMSBit(int bitIndex)
 		{
 			return bits[bitIndex];
+		}
+
+		/**
+		 * Returns the least significant bit at <code>bitIndex</code>. (rightmost bit of a binary number at the given index)
+		 */
+		public Bit getLSBit(int bitIndex)
+		{
+			return bits[bits.length - bitIndex - 1];
 		}
 
 		public int length()
@@ -286,19 +318,14 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return Arrays.equals(bits, offset, offset + other.length(), other.bits, 0, other.length());
 	}
 
+	/**
+	 * All {@link Bit}s symbols concatenated together (MSB first)
+	 * 
+	 * @see #parse(String)
+	 */
 	@Override
 	public String toString()
 	{
-		return toBitStringMSBFirst();
-	}
-
-	/**
-	 * All {@link Bit}s symbols concatenated together
-	 * 
-	 * @see #parse(String)
-	 */
-	public String toBitStringLSBFirst()
-	{
 		StringBuilder sb = new StringBuilder(bits.length);
 		for (Bit bit : bits)
 			sb.append(bit);
@@ -306,25 +333,11 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	}
 
 	/**
-	 * All {@link Bit}s symbols concatenated together, with the MSB coming first (like a binary number)
+	 * Parses a String containing solely {@link Bit} symbols (MSB first)
 	 * 
-	 * @see #parse(String)
+	 * @see #toString()
 	 */
-	public String toBitStringMSBFirst()
-	{
-		StringBuilder sb = new StringBuilder(bits.length);
-		for (Bit bit : bits)
-			sb.append(bit);
-		sb.reverse();
-		return sb.toString();
-	}
-
-	/**
-	 * Parses a String containing solely {@link Bit} symbols
-	 * 
-	 * @see #toBitStringLSBFirst()
-	 */
-	public static BitVector parseLSBFirst(String s)
+	public static BitVector parse(String s)
 	{
 		Bit[] values = new Bit[s.length()];
 		for (int i = 0; i < s.length(); i++)
@@ -335,20 +348,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	}
 
 	/**
-	 * Parses a String containing solely {@link Bit} symbols, with the MSB coming first (like a binary number)
-	 * 
-	 * @see #toBitStringLSBFirst()
+	 * Iterate over the {@link Bit}s of the BitVector <b>from MSB to LSB</b> (left to right).
 	 */
-	public static BitVector parseMSBFirst(String s)
-	{
-		Bit[] values = new Bit[s.length()];
-		for (int i = 0, j = s.length() - 1; j >= 0; i++, j--)
-		{
-			values[i] = Bit.parse(s, j);
-		}
-		return new BitVector(values);
-	}
-
 	@Override
 	public Iterator<Bit> iterator()
 	{
@@ -361,7 +362,7 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 			{
 				if (!hasNext())
 					throw new NoSuchElementException();
-				return getBit(pos++);
+				return getMSBit(pos++);
 			}
 
 			@Override
