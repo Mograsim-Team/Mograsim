@@ -7,7 +7,6 @@ Export-Package: net.mograsim.plugin;uses:="org.eclipse.ui.themes,org.eclipse.swt
  net.mograsim.plugin.asm,
  net.mograsim.plugin.asm.editor,
  net.mograsim.plugin.asm.editor.rules,
- net.mograsim.plugin.asm.model,
  net.mograsim.plugin.nature,
  net.mograsim.plugin.views
 Require-Bundle: org.eclipse.core.runtime,
@@ -20,8 +19,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.e4.ui.di,
  org.eclipse.e4.ui.model.workbench,
  org.eclipse.ui.themes;bundle-version="1.2.400",
- net.mograsim.logic.ui;bundle-version="0.1.0";visibility:=reexport,
- net.mograsim.logic.ui.am2900;bundle-version="0.1.0";visibility:=reexport,
+ net.mograsim.logic.model;bundle-version="0.1.0";visibility:=reexport,
+ net.mograsim.logic.model.am2900;bundle-version="0.1.0";visibility:=reexport,
  javax.annotation;bundle-version="1.0.0",
  net.mograsim.preferences;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11

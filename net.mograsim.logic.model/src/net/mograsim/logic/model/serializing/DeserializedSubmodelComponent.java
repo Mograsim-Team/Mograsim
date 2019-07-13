@@ -1,0 +1,87 @@
+package net.mograsim.logic.model.serializing;
+
+import java.util.Map;
+
+import net.haspamelodica.swt.helper.gcs.GeneralGC;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
+import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.model.wires.MovablePin;
+import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.snippets.Renderer;
+
+public class DeserializedSubmodelComponent extends SubmodelComponent
+{
+	public Renderer outlineRenderer;
+	public Renderer symbolRenderer;
+
+	public DeserializedSubmodelComponent(ViewModelModifiable model, String name)
+	{
+		super(model, name);
+	}
+
+	@Override
+	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
+	{
+		if (outlineRenderer != null)
+			outlineRenderer.render(gc, visibleRegion);
+	}
+
+	@Override
+	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
+	{
+		if (symbolRenderer != null)
+			symbolRenderer.render(gc, visibleRegion);
+	}
+
+	public void setOutlineRenderer(Renderer outlineRenderer)
+	{
+		this.outlineRenderer = outlineRenderer;
+	}
+
+	public void setSymbolRenderer(Renderer symbolRenderer)
+	{
+		this.symbolRenderer = symbolRenderer;
+	}
+
+	public ViewModelModifiable getSubmodelModifiable()
+	{
+		return submodelModifiable;
+	}
+
+	@Override
+	public void setSubmodelScale(double submodelScale)
+	{
+		super.setSubmodelScale(submodelScale);
+	}
+
+	@Override
+	public void setSize(double width, double height)
+	{
+		super.setSize(width, height);
+	}
+
+	@Override
+	public Pin addSubmodelInterface(MovablePin supermodelPin)
+	{
+		return super.addSubmodelInterface(supermodelPin);
+	}
+
+	@Override
+	public double getSubmodelScale()
+	{
+		return super.getSubmodelScale();
+	}
+
+	@Override
+	public Map<String, MovablePin> getSubmodelMovablePins()
+	{
+		return super.getSubmodelMovablePins();
+	}
+
+	@Override
+	public void removeSubmodelInterface(String name)
+	{
+		super.removeSubmodelInterface(name);
+	}
+}
