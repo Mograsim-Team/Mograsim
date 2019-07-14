@@ -7,11 +7,15 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.model.editor.ui.EditorGUI;
 
 public class EditorUserInput
 {
-	public EditorUserInput(Editor editor, EditorGUI gui)
+	private final EditorGUI gui;
+	
+	public EditorUserInput(Editor editor)
 	{
+		this.gui = editor.gui;
 		gui.logicCanvas.addMouseListener(new MouseListener()
 		{
 			@Override
@@ -91,5 +95,15 @@ public class EditorUserInput
 
 			}
 		});
+	}
+	
+	public Point getCanvasMousePosition()
+	{
+		return new Point(gui.logicCanvas.toControl(gui.display.getCursorLocation()));
+	}
+
+	public Point getWorldMousePosition()
+	{
+		return gui.logicCanvas.canvasToWorldCoords(getCanvasMousePosition());
 	}
 }

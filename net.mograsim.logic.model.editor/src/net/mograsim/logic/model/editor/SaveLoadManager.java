@@ -2,7 +2,7 @@ package net.mograsim.logic.model.editor;
 
 import java.io.IOException;
 
-import net.mograsim.logic.model.editor.DialogManager.InteractiveDialog;
+import net.mograsim.logic.model.editor.ui.DialogManager.InteractiveDialog;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.SubmodelComponentDeserializer;

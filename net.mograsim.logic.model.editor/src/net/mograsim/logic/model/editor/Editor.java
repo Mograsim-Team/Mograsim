@@ -15,6 +15,8 @@ import net.mograsim.logic.model.editor.handles.Handle;
 import net.mograsim.logic.model.editor.handles.HandleManager;
 import net.mograsim.logic.model.editor.handles.PinHandle;
 import net.mograsim.logic.model.editor.states.StateManager;
+import net.mograsim.logic.model.editor.ui.DialogManager;
+import net.mograsim.logic.model.editor.ui.EditorGUI;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
@@ -31,15 +33,17 @@ public final class Editor
 	public final EditorGUI gui;
 	public final StateManager stateManager;
 	private final SaveLoadManager saveManager;
-	Snapping snapping = Snapping.ABSOLUTE;
+	private Snapping snapping = Snapping.ABSOLUTE;
 	private double snapX = 5, snapY = 5;
 	public final DialogManager dialogManager;
+	public final EditorUserInput userInput;
 
 	public Editor(DeserializedSubmodelComponent toBeEdited)
 	{
 		this.toBeEdited = toBeEdited;
 		handleManager = new HandleManager(this);
 		gui = new EditorGUI(this);
+		userInput = new EditorUserInput(this);
 		stateManager = new StateManager(this);
 		handleManager.init();
 		saveManager = new SaveLoadManager(this);
@@ -185,19 +189,6 @@ public final class Editor
 		}
 	}
 
-	public Point getCanvasMousePosition()
-	{
-		//TODO
-		org.eclipse.swt.graphics.Point canvasLoc = gui.logicCanvas.getLocation(),
-				mouseLoc = gui.display.getCursorLocation(), shellLoc = gui.shell.getLocation();
-		return new Point(mouseLoc.x - shellLoc.x - canvasLoc.x, mouseLoc.y - shellLoc.y - canvasLoc.y);
-	}
-
-	public Point getWorldMousePosition()
-	{
-		return gui.logicCanvas.canvasToWorldCoords(getCanvasMousePosition());
-	}
-
 	public void addWire(PinHandle a, PinHandle b)
 	{
 		new GUIWire(toBeEdited.getSubmodelModifiable(), a.getPin(), b.getPin(), new Point[0]);
@@ -206,10 +197,26 @@ public final class Editor
 	public static enum Snapping
 	{
 		OFF, ABSOLUTE;
+		
+		@Override
+		public String toString()
+		{
+			return super.toString().toLowerCase();
+		}
 	}
 	
 	public static void main(String[] args)
 	{
 		SaveLoadManager.openLoadDialog();
+	}
+
+	public Snapping getSnapping()
+	{
+		return snapping;
+	}
+
+	public void setSnapping(Snapping snapping)
+	{
+		this.snapping = snapping;
 	}
 }
