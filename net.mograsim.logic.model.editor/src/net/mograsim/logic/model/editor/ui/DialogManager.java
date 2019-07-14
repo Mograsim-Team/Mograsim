@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.editor;
+package net.mograsim.logic.model.editor.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -9,6 +9,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+
+import net.mograsim.logic.model.editor.Editor;
 
 public class DialogManager
 {
