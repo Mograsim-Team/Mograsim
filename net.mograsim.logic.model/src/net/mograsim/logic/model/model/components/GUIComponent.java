@@ -149,21 +149,6 @@ public abstract class GUIComponent
 	// high-level access
 
 	/**
-	 * Sets the given high-level state to the given value. <br>
-	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
-	 * 
-	 * @see #getHighLevelState(String)
-	 * @see HighLevelStateHandler#setHighLevelState(String, Object)
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	@SuppressWarnings({ "static-method", "unused" }) // this method is intended to be overridden
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		throw new IllegalArgumentException("No high level state with ID " + stateID);
-	}
-
-	/**
 	 * Gets the current value of the given high-level state. <br>
 	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
@@ -174,6 +159,21 @@ public abstract class GUIComponent
 	 */
 	@SuppressWarnings("static-method") // this method is intended to be overridden
 	public Object getHighLevelState(String stateID)
+	{
+		throw new IllegalArgumentException("No high level state with ID " + stateID);
+	}
+
+	/**
+	 * Sets the given high-level state to the given value. <br>
+	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
+	 * 
+	 * @see #getHighLevelState(String)
+	 * @see HighLevelStateHandler#setHighLevelState(String, Object)
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	@SuppressWarnings({ "static-method", "unused" }) // this method is intended to be overridden
+	public void setHighLevelState(String stateID, Object newState)
 	{
 		throw new IllegalArgumentException("No high level state with ID " + stateID);
 	}
