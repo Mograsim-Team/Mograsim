@@ -7,6 +7,16 @@ import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
 
 public class DefaultHighLevelStateHandler implements HighLevelStateHandler
 {
+	public DefaultHighLevelStateHandler()
+	{
+		this(null);
+	}
+
+	public DefaultHighLevelStateHandler(SubmodelComponent component)
+	{
+		this(component, null);
+	}
+
 	@SuppressWarnings("unused") // we don't need the component; and params are always null
 	public DefaultHighLevelStateHandler(SubmodelComponent component, Void params)
 	{
