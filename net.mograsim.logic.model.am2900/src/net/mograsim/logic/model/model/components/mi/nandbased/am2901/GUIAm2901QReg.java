@@ -85,7 +85,7 @@ public class GUIAm2901QReg extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, dff3.getPin("Q"), Q3, new Point[0]);
 		new GUIWire(submodelModifiable, dff4.getPin("Q"), Q4, new Point[0]);
 
-		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addAtomicHighLevelState("q1", DelegatingAtomicHighLevelStateHandler::new).set(dff1, "q");
 		highLevelStateHandler.addAtomicHighLevelState("q2", DelegatingAtomicHighLevelStateHandler::new).set(dff2, "q");
 		highLevelStateHandler.addAtomicHighLevelState("q3", DelegatingAtomicHighLevelStateHandler::new).set(dff3, "q");

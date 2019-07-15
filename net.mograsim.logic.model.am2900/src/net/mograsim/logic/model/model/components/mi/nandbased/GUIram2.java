@@ -285,7 +285,7 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, andorB11.getPin("Y4"), QB4                           , new Point(175, 770), new Point(175, 895), new Point(340, 895), new Point(340, 750));
 		//@formatter:on
 
-		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addSubcomponentHighLevelState("c00", DelegatingSubcomponentHighLevelStateHandler::new).set(cell00, null);
 		highLevelStateHandler.addSubcomponentHighLevelState("c01", DelegatingSubcomponentHighLevelStateHandler::new).set(cell01, null);
 		highLevelStateHandler.addSubcomponentHighLevelState("c10", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, null);
