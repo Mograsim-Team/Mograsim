@@ -18,6 +18,11 @@ public class DefaultSymbolRenderer implements Renderer
 
 	private final GUIComponent component;
 
+	public DefaultSymbolRenderer(SubmodelComponent component)
+	{
+		this(component, null);
+	}
+
 	public DefaultSymbolRenderer(SubmodelComponent component, @SuppressWarnings("unused") Void params)
 	{
 		this.component = component;

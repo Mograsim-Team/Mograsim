@@ -15,6 +15,11 @@ public class DefaultOutlineRenderer implements Renderer
 {
 	private final GUIComponent component;
 
+	public DefaultOutlineRenderer(SubmodelComponent component)
+	{
+		this(component, null);
+	}
+
 	public DefaultOutlineRenderer(SubmodelComponent component, @SuppressWarnings("unused") Void params)
 	{
 		this.component = component;
