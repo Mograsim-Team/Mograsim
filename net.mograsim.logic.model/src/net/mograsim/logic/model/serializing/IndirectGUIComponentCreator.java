@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
@@ -18,6 +20,7 @@ import net.mograsim.logic.model.util.JsonHandler;
 public class IndirectGUIComponentCreator
 {
 	private static final Map<String, String> standardComponentIDs = new HashMap<>();
+	private static final Set<String> standardComponentIDSetUnmodifiable = Collections.unmodifiableSet(standardComponentIDs.keySet());
 
 	private static final Map<String, ComponentSupplier> componentSuppliers = new HashMap<>();
 
@@ -56,7 +59,7 @@ public class IndirectGUIComponentCreator
 
 	public static Collection<String> getStandardComponentIDs()
 	{
-		return standardComponentIDs.keySet();
+		return standardComponentIDSetUnmodifiable;
 	}
 
 	public static void setComponentSupplier(String className, ComponentSupplier componentSupplier)
