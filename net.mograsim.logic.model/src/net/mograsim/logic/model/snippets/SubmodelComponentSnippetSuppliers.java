@@ -30,8 +30,8 @@ public class SubmodelComponentSnippetSuppliers
 			if (s == null)
 				throw new IOException("Resource not found");
 			SnippetIDClassNames tmp = JsonHandler.readJson(s, SnippetIDClassNames.class);
-			tmp.standardOutlineRendererSuppliers.forEach(outlineRendererSupplier::addStandardSnippetID);
 			tmp.standardSymbolRendererSuppliers.forEach(symbolRendererSupplier::addStandardSnippetID);
+			tmp.standardOutlineRendererSuppliers.forEach(outlineRendererSupplier::addStandardSnippetID);
 			tmp.standardHighLevelStateHandlerSuppliers.forEach(highLevelStateHandlerSupplier::addStandardSnippetID);
 		}
 		catch (Exception e)
@@ -43,8 +43,8 @@ public class SubmodelComponentSnippetSuppliers
 
 	private static class SnippetIDClassNames
 	{
-		public Map<String, String> standardOutlineRendererSuppliers;
 		public Map<String, String> standardSymbolRendererSuppliers;
+		public Map<String, String> standardOutlineRendererSuppliers;
 		public Map<String, String> standardHighLevelStateHandlerSuppliers;
 	}
 

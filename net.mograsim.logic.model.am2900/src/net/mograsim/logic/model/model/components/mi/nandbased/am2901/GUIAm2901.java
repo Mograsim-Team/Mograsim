@@ -19,8 +19,6 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomp
 
 public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 {
-	private StandardHighLevelStateHandler highLevelStateHandler;
-
 	public GUIAm2901(ViewModelModifiable model)
 	{
 		this(model, null);
@@ -350,21 +348,10 @@ public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpFneq0, notFneq0.getPin("B"), new Point(315, 455));
 		new GUIWire(submodelModifiable, notFneq0.getPin("Y"), Feq0, new Point[0]);
 
-		highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		StandardHighLevelStateHandler highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addSubcomponentHighLevelState("regs", DelegatingSubcomponentHighLevelStateHandler::new).set(ram, null);
 		highLevelStateHandler.addSubcomponentHighLevelState("qreg", DelegatingSubcomponentHighLevelStateHandler::new).set(qreg, null);
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		return highLevelStateHandler.getHighLevelState(stateID);
-	}
-
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		highLevelStateHandler.setHighLevelState(stateID, newState);
+		setHighLevelStateHandler(highLevelStateHandler);
 	}
 
 	static

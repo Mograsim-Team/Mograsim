@@ -15,8 +15,6 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.
 
 public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 {
-	private StandardHighLevelStateHandler highLevelStateHandler;
-
 	public GUIdlatch4(ViewModelModifiable model)
 	{
 		this(model, null);
@@ -77,25 +75,14 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, dlatch3.getPin("Q"), Q3, new Point[0]);
 		new GUIWire(submodelModifiable, dlatch4.getPin("Q"), Q4, new Point[0]);
 
-		highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		StandardHighLevelStateHandler highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addAtomicHighLevelState("q1", DelegatingAtomicHighLevelStateHandler::new).set(dlatch1, "q");
 		highLevelStateHandler.addAtomicHighLevelState("q2", DelegatingAtomicHighLevelStateHandler::new).set(dlatch2, "q");
 		highLevelStateHandler.addAtomicHighLevelState("q3", DelegatingAtomicHighLevelStateHandler::new).set(dlatch3, "q");
 		highLevelStateHandler.addAtomicHighLevelState("q4", DelegatingAtomicHighLevelStateHandler::new).set(dlatch4, "q");
 		highLevelStateHandler.addAtomicHighLevelState("q", BitVectorSplittingAtomicHighLevelStateHandler::new)
 				.set(Arrays.asList("q1", "q2", "q3", "q4"), Arrays.asList(1, 1, 1, 1));
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		return highLevelStateHandler.getHighLevelState(stateID);
-	}
-
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		highLevelStateHandler.setHighLevelState(stateID, newState);
+		setHighLevelStateHandler(highLevelStateHandler);
 	}
 
 	static

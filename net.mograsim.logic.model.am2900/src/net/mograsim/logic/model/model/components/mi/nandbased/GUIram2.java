@@ -15,8 +15,6 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomp
 
 public class GUIram2 extends SimpleRectangularSubmodelComponent
 {
-	private StandardHighLevelStateHandler highLevelStateHandler;
-
 	public GUIram2(ViewModelModifiable model)
 	{
 		this(model, null);
@@ -285,25 +283,14 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, andorB11.getPin("Y4"), QB4                           , new Point(175, 770), new Point(175, 895), new Point(340, 895), new Point(340, 750));
 		//@formatter:on
 
-		highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		StandardHighLevelStateHandler highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addSubcomponentHighLevelState("c00", DelegatingSubcomponentHighLevelStateHandler::new).set(cell00, null);
 		highLevelStateHandler.addSubcomponentHighLevelState("c01", DelegatingSubcomponentHighLevelStateHandler::new).set(cell01, null);
 		highLevelStateHandler.addSubcomponentHighLevelState("c10", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, null);
 		highLevelStateHandler.addSubcomponentHighLevelState("c11", DelegatingSubcomponentHighLevelStateHandler::new).set(cell11, null);
 		highLevelStateHandler.addAtomicHighLevelState("q", BitVectorSplittingAtomicHighLevelStateHandler::new)
 				.set(Arrays.asList("c00.q", "c01.q", "c10.q", "c11.q"), Arrays.asList(4, 4, 4, 4));
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		return highLevelStateHandler.getHighLevelState(stateID);
-	}
-
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		highLevelStateHandler.setHighLevelState(stateID, newState);
+		setHighLevelStateHandler(highLevelStateHandler);
 	}
 
 	static

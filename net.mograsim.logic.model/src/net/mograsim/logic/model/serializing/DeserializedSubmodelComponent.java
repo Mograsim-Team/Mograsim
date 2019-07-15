@@ -1,11 +1,7 @@
 package net.mograsim.logic.model.serializing;
 
-import java.util.Map;
-
 import com.google.gson.JsonElement;
 
-import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
@@ -13,7 +9,6 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.Renderer;
 
-//TODO serialize handlers
 public class DeserializedSubmodelComponent extends SubmodelComponent
 {
 	/**
@@ -30,10 +25,6 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	 */
 	public final JsonElement paramsForSerializingOverride;
 
-	private Renderer outlineRenderer;
-	private Renderer symbolRenderer;
-	private HighLevelStateHandler highLevelStateHandler;
-
 	public DeserializedSubmodelComponent(ViewModelModifiable model, String name, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride)
 	{
@@ -43,70 +34,27 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		return highLevelStateHandler.getHighLevelState(stateID);
-	}
-
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		highLevelStateHandler.setHighLevelState(stateID, newState);
-	}
-
-	@Override
-	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
-	{
-		if (outlineRenderer != null)
-			outlineRenderer.render(gc, visibleRegion);
-	}
-
-	@Override
-	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
-	{
-		if (symbolRenderer != null)
-			symbolRenderer.render(gc, visibleRegion);
-	}
-
-	public void setOutlineRenderer(Renderer outlineRenderer)
-	{
-		this.outlineRenderer = outlineRenderer;
-	}
-
-	public Renderer getOutlineRenderer()
-	{
-		return outlineRenderer;
-	}
-
 	public void setSymbolRenderer(Renderer symbolRenderer)
 	{
-		this.symbolRenderer = symbolRenderer;
+		super.setSymbolRenderer(symbolRenderer);
 	}
 
-	public Renderer getSymbolRenderer()
+	@Override
+	public void setOutlineRenderer(Renderer outlineRenderer)
 	{
-		return symbolRenderer;
+		super.setOutlineRenderer(outlineRenderer);
+		requestRedraw();
 	}
 
-	public void setHighLevelStateHandler(HighLevelStateHandler highLevelStateHandler)
+	@Override
+	public void setHighLevelStateHandler(HighLevelStateHandler handler)
 	{
-		this.highLevelStateHandler = highLevelStateHandler;
-	}
-
-	public HighLevelStateHandler getHighLevelStateHandler()
-	{
-		return highLevelStateHandler;
+		super.setHighLevelStateHandler(handler);
 	}
 
 	public ViewModelModifiable getSubmodelModifiable()
 	{
 		return submodelModifiable;
-	}
-
-	@Override
-	public double getSubmodelScale()
-	{
-		return super.getSubmodelScale();
 	}
 
 	@Override
@@ -122,12 +70,6 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
-	public Map<String, MovablePin> getSubmodelMovablePins()
-	{
-		return super.getSubmodelMovablePins();
-	}
-
-	@Override
 	public Pin addSubmodelInterface(MovablePin supermodelPin)
 	{
 		return super.addSubmodelInterface(supermodelPin);
@@ -139,5 +81,12 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 		super.removeSubmodelInterface(name);
 	}
 
-	// TODO static initializer
+	// TODO only used in EditorCanvas. Replace with setting maxVisibleRegionFillRatioForAlpha0 / min...1.
+	@Override
+	public Renderer getOutlineRenderer()
+	{
+		return super.getOutlineRenderer();
+	}
+
+	// TODO static initializer?
 }

@@ -15,6 +15,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.snippets.Renderer;
 
 /**
  * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
@@ -79,6 +80,15 @@ public abstract class SubmodelComponent extends GUIComponent
 	 * The renderer used for rendering the submodel.
 	 */
 	private final LogicUIRenderer renderer;
+
+	/**
+	 * The {@link Renderer} used to render the symbol of this SubmodelCoponent.
+	 */
+	private Renderer symbolRenderer;
+	/**
+	 * The {@link Renderer} used to render the outline of this SubmodelCoponent.
+	 */
+	private Renderer outlineRenderer;
 
 	// creation and destruction
 
@@ -269,6 +279,48 @@ public abstract class SubmodelComponent extends GUIComponent
 		return submodelScale;
 	}
 
+	/**
+	 * @see #renderSymbol(GeneralGC, Rectangle)
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	protected void setSymbolRenderer(Renderer symbolRenderer)
+	{
+		this.symbolRenderer = symbolRenderer;
+		requestRedraw();
+	}
+
+	/**
+	 * @see #renderSymbol(GeneralGC, Rectangle)
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	protected Renderer getSymbolRenderer()
+	{
+		return symbolRenderer;
+	}
+
+	/**
+	 * @see #renderOutline(GeneralGC, Rectangle)
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	protected void setOutlineRenderer(Renderer outlineRenderer)
+	{
+		this.outlineRenderer = outlineRenderer;
+		requestRedraw();
+	}
+
+	/**
+	 * @see #renderOutline(GeneralGC, Rectangle)
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	protected Renderer getOutlineRenderer()
+	{
+		return outlineRenderer;
+	}
+
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
@@ -297,20 +349,27 @@ public abstract class SubmodelComponent extends GUIComponent
 		renderOutline(gc, visibleRegion);
 	}
 
-	// TODO make this a path
-	/**
-	 * Render the outline of this {@link SubmodelComponent}, e.g. the graphical elements that should stay visible if the submodel is drawn.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	protected abstract void renderOutline(GeneralGC gc, Rectangle visibleRegion);
-
 	/**
 	 * Render the symbol of this {@link SubmodelComponent}, e.g. the things that should be hidden if the submodel is drawn.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	protected abstract void renderSymbol(GeneralGC gc, Rectangle visibleRegion);
+	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
+	{
+		if (symbolRenderer != null)
+			symbolRenderer.render(gc, visibleRegion);
+	}
+
+	/**
+	 * Render the outline of this {@link SubmodelComponent}, e.g. the graphical elements that should stay visible if the submodel is drawn.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
+	{
+		if (outlineRenderer != null)
+			outlineRenderer.render(gc, visibleRegion);
+	}
 
 	private static double map(double val, double valMin, double valMax, double mapMin, double mapMax)
 	{
