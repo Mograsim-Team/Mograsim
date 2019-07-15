@@ -1,16 +1,11 @@
 package net.mograsim.logic.model.editor;
 
-import org.eclipse.swt.graphics.Color;
-
-import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.wires.MovablePin;
-import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
-import net.mograsim.preferences.Preferences;
+import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
 
 public class EditableSubmodelComponent extends DeserializedSubmodelComponent
 {
@@ -24,56 +19,19 @@ public class EditableSubmodelComponent extends DeserializedSubmodelComponent
 		this.label = label;
 		setSubmodelScale(0.2);
 		addSubmodelInterface(new MovablePin(this, "A Pin", 1, 0, 10));
-
+		updateSymbolRenderer();
+		setOutlineRenderer(new DefaultOutlineRenderer(this));
 	}
 
-	public ViewModelModifiable getSubmodelModifiable()
+	private void updateSymbolRenderer()
 	{
-		return submodelModifiable;
-	}
-
-	@Override
-	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
-	{
-		Color foreground = Preferences.current().getColor("net.mograsim.logic.model.color.foreground");
-		if (foreground != null)
-			gc.setForeground(foreground);
-		gc.drawRectangle(getBounds());
-	}
-
-	@Override
-	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
-	{
-		Font oldFont = gc.getFont();
-		gc.setFont(new Font(oldFont.getName(), labelFontHeight, oldFont.getStyle()));
-		Point textExtent = gc.textExtent(label);
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
-		if (textColor != null)
-			gc.setForeground(textColor);
-		gc.drawText(label, getPosX() + (getWidth() - textExtent.x) / 2, getPosY() + (getHeight() - textExtent.y) / 2, true);
-		gc.setFont(new Font(oldFont.getName(), pinNameFontHeight, oldFont.getStyle()));
-		for (String name : pinsUnmodifiable.keySet())
-		{
-			Pin p = pinsUnmodifiable.get(name);
-			Point pos = p.getPos();
-			gc.drawText(name, pos.x, pos.y, true);
-		}
-		gc.setFont(oldFont);
-	}
-
-	public void setSubmodelScale(double scale)
-	{
-		super.setSubmodelScale(scale);
-	}
-
-	public double getSubmodelScale()
-	{
-		return super.getSubmodelScale();
-	}
-
-	public void setSize(double width, double height)
-	{
-		super.setSize(width, height);
+		SimpleRectangularLikeParams rendererParams = new SimpleRectangularLikeParams();
+		rendererParams.centerText = label;
+		rendererParams.centerTextHeight = labelFontHeight;
+		rendererParams.horizontalComponentCenter = getWidth() / 2;
+		rendererParams.pinLabelHeight = pinNameFontHeight;
+		rendererParams.pinLabelMargin = 0;
+		setSymbolRenderer(new SimpleRectangularLikeSymbolRenderer(this, rendererParams));
 	}
 
 	public String getLabel()
@@ -84,5 +42,6 @@ public class EditableSubmodelComponent extends DeserializedSubmodelComponent
 	public void setLabel(String label)
 	{
 		this.label = label;
+		updateSymbolRenderer();
 	}
 }

@@ -13,8 +13,6 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.
 
 public class GUIdff extends SimpleRectangularSubmodelComponent
 {
-	private StandardHighLevelStateHandler highLevelStateHandler;
-
 	public GUIdff(ViewModelModifiable model)
 	{
 		this(model, null);
@@ -72,20 +70,9 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, _rsLatch2.getPin("Q"), Q);
 		new GUIWire(submodelModifiable, _rsLatch2.getPin("_Q"), _Q);
 
-		highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		StandardHighLevelStateHandler highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addAtomicHighLevelState("q", DelegatingAtomicHighLevelStateHandler::new).set(_rsLatch2, "q");
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		return highLevelStateHandler.getHighLevelState(stateID);
-	}
-
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		highLevelStateHandler.setHighLevelState(stateID, newState);
+		setHighLevelStateHandler(highLevelStateHandler);
 	}
 
 	static

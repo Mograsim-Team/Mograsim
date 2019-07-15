@@ -170,10 +170,10 @@ public final class SubmodelComponentSerializer
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model, name, idForSerializingOverride,
 				paramsForSerializingOverride);
 		comp.setSubmodelScale(params.submodel.innerScale);
-		comp.setOutlineRenderer(SubmodelComponentSnippetSuppliers.outlineRendererSupplier
-				.getSnippetSupplier(params.outlineRendererSnippetID).create(comp, params.outlineRendererParams));
 		comp.setSymbolRenderer(SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getSnippetSupplier(params.symbolRendererSnippetID)
 				.create(comp, params.symbolRendererParams));
+		comp.setOutlineRenderer(SubmodelComponentSnippetSuppliers.outlineRendererSupplier
+				.getSnippetSupplier(params.outlineRendererSnippetID).create(comp, params.outlineRendererParams));
 		comp.setHighLevelStateHandler(SubmodelComponentSnippetSuppliers.highLevelStateHandlerSupplier
 				.getSnippetSupplier(params.highLevelStateHandlerSnippetID).create(comp, params.highLevelStateHandlerParams));
 		comp.setSize(params.width, params.height);

@@ -6,17 +6,12 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import org.eclipse.swt.graphics.Color;
-
-import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.snippets.Renderer;
+import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
-import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 {
@@ -33,8 +28,6 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	private final List<String> inputPinNamesUnmodifiable;
 	private final List<String> outputPinNames;
 	private final List<String> outputPinNamesUnmodifiable;
-
-	private Renderer symbolRenderer;
 
 	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label)
 	{
@@ -57,7 +50,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		rendererParams.horizontalComponentCenter = getWidth() / 2;
 		rendererParams.pinLabelHeight = pinNameFontHeight;
 		rendererParams.pinLabelMargin = pinNameMargin;
-		symbolRenderer = new SimpleRectangularLikeSymbolRenderer(this, rendererParams);
+		setSymbolRenderer(new SimpleRectangularLikeSymbolRenderer(this, rendererParams));
+		setOutlineRenderer(new DefaultOutlineRenderer(this));
 	}
 
 	protected void setInputPins(String... pinNames)
@@ -104,21 +98,6 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	public List<String> getOutputPinNames()
 	{
 		return outputPinNamesUnmodifiable;
-	}
-
-	@Override
-	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
-	{
-		symbolRenderer.render(gc, visibleRegion);
-	}
-
-	@Override
-	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
-	{
-		Color foreground = Preferences.current().getColor("net.mograsim.logic.model.color.foreground");
-		if (foreground != null)
-			gc.setForeground(foreground);
-		gc.drawRectangle(getBounds());
 	}
 
 	@Override

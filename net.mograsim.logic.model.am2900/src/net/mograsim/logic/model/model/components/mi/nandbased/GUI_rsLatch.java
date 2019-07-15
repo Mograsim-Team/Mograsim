@@ -15,8 +15,6 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.
 
 public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 {
-	private StandardHighLevelStateHandler highLevelStateHandler;
-
 	public GUI_rsLatch(ViewModelModifiable model)
 	{
 		this(model, null);
@@ -60,21 +58,10 @@ public class GUI_rsLatch extends SimpleRectangularSubmodelComponent
 				new Point(65, 12.5));
 		GUIWire wire_Q = new GUIWire(submodelModifiable, "_q", cp2, _Q, new Point[0]);
 
-		highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		StandardHighLevelStateHandler highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addAtomicHighLevelState("q", WireForcingAtomicHighLevelStateHandler::new).set(Arrays.asList(wireQ),
 				Arrays.asList(wire_Q));
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		return highLevelStateHandler.getHighLevelState(stateID);
-	}
-
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		highLevelStateHandler.setHighLevelState(stateID, newState);
+		setHighLevelStateHandler(highLevelStateHandler);
 	}
 
 	static
