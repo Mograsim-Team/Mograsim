@@ -1,0 +1,11 @@
+mograsim version: 0.1.3
+{
+  "standardOutlineRendererSuppliers": {},
+  "standardSymbolRendererSuppliers": {
+    "CenteredTextSymbolRenderer": "net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer",
+    "SimpleRectangularLikeSymbolRenderer": "net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer"
+  },
+  "standardHighLevelStateHandlerSuppliers": {
+    "standard": "net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler"
+  }
+}

@@ -25,6 +25,9 @@ public class SubmodelComponentParams
 	public String symbolRendererSnippetID;
 	public JsonElement symbolRendererParams;
 
+	public String highLevelStateHandlerSnippetID;
+	public JsonElement highLevelStateHandlerParams;
+
 	public static class InterfacePinParams
 	{
 		public Point location;

@@ -115,7 +115,7 @@ public class WireCrossPoint extends GUIComponent
 	// serializing
 
 	@Override
-	public JsonElement getParams()
+	public JsonElement getParamsForSerializing()
 	{
 		return new JsonPrimitive(pin.logicWidth);
 	}

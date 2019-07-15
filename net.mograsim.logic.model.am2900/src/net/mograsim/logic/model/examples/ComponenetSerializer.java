@@ -36,6 +36,7 @@ import net.mograsim.logic.model.model.components.mi.nandbased.am2901.GUIAm2901QR
 import net.mograsim.logic.model.model.components.mi.nandbased.am2901.GUIAm2901SourceDecode;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams;
+import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.util.JsonHandler;
 
 public class ComponenetSerializer
@@ -56,7 +57,7 @@ public class ComponenetSerializer
 
 		for (SubmodelComponent comp : components)
 		{
-			SubmodelComponentParams params = comp.calculateParams(getIdentifier);
+			SubmodelComponentParams params = SubmodelComponentSerializer.serialize(comp, getIdentifier);
 			JsonHandler.writeJson(params, "components/"
 					+ comp.getClass().getName().substring("net.mograsim.logic.ui.model.components.mi.nandbased.".length()).replace('.', '/')
 					+ ".json");

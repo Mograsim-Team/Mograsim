@@ -2,39 +2,28 @@ package net.mograsim.logic.model.model.components.submodels;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.function.Function;
 
 import net.haspamelodica.swt.helper.gcs.GCConfig;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.LogicUIRenderer;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.InterfacePinParams;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerComponentParams;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams.InnerPinParams;
 
 /**
  * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
  * inner and outer models.
  */
+//TODO override getParams
 public abstract class SubmodelComponent extends GUIComponent
 {
-	private static final String SUBMODEL_INTERFACE_NAME = "_submodelinterface";
+	public static final String SUBMODEL_INTERFACE_NAME = "_submodelinterface";
 	/**
 	 * A modifiable view of {@link #submodel}.
 	 */
@@ -73,15 +62,6 @@ public abstract class SubmodelComponent extends GUIComponent
 	private final SubmodelInterface submodelInterface;
 
 	/**
-	 * The list of all high level state IDs this component supports without delegating to subcomponents.
-	 */
-	private final Set<String> highLevelAtomicStates;
-	/**
-	 * A map of high level state subcomponent IDs to the {@link GUIComponent} high level state access requests are delegated to.
-	 */
-	private final Map<String, GUIComponent> subcomponentsByHighLevelStateSubcomponentID;
-
-	/**
 	 * The factor by which the submodel is scaled when rendering.
 	 */
 	private double submodelScale;
@@ -114,9 +94,6 @@ public abstract class SubmodelComponent extends GUIComponent
 		this.supermodelMovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
 		this.supermodelUnmovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
 		this.submodelInterface = new SubmodelInterface(submodelModifiable, SUBMODEL_INTERFACE_NAME);
-
-		this.highLevelAtomicStates = new HashSet<>();
-		this.subcomponentsByHighLevelStateSubcomponentID = new HashMap<>();
 
 		this.submodelScale = 1;
 		this.maxVisibleRegionFillRatioForAlpha0 = 0.4;
@@ -264,153 +241,6 @@ public abstract class SubmodelComponent extends GUIComponent
 		return supermodelPins.get(name);
 	}
 
-	// high-level access
-
-	/**
-	 * Adds the given subcomponent ID to the set of allowed subcomponent IDs and links the given {@link GUIComponent} as the delegate target
-	 * for this subcomponent ID. <br>
-	 * Note that this method does not affect whether {@link #setSubcomponentHighLevelState(String, String, Object)
-	 * set}/{@link #getSubcomponentHighLevelState(String, String)} will be called. <br>
-	 * See {@link GUIComponent#setHighLevelState(String, Object)} for details about subcomponent IDs.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	protected void addHighLevelStateSubcomponentID(String subcomponentID, GUIComponent subcomponent)
-	{
-		checkHighLevelStateIDPart(subcomponentID);
-		subcomponentsByHighLevelStateSubcomponentID.put(subcomponentID, subcomponent);
-	}
-
-	/**
-	 * Removes the given subcomponent ID from the set of allowed subcomponent IDs. <br>
-	 * Note that this method does not affect whether {@link #setSubcomponentHighLevelState(String, String, Object)
-	 * set}/{@link #getSubcomponentHighLevelState(String, String)} will be called.<br>
-	 * See {@link GUIComponent#setHighLevelState(String, Object)} for details about subcomponent IDs.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	protected void removeHighLevelStateSubcomponentID(String subcomponentID)
-	{
-		subcomponentsByHighLevelStateSubcomponentID.remove(subcomponentID);
-	}
-
-	/**
-	 * Adds the given atomic state ID to the set of allowed atomic state IDs. <br>
-	 * See {@link GUIComponent#setHighLevelState(String, Object)} for details about atomic state IDs.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	protected void addAtomicHighLevelStateID(String stateID)
-	{
-		checkHighLevelStateIDPart(stateID);
-		highLevelAtomicStates.add(stateID);
-	}
-
-	/**
-	 * Removes the given atomic state ID from the set of allowed atomic state IDs. <br>
-	 * See {@link GUIComponent#setHighLevelState(String, Object)} for details about atomic state IDs.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	protected void removeAtomicHighLevelStateID(String stateID)
-	{
-		highLevelAtomicStates.remove(stateID);
-	}
-
-	@Override
-	public final void setHighLevelState(String stateID, Object newState)
-	{
-		int indexOfDot = stateID.indexOf('.');
-		if (indexOfDot == -1)
-			if (highLevelAtomicStates.contains(stateID))
-				setAtomicHighLevelState(stateID, newState);
-			else
-				super.setHighLevelState(stateID, newState);
-		else
-			setSubcomponentHighLevelState(stateID.substring(0, indexOfDot), stateID.substring(indexOfDot + 1), newState);
-	}
-
-	/**
-	 * This method is called in {@link #setHighLevelState(String, Object)} when the state ID is not atomic. The default implementation uses
-	 * the information given to {@link #addHighLevelStateSubcomponentID(String, GUIComponent)
-	 * add}/{@link #removeHighLevelStateSubcomponentID(String)} to decide which subcomponent to delegate to.<br>
-	 * Note that {@link #addHighLevelStateSubcomponentID(String, GUIComponent) add}/{@link #removeHighLevelStateSubcomponentID(String)}
-	 * don't affect whether this method will be called.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	protected void setSubcomponentHighLevelState(String subcomponentID, String subcomponentHighLevelStateID, Object newState)
-	{
-		GUIComponent subcomponent = subcomponentsByHighLevelStateSubcomponentID.get(subcomponentID);
-		if (subcomponent != null)
-			subcomponent.setHighLevelState(subcomponentHighLevelStateID, newState);
-		else
-			super.setHighLevelState(subcomponentID + "." + subcomponentHighLevelStateID, newState);
-	}
-
-	/**
-	 * This method is called in {@link #setHighLevelState(String, Object)} when the state ID is atomic and in the set of allowed atomic
-	 * state IDs. <br>
-	 * See {@link GUIComponent#setHighLevelState(String, Object)} for details about atomic state IDs.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	@SuppressWarnings({ "static-method", "unused" }) // this method is intended to be overridden
-	protected void setAtomicHighLevelState(String stateID, Object newState)
-	{
-		throw new IllegalStateException("Unknown high level state ID: " + stateID);
-	}
-
-	@Override
-	public final Object getHighLevelState(String stateID)
-	{
-		int indexOfDot = stateID.indexOf('.');
-		if (indexOfDot == -1)
-		{
-			if (highLevelAtomicStates.contains(stateID))
-				return getAtomicHighLevelState(stateID);
-			return super.getHighLevelState(stateID);
-		}
-		return getSubcomponentHighLevelState(stateID.substring(0, indexOfDot), stateID.substring(indexOfDot + 1));
-	}
-
-	/**
-	 * This method is called in {@link #getHighLevelState(String, Object)} when the state ID is not atomic. The default implementation uses
-	 * the information given to {@link #addHighLevelStateSubcomponentID(String, GUIComponent)
-	 * add}/{@link #removeHighLevelStateSubcomponentID(String)} to decide which subcomponent to delegate to. <br>
-	 * Note that {@link #addHighLevelStateSubcomponentID(String, GUIComponent) add}/{@link #removeHighLevelStateSubcomponentID(String)}
-	 * don't affect whether this method will be called.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	protected Object getSubcomponentHighLevelState(String subcomponentID, String subcomponentHighLevelStateID)
-	{
-		GUIComponent subcomponent = subcomponentsByHighLevelStateSubcomponentID.get(subcomponentID);
-		if (subcomponent != null)
-			return subcomponent.getHighLevelState(subcomponentHighLevelStateID);
-		return super.getHighLevelState(subcomponentID + "." + subcomponentHighLevelStateID);
-	}
-
-	/**
-	 * This method is called in {@link SubmodelComponent#getHighLevelState(String)} when the state ID is in the set of allowed atomic state
-	 * IDs. <br>
-	 * See {@link GUIComponent#setHighLevelState(String, Object)} for details about atomic state IDs.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	@SuppressWarnings("static-method") // this method is intended to be overridden
-	protected Object getAtomicHighLevelState(String stateID)
-	{
-		throw new IllegalStateException("Unknown high level state ID: " + stateID);
-	}
-
-	private static void checkHighLevelStateIDPart(String stateIDPart)
-	{
-		if (stateIDPart.indexOf('.') != -1)
-			throw new IllegalArgumentException("Illegal high level state ID part (contains dot): " + stateIDPart);
-
-	}
-
 	// "graphical" operations
 
 	/**
@@ -434,7 +264,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	protected double getSubmodelScale()
+	public double getSubmodelScale()
 	{
 		return submodelScale;
 	}
@@ -496,84 +326,6 @@ public abstract class SubmodelComponent extends GUIComponent
 			if (component.getBounds().contains(scaledX, scaledY) && component.clicked(scaledX, scaledY))
 				return true;
 		return false;
-	}
-
-	// serializing
-
-	// TODO move the methods below to serializing classes
-
-	public SubmodelComponentParams calculateParams()
-	{
-		return calculateParams(c -> "class:" + c.getClass().getCanonicalName());
-	}
-
-	/**
-	 * @return {@link SubmodelComponentParams}, which describe this {@link SubmodelComponent}.
-	 */
-	public SubmodelComponentParams calculateParams(Function<GUIComponent, String> getIdentifier)
-	{
-		SubmodelComponentParams params = new SubmodelComponentParams();
-		params.submodel = calculateSubmodelParams(getIdentifier);
-
-		params.width = getWidth();
-		params.height = getHeight();
-
-		InterfacePinParams[] iPins = new InterfacePinParams[getPins().size()];
-		int i = 0;
-		for (Pin p : getPins().values())
-		{
-			InterfacePinParams iPinParams = new InterfacePinParams();
-			iPins[i] = iPinParams;
-			iPinParams.location = p.getRelPos();
-			iPinParams.name = p.name;
-			iPinParams.logicWidth = p.logicWidth;
-			i++;
-		}
-		params.interfacePins = iPins;
-		return params;
-	}
-
-	private SubmodelParameters calculateSubmodelParams(Function<GUIComponent, String> getIdentifier)
-	{
-		SubmodelParameters params = new SubmodelParameters();
-		params.innerScale = getSubmodelScale();
-
-		Map<String, GUIComponent> components = new HashMap<>(submodel.getComponentsByName());
-		components.remove(SUBMODEL_INTERFACE_NAME);
-		InnerComponentParams[] comps = new InnerComponentParams[components.size()];
-		int i = 0;
-		for (GUIComponent component : components.values())
-		{
-			InnerComponentParams inner = new InnerComponentParams();
-			comps[i] = inner;
-			inner.pos = new Point(component.getPosX(), component.getPosY());
-			inner.id = getIdentifier.apply(component);
-			inner.params = component.getParams();
-			inner.name = component.name;
-			i++;
-		}
-		params.subComps = comps;
-
-		List<GUIWire> wireList = submodel.getWires();
-		InnerWireParams wires[] = new InnerWireParams[wireList.size()];
-		i = 0;
-		for (GUIWire wire : wireList)
-		{
-			InnerWireParams inner = new InnerWireParams();
-			wires[i] = inner;
-			InnerPinParams pin1Params = new InnerPinParams(), pin2Params = new InnerPinParams();
-
-			pin1Params.pinName = wire.getPin1().name;
-			pin1Params.compName = wire.getPin1().component.name;
-			pin2Params.pinName = wire.getPin2().name;
-			pin2Params.compName = wire.getPin2().component.name;
-			inner.pin1 = pin1Params;
-			inner.pin2 = pin2Params;
-			inner.path = wire.getPath();
-			i++;
-		}
-		params.innerWires = wires;
-		return params;
 	}
 
 	// operations no longer supported
