@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.serializing.snippets.symbolrenderers;
+package net.mograsim.logic.model.snippets.symbolrenderers;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
@@ -6,9 +6,9 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.serializing.CodeSnippetSupplier;
-import net.mograsim.logic.model.serializing.snippets.Renderer;
-import net.mograsim.logic.model.serializing.snippets.SnippetSupplier;
+import net.mograsim.logic.model.snippets.Renderer;
+import net.mograsim.logic.model.snippets.SnippetDefinintion;
+import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
 import net.mograsim.preferences.Preferences;
@@ -52,7 +52,7 @@ public class CenteredTextSymbolRenderer implements Renderer
 
 	static
 	{
-		CodeSnippetSupplier.symbolRendererSupplier.setSnippetSupplier(CenteredTextSymbolRenderer.class.getCanonicalName(),
-				SnippetSupplier.create(CenteredTextParams.class, CenteredTextSymbolRenderer::new));
+		SubmodelComponentSnippetSuppliers.symbolRendererSupplier.setSnippetSupplier(CenteredTextSymbolRenderer.class.getCanonicalName(),
+				SnippetDefinintion.create(CenteredTextParams.class, CenteredTextSymbolRenderer::new));
 	}
 }

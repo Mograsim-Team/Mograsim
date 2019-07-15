@@ -5,33 +5,28 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.function.Function;
 
 import org.eclipse.swt.graphics.Color;
-
-import com.google.gson.JsonObject;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams;
-import net.mograsim.logic.model.serializing.snippets.Renderer;
-import net.mograsim.logic.model.serializing.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
-import net.mograsim.logic.model.serializing.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
+import net.mograsim.logic.model.snippets.Renderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
 import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 {
-	private static final double width = 35;
-	private static final double pinDistance = 10;
-	private static final double pinNameMargin = .5;
-	private static final double labelFontHeight = 5;
-	private static final double pinNameFontHeight = 3.5;
+	public static final double width = 35;
+	public static final double pinDistance = 10;
+	public static final double pinNameMargin = .5;
+	public static final double labelFontHeight = 5;
+	public static final double pinNameFontHeight = 3.5;
 
-	private final String label;
+	public final String label;
 	protected final int logicWidth;
 
 	private final List<String> inputPinNames;
@@ -124,23 +119,6 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-	}
-
-	// serializing
-
-	@Override
-	public SubmodelComponentParams calculateParams(Function<GUIComponent, String> getIdentifier)
-	{
-		SubmodelComponentParams params = super.calculateParams(getIdentifier);
-		JsonObject symbolRendererParams = new JsonObject();
-		symbolRendererParams.addProperty("centerText", label);
-		symbolRendererParams.addProperty("horizontalComponentCenter", getWidth() / 2);
-		symbolRendererParams.addProperty("centerTextHeight", labelFontHeight);
-		symbolRendererParams.addProperty("pinLabelHeight", pinNameFontHeight);
-		symbolRendererParams.addProperty("pinLabelMargin", pinNameMargin);
-		params.symbolRendererSnippetID = "SimpleRectangularLikeSymbolRenderer";
-		params.symbolRendererParams = symbolRendererParams;
-		return params;
 	}
 
 	@Override

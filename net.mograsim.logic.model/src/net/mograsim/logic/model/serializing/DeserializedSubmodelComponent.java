@@ -1,21 +1,53 @@
 package net.mograsim.logic.model.serializing;
 
+import com.google.gson.JsonElement;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.snippets.Renderer;
+import net.mograsim.logic.model.snippets.HighLevelStateHandler;
+import net.mograsim.logic.model.snippets.Renderer;
 
 public class DeserializedSubmodelComponent extends SubmodelComponent
 {
-	public Renderer outlineRenderer;
-	public Renderer symbolRenderer;
+	/**
+	 * If a DeserializedSubmodelComponent is part of another SubmodelComponent, when it it serialized, it should not return its internal
+	 * structure, but rather the component ID used to create it.
+	 * 
+	 * @see SubmodelComponentSerializer#deserialize(ViewModelModifiable, SubmodelComponentParams, String, String, JsonElement)
+	 *      SubmodelComponentSerializer.deserialize(...)
+	 * @see SubmodelComponentSerializer#serialize(SubmodelComponent, java.util.function.Function) SubmodelComponentSerializer.serialize(...)
+	 */
+	public final String idForSerializingOverride;
+	/**
+	 * See {@link #idForSerializingOverride}
+	 */
+	public final JsonElement paramsForSerializingOverride;
 
-	public DeserializedSubmodelComponent(ViewModelModifiable model, String name)
+	private Renderer outlineRenderer;
+	private Renderer symbolRenderer;
+	private HighLevelStateHandler highLevelStateHandler;
+
+	public DeserializedSubmodelComponent(ViewModelModifiable model, String name, String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{
 		super(model, name);
+		this.idForSerializingOverride = idForSerializingOverride;
+		this.paramsForSerializingOverride = paramsForSerializingOverride;
+	}
+
+	@Override
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		highLevelStateHandler.setHighLevelState(stateID, newState);
+	}
+
+	@Override
+	public Object getHighLevelState(String stateID)
+	{
+		return highLevelStateHandler.getHighLevelState(stateID);
 	}
 
 	@Override
@@ -42,6 +74,11 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 		this.symbolRenderer = symbolRenderer;
 	}
 
+	public void setHighLevelStateHandler(HighLevelStateHandler highLevelStateHandler)
+	{
+		this.highLevelStateHandler = highLevelStateHandler;
+	}
+
 	public ViewModelModifiable getSubmodelModifiable()
 	{
 		return submodelModifiable;
@@ -60,8 +97,10 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
-	protected Pin addSubmodelInterface(MovablePin supermodelPin)
+	public Pin addSubmodelInterface(MovablePin supermodelPin)
 	{
 		return super.addSubmodelInterface(supermodelPin);
 	}
+
+	// TODO static initializer
 }
