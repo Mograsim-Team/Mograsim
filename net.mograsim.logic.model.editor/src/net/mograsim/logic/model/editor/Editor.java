@@ -1,5 +1,6 @@
 package net.mograsim.logic.model.editor;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -225,7 +226,7 @@ public final class Editor
 		}
 	}
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		SaveLoadManager.openLoadDialog();
 	}

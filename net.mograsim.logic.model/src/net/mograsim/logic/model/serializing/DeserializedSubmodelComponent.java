@@ -73,14 +73,29 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 		this.outlineRenderer = outlineRenderer;
 	}
 
+	public Renderer getOutlineRenderer()
+	{
+		return outlineRenderer;
+	}
+
 	public void setSymbolRenderer(Renderer symbolRenderer)
 	{
 		this.symbolRenderer = symbolRenderer;
 	}
 
+	public Renderer getSymbolRenderer()
+	{
+		return symbolRenderer;
+	}
+
 	public void setHighLevelStateHandler(HighLevelStateHandler highLevelStateHandler)
 	{
 		this.highLevelStateHandler = highLevelStateHandler;
+	}
+
+	public HighLevelStateHandler getHighLevelStateHandler()
+	{
+		return highLevelStateHandler;
 	}
 
 	public ViewModelModifiable getSubmodelModifiable()
