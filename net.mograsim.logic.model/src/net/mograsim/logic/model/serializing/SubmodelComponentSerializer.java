@@ -1,8 +1,8 @@
 package net.mograsim.logic.model.serializing;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -194,7 +194,7 @@ public final class SubmodelComponentSerializer
 		for (int i = 0; i < submodelParams.innerWires.length; i++)
 		{
 			InnerWireParams innerWire = submodelParams.innerWires[i];
-			new GUIWire(submodelModifiable, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
+			new GUIWire(submodelModifiable, innerWire.name, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
 					componentsByName.get(innerWire.pin2.compName).getPin(innerWire.pin2.pinName), innerWire.path);
 		}
 		return comp;
@@ -222,48 +222,49 @@ public final class SubmodelComponentSerializer
 
 		Map<String, GUIComponent> components = new HashMap<>(comp.submodel.getComponentsByName());
 		components.remove(SubmodelComponent.SUBMODEL_INTERFACE_NAME);
-		InnerComponentParams[] comps = new InnerComponentParams[components.size()];
+		InnerComponentParams[] componentParams = new InnerComponentParams[components.size()];
 		int i1 = 0;
-		for (GUIComponent innerComp : components.values())
+		for (GUIComponent innerComponent : components.values())
 		{
-			InnerComponentParams innerParams = new InnerComponentParams();
-			comps[i1] = innerParams;
-			innerParams.pos = new Point(innerComp.getPosX(), innerComp.getPosY());
+			InnerComponentParams innerComponentParams = new InnerComponentParams();
+			componentParams[i1] = innerComponentParams;
+			innerComponentParams.pos = new Point(innerComponent.getPosX(), innerComponent.getPosY());
 			DeserializedSubmodelComponent innerCompCasted;
-			if (innerComp instanceof DeserializedSubmodelComponent
-					&& (innerCompCasted = (DeserializedSubmodelComponent) innerComp).idForSerializingOverride != null)
+			if (innerComponent instanceof DeserializedSubmodelComponent
+					&& (innerCompCasted = (DeserializedSubmodelComponent) innerComponent).idForSerializingOverride != null)
 			{
-				innerParams.id = innerCompCasted.idForSerializingOverride;
-				innerParams.params = innerCompCasted.paramsForSerializingOverride;
+				innerComponentParams.id = innerCompCasted.idForSerializingOverride;
+				innerComponentParams.params = innerCompCasted.paramsForSerializingOverride;
 			} else
 			{
-				innerParams.id = getIdentifier.apply(innerComp);
-				innerParams.params = innerComp.getParamsForSerializing();
+				innerComponentParams.id = getIdentifier.apply(innerComponent);
+				innerComponentParams.params = innerComponent.getParamsForSerializing();
 			}
-			innerParams.name = innerComp.name;
+			innerComponentParams.name = innerComponent.name;
 			i1++;
 		}
-		submodelParams.subComps = comps;
+		submodelParams.subComps = componentParams;
 
-		List<GUIWire> wireList = comp.submodel.getWires();
-		InnerWireParams wires[] = new InnerWireParams[wireList.size()];
+		Collection<GUIWire> wires = comp.submodel.getWiresByName().values();
+		InnerWireParams wireParams[] = new InnerWireParams[wires.size()];
 		i1 = 0;
-		for (GUIWire wire : wireList)
+		for (GUIWire innerWire : wires)
 		{
-			InnerWireParams inner = new InnerWireParams();
-			wires[i1] = inner;
+			InnerWireParams innerWireParams = new InnerWireParams();
+			wireParams[i1] = innerWireParams;
 			InnerPinParams pin1Params = new InnerPinParams(), pin2Params = new InnerPinParams();
 
-			pin1Params.pinName = wire.getPin1().name;
-			pin1Params.compName = wire.getPin1().component.name;
-			pin2Params.pinName = wire.getPin2().name;
-			pin2Params.compName = wire.getPin2().component.name;
-			inner.pin1 = pin1Params;
-			inner.pin2 = pin2Params;
-			inner.path = wire.getPath();
+			pin1Params.pinName = innerWire.getPin1().name;
+			pin1Params.compName = innerWire.getPin1().component.name;
+			pin2Params.pinName = innerWire.getPin2().name;
+			pin2Params.compName = innerWire.getPin2().component.name;
+			innerWireParams.name = innerWire.name;
+			innerWireParams.pin1 = pin1Params;
+			innerWireParams.pin2 = pin2Params;
+			innerWireParams.path = innerWire.getPath();
 			i1++;
 		}
-		submodelParams.innerWires = wires;
+		submodelParams.innerWires = wireParams;
 
 		SubmodelComponentParams params = new SubmodelComponentParams();
 		params.submodel = submodelParams;
@@ -284,7 +285,7 @@ public final class SubmodelComponentSerializer
 		}
 		params.interfacePins = iPins;
 
-		// TODO does this code belong here?
+		// TODO This code does not belong here
 		if (comp instanceof SimpleRectangularSubmodelComponent)
 		{
 			SimpleRectangularSubmodelComponent compCasted = (SimpleRectangularSubmodelComponent) comp;

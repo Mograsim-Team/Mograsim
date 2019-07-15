@@ -150,7 +150,7 @@ public class TestableAm2901Impl implements TestableAm2901
 		while (modelsToIterate.size() > 0)
 		{
 			ViewModel model = modelsToIterate.poll();
-			wiresIncludingSubmodels.addAll(model.getWires());
+			wiresIncludingSubmodels.addAll(model.getWiresByName().values());
 			for (GUIComponent comp : model.getComponentsByName().values())
 				if (comp instanceof SubmodelComponent)
 					modelsToIterate.offer(((SubmodelComponent) comp).submodel);

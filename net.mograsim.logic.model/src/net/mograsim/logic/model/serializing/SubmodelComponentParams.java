@@ -43,15 +43,16 @@ public class SubmodelComponentParams
 
 		public static class InnerComponentParams
 		{
-			public Point pos;
 			public String id;
 			public String name;
+			public Point pos;
 			public JsonElement params;
 		}
 
 		public static class InnerWireParams
 		{
 			public InnerPinParams pin1, pin2;
+			public String name;
 			public Point[] path;
 
 			public static class InnerPinParams

@@ -19,6 +19,17 @@ public class ViewModelModifiable extends ViewModel
 		}
 	}
 
+	public String getDefaultWireName()
+	{
+		Set<String> wireNames = getWiresByName().keySet();
+		for (int i = 0;; i++)
+		{
+			String nameCandidate = "unnamedWire#" + i;
+			if (!wireNames.contains(nameCandidate))
+				return nameCandidate;
+		}
+	}
+
 	@Override
 	public void componentCreated(GUIComponent component)
 	{

@@ -31,7 +31,7 @@ public abstract class GUIComponent
 	 */
 	protected final ViewModelModifiable model;
 	/**
-	 * The name of this component. Is unique in its model.
+	 * The name of this component. Is unique for all components in its model.
 	 */
 	public final String name;
 	private final Rectangle bounds;
