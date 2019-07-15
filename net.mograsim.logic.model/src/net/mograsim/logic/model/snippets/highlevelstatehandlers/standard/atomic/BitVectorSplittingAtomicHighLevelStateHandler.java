@@ -3,6 +3,7 @@ package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic
 import java.util.ArrayList;
 import java.util.List;
 
+import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
@@ -60,7 +61,12 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 		BitVector result = BitVector.of();
 		for (int partIndex = 0; partIndex < vectorPartTargets.size(); partIndex++)
 		{
-			BitVector vectorPart = (BitVector) component.getHighLevelState(vectorPartTargets.get(partIndex));
+			Object subStateUncasted = component.getHighLevelState(vectorPartTargets.get(partIndex));
+			BitVector vectorPart;
+			if (subStateUncasted instanceof Bit)
+				vectorPart = BitVector.of((Bit) subStateUncasted);
+			else
+				vectorPart = (BitVector) subStateUncasted;
 			if (vectorPart.length() != vectorPartLengthes.get(partIndex))
 				throw new IllegalArgumentException(
 						"Illegal vector part length: " + vectorPart.length() + "; expected " + vectorPartLengthes.get(partIndex));
