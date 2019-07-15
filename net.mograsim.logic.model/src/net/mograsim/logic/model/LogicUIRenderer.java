@@ -25,7 +25,7 @@ public class LogicUIRenderer
 		gc.setAntialias(SWT.ON);
 		gc.setClipping(visibleRegion);
 		gc.setLineWidth(.5);
-		model.getWires().forEach(w ->
+		model.getWiresByName().values().forEach(w ->
 		{
 			Rectangle bounds = w.getBounds();
 			double lw = gc.getLineWidth();

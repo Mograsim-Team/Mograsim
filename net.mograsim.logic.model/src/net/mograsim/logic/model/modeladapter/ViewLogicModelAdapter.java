@@ -1,9 +1,9 @@
 package net.mograsim.logic.model.modeladapter;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -43,7 +43,8 @@ public class ViewLogicModelAdapter
 
 	private static void convert(ViewModel viewModel, LogicModelParameters params, Timeline timeline, Map<Pin, Wire> externalWires)
 	{
-		Map<Pin, Wire> logicWiresPerPin = convertWires(getAllPins(viewModel), viewModel.getWires(), externalWires, params, timeline);
+		Map<Pin, Wire> logicWiresPerPin = convertWires(getAllPins(viewModel), viewModel.getWiresByName().values(), externalWires, params,
+				timeline);
 		Map<Pin, Wire> logicWiresPerPinUnmodifiable = Collections.unmodifiableMap(logicWiresPerPin);
 
 		for (GUIComponent guiComp : viewModel.getComponentsByName().values())
@@ -70,7 +71,7 @@ public class ViewLogicModelAdapter
 				.collect(Collectors.toSet());
 	}
 
-	private static Map<Pin, Wire> convertWires(Set<Pin> allPins, List<GUIWire> wires, Map<Pin, Wire> externalWires,
+	private static Map<Pin, Wire> convertWires(Set<Pin> allPins, Collection<GUIWire> wires, Map<Pin, Wire> externalWires,
 			LogicModelParameters params, Timeline timeline)
 	{
 		Map<Pin, Set<Pin>> connectedPinGroups = getConnectedPinGroups(allPins, wires);
@@ -105,7 +106,7 @@ public class ViewLogicModelAdapter
 		return logicWiresPerPin;
 	}
 
-	private static void setGUIWiresLogicModelBinding(List<GUIWire> wires, Map<Pin, Wire> logicWiresPerPin)
+	private static void setGUIWiresLogicModelBinding(Collection<GUIWire> wires, Map<Pin, Wire> logicWiresPerPin)
 	{
 		Map<Wire, ReadEnd> guiWireSharedReadEnd = logicWiresPerPin.values().stream().distinct()
 				.collect(Collectors.toMap(Function.identity(), Wire::createReadOnlyEnd));
@@ -113,7 +114,7 @@ public class ViewLogicModelAdapter
 			guiWire.setLogicModelBinding(guiWireSharedReadEnd.get(logicWiresPerPin.get(guiWire.getPin1())));
 	}
 
-	private static Map<Pin, Set<Pin>> getConnectedPinGroups(Set<Pin> allPins, List<GUIWire> wires)
+	private static Map<Pin, Set<Pin>> getConnectedPinGroups(Set<Pin> allPins, Collection<GUIWire> wires)
 	{
 		Map<Pin, Set<Pin>> connectedPinsPerPin = new HashMap<>();
 

@@ -48,94 +48,42 @@ mograsim version: 0.1.3
     "innerScale": 0.4,
     "subComps": [
       {
+        "id": "GUINandGate",
+        "name": "GUINandGate#0",
         "pos": {
           "x": 57.5,
           "y": 40.0
         },
-        "id": "GUINandGate",
-        "name": "GUINandGate#0",
         "params": 1
       },
       {
+        "id": "GUIhalfadder",
+        "name": "GUIhalfadder#0",
         "pos": {
           "x": 5.0,
           "y": 40.0
-        },
-        "id": "GUIhalfadder",
-        "name": "GUIhalfadder#0"
+        }
       },
       {
+        "id": "GUIhalfadder",
+        "name": "GUIhalfadder#1",
         "pos": {
           "x": 45.0,
           "y": 7.5
-        },
-        "id": "GUIhalfadder",
-        "name": "GUIhalfadder#1"
+        }
       }
     ],
     "innerWires": [
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A"
-        },
-        "pin2": {
-          "compName": "GUIhalfadder#1",
-          "pinName": "A"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "B"
-        },
-        "pin2": {
-          "compName": "GUIhalfadder#0",
-          "pinName": "A"
-        }
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C"
-        },
-        "pin2": {
-          "compName": "GUIhalfadder#0",
-          "pinName": "B"
-        }
-      },
-      {
-        "pin1": {
-          "compName": "GUIhalfadder#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "GUIhalfadder#1",
-          "pinName": "B"
-        }
-      },
-      {
-        "pin1": {
-          "compName": "GUIhalfadder#0",
-          "pinName": "_Z"
-        },
-        "pin2": {
           "compName": "GUINandGate#0",
-          "pinName": "B"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "GUIhalfadder#1",
           "pinName": "Y"
         },
         "pin2": {
           "compName": "_submodelinterface",
-          "pinName": "Y"
+          "pinName": "Z"
         },
-        "path": []
+        "name": "unnamedWire#7"
       },
       {
         "pin1": {
@@ -146,6 +94,7 @@ mograsim version: 0.1.3
           "compName": "GUINandGate#0",
           "pinName": "A"
         },
+        "name": "unnamedWire#6",
         "path": [
           {
             "x": 82.5,
@@ -167,13 +116,72 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "GUINandGate#0",
+          "compName": "_submodelinterface",
+          "pinName": "B"
+        },
+        "pin2": {
+          "compName": "GUIhalfadder#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#1"
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "GUIhalfadder#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIhalfadder#1",
           "pinName": "Y"
         },
         "pin2": {
           "compName": "_submodelinterface",
-          "pinName": "Z"
-        }
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIhalfadder#0",
+          "pinName": "_Z"
+        },
+        "pin2": {
+          "compName": "GUINandGate#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIhalfadder#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIhalfadder#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#3"
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "GUIhalfadder#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#2"
       }
     ]
   },

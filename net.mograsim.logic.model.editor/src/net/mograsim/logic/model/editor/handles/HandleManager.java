@@ -91,7 +91,7 @@ public class HandleManager
 			registerInterfaceComponent(interfaceComp);
 			comps.forEach(c -> registerComponent(c));
 
-			model.getWires().forEach(w -> registerWire(w));
+			model.getWiresByName().values().forEach(w -> registerWire(w));
 			addHandle(cornerHandle = new CornerHandle(editor.toBeEdited));
 		}
 	}

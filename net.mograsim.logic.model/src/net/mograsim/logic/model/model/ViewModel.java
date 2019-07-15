@@ -14,8 +14,8 @@ public class ViewModel
 {
 	private final Map<String, GUIComponent> components;
 	private final Map<String, GUIComponent> componentsUnmodifiable;
-	private final List<GUIWire> wires;
-	private final List<GUIWire> wiresUnmodifiable;
+	private final Map<String, GUIWire> wires;
+	private final Map<String, GUIWire> wiresUnmodifiable;
 
 	private final List<Consumer<? super GUIComponent>> componentAddedListeners;
 	private final List<Consumer<? super GUIComponent>> componentRemovedListeners;
@@ -29,8 +29,8 @@ public class ViewModel
 	{
 		components = new HashMap<>();
 		componentsUnmodifiable = Collections.unmodifiableMap(components);
-		wires = new ArrayList<>();
-		wiresUnmodifiable = Collections.unmodifiableList(wires);
+		wires = new HashMap<>();
+		wiresUnmodifiable = Collections.unmodifiableMap(wires);
 
 		componentAddedListeners = new ArrayList<>();
 		componentRemovedListeners = new ArrayList<>();
@@ -75,9 +75,9 @@ public class ViewModel
 	 */
 	protected void wireCreated(GUIWire wire)
 	{
-		if (wires.contains(wire))
+		if (wires.containsKey(wire.name))
 			throw new IllegalStateException("Don't add the same wire twice!");
-		wires.add(wire);
+		wires.put(wire.name, wire);
 		callWireAddedListeners(wire);
 		wire.addRedrawListener(redrawListenerForSubcomponents);
 		callRedrawListeners();
@@ -89,9 +89,9 @@ public class ViewModel
 	 */
 	protected void wireDestroyed(GUIWire wire)
 	{
-		if (!wires.contains(wire))
+		if (!wires.containsKey(wire.name))
 			throw new IllegalStateException("Don't remove the same wire twice!");
-		wires.remove(wire);
+		wires.remove(wire.name);
 		callWireRemovedListeners(wire);
 		wire.removeRedrawListener(redrawListenerForSubcomponents);
 		callRedrawListeners();
@@ -102,7 +102,7 @@ public class ViewModel
 		return componentsUnmodifiable;
 	}
 
-	public List<GUIWire> getWires()
+	public Map<String, GUIWire> getWiresByName()
 	{
 		return wiresUnmodifiable;
 	}

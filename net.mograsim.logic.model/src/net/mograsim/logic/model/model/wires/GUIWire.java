@@ -31,6 +31,10 @@ public class GUIWire
 	 */
 	private final ViewModelModifiable model;
 	/**
+	 * The name of this wire. Is unique for all wires in its model.
+	 */
+	public final String name;
+	/**
 	 * The logical width of this wire. Is equal to the logical with of {@link #pin1} and {@link #pin2}.
 	 */
 	public final int logicWidth;
@@ -72,33 +76,83 @@ public class GUIWire
 	// creation and destruction
 
 	/**
-	 * Creates a new {@link GUIWire} with automatic interpolation.
+	 * Creates a new {@link GUIWire} with automatic interpolation and using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, WireCrossPoint pin2)
 	{
-		this(model, pin1, pin2, (Point[]) null);
+		this(model, null, pin1, pin2);
 	}
 
 	/**
-	 * Creates a new {@link GUIWire} with automatic interpolation.
+	 * Creates a new {@link GUIWire} with automatic interpolation and using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, Pin pin2)
 	{
-		this(model, pin1, pin2, (Point[]) null);
+		this(model, null, pin1, pin2);
 	}
 
 	/**
-	 * Creates a new {@link GUIWire} with automatic interpolation.
+	 * Creates a new {@link GUIWire} with automatic interpolation and using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public GUIWire(ViewModelModifiable model, Pin pin1, WireCrossPoint pin2)
 	{
-		this(model, pin1, pin2, (Point[]) null);
+		this(model, null, pin1, pin2);
+	}
+
+	/**
+	 * Creates a new {@link GUIWire} with automatic interpolation and using the default name.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2)
+	{
+		this(model, null, pin1, pin2);
+	}
+
+	/**
+	 * Creates a new {@link GUIWire} without automatic interpolation and using the default name.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, WireCrossPoint pin2, Point... path)
+	{
+		this(model, null, pin1, pin2, path);
+	}
+
+	/**
+	 * Creates a new {@link GUIWire} without automatic interpolation and using the default name.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, Pin pin2, Point... path)
+	{
+		this(model, null, pin1, pin2, path);
+	}
+
+	/**
+	 * Creates a new {@link GUIWire} without automatic interpolation and using the default name.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public GUIWire(ViewModelModifiable model, Pin pin1, WireCrossPoint pin2, Point... path)
+	{
+		this(model, null, pin1, pin2, path);
+	}
+
+	/**
+	 * Creates a new {@link GUIWire} without automatic interpolation and using the default name.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2, Point... path)
+	{
+		this(model, null, pin1, pin2, path);
 	}
 
 	/**
@@ -106,9 +160,39 @@ public class GUIWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2)
+	public GUIWire(ViewModelModifiable model, String name, WireCrossPoint pin1, WireCrossPoint pin2)
 	{
-		this(model, pin1, pin2, (Point[]) null);
+		this(model, name, pin1, pin2, (Point[]) null);
+	}
+
+	/**
+	 * Creates a new {@link GUIWire} with automatic interpolation.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public GUIWire(ViewModelModifiable model, String name, WireCrossPoint pin1, Pin pin2)
+	{
+		this(model, name, pin1, pin2, (Point[]) null);
+	}
+
+	/**
+	 * Creates a new {@link GUIWire} with automatic interpolation.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public GUIWire(ViewModelModifiable model, String name, Pin pin1, WireCrossPoint pin2)
+	{
+		this(model, name, pin1, pin2, (Point[]) null);
+	}
+
+	/**
+	 * Creates a new {@link GUIWire} with automatic interpolation.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public GUIWire(ViewModelModifiable model, String name, Pin pin1, Pin pin2)
+	{
+		this(model, name, pin1, pin2, (Point[]) null);
 	}
 
 	/**
@@ -116,9 +200,9 @@ public class GUIWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, WireCrossPoint pin2, Point... path)
+	public GUIWire(ViewModelModifiable model, String name, WireCrossPoint pin1, WireCrossPoint pin2, Point... path)
 	{
-		this(model, pin1.getPin(), pin2.getPin(), path);
+		this(model, name, pin1.getPin(), pin2.getPin(), path);
 	}
 
 	/**
@@ -126,9 +210,9 @@ public class GUIWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public GUIWire(ViewModelModifiable model, WireCrossPoint pin1, Pin pin2, Point... path)
+	public GUIWire(ViewModelModifiable model, String name, WireCrossPoint pin1, Pin pin2, Point... path)
 	{
-		this(model, pin1.getPin(), pin2, path);
+		this(model, name, pin1.getPin(), pin2, path);
 	}
 
 	/**
@@ -136,9 +220,9 @@ public class GUIWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public GUIWire(ViewModelModifiable model, Pin pin1, WireCrossPoint pin2, Point... path)
+	public GUIWire(ViewModelModifiable model, String name, Pin pin1, WireCrossPoint pin2, Point... path)
 	{
-		this(model, pin1, pin2.getPin(), path);
+		this(model, name, pin1, pin2.getPin(), path);
 	}
 
 	/**
@@ -146,9 +230,10 @@ public class GUIWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2, Point... path)
+	public GUIWire(ViewModelModifiable model, String name, Pin pin1, Pin pin2, Point... path)
 	{
 		this.model = model;
+		this.name = name == null ? model.getDefaultWireName() : name;
 		this.logicWidth = pin1.logicWidth;
 		if (pin2.logicWidth != pin1.logicWidth)
 			throw new IllegalArgumentException("Can't connect pins of different logic width");
