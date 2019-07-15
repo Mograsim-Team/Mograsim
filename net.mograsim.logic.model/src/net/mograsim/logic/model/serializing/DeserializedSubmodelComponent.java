@@ -11,6 +11,7 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.Renderer;
 
+//TODO serialize handlers
 public class DeserializedSubmodelComponent extends SubmodelComponent
 {
 	/**
@@ -31,7 +32,8 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	private Renderer symbolRenderer;
 	private HighLevelStateHandler highLevelStateHandler;
 
-	public DeserializedSubmodelComponent(ViewModelModifiable model, String name, String idForSerializingOverride, JsonElement paramsForSerializingOverride)
+	public DeserializedSubmodelComponent(ViewModelModifiable model, String name, String idForSerializingOverride,
+			JsonElement paramsForSerializingOverride)
 	{
 		super(model, name);
 		this.idForSerializingOverride = idForSerializingOverride;

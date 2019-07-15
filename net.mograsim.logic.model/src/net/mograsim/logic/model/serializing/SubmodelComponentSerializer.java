@@ -296,7 +296,7 @@ public final class SubmodelComponentSerializer
 			symbolRendererParams.pinLabelHeight = SimpleRectangularSubmodelComponent.pinNameFontHeight;
 			symbolRendererParams.pinLabelMargin = SimpleRectangularSubmodelComponent.pinNameMargin;
 
-			params.symbolRendererSnippetID = "SimpleRectangularLikeSymbolRenderer";
+			params.symbolRendererSnippetID = "simpleRectangularLike";
 			params.symbolRendererParams = new Gson().toJsonTree(symbolRendererParams);
 		}
 
