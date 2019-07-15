@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -114,8 +115,13 @@ public class HandleManager
 
 	private void registerWire(GUIWire wire)
 	{
-		wire.addPathChangedListener((w, diff) ->
+		Point[] path = wire.getPath();
+		AtomicInteger oldLength = new AtomicInteger(path == null ? 0 : path.length);
+		wire.addPathChangedListener(w ->
 		{
+			Point[] newPath = w.getPath();
+			int newLength = newPath == null ? 0 : newPath.length;
+			int diff = oldLength.getAndSet(newLength) - newLength;
 			if (diff != 0)
 			{
 				if (diff > 0)
@@ -134,9 +140,9 @@ public class HandleManager
 			pointHandlesPerWire.get(w).forEach(h -> h.updatePos());
 		});
 		addWireHandle(wire);
-		if (wire.getPath() == null)
+		if (path == null)
 			return;
-		for (int i = 0; i < wire.getPath().length; i++)
+		for (int i = 0; i < path.length; i++)
 		{
 			addWirePointHandle(wire);
 		}
@@ -346,7 +352,7 @@ public class HandleManager
 		entryState.clicked(clicked, stateMask);
 	}
 
-	private boolean click(Collection<? extends Handle> handles, Point clicked, EditorState state, int stateMask)
+	private static boolean click(Collection<? extends Handle> handles, Point clicked, EditorState state, int stateMask)
 	{
 		for (Handle h : handles)
 			if (h.click(clicked.x, clicked.y, stateMask, state))
