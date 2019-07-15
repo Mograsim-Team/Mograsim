@@ -134,6 +134,11 @@ public final class Editor
 	{
 		saveManager.save();
 	}
+	
+	public void saveAs()
+	{
+		saveManager.openSaveAsDialog();
+	}
 
 	public void addComponent(double x, double y)
 	{
