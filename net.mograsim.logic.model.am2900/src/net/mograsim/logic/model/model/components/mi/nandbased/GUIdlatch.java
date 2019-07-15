@@ -61,7 +61,7 @@ public class GUIdlatch extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, _rsLatch.getPin("Q"), Q, new Point[0]);
 		new GUIWire(submodelModifiable, _rsLatch.getPin("_Q"), _Q);
 
-		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addAtomicHighLevelState("q", DelegatingAtomicHighLevelStateHandler::new).set(_rsLatch, "q");
 	}
 

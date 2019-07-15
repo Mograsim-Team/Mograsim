@@ -72,7 +72,7 @@ public class GUIdff extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, _rsLatch2.getPin("Q"), Q);
 		new GUIWire(submodelModifiable, _rsLatch2.getPin("_Q"), _Q);
 
-		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addAtomicHighLevelState("q", DelegatingAtomicHighLevelStateHandler::new).set(_rsLatch2, "q");
 	}
 

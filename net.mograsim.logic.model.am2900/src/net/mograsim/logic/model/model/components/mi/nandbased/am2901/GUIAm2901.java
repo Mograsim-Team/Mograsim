@@ -350,7 +350,7 @@ public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpFneq0, notFneq0.getPin("B"), new Point(315, 455));
 		new GUIWire(submodelModifiable, notFneq0.getPin("Y"), Feq0, new Point[0]);
 
-		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addSubcomponentHighLevelState("regs", DelegatingSubcomponentHighLevelStateHandler::new).set(ram, null);
 		highLevelStateHandler.addSubcomponentHighLevelState("qreg", DelegatingSubcomponentHighLevelStateHandler::new).set(qreg, null);
 	}

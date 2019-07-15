@@ -77,7 +77,7 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, dlatch3.getPin("Q"), Q3, new Point[0]);
 		new GUIWire(submodelModifiable, dlatch4.getPin("Q"), Q4, new Point[0]);
 
-		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler = new StandardHighLevelStateHandler(this);
 		highLevelStateHandler.addAtomicHighLevelState("q1", DelegatingAtomicHighLevelStateHandler::new).set(dlatch1, "q");
 		highLevelStateHandler.addAtomicHighLevelState("q2", DelegatingAtomicHighLevelStateHandler::new).set(dlatch2, "q");
 		highLevelStateHandler.addAtomicHighLevelState("q3", DelegatingAtomicHighLevelStateHandler::new).set(dlatch3, "q");
