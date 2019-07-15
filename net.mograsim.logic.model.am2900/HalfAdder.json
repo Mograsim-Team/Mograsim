@@ -45,7 +45,7 @@ mograsim version: 0.1.1
           "x": 10.0,
           "y": 15.0
         },
-        "type": "class:net.mograsim.logic.ui.model.components.GUINandGate",
+        "type": "class:net.mograsim.logic.model.model.components.GUINandGate",
         "params": {
           "logicWidth": 1
         }
@@ -55,7 +55,7 @@ mograsim version: 0.1.1
           "x": 40.0,
           "y": 2.5
         },
-        "type": "class:net.mograsim.logic.ui.model.components.GUINandGate",
+        "type": "class:net.mograsim.logic.model.model.components.GUINandGate",
         "params": {
           "logicWidth": 1
         }
@@ -65,7 +65,7 @@ mograsim version: 0.1.1
           "x": 40.0,
           "y": 27.5
         },
-        "type": "class:net.mograsim.logic.ui.model.components.GUINandGate",
+        "type": "class:net.mograsim.logic.model.model.components.GUINandGate",
         "params": {
           "logicWidth": 1
         }
@@ -75,7 +75,7 @@ mograsim version: 0.1.1
           "x": 65.0,
           "y": 2.5
         },
-        "type": "class:net.mograsim.logic.ui.model.components.GUINandGate",
+        "type": "class:net.mograsim.logic.model.model.components.GUINandGate",
         "params": {
           "logicWidth": 1
         }
@@ -85,7 +85,7 @@ mograsim version: 0.1.1
           "x": 4.0,
           "y": 11.5
         },
-        "type": "class:net.mograsim.logic.ui.model.wires.WireCrossPoint",
+        "type": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
         "params": {
           "logicWidth": 1
         }
@@ -95,7 +95,7 @@ mograsim version: 0.1.1
           "x": 4.0,
           "y": 36.5
         },
-        "type": "class:net.mograsim.logic.ui.model.wires.WireCrossPoint",
+        "type": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
         "params": {
           "logicWidth": 1
         }
@@ -105,7 +105,7 @@ mograsim version: 0.1.1
           "x": 34.0,
           "y": 24.0
         },
-        "type": "class:net.mograsim.logic.ui.model.wires.WireCrossPoint",
+        "type": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
         "params": {
           "logicWidth": 1
         }

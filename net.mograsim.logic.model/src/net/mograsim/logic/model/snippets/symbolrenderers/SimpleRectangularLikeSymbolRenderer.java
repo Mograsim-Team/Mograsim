@@ -46,7 +46,7 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 		Font oldFont = gc.getFont();
 		gc.setFont(new Font(oldFont.getName(), params.centerTextHeight, oldFont.getStyle()));
 		Point textExtent = gc.textExtent(params.centerText);
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
+		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
 		if (textColor != null)
 			gc.setForeground(textColor);
 		gc.drawText(params.centerText, posX + (width - textExtent.x) / 2, posY + (height - textExtent.y) / 2, true);

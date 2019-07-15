@@ -3,7 +3,7 @@
 	<name>net.mograsim.plugin.feature</name>
 	<comment></comment>
 	<projects>
-		<project>net.mograsim.logic.ui.am2900</project>
+		<project>net.mograsim.logic.model.am2900</project>
 		<project>net.mograsim.plugin.branding</project>
 		<project>net.mograsim.plugin.core</project>
 		<project>net.mograsim.plugin.docs</project>

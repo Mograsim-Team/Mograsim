@@ -1,4 +1,4 @@
-package net.mograsim.logic.ui.am2900;
+package net.mograsim.logic.model.am2900;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
