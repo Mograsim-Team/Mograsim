@@ -11,14 +11,16 @@ import net.mograsim.logic.model.model.wires.GUIWire;
 public class WirePointHandle extends Handle
 {
 	private final static int END_OFFSET = 4;
+	private final HandleManager manager;
 	private boolean selected = false;
 	public final GUIWire parent;
 	
 	private int pointIndex;
 
-	public WirePointHandle(GUIWire parent, int pointIndex)
+	public WirePointHandle(HandleManager manager, GUIWire parent, int pointIndex)
 	{
 		super();
+		this.manager = manager;
 		this.parent = parent;
 		this.pointIndex = pointIndex;
 		setSize(END_OFFSET, END_OFFSET);
@@ -63,7 +65,7 @@ public class WirePointHandle extends Handle
 	@Override
 	public void reqDelete()
 	{
-		parent.removePathPoint(pointIndex);
+		manager.destroyWirePointHandle(parent, this);
 	}
 	
 	@Override

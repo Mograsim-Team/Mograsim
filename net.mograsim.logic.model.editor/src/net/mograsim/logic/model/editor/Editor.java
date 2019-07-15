@@ -7,7 +7,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonNull;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.editor.handles.ComponentHandle;
@@ -135,10 +137,28 @@ public final class Editor
 
 	public void addComponent(double x, double y)
 	{
-		GUIComponent c = addComponent(gui.getAddListSelected(), new JsonObject());
-		selection.clear();
-		selection.add(handleManager.getHandle(c));
-		moveSelection(x, y);
+		boolean successful = false;
+		JsonElement params = JsonNull.INSTANCE;
+		outer:
+		while(!successful)
+		{
+			String selected = gui.getAddListSelected();
+			try
+			{
+				GUIComponent c = addComponent(selected, params);
+				selection.clear();
+				selection.add(handleManager.getHandle(c));
+				moveSelection(x, y);
+				successful = true;
+			}
+			catch(UnsupportedOperationException | JsonSyntaxException | NumberFormatException e)
+			{
+				String result = DialogManager.openMultiLineTextDialog("Add component", "Create", "Cancel", "Parameters:");
+				if(result == null)
+					break outer;
+				params = new JsonParser().parse(result);
+			}
+		}
 	}
 	
 	private GUIComponent addComponent(String identifier, JsonElement params)
