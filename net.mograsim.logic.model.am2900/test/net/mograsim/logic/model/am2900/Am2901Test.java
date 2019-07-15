@@ -1,10 +1,10 @@
-package net.mograsim.logic.ui.am2900;
+package net.mograsim.logic.model.am2900;
 
-import static net.mograsim.logic.ui.am2900.TestUtil.*;
-import static net.mograsim.logic.ui.am2900.TestableAm2901.Am2901_Dest.*;
-import static net.mograsim.logic.ui.am2900.TestableAm2901.Am2901_Func.*;
-import static net.mograsim.logic.ui.am2900.TestableAm2901.Am2901_Src.*;
-import static net.mograsim.logic.ui.am2900.TestableAm2901.Register.*;
+import static net.mograsim.logic.model.am2900.TestUtil.*;
+import static net.mograsim.logic.model.am2900.TestableAm2901.Am2901_Dest.*;
+import static net.mograsim.logic.model.am2900.TestableAm2901.Am2901_Func.*;
+import static net.mograsim.logic.model.am2900.TestableAm2901.Am2901_Src.*;
+import static net.mograsim.logic.model.am2900.TestableAm2901.Register.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Point;
@@ -20,7 +20,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import net.mograsim.logic.ui.am2900.TestableAm2901.Register;
+import net.mograsim.logic.model.am2900.TestableAm2901.Register;
 
 @DisplayName("Am2901 Tests")
 @TestMethodOrder(OrderAnnotation.class)

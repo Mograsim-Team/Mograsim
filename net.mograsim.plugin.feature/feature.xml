@@ -720,7 +720,7 @@ exception as provided by Oracle in the LICENSE file that accompanied this code.&
          unpack="false"/>
 
    <plugin
-         id="net.mograsim.logic.ui"
+         id="net.mograsim.logic.model"
          download-size="100"
          install-size="100"
          version="0.1.0.qualifier"
@@ -748,7 +748,7 @@ exception as provided by Oracle in the LICENSE file that accompanied this code.&
          unpack="false"/>
 
    <plugin
-         id="net.mograsim.logic.ui.am2900"
+         id="net.mograsim.logic.model.am2900"
          download-size="58"
          install-size="58"
          version="0.1.0.qualifier"

@@ -19,7 +19,7 @@ public class BitVectorFormatter
 		return bitVector.toString();
 	}
 
-	// TODO doesn't this belong to logic.ui?
+	// TODO doesn't this belong to logic.model?
 	public static ColorDefinition formatAsColor(ReadEnd end)
 	{
 		return formatAsColor(end == null ? null : end.getValues());
@@ -33,15 +33,15 @@ public class BitVectorFormatter
 		switch (bitVector.getLSBit(0))
 		{
 		case ONE:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.one");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.one");
 		case U:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.u");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.u");
 		case X:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.x");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.x");
 		case Z:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.z");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.z");
 		case ZERO:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.bit.zero");
+			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.zero");
 		default:
 			throw new IllegalArgumentException("Unknown enum constant: " + bitVector.getLSBit(0));
 		}

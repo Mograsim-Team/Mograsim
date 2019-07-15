@@ -40,7 +40,7 @@ public class TextComponent extends GUIComponent
 		Point textExtent = gc.textExtent(text);
 		setSize(textExtent.x, textExtent.y);
 
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
+		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
 		if (textColor != null)
 			gc.setForeground(textColor);
 		gc.drawText(text, getPosX(), getPosY(), true);

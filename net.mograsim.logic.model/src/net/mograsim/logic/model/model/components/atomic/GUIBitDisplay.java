@@ -45,7 +45,7 @@ public class GUIBitDisplay extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		Color foreground = Preferences.current().getColor("net.mograsim.logic.ui.color.foreground");
+		Color foreground = Preferences.current().getColor("net.mograsim.logic.model.color.foreground");
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
@@ -55,7 +55,7 @@ public class GUIBitDisplay extends GUIComponent
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.ui.color.text");
+		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
 		if (textColor != null)
 			gc.setForeground(textColor);
 		gc.drawText(label, getPosX() + (width - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);

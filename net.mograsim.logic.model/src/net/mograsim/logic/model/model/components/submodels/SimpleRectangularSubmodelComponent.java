@@ -115,7 +115,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	@Override
 	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
 	{
-		Color foreground = Preferences.current().getColor("net.mograsim.logic.ui.color.foreground");
+		Color foreground = Preferences.current().getColor("net.mograsim.logic.model.color.foreground");
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());

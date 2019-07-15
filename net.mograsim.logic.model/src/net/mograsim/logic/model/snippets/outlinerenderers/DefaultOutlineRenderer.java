@@ -23,7 +23,7 @@ public class DefaultOutlineRenderer implements Renderer
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		ColorDefinition fg = Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.foreground");
+		ColorDefinition fg = Preferences.current().getColorDefinition("net.mograsim.logic.model.color.foreground");
 		if (fg != null)
 			gc.setForeground(ColorManager.current().toColor(fg));
 		gc.drawRectangle(component.getBounds());

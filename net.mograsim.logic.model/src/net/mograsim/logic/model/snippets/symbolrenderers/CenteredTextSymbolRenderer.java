@@ -35,7 +35,7 @@ public class CenteredTextSymbolRenderer implements Renderer
 	{
 		Font oldFont = gc.getFont();
 		gc.setFont(new Font(oldFont.getName(), params.fontHeight, oldFont.getStyle()));
-		ColorDefinition fg = Preferences.current().getColorDefinition("net.mograsim.logic.ui.color.text");
+		ColorDefinition fg = Preferences.current().getColorDefinition("net.mograsim.logic.model.color.text");
 		if (fg != null)
 			gc.setForeground(ColorManager.current().toColor(fg));
 		Point idSize = gc.textExtent(params.text);
