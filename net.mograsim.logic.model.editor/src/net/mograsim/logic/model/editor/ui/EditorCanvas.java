@@ -36,7 +36,7 @@ public class EditorCanvas extends LogicUICanvas
 											// canvas
 			
 			TranslatedGC tgc = new TranslatedGC(gc, 0.0d, 0.0d, 1 / editor.toBeEdited.getSubmodelScale(), false);
-			editor.toBeEdited.outlineRenderer.render(tgc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom));
+			editor.toBeEdited.getOutlineRenderer().render(tgc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom));
 			
 			handles.forEach(h -> h.render(gc, visibleRegion));
 		});

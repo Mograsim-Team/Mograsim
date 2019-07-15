@@ -20,7 +20,7 @@ public class EditableSubmodelComponent extends DeserializedSubmodelComponent
 
 	public EditableSubmodelComponent(ViewModelModifiable model, String label)
 	{
-		super(model, label); //TODO: set name properly
+		super(model, label, null, null); //TODO: set name properly
 		this.label = label;
 		setSubmodelScale(0.2);
 		addSubmodelInterface(new MovablePin(this, "A Pin", 1, 0, 10));
