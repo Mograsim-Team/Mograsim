@@ -14,9 +14,13 @@ import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.WireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler;
 
 public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 {
+	private StandardHighLevelStateHandler highLevelStateHandler;
+
 	public GUIAm2901(ViewModelModifiable model)
 	{
 		this(model, null);
@@ -346,8 +350,21 @@ public class GUIAm2901 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, cpFneq0, notFneq0.getPin("B"), new Point(315, 455));
 		new GUIWire(submodelModifiable, notFneq0.getPin("Y"), Feq0, new Point[0]);
 
-		addHighLevelStateSubcomponentID("regs", ram);
-		addHighLevelStateSubcomponentID("qreg", qreg);
+		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler.addSubcomponentHighLevelState("regs", DelegatingSubcomponentHighLevelStateHandler::new).set(ram, null);
+		highLevelStateHandler.addSubcomponentHighLevelState("qreg", DelegatingSubcomponentHighLevelStateHandler::new).set(qreg, null);
+	}
+
+	@Override
+	public Object getHighLevelState(String stateID)
+	{
+		return highLevelStateHandler.getHighLevelState(stateID);
+	}
+
+	@Override
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		highLevelStateHandler.setHighLevelState(stateID, newState);
 	}
 
 	static

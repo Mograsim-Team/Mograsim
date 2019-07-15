@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 
 public class JsonHandler
 {
+	// TODO: write versions differently
 	private static Gson parser = new GsonBuilder().setPrettyPrinting().create();
 
 	public static <T> T readJson(String path, Class<T> type) throws IOException

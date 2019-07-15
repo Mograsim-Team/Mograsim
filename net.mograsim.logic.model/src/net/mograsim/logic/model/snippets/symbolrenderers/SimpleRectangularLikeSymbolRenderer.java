@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.serializing.snippets.symbolrenderers;
+package net.mograsim.logic.model.snippets.symbolrenderers;
 
 import java.util.Map.Entry;
 
@@ -11,9 +11,9 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.CodeSnippetSupplier;
-import net.mograsim.logic.model.serializing.snippets.Renderer;
-import net.mograsim.logic.model.serializing.snippets.SnippetSupplier;
+import net.mograsim.logic.model.snippets.Renderer;
+import net.mograsim.logic.model.snippets.SnippetDefinintion;
+import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
 import net.mograsim.preferences.Preferences;
 
 /**
@@ -76,7 +76,8 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 
 	static
 	{
-		CodeSnippetSupplier.symbolRendererSupplier.setSnippetSupplier(SimpleRectangularLikeSymbolRenderer.class.getCanonicalName(),
-				SnippetSupplier.create(SimpleRectangularLikeParams.class, SimpleRectangularLikeSymbolRenderer::new));
+		SubmodelComponentSnippetSuppliers.symbolRendererSupplier.setSnippetSupplier(
+				SimpleRectangularLikeSymbolRenderer.class.getCanonicalName(),
+				SnippetDefinintion.create(SimpleRectangularLikeParams.class, SimpleRectangularLikeSymbolRenderer::new));
 	}
 }

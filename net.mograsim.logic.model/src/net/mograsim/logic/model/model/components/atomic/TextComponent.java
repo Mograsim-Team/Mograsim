@@ -49,7 +49,7 @@ public class TextComponent extends GUIComponent
 	// serializing
 
 	@Override
-	public JsonElement getParams()
+	public JsonElement getParamsForSerializing()
 	{
 		return new JsonPrimitive(text);
 	}
