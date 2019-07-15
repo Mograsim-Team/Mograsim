@@ -1,6 +1,7 @@
 package net.mograsim.logic.model.examples;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 
 import com.google.gson.JsonNull;
 
@@ -14,7 +15,7 @@ import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubm
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
-import net.mograsim.logic.model.serializing.SubmodelComponentDeserializer;
+import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams;
 import net.mograsim.logic.model.util.JsonHandler;
 
@@ -37,7 +38,14 @@ public class JsonExample
 			super(model, 1, "Test", name);
 			setSubmodelScale(.4);
 			setInputPins("Input pin #0");
-			SubmodelComponentDeserializer.create(submodelModifiable, "HalfAdder.json", "halfadder");
+			try
+			{
+				SubmodelComponentSerializer.deserialize(submodelModifiable, "HalfAdder.json", "halfadder");
+			}
+			catch (IOException e)
+			{
+				throw new UncheckedIOException(e);
+			}
 		}
 	}
 
@@ -46,11 +54,11 @@ public class JsonExample
 	{
 		GUI_rsLatch comp = new GUI_rsLatch(viewModel, "Original RS latch");
 		comp.moveTo(30, 0);
-		SubmodelComponentParams params = comp.calculateParams();
+		SubmodelComponentParams params = SubmodelComponentSerializer.serialize(comp);
 		String jsonString = JsonHandler.toJson(params);
 		System.out.println(jsonString);
 		SubmodelComponentParams paramsD = JsonHandler.fromJson(jsonString, SubmodelComponentParams.class);
-		SubmodelComponent componentD = SubmodelComponentDeserializer.create(viewModel, paramsD, "Deserialized RS latch");
+		SubmodelComponent componentD = SubmodelComponentSerializer.deserialize(viewModel, paramsD, "Deserialized RS latch");
 		componentD.moveTo(30, 50);
 		double h = 0;
 		for (String s : comp.getInputPinNames())
@@ -80,8 +88,16 @@ public class JsonExample
 	public static void refJsonFromJsonTest(ViewModelModifiable model)
 	{
 		TestComponent t = new TestComponent(model, "Original component");
-		t.calculateParams().writeJson("Test.json");
-		SubmodelComponent c = SubmodelComponentDeserializer.create(model, "Test.json", "Deserialized component");
+		SubmodelComponentSerializer.serialize(t).writeJson("Test.json");
+		SubmodelComponent c;
+		try
+		{
+			c = SubmodelComponentSerializer.deserialize(model, "Test.json", "Deserialized component");
+		}
+		catch (IOException e)
+		{
+			throw new UncheckedIOException(e);
+		}
 		c.moveTo(0, 50);
 	}
 
@@ -89,7 +105,7 @@ public class JsonExample
 	public static void createFromJsonExample(ViewModelModifiable model)
 	{
 		SimpleRectangularSubmodelComponent tmp = new GUIfulladder(model, "Original full adder");
-		SubmodelComponentParams pC = tmp.calculateParams();
+		SubmodelComponentParams pC = SubmodelComponentSerializer.serialize(tmp);
 		tmp.moveTo(1000, 100);
 		try
 		{
@@ -101,8 +117,16 @@ public class JsonExample
 			e.printStackTrace();
 		}
 
-		SimpleRectangularSubmodelComponent adder = (SimpleRectangularSubmodelComponent) SubmodelComponentDeserializer.create(model,
-				"FullAdder.json", "Deserialized full adder");
+		SimpleRectangularSubmodelComponent adder;
+		try
+		{
+			adder = (SimpleRectangularSubmodelComponent) SubmodelComponentSerializer.deserialize(model, "FullAdder.json",
+					"Deserialized full adder");
+		}
+		catch (IOException e)
+		{
+			throw new UncheckedIOException(e);
+		}
 
 		GUIManualSwitch swA = new GUIManualSwitch(model);
 		swA.moveTo(0, 0);
@@ -124,7 +148,7 @@ public class JsonExample
 		new GUIWire(model, adder.getPin("Y"), bdY.getInputPin());
 		new GUIWire(model, adder.getPin("Z"), bdZ.getInputPin());
 
-		SubmodelComponent adder2 = SubmodelComponentDeserializer.create(model, pC, "Full adder created from params instance");
+		SubmodelComponent adder2 = SubmodelComponentSerializer.deserialize(model, pC, "Full adder created from params instance");
 
 		swA = new GUIManualSwitch(model);
 		swA.moveTo(0, 70);

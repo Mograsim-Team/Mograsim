@@ -85,7 +85,7 @@ public class ComponentHandle extends Handle
 	public Optional<ComponentInfo> reqCopy(Point refPoint)
 	{
 		return Optional.of(new ComponentInfo(parent.getPosX() - refPoint.x, parent.getPosY() - refPoint.y,
-				Editor.getIdentifier(parent), parent.getParams()));
+				Editor.getIdentifier(parent), parent.getParamsForSerializing()));
 	}
 	
 	@Override

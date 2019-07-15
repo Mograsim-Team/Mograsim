@@ -1,21 +1,21 @@
 package net.mograsim.logic.model.model.components.mi.nandbased;
 
+import java.util.Arrays;
+
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.core.types.Bit;
-import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.WireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.BitVectorSplittingAtomicHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.DelegatingAtomicHighLevelStateHandler;
 
 public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 {
-	private GUIdlatch dlatch1;
-	private GUIdlatch dlatch2;
-	private GUIdlatch dlatch3;
-	private GUIdlatch dlatch4;
+	private StandardHighLevelStateHandler highLevelStateHandler;
 
 	public GUIdlatch4(ViewModelModifiable model)
 	{
@@ -44,10 +44,10 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 		Pin Q3 = getSubmodelPin("Q3");
 		Pin Q4 = getSubmodelPin("Q4");
 
-		dlatch1 = new GUIdlatch(submodelModifiable);
-		dlatch2 = new GUIdlatch(submodelModifiable);
-		dlatch3 = new GUIdlatch(submodelModifiable);
-		dlatch4 = new GUIdlatch(submodelModifiable);
+		GUIdlatch dlatch1 = new GUIdlatch(submodelModifiable);
+		GUIdlatch dlatch2 = new GUIdlatch(submodelModifiable);
+		GUIdlatch dlatch3 = new GUIdlatch(submodelModifiable);
+		GUIdlatch dlatch4 = new GUIdlatch(submodelModifiable);
 
 		WireCrossPoint cp2 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cp3 = new WireCrossPoint(submodelModifiable, 1);
@@ -77,66 +77,25 @@ public class GUIdlatch4 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, dlatch3.getPin("Q"), Q3, new Point[0]);
 		new GUIWire(submodelModifiable, dlatch4.getPin("Q"), Q4, new Point[0]);
 
-		addAtomicHighLevelStateID("q1");
-		addAtomicHighLevelStateID("q2");
-		addAtomicHighLevelStateID("q3");
-		addAtomicHighLevelStateID("q4");
-		addAtomicHighLevelStateID("q");
+		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler.addAtomicHighLevelState("q1", DelegatingAtomicHighLevelStateHandler::new).set(dlatch1, "q");
+		highLevelStateHandler.addAtomicHighLevelState("q2", DelegatingAtomicHighLevelStateHandler::new).set(dlatch2, "q");
+		highLevelStateHandler.addAtomicHighLevelState("q3", DelegatingAtomicHighLevelStateHandler::new).set(dlatch3, "q");
+		highLevelStateHandler.addAtomicHighLevelState("q4", DelegatingAtomicHighLevelStateHandler::new).set(dlatch4, "q");
+		highLevelStateHandler.addAtomicHighLevelState("q", BitVectorSplittingAtomicHighLevelStateHandler::new)
+				.set(Arrays.asList("q1", "q2", "q3", "q4"), Arrays.asList(1, 1, 1, 1));
 	}
 
 	@Override
-	public void setAtomicHighLevelState(String stateID, Object newState)
+	public Object getHighLevelState(String stateID)
 	{
-		switch (stateID)
-		{
-		case "q1":
-			dlatch1.setHighLevelState("q", newState);
-			break;
-		case "q2":
-			dlatch2.setHighLevelState("q", newState);
-			break;
-		case "q3":
-			dlatch3.setHighLevelState("q", newState);
-			break;
-		case "q4":
-			dlatch4.setHighLevelState("q", newState);
-			break;
-		case "q":
-			BitVector newStateCasted = (BitVector) newState;
-			setHighLevelState("q1", newStateCasted.getLSBit(0));
-			setHighLevelState("q2", newStateCasted.getLSBit(1));
-			setHighLevelState("q3", newStateCasted.getLSBit(2));
-			setHighLevelState("q4", newStateCasted.getLSBit(3));
-			break;
-		default:
-			// should not happen because we tell SubmodelComponent to only allow these state IDs.
-			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
-		}
+		return highLevelStateHandler.getHighLevelState(stateID);
 	}
 
 	@Override
-	public Object getAtomicHighLevelState(String stateID)
+	public void setHighLevelState(String stateID, Object newState)
 	{
-		switch (stateID)
-		{
-		case "q1":
-			return dlatch1.getHighLevelState("q");
-		case "q2":
-			return dlatch2.getHighLevelState("q");
-		case "q3":
-			return dlatch3.getHighLevelState("q");
-		case "q4":
-			return dlatch4.getHighLevelState("q");
-		case "q":
-			Bit q1 = (Bit) getHighLevelState("q1");
-			Bit q2 = (Bit) getHighLevelState("q2");
-			Bit q3 = (Bit) getHighLevelState("q3");
-			Bit q4 = (Bit) getHighLevelState("q4");
-			return BitVector.of(q4, q3, q2, q1);
-		default:
-			// should not happen because we tell SubmodelComponent to only allow these state IDs.
-			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
-		}
+		highLevelStateHandler.setHighLevelState(stateID, newState);
 	}
 
 	static

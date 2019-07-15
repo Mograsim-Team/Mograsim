@@ -2,20 +2,25 @@ package net.mograsim.logic.model.serializing;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.snippets.CodeSnippetSupplier;
 import net.mograsim.logic.model.util.JsonHandler;
 
 public class IndirectGUIComponentCreator
 {
 	private static final Map<String, String> standardComponentIDs = new HashMap<>();
+	private static final Set<String> standardComponentIDSetUnmodifiable = Collections.unmodifiableSet(standardComponentIDs.keySet());
 
 	private static final Map<String, ComponentSupplier> componentSuppliers = new HashMap<>();
 
@@ -54,7 +59,7 @@ public class IndirectGUIComponentCreator
 
 	public static Collection<String> getStandardComponentIDs()
 	{
-		return standardComponentIDs.keySet();
+		return standardComponentIDSetUnmodifiable;
 	}
 
 	public static void setComponentSupplier(String className, ComponentSupplier componentSupplier)
@@ -94,9 +99,18 @@ public class IndirectGUIComponentCreator
 				if (componentSupplier != null)
 					return componentSupplier.create(model, params, name);
 			} else
-				// we know id has to start with "file:" here
-				// because standardComponentIDs only contains strings starting with "class:" or "file:"
-				return SubmodelComponentDeserializer.create(model, resolvedID.substring(5), name);
+			// we know id has to start with "file:" here
+			// because standardComponentIDs only contains strings starting with "class:" or "file:"
+			if (params != null && !JsonNull.INSTANCE.equals(params))
+				throw new IllegalArgumentException("Can't give params to a component deserialized from a JSON file");
+			try
+			{
+				return SubmodelComponentSerializer.deserialize(model, resolvedID.substring(5), name, id, null);
+			}
+			catch (IOException e)
+			{
+				throw new UncheckedIOException(e);
+			}
 		}
 		throw new RuntimeException("Could not get component supplier for ID " + id);
 	}

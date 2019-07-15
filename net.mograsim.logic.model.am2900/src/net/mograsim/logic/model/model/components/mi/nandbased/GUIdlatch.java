@@ -8,10 +8,12 @@ import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.WireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.DelegatingAtomicHighLevelStateHandler;
 
 public class GUIdlatch extends SimpleRectangularSubmodelComponent
 {
-	private GUI_rsLatch _rsLatch;
+	private StandardHighLevelStateHandler highLevelStateHandler;
 
 	public GUIdlatch(ViewModelModifiable model)
 	{
@@ -37,7 +39,7 @@ public class GUIdlatch extends SimpleRectangularSubmodelComponent
 
 		GUINandGate nand1 = new GUINandGate(submodelModifiable, 1);
 		GUINandGate nand2 = new GUINandGate(submodelModifiable, 1);
-		_rsLatch = new GUI_rsLatch(submodelModifiable);
+		GUI_rsLatch _rsLatch = new GUI_rsLatch(submodelModifiable);
 
 		WireCrossPoint cp1 = new WireCrossPoint(submodelModifiable, 1);
 		WireCrossPoint cp2 = new WireCrossPoint(submodelModifiable, 1);
@@ -59,34 +61,20 @@ public class GUIdlatch extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, _rsLatch.getPin("Q"), Q, new Point[0]);
 		new GUIWire(submodelModifiable, _rsLatch.getPin("_Q"), _Q);
 
-		addAtomicHighLevelStateID("q");
+		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler.addAtomicHighLevelState("q", DelegatingAtomicHighLevelStateHandler::new).set(_rsLatch, "q");
 	}
 
 	@Override
-	public void setAtomicHighLevelState(String stateID, Object newState)
+	public Object getHighLevelState(String stateID)
 	{
-		switch (stateID)
-		{
-		case "q":
-			_rsLatch.setHighLevelState("q", newState);
-			break;
-		default:
-			// should not happen because we tell SubmodelComponent to only allow these state IDs.
-			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
-		}
+		return highLevelStateHandler.getHighLevelState(stateID);
 	}
 
 	@Override
-	public Object getAtomicHighLevelState(String stateID)
+	public void setHighLevelState(String stateID, Object newState)
 	{
-		switch (stateID)
-		{
-		case "q":
-			return _rsLatch.getHighLevelState("q");
-		default:
-			// should not happen because we tell SubmodelComponent to only allow these state IDs.
-			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
-		}
+		highLevelStateHandler.setHighLevelState(stateID, newState);
 	}
 
 	static

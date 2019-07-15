@@ -1,20 +1,21 @@
 package net.mograsim.logic.model.model.components.mi.nandbased;
 
+import java.util.Arrays;
+
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.WireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.BitVectorSplittingAtomicHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler;
 
 public class GUIram2 extends SimpleRectangularSubmodelComponent
 {
-	private GUIdlatch4 cell00;
-	private GUIdlatch4 cell01;
-	private GUIdlatch4 cell10;
-	private GUIdlatch4 cell11;
+	private StandardHighLevelStateHandler highLevelStateHandler;
 
 	public GUIram2(ViewModelModifiable model)
 	{
@@ -55,10 +56,10 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		GUIdemux2   demuxA   = new GUIdemux2  (submodelModifiable);
 		GUIdemux2   demuxB   = new GUIdemux2  (submodelModifiable);
 		GUIand41    weAndB   = new GUIand41   (submodelModifiable);
-		cell00   = new GUIdlatch4 (submodelModifiable);
-		cell01   = new GUIdlatch4 (submodelModifiable);
-		cell10   = new GUIdlatch4 (submodelModifiable);
-		cell11   = new GUIdlatch4 (submodelModifiable);
+		GUIdlatch4	cell00   = new GUIdlatch4 (submodelModifiable);
+		GUIdlatch4	cell01   = new GUIdlatch4 (submodelModifiable);
+		GUIdlatch4	cell10   = new GUIdlatch4 (submodelModifiable);
+		GUIdlatch4	cell11   = new GUIdlatch4 (submodelModifiable);
 		GUIand41    andA00   = new GUIand41   (submodelModifiable);
 		GUIandor414 andorA01 = new GUIandor414(submodelModifiable);
 		GUIandor414 andorA10 = new GUIandor414(submodelModifiable);
@@ -284,46 +285,25 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, andorB11.getPin("Y4"), QB4                           , new Point(175, 770), new Point(175, 895), new Point(340, 895), new Point(340, 750));
 		//@formatter:on
 
-		addHighLevelStateSubcomponentID("c00", cell00);
-		addHighLevelStateSubcomponentID("c01", cell01);
-		addHighLevelStateSubcomponentID("c10", cell10);
-		addHighLevelStateSubcomponentID("c11", cell11);
-		addAtomicHighLevelStateID("q");
+		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler.addSubcomponentHighLevelState("c00", DelegatingSubcomponentHighLevelStateHandler::new).set(cell00, null);
+		highLevelStateHandler.addSubcomponentHighLevelState("c01", DelegatingSubcomponentHighLevelStateHandler::new).set(cell01, null);
+		highLevelStateHandler.addSubcomponentHighLevelState("c10", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, null);
+		highLevelStateHandler.addSubcomponentHighLevelState("c11", DelegatingSubcomponentHighLevelStateHandler::new).set(cell11, null);
+		highLevelStateHandler.addAtomicHighLevelState("q", BitVectorSplittingAtomicHighLevelStateHandler::new)
+				.set(Arrays.asList("c00.q", "c01.q", "c10.q", "c11.q"), Arrays.asList(4, 4, 4, 4));
 	}
 
 	@Override
-	public void setAtomicHighLevelState(String stateID, Object newState)
+	public Object getHighLevelState(String stateID)
 	{
-		switch (stateID)
-		{
-		case "q":
-			BitVector newStateCasted = (BitVector) newState;
-			setHighLevelState("c00.q", newStateCasted.subVector(0, 4));
-			setHighLevelState("c01.q", newStateCasted.subVector(4, 8));
-			setHighLevelState("c10.q", newStateCasted.subVector(8, 12));
-			setHighLevelState("c11.q", newStateCasted.subVector(12, 16));
-			break;
-		default:
-			// should not happen because we tell SubmodelComponent to only allow these state IDs.
-			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
-		}
+		return highLevelStateHandler.getHighLevelState(stateID);
 	}
 
 	@Override
-	public Object getAtomicHighLevelState(String stateID)
+	public void setHighLevelState(String stateID, Object newState)
 	{
-		switch (stateID)
-		{
-		case "q":
-			BitVector q00 = (BitVector) getHighLevelState("c00.q");
-			BitVector q01 = (BitVector) getHighLevelState("c01.q");
-			BitVector q10 = (BitVector) getHighLevelState("c10.q");
-			BitVector q11 = (BitVector) getHighLevelState("c11.q");
-			return q00.concat(q01).concat(q10).concat(q11);
-		default:
-			// should not happen because we tell SubmodelComponent to only allow these state IDs.
-			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
-		}
+		highLevelStateHandler.setHighLevelState(stateID, newState);
 	}
 
 	static

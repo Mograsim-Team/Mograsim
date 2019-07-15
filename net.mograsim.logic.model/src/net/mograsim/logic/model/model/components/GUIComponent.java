@@ -14,11 +14,13 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.snippets.HighLevelStateHandler;
+import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 
 /**
  * The base class for all GUI components.<br>
- * A <code>GUIComponent</code> has a position and size. The size can only be modified by subclasses.<br>
+ * A <code>GUIComponent</code> has a reference to the ViewModel it belongs to.<br>
+ * A <code>GUIComponent</code> has a name. This name is unique in the model the <code>GUIComponent</code> belongs to.<br>
+ * A <code>GUIComponent</code> has a position and size. The size can only be modified by subclasses.
  * 
  * @author Daniel Kirschten
  */
@@ -148,7 +150,7 @@ public abstract class GUIComponent
 
 	/**
 	 * Sets the given high-level state to the given value. <br>
-	 * See {@link HighLevelStateHandler#setHighLevelState(String, Object)} for an explanation of high-level state IDs.
+	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
 	 * @see #getHighLevelState(String)
 	 * @see HighLevelStateHandler#setHighLevelState(String, Object)
@@ -163,7 +165,7 @@ public abstract class GUIComponent
 
 	/**
 	 * Gets the current value of the given high-level state. <br>
-	 * See {@link HighLevelStateHandler#setHighLevelState(String, Object)} for an explanation of high-level state IDs.
+	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
 	 * @see #setHighLevelState(String, Object)
 	 * @see HighLevelStateHandler#getHighLevelState(String)
@@ -277,7 +279,7 @@ public abstract class GUIComponent
 	// serializing
 
 	@SuppressWarnings("static-method") // this method is intended to be overridden
-	public JsonElement getParams()
+	public JsonElement getParamsForSerializing()
 	{
 		return JsonNull.INSTANCE;
 	}

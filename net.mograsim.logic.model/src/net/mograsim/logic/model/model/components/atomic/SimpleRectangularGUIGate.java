@@ -91,10 +91,10 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	 * {@link SimpleRectangularGUIGate}s implementation returns a {@link JsonPrimitive} of type int containing the {@link #logicWidth} of
 	 * this component.
 	 * 
-	 * @see GUIComponent#getParams()
+	 * @see GUIComponent#getParamsForSerializing()
 	 */
 	@Override
-	public JsonElement getParams()
+	public JsonElement getParamsForSerializing()
 	{
 		return new JsonPrimitive(logicWidth);
 	}

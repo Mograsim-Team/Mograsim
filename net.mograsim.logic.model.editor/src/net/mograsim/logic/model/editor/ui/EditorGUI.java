@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.editor.ui;
 
+import java.io.IOException;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -95,7 +97,15 @@ public class EditorGUI
 		//TODO
 //		DropDownEntry newEntry = new DropDownEntry("New", e -> {
 //		});
-		DropDownEntry loadEntry = new DropDownEntry("Load", e -> SaveLoadManager.openLoadDialog());
+		DropDownEntry loadEntry = new DropDownEntry("Load", e -> {
+			try
+			{
+				SaveLoadManager.openLoadDialog();
+			} catch (IOException e1)
+			{
+				editor.dialogManager.openWarningDialog("Failed to load Component!", e1.getMessage());
+			}
+		});
 		DropDownEntry saveEntry = new DropDownEntry("Save", e -> editor.save());
 		DropDownEntry saveAsEntry = new DropDownEntry("Save as...", e -> editor.saveAs());
 		
