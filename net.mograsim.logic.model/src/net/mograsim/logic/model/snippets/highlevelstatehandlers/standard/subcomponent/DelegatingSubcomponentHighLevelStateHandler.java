@@ -40,7 +40,7 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 	{
 		if (delegateTarget == null)
 			this.delegateTarget = parentComponent;
-		else if (!parentComponent.submodel.getComponentsByName().containsValue(delegateTarget))
+		else if (parentComponent.submodel.getComponentsByName().get(delegateTarget.name) != delegateTarget)
 			throw new IllegalArgumentException(
 					"Can only set components belonging to the submodel of the parent component of this handler as the delegate target");
 		this.delegateTarget = delegateTarget;
