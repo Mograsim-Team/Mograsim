@@ -43,15 +43,15 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		highLevelStateHandler.setHighLevelState(stateID, newState);
-	}
-
-	@Override
 	public Object getHighLevelState(String stateID)
 	{
 		return highLevelStateHandler.getHighLevelState(stateID);
+	}
+
+	@Override
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		highLevelStateHandler.setHighLevelState(stateID, newState);
 	}
 
 	@Override

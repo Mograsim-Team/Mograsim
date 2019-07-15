@@ -82,6 +82,20 @@ public class GUIManualSwitch extends GUIComponent
 	}
 
 	@Override
+	public Object getHighLevelState(String stateID)
+	{
+		switch (stateID)
+		{
+		case "out":
+			if (logicSwitch != null)
+				return logicSwitch.getValue();
+			return null;
+		default:
+			return super.getHighLevelState(stateID);
+		}
+	}
+
+	@Override
 	public void setHighLevelState(String stateID, Object newState)
 	{
 		switch (stateID)
@@ -93,20 +107,6 @@ public class GUIManualSwitch extends GUIComponent
 		default:
 			super.setHighLevelState(stateID, newState);
 			break;
-		}
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		switch (stateID)
-		{
-		case "out":
-			if (logicSwitch != null)
-				return logicSwitch.getValue();
-			return null;
-		default:
-			return super.getHighLevelState(stateID);
 		}
 	}
 
