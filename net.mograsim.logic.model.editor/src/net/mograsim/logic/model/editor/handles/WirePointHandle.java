@@ -14,7 +14,7 @@ public class WirePointHandle extends Handle
 	private final HandleManager manager;
 	private boolean selected = false;
 	public final GUIWire parent;
-	
+
 	private int pointIndex;
 
 	public WirePointHandle(HandleManager manager, GUIWire parent, int pointIndex)
@@ -33,7 +33,7 @@ public class WirePointHandle extends Handle
 		Point p = parent.getPathPoint(pointIndex);
 		moveTo(p.x, p.y);
 	}
-	
+
 	@Override
 	public void render(GeneralGC gc)
 	{
@@ -47,7 +47,7 @@ public class WirePointHandle extends Handle
 	{
 		parent.setPathPoint(new Point(x, y), pointIndex);
 	}
-	
+
 	@Override
 	public void onSelect()
 	{
@@ -61,13 +61,13 @@ public class WirePointHandle extends Handle
 		selected = false;
 		callRedrawListeners();
 	}
-	
+
 	@Override
 	public void reqDelete()
 	{
 		manager.destroyWirePointHandle(parent, this);
 	}
-	
+
 	@Override
 	public HandleType getType()
 	{
@@ -76,6 +76,7 @@ public class WirePointHandle extends Handle
 
 	/**
 	 * Sets the index of the {@link Point} within the parent {@link Wire}s path that is controlled by this handle
+	 * 
 	 * @param index Index of the Point in the Wires path.
 	 * @throws IndexOutOfBoundsException
 	 */

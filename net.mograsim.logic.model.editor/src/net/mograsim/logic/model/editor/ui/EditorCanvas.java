@@ -22,9 +22,8 @@ public class EditorCanvas extends LogicUICanvas
 		super(parent, style, editor.toBeEdited.submodel);
 
 		handles = editor.handleManager.getHandles();
-		editor.handleManager.addHandleAddedListener(h -> 
-		h.addRedrawListener(this::redrawThreadsafe));
-		//TODO: Is this even necessary? The Handle should be finalized by the gc
+		editor.handleManager.addHandleAddedListener(h -> h.addRedrawListener(this::redrawThreadsafe));
+		// TODO: Is this even necessary? The Handle should be finalized by the gc
 		editor.handleManager.addHandleRemovedListener(h -> h.removeRedrawListener(this::redrawThreadsafe));
 
 		addZoomedRenderer(gc ->
@@ -34,10 +33,10 @@ public class EditorCanvas extends LogicUICanvas
 			if (background != null)
 				setBackground(background);// this.setBackground, not gc.setBackground to have the background fill the
 											// canvas
-			
+
 			TranslatedGC tgc = new TranslatedGC(gc, 0.0d, 0.0d, 1 / editor.toBeEdited.getSubmodelScale(), false);
 			editor.toBeEdited.getOutlineRenderer().render(tgc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom));
-			
+
 			handles.forEach(h -> h.render(gc, visibleRegion));
 		});
 	}

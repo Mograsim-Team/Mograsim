@@ -103,10 +103,11 @@ public class SelectionState extends EditorState
 			{
 				try
 				{
-					Pin p = editor.toBeEdited.addSubmodelInterface(new MovablePin(editor.toBeEdited, result[0],
-							Integer.parseInt(result[1]), clicked.x, clicked.y));
+					Pin p = editor.toBeEdited.addSubmodelInterface(
+							new MovablePin(editor.toBeEdited, result[0], Integer.parseInt(result[1]), clicked.x, clicked.y));
 					editor.handleManager.getInterfacePinHandle(p).reqMove(clicked.x, clicked.y);
-				} catch (NumberFormatException e)
+				}
+				catch (NumberFormatException e)
 				{
 					editor.dialogManager.openWarningDialog("Failed to create Pin!", "Bit width must be a number!");
 				}

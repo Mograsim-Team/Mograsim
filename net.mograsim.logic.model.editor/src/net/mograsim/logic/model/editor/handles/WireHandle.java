@@ -25,7 +25,7 @@ public class WireHandle extends Handle implements PathChangedListener
 		parent.addPathChangedListener(this);
 		updateBounds();
 	}
-	
+
 	@Override
 	void destroy()
 	{
@@ -39,18 +39,18 @@ public class WireHandle extends Handle implements PathChangedListener
 		moveTo(r.x, r.y);
 		setSize(r.width, r.height);
 	}
-	
+
 	@Override
 	public void render(GeneralGC gc)
 	{
-		if(selected)
+		if (selected)
 		{
 			gc.setLineWidth(WIDTH);
 			gc.setForeground(Display.getDefault().getSystemColor(SWT.COLOR_YELLOW));
 			gc.drawPolyline(parent.getEffectivePath());
 		}
 	}
-		
+
 	@Override
 	public void onSelect()
 	{
@@ -64,42 +64,43 @@ public class WireHandle extends Handle implements PathChangedListener
 		selected = false;
 		callRedrawListeners();
 	}
-	
+
 	@Override
 	public void reqDelete()
 	{
 		parent.destroy();
 	}
-	
+
 	@Override
 	public boolean contains(double x, double y)
 	{
 		return click(parent, x, y).isPresent();
 	}
-	
+
 	@Override
 	public boolean click(double x, double y, int stateMask, EditorState state)
 	{
 		Optional<WireClickData> op = click(parent, x, y);
-		if(op.isEmpty())
+		if (op.isEmpty())
 			return false;
 		WireClickData data = op.get();
 		return state.clickedHandle(new WireHandleClickInfo(this, data.segment, data.pos, stateMask));
 	}
-	
+
 	public static class WireHandleClickInfo extends HandleClickInfo
 	{
 		public final int segment;
 		public final Point posOnWire;
+
 		WireHandleClickInfo(WireHandle clicked, int segment, Point posOnWire, int stateMask)
 		{
 			super(clicked, stateMask);
 			this.segment = segment;
 			this.posOnWire = posOnWire;
 		}
-		
+
 	}
-	
+
 	private static Optional<WireClickData> click(GUIWire w, double x, double y)
 	{
 		Rectangle modifiedBounds = w.getBounds();
@@ -112,8 +113,8 @@ public class WireHandle extends Handle implements PathChangedListener
 			double[] effectivePath = w.getEffectivePath();
 			for (int i = 3; i < effectivePath.length; i += 2)
 			{
-				double a1 = effectivePath[i - 3], a2 = effectivePath[i - 2], b1 = effectivePath[i - 1],
-						b2 = effectivePath[i], r1 = b2 - a2, r2 = a1 - b1;
+				double a1 = effectivePath[i - 3], a2 = effectivePath[i - 2], b1 = effectivePath[i - 1], b2 = effectivePath[i], r1 = b2 - a2,
+						r2 = a1 - b1;
 
 				double f = ((x - a1) * r2 + (a2 - y) * r1) / (-r2 * r2 - r1 * r1);
 				if (f >= 0 && f <= 1)
@@ -146,7 +147,7 @@ public class WireHandle extends Handle implements PathChangedListener
 		 */
 		public final int segment;
 	}
-	
+
 	@Override
 	public HandleType getType()
 	{

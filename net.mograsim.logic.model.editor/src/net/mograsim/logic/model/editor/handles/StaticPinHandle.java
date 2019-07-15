@@ -40,13 +40,13 @@ public class StaticPinHandle extends PinHandle
 	{
 		return getPosX() + CIRCLE_RADIUS;
 	}
-	
+
 	@Override
 	public double getCenterY()
 	{
 		return getPosY() + CIRCLE_RADIUS;
 	}
-	
+
 	@Override
 	public HandleType getType()
 	{

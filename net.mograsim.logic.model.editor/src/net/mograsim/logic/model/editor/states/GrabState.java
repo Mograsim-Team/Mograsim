@@ -9,7 +9,7 @@ import net.mograsim.logic.model.editor.handles.Handle;
 public class GrabState extends EditorState
 {
 	private Map<Handle, Point> offsets;
-	
+
 	public GrabState(Editor editor, StateManager manager)
 	{
 		super(editor, manager);
@@ -18,9 +18,9 @@ public class GrabState extends EditorState
 	@Override
 	public void onEntry()
 	{
-		 offsets = editor.getSelection().calculateOffsets();
+		offsets = editor.getSelection().calculateOffsets();
 	}
-	
+
 	@Override
 	public void grab()
 	{

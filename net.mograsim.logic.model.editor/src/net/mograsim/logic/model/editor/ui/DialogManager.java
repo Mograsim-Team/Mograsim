@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Text;
 public class DialogManager
 {
 	private Shell parent;
-	
+
 	public DialogManager(Shell parent)
 	{
 		this.parent = parent;
@@ -32,14 +32,14 @@ public class DialogManager
 	private static abstract class FlexibleInputsDialog extends Dialog
 	{
 		private final String title, acceptLabel, cancelLabel;
-		
+
 		protected String[] result;
 
 		public FlexibleInputsDialog(String title, String acceptLabel, String cancelLabel, String... inputs)
 		{
 			this(false, title, acceptLabel, cancelLabel, inputs);
 		}
-		
+
 		public FlexibleInputsDialog(boolean resizable, String title, String acceptLabel, String cancelLabel, String... inputs)
 		{
 			super(new Shell(SWT.CLOSE | (resizable ? SWT.RESIZE | SWT.MAX : 0) | SWT.TITLE | SWT.MIN | SWT.ON_TOP | SWT.APPLICATION_MODAL));
@@ -47,8 +47,9 @@ public class DialogManager
 			this.acceptLabel = acceptLabel;
 			this.cancelLabel = cancelLabel;
 		}
-		
+
 		protected abstract void setupWidgets(Composite parent);
+
 		protected abstract void buildResult();
 
 		/**
@@ -73,15 +74,14 @@ public class DialogManager
 			gd.grabExcessVerticalSpace = true;
 			inputContainer.setLayoutData(gd);
 			setupWidgets(inputContainer);
-			
-			
+
 			Button b1 = new Button(shell, SWT.PUSH);
 			b1.addListener(SWT.Selection, e ->
 			{
 				buildResult();
 				shell.dispose();
 			});
-			
+
 			b1.setText(acceptLabel);
 			Button b2 = new Button(shell, SWT.PUSH);
 			b2.addListener(SWT.Selection, e ->
@@ -104,13 +104,13 @@ public class DialogManager
 	{
 		private final String[] inputs;
 		private Text[] textFields;
-		
+
 		public MultiTextFieldsDialog(String title, String acceptLabel, String cancelLabel, String... inputs)
 		{
 			super(title, acceptLabel, cancelLabel);
 			this.inputs = inputs;
 		}
-		
+
 		@Override
 		protected void setupWidgets(Composite parent)
 		{
@@ -138,28 +138,29 @@ public class DialogManager
 			for (int i = 0; i < textFields.length; i++)
 				result[i] = textFields[i].getText();
 		}
-		
+
 	}
-	
+
 	/**
-	 * @return The Strings entered, in order of the input labels the dialog was opened with, if the dialog was accepted, null if the dialog was cancelled.
+	 * @return The Strings entered, in order of the input labels the dialog was opened with, if the dialog was accepted, null if the dialog
+	 *         was cancelled.
 	 */
 	public static String[] openMultiTextDialog(String title, String acceptLabel, String cancelLabel, String... inputs)
 	{
 		return new MultiTextFieldsDialog(title, acceptLabel, cancelLabel, inputs).open();
 	}
-	
+
 	public static class MultiLineTextFieldDialog extends FlexibleInputsDialog
 	{
 		private final String input;
 		private Text textField;
-		
+
 		public MultiLineTextFieldDialog(String title, String acceptLabel, String cancelLabel, String input)
 		{
 			super(true, title, acceptLabel, cancelLabel);
 			this.input = input;
 		}
-		
+
 		@Override
 		protected void setupWidgets(Composite parent)
 		{
@@ -184,7 +185,7 @@ public class DialogManager
 		protected void buildResult()
 		{
 			result = new String[] { textField.getText() };
-		}	
+		}
 	}
 
 	/**

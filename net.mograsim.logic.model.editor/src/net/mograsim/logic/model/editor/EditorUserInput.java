@@ -12,7 +12,7 @@ import net.mograsim.logic.model.editor.ui.EditorGUI;
 public class EditorUserInput
 {
 	private final EditorGUI gui;
-	
+
 	public EditorUserInput(Editor editor)
 	{
 		this.gui = editor.gui;
@@ -38,7 +38,9 @@ public class EditorUserInput
 			}
 
 			@Override
-			public void mouseUp(MouseEvent e) {}
+			public void mouseUp(MouseEvent e)
+			{
+			}
 		});
 
 		gui.logicCanvas.addMouseMoveListener((e) ->
@@ -49,14 +51,14 @@ public class EditorUserInput
 
 		gui.logicCanvas.addKeyListener(new KeyListener()
 		{
-			
+
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
@@ -96,7 +98,7 @@ public class EditorUserInput
 			}
 		});
 	}
-	
+
 	public Point getCanvasMousePosition()
 	{
 		return new Point(gui.logicCanvas.toControl(gui.display.getCursorLocation()));

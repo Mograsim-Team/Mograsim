@@ -31,7 +31,7 @@ public class ComponentHandle extends Handle
 		});
 		moveTo(parent.getPosX(), parent.getPosY());
 	}
-	
+
 	@Override
 	protected void moveTo(double x, double y)
 	{
@@ -74,7 +74,7 @@ public class ComponentHandle extends Handle
 		selected = false;
 		callRedrawListeners();
 	}
-	
+
 	@Override
 	public void reqDelete()
 	{
@@ -84,10 +84,10 @@ public class ComponentHandle extends Handle
 	@Override
 	public Optional<ComponentInfo> reqCopy(Point refPoint)
 	{
-		return Optional.of(new ComponentInfo(parent.getPosX() - refPoint.x, parent.getPosY() - refPoint.y,
-				Editor.getIdentifier(parent), parent.getParamsForSerializing()));
+		return Optional.of(new ComponentInfo(parent.getPosX() - refPoint.x, parent.getPosY() - refPoint.y, Editor.getIdentifier(parent),
+				parent.getParamsForSerializing()));
 	}
-	
+
 	@Override
 	public HandleType getType()
 	{

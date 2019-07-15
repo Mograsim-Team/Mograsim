@@ -63,7 +63,7 @@ public class CreateWireState extends EditorState
 			try
 			{
 				editor.addWire(origin, (PinHandle) handleClickInfo.clicked);
-			} 
+			}
 			catch (IllegalArgumentException e)
 			{
 				Shell tmp = new Shell(Display.getCurrent());

@@ -10,6 +10,8 @@ public abstract class PinHandle extends Handle
 	}
 
 	public abstract Pin getPin();
+
 	public abstract double getCenterX();
+
 	public abstract double getCenterY();
 }

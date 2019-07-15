@@ -61,8 +61,8 @@ public class Selection implements Iterable<Handle>
 		return getCorner(-Double.MAX_VALUE, Double::max, r -> r.width, -Double.MAX_VALUE, Double::max, r -> r.height);
 	}
 
-	public Point getCorner(double xIdentity, DoubleBinaryOperator xOp, Offset xOffset, double yIdentity,
-			DoubleBinaryOperator yOp, Offset yOffset)
+	public Point getCorner(double xIdentity, DoubleBinaryOperator xOp, Offset xOffset, double yIdentity, DoubleBinaryOperator yOp,
+			Offset yOffset)
 	{
 		double x = xIdentity, y = yIdentity;
 		for (Handle c : selection)

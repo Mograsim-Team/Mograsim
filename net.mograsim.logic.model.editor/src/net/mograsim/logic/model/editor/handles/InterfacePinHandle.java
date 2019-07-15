@@ -43,8 +43,7 @@ public class InterfacePinHandle extends PinHandle
 		if (selected)
 		{
 			gc.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_YELLOW));
-			gc.drawOval(x - SELECTED_CIRCLE_OFFSET, y - SELECTED_CIRCLE_OFFSET, SELECTED_CIRCLE_DIAM,
-					SELECTED_CIRCLE_DIAM);
+			gc.drawOval(x - SELECTED_CIRCLE_OFFSET, y - SELECTED_CIRCLE_OFFSET, SELECTED_CIRCLE_DIAM, SELECTED_CIRCLE_DIAM);
 		}
 		gc.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
 		gc.fillOval(getPosX(), getPosY(), CIRCLE_DIAM, CIRCLE_DIAM);
@@ -75,7 +74,7 @@ public class InterfacePinHandle extends PinHandle
 	{
 		owner.removeSubmodelInterface(parent.name);
 	}
-	
+
 	@Override
 	protected void moveTo(double x, double y)
 	{
