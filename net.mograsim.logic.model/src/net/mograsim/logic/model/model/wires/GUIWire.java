@@ -2,7 +2,9 @@ package net.mograsim.logic.model.model.wires;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.swt.SWT;
 
@@ -57,6 +59,8 @@ public class GUIWire
 	private double[] effectivePath;
 
 	private final List<Runnable> redrawListeners;
+
+	private final Set<PathChangedListener> pathChangedListeners;
 
 	/**
 	 * A LogicObserver calling redrawListeners. Used for logic model bindings.
@@ -146,6 +150,7 @@ public class GUIWire
 	 */
 	public GUIWire(ViewModelModifiable model, Pin pin1, Pin pin2, Point... path)
 	{
+		pathChangedListeners = new HashSet<>();
 		logicObs = (i) -> callRedrawListeners();
 		this.model = model;
 		this.logicWidth = pin1.logicWidth;
@@ -354,11 +359,90 @@ public class GUIWire
 	public void removeRedrawListener(Runnable listener) {redrawListeners         .remove(listener);}
 
 	private void callRedrawListeners() {redrawListeners.forEach(l -> l.run());}
+	
+	public void addPathChangedListener(PathChangedListener l) { pathChangedListeners.add(l); }
+
+	public void removePathChangedListener(PathChangedListener l) { pathChangedListeners.remove(l); }
+
+	public void callPathChangedListeners(int diff) { pathChangedListeners.forEach(l -> l.pathChanged(this, diff)); }
+	
+	@FunctionalInterface
+	public static interface PathChangedListener
+	{
+		/**
+		 * Called whenever the {@link Wire}'s path changes
+		 * 
+		 * @param wire The wire which had its path changed
+		 * @param diff The length difference between before and after the path change.
+		 */
+		public void pathChanged(GUIWire wire, int diff);
+	}
 	// @formatter:on
 
 	@Override
 	public String toString()
 	{
 		return "GUIWire [" + pin1 + "---" + pin2 + ", value=" + (end == null ? "null" : end.getValues()) + "]";
+	}
+
+	public void setPath(Point[] path)
+	{
+		int diff = (path == null ? 0 : path.length) - (this.path == null ? 0 : this.path.length);
+		this.path = path == null ? null : path.clone();
+		recalculateEffectivePath();
+		callPathChangedListeners(diff);
+		callRedrawListeners();
+	}
+
+	public void setPathPoint(Point p, int index)
+	{
+		path[index] = p;
+		recalculateEffectivePath();
+		callPathChangedListeners(0);
+		callRedrawListeners();
+	}
+
+	public void insertPathPoint(Point p, int index)
+	{
+		Point[] path = getPath();
+		if (path == null)
+			setPath(new Point[] { p });
+		else
+		{
+			Point[] newPath = new Point[path.length + 1];
+			System.arraycopy(path, 0, newPath, 0, index);
+			if (index < path.length)
+				System.arraycopy(path, index, newPath, index + 1, path.length - index);
+			newPath[index] = p;
+			setPath(newPath);
+		}
+	}
+
+	public void removePathPoint(int index)
+	{
+		Point[] path = getPath();
+		Point[] newPath = new Point[path.length - 1];
+		System.arraycopy(path, 0, newPath, 0, index);
+		if (index < path.length - 1)
+			System.arraycopy(path, index + 1, newPath, index, path.length - index - 1);
+		setPath(newPath);
+	}
+
+	/**
+	 * @throws IndexOutOfBoundsException
+	 */
+	public Point getPathPoint(int index)
+	{
+		return path[index];
+	}
+
+	public int getPathLength()
+	{
+		return path.length;
+	}
+
+	public double[] getEffectivePath()
+	{
+		return effectivePath.clone();
 	}
 }
