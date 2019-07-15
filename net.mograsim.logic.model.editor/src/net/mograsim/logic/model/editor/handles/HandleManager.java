@@ -89,7 +89,7 @@ public class HandleManager
 			comps.remove(interfaceComp);
 			registerInterfaceComponent(interfaceComp);
 			comps.forEach(c -> registerComponent(c));
-			
+
 			model.getWires().forEach(w -> registerWire(w));
 			addHandle(cornerHandle = new CornerHandle(editor.toBeEdited));
 		}
@@ -116,17 +116,17 @@ public class HandleManager
 	{
 		wire.addPathChangedListener((w, diff) ->
 		{
-			if(diff != 0)
+			if (diff != 0)
 			{
-				if(diff > 0)
+				if (diff > 0)
 				{
-					for(int i = 0; i < diff; i++)
+					for (int i = 0; i < diff; i++)
 						addWirePointHandle(w);
 				}
-				
+
 				List<WirePointHandle> wpHandles = pointHandlesPerWire.get(w);
 				int size = wpHandles.size();
-				for(int i = 0; i < size; i++)
+				for (int i = 0; i < size; i++)
 				{
 					wpHandles.get(i).setIndex(i);
 				}
@@ -176,8 +176,8 @@ public class HandleManager
 
 	private void addInterfacePinHandle(Pin p)
 	{
-		//The following is not an alternative to the cast, because the new pin is not yet in the map, when the listener is called
-		//editor.toBeEdited.getSubmodelMovablePins().get(p.name);
+		// The following is not an alternative to the cast, because the new pin is not yet in the map, when the listener is called
+		// editor.toBeEdited.getSubmodelMovablePins().get(p.name);
 		MovablePin pM = (MovablePin) p;
 		InterfacePinHandle h = new InterfacePinHandle(pM, editor.toBeEdited);
 		handlePerInterfacePin.put(pM, h);
@@ -207,7 +207,7 @@ public class HandleManager
 		this.wirePointHandles.add(h);
 		addHandle(h);
 	}
-	
+
 	void destroyWirePointHandle(GUIWire owner, WirePointHandle h)
 	{
 		List<WirePointHandle> handles = pointHandlesPerWire.get(owner);
@@ -219,7 +219,7 @@ public class HandleManager
 
 	private void removeWirePointHandles(GUIWire owner)
 	{
-		if(!pointHandlesPerWire.containsKey(owner))
+		if (!pointHandlesPerWire.containsKey(owner))
 			return;
 		pointHandlesPerWire.get(owner).forEach(h ->
 		{
@@ -270,7 +270,7 @@ public class HandleManager
 	{
 		return handlePerWire.get(parent);
 	}
-	
+
 	public Handle getInterfacePinHandle(Pin p)
 	{
 		return handlePerInterfacePin.get(p);
@@ -299,7 +299,7 @@ public class HandleManager
 	{
 		return Collections.unmodifiableCollection(handlePerPin.values());
 	}
-	
+
 	/**
 	 * @return An unmodifiable view of all registered {@link InterfacePinHandle}s
 	 */
@@ -342,7 +342,7 @@ public class HandleManager
 					if (!click(getWirePointHandles(), clicked, entryState, stateMask))
 						if (!click(getWireHandles(), clicked, entryState, stateMask))
 							if (!click(handlePerComp.values(), clicked, entryState, stateMask))
-									entryState.clickedEmpty(clicked, stateMask);
+								entryState.clickedEmpty(clicked, stateMask);
 		entryState.clicked(clicked, stateMask);
 	}
 

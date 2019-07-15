@@ -12,7 +12,7 @@ public class CornerHandle extends Handle
 	private final static int LENGTH = 5;
 	private final DeserializedSubmodelComponent toBeEdited;
 	private boolean selected;
-	
+
 	public CornerHandle(DeserializedSubmodelComponent toBeEdited)
 	{
 		super();
@@ -34,20 +34,20 @@ public class CornerHandle extends Handle
 		double subScale = toBeEdited.getSubmodelScale();
 		moveTo(bounds.width / subScale, bounds.height / subScale);
 	}
-	
+
 	@Override
 	public void reqMove(double x, double y)
 	{
 		moveTo(x, y);
 	}
-	
+
 	@Override
 	public void onSelect()
 	{
 		selected = true;
 		callRedrawListeners();
 	}
-	
+
 	@Override
 	public void onDeselect()
 	{
@@ -62,7 +62,7 @@ public class CornerHandle extends Handle
 		double subScale = toBeEdited.getSubmodelScale();
 		toBeEdited.setSize(x * subScale, y * subScale);
 	}
-	
+
 	@Override
 	public HandleType getType()
 	{

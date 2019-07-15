@@ -20,7 +20,7 @@ public class EditableSubmodelComponent extends DeserializedSubmodelComponent
 
 	public EditableSubmodelComponent(ViewModelModifiable model, String label)
 	{
-		super(model, label, null, null); //TODO: set name properly
+		super(model, label, null, null); // TODO: set name properly
 		this.label = label;
 		setSubmodelScale(0.2);
 		addSubmodelInterface(new MovablePin(this, "A Pin", 1, 0, 10));
@@ -50,8 +50,7 @@ public class EditableSubmodelComponent extends DeserializedSubmodelComponent
 		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
 		if (textColor != null)
 			gc.setForeground(textColor);
-		gc.drawText(label, getPosX() + (getWidth() - textExtent.x) / 2, getPosY() + (getHeight() - textExtent.y) / 2,
-				true);
+		gc.drawText(label, getPosX() + (getWidth() - textExtent.x) / 2, getPosY() + (getHeight() - textExtent.y) / 2, true);
 		gc.setFont(new Font(oldFont.getName(), pinNameFontHeight, oldFont.getStyle()));
 		for (String name : pinsUnmodifiable.keySet())
 		{

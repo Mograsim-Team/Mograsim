@@ -14,7 +14,7 @@ public abstract class Handle
 {
 	private final Rectangle bounds;
 	private final Collection<Runnable> redrawListeners, destroyListeners;
-	
+
 	public Handle()
 	{
 		redrawListeners = new ArrayList<>();
@@ -44,7 +44,7 @@ public abstract class Handle
 		bounds.y = y;
 		callRedrawListeners();
 	}
-	
+
 	public Rectangle getBounds()
 	{
 		return new Rectangle(bounds.x, bounds.y, bounds.width, bounds.height);
@@ -89,26 +89,27 @@ public abstract class Handle
 	{
 		redrawListeners.remove(listener);
 	}
-	
+
 	public boolean contains(double x, double y)
 	{
 		return bounds.contains(x, y);
 	}
-	
+
 	public boolean contains(Point p)
 	{
 		return contains(p.x, p.y);
 	}
-	
+
 	/**
 	 * Register a mouse click
+	 * 
 	 * @param x Coordinate of the click in the world, not the display context
 	 * @param y Coordinate of the click in the world, not the display context
 	 * @return true if the click was consumed, false otherwise
 	 */
 	public boolean click(double x, double y, int stateMask, EditorState state)
 	{
-		if(contains(x, y))
+		if (contains(x, y))
 			return state.clickedHandle(new HandleClickInfo(this, stateMask));
 		return false;
 	}
@@ -120,23 +121,23 @@ public abstract class Handle
     public void onSelect() {}
     public void onDeselect() {}
     //@formatter:on
-    
-    public abstract HandleType getType();
-    
-    public static enum HandleType
-    {
-    	COMPONENT, STATIC_PIN, INTERFACE_PIN, WIRE_POINT, WIRE, CORNER;
-    }
-    
-    public static class HandleClickInfo
-    {
-    	public final int stateMask;
-    	public final Handle clicked;
-    	
-    	HandleClickInfo(Handle clicked, int stateMask)
-    	{
-    		this.clicked = clicked;
-    		this.stateMask = stateMask;
-    	}
-    }
+
+	public abstract HandleType getType();
+
+	public static enum HandleType
+	{
+		COMPONENT, STATIC_PIN, INTERFACE_PIN, WIRE_POINT, WIRE, CORNER;
+	}
+
+	public static class HandleClickInfo
+	{
+		public final int stateMask;
+		public final Handle clicked;
+
+		HandleClickInfo(Handle clicked, int stateMask)
+		{
+			this.clicked = clicked;
+			this.stateMask = stateMask;
+		}
+	}
 }

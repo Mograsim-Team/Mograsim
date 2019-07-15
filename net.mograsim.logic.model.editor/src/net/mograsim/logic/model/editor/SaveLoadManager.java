@@ -28,7 +28,7 @@ public class SaveLoadManager
 	public void openSaveAsDialog()
 	{
 		String result[] = DialogManager.openMultiTextDialog("Save as...", "Save", "Cancel", "Path");
-		if(result != null)
+		if (result != null)
 		{
 			savePath = result[0];
 			innerSave();
@@ -39,13 +39,14 @@ public class SaveLoadManager
 	{
 		try
 		{
-			SubmodelComponentSerializer.serialize(editor.toBeEdited,c ->
+			SubmodelComponentSerializer.serialize(editor.toBeEdited, c ->
 			{
 				if (Editor.identifierPerComponent.containsKey(c))
 					return Editor.identifierPerComponent.get(c);
 				return "class:" + c.getClass().getCanonicalName();
 			}, savePath);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			savePath = null;
 			System.err.println("Failed to save component!");
@@ -56,7 +57,7 @@ public class SaveLoadManager
 	public static void openLoadDialog() throws IOException
 	{
 		String[] result = DialogManager.openMultiTextDialog("Load Component...", "Load", "Cancel", "Path");
-		if(result != null)
+		if (result != null)
 		{
 			new Editor((DeserializedSubmodelComponent) SubmodelComponentSerializer.deserialize(new ViewModelModifiable(), result[0]));
 		}

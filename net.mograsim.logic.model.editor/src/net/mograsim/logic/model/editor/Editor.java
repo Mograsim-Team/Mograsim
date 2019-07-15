@@ -53,10 +53,10 @@ public final class Editor
 		dialogManager = new DialogManager(gui.shell);
 
 		toBeEdited.submodel.addComponentRemovedListener(c -> identifierPerComponent.remove(c));
-		
+
 		gui.open();
 	}
-	
+
 	public ViewModelModifiable getSubmodel()
 	{
 		return toBeEdited.getSubmodelModifiable();
@@ -67,8 +67,8 @@ public final class Editor
 		return selection;
 	}
 
-	//TODO: Remove this error prone method: Relative offset may change between multiple moves,
-	//because Handles have different ways of responding to reqMove(...), causing strange behaviour
+	// TODO: Remove this error prone method: Relative offset may change between multiple moves,
+	// because Handles have different ways of responding to reqMove(...), causing strange behaviour
 	@Deprecated
 	public void moveSelection(double x, double y)
 	{
@@ -84,7 +84,7 @@ public final class Editor
 			c.reqMove(newX, newY);
 		}
 	}
-	
+
 	public void moveHandles(double x, double y, Map<Handle, Point> handleOffsetMap)
 	{
 		Point snapped = new Point(x, y);
@@ -113,7 +113,7 @@ public final class Editor
 		for (Handle h : selection)
 		{
 			Optional<ComponentInfo> cInfo = h.reqCopy(refPoint);
-			if(cInfo.isPresent())
+			if (cInfo.isPresent())
 				copyBuffer.add(cInfo.get());
 		}
 	}
@@ -130,12 +130,12 @@ public final class Editor
 		}
 		moveSelection(x, y);
 	}
-	
+
 	public void save()
 	{
 		saveManager.save();
 	}
-	
+
 	public void saveAs()
 	{
 		saveManager.openSaveAsDialog();
@@ -145,8 +145,7 @@ public final class Editor
 	{
 		boolean successful = false;
 		JsonElement params = JsonNull.INSTANCE;
-		outer:
-		while(!successful)
+		outer: while (!successful)
 		{
 			String selected = gui.getAddListSelected();
 			try
@@ -157,24 +156,23 @@ public final class Editor
 				moveSelection(x, y);
 				successful = true;
 			}
-			catch(UnsupportedOperationException | JsonSyntaxException | NumberFormatException e)
+			catch (@SuppressWarnings("unused") UnsupportedOperationException | JsonSyntaxException | NumberFormatException e)
 			{
 				String result = DialogManager.openMultiLineTextDialog("Add component", "Create", "Cancel", "Parameters:");
-				if(result == null)
+				if (result == null)
 					break outer;
 				params = new JsonParser().parse(result);
 			}
 		}
 	}
-	
+
 	private GUIComponent addComponent(String identifier, JsonElement params)
 	{
-		GUIComponent comp = IndirectGUIComponentCreator.createComponent(toBeEdited.getSubmodelModifiable(), identifier,
-				params);
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(toBeEdited.getSubmodelModifiable(), identifier, params);
 		identifierPerComponent.put(comp, identifier);
 		return comp;
 	}
-	
+
 	public static String getIdentifier(GUIComponent c)
 	{
 		return identifierPerComponent.get(c);
@@ -197,6 +195,8 @@ public final class Editor
 			newP.x -= newP.x % snapX;
 			newP.y -= newP.y % snapY;
 			break;
+		default:
+			break;
 		}
 	}
 
@@ -205,7 +205,7 @@ public final class Editor
 		public final double relX, relY;
 		public final String identifier;
 		public final JsonElement params;
-		
+
 		public ComponentInfo(double relX, double relY, String identifier, JsonElement params)
 		{
 			this.relX = relX;
@@ -215,6 +215,7 @@ public final class Editor
 		}
 	}
 
+	@SuppressWarnings("unused")
 	public void addWire(PinHandle a, PinHandle b)
 	{
 		new GUIWire(toBeEdited.getSubmodelModifiable(), a.getPin(), b.getPin(), new Point[0]);
@@ -223,14 +224,14 @@ public final class Editor
 	public static enum Snapping
 	{
 		OFF, ABSOLUTE;
-		
+
 		@Override
 		public String toString()
 		{
 			return super.toString().toLowerCase();
 		}
 	}
-	
+
 	public static void main(String[] args) throws IOException
 	{
 		SaveLoadManager.openLoadDialog();

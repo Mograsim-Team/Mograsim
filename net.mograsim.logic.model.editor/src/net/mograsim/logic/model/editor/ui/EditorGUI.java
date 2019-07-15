@@ -52,7 +52,7 @@ public class EditorGUI
 		innerCompData.horizontalAlignment = SWT.FILL;
 		innerCompData.verticalAlignment = SWT.FILL;
 		innerComp.setLayoutData(innerCompData);
-		
+
 		GridLayout innerLayout = new GridLayout();
 		innerComp.setLayout(innerLayout);
 		innerLayout.numColumns = 2;
@@ -65,7 +65,7 @@ public class EditorGUI
 
 		logicCanvas = new EditorCanvas(innerComp, SWT.TRAIL, editor);
 		logicCanvas.setLayoutData(d);
-		
+
 		d = new GridData();
 		d.grabExcessVerticalSpace = true;
 		d.verticalAlignment = SWT.FILL;
@@ -73,7 +73,7 @@ public class EditorGUI
 		addList = new List(innerComp, SWT.V_SCROLL);
 		addList.setLayoutData(d);
 		refreshAddList();
-		
+
 		setupBottomToolBar(innerComp);
 
 		ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(logicCanvas);
@@ -94,25 +94,27 @@ public class EditorGUI
 
 		ToolItem file = new ToolItem(toolBar, SWT.DROP_DOWN);
 
-		//TODO
+		// TODO
 //		DropDownEntry newEntry = new DropDownEntry("New", e -> {
 //		});
-		DropDownEntry loadEntry = new DropDownEntry("Load", e -> {
+		DropDownEntry loadEntry = new DropDownEntry("Load", e ->
+		{
 			try
 			{
 				SaveLoadManager.openLoadDialog();
-			} catch (IOException e1)
+			}
+			catch (IOException e1)
 			{
 				editor.dialogManager.openWarningDialog("Failed to load Component!", e1.getMessage());
 			}
 		});
 		DropDownEntry saveEntry = new DropDownEntry("Save", e -> editor.save());
 		DropDownEntry saveAsEntry = new DropDownEntry("Save as...", e -> editor.saveAs());
-		
-		DropDownEntry[] entries = new DropDownEntry[] { loadEntry, saveEntry, saveAsEntry};
-		
+
+		DropDownEntry[] entries = new DropDownEntry[] { loadEntry, saveEntry, saveAsEntry };
+
 		setupDrowpDownMenu(file, entries);
-		
+
 		file.setText("File");
 		return toolBar;
 	}

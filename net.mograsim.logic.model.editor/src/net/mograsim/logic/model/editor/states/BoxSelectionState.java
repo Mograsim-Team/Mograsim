@@ -63,16 +63,14 @@ public class BoxSelectionState extends EditorState
 			Selection s = editor.getSelection();
 			s.clear();
 			boolean leftToRight = mX > origin.x, topToBottom = mY > origin.y;
-			double x = leftToRight ? origin.x : mX, y = topToBottom ? origin.y : mY,
-					width = leftToRight ? mX - origin.x : origin.x - mX,
+			double x = leftToRight ? origin.x : mX, y = topToBottom ? origin.y : mY, width = leftToRight ? mX - origin.x : origin.x - mX,
 					height = topToBottom ? mY - origin.y : origin.y - mY;
 
 			Rectangle selected = new Rectangle(x, y, width, height);
 			for (Handle h : editor.handleManager.getHandles())
 			{
 				Rectangle hBounds = h.getBounds();
-				if (selected.contains(hBounds.x, hBounds.y)
-						&& selected.contains(hBounds.x + hBounds.width, hBounds.y + hBounds.height))
+				if (selected.contains(hBounds.x, hBounds.y) && selected.contains(hBounds.x + hBounds.width, hBounds.y + hBounds.height))
 				{
 					s.add(h);
 				}
