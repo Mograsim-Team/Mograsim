@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.serializing;
 
+import java.util.Map;
+
 import com.google.gson.JsonElement;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -87,6 +89,12 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
+	public double getSubmodelScale()
+	{
+		return super.getSubmodelScale();
+	}
+
+	@Override
 	public void setSubmodelScale(double submodelScale)
 	{
 		super.setSubmodelScale(submodelScale);
@@ -99,9 +107,21 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	}
 
 	@Override
+	public Map<String, MovablePin> getSubmodelMovablePins()
+	{
+		return super.getSubmodelMovablePins();
+	}
+
+	@Override
 	public Pin addSubmodelInterface(MovablePin supermodelPin)
 	{
 		return super.addSubmodelInterface(supermodelPin);
+	}
+
+	@Override
+	public void removeSubmodelInterface(String name)
+	{
+		super.removeSubmodelInterface(name);
 	}
 
 	// TODO static initializer

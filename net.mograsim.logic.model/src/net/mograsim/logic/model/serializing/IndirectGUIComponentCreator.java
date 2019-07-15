@@ -3,6 +3,7 @@ package net.mograsim.logic.model.serializing;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +52,11 @@ public class IndirectGUIComponentCreator
 		if (!associatedComponentID.startsWith("file:") && !associatedComponentID.startsWith("class:"))
 			throw new IllegalArgumentException("Unrecognized component ID format: " + associatedComponentID);
 		standardComponentIDs.put(standardComponentID, associatedComponentID);
+	}
+
+	public static Collection<String> getStandardComponentIDs()
+	{
+		return standardComponentIDs.keySet();
 	}
 
 	public static void setComponentSupplier(String className, ComponentSupplier componentSupplier)
