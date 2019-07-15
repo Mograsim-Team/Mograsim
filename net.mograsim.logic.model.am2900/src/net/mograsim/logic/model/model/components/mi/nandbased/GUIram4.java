@@ -1,16 +1,22 @@
 package net.mograsim.logic.model.model.components.mi.nandbased;
 
+import java.util.Arrays;
+
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.WireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.BitVectorSplittingAtomicHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler;
 
 public class GUIram4 extends SimpleRectangularSubmodelComponent
 {
+	private StandardHighLevelStateHandler highLevelStateHandler;
+
 	public GUIram4(ViewModelModifiable model)
 	{
 		this(model, null);
@@ -287,81 +293,43 @@ public class GUIram4 extends SimpleRectangularSubmodelComponent
 		new GUIWire(submodelModifiable, andorA11.getPin("Y4"), QA4                           , new Point(195, 770), new Point(195, 895), new Point(325, 895), new Point(325, 350));
 		//@formatter:on
 
-		addHighLevelStateSubcomponentID("c00", cell00);
-		addHighLevelStateSubcomponentID("c01", cell01);
-		addHighLevelStateSubcomponentID("c10", cell10);
-		addHighLevelStateSubcomponentID("c11", cell11);
-		addAtomicHighLevelStateID("q");
+		this.highLevelStateHandler = new StandardHighLevelStateHandler(this);
+		highLevelStateHandler.addSubcomponentHighLevelState("c00", DelegatingSubcomponentHighLevelStateHandler::new).set(cell00, null);
+		highLevelStateHandler.addSubcomponentHighLevelState("c01", DelegatingSubcomponentHighLevelStateHandler::new).set(cell01, null);
+		highLevelStateHandler.addSubcomponentHighLevelState("c10", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, null);
+		highLevelStateHandler.addSubcomponentHighLevelState("c11", DelegatingSubcomponentHighLevelStateHandler::new).set(cell11, null);
+
+		highLevelStateHandler.addSubcomponentHighLevelState("c0000", DelegatingSubcomponentHighLevelStateHandler::new).set(cell00, "c00");
+		highLevelStateHandler.addSubcomponentHighLevelState("c0001", DelegatingSubcomponentHighLevelStateHandler::new).set(cell01, "c00");
+		highLevelStateHandler.addSubcomponentHighLevelState("c0010", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, "c00");
+		highLevelStateHandler.addSubcomponentHighLevelState("c0011", DelegatingSubcomponentHighLevelStateHandler::new).set(cell11, "c00");
+		highLevelStateHandler.addSubcomponentHighLevelState("c0100", DelegatingSubcomponentHighLevelStateHandler::new).set(cell00, "c01");
+		highLevelStateHandler.addSubcomponentHighLevelState("c0101", DelegatingSubcomponentHighLevelStateHandler::new).set(cell01, "c01");
+		highLevelStateHandler.addSubcomponentHighLevelState("c0110", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, "c01");
+		highLevelStateHandler.addSubcomponentHighLevelState("c0111", DelegatingSubcomponentHighLevelStateHandler::new).set(cell11, "c01");
+		highLevelStateHandler.addSubcomponentHighLevelState("c1000", DelegatingSubcomponentHighLevelStateHandler::new).set(cell00, "c10");
+		highLevelStateHandler.addSubcomponentHighLevelState("c1001", DelegatingSubcomponentHighLevelStateHandler::new).set(cell01, "c10");
+		highLevelStateHandler.addSubcomponentHighLevelState("c1010", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, "c10");
+		highLevelStateHandler.addSubcomponentHighLevelState("c1011", DelegatingSubcomponentHighLevelStateHandler::new).set(cell11, "c10");
+		highLevelStateHandler.addSubcomponentHighLevelState("c1100", DelegatingSubcomponentHighLevelStateHandler::new).set(cell00, "c11");
+		highLevelStateHandler.addSubcomponentHighLevelState("c1101", DelegatingSubcomponentHighLevelStateHandler::new).set(cell01, "c11");
+		highLevelStateHandler.addSubcomponentHighLevelState("c1110", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, "c11");
+		highLevelStateHandler.addSubcomponentHighLevelState("c1111", DelegatingSubcomponentHighLevelStateHandler::new).set(cell11, "c11");
+
+		highLevelStateHandler.addAtomicHighLevelState("q", BitVectorSplittingAtomicHighLevelStateHandler::new)
+				.set(Arrays.asList("c00.q", "c01.q", "c10.q", "c11.q"), Arrays.asList(16, 16, 16, 16));
 	}
 
 	@Override
-	public void setAtomicHighLevelState(String stateID, Object newState)
+	public Object getHighLevelState(String stateID)
 	{
-		switch (stateID)
-		{
-		case "q":
-			BitVector newStateCasted = (BitVector) newState;
-			setHighLevelState("c00.q", newStateCasted.subVector(0, 16));
-			setHighLevelState("c01.q", newStateCasted.subVector(16, 32));
-			setHighLevelState("c10.q", newStateCasted.subVector(32, 48));
-			setHighLevelState("c11.q", newStateCasted.subVector(48, 64));
-			break;
-		default:
-			// should not happen because we tell SubmodelComponent to only allow these state IDs.
-			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
-		}
+		return highLevelStateHandler.getHighLevelState(stateID);
 	}
 
 	@Override
-	protected void setSubcomponentHighLevelState(String subcomponentID, String subcomponentHighLevelStateID, Object newState)
+	public void setHighLevelState(String stateID, Object newState)
 	{
-		if (checkSubcomponentID(subcomponentID))
-			setHighLevelState(translateDirectCellAccess(subcomponentID, subcomponentHighLevelStateID), newState);
-		else
-			super.setSubcomponentHighLevelState(subcomponentID, subcomponentHighLevelStateID, newState);
-
-	}
-
-	@Override
-	public Object getAtomicHighLevelState(String stateID)
-	{
-		switch (stateID)
-		{
-		case "q":
-			BitVector q00 = (BitVector) getHighLevelState("c00.q");
-			BitVector q01 = (BitVector) getHighLevelState("c01.q");
-			BitVector q10 = (BitVector) getHighLevelState("c10.q");
-			BitVector q11 = (BitVector) getHighLevelState("c11.q");
-			return q00.concat(q01).concat(q10).concat(q11);
-		default:
-			// should not happen because we tell SubmodelComponent to only allow these state IDs.
-			throw new IllegalStateException("Illegal atomic state ID: " + stateID);
-		}
-	}
-
-	@Override
-	protected Object getSubcomponentHighLevelState(String subcomponentID, String subcomponentHighLevelStateID)
-	{
-		if (checkSubcomponentID(subcomponentID))
-			return getHighLevelState(translateDirectCellAccess(subcomponentID, subcomponentHighLevelStateID));
-		return super.getSubcomponentHighLevelState(subcomponentID, subcomponentHighLevelStateID);
-	}
-
-	private static String translateDirectCellAccess(String subcomponentID, String subcomponentHighLevelStateID)
-	{
-		return 'c' + subcomponentID.substring(3, 5) + "." + subcomponentID.substring(0, 3) + '.' + subcomponentHighLevelStateID;
-	}
-
-	private static boolean checkSubcomponentID(String subcomponentID)
-	{
-		if (subcomponentID.length() != 5 || subcomponentID.charAt(0) != 'c')
-			return false;
-		char addr3 = subcomponentID.charAt(1);
-		char addr2 = subcomponentID.charAt(2);
-		char addr1 = subcomponentID.charAt(3);
-		char addr0 = subcomponentID.charAt(4);
-		return (addr3 == '0' || addr3 == '1') || (addr2 == '0' || addr2 == '1') || (addr1 == '0' || addr1 == '1')
-				|| (addr0 == '0' || addr0 == '1');
+		highLevelStateHandler.setHighLevelState(stateID, newState);
 	}
 
 	static
