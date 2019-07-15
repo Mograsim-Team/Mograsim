@@ -4,13 +4,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-
-import net.mograsim.logic.model.editor.Editor;
 
 public class DialogManager
 {
@@ -28,106 +28,171 @@ public class DialogManager
 		b.setMessage(message);
 		b.open();
 	}
-	
-	public static class InteractiveDialog
-	{
-		private String[] finalInput;
-		private final Display display;
-		private final Shell shell;
-		private final Button b1, b2;
-		private Text[] textFields;
-		private InteractiveDialog.InteractiveDialogState state;
 
-		public InteractiveDialog(String title, String acceptLabel, String cancelLabel, String... inputs)
+	private static abstract class FlexibleInputsDialog extends Dialog
+	{
+		private final String title, acceptLabel, cancelLabel;
+		
+		protected String[] result;
+
+		public FlexibleInputsDialog(String title, String acceptLabel, String cancelLabel, String... inputs)
 		{
-			display = Display.getDefault();
-			shell = new Shell(SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.ON_TOP | SWT.APPLICATION_MODAL);
+			this(false, title, acceptLabel, cancelLabel, inputs);
+		}
+		
+		public FlexibleInputsDialog(boolean resizable, String title, String acceptLabel, String cancelLabel, String... inputs)
+		{
+			super(new Shell(SWT.CLOSE | (resizable ? SWT.RESIZE | SWT.MAX : 0) | SWT.TITLE | SWT.MIN | SWT.ON_TOP | SWT.APPLICATION_MODAL));
+			this.title = title;
+			this.acceptLabel = acceptLabel;
+			this.cancelLabel = cancelLabel;
+		}
+		
+		protected abstract void setupWidgets(Composite parent);
+		protected abstract void buildResult();
+
+		/**
+		 * @return May be null (if {@link Dialog} was cancelled)
+		 */
+		public String[] open()
+		{
+			Shell shell = getParent();
+			Display display = shell.getDisplay();
 			shell.setMinimumSize(500, 150);
 			shell.setText(title);
 			GridLayout layout = new GridLayout();
 			layout.numColumns = 2;
 			shell.setLayout(layout);
 
-			this.textFields = new Text[inputs.length];
-			for (int i = 0; i < inputs.length; i++)
-			{
-				Label textFieldName = new Label(shell, SWT.NONE);
-				textFieldName.setText(inputs[i].concat(":"));
-				GridData g = new GridData();
-				g.grabExcessHorizontalSpace = true;
-				g.horizontalAlignment = SWT.FILL;
-				Text newTextField = new Text(shell, SWT.BORDER);
-				newTextField.setLayoutData(g);
-				textFields[i] = newTextField;
-			}
-			b1 = new Button(shell, SWT.PUSH);
+			Composite inputContainer = new Composite(shell, SWT.BORDER);
+			GridData gd = new GridData();
+			gd.horizontalSpan = 2;
+			gd.horizontalAlignment = SWT.FILL;
+			gd.grabExcessHorizontalSpace = true;
+			gd.verticalAlignment = SWT.FILL;
+			gd.grabExcessVerticalSpace = true;
+			inputContainer.setLayoutData(gd);
+			setupWidgets(inputContainer);
+			
+			
+			Button b1 = new Button(shell, SWT.PUSH);
 			b1.addListener(SWT.Selection, e ->
 			{
-				state = InteractiveDialogState.ACCEPTED;
-				buildFinalInput();
-				dispose();
+				buildResult();
+				shell.dispose();
 			});
+			
 			b1.setText(acceptLabel);
-			b2 = new Button(shell, SWT.PUSH);
+			Button b2 = new Button(shell, SWT.PUSH);
 			b2.addListener(SWT.Selection, e ->
 			{
-				state = InteractiveDialogState.CANCELLED;
-				buildFinalInput();
-				dispose();
+				shell.dispose();
 			});
 			b2.setText(cancelLabel);
 
-			state = InteractiveDialogState.ACTIVE;
-
 			shell.pack();
-		}
 
-		public String getText()
-		{
-			return getText(0);
-		}
-
-		public String getText(int index)
-		{
-			if (!shell.isDisposed())
-				return textFields[index].getText();
-			else
-				return finalInput[index];
-		}
-
-		public void open()
-		{
 			shell.open();
 			while (!shell.isDisposed())
 				if (!display.readAndDispatch())
 					display.sleep();
-		}
-
-		public void dispose()
-		{
-			shell.dispose();
-		}
-
-		public InteractiveDialog.InteractiveDialogState getState()
-		{
-			return state;
-		}
-
-		private void buildFinalInput()
-		{
-			finalInput = new String[textFields.length];
-			for (int i = 0; i < textFields.length; i++)
-				finalInput[i] = textFields[i].getText();
-		}
-
-		public static enum InteractiveDialogState
-		{
-			ACTIVE, ACCEPTED, CANCELLED;
+			return result;
 		}
 	}
-	
-	public static void openAddPinDialog(Editor editor, double x, double y)
+
+	private static class MultiTextFieldsDialog extends FlexibleInputsDialog
 	{
+		private final String[] inputs;
+		private Text[] textFields;
 		
+		public MultiTextFieldsDialog(String title, String acceptLabel, String cancelLabel, String... inputs)
+		{
+			super(title, acceptLabel, cancelLabel);
+			this.inputs = inputs;
+		}
+		
+		@Override
+		protected void setupWidgets(Composite parent)
+		{
+			GridLayout layout = new GridLayout();
+			layout.numColumns = 2;
+			parent.setLayout(layout);
+			this.textFields = new Text[inputs.length];
+			for (int i = 0; i < inputs.length; i++)
+			{
+				Label textFieldName = new Label(parent, SWT.NONE);
+				textFieldName.setText(inputs[i].concat(":"));
+				GridData g = new GridData();
+				g.grabExcessHorizontalSpace = true;
+				g.horizontalAlignment = SWT.FILL;
+				Text newTextField = new Text(parent, SWT.BORDER);
+				newTextField.setLayoutData(g);
+				textFields[i] = newTextField;
+			}
+		}
+
+		@Override
+		protected void buildResult()
+		{
+			result = new String[textFields.length];
+			for (int i = 0; i < textFields.length; i++)
+				result[i] = textFields[i].getText();
+		}
+		
+	}
+	
+	/**
+	 * @return The Strings entered, in order of the input labels the dialog was opened with, if the dialog was accepted, null if the dialog was cancelled.
+	 */
+	public static String[] openMultiTextDialog(String title, String acceptLabel, String cancelLabel, String... inputs)
+	{
+		return new MultiTextFieldsDialog(title, acceptLabel, cancelLabel, inputs).open();
+	}
+	
+	public static class MultiLineTextFieldDialog extends FlexibleInputsDialog
+	{
+		private final String input;
+		private Text textField;
+		
+		public MultiLineTextFieldDialog(String title, String acceptLabel, String cancelLabel, String input)
+		{
+			super(true, title, acceptLabel, cancelLabel);
+			this.input = input;
+		}
+		
+		@Override
+		protected void setupWidgets(Composite parent)
+		{
+			GridLayout layout = new GridLayout();
+			layout.numColumns = 2;
+			parent.setLayout(layout);
+			GridData gd = new GridData();
+			Label l = new Label(parent, SWT.NONE);
+			l.setText(input);
+			gd.verticalAlignment = SWT.TOP;
+			l.setLayoutData(gd);
+			gd = new GridData();
+			textField = new Text(parent, SWT.V_SCROLL);
+			textField.setLayoutData(gd);
+			gd.grabExcessHorizontalSpace = true;
+			gd.grabExcessVerticalSpace = true;
+			gd.horizontalAlignment = SWT.FILL;
+			gd.verticalAlignment = SWT.FILL;
+		}
+
+		@Override
+		protected void buildResult()
+		{
+			result = new String[] { textField.getText() };
+		}	
+	}
+
+	/**
+	 * @return The String entered if the dialog was accepted, null if the dialog was cancelled.
+	 */
+	public static String openMultiLineTextDialog(String title, String acceptLabel, String cancelLabel, String input)
+	{
+		String[] result = new MultiLineTextFieldDialog(title, acceptLabel, cancelLabel, input).open();
+		return result == null ? null : result[0];
 	}
 }
