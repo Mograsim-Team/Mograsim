@@ -45,7 +45,7 @@ public class EditorGUI
 		d.grabExcessVerticalSpace = true;
 		d.verticalAlignment = SWT.FILL;
 		d.verticalSpan = 2;
-		addList = new List(shell, SWT.FILL);
+		addList = new List(shell, SWT.V_SCROLL);
 		addList.setLayoutData(d);
 		refreshAddList();
 

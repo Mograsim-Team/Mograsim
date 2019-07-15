@@ -123,13 +123,6 @@ public class HandleManager
 					for(int i = 0; i < diff; i++)
 						addWirePointHandle(w);
 				}
-				else
-				{
-					for(int i = 0; i > diff; i--)
-					{
-						removeLastWirePointHandle(wire);
-					}
-				}
 				
 				List<WirePointHandle> wpHandles = pointHandlesPerWire.get(w);
 				int size = wpHandles.size();
@@ -203,23 +196,25 @@ public class HandleManager
 		List<WirePointHandle> wireHandles = pointHandlesPerWire.get(w);
 		WirePointHandle h;
 		if (wireHandles != null)
-			wireHandles.add(h = new WirePointHandle(w, wireHandles.size()));
+			wireHandles.add(h = new WirePointHandle(this, w, wireHandles.size()));
 		else
 		{
 			wireHandles = new ArrayList<>();
-			h = new WirePointHandle(w, 0);
+			h = new WirePointHandle(this, w, 0);
 			wireHandles.add(h);
 			pointHandlesPerWire.put(h.parent, wireHandles);
 		}
 		this.wirePointHandles.add(h);
 		addHandle(h);
 	}
-
-	private void removeLastWirePointHandle(GUIWire owner)
+	
+	void destroyWirePointHandle(GUIWire owner, WirePointHandle h)
 	{
-		Handle h = pointHandlesPerWire.get(owner).remove(0);
-		wirePointHandles.remove(h);
+		List<WirePointHandle> handles = pointHandlesPerWire.get(owner);
+		int pointIndex = handles.indexOf(h);
+		handles.remove(pointIndex);
 		removeHandle(h);
+		owner.removePathPoint(pointIndex);
 	}
 
 	private void removeWirePointHandles(GUIWire owner)
@@ -345,9 +340,9 @@ public class HandleManager
 			if (!click(handlePerPin.values(), clicked, entryState, stateMask))
 				if (!click(handlePerInterfacePin.values(), clicked, entryState, stateMask))
 					if (!click(getWirePointHandles(), clicked, entryState, stateMask))
-						if (!click(handlePerComp.values(), clicked, entryState, stateMask))
-							if (!click(getWireHandles(), clicked, entryState, stateMask))
-								entryState.clickedEmpty(clicked, stateMask);
+						if (!click(getWireHandles(), clicked, entryState, stateMask))
+							if (!click(handlePerComp.values(), clicked, entryState, stateMask))
+									entryState.clickedEmpty(clicked, stateMask);
 		entryState.clicked(clicked, stateMask);
 	}
 

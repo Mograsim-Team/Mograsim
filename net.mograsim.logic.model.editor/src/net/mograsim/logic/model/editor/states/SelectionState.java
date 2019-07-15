@@ -12,7 +12,7 @@ import net.mograsim.logic.model.editor.handles.PinHandle;
 import net.mograsim.logic.model.editor.handles.WireHandle;
 import net.mograsim.logic.model.editor.handles.Handle.HandleClickInfo;
 import net.mograsim.logic.model.editor.handles.WireHandle.WireHandleClickInfo;
-import net.mograsim.logic.model.editor.ui.DialogManager.InteractiveDialog;
+import net.mograsim.logic.model.editor.ui.DialogManager;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 
@@ -98,14 +98,13 @@ public class SelectionState extends EditorState
 		editor.getSelection().clear();
 		if ((stateMask & SWT.ALT) == SWT.ALT)
 		{
-			InteractiveDialog pinAdd = new InteractiveDialog("Add Pin...", "Add", "Cancel", "Name", "Logic Width");
-			pinAdd.open();
-			if (pinAdd.getState().equals(InteractiveDialog.InteractiveDialogState.ACCEPTED))
+			String[] result = DialogManager.openMultiTextDialog("Add Pin...", "Add", "Cancel", "Name", "Logic Width");
+			if (result != null)
 			{
 				try
 				{
-					Pin p = editor.toBeEdited.addSubmodelInterface(new MovablePin(editor.toBeEdited, pinAdd.getText(),
-							Integer.parseInt(pinAdd.getText(1)), clicked.x, clicked.y));
+					Pin p = editor.toBeEdited.addSubmodelInterface(new MovablePin(editor.toBeEdited, result[0],
+							Integer.parseInt(result[1]), clicked.x, clicked.y));
 					editor.handleManager.getInterfacePinHandle(p).reqMove(clicked.x, clicked.y);
 				} catch (NumberFormatException e)
 				{
