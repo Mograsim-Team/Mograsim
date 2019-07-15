@@ -2,7 +2,7 @@ package net.mograsim.logic.model.editor;
 
 import java.io.IOException;
 
-import net.mograsim.logic.model.editor.ui.DialogManager.InteractiveDialog;
+import net.mograsim.logic.model.editor.ui.DialogManager;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.SubmodelComponentDeserializer;
@@ -28,12 +28,10 @@ public class SaveLoadManager
 
 	public void openSaveAsDialog()
 	{
-		InteractiveDialog d = new InteractiveDialog("Save as...", "Save", "Cancel", "Path");
-		d.open();
-		
-		if(InteractiveDialog.InteractiveDialogState.ACCEPTED.equals(d.getState()))
+		String result[] = DialogManager.openMultiTextDialog("Save as...", "Save", "Cancel", "Path");
+		if(result != null)
 		{
-			savePath = d.getText();
+			savePath = result[0];
 			innerSave();
 		}
 	}
@@ -58,12 +56,11 @@ public class SaveLoadManager
 
 	public static void openLoadDialog()
 	{
-		InteractiveDialog load = new InteractiveDialog("Load Component...", "Load", "Cancel", "Path");
-		load.open();
-		if(InteractiveDialog.InteractiveDialogState.ACCEPTED.equals(load.getState()))
+		String[] result = DialogManager.openMultiTextDialog("Load Component...", "Load", "Cancel", "Path");
+		if(result != null)
 		{
 			new Editor((DeserializedSubmodelComponent) SubmodelComponentDeserializer
-					.create(new ViewModelModifiable(), load.getText()));
+					.create(new ViewModelModifiable(), result[0]));
 		}
 	}
 }
