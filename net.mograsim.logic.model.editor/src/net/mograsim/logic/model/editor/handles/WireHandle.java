@@ -10,9 +10,8 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.editor.states.EditorState;
 import net.mograsim.logic.model.model.wires.GUIWire;
-import net.mograsim.logic.model.model.wires.GUIWire.PathChangedListener;
 
-public class WireHandle extends Handle implements PathChangedListener
+public class WireHandle extends Handle
 {
 	private boolean selected = false;
 	private final static double WIDTH = 2.0;
@@ -22,7 +21,7 @@ public class WireHandle extends Handle implements PathChangedListener
 	public WireHandle(GUIWire parent)
 	{
 		this.parent = parent;
-		parent.addPathChangedListener(this);
+		parent.addPathChangedListener(c -> updateBounds());
 		updateBounds();
 	}
 
@@ -30,7 +29,7 @@ public class WireHandle extends Handle implements PathChangedListener
 	void destroy()
 	{
 		super.destroy();
-		parent.removePathChangedListener(this);
+		parent.removePathChangedListener(c -> updateBounds());
 	}
 
 	public void updateBounds()
@@ -152,11 +151,5 @@ public class WireHandle extends Handle implements PathChangedListener
 	public HandleType getType()
 	{
 		return HandleType.WIRE;
-	}
-
-	@Override
-	public void pathChanged(GUIWire wire, int diff)
-	{
-		updateBounds();
 	}
 }
