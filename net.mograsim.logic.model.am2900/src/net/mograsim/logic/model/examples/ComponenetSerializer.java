@@ -58,12 +58,9 @@ public class ComponenetSerializer
 		for (SubmodelComponent comp : components)
 		{
 			SubmodelComponentParams params = SubmodelComponentSerializer.serialize(comp, getIdentifier);
-			JsonHandler
-					.writeJson(params,
-							"components/"
-									+ comp.getClass().getName()
-											.substring("net.mograsim.logic.model.model.components.mi.nandbased.".length()).replace('.', '/')
-									+ ".json");
+			String shortClassName = comp.getClass().getName().substring("net.mograsim.logic.model.model.components.mi.nandbased.".length());
+			String path = "components/" + shortClassName.replace('.', '/') + ".json";
+			JsonHandler.writeJson(params, path);
 		}
 	}
 }
