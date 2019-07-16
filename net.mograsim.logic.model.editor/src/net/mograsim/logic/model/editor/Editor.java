@@ -192,8 +192,8 @@ public final class Editor
 		case OFF:
 			break;
 		case ABSOLUTE:
-			newP.x -= newP.x % snapX;
-			newP.y -= newP.y % snapY;
+			newP.x = (int) (newP.x / snapX + .5) * snapX;
+			newP.y = (int) (newP.y / snapY + .5) * snapY;
 			break;
 		default:
 			break;
