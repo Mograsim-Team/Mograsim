@@ -32,6 +32,7 @@ public class WirePointHandle extends Handle
 	{
 		Point p = parent.getPathPoint(pointIndex);
 		moveTo(p.x, p.y);
+		callRedrawListeners();
 	}
 
 	@Override
