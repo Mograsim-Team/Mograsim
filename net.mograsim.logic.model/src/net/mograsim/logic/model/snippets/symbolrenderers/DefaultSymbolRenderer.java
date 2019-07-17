@@ -5,6 +5,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -37,6 +38,12 @@ public class DefaultSymbolRenderer implements Renderer
 		Point idSize = gc.textExtent(id);
 		Rectangle bounds = component.getBounds();
 		gc.drawText(id, bounds.x + (bounds.width - idSize.x) / 2, bounds.y + (bounds.height - idSize.y) / 2, true);
+	}
+
+	@Override
+	public Void getParamsForSerializing(IdentifierGetter idGetter)
+	{
+		return null;
 	}
 
 	static

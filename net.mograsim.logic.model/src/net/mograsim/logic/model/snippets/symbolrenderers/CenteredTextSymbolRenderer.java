@@ -6,6 +6,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -21,12 +22,14 @@ import net.mograsim.preferences.Preferences;
 public class CenteredTextSymbolRenderer implements Renderer
 {
 	private final GUIComponent component;
-	private final CenteredTextParams params;
+	private final String text;
+	private final double fontHeight;
 
 	public CenteredTextSymbolRenderer(SubmodelComponent component, CenteredTextParams params)
 	{
 		this.component = component;
-		this.params = params;
+		this.text = params.text;
+		this.fontHeight = params.fontHeight;
 
 	}
 
@@ -34,14 +37,23 @@ public class CenteredTextSymbolRenderer implements Renderer
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
 		Font oldFont = gc.getFont();
-		gc.setFont(new Font(oldFont.getName(), params.fontHeight, oldFont.getStyle()));
+		gc.setFont(new Font(oldFont.getName(), fontHeight, oldFont.getStyle()));
 		ColorDefinition fg = Preferences.current().getColorDefinition("net.mograsim.logic.model.color.text");
 		if (fg != null)
 			gc.setForeground(ColorManager.current().toColor(fg));
-		Point idSize = gc.textExtent(params.text);
+		Point idSize = gc.textExtent(text);
 		Rectangle bounds = component.getBounds();
-		gc.drawText(params.text, bounds.x + (bounds.width - idSize.x) / 2, bounds.y + (bounds.height - idSize.y) / 2, true);
+		gc.drawText(text, bounds.x + (bounds.width - idSize.x) / 2, bounds.y + (bounds.height - idSize.y) / 2, true);
 		gc.setFont(oldFont);
+	}
+
+	@Override
+	public CenteredTextParams getParamsForSerializing(IdentifierGetter idGetter)
+	{
+		CenteredTextParams params = new CenteredTextParams();
+		params.text = text;
+		params.fontHeight = fontHeight;
+		return params;
 	}
 
 	public static class CenteredTextParams

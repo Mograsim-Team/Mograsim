@@ -13,6 +13,13 @@ public interface SnippetDefinintion<C, P, S>
 
 	public default S create(C context, JsonElement params)
 	{
+		Class<P> paramClass = getParamClass();
+		if (paramClass.equals(Void.class))
+		{
+			if (params != null)
+				throw new IllegalArgumentException("Params given where none were expected");
+			return create(context, (P) null);
+		}
 		return create(context, new Gson().fromJson(params, getParamClass()));
 	}
 

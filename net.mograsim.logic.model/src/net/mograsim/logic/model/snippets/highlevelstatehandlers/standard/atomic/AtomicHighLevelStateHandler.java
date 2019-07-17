@@ -1,10 +1,11 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic;
 
-import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 
+import net.mograsim.logic.model.serializing.JSONSerializable;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 
-public interface AtomicHighLevelStateHandler
+public interface AtomicHighLevelStateHandler extends JSONSerializable
 {
 	/**
 	 * Gets the current value of the atomic high level state represented by this AtomicHighLevelStateHandler.<br>
@@ -25,6 +26,6 @@ public interface AtomicHighLevelStateHandler
 	public static class AtomicHighLevelStateHandlerParams
 	{
 		public String id;
-		public JsonObject params;
+		public JsonElement params;
 	}
 }

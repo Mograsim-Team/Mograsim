@@ -295,7 +295,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	protected Renderer getSymbolRenderer()
+	public Renderer getSymbolRenderer()
 	{
 		return symbolRenderer;
 	}
@@ -316,7 +316,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	protected Renderer getOutlineRenderer()
+	public Renderer getOutlineRenderer()
 	{
 		return outlineRenderer;
 	}

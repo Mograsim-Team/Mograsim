@@ -1,10 +1,11 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent;
 
-import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 
+import net.mograsim.logic.model.serializing.JSONSerializable;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 
-public interface SubcomponentHighLevelStateHandler
+public interface SubcomponentHighLevelStateHandler extends JSONSerializable
 {
 	/**
 	 * Gets the current value of the given high level state of the subcomponent represented by this SubcomponentHighLevelStateHandler.<br>
@@ -25,6 +26,6 @@ public interface SubcomponentHighLevelStateHandler
 	public static class SubcomponentHighLevelStateHandlerParams
 	{
 		public String id;
-		public JsonObject params;
+		public JsonElement params;
 	}
 }

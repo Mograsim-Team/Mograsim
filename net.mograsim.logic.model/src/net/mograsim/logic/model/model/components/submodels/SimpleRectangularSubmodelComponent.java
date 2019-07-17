@@ -47,7 +47,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		SimpleRectangularLikeParams rendererParams = new SimpleRectangularLikeParams();
 		rendererParams.centerText = label;
 		rendererParams.centerTextHeight = labelFontHeight;
-		rendererParams.horizontalComponentCenter = getWidth() / 2;
+		rendererParams.horizontalComponentCenter = width / 2;
 		rendererParams.pinLabelHeight = pinNameFontHeight;
 		rendererParams.pinLabelMargin = pinNameMargin;
 		setSymbolRenderer(new SimpleRectangularLikeSymbolRenderer(this, rendererParams));

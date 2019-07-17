@@ -4,6 +4,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -32,6 +33,12 @@ public class DefaultOutlineRenderer implements Renderer
 		if (fg != null)
 			gc.setForeground(ColorManager.current().toColor(fg));
 		gc.drawRectangle(component.getBounds());
+	}
+
+	@Override
+	public Void getParamsForSerializing(IdentifierGetter idGetter)
+	{
+		return null;
 	}
 
 	static

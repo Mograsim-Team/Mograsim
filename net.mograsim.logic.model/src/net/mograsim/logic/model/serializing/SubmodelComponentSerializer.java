@@ -6,13 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
@@ -22,8 +20,9 @@ import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelPara
 import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerComponentParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams.InnerPinParams;
+import net.mograsim.logic.model.snippets.HighLevelStateHandler;
+import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
-import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
 import net.mograsim.logic.model.util.JsonHandler;
 
 /**
@@ -134,20 +133,20 @@ public final class SubmodelComponentSerializer
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static void serialize(SubmodelComponent comp, Function<GUIComponent, String> getIdentifier, String targetPath) throws IOException
+	public static void serialize(SubmodelComponent comp, IdentifierGetter idGetter, String targetPath) throws IOException
 	{
-		JsonHandler.writeJson(serialize(comp, getIdentifier), targetPath);
+		JsonHandler.writeJson(serialize(comp, idGetter), targetPath);
 	}
 
 	/**
-	 * {@link #serialize(SubmodelComponent, Function)} using <code>"class:"</code> concatenated with a component's complete (canonical)
-	 * class name for the ID of a component.
+	 * {@link #serialize(SubmodelComponent, Function)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
+	 * {@link IdentifierGetter#IdentifierGetter() default constructor})
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public static SubmodelComponentParams serialize(SubmodelComponent comp)
 	{
-		return serialize(comp, c -> "class:" + c.getClass().getCanonicalName());
+		return serialize(comp, new IdentifierGetter());
 	}
 
 	// "core" methods
@@ -170,12 +169,6 @@ public final class SubmodelComponentSerializer
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model, name, idForSerializingOverride,
 				paramsForSerializingOverride);
 		comp.setSubmodelScale(params.submodel.innerScale);
-		comp.setSymbolRenderer(SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getSnippetSupplier(params.symbolRendererSnippetID)
-				.create(comp, params.symbolRendererParams));
-		comp.setOutlineRenderer(SubmodelComponentSnippetSuppliers.outlineRendererSupplier
-				.getSnippetSupplier(params.outlineRendererSnippetID).create(comp, params.outlineRendererParams));
-		comp.setHighLevelStateHandler(SubmodelComponentSnippetSuppliers.highLevelStateHandlerSupplier
-				.getSnippetSupplier(params.highLevelStateHandlerSnippetID).create(comp, params.highLevelStateHandlerParams));
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
 			comp.addSubmodelInterface(
@@ -197,6 +190,12 @@ public final class SubmodelComponentSerializer
 			new GUIWire(submodelModifiable, innerWire.name, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
 					componentsByName.get(innerWire.pin2.compName).getPin(innerWire.pin2.pinName), innerWire.path);
 		}
+		comp.setSymbolRenderer(SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getSnippetSupplier(params.symbolRendererSnippetID)
+				.create(comp, params.symbolRendererParams));
+		comp.setOutlineRenderer(SubmodelComponentSnippetSuppliers.outlineRendererSupplier
+				.getSnippetSupplier(params.outlineRendererSnippetID).create(comp, params.outlineRendererParams));
+		comp.setHighLevelStateHandler(SubmodelComponentSnippetSuppliers.highLevelStateHandlerSupplier
+				.getSnippetSupplier(params.highLevelStateHandlerSnippetID).create(comp, params.highLevelStateHandlerParams));
 		return comp;
 	}
 
@@ -209,13 +208,15 @@ public final class SubmodelComponentSerializer
 	 * component's {@link DeserializedSubmodelComponent#paramsForSerializingOverride paramsForSerializingOverride} are written.<br>
 	 * If this case doesn't apply (e.g. if the subcomponent is not a <code>SubmodelComponent</code>; or it is a
 	 * <code>SubmodelComponent</code>, but hasn't been deserialized; or it has no
-	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set), the ID returned by
-	 * <code>getIdentifier</code> and the params obtained by {@link GUIComponent#getParamsForSerializing() getParams()} are written.
+	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set), the ID defined by <code>idGetter</code>
+	 * and the params obtained by {@link GUIComponent#getParamsForSerializing() getParams()} are written.<br>
+	 * CodeSnippets are serialized using the ID defined by <code>idGetter</code> and the params obtained by the respective
+	 * <coce>getParamsForSerializing</code> methods ({@link Renderer#getParamsForSerializing()}).
 	 * 
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponentParams serialize(SubmodelComponent comp, Function<GUIComponent, String> getIdentifier)
+	public static SubmodelComponentParams serialize(SubmodelComponent comp, IdentifierGetter idGetter)
 	{
 		SubmodelParameters submodelParams = new SubmodelParameters();
 		submodelParams.innerScale = comp.getSubmodelScale();
@@ -237,8 +238,8 @@ public final class SubmodelComponentSerializer
 				innerComponentParams.params = innerCompCasted.paramsForSerializingOverride;
 			} else
 			{
-				innerComponentParams.id = getIdentifier.apply(innerComponent);
-				innerComponentParams.params = innerComponent.getParamsForSerializing();
+				innerComponentParams.id = idGetter.componentIDs.apply(innerComponent);
+				innerComponentParams.params = innerComponent.getParamsForSerializing(idGetter);
 			}
 			innerComponentParams.name = innerComponent.name;
 			i1++;
@@ -285,20 +286,25 @@ public final class SubmodelComponentSerializer
 		}
 		params.interfacePins = iPins;
 
-		// TODO This code does not belong here
-		if (comp instanceof SimpleRectangularSubmodelComponent)
+		Renderer symbolRenderer = comp.getSymbolRenderer();
+		if (symbolRenderer != null)
 		{
-			SimpleRectangularSubmodelComponent compCasted = (SimpleRectangularSubmodelComponent) comp;
+			params.symbolRendererSnippetID = idGetter.symbolRendererIDs.apply(symbolRenderer);
+			params.symbolRendererParams = symbolRenderer.getParamsForSerializingJSON(idGetter);
+		}
 
-			SimpleRectangularLikeParams symbolRendererParams = new SimpleRectangularLikeParams();
-			symbolRendererParams.centerText = compCasted.label;
-			symbolRendererParams.centerTextHeight = SimpleRectangularSubmodelComponent.labelFontHeight;
-			symbolRendererParams.horizontalComponentCenter = compCasted.getWidth() / 2;
-			symbolRendererParams.pinLabelHeight = SimpleRectangularSubmodelComponent.pinNameFontHeight;
-			symbolRendererParams.pinLabelMargin = SimpleRectangularSubmodelComponent.pinNameMargin;
+		Renderer outlineRenderer = comp.getOutlineRenderer();
+		if (outlineRenderer != null)
+		{
+			params.outlineRendererSnippetID = idGetter.outlineRendererIDs.apply(outlineRenderer);
+			params.outlineRendererParams = outlineRenderer.getParamsForSerializingJSON(idGetter);
+		}
 
-			params.symbolRendererSnippetID = "simpleRectangularLike";
-			params.symbolRendererParams = new Gson().toJsonTree(symbolRendererParams);
+		HighLevelStateHandler highLevelStateHandler = comp.getHighLevelStateHandler();
+		if (highLevelStateHandler != null)
+		{
+			params.highLevelStateHandlerSnippetID = idGetter.highLevelStateHandlerIDs.apply(highLevelStateHandler);
+			params.highLevelStateHandlerParams = highLevelStateHandler.getParamsForSerializingJSON(idGetter);
 		}
 
 		return params;

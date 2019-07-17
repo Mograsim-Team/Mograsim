@@ -176,585 +176,1163 @@ mograsim version: 0.1.3
     "innerScale": 0.1,
     "subComps": [
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#14",
         "pos": {
           "x": 69.0,
           "y": 854.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#14",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#13",
         "pos": {
           "x": 64.0,
           "y": 844.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#13",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#16",
         "pos": {
           "x": 39.0,
           "y": 484.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#16",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#15",
         "pos": {
           "x": 74.0,
           "y": 864.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#15",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#18",
         "pos": {
           "x": 49.0,
           "y": 504.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#18",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#17",
         "pos": {
           "x": 44.0,
           "y": 494.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#17",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#19",
         "pos": {
           "x": 54.0,
           "y": 514.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#19",
         "params": 1
       },
       {
+        "id": "GUIand41",
+        "name": "GUIand41#2",
         "pos": {
           "x": 155.0,
           "y": 325.0
-        },
-        "id": "GUIand41",
-        "name": "GUIand41#2"
+        }
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
         "pos": {
           "x": 224.0,
           "y": 164.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#1",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
         "pos": {
           "x": 229.0,
           "y": 154.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#0",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
         "pos": {
           "x": 214.0,
           "y": 184.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#3",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
         "pos": {
           "x": 219.0,
           "y": 174.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#2",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#5",
         "pos": {
           "x": 64.0,
           "y": 544.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#5",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#4",
         "pos": {
           "x": 59.0,
           "y": 534.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#4",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#7",
         "pos": {
           "x": 74.0,
           "y": 564.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#7",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#6",
         "pos": {
           "x": 69.0,
           "y": 554.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#6",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#9",
         "pos": {
           "x": 64.0,
           "y": 694.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#9",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#8",
         "pos": {
           "x": 59.0,
           "y": 684.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#8",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
         "pos": {
           "x": 69.0,
           "y": 704.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#10",
         "params": 1
       },
       {
+        "id": "GUIand41",
+        "name": "GUIand41#0",
         "pos": {
           "x": 235.0,
           "y": 150.0
-        },
-        "id": "GUIand41",
-        "name": "GUIand41#0"
+        }
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#12",
         "pos": {
           "x": 59.0,
           "y": 834.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#12",
         "params": 1
       },
       {
+        "id": "GUIand41",
+        "name": "GUIand41#1",
         "pos": {
           "x": 250.0,
           "y": 375.0
-        },
-        "id": "GUIand41",
-        "name": "GUIand41#1"
+        }
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#11",
         "pos": {
           "x": 74.0,
           "y": 714.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#11",
         "params": 1
       },
       {
+        "id": "GUIandor414",
+        "name": "GUIandor414#5",
         "pos": {
           "x": 155.0,
           "y": 735.0
-        },
-        "id": "GUIandor414",
-        "name": "GUIandor414#5"
+        }
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#25",
         "pos": {
           "x": 44.0,
           "y": 349.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#25",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#24",
         "pos": {
           "x": 39.0,
           "y": 334.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#24",
         "params": 1
       },
       {
+        "id": "GUIandor414",
+        "name": "GUIandor414#3",
         "pos": {
           "x": 155.0,
           "y": 435.0
-        },
-        "id": "GUIandor414",
-        "name": "GUIandor414#3"
+        }
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#27",
         "pos": {
           "x": 54.0,
           "y": 749.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#27",
         "params": 1
       },
       {
+        "id": "GUIandor414",
+        "name": "GUIandor414#4",
         "pos": {
           "x": 155.0,
           "y": 585.0
-        },
-        "id": "GUIandor414",
-        "name": "GUIandor414#4"
+        }
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#26",
         "pos": {
           "x": 49.0,
           "y": 649.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#26",
         "params": 1
       },
       {
+        "id": "GUIram2",
+        "name": "GUIram2#3",
         "pos": {
           "x": 80.0,
           "y": 780.0
-        },
-        "id": "GUIram2",
-        "name": "GUIram2#3"
+        }
       },
       {
+        "id": "GUIram2",
+        "name": "GUIram2#2",
         "pos": {
           "x": 80.0,
           "y": 630.0
-        },
-        "id": "GUIram2",
-        "name": "GUIram2#2"
+        }
       },
       {
+        "id": "GUIdemux2",
+        "name": "GUIdemux2#1",
         "pos": {
           "x": 55.0,
           "y": 150.0
-        },
-        "id": "GUIdemux2",
-        "name": "GUIdemux2#1"
+        }
       },
       {
+        "id": "GUIram2",
+        "name": "GUIram2#1",
         "pos": {
           "x": 80.0,
           "y": 480.0
-        },
-        "id": "GUIram2",
-        "name": "GUIram2#1"
+        }
       },
       {
+        "id": "GUIram2",
+        "name": "GUIram2#0",
         "pos": {
           "x": 80.0,
           "y": 330.0
-        },
-        "id": "GUIram2",
-        "name": "GUIram2#0"
+        }
       },
       {
+        "id": "GUIandor414",
+        "name": "GUIandor414#1",
         "pos": {
           "x": 250.0,
           "y": 635.0
-        },
-        "id": "GUIandor414",
-        "name": "GUIandor414#1"
+        }
       },
       {
+        "id": "GUIdemux2",
+        "name": "GUIdemux2#0",
         "pos": {
           "x": 55.0,
           "y": 45.0
-        },
-        "id": "GUIdemux2",
-        "name": "GUIdemux2#0"
+        }
       },
       {
+        "id": "GUIandor414",
+        "name": "GUIandor414#2",
         "pos": {
           "x": 250.0,
           "y": 785.0
-        },
-        "id": "GUIandor414",
-        "name": "GUIandor414#2"
+        }
       },
       {
+        "id": "GUIandor414",
+        "name": "GUIandor414#0",
         "pos": {
           "x": 250.0,
           "y": 485.0
-        },
-        "id": "GUIandor414",
-        "name": "GUIandor414#0"
+        }
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#21",
         "pos": {
           "x": 44.0,
           "y": 644.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#21",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#20",
         "pos": {
           "x": 39.0,
           "y": 634.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#20",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#23",
         "pos": {
           "x": 54.0,
           "y": 664.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#23",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#22",
         "pos": {
           "x": 49.0,
           "y": 654.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#22",
         "params": 1
       }
     ],
     "innerWires": [
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A0"
+          "compName": "WireCrossPoint#23",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "GUIdemux2#0",
-          "pinName": "S0"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A1"
-        },
-        "pin2": {
-          "compName": "GUIdemux2#0",
-          "pinName": "S1"
-        },
-        "path": [
-          {
-            "x": 10.0,
-            "y": 150.0
-          },
-          {
-            "x": 10.0,
-            "y": 60.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "B0"
-        },
-        "pin2": {
-          "compName": "GUIdemux2#1",
-          "pinName": "S0"
-        },
-        "path": [
-          {
-            "x": 5.0,
-            "y": 450.0
-          },
-          {
-            "x": 5.0,
-            "y": 155.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
+          "compName": "GUIram2#2",
           "pinName": "B1"
         },
-        "pin2": {
-          "compName": "GUIdemux2#1",
-          "pinName": "S1"
-        },
-        "path": [
-          {
-            "x": 10.0,
-            "y": 550.0
-          },
-          {
-            "x": 10.0,
-            "y": 165.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIdemux2#1",
-          "pinName": "Y00"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
+        "name": "unnamedWire#36",
         "path": []
       },
       {
         "pin1": {
-          "compName": "GUIdemux2#1",
-          "pinName": "Y01"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#1",
+          "compName": "WireCrossPoint#22",
           "pinName": ""
         },
+        "pin2": {
+          "compName": "GUIram2#2",
+          "pinName": "B0"
+        },
+        "name": "unnamedWire#35",
         "path": []
       },
       {
         "pin1": {
-          "compName": "GUIdemux2#1",
-          "pinName": "Y10"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "GUIdemux2#1",
-          "pinName": "Y11"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
+          "compName": "WireCrossPoint#21",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIand41#0",
+          "compName": "GUIram2#3",
           "pinName": "A1"
         },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIand41#0",
-          "pinName": "A2"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIand41#0",
-          "pinName": "A3"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIand41#0",
-          "pinName": "A4"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "WE"
-        },
-        "pin2": {
-          "compName": "GUIand41#0",
-          "pinName": "B"
-        },
+        "name": "unnamedWire#38",
         "path": [
           {
-            "x": 15.0,
-            "y": 850.0
-          },
-          {
-            "x": 15.0,
-            "y": 195.0
+            "x": 45.0,
+            "y": 795.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "GUIand41#0",
+          "compName": "WireCrossPoint#20",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#3",
+          "pinName": "A0"
+        },
+        "name": "unnamedWire#37",
+        "path": [
+          {
+            "x": 40.0,
+            "y": 785.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#22",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#3",
+          "pinName": "B0"
+        },
+        "name": "unnamedWire#39",
+        "path": [
+          {
+            "x": 50.0,
+            "y": 805.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#3",
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#110",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 795.0
+          },
+          {
+            "x": 140.0,
+            "y": 790.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#3",
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#111",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 805.0
+          },
+          {
+            "x": 140.0,
+            "y": 800.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#1",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "C2"
+        },
+        "name": "unnamedWire#114",
+        "path": [
+          {
+            "x": 300.0,
+            "y": 390.0
+          },
+          {
+            "x": 300.0,
+            "y": 440.0
+          },
+          {
+            "x": 240.0,
+            "y": 440.0
+          },
+          {
+            "x": 240.0,
+            "y": 500.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#1",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "C3"
+        },
+        "name": "unnamedWire#115",
+        "path": [
+          {
+            "x": 295.0,
+            "y": 400.0
+          },
+          {
+            "x": 295.0,
+            "y": 435.0
+          },
+          {
+            "x": 235.0,
+            "y": 435.0
+          },
+          {
+            "x": 235.0,
+            "y": 510.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#3",
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#112",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 815.0
+          },
+          {
+            "x": 140.0,
+            "y": 810.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#1",
           "pinName": "Y1"
         },
         "pin2": {
-          "compName": "GUIram2#0",
-          "pinName": "WE"
+          "compName": "GUIandor414#0",
+          "pinName": "C1"
         },
+        "name": "unnamedWire#113",
+        "path": [
+          {
+            "x": 305.0,
+            "y": 380.0
+          },
+          {
+            "x": 305.0,
+            "y": 445.0
+          },
+          {
+            "x": 245.0,
+            "y": 445.0
+          },
+          {
+            "x": 245.0,
+            "y": 490.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#0",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "C2"
+        },
+        "name": "unnamedWire#118",
+        "path": [
+          {
+            "x": 300.0,
+            "y": 500.0
+          },
+          {
+            "x": 300.0,
+            "y": 590.0
+          },
+          {
+            "x": 240.0,
+            "y": 590.0
+          },
+          {
+            "x": 240.0,
+            "y": 650.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#0",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "C3"
+        },
+        "name": "unnamedWire#119",
+        "path": [
+          {
+            "x": 295.0,
+            "y": 510.0
+          },
+          {
+            "x": 295.0,
+            "y": 585.0
+          },
+          {
+            "x": 235.0,
+            "y": 585.0
+          },
+          {
+            "x": 235.0,
+            "y": 660.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#27",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#3",
+          "pinName": "B1"
+        },
+        "name": "unnamedWire#41",
+        "path": [
+          {
+            "x": 55.0,
+            "y": 815.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#1",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "C4"
+        },
+        "name": "unnamedWire#116",
         "path": [
           {
             "x": 290.0,
-            "y": 155.0
+            "y": 410.0
           },
           {
             "x": 290.0,
-            "y": 230.0
+            "y": 430.0
           },
           {
-            "x": 35.0,
-            "y": 230.0
+            "x": 230.0,
+            "y": 430.0
           },
           {
-            "x": 35.0,
-            "y": 375.0
+            "x": 230.0,
+            "y": 520.0
           }
         ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#23",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#27",
+          "pinName": ""
+        },
+        "name": "unnamedWire#40",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#0",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "C1"
+        },
+        "name": "unnamedWire#117",
+        "path": [
+          {
+            "x": 305.0,
+            "y": 490.0
+          },
+          {
+            "x": 305.0,
+            "y": 595.0
+          },
+          {
+            "x": 245.0,
+            "y": 595.0
+          },
+          {
+            "x": 245.0,
+            "y": 640.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#25",
+          "pinName": ""
+        },
+        "name": "unnamedWire#43",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#24",
+          "pinName": ""
+        },
+        "name": "unnamedWire#42",
+        "path": [
+          {
+            "x": 40.0,
+            "y": 250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#0",
+          "pinName": "D1"
+        },
+        "name": "unnamedWire#45",
+        "path": [
+          {
+            "x": 60.0,
+            "y": 385.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "B3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#27",
+          "pinName": ""
+        },
+        "name": "unnamedWire#44",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#0",
+          "pinName": "D3"
+        },
+        "name": "unnamedWire#47",
+        "path": [
+          {
+            "x": 70.0,
+            "y": 405.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#0",
+          "pinName": "D2"
+        },
+        "name": "unnamedWire#46",
+        "path": [
+          {
+            "x": 65.0,
+            "y": 395.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#1",
+          "pinName": "D1"
+        },
+        "name": "unnamedWire#49",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#0",
+          "pinName": "D4"
+        },
+        "name": "unnamedWire#48",
+        "path": [
+          {
+            "x": 75.0,
+            "y": 415.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#0",
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#100",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 365.0
+          },
+          {
+            "x": 140.0,
+            "y": 360.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#1",
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#103",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 505.0
+          },
+          {
+            "x": 140.0,
+            "y": 500.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#1",
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#104",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 515.0
+          },
+          {
+            "x": 140.0,
+            "y": 510.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#1",
+          "pinName": "QA1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#101",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 485.0
+          },
+          {
+            "x": 140.0,
+            "y": 480.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#1",
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#102",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 495.0
+          },
+          {
+            "x": 140.0,
+            "y": 490.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#1",
+          "pinName": "D2"
+        },
+        "name": "unnamedWire#50",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#2",
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#107",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 655.0
+          },
+          {
+            "x": 140.0,
+            "y": 650.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#2",
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#108",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 665.0
+          },
+          {
+            "x": 140.0,
+            "y": 660.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#1",
+          "pinName": "D4"
+        },
+        "name": "unnamedWire#52",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#2",
+          "pinName": "QA1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#105",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 635.0
+          },
+          {
+            "x": 140.0,
+            "y": 630.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#1",
+          "pinName": "D3"
+        },
+        "name": "unnamedWire#51",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#2",
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#106",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 645.0
+          },
+          {
+            "x": 140.0,
+            "y": 640.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "name": "unnamedWire#54",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#53",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "name": "unnamedWire#56",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#3",
+          "pinName": "QA1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#109",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 785.0
+          },
+          {
+            "x": 140.0,
+            "y": 780.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "name": "unnamedWire#55",
+        "path": []
       },
       {
         "pin1": {
@@ -765,6 +1343,7 @@ mograsim version: 0.1.3
           "compName": "GUIram2#1",
           "pinName": "WE"
         },
+        "name": "unnamedWire#14",
         "path": [
           {
             "x": 285.0,
@@ -787,28 +1366,29 @@ mograsim version: 0.1.3
       {
         "pin1": {
           "compName": "GUIand41#0",
-          "pinName": "Y3"
+          "pinName": "Y1"
         },
         "pin2": {
-          "compName": "GUIram2#2",
+          "compName": "GUIram2#0",
           "pinName": "WE"
         },
+        "name": "unnamedWire#13",
         "path": [
           {
-            "x": 280.0,
-            "y": 175.0
+            "x": 290.0,
+            "y": 155.0
           },
           {
-            "x": 280.0,
-            "y": 220.0
+            "x": 290.0,
+            "y": 230.0
           },
           {
-            "x": 25.0,
-            "y": 220.0
+            "x": 35.0,
+            "y": 230.0
           },
           {
-            "x": 25.0,
-            "y": 675.0
+            "x": 35.0,
+            "y": 375.0
           }
         ]
       },
@@ -821,6 +1401,7 @@ mograsim version: 0.1.3
           "compName": "GUIram2#3",
           "pinName": "WE"
         },
+        "name": "unnamedWire#16",
         "path": [
           {
             "x": 275.0,
@@ -842,14 +1423,32 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#16",
-          "pinName": ""
+          "compName": "GUIand41#0",
+          "pinName": "Y3"
         },
         "pin2": {
-          "compName": "WireCrossPoint#24",
-          "pinName": ""
+          "compName": "GUIram2#2",
+          "pinName": "WE"
         },
-        "path": []
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 280.0,
+            "y": 175.0
+          },
+          {
+            "x": 280.0,
+            "y": 220.0
+          },
+          {
+            "x": 25.0,
+            "y": 220.0
+          },
+          {
+            "x": 25.0,
+            "y": 675.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -860,6 +1459,19 @@ mograsim version: 0.1.3
           "compName": "GUIram2#0",
           "pinName": "A0"
         },
+        "name": "unnamedWire#18",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#16",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#24",
+          "pinName": ""
+        },
+        "name": "unnamedWire#17",
         "path": []
       },
       {
@@ -871,23 +1483,8 @@ mograsim version: 0.1.3
           "compName": "WireCrossPoint#25",
           "pinName": ""
         },
+        "name": "unnamedWire#19",
         "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#25",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#0",
-          "pinName": "A1"
-        },
-        "path": [
-          {
-            "x": 45.0,
-            "y": 345.0
-          }
-        ]
       },
       {
         "pin1": {
@@ -898,6 +1495,7 @@ mograsim version: 0.1.3
           "compName": "GUIram2#0",
           "pinName": "B0"
         },
+        "name": "unnamedWire#21",
         "path": [
           {
             "x": 50.0,
@@ -907,17 +1505,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#19",
+          "compName": "WireCrossPoint#25",
           "pinName": ""
         },
         "pin2": {
           "compName": "GUIram2#0",
-          "pinName": "B1"
+          "pinName": "A1"
         },
+        "name": "unnamedWire#20",
         "path": [
           {
-            "x": 55.0,
-            "y": 365.0
+            "x": 45.0,
+            "y": 345.0
           }
         ]
       },
@@ -930,6 +1529,36 @@ mograsim version: 0.1.3
           "compName": "GUIram2#1",
           "pinName": "A0"
         },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#0",
+          "pinName": "B1"
+        },
+        "name": "unnamedWire#22",
+        "path": [
+          {
+            "x": 55.0,
+            "y": 365.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#18",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#1",
+          "pinName": "B0"
+        },
+        "name": "unnamedWire#25",
         "path": []
       },
       {
@@ -941,28 +1570,7 @@ mograsim version: 0.1.3
           "compName": "GUIram2#1",
           "pinName": "A1"
         },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#18",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#1",
-          "pinName": "B0"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#19",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#1",
-          "pinName": "B1"
-        },
+        "name": "unnamedWire#24",
         "path": []
       },
       {
@@ -974,17 +1582,19 @@ mograsim version: 0.1.3
           "compName": "WireCrossPoint#20",
           "pinName": ""
         },
+        "name": "unnamedWire#27",
         "path": []
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#17",
+          "compName": "WireCrossPoint#19",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#21",
-          "pinName": ""
+          "compName": "GUIram2#1",
+          "pinName": "B1"
         },
+        "name": "unnamedWire#26",
         "path": []
       },
       {
@@ -996,6 +1606,19 @@ mograsim version: 0.1.3
           "compName": "WireCrossPoint#26",
           "pinName": ""
         },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#17",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
+        },
+        "name": "unnamedWire#28",
         "path": []
       },
       {
@@ -1007,17 +1630,7 @@ mograsim version: 0.1.3
           "compName": "WireCrossPoint#26",
           "pinName": ""
         },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#26",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#22",
-          "pinName": ""
-        },
+        "name": "unnamedWire#30",
         "path": []
       },
       {
@@ -1029,17 +1642,19 @@ mograsim version: 0.1.3
           "compName": "WireCrossPoint#23",
           "pinName": ""
         },
+        "name": "unnamedWire#32",
         "path": []
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#20",
+          "compName": "WireCrossPoint#26",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIram2#2",
-          "pinName": "A0"
+          "compName": "WireCrossPoint#22",
+          "pinName": ""
         },
+        "name": "unnamedWire#31",
         "path": []
       },
       {
@@ -1051,28 +1666,7 @@ mograsim version: 0.1.3
           "compName": "GUIram2#2",
           "pinName": "A1"
         },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#22",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#2",
-          "pinName": "B0"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#23",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#2",
-          "pinName": "B1"
-        },
+        "name": "unnamedWire#34",
         "path": []
       },
       {
@@ -1081,572 +1675,11 @@ mograsim version: 0.1.3
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIram2#3",
+          "compName": "GUIram2#2",
           "pinName": "A0"
         },
-        "path": [
-          {
-            "x": 40.0,
-            "y": 785.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#21",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#3",
-          "pinName": "A1"
-        },
-        "path": [
-          {
-            "x": 45.0,
-            "y": 795.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#22",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#3",
-          "pinName": "B0"
-        },
-        "path": [
-          {
-            "x": 50.0,
-            "y": 805.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#23",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#27",
-          "pinName": ""
-        },
+        "name": "unnamedWire#33",
         "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#27",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#3",
-          "pinName": "B1"
-        },
-        "path": [
-          {
-            "x": 55.0,
-            "y": 815.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A2"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#24",
-          "pinName": ""
-        },
-        "path": [
-          {
-            "x": 40.0,
-            "y": 250.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A3"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#25",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "B3"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#27",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#4",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#0",
-          "pinName": "D1"
-        },
-        "path": [
-          {
-            "x": 60.0,
-            "y": 385.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#5",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#0",
-          "pinName": "D2"
-        },
-        "path": [
-          {
-            "x": 65.0,
-            "y": 395.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#6",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#0",
-          "pinName": "D3"
-        },
-        "path": [
-          {
-            "x": 70.0,
-            "y": 405.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#7",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#0",
-          "pinName": "D4"
-        },
-        "path": [
-          {
-            "x": 75.0,
-            "y": 415.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#4",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#1",
-          "pinName": "D1"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#5",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#1",
-          "pinName": "D2"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#6",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#1",
-          "pinName": "D3"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#7",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#1",
-          "pinName": "D4"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#4",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#8",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#5",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#9",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#6",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#10",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#7",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#11",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#8",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#2",
-          "pinName": "D1"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#9",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#2",
-          "pinName": "D2"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#10",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#2",
-          "pinName": "D3"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#11",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#2",
-          "pinName": "D4"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#8",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#12",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#9",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#13",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#10",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#14",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#11",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#15",
-          "pinName": ""
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#12",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#3",
-          "pinName": "D1"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#13",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#3",
-          "pinName": "D2"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#14",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#3",
-          "pinName": "D3"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#15",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIram2#3",
-          "pinName": "D4"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D1"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#12",
-          "pinName": ""
-        },
-        "path": [
-          {
-            "x": 60.0,
-            "y": 950.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D2"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#13",
-          "pinName": ""
-        },
-        "path": [
-          {
-            "x": 65.0,
-            "y": 1050.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D3"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#14",
-          "pinName": ""
-        },
-        "path": [
-          {
-            "x": 70.0,
-            "y": 1150.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D4"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#15",
-          "pinName": ""
-        },
-        "path": [
-          {
-            "x": 75.0,
-            "y": 1250.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIdemux2#0",
-          "pinName": "Y00"
-        },
-        "pin2": {
-          "compName": "GUIand41#2",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 135.0,
-            "y": 50.0
-          },
-          {
-            "x": 135.0,
-            "y": 370.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIdemux2#0",
-          "pinName": "Y01"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 130.0,
-            "y": 60.0
-          },
-          {
-            "x": 130.0,
-            "y": 520.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIdemux2#0",
-          "pinName": "Y10"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 125.0,
-            "y": 70.0
-          },
-          {
-            "x": 125.0,
-            "y": 670.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIdemux2#0",
-          "pinName": "Y11"
-        },
-        "pin2": {
-          "compName": "GUIandor414#5",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 120.0,
-            "y": 80.0
-          },
-          {
-            "x": 120.0,
-            "y": 820.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIand41#1",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 230.0,
-            "y": 420.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIandor414#0",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 225.0,
-            "y": 570.0
-          }
-        ]
       },
       {
         "pin1": {
@@ -1657,26 +1690,11 @@ mograsim version: 0.1.3
           "compName": "GUIandor414#1",
           "pinName": "B"
         },
+        "name": "unnamedWire#79",
         "path": [
           {
             "x": 220.0,
             "y": 720.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 215.0,
-            "y": 870.0
           }
         ]
       },
@@ -1689,6 +1707,7 @@ mograsim version: 0.1.3
           "compName": "GUIand41#1",
           "pinName": "A1"
         },
+        "name": "unnamedWire#81",
         "path": [
           {
             "x": 140.0,
@@ -1702,21 +1721,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "GUIram2#0",
-          "pinName": "QB2"
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "GUIand41#1",
-          "pinName": "A2"
+          "compName": "GUIandor414#2",
+          "pinName": "B"
         },
+        "name": "unnamedWire#80",
         "path": [
           {
-            "x": 140.0,
-            "y": 385.0
-          },
-          {
-            "x": 140.0,
-            "y": 390.0
+            "x": 215.0,
+            "y": 870.0
           }
         ]
       },
@@ -1729,6 +1745,7 @@ mograsim version: 0.1.3
           "compName": "GUIand41#1",
           "pinName": "A3"
         },
+        "name": "unnamedWire#83",
         "path": [
           {
             "x": 140.0,
@@ -1743,12 +1760,55 @@ mograsim version: 0.1.3
       {
         "pin1": {
           "compName": "GUIram2#0",
+          "pinName": "QB2"
+        },
+        "pin2": {
+          "compName": "GUIand41#1",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#82",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 385.0
+          },
+          {
+            "x": 140.0,
+            "y": 390.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#1",
+          "pinName": "QB1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#85",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 525.0
+          },
+          {
+            "x": 140.0,
+            "y": 530.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#0",
           "pinName": "QB4"
         },
         "pin2": {
           "compName": "GUIand41#1",
           "pinName": "A4"
         },
+        "name": "unnamedWire#84",
         "path": [
           {
             "x": 140.0,
@@ -1763,52 +1823,13 @@ mograsim version: 0.1.3
       {
         "pin1": {
           "compName": "GUIram2#1",
-          "pinName": "QB1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#0",
-          "pinName": "A1"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 525.0
-          },
-          {
-            "x": 140.0,
-            "y": 530.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#1",
-          "pinName": "QB2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#0",
-          "pinName": "A2"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 535.0
-          },
-          {
-            "x": 140.0,
-            "y": 540.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#1",
           "pinName": "QB3"
         },
         "pin2": {
           "compName": "GUIandor414#0",
           "pinName": "A3"
         },
+        "name": "unnamedWire#87",
         "path": [
           {
             "x": 140.0,
@@ -1823,20 +1844,21 @@ mograsim version: 0.1.3
       {
         "pin1": {
           "compName": "GUIram2#1",
-          "pinName": "QB4"
+          "pinName": "QB2"
         },
         "pin2": {
           "compName": "GUIandor414#0",
-          "pinName": "A4"
+          "pinName": "A2"
         },
+        "name": "unnamedWire#86",
         "path": [
           {
             "x": 140.0,
-            "y": 555.0
+            "y": 535.0
           },
           {
             "x": 140.0,
-            "y": 560.0
+            "y": 540.0
           }
         ]
       },
@@ -1849,6 +1871,7 @@ mograsim version: 0.1.3
           "compName": "GUIandor414#1",
           "pinName": "A1"
         },
+        "name": "unnamedWire#89",
         "path": [
           {
             "x": 140.0,
@@ -1862,1185 +1885,22 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "GUIram2#2",
-          "pinName": "QB2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#1",
-          "pinName": "A2"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 685.0
-          },
-          {
-            "x": 140.0,
-            "y": 690.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#2",
-          "pinName": "QB3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#1",
-          "pinName": "A3"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 695.0
-          },
-          {
-            "x": 140.0,
-            "y": 700.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#2",
+          "compName": "GUIram2#1",
           "pinName": "QB4"
         },
         "pin2": {
-          "compName": "GUIandor414#1",
+          "compName": "GUIandor414#0",
           "pinName": "A4"
         },
+        "name": "unnamedWire#88",
         "path": [
           {
             "x": 140.0,
-            "y": 705.0
+            "y": 555.0
           },
           {
             "x": 140.0,
-            "y": 710.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#3",
-          "pinName": "QB1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "A1"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 825.0
-          },
-          {
-            "x": 140.0,
-            "y": 830.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#3",
-          "pinName": "QB2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "A2"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 835.0
-          },
-          {
-            "x": 140.0,
-            "y": 840.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#3",
-          "pinName": "QB3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "A3"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 845.0
-          },
-          {
-            "x": 140.0,
-            "y": 850.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#3",
-          "pinName": "QB4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "A4"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 855.0
-          },
-          {
-            "x": 140.0,
-            "y": 860.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#0",
-          "pinName": "QA1"
-        },
-        "pin2": {
-          "compName": "GUIand41#2",
-          "pinName": "A1"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 335.0
-          },
-          {
-            "x": 140.0,
-            "y": 330.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#0",
-          "pinName": "QA2"
-        },
-        "pin2": {
-          "compName": "GUIand41#2",
-          "pinName": "A2"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 345.0
-          },
-          {
-            "x": 140.0,
-            "y": 340.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#0",
-          "pinName": "QA3"
-        },
-        "pin2": {
-          "compName": "GUIand41#2",
-          "pinName": "A3"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 355.0
-          },
-          {
-            "x": 140.0,
-            "y": 350.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#0",
-          "pinName": "QA4"
-        },
-        "pin2": {
-          "compName": "GUIand41#2",
-          "pinName": "A4"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 365.0
-          },
-          {
-            "x": 140.0,
-            "y": 360.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#1",
-          "pinName": "QA1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "A1"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 485.0
-          },
-          {
-            "x": 140.0,
-            "y": 480.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#1",
-          "pinName": "QA2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "A2"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 495.0
-          },
-          {
-            "x": 140.0,
-            "y": 490.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#1",
-          "pinName": "QA3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "A3"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 505.0
-          },
-          {
-            "x": 140.0,
-            "y": 500.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#1",
-          "pinName": "QA4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "A4"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 515.0
-          },
-          {
-            "x": 140.0,
-            "y": 510.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#2",
-          "pinName": "QA1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "A1"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 635.0
-          },
-          {
-            "x": 140.0,
-            "y": 630.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#2",
-          "pinName": "QA2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "A2"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 645.0
-          },
-          {
-            "x": 140.0,
-            "y": 640.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#2",
-          "pinName": "QA3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "A3"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 655.0
-          },
-          {
-            "x": 140.0,
-            "y": 650.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#2",
-          "pinName": "QA4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "A4"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 665.0
-          },
-          {
-            "x": 140.0,
-            "y": 660.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#3",
-          "pinName": "QA1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#5",
-          "pinName": "A1"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 785.0
-          },
-          {
-            "x": 140.0,
-            "y": 780.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#3",
-          "pinName": "QA2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#5",
-          "pinName": "A2"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 795.0
-          },
-          {
-            "x": 140.0,
-            "y": 790.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#3",
-          "pinName": "QA3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#5",
-          "pinName": "A3"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 805.0
-          },
-          {
-            "x": 140.0,
-            "y": 800.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIram2#3",
-          "pinName": "QA4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#5",
-          "pinName": "A4"
-        },
-        "path": [
-          {
-            "x": 140.0,
-            "y": 815.0
-          },
-          {
-            "x": 140.0,
-            "y": 810.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIand41#1",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#0",
-          "pinName": "C1"
-        },
-        "path": [
-          {
-            "x": 305.0,
-            "y": 380.0
-          },
-          {
-            "x": 305.0,
-            "y": 445.0
-          },
-          {
-            "x": 245.0,
-            "y": 445.0
-          },
-          {
-            "x": 245.0,
-            "y": 490.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIand41#1",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#0",
-          "pinName": "C2"
-        },
-        "path": [
-          {
-            "x": 300.0,
-            "y": 390.0
-          },
-          {
-            "x": 300.0,
-            "y": 440.0
-          },
-          {
-            "x": 240.0,
-            "y": 440.0
-          },
-          {
-            "x": 240.0,
-            "y": 500.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIand41#1",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#0",
-          "pinName": "C3"
-        },
-        "path": [
-          {
-            "x": 295.0,
-            "y": 400.0
-          },
-          {
-            "x": 295.0,
-            "y": 435.0
-          },
-          {
-            "x": 235.0,
-            "y": 435.0
-          },
-          {
-            "x": 235.0,
-            "y": 510.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIand41#1",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#0",
-          "pinName": "C4"
-        },
-        "path": [
-          {
-            "x": 290.0,
-            "y": 410.0
-          },
-          {
-            "x": 290.0,
-            "y": 430.0
-          },
-          {
-            "x": 230.0,
-            "y": 430.0
-          },
-          {
-            "x": 230.0,
-            "y": 520.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#0",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#1",
-          "pinName": "C1"
-        },
-        "path": [
-          {
-            "x": 305.0,
-            "y": 490.0
-          },
-          {
-            "x": 305.0,
-            "y": 595.0
-          },
-          {
-            "x": 245.0,
-            "y": 595.0
-          },
-          {
-            "x": 245.0,
-            "y": 640.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#0",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#1",
-          "pinName": "C2"
-        },
-        "path": [
-          {
-            "x": 300.0,
-            "y": 500.0
-          },
-          {
-            "x": 300.0,
-            "y": 590.0
-          },
-          {
-            "x": 240.0,
-            "y": 590.0
-          },
-          {
-            "x": 240.0,
-            "y": 650.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#0",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#1",
-          "pinName": "C3"
-        },
-        "path": [
-          {
-            "x": 295.0,
-            "y": 510.0
-          },
-          {
-            "x": 295.0,
-            "y": 585.0
-          },
-          {
-            "x": 235.0,
-            "y": 585.0
-          },
-          {
-            "x": 235.0,
-            "y": 660.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#0",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#1",
-          "pinName": "C4"
-        },
-        "path": [
-          {
-            "x": 290.0,
-            "y": 520.0
-          },
-          {
-            "x": 290.0,
-            "y": 580.0
-          },
-          {
-            "x": 230.0,
-            "y": 580.0
-          },
-          {
-            "x": 230.0,
-            "y": 670.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#1",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "C1"
-        },
-        "path": [
-          {
-            "x": 305.0,
-            "y": 640.0
-          },
-          {
-            "x": 305.0,
-            "y": 745.0
-          },
-          {
-            "x": 245.0,
-            "y": 745.0
-          },
-          {
-            "x": 245.0,
-            "y": 790.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#1",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "C2"
-        },
-        "path": [
-          {
-            "x": 300.0,
-            "y": 650.0
-          },
-          {
-            "x": 300.0,
-            "y": 740.0
-          },
-          {
-            "x": 240.0,
-            "y": 740.0
-          },
-          {
-            "x": 240.0,
-            "y": 800.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#1",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "C3"
-        },
-        "path": [
-          {
-            "x": 295.0,
-            "y": 660.0
-          },
-          {
-            "x": 295.0,
-            "y": 735.0
-          },
-          {
-            "x": 235.0,
-            "y": 735.0
-          },
-          {
-            "x": 235.0,
-            "y": 810.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#1",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#2",
-          "pinName": "C4"
-        },
-        "path": [
-          {
-            "x": 290.0,
-            "y": 670.0
-          },
-          {
-            "x": 290.0,
-            "y": 730.0
-          },
-          {
-            "x": 230.0,
-            "y": 730.0
-          },
-          {
-            "x": 230.0,
-            "y": 820.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#2",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QB1"
-        },
-        "path": [
-          {
-            "x": 330.0,
-            "y": 790.0
-          },
-          {
-            "x": 330.0,
-            "y": 450.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#2",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QB2"
-        },
-        "path": [
-          {
-            "x": 335.0,
-            "y": 800.0
-          },
-          {
-            "x": 335.0,
-            "y": 550.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#2",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QB3"
-        },
-        "path": [
-          {
-            "x": 340.0,
-            "y": 810.0
-          },
-          {
-            "x": 340.0,
-            "y": 650.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#2",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QB4"
-        },
-        "path": [
-          {
-            "x": 345.0,
-            "y": 820.0
-          },
-          {
-            "x": 345.0,
-            "y": 750.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIand41#2",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "C1"
-        },
-        "path": [
-          {
-            "x": 210.0,
-            "y": 330.0
-          },
-          {
-            "x": 210.0,
-            "y": 430.0
-          },
-          {
-            "x": 150.0,
-            "y": 430.0
-          },
-          {
-            "x": 150.0,
-            "y": 440.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIand41#2",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "C2"
-        },
-        "path": [
-          {
-            "x": 205.0,
-            "y": 340.0
-          },
-          {
-            "x": 205.0,
-            "y": 425.0
-          },
-          {
-            "x": 145.0,
-            "y": 425.0
-          },
-          {
-            "x": 145.0,
-            "y": 450.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIand41#2",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "C3"
-        },
-        "path": [
-          {
-            "x": 200.0,
-            "y": 350.0
-          },
-          {
-            "x": 200.0,
-            "y": 420.0
-          },
-          {
-            "x": 140.0,
-            "y": 420.0
-          },
-          {
-            "x": 140.0,
-            "y": 460.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIand41#2",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#3",
-          "pinName": "C4"
-        },
-        "path": [
-          {
-            "x": 195.0,
-            "y": 360.0
-          },
-          {
-            "x": 195.0,
-            "y": 415.0
-          },
-          {
-            "x": 135.0,
-            "y": 415.0
-          },
-          {
-            "x": 135.0,
-            "y": 470.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#3",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "C1"
-        },
-        "path": [
-          {
-            "x": 210.0,
-            "y": 440.0
-          },
-          {
-            "x": 210.0,
-            "y": 580.0
-          },
-          {
-            "x": 150.0,
-            "y": 580.0
-          },
-          {
-            "x": 150.0,
-            "y": 590.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#3",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "C2"
-        },
-        "path": [
-          {
-            "x": 205.0,
-            "y": 450.0
-          },
-          {
-            "x": 205.0,
-            "y": 575.0
-          },
-          {
-            "x": 145.0,
-            "y": 575.0
-          },
-          {
-            "x": 145.0,
-            "y": 600.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#3",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "C3"
-        },
-        "path": [
-          {
-            "x": 200.0,
-            "y": 460.0
-          },
-          {
-            "x": 200.0,
-            "y": 570.0
-          },
-          {
-            "x": 140.0,
-            "y": 570.0
-          },
-          {
-            "x": 140.0,
-            "y": 610.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#3",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "GUIandor414#4",
-          "pinName": "C4"
-        },
-        "path": [
-          {
-            "x": 195.0,
-            "y": 470.0
-          },
-          {
-            "x": 195.0,
-            "y": 565.0
-          },
-          {
-            "x": 135.0,
-            "y": 565.0
-          },
-          {
-            "x": 135.0,
-            "y": 620.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#4",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "GUIandor414#5",
-          "pinName": "C1"
-        },
-        "path": [
-          {
-            "x": 210.0,
-            "y": 590.0
-          },
-          {
-            "x": 210.0,
-            "y": 730.0
-          },
-          {
-            "x": 150.0,
-            "y": 730.0
-          },
-          {
-            "x": 150.0,
-            "y": 740.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#4",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "GUIandor414#5",
-          "pinName": "C2"
-        },
-        "path": [
-          {
-            "x": 205.0,
-            "y": 600.0
-          },
-          {
-            "x": 205.0,
-            "y": 725.0
-          },
-          {
-            "x": 145.0,
-            "y": 725.0
-          },
-          {
-            "x": 145.0,
-            "y": 750.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIandor414#4",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "GUIandor414#5",
-          "pinName": "C3"
-        },
-        "path": [
-          {
-            "x": 200.0,
-            "y": 610.0
-          },
-          {
-            "x": 200.0,
-            "y": 720.0
-          },
-          {
-            "x": 140.0,
-            "y": 720.0
-          },
-          {
-            "x": 140.0,
-            "y": 760.0
+            "y": 560.0
           }
         ]
       },
@@ -3053,6 +1913,7 @@ mograsim version: 0.1.3
           "compName": "GUIandor414#5",
           "pinName": "C4"
         },
+        "name": "unnamedWire#140",
         "path": [
           {
             "x": 195.0,
@@ -3074,6 +1935,100 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#5",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QA3"
+        },
+        "name": "unnamedWire#143",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 760.0
+          },
+          {
+            "x": 200.0,
+            "y": 890.0
+          },
+          {
+            "x": 320.0,
+            "y": 890.0
+          },
+          {
+            "x": 320.0,
+            "y": 250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#5",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QA4"
+        },
+        "name": "unnamedWire#144",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 770.0
+          },
+          {
+            "x": 195.0,
+            "y": 895.0
+          },
+          {
+            "x": 325.0,
+            "y": 895.0
+          },
+          {
+            "x": 325.0,
+            "y": 350.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#1",
+          "pinName": "Y11"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUIandor414#5",
           "pinName": "Y1"
         },
@@ -3081,6 +2036,7 @@ mograsim version: 0.1.3
           "compName": "_submodelinterface",
           "pinName": "QA1"
         },
+        "name": "unnamedWire#141",
         "path": [
           {
             "x": 210.0,
@@ -3102,6 +2058,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "GUIdemux2#1",
+          "pinName": "Y10"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUIandor414#5",
           "pinName": "Y2"
         },
@@ -3109,6 +2077,7 @@ mograsim version: 0.1.3
           "compName": "_submodelinterface",
           "pinName": "QA2"
         },
+        "name": "unnamedWire#142",
         "path": [
           {
             "x": 205.0,
@@ -3130,68 +2099,1405 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "GUIandor414#5",
-          "pinName": "Y3"
+          "compName": "GUIram2#2",
+          "pinName": "QB2"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QA3"
+          "compName": "GUIandor414#1",
+          "pinName": "A2"
         },
+        "name": "unnamedWire#90",
         "path": [
           {
-            "x": 200.0,
-            "y": 760.0
+            "x": 140.0,
+            "y": 685.0
           },
           {
-            "x": 200.0,
-            "y": 890.0
-          },
-          {
-            "x": 320.0,
-            "y": 890.0
-          },
-          {
-            "x": 320.0,
-            "y": 250.0
+            "x": 140.0,
+            "y": 690.0
           }
         ]
       },
       {
         "pin1": {
+          "compName": "GUIram2#2",
+          "pinName": "QB4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#92",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 705.0
+          },
+          {
+            "x": 140.0,
+            "y": 710.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#2",
+          "pinName": "QB3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#91",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 695.0
+          },
+          {
+            "x": 140.0,
+            "y": 700.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A1"
+        },
+        "pin2": {
+          "compName": "GUIdemux2#0",
+          "pinName": "S1"
+        },
+        "name": "unnamedWire#1",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 150.0
+          },
+          {
+            "x": 10.0,
+            "y": 60.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#3",
+          "pinName": "QB2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#94",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 835.0
+          },
+          {
+            "x": 140.0,
+            "y": 840.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A0"
+        },
+        "pin2": {
+          "compName": "GUIdemux2#0",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#3",
+          "pinName": "QB1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#93",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 825.0
+          },
+          {
+            "x": 140.0,
+            "y": 830.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#3",
+          "pinName": "QB4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#96",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 855.0
+          },
+          {
+            "x": 140.0,
+            "y": 860.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#3",
+          "pinName": "QB3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#95",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 845.0
+          },
+          {
+            "x": 140.0,
+            "y": 850.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#1",
+          "pinName": "Y01"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#0",
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#98",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 345.0
+          },
+          {
+            "x": 140.0,
+            "y": 340.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#1",
+          "pinName": "Y00"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#0",
+          "pinName": "QA1"
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#97",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 335.0
+          },
+          {
+            "x": 140.0,
+            "y": 330.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "B1"
+        },
+        "pin2": {
+          "compName": "GUIdemux2#1",
+          "pinName": "S1"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 550.0
+          },
+          {
+            "x": 10.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "WE"
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#12",
+        "path": [
+          {
+            "x": 15.0,
+            "y": 850.0
+          },
+          {
+            "x": 15.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "B0"
+        },
+        "pin2": {
+          "compName": "GUIdemux2#1",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 450.0
+          },
+          {
+            "x": 5.0,
+            "y": 155.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#0",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram2#0",
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#99",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 355.0
+          },
+          {
+            "x": 140.0,
+            "y": 350.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#2",
+          "pinName": "D2"
+        },
+        "name": "unnamedWire#58",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#2",
+          "pinName": "D1"
+        },
+        "name": "unnamedWire#57",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#2",
+          "pinName": "D3"
+        },
+        "name": "unnamedWire#59",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#2",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "C4"
+        },
+        "name": "unnamedWire#132",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 360.0
+          },
+          {
+            "x": 195.0,
+            "y": 415.0
+          },
+          {
+            "x": 135.0,
+            "y": 415.0
+          },
+          {
+            "x": 135.0,
+            "y": 470.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#3",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "C1"
+        },
+        "name": "unnamedWire#133",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 440.0
+          },
+          {
+            "x": 210.0,
+            "y": 580.0
+          },
+          {
+            "x": 150.0,
+            "y": 580.0
+          },
+          {
+            "x": 150.0,
+            "y": 590.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#2",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "C2"
+        },
+        "name": "unnamedWire#130",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 340.0
+          },
+          {
+            "x": 205.0,
+            "y": 425.0
+          },
+          {
+            "x": 145.0,
+            "y": 425.0
+          },
+          {
+            "x": 145.0,
+            "y": 450.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#2",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "C3"
+        },
+        "name": "unnamedWire#131",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 350.0
+          },
+          {
+            "x": 200.0,
+            "y": 420.0
+          },
+          {
+            "x": 140.0,
+            "y": 420.0
+          },
+          {
+            "x": 140.0,
+            "y": 460.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#3",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "C4"
+        },
+        "name": "unnamedWire#136",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 470.0
+          },
+          {
+            "x": 195.0,
+            "y": 565.0
+          },
+          {
+            "x": 135.0,
+            "y": 565.0
+          },
+          {
+            "x": 135.0,
+            "y": 620.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#4",
+          "pinName": "Y1"
+        },
+        "pin2": {
           "compName": "GUIandor414#5",
+          "pinName": "C1"
+        },
+        "name": "unnamedWire#137",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 590.0
+          },
+          {
+            "x": 210.0,
+            "y": 730.0
+          },
+          {
+            "x": 150.0,
+            "y": 730.0
+          },
+          {
+            "x": 150.0,
+            "y": 740.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#3",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "C2"
+        },
+        "name": "unnamedWire#134",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 450.0
+          },
+          {
+            "x": 205.0,
+            "y": 575.0
+          },
+          {
+            "x": 145.0,
+            "y": 575.0
+          },
+          {
+            "x": 145.0,
+            "y": 600.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#3",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "C3"
+        },
+        "name": "unnamedWire#135",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 460.0
+          },
+          {
+            "x": 200.0,
+            "y": 570.0
+          },
+          {
+            "x": 140.0,
+            "y": 570.0
+          },
+          {
+            "x": 140.0,
+            "y": 610.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "name": "unnamedWire#61",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#2",
+          "pinName": "D4"
+        },
+        "name": "unnamedWire#60",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "name": "unnamedWire#63",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#4",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "C2"
+        },
+        "name": "unnamedWire#138",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 600.0
+          },
+          {
+            "x": 205.0,
+            "y": 725.0
+          },
+          {
+            "x": 145.0,
+            "y": 725.0
+          },
+          {
+            "x": 145.0,
+            "y": 750.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "name": "unnamedWire#62",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#4",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "C3"
+        },
+        "name": "unnamedWire#139",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 610.0
+          },
+          {
+            "x": 200.0,
+            "y": 720.0
+          },
+          {
+            "x": 140.0,
+            "y": 720.0
+          },
+          {
+            "x": 140.0,
+            "y": 760.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#3",
+          "pinName": "D1"
+        },
+        "name": "unnamedWire#65",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "name": "unnamedWire#64",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#3",
+          "pinName": "D3"
+        },
+        "name": "unnamedWire#67",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#3",
+          "pinName": "D2"
+        },
+        "name": "unnamedWire#66",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "name": "unnamedWire#69",
+        "path": [
+          {
+            "x": 60.0,
+            "y": 950.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram2#3",
+          "pinName": "D4"
+        },
+        "name": "unnamedWire#68",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#1",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "C1"
+        },
+        "name": "unnamedWire#121",
+        "path": [
+          {
+            "x": 305.0,
+            "y": 640.0
+          },
+          {
+            "x": 305.0,
+            "y": 745.0
+          },
+          {
+            "x": 245.0,
+            "y": 745.0
+          },
+          {
+            "x": 245.0,
+            "y": 790.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#1",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "C2"
+        },
+        "name": "unnamedWire#122",
+        "path": [
+          {
+            "x": 300.0,
+            "y": 650.0
+          },
+          {
+            "x": 300.0,
+            "y": 740.0
+          },
+          {
+            "x": 240.0,
+            "y": 740.0
+          },
+          {
+            "x": 240.0,
+            "y": 800.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#0",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#1",
+          "pinName": "C4"
+        },
+        "name": "unnamedWire#120",
+        "path": [
+          {
+            "x": 290.0,
+            "y": 520.0
+          },
+          {
+            "x": 290.0,
+            "y": 580.0
+          },
+          {
+            "x": 230.0,
+            "y": 580.0
+          },
+          {
+            "x": 230.0,
+            "y": 670.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#2",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QB1"
+        },
+        "name": "unnamedWire#125",
+        "path": [
+          {
+            "x": 330.0,
+            "y": 790.0
+          },
+          {
+            "x": 330.0,
+            "y": 450.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#2",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QB2"
+        },
+        "name": "unnamedWire#126",
+        "path": [
+          {
+            "x": 335.0,
+            "y": 800.0
+          },
+          {
+            "x": 335.0,
+            "y": 550.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "name": "unnamedWire#70",
+        "path": [
+          {
+            "x": 65.0,
+            "y": 1050.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#1",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "C3"
+        },
+        "name": "unnamedWire#123",
+        "path": [
+          {
+            "x": 295.0,
+            "y": 660.0
+          },
+          {
+            "x": 295.0,
+            "y": 735.0
+          },
+          {
+            "x": 235.0,
+            "y": 735.0
+          },
+          {
+            "x": 235.0,
+            "y": 810.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#1",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIandor414#2",
+          "pinName": "C4"
+        },
+        "name": "unnamedWire#124",
+        "path": [
+          {
+            "x": 290.0,
+            "y": 670.0
+          },
+          {
+            "x": 290.0,
+            "y": 730.0
+          },
+          {
+            "x": 230.0,
+            "y": 730.0
+          },
+          {
+            "x": 230.0,
+            "y": 820.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "name": "unnamedWire#72",
+        "path": [
+          {
+            "x": 75.0,
+            "y": 1250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIand41#2",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "C1"
+        },
+        "name": "unnamedWire#129",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 330.0
+          },
+          {
+            "x": 210.0,
+            "y": 430.0
+          },
+          {
+            "x": 150.0,
+            "y": 430.0
+          },
+          {
+            "x": 150.0,
+            "y": 440.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "name": "unnamedWire#71",
+        "path": [
+          {
+            "x": 70.0,
+            "y": 1150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#0",
+          "pinName": "Y01"
+        },
+        "pin2": {
+          "compName": "GUIandor414#3",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#74",
+        "path": [
+          {
+            "x": 130.0,
+            "y": 60.0
+          },
+          {
+            "x": 130.0,
+            "y": 520.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#2",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "QB3"
+        },
+        "name": "unnamedWire#127",
+        "path": [
+          {
+            "x": 340.0,
+            "y": 810.0
+          },
+          {
+            "x": 340.0,
+            "y": 650.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#0",
+          "pinName": "Y00"
+        },
+        "pin2": {
+          "compName": "GUIand41#2",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#73",
+        "path": [
+          {
+            "x": 135.0,
+            "y": 50.0
+          },
+          {
+            "x": 135.0,
+            "y": 370.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIandor414#2",
           "pinName": "Y4"
         },
         "pin2": {
           "compName": "_submodelinterface",
-          "pinName": "QA4"
+          "pinName": "QB4"
         },
+        "name": "unnamedWire#128",
         "path": [
           {
-            "x": 195.0,
-            "y": 770.0
+            "x": 345.0,
+            "y": 820.0
           },
           {
-            "x": 195.0,
-            "y": 895.0
+            "x": 345.0,
+            "y": 750.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#0",
+          "pinName": "Y11"
+        },
+        "pin2": {
+          "compName": "GUIandor414#5",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#76",
+        "path": [
+          {
+            "x": 120.0,
+            "y": 80.0
           },
           {
-            "x": 325.0,
-            "y": 895.0
+            "x": 120.0,
+            "y": 820.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdemux2#0",
+          "pinName": "Y10"
+        },
+        "pin2": {
+          "compName": "GUIandor414#4",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#75",
+        "path": [
+          {
+            "x": 125.0,
+            "y": 70.0
           },
           {
-            "x": 325.0,
-            "y": 350.0
+            "x": 125.0,
+            "y": 670.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIandor414#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#78",
+        "path": [
+          {
+            "x": 225.0,
+            "y": 570.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIand41#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#77",
+        "path": [
+          {
+            "x": 230.0,
+            "y": 420.0
           }
         ]
       }
     ]
   },
-  "symbolRendererSnippetID": "SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
   "symbolRendererParams": {
     "centerText": "GUIram4",
-    "horizontalComponentCenter": 17.5,
     "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 17.5,
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
+  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {
+      "c00": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#0"
+        }
+      },
+      "c11": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#3"
+        }
+      },
+      "c10": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#2"
+        }
+      },
+      "c01": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#1"
+        }
+      },
+      "c1000": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#0",
+          "prefix": "c10"
+        }
+      },
+      "c1011": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#3",
+          "prefix": "c10"
+        }
+      },
+      "c1110": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#2",
+          "prefix": "c11"
+        }
+      },
+      "c1001": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#1",
+          "prefix": "c10"
+        }
+      },
+      "c1100": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#0",
+          "prefix": "c11"
+        }
+      },
+      "c1111": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#3",
+          "prefix": "c11"
+        }
+      },
+      "c0000": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#0",
+          "prefix": "c00"
+        }
+      },
+      "c0011": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#3",
+          "prefix": "c00"
+        }
+      },
+      "c0110": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#2",
+          "prefix": "c01"
+        }
+      },
+      "c0010": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#2",
+          "prefix": "c00"
+        }
+      },
+      "c1010": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#2",
+          "prefix": "c10"
+        }
+      },
+      "c0101": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#1",
+          "prefix": "c01"
+        }
+      },
+      "c0001": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#1",
+          "prefix": "c00"
+        }
+      },
+      "c0100": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#0",
+          "prefix": "c01"
+        }
+      },
+      "c0111": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#3",
+          "prefix": "c01"
+        }
+      },
+      "c1101": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram2#1",
+          "prefix": "c11"
+        }
+      }
+    },
+    "atomicHighLevelStates": {
+      "q": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.BitVectorSplittingAtomicHighLevelStateHandler",
+        "params": {
+          "vectorPartTargets": [
+            "c00.q",
+            "c01.q",
+            "c10.q",
+            "c11.q"
+          ],
+          "vectorPartLengthes": [
+            16,
+            16,
+            16,
+            16
+          ]
+        }
+      }
+    }
   }
 }

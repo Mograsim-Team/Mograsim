@@ -10,6 +10,7 @@ import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
@@ -115,7 +116,7 @@ public class WireCrossPoint extends GUIComponent
 	// serializing
 
 	@Override
-	public JsonElement getParamsForSerializing()
+	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
 		return new JsonPrimitive(pin.logicWidth);
 	}

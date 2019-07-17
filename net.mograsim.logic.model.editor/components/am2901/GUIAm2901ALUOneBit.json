@@ -96,188 +96,242 @@ mograsim version: 0.1.3
     "innerScale": 0.2,
     "subComps": [
       {
+        "id": "GUINandGate",
+        "name": "GUINandGate#0",
         "pos": {
           "x": 60.0,
           "y": 55.0
         },
-        "id": "GUINandGate",
-        "name": "GUINandGate#0",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
         "pos": {
           "x": 54.0,
           "y": 69.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#1",
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
         "pos": {
           "x": 49.0,
           "y": 59.0
         },
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#0",
         "params": 1
       },
       {
+        "id": "GUImux1",
+        "name": "GUImux1#0",
         "pos": {
           "x": 90.0,
           "y": 70.0
-        },
-        "id": "GUImux1",
-        "name": "GUImux1#0"
+        }
       },
       {
+        "id": "GUIand",
+        "name": "GUIand#0",
         "pos": {
           "x": 10.0,
           "y": 20.0
-        },
-        "id": "GUIand",
-        "name": "GUIand#0"
+        }
       },
       {
+        "id": "GUIxor",
+        "name": "GUIxor#1",
         "pos": {
           "x": 10.0,
           "y": 290.0
-        },
-        "id": "GUIxor",
-        "name": "GUIxor#1"
+        }
       },
       {
+        "id": "GUIxor",
+        "name": "GUIxor#2",
         "pos": {
           "x": 135.0,
           "y": 70.0
-        },
-        "id": "GUIxor",
-        "name": "GUIxor#2"
+        }
       },
       {
+        "id": "GUIfulladder",
+        "name": "GUIfulladder#0",
         "pos": {
           "x": 60.0,
           "y": 20.0
-        },
-        "id": "GUIfulladder",
-        "name": "GUIfulladder#0"
+        }
       },
       {
+        "id": "GUIxor",
+        "name": "GUIxor#0",
         "pos": {
           "x": 10.0,
           "y": 190.0
-        },
-        "id": "GUIxor",
-        "name": "GUIxor#0"
+        }
       },
       {
+        "id": "GUIand",
+        "name": "GUIand#1",
         "pos": {
           "x": 135.0,
           "y": 20.0
-        },
-        "id": "GUIand",
-        "name": "GUIand#1"
+        }
       }
     ],
     "innerWires": [
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "Cin"
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "GUIand#0",
+          "compName": "GUIfulladder#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#14",
+        "path": [
+          {
+            "x": 55.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIxor#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#13",
+        "path": [
+          {
+            "x": 55.0,
+            "y": 295.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIfulladder#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUImux1#0",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#16",
+        "path": [
+          {
+            "x": 100.0,
+            "y": 25.0
+          },
+          {
+            "x": 100.0,
+            "y": 65.0
+          },
+          {
+            "x": 85.0,
+            "y": 65.0
+          },
+          {
+            "x": 85.0,
+            "y": 85.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUINandGate#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#15",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUINandGate#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUImux1#0",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#18",
+        "path": [
+          {
+            "x": 82.5,
+            "y": 65.0
+          },
+          {
+            "x": 82.5,
+            "y": 95.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIfulladder#0",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "GUIand#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUImux1#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIxor#2",
           "pinName": "A"
         },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIand#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIfulladder#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#9",
         "path": []
       },
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "CoutE"
+          "pinName": "L"
         },
         "pin2": {
-          "compName": "GUIand#1",
-          "pinName": "A"
+          "compName": "GUImux1#0",
+          "pinName": "S0"
         },
+        "name": "unnamedWire#8",
         "path": [
           {
-            "x": 5.0,
+            "x": 87.5,
+            "y": 425.0
+          },
+          {
+            "x": 87.5,
             "y": 75.0
-          },
-          {
-            "x": 5.0,
-            "y": 10.0
-          },
-          {
-            "x": 130.0,
-            "y": 10.0
-          },
-          {
-            "x": 130.0,
-            "y": 25.0
           }
         ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "CinE"
-        },
-        "pin2": {
-          "compName": "GUIand#0",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 7.5,
-            "y": 125.0
-          },
-          {
-            "x": 7.5,
-            "y": 35.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "R"
-        },
-        "pin2": {
-          "compName": "GUIxor#0",
-          "pinName": "A"
-        }
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "RN"
-        },
-        "pin2": {
-          "compName": "GUIxor#0",
-          "pinName": "B"
-        }
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "S"
-        },
-        "pin2": {
-          "compName": "GUIxor#1",
-          "pinName": "A"
-        }
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "SN"
-        },
-        "pin2": {
-          "compName": "GUIxor#1",
-          "pinName": "B"
-        }
       },
       {
         "pin1": {
@@ -288,6 +342,7 @@ mograsim version: 0.1.3
           "compName": "GUIxor#2",
           "pinName": "B"
         },
+        "name": "unnamedWire#7",
         "path": [
           {
             "x": 130.0,
@@ -302,33 +357,65 @@ mograsim version: 0.1.3
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "L"
+          "pinName": "SN"
         },
         "pin2": {
-          "compName": "GUImux1#0",
-          "pinName": "S0"
+          "compName": "GUIxor#1",
+          "pinName": "B"
         },
+        "name": "unnamedWire#6"
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "CoutE"
+        },
+        "pin2": {
+          "compName": "GUIand#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#1",
         "path": [
           {
-            "x": 87.5,
-            "y": 425.0
+            "x": 5.0,
+            "y": 75.0
           },
           {
-            "x": 87.5,
-            "y": 75.0
+            "x": 5.0,
+            "y": 10.0
+          },
+          {
+            "x": 130.0,
+            "y": 10.0
+          },
+          {
+            "x": 130.0,
+            "y": 25.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "GUIand#0",
-          "pinName": "Y"
+          "compName": "_submodelinterface",
+          "pinName": "Cin"
         },
         "pin2": {
-          "compName": "GUIfulladder#0",
+          "compName": "GUIand#0",
           "pinName": "A"
         },
+        "name": "unnamedWire#0",
         "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "S"
+        },
+        "pin2": {
+          "compName": "GUIxor#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#5"
       },
       {
         "pin1": {
@@ -339,163 +426,13 @@ mograsim version: 0.1.3
           "compName": "WireCrossPoint#0",
           "pinName": ""
         },
+        "name": "unnamedWire#10",
         "path": [
           {
             "x": 50.0,
             "y": 195.0
           }
         ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIfulladder#0",
-          "pinName": "B"
-        },
-        "path": [
-          {
-            "x": 50.0,
-            "y": 35.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUINandGate#0",
-          "pinName": "A"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "GUIxor#1",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "path": [
-          {
-            "x": 55.0,
-            "y": 295.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIfulladder#0",
-          "pinName": "C"
-        },
-        "path": [
-          {
-            "x": 55.0,
-            "y": 45.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUINandGate#0",
-          "pinName": "B"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "GUIfulladder#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "GUImux1#0",
-          "pinName": "I0"
-        },
-        "path": [
-          {
-            "x": 100.0,
-            "y": 25.0
-          },
-          {
-            "x": 100.0,
-            "y": 65.0
-          },
-          {
-            "x": 85.0,
-            "y": 65.0
-          },
-          {
-            "x": 85.0,
-            "y": 85.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUIfulladder#0",
-          "pinName": "Z"
-        },
-        "pin2": {
-          "compName": "GUIand#1",
-          "pinName": "B"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "GUINandGate#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "GUImux1#0",
-          "pinName": "I1"
-        },
-        "path": [
-          {
-            "x": 82.5,
-            "y": 65.0
-          },
-          {
-            "x": 82.5,
-            "y": 95.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "GUImux1#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "GUIxor#2",
-          "pinName": "A"
-        },
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "GUIand#1",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Cout"
-        },
-        "path": []
       },
       {
         "pin1": {
@@ -506,16 +443,102 @@ mograsim version: 0.1.3
           "compName": "_submodelinterface",
           "pinName": "F"
         },
+        "name": "unnamedWire#21",
         "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "RN"
+        },
+        "pin2": {
+          "compName": "GUIxor#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#4"
+      },
+      {
+        "pin1": {
+          "compName": "GUIand#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Cout"
+        },
+        "name": "unnamedWire#20",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "R"
+        },
+        "pin2": {
+          "compName": "GUIxor#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#3"
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUINandGate#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "CinE"
+        },
+        "pin2": {
+          "compName": "GUIand#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 7.5,
+            "y": 125.0
+          },
+          {
+            "x": 7.5,
+            "y": 35.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIfulladder#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#11",
+        "path": [
+          {
+            "x": 50.0,
+            "y": 35.0
+          }
+        ]
       }
     ]
   },
-  "symbolRendererSnippetID": "SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
   "symbolRendererParams": {
     "centerText": "GUIAm2901ALUOneBit",
-    "horizontalComponentCenter": 17.5,
     "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 17.5,
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
-  }
+  },
+  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer"
 }

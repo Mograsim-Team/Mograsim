@@ -1,6 +1,7 @@
 package net.mograsim.logic.model.snippets;
 
 import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.serializing.JSONSerializable;
 
 /**
  * A high level state ID consists of parts separated by dots ('.').<br>
@@ -13,7 +14,7 @@ import net.mograsim.logic.model.model.components.GUIComponent;
  * 
  * @author Daniel Kirschten
  */
-public interface HighLevelStateHandler
+public interface HighLevelStateHandler extends JSONSerializable
 {
 	/**
 	 * Gets the current value of the given high-level state. <br>

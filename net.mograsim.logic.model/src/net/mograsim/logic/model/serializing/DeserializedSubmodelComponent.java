@@ -81,12 +81,5 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 		super.removeSubmodelInterface(name);
 	}
 
-	// TODO only used in EditorCanvas. Replace with setting maxVisibleRegionFillRatioForAlpha0 / min...1.
-	@Override
-	public Renderer getOutlineRenderer()
-	{
-		return super.getOutlineRenderer();
-	}
-
 	// TODO static initializer?
 }

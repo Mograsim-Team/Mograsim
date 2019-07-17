@@ -11,6 +11,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -27,12 +28,20 @@ import net.mograsim.preferences.Preferences;
 public class SimpleRectangularLikeSymbolRenderer implements Renderer
 {
 	private final GUIComponent component;
-	private final SimpleRectangularLikeParams params;
+	private final String centerText;
+	private final double centerTextHeight;
+	private final double horizontalComponentCenter;
+	private final double pinLabelHeight;
+	private final double pinLabelMargin;
 
 	public SimpleRectangularLikeSymbolRenderer(SubmodelComponent component, SimpleRectangularLikeParams params)
 	{
 		this.component = component;
-		this.params = params;
+		this.centerText = params.centerText;
+		this.centerTextHeight = params.centerTextHeight;
+		this.horizontalComponentCenter = params.horizontalComponentCenter;
+		this.pinLabelHeight = params.pinLabelHeight;
+		this.pinLabelMargin = params.pinLabelMargin;
 	}
 
 	@Override
@@ -44,13 +53,13 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 		double height = component.getHeight();
 
 		Font oldFont = gc.getFont();
-		gc.setFont(new Font(oldFont.getName(), params.centerTextHeight, oldFont.getStyle()));
-		Point textExtent = gc.textExtent(params.centerText);
+		gc.setFont(new Font(oldFont.getName(), centerTextHeight, oldFont.getStyle()));
+		Point textExtent = gc.textExtent(centerText);
 		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
 		if (textColor != null)
 			gc.setForeground(textColor);
-		gc.drawText(params.centerText, posX + (width - textExtent.x) / 2, posY + (height - textExtent.y) / 2, true);
-		gc.setFont(new Font(oldFont.getName(), params.pinLabelHeight, oldFont.getStyle()));
+		gc.drawText(centerText, posX + (width - textExtent.x) / 2, posY + (height - textExtent.y) / 2, true);
+		gc.setFont(new Font(oldFont.getName(), pinLabelHeight, oldFont.getStyle()));
 		for (Entry<String, Pin> pinEntry : component.getPins().entrySet())
 		{
 			String pinName = pinEntry.getKey();
@@ -58,11 +67,22 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 			double pinX = pin.getRelX();
 			double pinY = posY + pin.getRelY();
 			textExtent = gc.textExtent(pinName);
-			gc.drawText(pinName,
-					posX + pinX + (pinX > params.horizontalComponentCenter ? -textExtent.x - params.pinLabelMargin : params.pinLabelMargin),
+			gc.drawText(pinName, posX + pinX + (pinX > horizontalComponentCenter ? -textExtent.x - pinLabelMargin : pinLabelMargin),
 					pinY - textExtent.y / 2, true);
 		}
 		gc.setFont(oldFont);
+	}
+
+	@Override
+	public SimpleRectangularLikeParams getParamsForSerializing(IdentifierGetter idGetter)
+	{
+		SimpleRectangularLikeParams params = new SimpleRectangularLikeParams();
+		params.centerText = centerText;
+		params.centerTextHeight = centerTextHeight;
+		params.horizontalComponentCenter = horizontalComponentCenter;
+		params.pinLabelHeight = pinLabelHeight;
+		params.pinLabelMargin = pinLabelMargin;
+		return params;
 	}
 
 	public static class SimpleRectangularLikeParams

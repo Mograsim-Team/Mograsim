@@ -2,7 +2,10 @@ package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcom
 
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
 
 public class DelegatingSubcomponentHighLevelStateHandler implements SubcomponentHighLevelStateHandler
 {
@@ -68,9 +71,25 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 		return prefix == null ? subStateID : prefix + '.' + subStateID;
 	}
 
+	@Override
+	public DelegatingSubcomponentHighLevelStateHandlerParams getParamsForSerializing(IdentifierGetter idGetter)
+	{
+		DelegatingSubcomponentHighLevelStateHandlerParams params = new DelegatingSubcomponentHighLevelStateHandlerParams();
+		params.delegateTarget = delegateTarget.name;
+		params.prefix = prefix;
+		return params;
+	}
+
 	public static class DelegatingSubcomponentHighLevelStateHandlerParams
 	{
 		public String delegateTarget;
 		public String prefix;
+	}
+
+	static
+	{
+		StandardHighLevelStateHandlerSnippetSuppliers.subcomponentHandlerSupplier
+				.setSnippetSupplier(DelegatingSubcomponentHighLevelStateHandler.class.getCanonicalName(), SnippetDefinintion
+						.create(DelegatingSubcomponentHighLevelStateHandlerParams.class, DelegatingSubcomponentHighLevelStateHandler::new));
 	}
 }

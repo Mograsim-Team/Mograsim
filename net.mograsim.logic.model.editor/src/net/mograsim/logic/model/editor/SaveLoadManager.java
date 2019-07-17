@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 
 public class SaveLoadManager
@@ -47,12 +48,14 @@ public class SaveLoadManager
 	{
 		try
 		{
-			SubmodelComponentSerializer.serialize(editor.toBeEdited, c ->
+			IdentifierGetter idGetter = new IdentifierGetter();
+			idGetter.componentIDs = c ->
 			{
 				if (Editor.identifierPerComponent.containsKey(c))
 					return Editor.identifierPerComponent.get(c);
 				return "class:" + c.getClass().getCanonicalName();
-			}, savePath);
+			};
+			SubmodelComponentSerializer.serialize(editor.toBeEdited, idGetter, savePath);
 		}
 		catch (IOException e)
 		{

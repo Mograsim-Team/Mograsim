@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 
 public class JsonHandler
 {
@@ -53,5 +54,10 @@ public class JsonHandler
 	public static String toJson(Object o)
 	{
 		return String.format("mograsim version: %s\n%s", Version.jsonCompVersion.toString(), parser.toJson(o));
+	}
+
+	public static JsonElement toJsonTree(Object o)
+	{
+		return parser.toJsonTree(o);
 	}
 }

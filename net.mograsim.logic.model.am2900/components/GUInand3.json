@@ -201,12 +201,13 @@ mograsim version: 0.1.3
       }
     ]
   },
-  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
   "symbolRendererParams": {
     "centerText": "GUInand3",
     "centerTextHeight": 5.0,
     "horizontalComponentCenter": 17.5,
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
-  }
+  },
+  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer"
 }
