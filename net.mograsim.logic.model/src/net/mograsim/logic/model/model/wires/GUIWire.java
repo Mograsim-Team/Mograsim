@@ -421,6 +421,8 @@ public class GUIWire
 				System.arraycopy(oldPath, index, path, index + 1, oldPath.length - index);
 			path[index] = pointCopy(p);
 		}
+		recalculateEffectivePath();
+		callPathChangedListeners();
 	}
 
 	public void removePathPoint(int index)
@@ -435,6 +437,8 @@ public class GUIWire
 			if (index < oldPath.length - 1)
 				System.arraycopy(oldPath, index + 1, path, index, oldPath.length - index - 1);
 		}
+		recalculateEffectivePath();
+		callPathChangedListeners();
 	}
 
 	public double[] getEffectivePath()
