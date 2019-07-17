@@ -29,7 +29,7 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 				setDelegateTarget(parentComponent);
 			else
 				this.delegateTarget = parentComponent.submodel.getComponentsByName().get(params.delegateTarget);
-			setPrefix(prefix);
+			setPrefix(params.prefix);
 		}
 	}
 
