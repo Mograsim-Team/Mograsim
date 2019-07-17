@@ -1,5 +1,9 @@
 package net.mograsim.plugin.views;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -13,13 +17,14 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
 import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
-import net.mograsim.logic.model.model.components.mi.nandbased.am2901.GUIAm2901;
-import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.plugin.ThemePreferences;
 import net.mograsim.preferences.Preferences;
 
@@ -78,20 +83,32 @@ public class LogicUIPart extends ViewPart
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		SimpleRectangularSubmodelComponent comp = new GUIAm2901(model);
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "GUIAm2901");
+
+		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
+		List<String> inputPinNames = new ArrayList<>();
+		List<String> outputPinNames = new ArrayList<>();
+		for (Pin p : comp.getPins().values())
+			if (p.getRelX() == 0)
+				inputPinNames.add(p.name);
+			else
+				outputPinNames.add(p.name);
+
+		inputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
+		outputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
 
 		comp.moveTo(100, 0);
-		for (int i = 0; i < comp.getInputPinNames().size(); i++)
+		for (int i = 0; i < inputPinNames.size(); i++)
 		{
 			GUIManualSwitch sw = new GUIManualSwitch(model);
 			sw.moveTo(0, 20 * i);
-			new GUIWire(model, comp.getPin(comp.getInputPinNames().get(i)), sw.getOutputPin());
+			new GUIWire(model, comp.getPin(inputPinNames.get(i)), sw.getOutputPin());
 		}
-		for (int i = 0; i < comp.getOutputPinNames().size(); i++)
+		for (int i = 0; i < outputPinNames.size(); i++)
 		{
 			GUIBitDisplay bd = new GUIBitDisplay(model);
 			bd.moveTo(200, 20 * i);
-			new GUIWire(model, comp.getPin(comp.getOutputPinNames().get(i)), bd.getInputPin());
+			new GUIWire(model, comp.getPin(outputPinNames.get(i)), bd.getInputPin());
 		}
 	}
 }
