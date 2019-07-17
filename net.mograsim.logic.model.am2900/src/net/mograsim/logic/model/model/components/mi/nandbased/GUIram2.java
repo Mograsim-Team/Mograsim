@@ -289,7 +289,7 @@ public class GUIram2 extends SimpleRectangularSubmodelComponent
 		highLevelStateHandler.addSubcomponentHighLevelState("c10", DelegatingSubcomponentHighLevelStateHandler::new).set(cell10, null);
 		highLevelStateHandler.addSubcomponentHighLevelState("c11", DelegatingSubcomponentHighLevelStateHandler::new).set(cell11, null);
 		highLevelStateHandler.addAtomicHighLevelState("q", BitVectorSplittingAtomicHighLevelStateHandler::new)
-				.set(Arrays.asList("c00.q", "c01.q", "c10.q", "c11.q"), Arrays.asList(4, 4, 4, 4));
+				.set(Arrays.asList("c11.q", "c10.q", "c01.q", "c00.q"), Arrays.asList(4, 4, 4, 4));
 		setHighLevelStateHandler(highLevelStateHandler);
 	}
 
