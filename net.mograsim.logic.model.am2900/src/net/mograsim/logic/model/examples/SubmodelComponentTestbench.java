@@ -26,7 +26,7 @@ public class SubmodelComponentTestbench
 		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "GUIAm2901", "Am2901");
 
 		// guess which pins are outputs and which are inputs
-		// TODO this code exists three times... but it seems too "hacky" to put it in a helper class
+		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
 		for (Pin p : comp.getPins().values())

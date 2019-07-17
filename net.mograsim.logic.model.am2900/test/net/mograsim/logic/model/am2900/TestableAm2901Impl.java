@@ -105,7 +105,7 @@ public class TestableAm2901Impl implements TestableAm2901
 		ViewModelModifiable viewModel = new ViewModelModifiable();
 		am2901 = IndirectGUIComponentCreator.createComponent(viewModel, "GUIAm2901");
 		// guess which pins are outputs and which are inputs
-		// TODO this code exists three times... but it seems too "hacky" to put it in a helper class
+		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
 		for (Pin p : am2901.getPins().values())
