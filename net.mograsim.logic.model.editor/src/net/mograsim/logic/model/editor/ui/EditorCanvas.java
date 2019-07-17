@@ -22,9 +22,17 @@ public class EditorCanvas extends LogicUICanvas
 		super(parent, style, editor.toBeEdited.submodel);
 
 		handles = editor.handleManager.getHandles();
-		editor.handleManager.addHandleAddedListener(h -> h.addRedrawListener(this::redrawThreadsafe));
+		editor.handleManager.addHandleAddedListener(h ->
+		{
+			redrawThreadsafe();
+			h.addRedrawListener(this::redrawThreadsafe);
+		});
 		// TODO: Is this even necessary? The Handle should be finalized by the gc
-		editor.handleManager.addHandleRemovedListener(h -> h.removeRedrawListener(this::redrawThreadsafe));
+		editor.handleManager.addHandleRemovedListener(h ->
+		{
+			redrawThreadsafe();
+			h.removeRedrawListener(this::redrawThreadsafe);
+		});
 
 		addZoomedRenderer(gc ->
 		{

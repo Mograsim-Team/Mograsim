@@ -122,7 +122,7 @@ public class HandleManager
 		{
 			Point[] newPath = w.getPath();
 			int newLength = newPath == null ? 0 : newPath.length;
-			int diff = oldLength.getAndSet(newLength) - newLength;
+			int diff = newLength - oldLength.getAndSet(newLength);
 			if (diff != 0)
 			{
 				if (diff > 0)
@@ -217,11 +217,14 @@ public class HandleManager
 
 	void destroyWirePointHandle(GUIWire owner, WirePointHandle h)
 	{
-		List<WirePointHandle> handles = pointHandlesPerWire.get(owner);
-		int pointIndex = handles.indexOf(h);
-		handles.remove(pointIndex);
-		removeHandle(h);
-		owner.removePathPoint(pointIndex);
+		if (pointHandlesPerWire.containsKey(owner))
+		{
+			List<WirePointHandle> handles = pointHandlesPerWire.get(owner);
+			int pointIndex = handles.indexOf(h);
+			handles.remove(pointIndex);
+			removeHandle(h);
+			owner.removePathPoint(pointIndex);
+		}
 	}
 
 	private void removeWirePointHandles(GUIWire owner)
