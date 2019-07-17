@@ -1,6 +1,7 @@
 package net.mograsim.logic.model.am2900;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
@@ -59,6 +60,9 @@ public class Am2901Testbench
 				inputPinNames.add(p.name);
 			else
 				outputPinNames.add(p.name);
+
+		inputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
+		outputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
 
 		for (int i = 0; i < inputPinNames.size(); i++)
 		{

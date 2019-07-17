@@ -1,6 +1,7 @@
 package net.mograsim.logic.model.examples;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
@@ -26,7 +27,6 @@ public class SubmodelComponentTestbench
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists three times... but it seems too "hacky" to put it in a helper class
-		// TODO sort pins correctly - use Y coordinate
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
 		for (Pin p : comp.getPins().values())
@@ -34,6 +34,9 @@ public class SubmodelComponentTestbench
 				inputPinNames.add(p.name);
 			else
 				outputPinNames.add(p.name);
+
+		inputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
+		outputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
 
 		comp.moveTo(100, 0);
 		for (int i = 0; i < inputPinNames.size(); i++)
