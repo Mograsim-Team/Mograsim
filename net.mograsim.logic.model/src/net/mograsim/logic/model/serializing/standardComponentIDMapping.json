@@ -1,5 +1,7 @@
 mograsim version: 0.1.3
 {
+  "GUIManualSwitch": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+  "GUIBitDisplay": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
   "GUIAm2901": "file:components/am2901/GUIAm2901.json",
   "GUIAm2901ALUFuncDecode": "file:components/am2901/GUIAm2901ALUFuncDecode.json",
   "GUIAm2901ALUInclDecode": "file:components/am2901/GUIAm2901ALUInclDecode.json",
