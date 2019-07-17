@@ -22,7 +22,7 @@ public class SubmodelComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "file:components/am2901/GUIAm2901.json", "Am2901");
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "GUIAm2901", "Am2901");
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists three times... but it seems too "hacky" to put it in a helper class

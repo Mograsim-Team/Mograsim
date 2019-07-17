@@ -24,12 +24,12 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
-import net.mograsim.logic.model.model.components.mi.nandbased.am2901.GUIAm2901;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 
 public class TestableAm2901Impl implements TestableAm2901
 {
@@ -103,9 +103,7 @@ public class TestableAm2901Impl implements TestableAm2901
 	{
 		// Create view model
 		ViewModelModifiable viewModel = new ViewModelModifiable();
-		// TODO replace with deserialized version as soon as high level states work for deserialized components
-		am2901 = new GUIAm2901(viewModel);
-//		am2901 = IndirectGUIComponentCreator.createComponent(viewModel, "GUIAm2901");
+		am2901 = IndirectGUIComponentCreator.createComponent(viewModel, "GUIAm2901");
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists three times... but it seems too "hacky" to put it in a helper class
 		List<String> inputPinNames = new ArrayList<>();
