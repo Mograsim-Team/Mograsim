@@ -22,7 +22,6 @@ public class StandardHighLevelStateHandlerSnippetSuppliers
 
 	static
 	{
-		// TODO update standardSnippetIDMapping.json
 		try (InputStream s = StandardHighLevelStateHandlerSnippetSuppliers.class.getResourceAsStream("./standardSnippetIDMapping.json"))
 		{
 			if (s == null)
