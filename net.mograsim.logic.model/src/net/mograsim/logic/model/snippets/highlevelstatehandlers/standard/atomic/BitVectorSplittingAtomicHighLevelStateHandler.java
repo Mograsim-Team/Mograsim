@@ -16,6 +16,7 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	private SubmodelComponent component;
 	private final List<String> vectorPartTargets;
 	private final List<Integer> vectorPartLengthes;
+	private int length;
 
 	public BitVectorSplittingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
 	{
@@ -41,12 +42,14 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	{
 		vectorPartTargets.add(target);
 		vectorPartLengthes.add(length);
+		this.length += length;
 	}
 
 	public void clearVectorParts()
 	{
 		vectorPartTargets.clear();
 		vectorPartLengthes.clear();
+		length = 0;
 	}
 
 	private void setVectorParts(List<String> targets, List<Integer> lengthes)
@@ -56,6 +59,7 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 			throw new IllegalArgumentException("Targets list and lenghtes list have different sizes");
 		vectorPartTargets.addAll(targets);
 		vectorPartLengthes.addAll(lengthes);
+		length += lengthes.stream().mapToInt(Integer::intValue).sum();
 	}
 
 	@Override
@@ -72,7 +76,7 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 				vectorPart = (BitVector) subStateUncasted;
 			if (vectorPart.length() != vectorPartLengthes.get(partIndex))
 				throw new IllegalArgumentException(
-						"Illegal vector part length: " + vectorPart.length() + "; expected " + vectorPartLengthes.get(partIndex));
+						"Incorrect vector part length: " + vectorPart.length() + "; expected " + vectorPartLengthes.get(partIndex));
 			result = vectorPart.concat(result);
 		}
 		return result;
@@ -82,6 +86,8 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	public void setHighLevelState(Object newState)
 	{
 		BitVector newStateCasted = (BitVector) newState;
+		if (newStateCasted.length() != length)
+			throw new IllegalArgumentException("Incorrect vector length: " + newStateCasted.length() + "; expected " + length);
 		for (int partIndex = vectorPartTargets.size() - 1, bitIndex = 0; partIndex >= 0; partIndex--)
 		{
 			int vectorPartLength = vectorPartLengthes.get(partIndex);
