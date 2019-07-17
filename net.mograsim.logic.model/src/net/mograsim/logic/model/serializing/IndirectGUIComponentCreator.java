@@ -90,25 +90,28 @@ public class IndirectGUIComponentCreator
 				resolvedID = id;
 			else
 				resolvedID = standardComponentIDs.get(id);
-			if (resolvedID.startsWith("class:"))
+			if (resolvedID != null)
 			{
-				String className = resolvedID.substring(6);
-				tryLoadComponentClass(className);
-				ComponentSupplier componentSupplier = componentSuppliers.get(className);
-				if (componentSupplier != null)
-					return componentSupplier.create(model, params, name);
-			} else
-			// we know id has to start with "file:" here
-			// because standardComponentIDs only contains strings starting with "class:" or "file:"
-			if (params != null && !JsonNull.INSTANCE.equals(params))
-				throw new IllegalArgumentException("Can't give params to a component deserialized from a JSON file");
-			try
-			{
-				return SubmodelComponentSerializer.deserialize(model, resolvedID.substring(5), name, id, null);
-			}
-			catch (IOException e)
-			{
-				throw new UncheckedIOException(e);
+				if (resolvedID.startsWith("class:"))
+				{
+					String className = resolvedID.substring(6);
+					tryLoadComponentClass(className);
+					ComponentSupplier componentSupplier = componentSuppliers.get(className);
+					if (componentSupplier != null)
+						return componentSupplier.create(model, params, name);
+				} else
+				// we know id has to start with "file:" here
+				// because standardComponentIDs only contains strings starting with "class:" or "file:"
+				if (params != null && !JsonNull.INSTANCE.equals(params))
+					throw new IllegalArgumentException("Can't give params to a component deserialized from a JSON file");
+				try
+				{
+					return SubmodelComponentSerializer.deserialize(model, resolvedID.substring(5), name, id, null);
+				}
+				catch (IOException e)
+				{
+					throw new UncheckedIOException(e);
+				}
 			}
 		}
 		throw new RuntimeException("Could not get component supplier for ID " + id);
