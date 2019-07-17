@@ -14,6 +14,8 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.JSONSerializable;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 
 /**
@@ -24,7 +26,7 @@ import net.mograsim.logic.model.snippets.HighLevelStateHandler;
  * 
  * @author Daniel Kirschten
  */
-public abstract class GUIComponent
+public abstract class GUIComponent implements JSONSerializable
 {
 	/**
 	 * The model this component is a part of.
@@ -159,6 +161,11 @@ public abstract class GUIComponent
 		this.highLevelStateHandler = highLevelStateHandler;
 	}
 
+	public HighLevelStateHandler getHighLevelStateHandler()
+	{
+		return highLevelStateHandler;
+	}
+
 	/**
 	 * Gets the current value of the given high-level state. <br>
 	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
@@ -287,8 +294,8 @@ public abstract class GUIComponent
 
 	// serializing
 
-	@SuppressWarnings("static-method") // this method is intended to be overridden
-	public JsonElement getParamsForSerializing()
+	@Override
+	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
 		return JsonNull.INSTANCE;
 	}

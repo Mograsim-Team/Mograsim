@@ -1,10 +1,8 @@
 package net.mograsim.logic.model.examples;
 
 import java.io.IOException;
-import java.util.function.Function;
 
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.mi.nandbased.GUI_rsLatch;
 import net.mograsim.logic.model.model.components.mi.nandbased.GUIand;
 import net.mograsim.logic.model.model.components.mi.nandbased.GUIand41;
@@ -35,6 +33,7 @@ import net.mograsim.logic.model.model.components.mi.nandbased.am2901.GUIAm2901De
 import net.mograsim.logic.model.model.components.mi.nandbased.am2901.GUIAm2901QReg;
 import net.mograsim.logic.model.model.components.mi.nandbased.am2901.GUIAm2901SourceDecode;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.util.JsonHandler;
@@ -43,8 +42,9 @@ public class ComponenetSerializer
 {
 	public static void main(String[] args) throws IOException
 	{
+		IdentifierGetter idGetter = new IdentifierGetter();
 		// we know we only use components where this works
-		Function<GUIComponent, String> getIdentifier = c -> c.getClass().getSimpleName();
+		idGetter.componentIDs = c -> c.getClass().getSimpleName();
 
 		ViewModelModifiable model = new ViewModelModifiable();
 		SubmodelComponent[] components = { new GUIAm2901(model), new GUIAm2901ALUFuncDecode(model), new GUIAm2901ALUInclDecode(model),
@@ -57,7 +57,7 @@ public class ComponenetSerializer
 
 		for (SubmodelComponent comp : components)
 		{
-			SubmodelComponentParams params = SubmodelComponentSerializer.serialize(comp, getIdentifier);
+			SubmodelComponentParams params = SubmodelComponentSerializer.serialize(comp, idGetter);
 			String shortClassName = comp.getClass().getName().substring("net.mograsim.logic.model.model.components.mi.nandbased.".length());
 			String path = "components/" + shortClassName.replace('.', '/') + ".json";
 			JsonHandler.writeJson(params, path);

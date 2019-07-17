@@ -1,18 +1,16 @@
 package net.mograsim.logic.model.examples;
 
-import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
-import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 
 public class SubmodelComponentTestbench
 {
@@ -24,18 +22,11 @@ public class SubmodelComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		SubmodelComponent comp;
-		try
-		{
-			comp = SubmodelComponentSerializer.deserialize(model, "components/am2901/GUIAm2901.json");
-		}
-		catch (IOException e)
-		{
-			throw new UncheckedIOException(e);
-		}
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "file:components/am2901/GUIAm2901.json", "Am2901");
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists three times... but it seems too "hacky" to put it in a helper class
+		// TODO sort pins correctly - use Y coordinate
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
 		for (Pin p : comp.getPins().values())

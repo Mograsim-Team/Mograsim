@@ -10,7 +10,16 @@ public class ViewModelModifiable extends ViewModel
 	public String getDefaultComponentName(GUIComponent component)
 	{
 		Set<String> componentNames = getComponentsByName().keySet();
-		String nameBase = component.getClass().getSimpleName() + '#';
+		// TODO get the ID of component^^
+		// The following does not work because this code is called in the constructor of DeserializedSubmodelComponent at a time where
+		// idForSerializingOverride is not yet set
+//		String componentID = null;
+//		if (component instanceof DeserializedSubmodelComponent)
+//			componentID = ((DeserializedSubmodelComponent) component).idForSerializingOverride;
+//		if (componentID == null)
+//			componentID = component.getClass().getSimpleName();
+		String componentID = component.getClass().getSimpleName();
+		String nameBase = componentID + '#';
 		for (int i = 0;; i++)
 		{
 			String nameCandidate = nameBase + i;

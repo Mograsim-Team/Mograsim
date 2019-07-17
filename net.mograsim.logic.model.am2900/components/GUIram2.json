@@ -2951,12 +2951,61 @@ mograsim version: 0.1.3
       }
     ]
   },
-  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
   "symbolRendererParams": {
     "centerText": "GUIram2",
     "centerTextHeight": 5.0,
     "horizontalComponentCenter": 17.5,
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
+  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {
+      "c00": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIdlatch4#0"
+        }
+      },
+      "c11": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIdlatch4#3"
+        }
+      },
+      "c10": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIdlatch4#2"
+        }
+      },
+      "c01": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIdlatch4#1"
+        }
+      }
+    },
+    "atomicHighLevelStates": {
+      "q": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.BitVectorSplittingAtomicHighLevelStateHandler",
+        "params": {
+          "vectorPartTargets": [
+            "c00.q",
+            "c01.q",
+            "c10.q",
+            "c11.q"
+          ],
+          "vectorPartLengthes": [
+            4,
+            4,
+            4,
+            4
+          ]
+        }
+      }
+    }
   }
 }

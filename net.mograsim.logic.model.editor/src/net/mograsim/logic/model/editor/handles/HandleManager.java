@@ -17,6 +17,7 @@ import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.states.EditorState;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -86,7 +87,7 @@ public class HandleManager
 			ViewModelModifiable model = editor.getSubmodel();
 			Map<String, GUIComponent> compsByName = model.getComponentsByName();
 			Set<GUIComponent> comps = new HashSet<>(compsByName.values());
-			GUIComponent interfaceComp = compsByName.get("_submodelinterface");
+			GUIComponent interfaceComp = compsByName.get(SubmodelComponent.SUBMODEL_INTERFACE_NAME);
 			comps.remove(interfaceComp);
 			registerInterfaceComponent(interfaceComp);
 			comps.forEach(c -> registerComponent(c));
@@ -342,6 +343,7 @@ public class HandleManager
 	{
 		EditorState entryState = editor.stateManager.getState();
 
+		// TODO: As soon as wires connected to a component being removed also are removed, change priority
 		if (!cornerHandle.click(clicked.x, clicked.y, stateMask, entryState))
 			if (!click(handlePerPin.values(), clicked, entryState, stateMask))
 				if (!click(handlePerInterfacePin.values(), clicked, entryState, stateMask))

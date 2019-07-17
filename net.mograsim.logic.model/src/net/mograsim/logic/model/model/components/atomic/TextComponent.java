@@ -12,6 +12,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.NoLogicAdapter;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.Preferences;
 
@@ -49,7 +50,7 @@ public class TextComponent extends GUIComponent
 	// serializing
 
 	@Override
-	public JsonElement getParamsForSerializing()
+	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
 		return new JsonPrimitive(text);
 	}

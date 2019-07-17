@@ -16,6 +16,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularGUIGate extends GUIComponent
@@ -94,7 +95,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	 * @see GUIComponent#getParamsForSerializing()
 	 */
 	@Override
-	public JsonElement getParamsForSerializing()
+	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
 		return new JsonPrimitive(logicWidth);
 	}

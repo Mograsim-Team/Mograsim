@@ -3,7 +3,6 @@ package net.mograsim.logic.model.serializing;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +56,7 @@ public class IndirectGUIComponentCreator
 		standardComponentIDs.put(standardComponentID, associatedComponentID);
 	}
 
-	public static Collection<String> getStandardComponentIDs()
+	public static Set<String> getStandardComponentIDs()
 	{
 		return standardComponentIDSetUnmodifiable;
 	}

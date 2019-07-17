@@ -1,11 +1,14 @@
 package net.mograsim.logic.model.snippets;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class CodeSnippetSupplier<C, S>
 {
 	private final Map<String, String> standardSnippetIDClassNames = new HashMap<>();
+	private final Set<String> standardSnippetIDSetUnmodifiable = Collections.unmodifiableSet(standardSnippetIDClassNames.keySet());
 	private final Map<String, SnippetDefinintion<C, ?, S>> snippetSuppliersForClassNames = new HashMap<>();
 	private final SnippetDefinintion<C, ?, S> defaultSnippetSupplier;
 
@@ -17,6 +20,11 @@ public class CodeSnippetSupplier<C, S>
 	public void addStandardSnippetID(String standardSnippetID, String associatedSnippetClassName)
 	{
 		standardSnippetIDClassNames.put(standardSnippetID, associatedSnippetClassName);
+	}
+
+	public Set<String> getStandardSnippetIDs()
+	{
+		return standardSnippetIDSetUnmodifiable;
 	}
 
 	public void setSnippetSupplier(String id, SnippetDefinintion<C, ?, S> snippetSupplier)
