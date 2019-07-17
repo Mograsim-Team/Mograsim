@@ -74,6 +74,8 @@ public abstract class GUIComponent implements JSONSerializable
 
 		redrawListenerForSubcomponents = this::requestRedraw;
 
+		// TODO this will crash the high level state debug shell because submodel is not yet set.
+		// The same problem exists in ViewModelModifiable.getDefaultComponentName; see there
 		model.componentCreated(this);
 	}
 
