@@ -12,7 +12,7 @@ public class MograsimNature implements IProjectNature
 	/**
 	 * ID of this project nature
 	 */
-	public static final String NATURE_ID = "PluginTest.mograsimNature";
+	public static final String NATURE_ID = "net.mograsim";
 
 	private IProject project;
 
