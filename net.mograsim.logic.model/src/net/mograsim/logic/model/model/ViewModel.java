@@ -21,9 +21,8 @@ public class ViewModel
 	private final List<Consumer<? super GUIComponent>> componentRemovedListeners;
 	private final List<Consumer<? super GUIWire>> wireAddedListeners;
 	private final List<Consumer<? super GUIWire>> wireRemovedListeners;
-	private final List<Runnable> redrawListeners;
 
-	private final Runnable redrawListenerForSubcomponents;
+	private Runnable redrawHandler;
 
 	protected ViewModel()
 	{
@@ -36,9 +35,6 @@ public class ViewModel
 		componentRemovedListeners = new ArrayList<>();
 		wireAddedListeners = new ArrayList<>();
 		wireRemovedListeners = new ArrayList<>();
-		redrawListeners = new ArrayList<>();
-
-		redrawListenerForSubcomponents = this::callRedrawListeners;
 	}
 
 	/**
@@ -51,8 +47,7 @@ public class ViewModel
 			throw new IllegalStateException("Don't add the same component twice!");
 		components.put(component.name, component);
 		callComponentAddedListeners(component);
-		component.addRedrawListener(redrawListenerForSubcomponents);
-		callRedrawListeners();
+		requestRedraw();
 	}
 
 	/**
@@ -65,8 +60,7 @@ public class ViewModel
 			throw new IllegalStateException("Don't remove the same component twice!");
 		components.remove(component.name);
 		callComponentRemovedListeners(component);
-		component.removeRedrawListener(redrawListenerForSubcomponents);
-		callRedrawListeners();
+		requestRedraw();
 	}
 
 	/**
@@ -79,8 +73,7 @@ public class ViewModel
 			throw new IllegalStateException("Don't add the same wire twice!");
 		wires.put(wire.name, wire);
 		callWireAddedListeners(wire);
-		wire.addRedrawListener(redrawListenerForSubcomponents);
-		callRedrawListeners();
+		requestRedraw();
 	}
 
 	/**
@@ -93,8 +86,7 @@ public class ViewModel
 			throw new IllegalStateException("Don't remove the same wire twice!");
 		wires.remove(wire.name);
 		callWireRemovedListeners(wire);
-		wire.removeRedrawListener(redrawListenerForSubcomponents);
-		callRedrawListeners();
+		requestRedraw();
 	}
 
 	public Map<String, GUIComponent> getComponentsByName()
@@ -112,18 +104,31 @@ public class ViewModel
 	public void addComponentRemovedListener   (Consumer<? super GUIComponent> listener) {componentRemovedListeners.add   (listener);}
 	public void addWireAddedListener          (Consumer<? super GUIWire     > listener) {wireAddedListeners       .add   (listener);}
 	public void addWireRemovedListener        (Consumer<? super GUIWire     > listener) {wireRemovedListeners     .add   (listener);}
-	public void addRedrawListener             (Runnable                       listener) {redrawListeners          .add   (listener);}
 
 	public void removeComponentAddedListener  (Consumer<? super GUIComponent> listener) {componentAddedListeners  .remove(listener);}
 	public void removeComponentRemovedListener(Consumer<? super GUIComponent> listener) {componentRemovedListeners.remove(listener);}
 	public void removeWireAddedListener       (Consumer<? super GUIWire     > listener) {wireAddedListeners       .remove(listener);}
 	public void removeWireRemovedListener     (Consumer<? super GUIWire     > listener) {wireRemovedListeners     .remove(listener);}
-	public void removeRedrawListener          (Runnable                       listener) {redrawListeners          .remove(listener);}
 
 	private void callComponentAddedListeners  (GUIComponent c) {componentAddedListeners  .forEach(l -> l.accept(c));}
 	private void callComponentRemovedListeners(GUIComponent c) {componentRemovedListeners.forEach(l -> l.accept(c));}
 	private void callWireAddedListeners       (GUIWire w     ) {wireAddedListeners       .forEach(l -> l.accept(w));}
 	private void callWireRemovedListeners     (GUIWire w     ) {wireRemovedListeners     .forEach(l -> l.accept(w));}
-	private void callRedrawListeners          (              ) {redrawListeners          .forEach(l -> l.run(    ));}
 	// @formatter:on
+
+	public void setRedrawHandler(Runnable handler)
+	{
+		this.redrawHandler = handler;
+	}
+
+	public Runnable getRedrawHandler()
+	{
+		return redrawHandler;
+	}
+
+	public void requestRedraw()
+	{
+		if (redrawHandler != null)
+			redrawHandler.run();
+	}
 }

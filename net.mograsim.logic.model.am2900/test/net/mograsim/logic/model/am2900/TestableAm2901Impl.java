@@ -153,7 +153,7 @@ public class TestableAm2901Impl implements TestableAm2901
 				if (comp instanceof SubmodelComponent)
 					modelsToIterate.offer(((SubmodelComponent) comp).submodel);
 		}
-		wiresIncludingSubmodels.forEach(w -> w.addRedrawListener(() ->
+		viewModel.setRedrawHandler(() -> wiresIncludingSubmodels.forEach(w ->
 		{
 			if (debugWires)
 			{

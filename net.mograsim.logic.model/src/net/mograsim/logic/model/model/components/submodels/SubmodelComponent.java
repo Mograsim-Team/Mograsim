@@ -110,7 +110,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		this.minVisibleRegionFillRatioForAlpha1 = 0.8;
 		this.renderer = new LogicUIRenderer(submodelModifiable);
 
-		submodelModifiable.addRedrawListener(this::requestRedraw);
+		submodelModifiable.setRedrawHandler(model.getRedrawHandler());
 	}
 
 	// pins
@@ -266,7 +266,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		for (Entry<String, MovablePin> e : supermodelPins.entrySet())
 			getSubmodelMovablePin(e.getKey()).setRelPos(e.getValue().getRelX() * submodelScale, e.getValue().getRelY() * submodelScale);
 
-		requestRedraw();// needed if there is no submodel interface pin
+		model.requestRedraw();// needed if there is no submodel interface pin
 	}
 
 	/**
@@ -287,7 +287,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	protected void setSymbolRenderer(Renderer symbolRenderer)
 	{
 		this.symbolRenderer = symbolRenderer;
-		requestRedraw();
+		model.requestRedraw();
 	}
 
 	/**
@@ -308,7 +308,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	protected void setOutlineRenderer(Renderer outlineRenderer)
 	{
 		this.outlineRenderer = outlineRenderer;
-		requestRedraw();
+		model.requestRedraw();
 	}
 
 	/**

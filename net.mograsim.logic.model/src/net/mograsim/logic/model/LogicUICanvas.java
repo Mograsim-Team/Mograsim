@@ -53,7 +53,7 @@ public class LogicUICanvas extends ZoomableCanvas
 				setBackground(background);// this.setBackground, not gc.setBackground to have the background fill the canvas
 			renderer.render(gc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom));
 		});
-		model.addRedrawListener(this::redrawThreadsafe);
+		model.setRedrawHandler(this::redrawThreadsafe);
 
 		addListener(SWT.MouseDown, this::mouseDown);
 

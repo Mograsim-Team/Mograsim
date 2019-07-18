@@ -40,7 +40,7 @@ public class GUIManualSwitch extends GUIComponent
 	public GUIManualSwitch(ViewModelModifiable model, String name)
 	{
 		super(model, name);
-		logicObs = (i) -> requestRedraw();
+		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
 		addPin(this.outputPin = new Pin(this, "", 1, width, height / 2));
