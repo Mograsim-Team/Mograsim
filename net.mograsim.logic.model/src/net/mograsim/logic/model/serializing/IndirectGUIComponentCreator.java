@@ -25,7 +25,7 @@ public class IndirectGUIComponentCreator
 
 	static
 	{
-		try (InputStream s = IndirectGUIComponentCreator.class.getResourceAsStream("./standardComponentIDMapping.json"))
+		try (InputStream s = IndirectGUIComponentCreator.class.getResourceAsStream("standardComponentIDMapping.json"))
 		{
 			if (s == null)
 				throw new IOException("Resource not found");
