@@ -3,7 +3,7 @@
    <description name="Mograsim update site">
       Provides updates for the modular graphical simulator (Mograsim)
    </description>
-   <feature url="features/net.mograsim.feature_0.1.0.201906251447.jar" id="net.mograsim.feature" version="0.1.0.201906251447">
+   <feature url="features/net.mograsim.feature_0.1.0.201907180407.jar" id="net.mograsim.feature" version="0.1.0.201907180407">
       <category name="mograsim.basic"/>
    </feature>
    <category-def name="mograsim.basic" label="Mograsim">
