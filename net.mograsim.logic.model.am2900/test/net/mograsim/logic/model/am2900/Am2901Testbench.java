@@ -84,7 +84,7 @@ public class Am2901Testbench
 			sw.moveTo(x, y + 7.5);
 			wcp.moveTo(160, y);
 			d_ff.moveTo(170, y);
-			label.moveTo(x - 25, y + 15);
+			label.moveTo(x - 48, y + 8);
 		}
 
 		for (int i = 0; i < outputPinNames.size(); i++)
@@ -96,7 +96,7 @@ public class Am2901Testbench
 			tool.connect(bd.getInputPin(), comp, outputPinNames.get(i));
 
 			TextComponent label = new TextComponent(model, outputPinNames.get(i));
-			label.moveTo(x + 50, y + 8);
+			label.moveTo(x + 25, y);
 		}
 	}
 }
