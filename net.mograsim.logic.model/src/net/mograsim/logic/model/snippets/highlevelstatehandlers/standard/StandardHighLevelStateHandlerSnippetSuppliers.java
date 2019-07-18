@@ -22,7 +22,7 @@ public class StandardHighLevelStateHandlerSnippetSuppliers
 
 	static
 	{
-		try (InputStream s = StandardHighLevelStateHandlerSnippetSuppliers.class.getResourceAsStream("./standardSnippetIDMapping.json"))
+		try (InputStream s = StandardHighLevelStateHandlerSnippetSuppliers.class.getResourceAsStream("standardSnippetIDMapping.json"))
 		{
 			if (s == null)
 				throw new IOException("Resource not found");

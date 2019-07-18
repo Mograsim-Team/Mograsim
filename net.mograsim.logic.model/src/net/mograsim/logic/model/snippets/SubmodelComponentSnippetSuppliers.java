@@ -25,7 +25,7 @@ public class SubmodelComponentSnippetSuppliers
 
 	static
 	{
-		try (InputStream s = SubmodelComponentSnippetSuppliers.class.getResourceAsStream("./standardSnippetIDMapping.json"))
+		try (InputStream s = SubmodelComponentSnippetSuppliers.class.getResourceAsStream("standardSnippetIDMapping.json"))
 		{
 			if (s == null)
 				throw new IOException("Resource not found");
