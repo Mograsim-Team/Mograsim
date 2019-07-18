@@ -13,6 +13,8 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
+import net.mograsim.plugin.AsmOps;
+
 public class AsmContentAssistProcessor implements IContentAssistProcessor
 {
 
@@ -43,8 +45,7 @@ public class AsmContentAssistProcessor implements IContentAssistProcessor
 //		}
 //		return new ICompletionProposal[0];
 //		text.
-		return new ICompletionProposal[] { new AsmOperationProposal("ADD", "Addition operation", offset),
-				new AsmOperationProposal("MUL", "Multiplication operation", offset) };
+		return AsmOps.ops.stream().map(o -> new AsmOperationProposal(o, "", offset)).toArray(ICompletionProposal[]::new);
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class AsmContentAssistProcessor implements IContentAssistProcessor
 	@Override
 	public char[] getCompletionProposalAutoActivationCharacters()
 	{
-		return new char[] { '\t' }; // NON-NLS-1
+		return new char[] { '\n', '\r' }; // NON-NLS-1
 	}
 
 	@Override

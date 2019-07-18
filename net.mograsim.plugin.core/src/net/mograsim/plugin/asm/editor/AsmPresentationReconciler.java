@@ -21,7 +21,7 @@ public class AsmPresentationReconciler extends PresentationReconciler
 {
 
 	private final Token comment = new Token(null);
-	private final Token std = new Token(null);
+//	private final Token std = new Token(null);
 	private final Token op = new Token(null);
 	private final Token label = new Token(null);
 	private final Token number = new Token(null);
@@ -34,7 +34,7 @@ public class AsmPresentationReconciler extends PresentationReconciler
 		rules = new IRule[4];
 		rules[0] = new EndOfLineRule(";", comment);
 		rules[1] = new AsmLabelRule(label);
-		rules[2] = new InstructionRule(op, true);
+		rules[2] = new InstructionRule(Token.UNDEFINED, op, true);
 		rules[3] = new AsmNumberRule(number);
 
 		scanner.setRules(rules);

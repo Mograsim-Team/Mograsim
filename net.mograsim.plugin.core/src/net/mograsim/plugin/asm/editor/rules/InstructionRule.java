@@ -1,5 +1,6 @@
 package net.mograsim.plugin.asm.editor.rules;
 
+import java.util.Objects;
 import java.util.Set;
 
 import org.eclipse.jface.text.rules.IToken;
@@ -10,21 +11,24 @@ import net.mograsim.plugin.AsmOps;
 
 public class InstructionRule extends WordRule
 {
-	public InstructionRule(IToken defaultToken)
+	private final IToken instToken;
+
+	public InstructionRule(IToken defaultToken, IToken instToken)
 	{
-		this(defaultToken, false);
+		this(defaultToken, instToken, false);
 	}
 
-	public InstructionRule(IToken defaultToken, boolean ignoreCase)
+	public InstructionRule(IToken defaultToken, IToken instToken, boolean ignoreCase)
 	{
-		super(new InstructionDetector(), defaultToken, ignoreCase);
+		super(new InstructionDetector(), Objects.requireNonNull(defaultToken), ignoreCase);
+		this.instToken = Objects.requireNonNull(instToken);
 		AsmOps.addListener(this::update);
 	}
 
 	void update(Set<String> words)
 	{
 		fWords.clear();
-		words.forEach(s -> fWords.put(s, fDefaultToken));
+		words.forEach(s -> fWords.put(s, instToken));
 	}
 
 	static class InstructionDetector implements IWordDetector
