@@ -53,7 +53,7 @@ public class WireCrossPoint extends GUIComponent
 	public WireCrossPoint(ViewModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
-		logicObs = (i) -> requestRedraw();
+		logicObs = (i) -> model.requestRedraw();
 
 		setSize(CIRCLE_DIAM, CIRCLE_DIAM);
 		addPin(this.pin = new Pin(this, "", logicWidth, CIRCLE_RADIUS, CIRCLE_RADIUS));

@@ -61,7 +61,6 @@ public class GUIWire
 	 */
 	private double[] effectivePath;
 
-	private final List<Runnable> redrawListeners;
 	private final List<Consumer<GUIWire>> pathChangedListeners;
 
 	/**
@@ -244,10 +243,9 @@ public class GUIWire
 		this.path = path == null ? null : Arrays.copyOf(path, path.length);
 		this.bounds = new Rectangle(0, 0, -1, -1);
 
-		redrawListeners = new ArrayList<>();
 		pathChangedListeners = new ArrayList<>();
 
-		logicObs = (i) -> callRedrawListeners();
+		logicObs = (i) -> model.requestRedraw();
 
 		pin1.addPinMovedListener(p -> pinMoved());
 		pin2.addPinMovedListener(p -> pinMoved());
@@ -298,7 +296,7 @@ public class GUIWire
 	private void pinMoved()
 	{
 		recalculateEffectivePath();
-		callRedrawListeners();
+		model.requestRedraw();
 	}
 
 	// "graphical" operations
@@ -392,7 +390,7 @@ public class GUIWire
 		this.path = deepPathCopy(path);
 		recalculateEffectivePath();
 		callPathChangedListeners();
-		callRedrawListeners();
+		model.requestRedraw();
 	}
 
 	public Point getPathPoint(int index)
@@ -405,7 +403,7 @@ public class GUIWire
 		path[index] = pointCopy(p);
 		recalculateEffectivePath();
 		callPathChangedListeners();
-		callRedrawListeners();
+		model.requestRedraw();
 	}
 
 	public void insertPathPoint(Point p, int index)
@@ -514,13 +512,10 @@ public class GUIWire
 	// listeners
 
 	// @formatter:off
-	public void addRedrawListener        (Runnable          listener) {redrawListeners     .add    (listener);}
 	public void addPathChangedListener   (Consumer<GUIWire> listener) {pathChangedListeners.add    (listener);}
 
-	public void removeRedrawListener     (Runnable          listener) {redrawListeners     .remove(listener);}
 	public void removePathChangedListener(Consumer<GUIWire> listener) {pathChangedListeners.remove(listener);}
 
-	private void callRedrawListeners     () {redrawListeners     .forEach(l -> l.run   (    ));}
 	private void callPathChangedListeners() {pathChangedListeners.forEach(l -> l.accept(this));}
 	// @formatter:on
 

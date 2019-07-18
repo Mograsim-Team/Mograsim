@@ -43,7 +43,6 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	public void setOutlineRenderer(Renderer outlineRenderer)
 	{
 		super.setOutlineRenderer(outlineRenderer);
-		requestRedraw();
 	}
 
 	@Override

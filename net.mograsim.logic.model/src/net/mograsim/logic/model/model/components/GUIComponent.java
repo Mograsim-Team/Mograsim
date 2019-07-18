@@ -50,9 +50,6 @@ public abstract class GUIComponent implements JSONSerializable
 	private final List<Consumer<? super GUIComponent>> componentResizedListeners;
 	private final List<Consumer<? super Pin>> pinAddedListeners;
 	private final List<Consumer<? super Pin>> pinRemovedListeners;
-	private final List<Runnable> redrawListeners;
-
-	private final Runnable redrawListenerForSubcomponents;
 
 	private HighLevelStateHandler highLevelStateHandler;
 
@@ -70,9 +67,6 @@ public abstract class GUIComponent implements JSONSerializable
 		this.componentResizedListeners = new ArrayList<>();
 		this.pinAddedListeners = new ArrayList<>();
 		this.pinRemovedListeners = new ArrayList<>();
-		this.redrawListeners = new ArrayList<>();
-
-		redrawListenerForSubcomponents = this::requestRedraw;
 
 		// TODO this will crash the high level state debug shell because submodel is not yet set.
 		// The same problem exists in ViewModelModifiable.getDefaultComponentName; see there
@@ -109,8 +103,7 @@ public abstract class GUIComponent implements JSONSerializable
 			throw new IllegalArgumentException("Duplicate pin name: " + pin.name);
 		pinsByName.put(pin.name, pin);
 		callPinAddedListeners(pin);
-		pin.addRedrawListener(redrawListenerForSubcomponents);
-		requestRedraw();
+		model.requestRedraw();
 	}
 
 	/**
@@ -124,8 +117,7 @@ public abstract class GUIComponent implements JSONSerializable
 	{
 		Pin pin = pinsByName.remove(name);
 		callPinRemovedListeners(pin);
-		pin.removeRedrawListener(redrawListenerForSubcomponents);
-		requestRedraw();
+		model.requestRedraw();
 	}
 
 	/**
@@ -208,7 +200,7 @@ public abstract class GUIComponent implements JSONSerializable
 		bounds.x = x;
 		bounds.y = y;
 		callComponentMovedListeners();
-		requestRedraw();
+		model.requestRedraw();
 	}
 
 	/**
@@ -221,7 +213,7 @@ public abstract class GUIComponent implements JSONSerializable
 		bounds.width = width;
 		bounds.height = height;
 		callComponentResizedListener();
-		requestRedraw();
+		model.requestRedraw();
 	}
 
 	/**
@@ -304,33 +296,20 @@ public abstract class GUIComponent implements JSONSerializable
 
 	// listeners
 
-	/**
-	 * Calls redraw listeners.
-	 * 
-	 * @author Daniel Kirschten
-	 */
-	protected void requestRedraw()
-	{
-		callRedrawListeners();
-	}
-
 	// @formatter:off
 	public void addComponentMovedListener      (Consumer<? super GUIComponent> listener) {componentMovedListeners  .add   (listener);}
 	public void addComponentResizedListener    (Consumer<? super GUIComponent> listener) {componentResizedListeners.add   (listener);}
 	public void addPinAddedListener            (Consumer<? super Pin         > listener) {pinAddedListeners        .add   (listener);}
 	public void addPinRemovedListener          (Consumer<? super Pin         > listener) {pinRemovedListeners      .add   (listener);}
-	public void addRedrawListener              (Runnable                       listener) {redrawListeners          .add   (listener);}
 
 	public void removeComponentMovedListener   (Consumer<? super GUIComponent> listener) {componentMovedListeners  .remove(listener);}
 	public void removeComponentResizedListener (Consumer<? super GUIComponent> listener) {componentResizedListeners.remove(listener);}
 	public void removePinAddedListener         (Consumer<? super Pin         > listener) {pinAddedListeners        .remove(listener);}
 	public void removePinRemovedListener       (Consumer<? super Pin         > listener) {pinRemovedListeners      .remove(listener);}
-	public void removeRedrawListener           (Runnable                       listener) {redrawListeners          .remove(listener);}
 
 	private void callComponentMovedListeners (     ) {componentMovedListeners  .forEach(l -> l.accept(this));}
 	private void callComponentResizedListener(     ) {componentResizedListeners.forEach(l -> l.accept(this));}
 	private void callPinAddedListeners       (Pin p) {pinAddedListeners        .forEach(l -> l.accept(p   ));}
 	private void callPinRemovedListeners     (Pin p) {pinRemovedListeners      .forEach(l -> l.accept(p   ));}
-	private void callRedrawListeners         (     ) {redrawListeners          .forEach(l -> l.run(       ));}
 	// @formatter:on
 }
