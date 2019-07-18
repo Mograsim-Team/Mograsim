@@ -117,6 +117,7 @@ public class AsmOpsEdit extends ViewPart
 						viewer.add(in.trim());
 					txtInput.setText("");
 					part.setDirty(true);
+					save();
 				}
 			}
 		});
