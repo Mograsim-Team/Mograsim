@@ -18,7 +18,21 @@ import java.util.function.UnaryOperator;
  */
 public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit>, RandomAccess
 {
+	public static final BitVector SINGLE_U = new BitVector(Bit.U);
+	public static final BitVector SINGLE_X = new BitVector(Bit.X);
+	public static final BitVector SINGLE_0 = new BitVector(Bit.ZERO);
+	public static final BitVector SINGLE_1 = new BitVector(Bit.ONE);
+	public static final BitVector SINGLE_Z = new BitVector(Bit.Z);
+
+	private static final BitVector[] SINGLE_BIT_MAPPING = { SINGLE_U, SINGLE_X, SINGLE_0, SINGLE_1, SINGLE_Z };
+
 	private final Bit[] bits;
+
+	private BitVector(Bit single)
+	{
+		Objects.requireNonNull(single);
+		bits = new Bit[] { single };
+	}
 
 	private BitVector(Bit[] bits)
 	{
@@ -30,11 +44,15 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 
 	public static BitVector of(Bit... bits)
 	{
+		if (bits.length == 1)
+			return SINGLE_BIT_MAPPING[bits[0].ordinal()];
 		return new BitVector(bits.clone());
 	}
 
 	public static BitVector of(Bit bit, int length)
 	{
+		if (length == 1)
+			return SINGLE_BIT_MAPPING[bit.ordinal()];
 		return new BitVector(bit.makeArray(length));
 	}
 
@@ -68,6 +86,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	public BitVector join(BitVector t)
 	{
 		checkCompatibility(t);
+		if (bits.length == 1)
+			return SINGLE_BIT_MAPPING[bits[0].join(t.bits[0]).ordinal()];
 		return new BitVector(binOp(bits.clone(), t.bits, Bit::join));
 	}
 
@@ -75,6 +95,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	public BitVector and(BitVector t)
 	{
 		checkCompatibility(t);
+		if (bits.length == 1)
+			return SINGLE_BIT_MAPPING[bits[0].and(t.bits[0]).ordinal()];
 		return new BitVector(binOp(bits.clone(), t.bits, Bit::and));
 	}
 
@@ -82,6 +104,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	public BitVector or(BitVector t)
 	{
 		checkCompatibility(t);
+		if (bits.length == 1)
+			return SINGLE_BIT_MAPPING[bits[0].or(t.bits[0]).ordinal()];
 		return new BitVector(binOp(bits.clone(), t.bits, Bit::or));
 	}
 
@@ -89,12 +113,16 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	public BitVector xor(BitVector t)
 	{
 		checkCompatibility(t);
+		if (bits.length == 1)
+			return SINGLE_BIT_MAPPING[bits[0].xor(t.bits[0]).ordinal()];
 		return new BitVector(binOp(bits.clone(), t.bits, Bit::xor));
 	}
 
 	@Override
 	public BitVector not()
 	{
+		if (bits.length == 1)
+			return SINGLE_BIT_MAPPING[bits[0].not().ordinal()];
 		return new BitVector(unOp(bits.clone(), Bit::not));
 	}
 
