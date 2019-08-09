@@ -9,7 +9,6 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.snippets.Renderer;
@@ -34,7 +33,7 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 	private final double pinLabelHeight;
 	private final double pinLabelMargin;
 
-	public SimpleRectangularLikeSymbolRenderer(SubmodelComponent component, SimpleRectangularLikeParams params)
+	public SimpleRectangularLikeSymbolRenderer(GUIComponent component, SimpleRectangularLikeParams params)
 	{
 		this.component = component;
 		this.centerText = params.centerText;

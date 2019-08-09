@@ -4,7 +4,6 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
@@ -19,12 +18,12 @@ public class DefaultSymbolRenderer implements Renderer
 
 	private final GUIComponent component;
 
-	public DefaultSymbolRenderer(SubmodelComponent component)
+	public DefaultSymbolRenderer(GUIComponent component)
 	{
 		this(component, null);
 	}
 
-	public DefaultSymbolRenderer(SubmodelComponent component, @SuppressWarnings("unused") Void params)
+	public DefaultSymbolRenderer(GUIComponent component, @SuppressWarnings("unused") Void params)
 	{
 		this.component = component;
 	}

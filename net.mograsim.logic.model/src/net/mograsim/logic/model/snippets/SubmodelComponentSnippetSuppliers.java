@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
@@ -12,8 +13,8 @@ import net.mograsim.logic.model.util.JsonHandler;
 
 public class SubmodelComponentSnippetSuppliers
 {
-	public static final CodeSnippetSupplier<SubmodelComponent, Renderer> symbolRendererSupplier;
-	public static final CodeSnippetSupplier<SubmodelComponent, Renderer> outlineRendererSupplier;
+	public static final CodeSnippetSupplier<GUIComponent, Renderer> symbolRendererSupplier;
+	public static final CodeSnippetSupplier<GUIComponent, Renderer> outlineRendererSupplier;
 	public static final CodeSnippetSupplier<SubmodelComponent, HighLevelStateHandler> highLevelStateHandlerSupplier;
 
 	static
