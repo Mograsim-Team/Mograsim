@@ -13,11 +13,11 @@ import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 
-public class SubmodelComponentTestbench
+public class GUIComponentTestbench
 {
 	public static void main(String[] args)
 	{
-		SimpleLogicUIStandalone.executeVisualisation(SubmodelComponentTestbench::createTestbench);
+		SimpleLogicUIStandalone.executeVisualisation(GUIComponentTestbench::createTestbench);
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
