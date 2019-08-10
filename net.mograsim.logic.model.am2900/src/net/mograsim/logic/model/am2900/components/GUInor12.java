@@ -16,11 +16,11 @@ import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcod
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
-public class GUIor12 extends SimpleRectangularHardcodedGUIComponent
+public class GUInor12 extends SimpleRectangularHardcodedGUIComponent
 {
-	public GUIor12(ViewModelModifiable model, String name)
+	public GUInor12(ViewModelModifiable model, String name)
 	{
-		super(model, name, ">0");
+		super(model, name, "=0");
 		setSize(35, 20);
 		addPin(new Pin(this, "D", 12, 0, 10), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "Y", 1, 30, 10), Usage.OUTPUT, Position.LEFT);
@@ -43,10 +43,10 @@ public class GUIor12 extends SimpleRectangularHardcodedGUIComponent
 				return U;
 		for (int i = 0; i < 12; i++)
 			if (DValArr[i] == ONE)
-				return ONE;
+				return ZERO;
 		for (int i = 0; i < 12; i++)
 			if (DValArr[i] == Z)
 				return X;
-		return ZERO;
+		return ONE;
 	}
 }
