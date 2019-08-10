@@ -1,7 +1,11 @@
 package net.mograsim.logic.model.am2900.components.am2910;
 
+import static net.mograsim.logic.core.types.Bit.ONE;
+import static net.mograsim.logic.core.types.Bit.U;
+import static net.mograsim.logic.core.types.Bit.X;
+import static net.mograsim.logic.core.types.Bit.ZERO;
+
 import java.util.Map;
-import static net.mograsim.logic.core.types.Bit.*;
 
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
@@ -10,6 +14,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
 public class GUIAm2910SP extends SimpleRectangularHardcodedGUIComponent
@@ -83,5 +88,10 @@ public class GUIAm2910SP extends SimpleRectangularHardcodedGUIComponent
 			return BitVector.of(U, 3);
 		// TODO maybe this is the wrong way around
 		return BitVector.of((i & 0b100) > 0 ? ONE : ZERO, (i & 0b10) > 0 ? ONE : ZERO, (i & 0b1) > 0 ? ONE : ZERO);
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2910SP.class.getCanonicalName(), (m, p, n) -> new GUIAm2910SP(m, n));
 	}
 }

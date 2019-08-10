@@ -14,6 +14,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
 public class GUInor12 extends SimpleRectangularHardcodedGUIComponent
@@ -48,5 +49,10 @@ public class GUInor12 extends SimpleRectangularHardcodedGUIComponent
 			if (DValArr[i] == Z)
 				return X;
 		return ONE;
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentSupplier(GUInor12.class.getCanonicalName(), (m, p, n) -> new GUInor12(m, n));
 	}
 }
