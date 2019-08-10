@@ -24,8 +24,8 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 		setSize(40, 40);
 		addPin(new Pin(this, "D", 12, 20, 0), Usage.INPUT, Position.BOTTOM);
 		addPin(new Pin(this, "_RLD", 1, 0, 5), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "RWE", 1, 0, 20), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "RDEC", 1, 0, 30), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "WE", 1, 0, 20), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "DEC", 1, 0, 30), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "C", 1, 40, 20), Usage.INPUT, Position.LEFT);
 		addPin(new Pin(this, "Y", 12, 20, 40), Usage.OUTPUT, Position.TOP);
 	}
@@ -42,8 +42,8 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 
 		ReadEnd D = readEnds.get("D");
 		ReadEnd _RLD = readEnds.get("_RLD");
-		ReadEnd RWE = readEnds.get("RWE");
-		ReadEnd RDEC = readEnds.get("RDEC");
+		ReadEnd WE = readEnds.get("WE");
+		ReadEnd DEC = readEnds.get("DEC");
 		ReadEnd C = readEnds.get("C");
 		ReadWriteEnd Y = readWriteEnds.get("Y");
 
@@ -53,9 +53,9 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 		// TODO handle U/X/Z
 		if (oldCVal == ZERO && CVal == ONE)
 		{
-			if ((RDEC.getValue() == ZERO && RWE.getValue() == ONE) || _RLD.getValue() == ZERO)
+			if ((DEC.getValue() == ZERO && WE.getValue() == ONE) || _RLD.getValue() == ZERO)
 				System.arraycopy(D.getValues().getBits(), 0, QC, 0, 12);
-			else if (RWE.getValue() == ONE)
+			else if (WE.getValue() == ONE)
 			{
 				Bit carry = Bit.ZERO;
 				// TODO extract to helper. This code almost also exists in GUIinc12.

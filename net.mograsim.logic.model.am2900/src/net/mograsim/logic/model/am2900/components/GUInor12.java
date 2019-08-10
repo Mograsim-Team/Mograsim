@@ -24,7 +24,7 @@ public class GUInor12 extends SimpleRectangularHardcodedGUIComponent
 		super(model, name, "=0");
 		setSize(35, 20);
 		addPin(new Pin(this, "D", 12, 0, 10), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "Y", 1, 30, 10), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "Y", 1, 35, 10), Usage.OUTPUT, Position.LEFT);
 	}
 
 	@Override
