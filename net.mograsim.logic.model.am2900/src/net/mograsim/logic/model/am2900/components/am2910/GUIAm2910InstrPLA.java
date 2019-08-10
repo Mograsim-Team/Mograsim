@@ -23,10 +23,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 		super(model, name, "Instr.\nPLA");
 		setSize(30, 85);
 		addPin(new Pin(this, "PASS", 1, 0, 5), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "I3", 1, 0, 20), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "I2", 1, 0, 30), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "I1", 1, 0, 40), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "I0", 1, 0, 50), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "I", 4, 0, 20), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "R=0", 1, 15, 0), Usage.INPUT, Position.BOTTOM);
 		addPin(new Pin(this, "_PL", 1, 5, 85), Usage.OUTPUT, Position.TOP);
 		addPin(new Pin(this, "_MAP", 1, 15, 85), Usage.OUTPUT, Position.TOP);
@@ -45,10 +42,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		ReadEnd PASS = readEnds.get("PASS");
-		ReadEnd I3 = readEnds.get("I3");
-		ReadEnd I2 = readEnds.get("I2");
-		ReadEnd I1 = readEnds.get("I1");
-		ReadEnd I0 = readEnds.get("I0");
+		ReadEnd I = readEnds.get("I");
 		ReadEnd Req0 = readEnds.get("R=0");
 		ReadWriteEnd _PL = readWriteEnds.get("_PL");
 		ReadWriteEnd _MAP = readWriteEnds.get("_MAP");
@@ -63,10 +57,10 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 		ReadWriteEnd STKI1 = readWriteEnds.get("STKI1");
 
 		Bit PASSVal = PASS.getValue();
-		Bit I3Val = I3.getValue();
-		Bit I2Val = I2.getValue();
-		Bit I1Val = I1.getValue();
-		Bit I0Val = I0.getValue();
+		Bit I3Val = I.getValue(3);
+		Bit I2Val = I.getValue(2);
+		Bit I1Val = I.getValue(1);
+		Bit I0Val = I.getValue(0);
 		Bit Req0Val = Req0.getValue();
 
 		if (!I3Val.isBinary() || !I2Val.isBinary() || !I1Val.isBinary() || !I0Val.isBinary())
@@ -100,24 +94,24 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 			}
 		else
 		{
-			int I = (I3Val == ONE ? 8 : 0) + (I2Val == ONE ? 4 : 0) + (I1Val == ONE ? 2 : 0) + (I0Val == ONE ? 1 : 0);
+			int IAsInt = (I3Val == ONE ? 8 : 0) + (I2Val == ONE ? 4 : 0) + (I1Val == ONE ? 2 : 0) + (I0Val == ONE ? 1 : 0);
 			Bit _PLVal = ONE;
 			Bit _MAPVal = ONE;
 			Bit _VECTVal = ONE;
-			if (I == 2)
+			if (IAsInt == 2)
 				_MAPVal = ZERO;
-			else if (I == 6)
+			else if (IAsInt == 6)
 				_VECTVal = ZERO;
 			else
 				_PLVal = ZERO;
 			_PL.feedSignals(_PLVal);
 			_MAP.feedSignals(_MAPVal);
 			_VECT.feedSignals(_VECTVal);
-			if (I == 8 || I == 9 || I == 15)
+			if (IAsInt == 8 || IAsInt == 9 || IAsInt == 15)
 			{
 				RWE.feedSignals(Req0Val);
 				RDEC.feedSignals(Req0Val);// "forward" X/U/Z
-			} else if (I == 4)
+			} else if (IAsInt == 4)
 			{
 				RWE.feedSignals(PASSVal);
 				RDEC.feedSignals(PASSVal == ONE ? ZERO : PASSVal);// "forward" X/U/Z
@@ -138,7 +132,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 				Bit YRVal = ZERO;
 				Bit YFVal = ZERO;
 				Bit YmuPCVal = ZERO;
-				switch (I + (PASSVal == ONE ? 16 : 0))
+				switch (IAsInt + (PASSVal == ONE ? 16 : 0))
 				{
 				case 0:
 				case 0 + 16:
@@ -199,7 +193,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 				YmuPC.feedSignals(YmuPCVal);
 				Bit STKI0Val;
 				Bit STKI1Val;
-				switch (I + (PASSVal == ONE ? 16 : 0))
+				switch (IAsInt + (PASSVal == ONE ? 16 : 0))
 				{
 				case 1:
 				case 2:

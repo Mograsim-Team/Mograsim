@@ -1,11 +1,11 @@
 package net.mograsim.logic.model.examples;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
-import net.mograsim.logic.model.am2900.components.GUImux4_12;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
@@ -14,6 +14,7 @@ import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcod
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent.Usage;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 
 public class GUIComponentTestbench
 {
@@ -25,8 +26,8 @@ public class GUIComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-//		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "GUIAm2901", "Am2901");
-		GUIComponent comp = new GUImux4_12(model, "c");
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "file:components/am2910/GUIAm2910.json", "Am2910");
+//		GUIComponent comp = new GUImux4_12(model, "c");
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
@@ -49,6 +50,9 @@ public class GUIComponentTestbench
 
 		inputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
 		outputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
+
+		inputPinNames = Arrays.asList("C", "D", "_RLD", "_CC", "_CCEN", "I", "CI");
+		outputPinNames = Arrays.asList("_FULL", "_PL", "_MAP", "_VECT", "Y");
 
 		comp.moveTo(100, 0);
 		for (int i = 0; i < inputPinNames.size(); i++)
