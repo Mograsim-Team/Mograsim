@@ -10,6 +10,8 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
+import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent.Usage;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
 
@@ -30,14 +32,20 @@ public class GUIComponentTestbench
 		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
-		for (Pin p : comp.getPins().values())
-			if (p.getRelX() == 0)
-				inputPinNames.add(p.name);
-			else
-				outputPinNames.add(p.name);
-
-		outputPinNames.remove("R=0");
-		inputPinNames.add("R=0");
+		if (comp instanceof SimpleRectangularHardcodedGUIComponent)
+		{
+			SimpleRectangularHardcodedGUIComponent compCasted = (SimpleRectangularHardcodedGUIComponent) comp;
+			for (Pin p : comp.getPins().values())
+				if (compCasted.getPinUsage(p) == Usage.INPUT)
+					inputPinNames.add(p.name);
+				else
+					outputPinNames.add(p.name);
+		} else
+			for (Pin p : comp.getPins().values())
+				if (p.getRelX() == 0)
+					inputPinNames.add(p.name);
+				else
+					outputPinNames.add(p.name);
 
 		inputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
 		outputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
@@ -45,15 +53,23 @@ public class GUIComponentTestbench
 		comp.moveTo(100, 0);
 		for (int i = 0; i < inputPinNames.size(); i++)
 		{
-			GUIManualSwitch sw = new GUIManualSwitch(model);
-			sw.moveTo(0, 20 * i);
-			new GUIWire(model, comp.getPin(inputPinNames.get(i)), sw.getOutputPin());
+			String pinName = inputPinNames.get(i);
+			if (comp.getPin(pinName).logicWidth == 1)
+			{
+				GUIManualSwitch sw = new GUIManualSwitch(model);
+				sw.moveTo(0, 20 * i);
+				new GUIWire(model, comp.getPin(pinName), sw.getOutputPin());
+			}
 		}
 		for (int i = 0; i < outputPinNames.size(); i++)
 		{
-			GUIBitDisplay bd = new GUIBitDisplay(model);
-			bd.moveTo(200, 20 * i);
-			new GUIWire(model, comp.getPin(outputPinNames.get(i)), bd.getInputPin());
+			String pinName = outputPinNames.get(i);
+			if (comp.getPin(pinName).logicWidth == 1)
+			{
+				GUIBitDisplay bd = new GUIBitDisplay(model);
+				bd.moveTo(200, 20 * i);
+				new GUIWire(model, comp.getPin(pinName), bd.getInputPin());
+			}
 		}
 	}
 }
