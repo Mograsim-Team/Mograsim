@@ -218,6 +218,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 				case 9 + 16:
 				case 12 + 16:
 				case 14 + 16:
+					// HOLD
 					STKI1Val = ZERO;
 					STKI0Val = ZERO;
 					break;
@@ -226,11 +227,13 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 				case 1 + 16:
 				case 4 + 16:
 				case 5 + 16:
+					// PUSH
 					STKI1Val = ZERO;
 					STKI0Val = ONE;
 					break;
 				case 0:
 				case 0 + 16:
+					// CLEAR
 					STKI1Val = ONE;
 					STKI0Val = ZERO;
 					break;
@@ -238,6 +241,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 				case 11 + 16:
 				case 13 + 16:
 				case 15 + 16:
+					// POP
 					STKI1Val = ONE;
 					STKI0Val = ONE;
 					break;
