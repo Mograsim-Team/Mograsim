@@ -1,6 +1,10 @@
 package net.mograsim.logic.model.am2900.components;
 
-import static net.mograsim.logic.core.types.Bit.*;
+import static net.mograsim.logic.core.types.Bit.ONE;
+import static net.mograsim.logic.core.types.Bit.U;
+import static net.mograsim.logic.core.types.Bit.X;
+import static net.mograsim.logic.core.types.Bit.Z;
+import static net.mograsim.logic.core.types.Bit.ZERO;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -12,6 +16,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
 public class GUIram5_12 extends SimpleRectangularHardcodedGUIComponent
@@ -75,5 +80,10 @@ public class GUIram5_12 extends SimpleRectangularHardcodedGUIComponent
 				return -1;
 		// TODO maybe this is the wrong way around
 		return (bits[0] == ONE ? 4 : 0) + (bits[1] == ONE ? 2 : 0) + (bits[2] == ONE ? 1 : 0);
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentSupplier(GUIram5_12.class.getCanonicalName(), (m, p, n) -> new GUIram5_12(m, n));
 	}
 }

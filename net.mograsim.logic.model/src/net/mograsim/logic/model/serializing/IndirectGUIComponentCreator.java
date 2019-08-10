@@ -99,6 +99,7 @@ public class IndirectGUIComponentCreator
 					ComponentSupplier componentSupplier = componentSuppliers.get(className);
 					if (componentSupplier != null)
 						return componentSupplier.create(model, params, name);
+					throw new IllegalArgumentException("Component supplier not found for ID " + id + " (resolved: " + resolvedID + ")");
 				} else
 				// we know id has to start with "file:" here
 				// because standardComponentIDs only contains strings starting with "class:" or "file:"
