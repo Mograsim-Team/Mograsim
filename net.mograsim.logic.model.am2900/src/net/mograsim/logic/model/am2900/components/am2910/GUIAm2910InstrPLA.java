@@ -41,7 +41,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 	}
 
 	@Override
-	protected void recalculate(Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		ReadEnd PASS = readEnds.get("PASS");
 		ReadEnd I3 = readEnds.get("I3");
@@ -258,5 +258,6 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 				STKI1.feedSignals(STKI1Val);
 			}
 		}
+		return null;
 	}
 }

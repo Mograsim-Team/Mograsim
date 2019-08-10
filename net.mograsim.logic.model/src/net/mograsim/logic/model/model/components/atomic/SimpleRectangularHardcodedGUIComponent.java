@@ -72,7 +72,7 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 
 	// logic
 
-	protected abstract void recalculate(Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds);
+	protected abstract Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds);
 
 	// "graphical" operations
 

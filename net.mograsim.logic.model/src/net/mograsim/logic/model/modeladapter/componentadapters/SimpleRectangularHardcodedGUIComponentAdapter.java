@@ -2,7 +2,7 @@ package net.mograsim.logic.model.modeladapter.componentadapters;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
 import net.mograsim.logic.core.LogicObserver;
@@ -15,12 +15,13 @@ import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcod
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 
+//TODO support HighLevelStates
 public class SimpleRectangularHardcodedGUIComponentAdapter implements ComponentAdapter<SimpleRectangularHardcodedGUIComponent>
 {
-	private final Function<SimpleRectangularHardcodedGUIComponent, BiConsumer<Map<String, ReadEnd>, Map<String, ReadWriteEnd>>> recalculateFunctionGenerator;
+	private final Function<SimpleRectangularHardcodedGUIComponent, RecalculateFunction> recalculateFunctionGenerator;
 
 	public SimpleRectangularHardcodedGUIComponentAdapter(
-			Function<SimpleRectangularHardcodedGUIComponent, BiConsumer<Map<String, ReadEnd>, Map<String, ReadWriteEnd>>> recalculateFunctionGenerator)
+			Function<SimpleRectangularHardcodedGUIComponent, RecalculateFunction> recalculateFunctionGenerator)
 	{
 		this.recalculateFunctionGenerator = recalculateFunctionGenerator;
 	}
@@ -35,11 +36,13 @@ public class SimpleRectangularHardcodedGUIComponentAdapter implements ComponentA
 	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, SimpleRectangularHardcodedGUIComponent guiComponent,
 			Map<Pin, Wire> logicWiresPerPin)
 	{
-		BiConsumer<Map<String, ReadEnd>, Map<String, ReadWriteEnd>> recalculate = recalculateFunctionGenerator.apply(guiComponent);
+		RecalculateFunction recalculate = recalculateFunctionGenerator.apply(guiComponent);
 		Map<String, ReadEnd> readEnds = new HashMap<>();
 		Map<String, ReadWriteEnd> readWriteEnds = new HashMap<>();
 
-		LogicObserver logicObs = c -> recalculate.accept(readEnds, readWriteEnds);
+		AtomicReference<Object> state = new AtomicReference<>();
+
+		LogicObserver logicObs = c -> state.set(recalculate.recalculate(state.get(), readEnds, readWriteEnds));
 
 		for (Pin pin : guiComponent.getPins().values())
 		{
@@ -56,5 +59,10 @@ public class SimpleRectangularHardcodedGUIComponentAdapter implements ComponentA
 			if (guiComponent.getPinUsage(pin) != Usage.OUTPUT)
 				end.registerObserver(logicObs);
 		}
+	}
+
+	public static interface RecalculateFunction
+	{
+		public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds);
 	}
 }
