@@ -364,6 +364,7 @@ public class GUIWire
 	 */
 	public void render(GeneralGC gc)
 	{
+		// TODO maybe make wires with logicWidth!=1 thicker? Maybe make thickness selectable?
 		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(end);
 		if (wireColor != null)
 			gc.setForeground(ColorManager.current().toColor(wireColor));

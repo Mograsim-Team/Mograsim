@@ -61,7 +61,7 @@ public class ViewLogicModelAdapter
 				WireCrossPoint guiCompCasted = (WireCrossPoint) guiComp;
 				guiCompCasted.setLogicModelBinding(logicWiresPerPin.get(guiCompCasted.getPin()).createReadOnlyEnd());
 			} else if (!(guiComp instanceof SubmodelInterface))// nothing to do for SubmodelInterfaces
-				createAndLinkComponent(timeline, params, guiComp, logicWiresPerPinUnmodifiable, componentAdapters.get(guiComp.getClass()));
+				createAndLinkComponent(timeline, params, guiComp, logicWiresPerPinUnmodifiable);
 		}
 	}
 
@@ -144,8 +144,15 @@ public class ViewLogicModelAdapter
 
 	@SuppressWarnings("unchecked")
 	private static <G extends GUIComponent> void createAndLinkComponent(Timeline timeline, LogicModelParameters params,
-			GUIComponent guiComponent, Map<Pin, Wire> logicWiresPerPin, ComponentAdapter<G> adapter)
+			GUIComponent guiComponent, Map<Pin, Wire> logicWiresPerPin)
 	{
+		Class<?> cls = guiComponent.getClass();
+		ComponentAdapter<? super G> adapter = null;
+		while (cls != GUIComponent.class && adapter == null)
+		{
+			adapter = (ComponentAdapter<? super G>) componentAdapters.get(cls);
+			cls = cls.getSuperclass();
+		}
 		if (adapter == null)
 			throw new IllegalArgumentException("Unknown component class: " + guiComponent.getClass());
 		adapter.createAndLinkComponent(timeline, params, (G) guiComponent, logicWiresPerPin);
