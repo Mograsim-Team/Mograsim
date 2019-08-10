@@ -49,13 +49,17 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 		Bit oldCVal = QC[12];
 		Bit CVal = C.getValue();
 
-		if (oldCVal == ZERO && CVal == ONE && _RLD.getValue() == ZERO && RWE.getValue() == ONE)
+		// TODO handle U/X/Z
+		if (oldCVal == ZERO && CVal == ONE)
 		{
-			if (RDEC.getValue() == ONE)
+			if ((RDEC.getValue() == ZERO && RWE.getValue() == ONE) || _RLD.getValue() == ZERO)
+				System.arraycopy(D.getValues().getBits(), 0, QC, 0, 12);
+			else if (RWE.getValue() == ONE)
 			{
 				Bit carry = Bit.ZERO;
+				// TODO extract to helper. This code almost also exists in GUIinc12.
 				// TODO maybe invert loop direction
-				for (int i = 12; i >= 0; i--)
+				for (int i = 11; i >= 0; i--)
 				{
 					Bit a = QC[i];
 					Bit z;
@@ -72,8 +76,7 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 					}
 					QC[i] = z;
 				}
-			} else
-				System.arraycopy(D.getValues().getBits(), 0, QC, 0, 12);
+			}
 		}
 		QC[12] = CVal;
 		Y.feedSignals(Arrays.copyOfRange(QC, 0, 12));
