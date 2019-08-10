@@ -100,13 +100,13 @@ public class LogicUIPart extends ViewPart
 		comp.moveTo(100, 0);
 		for (int i = 0; i < inputPinNames.size(); i++)
 		{
-			GUIManualSwitch sw = new GUIManualSwitch(model);
+			GUIManualSwitch sw = new GUIManualSwitch(model, 1);
 			sw.moveTo(0, 20 * i);
 			new GUIWire(model, comp.getPin(inputPinNames.get(i)), sw.getOutputPin());
 		}
 		for (int i = 0; i < outputPinNames.size(); i++)
 		{
-			GUIBitDisplay bd = new GUIBitDisplay(model);
+			GUIBitDisplay bd = new GUIBitDisplay(model, 1);
 			bd.moveTo(200, 20 * i);
 			new GUIWire(model, comp.getPin(outputPinNames.get(i)), bd.getInputPin());
 		}

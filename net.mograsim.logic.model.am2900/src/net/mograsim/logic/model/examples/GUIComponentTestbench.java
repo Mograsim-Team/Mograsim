@@ -54,22 +54,16 @@ public class GUIComponentTestbench
 		for (int i = 0; i < inputPinNames.size(); i++)
 		{
 			String pinName = inputPinNames.get(i);
-			if (comp.getPin(pinName).logicWidth == 1)
-			{
-				GUIManualSwitch sw = new GUIManualSwitch(model);
-				sw.moveTo(0, 20 * i);
-				new GUIWire(model, comp.getPin(pinName), sw.getOutputPin());
-			}
+			GUIManualSwitch sw = new GUIManualSwitch(model, comp.getPin(pinName).logicWidth);
+			sw.moveTo(0, 20 * i);
+			new GUIWire(model, comp.getPin(pinName), sw.getOutputPin());
 		}
 		for (int i = 0; i < outputPinNames.size(); i++)
 		{
 			String pinName = outputPinNames.get(i);
-			if (comp.getPin(pinName).logicWidth == 1)
-			{
-				GUIBitDisplay bd = new GUIBitDisplay(model);
-				bd.moveTo(200, 20 * i);
-				new GUIWire(model, comp.getPin(pinName), bd.getInputPin());
-			}
+			GUIBitDisplay bd = new GUIBitDisplay(model, comp.getPin(pinName).logicWidth);
+			bd.moveTo(200, 20 * i);
+			new GUIWire(model, comp.getPin(pinName), bd.getInputPin());
 		}
 	}
 }

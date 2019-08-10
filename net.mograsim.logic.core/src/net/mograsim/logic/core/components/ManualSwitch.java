@@ -8,6 +8,7 @@ import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 
@@ -26,49 +27,50 @@ public class ManualSwitch extends Component implements LogicObservable
 	{
 		super(timeline);
 		observers = new ArrayList<>();
-		if (output.length() != 1)
-			throw new IllegalArgumentException("Switch output can be only a single wire");
 		this.output = output;
 	}
 
-	public void switchOn()
+	public void switchFullOn()
 	{
-		setState(true);
+		setState(BitVector.of(Bit.ONE, output.length()));
 	}
 
-	public void switchOff()
+	public void switchFullOff()
 	{
-		setState(false);
+		setState(BitVector.of(Bit.ZERO, output.length()));
 	}
 
 	public void toggle()
 	{
-		setState(!isOn());
+		if (isFullOn())
+			switchFullOff();
+		else
+			switchFullOn();
 	}
 
-	public void setState(boolean isOn)
+	public void setState(Bit bit)
 	{
-		setToValueOf(isOn ? Bit.ONE : Bit.ZERO);
+		setState(BitVector.of(bit));
 	}
 
-	public void setToValueOf(Bit bit)
+	public void setState(BitVector bits)
 	{
-		if (!bit.isBinary())
-			throw new IllegalArgumentException("Cannot set ManualSwitch to the value of Bit " + bit);
-		if (bit == output.getInputValue())
+		if (bits.length() != output.length())
+			throw new IllegalArgumentException("Incorrect bit vector length");
+		if (bits.equals(output.getInputValues()))
 			return;
-		output.feedSignals(bit);
+		output.feedSignals(bits);
 		notifyObservers();
 	}
 
-	public boolean isOn()
+	public boolean isFullOn()
 	{
-		return output.getInputValue() == Bit.ONE;
+		return BitVector.of(Bit.ONE, output.length()).equals(output.getInputValues());
 	}
 
-	public Bit getValue()
+	public BitVector getValues()
 	{
-		return output.getInputValue();
+		return output.getInputValues();
 	}
 
 	@Override

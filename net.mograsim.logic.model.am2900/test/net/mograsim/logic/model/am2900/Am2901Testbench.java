@@ -31,7 +31,7 @@ public class Am2901Testbench
 
 		comp.moveTo(240, 0);
 
-		GUIManualSwitch enable = new GUIManualSwitch(model);
+		GUIManualSwitch enable = new GUIManualSwitch(model, 1);
 		WireCrossPoint wcp0 = new WireCrossPoint(model, 1);
 		GUINotGate not1 = new GUINotGate(model, 1);
 		GUINotGate not2 = new GUINotGate(model, 1);
@@ -71,7 +71,7 @@ public class Am2901Testbench
 
 			WireCrossPoint wcp = new WireCrossPoint(model, 1);
 			GUIComponent d_ff = IndirectGUIComponentCreator.createComponent(model, "GUIdff");
-			GUIManualSwitch sw = new GUIManualSwitch(model);
+			GUIManualSwitch sw = new GUIManualSwitch(model, 1);
 
 			tool.connect(last, wcp);
 			tool.connect(wcp, d_ff, "C");
@@ -91,7 +91,7 @@ public class Am2901Testbench
 		{
 			double x = 300 + 75 * (i % 2);
 			double y = 10 * i - 2.5;
-			GUIBitDisplay bd = new GUIBitDisplay(model);
+			GUIBitDisplay bd = new GUIBitDisplay(model, 1);
 			bd.moveTo(x, y);
 			tool.connect(bd.getInputPin(), comp, outputPinNames.get(i));
 

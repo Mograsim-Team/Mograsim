@@ -23,8 +23,8 @@ public class ClickableSubmodelComponentsTest
 				setSubmodelScale(.4);
 				setOutputPins("O0");
 
-				GUIManualSwitch sw = new GUIManualSwitch(submodelModifiable);
-				GUIBitDisplay bd = new GUIBitDisplay(submodelModifiable);
+				GUIManualSwitch sw = new GUIManualSwitch(submodelModifiable, 1);
+				GUIBitDisplay bd = new GUIBitDisplay(submodelModifiable, 1);
 
 				sw.moveTo(10, 5);
 				bd.moveTo(50, 5);

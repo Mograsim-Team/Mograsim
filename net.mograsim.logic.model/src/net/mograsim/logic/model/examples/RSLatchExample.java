@@ -19,9 +19,9 @@ public class RSLatchExample
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createRSLatchExample(ViewModelModifiable model)
 	{
-		GUIManualSwitch rIn = new GUIManualSwitch(model);
+		GUIManualSwitch rIn = new GUIManualSwitch(model, 1);
 		rIn.moveTo(100, 100);
-		GUIManualSwitch sIn = new GUIManualSwitch(model);
+		GUIManualSwitch sIn = new GUIManualSwitch(model, 1);
 		sIn.moveTo(100, 200);
 
 		GUIOrGate or1 = new GUIOrGate(model, 1);

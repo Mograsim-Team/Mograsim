@@ -66,7 +66,7 @@ public class GUITest extends JPanel
 				{
 					if (dim.getValue().contains(e.getPoint()))
 					{
-						dim.getKey().switchOff();
+						dim.getKey().switchFullOff();
 						repaint();
 					}
 				}
@@ -79,7 +79,7 @@ public class GUITest extends JPanel
 				{
 					if (dim.getValue().contains(e.getPoint()))
 					{
-						dim.getKey().switchOn();
+						dim.getKey().switchFullOn();
 						repaint();
 					}
 				}
@@ -220,7 +220,7 @@ public class GUITest extends JPanel
 			switchMap.put(ms, r);
 		}
 
-		g.setColor(ms.isOn() ? Color.getHSBColor(.3f, .5f, 1f) : Color.WHITE);
+		g.setColor(ms.isFullOn() ? Color.getHSBColor(.3f, .5f, 1f) : Color.WHITE);
 		g.fillRect(x1, y1, x2 - x1 + 1, y2 - y1 + 1);
 		setBlack(g);
 		g.drawRect(x1, y1, x2 - x1 + 1, y2 - y1 + 1);
