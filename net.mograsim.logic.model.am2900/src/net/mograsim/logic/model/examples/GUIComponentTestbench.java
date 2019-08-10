@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
-import net.mograsim.logic.model.am2900.components.GUInor12;
+import net.mograsim.logic.model.am2900.components.GUIram5_12;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
@@ -26,7 +26,7 @@ public class GUIComponentTestbench
 	public static void createTestbench(ViewModelModifiable model)
 	{
 //		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "GUIAm2901", "Am2901");
-		GUIComponent comp = new GUInor12(model, "or12");
+		GUIComponent comp = new GUIram5_12(model, "c");
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
