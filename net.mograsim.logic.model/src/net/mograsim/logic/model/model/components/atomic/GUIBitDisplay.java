@@ -2,6 +2,9 @@ package net.mograsim.logic.model.model.components.atomic;
 
 import org.eclipse.swt.graphics.Color;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -14,6 +17,7 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.BitDisplayAdapter;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.Preferences;
 
@@ -84,6 +88,12 @@ public class GUIBitDisplay extends GUIComponent
 	public Pin getInputPin()
 	{
 		return inputPin;
+	}
+
+	@Override
+	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	{
+		return new JsonPrimitive(inputPin.logicWidth);
 	}
 
 	static
