@@ -28,18 +28,18 @@ public class GUIBitDisplay extends GUIComponent
 	private final LogicObserver logicObs;
 	private BitDisplay bitDisplay;
 
-	public GUIBitDisplay(ViewModelModifiable model)
+	public GUIBitDisplay(ViewModelModifiable model, int logicWidth)
 	{
-		this(model, null);
+		this(model, logicWidth, null);
 	}
 
-	public GUIBitDisplay(ViewModelModifiable model, String name)
+	public GUIBitDisplay(ViewModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
-		addPin(this.inputPin = new Pin(this, "", 1, 0, height / 2));
+		addPin(this.inputPin = new Pin(this, "", logicWidth, 0, height / 2));
 	}
 
 	@Override
@@ -89,6 +89,7 @@ public class GUIBitDisplay extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new BitDisplayAdapter());
-		IndirectGUIComponentCreator.setComponentSupplier(GUIBitDisplay.class.getCanonicalName(), (m, p, n) -> new GUIBitDisplay(m, n));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIBitDisplay.class.getCanonicalName(),
+				(m, p, n) -> new GUIBitDisplay(m, p.getAsInt(), n));
 	}
 }

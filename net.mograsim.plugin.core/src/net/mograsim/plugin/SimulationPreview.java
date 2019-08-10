@@ -41,9 +41,9 @@ public class SimulationPreview implements IThemePreview
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
 
-		GUIManualSwitch rIn = new GUIManualSwitch(model);
+		GUIManualSwitch rIn = new GUIManualSwitch(model, 1);
 		rIn.moveTo(10, 10);
-		GUIManualSwitch sIn = new GUIManualSwitch(model);
+		GUIManualSwitch sIn = new GUIManualSwitch(model, 1);
 		sIn.moveTo(10, 70);
 
 		GUIOrGate or1 = new GUIOrGate(model, 1);

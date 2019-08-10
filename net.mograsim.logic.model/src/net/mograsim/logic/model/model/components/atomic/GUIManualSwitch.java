@@ -9,7 +9,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.ManualSwitch;
-import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
@@ -32,18 +32,18 @@ public class GUIManualSwitch extends GUIComponent
 	private ManualSwitch logicSwitch;
 	private ReadEnd end;
 
-	public GUIManualSwitch(ViewModelModifiable model)
+	public GUIManualSwitch(ViewModelModifiable model, int logicWidth)
 	{
-		this(model, null);
+		this(model, logicWidth, null);
 	}
 
-	public GUIManualSwitch(ViewModelModifiable model, String name)
+	public GUIManualSwitch(ViewModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
-		addPin(this.outputPin = new Pin(this, "", 1, width, height / 2));
+		addPin(this.outputPin = new Pin(this, "", logicWidth, width, height / 2));
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class GUIManualSwitch extends GUIComponent
 		{
 		case "out":
 			if (logicSwitch != null)
-				return logicSwitch.getValue();
+				return logicSwitch.getValues();
 			return null;
 		default:
 			return super.getHighLevelState(stateID);
@@ -102,7 +102,7 @@ public class GUIManualSwitch extends GUIComponent
 		{
 		case "out":
 			if (logicSwitch != null)
-				logicSwitch.setToValueOf((Bit) newState);
+				logicSwitch.setState((BitVector) newState);
 			break;
 		default:
 			super.setHighLevelState(stateID, newState);
@@ -143,6 +143,7 @@ public class GUIManualSwitch extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new ManualSwitchAdapter());
-		IndirectGUIComponentCreator.setComponentSupplier(GUIManualSwitch.class.getName(), (m, p, n) -> new GUIManualSwitch(m, n));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIManualSwitch.class.getName(),
+				(m, p, n) -> new GUIManualSwitch(m, p.getAsInt(), n));
 	}
 }

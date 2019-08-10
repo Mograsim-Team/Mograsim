@@ -117,7 +117,7 @@ public class TestableAm2901Impl implements TestableAm2901
 		HashMap<String, GUIManualSwitch> idSwitchMap = new HashMap<>();
 		for (String id : inputPinNames)
 		{
-			GUIManualSwitch sw = new GUIManualSwitch(viewModel);
+			GUIManualSwitch sw = new GUIManualSwitch(viewModel, 1);
 			new GUIWire(viewModel, am2901.getPin(id), sw.getOutputPin());
 			idSwitchMap.put(id, sw);
 		}
@@ -125,7 +125,7 @@ public class TestableAm2901Impl implements TestableAm2901
 		HashMap<String, GUIBitDisplay> idDisplayMap = new HashMap<>();
 		for (String id : outputPinNames)
 		{
-			GUIBitDisplay bd = new GUIBitDisplay(viewModel);
+			GUIBitDisplay bd = new GUIBitDisplay(viewModel, 1);
 //			bd.addRedrawListener(() -> System.out.println(id + " " + bd.getBitDisplay().getDisplayedValue()));
 			new GUIWire(viewModel, am2901.getPin(id), bd.getInputPin());
 			idDisplayMap.put(id, bd);
@@ -168,53 +168,53 @@ public class TestableAm2901Impl implements TestableAm2901
 	public void setDest(Am2901_Dest dest)
 	{
 		var bits = of(dest.ordinal(), 3);
-		I8.setToValueOf(bits.getLSBit(2));
-		I7.setToValueOf(bits.getLSBit(1));
-		I6.setToValueOf(bits.getLSBit(0));
+		I8.setState(bits.getLSBit(2));
+		I7.setState(bits.getLSBit(1));
+		I6.setState(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setFunc(Am2901_Func func)
 	{
 		var bits = of(func.ordinal(), 3);
-		I5.setToValueOf(bits.getLSBit(2));
-		I4.setToValueOf(bits.getLSBit(1));
-		I3.setToValueOf(bits.getLSBit(0));
+		I5.setState(bits.getLSBit(2));
+		I4.setState(bits.getLSBit(1));
+		I3.setState(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setSrc(Am2901_Src src)
 	{
 		var bits = of(src.ordinal(), 3);
-		I2.setToValueOf(bits.getLSBit(2));
-		I1.setToValueOf(bits.getLSBit(1));
-		I0.setToValueOf(bits.getLSBit(0));
+		I2.setState(bits.getLSBit(2));
+		I1.setState(bits.getLSBit(1));
+		I0.setState(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setReg_A(String val_4_bit)
 	{
 		var bits = BitVector.parse(val_4_bit);
-		A3.setToValueOf(bits.getLSBit(3));
-		A2.setToValueOf(bits.getLSBit(2));
-		A1.setToValueOf(bits.getLSBit(1));
-		A0.setToValueOf(bits.getLSBit(0));
+		A3.setState(bits.getLSBit(3));
+		A2.setState(bits.getLSBit(2));
+		A1.setState(bits.getLSBit(1));
+		A0.setState(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setReg_B(String val_4_bit)
 	{
 		var bits = BitVector.parse(val_4_bit);
-		B3.setToValueOf(bits.getLSBit(3));
-		B2.setToValueOf(bits.getLSBit(2));
-		B1.setToValueOf(bits.getLSBit(1));
-		B0.setToValueOf(bits.getLSBit(0));
+		B3.setState(bits.getLSBit(3));
+		B2.setState(bits.getLSBit(2));
+		B1.setState(bits.getLSBit(1));
+		B0.setState(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setCarryIn(String val_1_bit)
 	{
-		Cn.setToValueOf(Bit.parse(val_1_bit));
+		Cn.setState(Bit.parse(val_1_bit));
 	}
 
 	@Override
@@ -227,40 +227,40 @@ public class TestableAm2901Impl implements TestableAm2901
 	public void setD(String val_4_bit)
 	{
 		var bits = BitVector.parse(val_4_bit);
-		D4.setToValueOf(bits.getLSBit(3));
-		D3.setToValueOf(bits.getLSBit(2));
-		D2.setToValueOf(bits.getLSBit(1));
-		D1.setToValueOf(bits.getLSBit(0));
+		D4.setState(bits.getLSBit(3));
+		D3.setState(bits.getLSBit(2));
+		D2.setState(bits.getLSBit(1));
+		D1.setState(bits.getLSBit(0));
 	}
 
 	@Override
 	public void setQ_0(String val_1_bit)
 	{
-		IQn.setToValueOf(Bit.parse(val_1_bit));
+		IQn.setState(Bit.parse(val_1_bit));
 	}
 
 	@Override
 	public void setQ_3(String val_1_bit)
 	{
-		IQn_3.setToValueOf(Bit.parse(val_1_bit));
+		IQn_3.setState(Bit.parse(val_1_bit));
 	}
 
 	@Override
 	public void setRAM_0(String val_1_bit)
 	{
-		IRAMn.setToValueOf(Bit.parse(val_1_bit));
+		IRAMn.setState(Bit.parse(val_1_bit));
 	}
 
 	@Override
 	public void setRAM_3(String val_1_bit)
 	{
-		IRAMn_3.setToValueOf(Bit.parse(val_1_bit));
+		IRAMn_3.setState(Bit.parse(val_1_bit));
 	}
 
 	@Override
 	public void clockOn(boolean isClockOn)
 	{
-		C.setState(isClockOn);
+		C.setState(isClockOn ? Bit.ONE : Bit.ZERO);
 	}
 
 	@Override
