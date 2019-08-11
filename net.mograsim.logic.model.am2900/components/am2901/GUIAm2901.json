@@ -549,8 +549,8 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "GUIAm2901QReg",
-        "name": "GUIAm2901QReg#0",
+        "id": "GUIdff4",
+        "name": "GUIdff4#0",
         "pos": {
           "x": 90.0,
           "y": 2490.0
@@ -1538,7 +1538,7 @@ mograsim version: 0.1.3
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "C"
         },
         "name": "unnamedWire#17",
@@ -2123,7 +2123,7 @@ mograsim version: 0.1.3
           "pinName": "Y2"
         },
         "pin2": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "D2"
         },
         "name": "unnamedWire#87",
@@ -2135,7 +2135,7 @@ mograsim version: 0.1.3
           "pinName": "Y1"
         },
         "pin2": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "D1"
         },
         "name": "unnamedWire#86",
@@ -2147,7 +2147,7 @@ mograsim version: 0.1.3
           "pinName": "Y4"
         },
         "pin2": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "D4"
         },
         "name": "unnamedWire#89",
@@ -2159,7 +2159,7 @@ mograsim version: 0.1.3
           "pinName": "Y3"
         },
         "pin2": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "D3"
         },
         "name": "unnamedWire#88",
@@ -2327,7 +2327,7 @@ mograsim version: 0.1.3
           "pinName": "QWE"
         },
         "pin2": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "WE"
         },
         "name": "unnamedWire#147",
@@ -3003,7 +3003,7 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "Q2"
         },
         "pin2": {
@@ -3015,7 +3015,7 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "Q1"
         },
         "pin2": {
@@ -3027,7 +3027,7 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "Q4"
         },
         "pin2": {
@@ -3039,7 +3039,7 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "GUIAm2901QReg#0",
+          "compName": "GUIdff4#0",
           "pinName": "Q3"
         },
         "pin2": {
@@ -3406,7 +3406,7 @@ mograsim version: 0.1.3
       "qreg": {
         "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
         "params": {
-          "delegateTarget": "GUIAm2901QReg#0"
+          "delegateTarget": "GUIdff4#0"
         }
       },
       "regs": {
