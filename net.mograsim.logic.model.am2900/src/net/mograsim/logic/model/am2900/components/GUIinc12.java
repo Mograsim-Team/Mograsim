@@ -1,6 +1,5 @@
 package net.mograsim.logic.model.am2900.components;
 
-import static net.mograsim.logic.core.types.Bit.ONE;
 import static net.mograsim.logic.core.types.Bit.U;
 import static net.mograsim.logic.core.types.Bit.X;
 import static net.mograsim.logic.core.types.Bit.Z;
@@ -51,19 +50,8 @@ public class GUIinc12 extends SimpleRectangularHardcodedGUIComponent
 			for (int i = 11; i >= 0; i--)
 			{
 				Bit a = ABits[i];
-				Bit z;
-				if (a.isBinary() && carry.isBinary())
-				{
-					boolean aBool = a == ONE;
-					boolean carryBool = carry == ONE;
-					z = aBool ^ carryBool ? ONE : ZERO;
-					carry = aBool && carryBool ? ONE : ZERO;
-				} else
-				{
-					carry = carry.join(a);
-					z = carry;
-				}
-				YBits[i] = z;
+				YBits[i] = a.xor(carry);
+				carry = a.and(carry);
 			}
 		}
 		readWriteEnds.get("Y").feedSignals(YBits);
