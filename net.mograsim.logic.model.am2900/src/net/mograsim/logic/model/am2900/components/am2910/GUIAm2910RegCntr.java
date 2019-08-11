@@ -63,19 +63,8 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 				for (int i = 11; i >= 0; i--)
 				{
 					Bit a = QC[i];
-					Bit z;
-					if (a.isBinary() && carry.isBinary())
-					{
-						boolean aBool = a == ONE;
-						boolean carryBool = carry == ONE;
-						z = !aBool ^ carryBool ? ONE : ZERO;
-						carry = aBool || carryBool ? ONE : ZERO;
-					} else
-					{
-						carry = carry.join(a);
-						z = carry;
-					}
-					QC[i] = z;
+					QC[i] = a.xnor(carry);
+					carry = a.or(carry);
 				}
 			}
 		}
