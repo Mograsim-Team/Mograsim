@@ -19,6 +19,7 @@ mograsim version: 0.1.3
   "GUIdemux2": "file:components/GUIdemux2.json",
   "GUIdff": "file:components/GUIdff.json",
   "GUIdff4": "file:components/GUIdff4.json",
+  "GUIdff4_invwe": "file:components/GUIdff4_invwe.json",
   "GUIdlatch": "file:components/GUIdlatch.json",
   "GUIdlatch4": "file:components/GUIdlatch4.json",
   "GUIfulladder": "file:components/GUIfulladder.json",
