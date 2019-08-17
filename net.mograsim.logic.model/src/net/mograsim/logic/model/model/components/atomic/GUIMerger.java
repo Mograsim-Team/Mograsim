@@ -1,0 +1,69 @@
+package net.mograsim.logic.model.model.components.atomic;
+
+import net.haspamelodica.swt.helper.gcs.GeneralGC;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
+import net.mograsim.logic.core.types.BitVectorFormatter;
+import net.mograsim.logic.core.wires.Wire.ReadEnd;
+import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.componentadapters.MergerAdapter;
+import net.mograsim.preferences.ColorDefinition;
+import net.mograsim.preferences.ColorManager;
+import net.mograsim.preferences.Preferences;
+
+public class GUIMerger extends GUIComponent
+{
+	private static final double width = 20;
+	private static final double heightPerPin = 10;
+
+	public final int logicWidth;
+
+	private ReadEnd[] inputEnds;
+	private ReadEnd outputEnd;
+
+	public GUIMerger(ViewModelModifiable model, int logicWidth, String name)
+	{
+		super(model, name);
+		this.logicWidth = logicWidth;
+		setSize(width, logicWidth * heightPerPin);
+		double inputHeight = 0;
+		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
+			addPin(new Pin(this, "I" + i, 1, 0, inputHeight));
+		addPin(new Pin(this, "O", logicWidth, width, logicWidth * heightPerPin / 2));
+	}
+
+	@Override
+	public void render(GeneralGC gc, Rectangle visibleRegion)
+	{
+		double posX = getPosX();
+		double posY = getPosY();
+
+		double inputHeight = posY;
+		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
+		{
+			ColorDefinition c = BitVectorFormatter.formatAsColor(inputEnds[i]);
+			if (c != null)
+				gc.setForeground(ColorManager.current().toColor(c));
+			gc.drawLine(posX, inputHeight, posX + width / 2, inputHeight);
+		}
+		gc.setForeground(Preferences.current().getColor("net.mograsim.logic.model.color.foreground"));
+		gc.drawLine(posX + width / 2, posY, posX + width / 2, posY + heightPerPin * (logicWidth - 1));
+		ColorDefinition c = BitVectorFormatter.formatAsColor(outputEnd);
+		if (c != null)
+			gc.setForeground(ColorManager.current().toColor(c));
+		gc.drawLine(posX + width / 2, posY + heightPerPin * logicWidth / 2, posX + width, posY + heightPerPin * logicWidth / 2);
+	}
+
+	public void setLogicModelBinding(ReadEnd[] inputEnds, ReadEnd outputEnd)
+	{
+		this.inputEnds = inputEnds;
+		this.outputEnd = outputEnd;
+	}
+
+	static
+	{
+		ViewLogicModelAdapter.addComponentAdapter(new MergerAdapter());
+	}
+}
