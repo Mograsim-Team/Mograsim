@@ -5,11 +5,11 @@ import java.util.Comparator;
 import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
-import net.mograsim.logic.model.am2900.components.GUIdff4_finewe;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.components.atomic.GUIMerger;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent.Usage;
 import net.mograsim.logic.model.model.wires.GUIWire;
@@ -25,8 +25,7 @@ public class GUIComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-//		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "file:components/GUIdff4.json", "dff4");
-		GUIComponent comp = new GUIdff4_finewe(model, "dff4_finewe");
+		GUIComponent comp = new GUIMerger(model, 10, "");
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
