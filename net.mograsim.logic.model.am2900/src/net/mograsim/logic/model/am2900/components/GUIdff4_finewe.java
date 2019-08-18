@@ -22,16 +22,16 @@ public class GUIdff4_finewe extends SimpleRectangularHardcodedGUIComponent
 	public GUIdff4_finewe(ViewModelModifiable model, String name)
 	{
 		super(model, name, "D flip flop\n4 bits");
-		setSize(35, 100);
+		setSize(35, 90);
 		addPin(new Pin(this, "C", 1, 0, 5), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "_WE1", 1, 0, 15), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "_WE2", 1, 0, 25), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "_WE3", 1, 0, 35), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "_WE4", 1, 0, 45), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "D1", 1, 0, 65), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "D2", 1, 0, 75), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "D3", 1, 0, 85), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "D4", 1, 0, 95), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "D1", 1, 0, 55), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "D2", 1, 0, 65), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "D3", 1, 0, 75), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "D4", 1, 0, 85), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "Q1", 1, 35, 5), Usage.OUTPUT, Position.LEFT);
 		addPin(new Pin(this, "Q2", 1, 35, 15), Usage.OUTPUT, Position.LEFT);
 		addPin(new Pin(this, "Q3", 1, 35, 25), Usage.OUTPUT, Position.LEFT);
