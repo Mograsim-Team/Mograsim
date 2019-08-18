@@ -18,11 +18,11 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
-public class GUImux4_12 extends SimpleRectangularHardcodedGUIComponent
+public class GUIsel4_12 extends SimpleRectangularHardcodedGUIComponent
 {
-	public GUImux4_12(ViewModelModifiable model, String name)
+	public GUIsel4_12(ViewModelModifiable model, String name)
 	{
-		super(model, name, "4-way MUX\n12 bit");
+		super(model, name, "4-way SEL\n12 bit");
 		setSize(80, 40);
 		addPin(new Pin(this, "SA", 1, 0, 5), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "SB", 1, 0, 15), Usage.INPUT, Position.RIGHT);
@@ -79,6 +79,6 @@ public class GUImux4_12 extends SimpleRectangularHardcodedGUIComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(GUImux4_12.class.getCanonicalName(), (m, p, n) -> new GUImux4_12(m, n));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIsel4_12.class.getCanonicalName(), (m, p, n) -> new GUIsel4_12(m, n));
 	}
 }
