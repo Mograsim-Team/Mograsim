@@ -211,7 +211,7 @@ public class EditorGUI
 
 	public void refreshAddList()
 	{
-		addList.setItems(IndirectGUIComponentCreator.getStandardComponentIDs().toArray(String[]::new));
+		addList.setItems(IndirectGUIComponentCreator.getStandardComponentIDs().stream().sorted().toArray(String[]::new));
 		addList.select(0);
 	}
 
