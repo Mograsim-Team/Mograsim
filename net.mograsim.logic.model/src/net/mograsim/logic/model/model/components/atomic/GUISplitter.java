@@ -1,5 +1,8 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.types.BitVectorFormatter;
@@ -9,6 +12,8 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SplitterAdapter;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
 import net.mograsim.preferences.Preferences;
@@ -56,6 +61,12 @@ public class GUISplitter extends GUIComponent
 		}
 	}
 
+	@Override
+	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	{
+		return new JsonPrimitive(logicWidth);
+	}
+
 	public void setLogicModelBinding(ReadEnd inputEnd, ReadEnd[] outputEnds)
 	{
 		this.inputEnd = inputEnd;
@@ -65,5 +76,7 @@ public class GUISplitter extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new SplitterAdapter());
+		IndirectGUIComponentCreator.setComponentSupplier(GUISplitter.class.getCanonicalName(),
+				(m, p, n) -> new GUISplitter(m, p.getAsInt(), n));
 	}
 }
