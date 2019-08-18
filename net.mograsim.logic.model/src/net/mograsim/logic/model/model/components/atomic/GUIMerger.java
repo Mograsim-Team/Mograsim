@@ -20,12 +20,12 @@ import net.mograsim.preferences.Preferences;
 
 public class GUIMerger extends GUIComponent
 {
-	private static final double width = 20;
+	private static final double width = 10;
 	private static final double heightPerPin = 10;
 
 	public final int logicWidth;
 
-	private ReadEnd[] inputEnds;
+	private final ReadEnd[] inputEnds;
 	private ReadEnd outputEnd;
 
 	public GUIMerger(ViewModelModifiable model, int logicWidth, String name)
@@ -37,6 +37,7 @@ public class GUIMerger extends GUIComponent
 		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
 			addPin(new Pin(this, "I" + i, 1, 0, inputHeight));
 		addPin(new Pin(this, "O", logicWidth, width, logicWidth * heightPerPin / 2));
+		inputEnds = new ReadEnd[logicWidth];
 	}
 
 	@Override
@@ -69,7 +70,7 @@ public class GUIMerger extends GUIComponent
 
 	public void setLogicModelBinding(ReadEnd[] inputEnds, ReadEnd outputEnd)
 	{
-		this.inputEnds = inputEnds;
+		System.arraycopy(inputEnds, 0, this.inputEnds, 0, logicWidth);
 		this.outputEnd = outputEnd;
 	}
 

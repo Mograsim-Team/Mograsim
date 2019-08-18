@@ -20,13 +20,13 @@ import net.mograsim.preferences.Preferences;
 
 public class GUISplitter extends GUIComponent
 {
-	private static final double width = 20;
+	private static final double width = 10;
 	private static final double heightPerPin = 10;
 
 	public final int logicWidth;
 
 	private ReadEnd inputEnd;
-	private ReadEnd[] outputEnds;
+	private final ReadEnd[] outputEnds;
 
 	public GUISplitter(ViewModelModifiable model, int logicWidth, String name)
 	{
@@ -37,6 +37,7 @@ public class GUISplitter extends GUIComponent
 		double outputHeight = 0;
 		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
 			addPin(new Pin(this, "O" + i, 1, width, outputHeight));
+		outputEnds = new ReadEnd[logicWidth];
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class GUISplitter extends GUIComponent
 	public void setLogicModelBinding(ReadEnd inputEnd, ReadEnd[] outputEnds)
 	{
 		this.inputEnd = inputEnd;
-		this.outputEnds = outputEnds;
+		System.arraycopy(outputEnds, 0, this.outputEnds, 0, logicWidth);
 	}
 
 	static
