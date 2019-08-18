@@ -1,5 +1,8 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.types.BitVectorFormatter;
@@ -9,6 +12,8 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.MergerAdapter;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
 import net.mograsim.preferences.Preferences;
@@ -56,6 +61,12 @@ public class GUIMerger extends GUIComponent
 		gc.drawLine(posX + width / 2, posY + heightPerPin * logicWidth / 2, posX + width, posY + heightPerPin * logicWidth / 2);
 	}
 
+	@Override
+	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	{
+		return new JsonPrimitive(logicWidth);
+	}
+
 	public void setLogicModelBinding(ReadEnd[] inputEnds, ReadEnd outputEnd)
 	{
 		this.inputEnds = inputEnds;
@@ -65,5 +76,7 @@ public class GUIMerger extends GUIComponent
 	static
 	{
 		ViewLogicModelAdapter.addComponentAdapter(new MergerAdapter());
+		IndirectGUIComponentCreator.setComponentSupplier(GUIMerger.class.getCanonicalName(),
+				(m, p, n) -> new GUIMerger(m, p.getAsInt(), n));
 	}
 }
