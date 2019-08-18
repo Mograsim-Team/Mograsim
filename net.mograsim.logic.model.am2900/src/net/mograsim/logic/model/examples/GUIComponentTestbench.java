@@ -9,11 +9,11 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
-import net.mograsim.logic.model.model.components.atomic.GUIMerger;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent.Usage;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 
 public class GUIComponentTestbench
 {
@@ -25,7 +25,8 @@ public class GUIComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		GUIComponent comp = new GUIMerger(model, 10, "");
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model,
+				"class:net.mograsim.logic.model.am2900.components.am2904.RegCTInstrDecode");
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
