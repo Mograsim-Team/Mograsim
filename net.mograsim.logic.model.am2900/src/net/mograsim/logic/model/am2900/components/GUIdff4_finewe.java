@@ -28,7 +28,6 @@ public class GUIdff4_finewe extends SimpleRectangularHardcodedGUIComponent
 		addPin(new Pin(this, "_WE2", 1, 0, 25), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "_WE3", 1, 0, 35), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "_WE4", 1, 0, 45), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "_WE", 1, 0, 55), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "D1", 1, 0, 65), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "D2", 1, 0, 75), Usage.INPUT, Position.RIGHT);
 		addPin(new Pin(this, "D3", 1, 0, 85), Usage.INPUT, Position.RIGHT);
@@ -48,7 +47,7 @@ public class GUIdff4_finewe extends SimpleRectangularHardcodedGUIComponent
 
 		Bit CVal = readEnds.get("C").getValue();
 
-		if (QC[0] == ZERO && CVal == ONE && readEnds.get("_WE").getValue() == ZERO)
+		if (QC[0] == ZERO && CVal == ONE)
 			for (int i = 1; i < 5; i++)
 			{
 				Bit WEiVal = readEnds.get("_WE" + i).getValue();
