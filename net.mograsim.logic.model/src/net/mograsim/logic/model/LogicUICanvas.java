@@ -35,7 +35,7 @@ import net.mograsim.preferences.Preferences;
  */
 public class LogicUICanvas extends ZoomableCanvas
 {
-	private static final boolean OPEN_DEBUG_SETHIGHLEVELSTATE_SHELL = true;
+	private static final boolean OPEN_DEBUG_SETHIGHLEVELSTATE_SHELL = false;
 
 	private final ViewModel model;
 
