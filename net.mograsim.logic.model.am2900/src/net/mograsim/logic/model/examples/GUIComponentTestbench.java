@@ -26,7 +26,7 @@ public class GUIComponentTestbench
 	public static void createTestbench(ViewModelModifiable model)
 	{
 		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model,
-				"class:net.mograsim.logic.model.am2900.components.am2904.RegCTInstrDecode");
+				"class:net.mograsim.logic.model.am2900.components.am2904.GUIAm2904RegCTInstrDecode");
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class

@@ -7,6 +7,7 @@ mograsim version: 0.1.3
   "GUIAm2901ALUInclDecode": "file:components/am2901/GUIAm2901ALUInclDecode.json",
   "GUIAm2901ALUInclSourceDecodeInclFunctionDecode": "file:components/am2901/GUIAm2901ALUInclSourceDecodeInclFunctionDecode.json",
   "GUIAm2901ALUOneBit": "file:components/am2901/GUIAm2901ALUOneBit.json",
+  "GUIAm2904RegCTInstrDecode": "class:net.mograsim.logic.model.am2900.components.am2904.GUIAm2904RegCTInstrDecode",
   "GUIAm2901DestDecode": "file:components/am2901/GUIAm2901DestDecode.json",
   "GUIAm2901SourceDecode": "file:components/am2901/GUIAm2901SourceDecode.json",
   "GUIAm2910InstrPLA": "class:net.mograsim.logic.model.am2900.components.am2910.GUIAm2910InstrPLA",
