@@ -16,9 +16,9 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
-public class RegCTInstrDecode extends SimpleRectangularHardcodedGUIComponent
+public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComponent
 {
-	public RegCTInstrDecode(ViewModelModifiable model, String name)
+	public GUIAm2904RegCTInstrDecode(ViewModelModifiable model, String name)
 	{
 		super(model, name, "Instruction\ndecode");
 		setSize(80, 80);
@@ -261,7 +261,7 @@ public class RegCTInstrDecode extends SimpleRectangularHardcodedGUIComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(RegCTInstrDecode.class.getCanonicalName(),
-				(m, p, n) -> new RegCTInstrDecode(m, n));
+		IndirectGUIComponentCreator.setComponentSupplier(GUIAm2904RegCTInstrDecode.class.getCanonicalName(),
+				(m, p, n) -> new GUIAm2904RegCTInstrDecode(m, n));
 	}
 }
