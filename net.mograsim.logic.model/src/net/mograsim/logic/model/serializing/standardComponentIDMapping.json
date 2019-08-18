@@ -26,6 +26,7 @@ mograsim version: 0.1.3
   "GUIdff": "file:components/GUIdff.json",
   "GUIdff12": "class:net.mograsim.logic.model.am2900.components.GUIdff12",
   "GUIdff4": "file:components/GUIdff4.json",
+  "GUIdff4_finewe": "class:net.mograsim.logic.model.am2900.components.GUIdff4_finewe",
   "GUIdff4_invwe": "file:components/GUIdff4_invwe.json",
   "GUIdlatch": "file:components/GUIdlatch.json",
   "GUIdlatch4": "file:components/GUIdlatch4.json",
