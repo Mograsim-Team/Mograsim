@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import org.eclipse.swt.SWT;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 
@@ -55,7 +57,12 @@ public class GUIMerger extends GUIComponent
 			gc.drawLine(posX, inputHeight, posX + width / 2, inputHeight);
 		}
 		gc.setForeground(Preferences.current().getColor("net.mograsim.logic.model.color.foreground"));
+		int oldLineCap = gc.getLineCap();
+		int lineJoin = gc.getLineJoin();
+		// TODO find better "replacement" for JOIN_BEVEL
+		gc.setLineCap(lineJoin == SWT.JOIN_MITER ? SWT.CAP_SQUARE : lineJoin == SWT.JOIN_ROUND ? SWT.CAP_ROUND : SWT.CAP_SQUARE);
 		gc.drawLine(posX + width / 2, posY, posX + width / 2, posY + heightPerPin * (logicWidth - 1));
+		gc.setLineCap(oldLineCap);
 		ColorDefinition c = BitVectorFormatter.formatAsColor(outputEnd);
 		if (c != null)
 			gc.setForeground(ColorManager.current().toColor(c));
