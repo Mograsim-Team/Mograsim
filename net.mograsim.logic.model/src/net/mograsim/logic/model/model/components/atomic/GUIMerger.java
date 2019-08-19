@@ -36,7 +36,7 @@ public class GUIMerger extends GUIComponent
 		double inputHeight = 0;
 		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
 			addPin(new Pin(this, "I" + i, 1, 0, inputHeight));
-		addPin(new Pin(this, "O", logicWidth, width, logicWidth * heightPerPin / 2));
+		addPin(new Pin(this, "O", logicWidth, width, (logicWidth - 1) * heightPerPin / 2));
 		inputEnds = new ReadEnd[logicWidth];
 	}
 
@@ -59,7 +59,8 @@ public class GUIMerger extends GUIComponent
 		ColorDefinition c = BitVectorFormatter.formatAsColor(outputEnd);
 		if (c != null)
 			gc.setForeground(ColorManager.current().toColor(c));
-		gc.drawLine(posX + width / 2, posY + heightPerPin * logicWidth / 2, posX + width, posY + heightPerPin * logicWidth / 2);
+		double outLineY = posY + (logicWidth - 1) * heightPerPin / 2;
+		gc.drawLine(posX + width / 2, outLineY, posX + width, outLineY);
 	}
 
 	@Override
