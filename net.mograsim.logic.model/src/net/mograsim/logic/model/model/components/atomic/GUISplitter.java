@@ -33,7 +33,7 @@ public class GUISplitter extends GUIComponent
 		super(model, name);
 		this.logicWidth = logicWidth;
 		setSize(width, logicWidth * heightPerPin);
-		addPin(new Pin(this, "I", logicWidth, 0, logicWidth * heightPerPin / 2));
+		addPin(new Pin(this, "I", logicWidth, 0, (logicWidth - 1) * heightPerPin / 2));
 		double outputHeight = 0;
 		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
 			addPin(new Pin(this, "O" + i, 1, width, outputHeight));
@@ -49,7 +49,8 @@ public class GUISplitter extends GUIComponent
 		ColorDefinition c = BitVectorFormatter.formatAsColor(inputEnd);
 		if (c != null)
 			gc.setForeground(ColorManager.current().toColor(c));
-		gc.drawLine(posX, posY + heightPerPin * logicWidth / 2, posX + width / 2, posY + heightPerPin * logicWidth / 2);
+		double inLineY = posY + (logicWidth - 1) * heightPerPin / 2;
+		gc.drawLine(posX, inLineY, posX + width / 2, inLineY);
 		gc.setForeground(Preferences.current().getColor("net.mograsim.logic.model.color.foreground"));
 		gc.drawLine(posX + width / 2, posY, posX + width / 2, posY + heightPerPin * (logicWidth - 1));
 		double outputHeight = posY;
