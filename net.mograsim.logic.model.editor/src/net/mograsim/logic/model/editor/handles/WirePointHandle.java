@@ -19,7 +19,7 @@ public class WirePointHandle extends Handle
 
 	public WirePointHandle(HandleManager manager, GUIWire parent, int pointIndex)
 	{
-		super();
+		super(3);
 		this.manager = manager;
 		this.parent = parent;
 		this.pointIndex = pointIndex;

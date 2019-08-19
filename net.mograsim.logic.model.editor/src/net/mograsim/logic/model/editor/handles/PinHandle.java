@@ -4,9 +4,9 @@ import net.mograsim.logic.model.model.wires.Pin;
 
 public abstract class PinHandle extends Handle
 {
-	public PinHandle()
+	public PinHandle(int priority)
 	{
-		super();
+		super(priority);
 	}
 
 	public abstract Pin getPin();
