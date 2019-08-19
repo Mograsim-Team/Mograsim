@@ -77,20 +77,20 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 				IAsInt |= 1 << i;
 				break;
 			case U:
-				readWriteEnds.get("SIO0_MUX").feedSignals(U);
-				readWriteEnds.get("SIOn_MUX").feedSignals(U);
-				readWriteEnds.get("QIO0_MUX").feedSignals(U);
-				readWriteEnds.get("QIOn_MUX").feedSignals(U);
-				readWriteEnds.get("MC_MUX").feedSignals(U);
+				readWriteEnds.get("SIO0_MUX").feedSignals(U, U, U);
+				readWriteEnds.get("SIOn_MUX").feedSignals(U, U, U);
+				readWriteEnds.get("QIO0_MUX").feedSignals(U, U, U);
+				readWriteEnds.get("QIOn_MUX").feedSignals(U, U, U);
+				readWriteEnds.get("MC_MUX").feedSignals(U, U);
 				readWriteEnds.get("MC_EN").feedSignals(U);
 				return null;
 			case X:
 			case Z:
-				readWriteEnds.get("SIO0_MUX").feedSignals(X);
-				readWriteEnds.get("SIOn_MUX").feedSignals(X);
-				readWriteEnds.get("QIO0_MUX").feedSignals(X);
-				readWriteEnds.get("QIOn_MUX").feedSignals(X);
-				readWriteEnds.get("MC_MUX").feedSignals(X);
+				readWriteEnds.get("SIO0_MUX").feedSignals(X, X, X);
+				readWriteEnds.get("SIOn_MUX").feedSignals(X, X, X);
+				readWriteEnds.get("QIO0_MUX").feedSignals(X, X, X);
+				readWriteEnds.get("QIOn_MUX").feedSignals(X, X, X);
+				readWriteEnds.get("MC_MUX").feedSignals(X, X);
 				readWriteEnds.get("MC_EN").feedSignals(X);
 				return null;
 			case ZERO:
