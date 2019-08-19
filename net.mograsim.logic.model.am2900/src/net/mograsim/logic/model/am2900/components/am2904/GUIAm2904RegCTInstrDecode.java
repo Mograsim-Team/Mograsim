@@ -8,6 +8,7 @@ import static net.mograsim.logic.core.types.Bit.ZERO;
 import java.util.Map;
 
 import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
@@ -71,12 +72,12 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 				break;
 			case U:
 				for (ReadWriteEnd e : readWriteEnds.values())
-					e.feedSignals(U);
+					e.feedSignals(BitVector.of(U, e.length()));
 				return null;
 			case X:
 			case Z:
 				for (ReadWriteEnd e : readWriteEnds.values())
-					e.feedSignals(X);
+					e.feedSignals(BitVector.of(X, e.length()));
 				return null;
 			case ZERO:
 				break;
