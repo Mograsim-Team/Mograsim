@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.math.BigInteger;
+import java.util.Random;
 import java.util.function.LongConsumer;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import net.mograsim.logic.core.components.Connector;
@@ -19,6 +22,7 @@ import net.mograsim.logic.core.components.gates.NandGate;
 import net.mograsim.logic.core.components.gates.NorGate;
 import net.mograsim.logic.core.components.gates.NotGate;
 import net.mograsim.logic.core.components.gates.OrGate;
+import net.mograsim.logic.core.components.gates.WordAddressableMemoryComponent;
 import net.mograsim.logic.core.components.gates.XorGate;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
@@ -31,6 +35,12 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 class ComponentTest
 {
 	private Timeline t = new Timeline(11);
+
+	@Before
+	void resetTimeline()
+	{
+		t.reset();
+	}
 
 	@Test
 	void circuitExampleTest()
@@ -59,7 +69,6 @@ class ComponentTest
 	@Test
 	void splitterTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), in = new Wire(t, 8, 1);
 		in.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 		new Splitter(t, in.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(), c.createReadWriteEnd());
@@ -74,7 +83,6 @@ class ComponentTest
 	@Test
 	void mergerTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), out = new Wire(t, 8, 1);
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO);
@@ -90,7 +98,6 @@ class ComponentTest
 	@Test
 	void fusionTest1()
 	{
-		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), out = new Wire(t, 8, 1);
 		Wire.fuse(a, out, 0, 0, a.length);
 		Wire.fuse(b, out, 0, a.length, b.length);
@@ -121,7 +128,6 @@ class ComponentTest
 	@Test
 	void fusionTest2()
 	{
-		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
 		Wire.fuse(a, b);
 		ReadWriteEnd rw = a.createReadWriteEnd();
@@ -136,7 +142,6 @@ class ComponentTest
 	@Test
 	void fusionTest3()
 	{
-		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
 		a.createReadWriteEnd().feedSignals(Bit.Z, Bit.U, Bit.X);
 		t.executeAll();
@@ -193,7 +198,6 @@ class ComponentTest
 	@Test
 	void muxTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 4, 3), b = new Wire(t, 4, 6), c = new Wire(t, 4, 4), select = new Wire(t, 2, 5), out = new Wire(t, 4, 1);
 		ReadWriteEnd selectIn = select.createReadWriteEnd();
 
@@ -221,7 +225,6 @@ class ComponentTest
 	@Test
 	void demuxTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 4, 3), b = new Wire(t, 4, 6), c = new Wire(t, 4, 4), select = new Wire(t, 2, 5), in = new Wire(t, 4, 1);
 		ReadWriteEnd selectIn = select.createReadWriteEnd();
 
@@ -254,7 +257,6 @@ class ComponentTest
 	@Test
 	void andTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1);
 		new AndGate(t, 1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
@@ -268,7 +270,6 @@ class ComponentTest
 	@Test
 	void orTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1);
 		new OrGate(t, 1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
@@ -282,7 +283,6 @@ class ComponentTest
 	@Test
 	void nandTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1), d = new Wire(t, 4, 1);
 		new NandGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
@@ -297,7 +297,6 @@ class ComponentTest
 	@Test
 	void norTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1), d = new Wire(t, 4, 1);
 		new NorGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
@@ -312,7 +311,6 @@ class ComponentTest
 	@Test
 	void xorTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 2), c = new Wire(t, 3, 1), d = new Wire(t, 3, 1);
 		new XorGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
@@ -327,7 +325,6 @@ class ComponentTest
 	@Test
 	void notTest()
 	{
-		t.reset();
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 2);
 		new NotGate(t, 1, a.createReadOnlyEnd(), b.createReadWriteEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
@@ -340,7 +337,6 @@ class ComponentTest
 	@Test
 	void rsLatchCircuitTest()
 	{
-		t.reset();
 		Wire r = new Wire(t, 1, 1), s = new Wire(t, 1, 1), t1 = new Wire(t, 1, 15), t2 = new Wire(t, 1, 1), q = new Wire(t, 1, 1),
 				nq = new Wire(t, 1, 1);
 
@@ -376,8 +372,6 @@ class ComponentTest
 	@Test
 	void numericValueTest()
 	{
-		t.reset();
-
 		Wire a = new Wire(t, 4, 1);
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE);
 
@@ -426,7 +420,6 @@ class ComponentTest
 	@Test
 	void multipleInputs()
 	{
-		t.reset();
 		Wire w = new Wire(t, 2, 1);
 		ReadWriteEnd wI1 = w.createReadWriteEnd(), wI2 = w.createReadWriteEnd();
 		wI1.feedSignals(Bit.ONE, Bit.Z);
@@ -458,8 +451,6 @@ class ComponentTest
 	void wireConnections()
 	{
 		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
-
-		t.reset();
 
 		Wire a = new Wire(t, 1, 2);
 		Wire b = new Wire(t, 1, 2);
@@ -526,6 +517,47 @@ class ComponentTest
 		aI.feedSignals(Bit.ONE);
 		test.assertAfterSimulationIs(print, Bit.ONE);
 		test2.assertAfterSimulationIs(Bit.ONE);
+	}
+
+	@Test
+	public void wordAddressableMemoryLargeTest()
+	{
+		Wire rW = new Wire(t, 1, 2);
+		Wire data = new Wire(t, 16, 2);
+		Wire address = new Wire(t, 64, 2);
+		ReadWriteEnd rWI = rW.createReadWriteEnd();
+		ReadWriteEnd dataI = data.createReadWriteEnd();
+		ReadWriteEnd addressI = address.createReadWriteEnd();
+
+		WordAddressableMemoryComponent memory = new WordAddressableMemoryComponent(t, 4, 4096L, Long.MAX_VALUE, data.createReadWriteEnd(),
+				rW.createReadOnlyEnd(), address.createReadOnlyEnd());
+
+		Random r = new Random();
+		for (long j = 1; j > 0; j *= 2)
+		{
+			for (int i = 0; i < 50; i++)
+			{
+				String sAddress = String.format("%64s", BigInteger.valueOf(4096 + i + j).toString(2)).replace(' ', '0');
+				sAddress = new StringBuilder(sAddress).reverse().toString();
+				BitVector bAddress = BitVector.parse(sAddress);
+				addressI.feedSignals(bAddress);
+				t.executeAll();
+				String random = BigInteger.valueOf(Math.abs(r.nextInt())).toString(5);
+				random = random.substring(Integer.max(0, random.length() - 16));
+				random = String.format("%16s", random).replace(' ', '0');
+				random = random.replace('2', 'X').replace('3', 'Z').replace('4', 'U');
+				BitVector vector = BitVector.parse(random);
+				dataI.feedSignals(vector);
+				rWI.feedSignals(Bit.ZERO);
+				t.executeAll();
+				rWI.feedSignals(Bit.ONE);
+				t.executeAll();
+				dataI.clearSignals();
+				t.executeAll();
+
+				assertBitArrayEquals(dataI.getValues(), vector.getBits());
+			}
+		}
 	}
 
 	private static void assertBitArrayEquals(BitVector actual, Bit... expected)
