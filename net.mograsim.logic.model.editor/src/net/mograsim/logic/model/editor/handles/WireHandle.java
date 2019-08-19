@@ -20,6 +20,7 @@ public class WireHandle extends Handle
 
 	public WireHandle(GUIWire parent)
 	{
+		super(5);
 		this.parent = parent;
 		parent.addPathChangedListener(c -> updateBounds());
 		updateBounds();

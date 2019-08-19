@@ -15,7 +15,7 @@ public class StaticPinHandle extends PinHandle
 
 	public StaticPinHandle(Pin parent)
 	{
-		super();
+		super(1);
 		this.parent = parent;
 		setSize(CIRCLE_DIAM, CIRCLE_DIAM);
 		parent.addPinMovedListener((p) -> updatePos());
