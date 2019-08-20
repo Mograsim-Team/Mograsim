@@ -265,12 +265,6 @@ public class Wire
 			return Wire.this.getValue(index);
 		}
 
-		/**
-		 * @param index Index of the requested bit.
-		 * @return The value of the indexed bit.
-		 * 
-		 * @author Fabian Stemmler
-		 */
 		public BitVector getValues()
 		{
 			return Wire.this.getValues();

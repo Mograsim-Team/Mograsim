@@ -14,9 +14,11 @@ public abstract class Handle
 {
 	private final Rectangle bounds;
 	private final Collection<Runnable> redrawListeners, destroyListeners;
+	private final int priority;
 
-	public Handle()
+	public Handle(int priority)
 	{
+		this.priority = priority;
 		redrawListeners = new ArrayList<>();
 		destroyListeners = new ArrayList<>();
 		bounds = new Rectangle(0, 0, 0, 0);
@@ -121,6 +123,11 @@ public abstract class Handle
     public void onSelect() {}
     public void onDeselect() {}
     //@formatter:on
+
+	public final int getPriority()
+	{
+		return priority;
+	}
 
 	public abstract HandleType getType();
 

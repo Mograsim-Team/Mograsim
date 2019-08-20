@@ -19,7 +19,7 @@ public class InterfacePinHandle extends PinHandle
 
 	public InterfacePinHandle(MovablePin parent, DeserializedSubmodelComponent pinOwner)
 	{
-		super();
+		super(2);
 		this.parent = parent;
 		this.owner = pinOwner;
 		setSize(CIRCLE_DIAM, CIRCLE_DIAM);

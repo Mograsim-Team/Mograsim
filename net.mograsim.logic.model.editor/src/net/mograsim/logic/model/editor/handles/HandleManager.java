@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.states.EditorState;
+import net.mograsim.logic.model.editor.util.PrioritySet;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
@@ -37,8 +38,6 @@ public class HandleManager
 	private final Editor editor;
 	private boolean initialized = false;
 
-	private CornerHandle cornerHandle;
-
 	public HandleManager(Editor editor)
 	{
 		this.editor = editor;
@@ -46,7 +45,7 @@ public class HandleManager
 		handlePerInterfacePin = new HashMap<>();
 		pointHandlesPerWire = new HashMap<>();
 		handlePerComp = new HashMap<>();
-		handles = new HashSet<>();
+		handles = new PrioritySet<>((a, b) -> Integer.compare(a.getPriority(), b.getPriority()));
 		wirePointHandles = new HashSet<>();
 		handlePerWire = new HashMap<>();
 
@@ -93,7 +92,7 @@ public class HandleManager
 			comps.forEach(c -> registerComponent(c));
 
 			model.getWiresByName().values().forEach(w -> registerWire(w));
-			addHandle(cornerHandle = new CornerHandle(editor.toBeEdited));
+			addHandle(new CornerHandle(editor.toBeEdited));
 		}
 	}
 
@@ -345,15 +344,9 @@ public class HandleManager
 	public void click(Point clicked, int stateMask)
 	{
 		EditorState entryState = editor.stateManager.getState();
-
-		// TODO: As soon as wires connected to a component being removed also are removed, change priority
-		if (!cornerHandle.click(clicked.x, clicked.y, stateMask, entryState))
-			if (!click(handlePerPin.values(), clicked, entryState, stateMask))
-				if (!click(handlePerInterfacePin.values(), clicked, entryState, stateMask))
-					if (!click(getWirePointHandles(), clicked, entryState, stateMask))
-						if (!click(getWireHandles(), clicked, entryState, stateMask))
-							if (!click(handlePerComp.values(), clicked, entryState, stateMask))
-								entryState.clickedEmpty(clicked, stateMask);
+		// TODO: As soon as wires connected to a component being removed also are removed, change priority)
+		if (!click(handles, clicked, entryState, stateMask))
+			entryState.clickedEmpty(clicked, stateMask);
 		entryState.clicked(clicked, stateMask);
 	}
 
