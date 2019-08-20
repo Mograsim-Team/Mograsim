@@ -22,6 +22,7 @@ public class ComponentHandle extends Handle
 
 	public ComponentHandle(GUIComponent parent)
 	{
+		super(4);
 		this.parent = parent;
 		Rectangle bounds = parent.getBounds();
 		setSize(bounds.width, bounds.height);

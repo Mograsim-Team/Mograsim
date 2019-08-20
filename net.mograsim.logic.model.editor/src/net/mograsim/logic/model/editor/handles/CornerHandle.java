@@ -15,7 +15,7 @@ public class CornerHandle extends Handle
 
 	public CornerHandle(DeserializedSubmodelComponent toBeEdited)
 	{
-		super();
+		super(0);
 		this.toBeEdited = toBeEdited;
 		setSize(LENGTH, LENGTH);
 		initPos();
