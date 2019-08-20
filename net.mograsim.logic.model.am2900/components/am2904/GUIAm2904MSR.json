@@ -5,7 +5,7 @@ mograsim version: 0.1.3
   "interfacePins": [
     {
       "location": {
-        "x": 21.5,
+        "x": 4.0,
         "y": 46.0
       },
       "name": "MUX",
@@ -21,7 +21,15 @@ mograsim version: 0.1.3
     },
     {
       "location": {
-        "x": 34.0,
+        "x": 27.5,
+        "y": 46.0
+      },
+      "name": "COVD_EN",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 14.0,
         "y": 46.0
       },
       "name": "C",
@@ -33,6 +41,14 @@ mograsim version: 0.1.3
         "y": 0.0
       },
       "name": "_EZ",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 37.5,
+        "y": 46.0
+      },
+      "name": "COVD_V",
       "logicWidth": 1
     },
     {
@@ -106,6 +122,33 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
+        "id": "GUINandGate",
+        "name": "GUINandGate#0",
+        "pos": {
+          "x": 325.0,
+          "y": 90.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#16",
+        "pos": {
+          "x": 319.0,
+          "y": 104.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#15",
+        "pos": {
+          "x": 319.0,
+          "y": 294.0
+        },
+        "params": 1
+      },
+      {
         "id": "GUISplitter",
         "name": "GUISplitter#3",
         "pos": {
@@ -118,7 +161,7 @@ mograsim version: 0.1.3
         "id": "GUISplitter",
         "name": "GUISplitter#2",
         "pos": {
-          "x": 220.0,
+          "x": 45.0,
           "y": 425.0
         },
         "params": 3
@@ -315,6 +358,14 @@ mograsim version: 0.1.3
         }
       },
       {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#7",
+        "pos": {
+          "x": 325.0,
+          "y": 290.0
+        }
+      },
+      {
         "id": "GUImux1_4",
         "name": "DeserializedSubmodelComponent#6",
         "pos": {
@@ -330,6 +381,14 @@ mograsim version: 0.1.3
           "y": 175.0
         },
         "params": 4
+      },
+      {
+        "id": "GUIand",
+        "name": "DeserializedSubmodelComponent#8",
+        "pos": {
+          "x": 380.0,
+          "y": 85.0
+        }
       }
     ],
     "innerWires": [
@@ -494,6 +553,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "name": "unnamedWire#83",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUISplitter#2",
           "pinName": "O2"
         },
@@ -527,6 +598,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#85",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "WireCrossPoint#6",
           "pinName": ""
         },
@@ -544,6 +627,23 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "COVD_EN"
+        },
+        "name": "unnamedWire#84",
+        "path": [
+          {
+            "x": 275.0,
+            "y": 295.0
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "WireCrossPoint#0",
           "pinName": ""
         },
@@ -553,6 +653,27 @@ mograsim version: 0.1.3
         },
         "name": "unnamedWire#43",
         "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#87",
+        "path": [
+          {
+            "x": 305.0,
+            "y": 195.0
+          },
+          {
+            "x": 305.0,
+            "y": 305.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -577,6 +698,31 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "COVD_V"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#86",
+        "path": [
+          {
+            "x": 375.0,
+            "y": 325.0
+          },
+          {
+            "x": 320.0,
+            "y": 325.0
+          },
+          {
+            "x": 320.0,
+            "y": 315.0
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "WireCrossPoint#9",
           "pinName": ""
         },
@@ -594,6 +740,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "GUINandGate#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#89",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "DeserializedSubmodelComponent#0",
           "pinName": "Y1"
         },
@@ -603,6 +761,27 @@ mograsim version: 0.1.3
         },
         "name": "unnamedWire#44",
         "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "D2"
+        },
+        "name": "unnamedWire#88",
+        "path": [
+          {
+            "x": 365.0,
+            "y": 295.0
+          },
+          {
+            "x": 365.0,
+            "y": 235.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -702,6 +881,47 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#16",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "name": "unnamedWire#90",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUINandGate#0",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#16",
+          "pinName": ""
+        },
+        "name": "unnamedWire#92",
+        "path": [
+          {
+            "x": 320.0,
+            "y": 95.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#16",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUINandGate#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#91",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "_EOVR"
         },
@@ -744,6 +964,22 @@ mograsim version: 0.1.3
         },
         "name": "unnamedWire#0",
         "path": [
+          {
+            "x": 140.0,
+            "y": 415.0
+          },
+          {
+            "x": 255.0,
+            "y": 415.0
+          },
+          {
+            "x": 255.0,
+            "y": 280.0
+          },
+          {
+            "x": 340.0,
+            "y": 280.0
+          },
           {
             "x": 340.0,
             "y": 175.0
@@ -854,31 +1090,6 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "_EC"
-        },
-        "pin2": {
-          "compName": "GUIdff4_finewe#0",
-          "pinName": "_WE2"
-        },
-        "name": "unnamedWire#3",
-        "path": [
-          {
-            "x": 155.0,
-            "y": 20.0
-          },
-          {
-            "x": 365.0,
-            "y": 20.0
-          },
-          {
-            "x": 365.0,
-            "y": 195.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "GUISplitter#0",
           "pinName": "O0"
         },
@@ -909,6 +1120,31 @@ mograsim version: 0.1.3
         },
         "name": "unnamedWire#56",
         "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_EC"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 155.0,
+            "y": 20.0
+          },
+          {
+            "x": 365.0,
+            "y": 20.0
+          },
+          {
+            "x": 365.0,
+            "y": 90.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -1209,7 +1445,7 @@ mograsim version: 0.1.3
         "name": "unnamedWire#20",
         "path": [
           {
-            "x": 215.0,
+            "x": 40.0,
             "y": 435.0
           }
         ]
@@ -1238,16 +1474,8 @@ mograsim version: 0.1.3
         "name": "unnamedWire#67",
         "path": [
           {
-            "x": 240.0,
-            "y": 435.0
-          },
-          {
-            "x": 240.0,
-            "y": 350.0
-          },
-          {
             "x": 195.0,
-            "y": 350.0
+            "y": 435.0
           }
         ]
       },
@@ -1341,11 +1569,11 @@ mograsim version: 0.1.3
         "name": "unnamedWire#24",
         "path": [
           {
-            "x": 235.0,
+            "x": 60.0,
             "y": 425.0
           },
           {
-            "x": 235.0,
+            "x": 60.0,
             "y": 415.0
           },
           {
@@ -1437,22 +1665,30 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#6",
-          "pinName": "Y2"
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "Y"
         },
         "pin2": {
           "compName": "GUIdff4_finewe#0",
-          "pinName": "D2"
+          "pinName": "_WE2"
         },
         "name": "unnamedWire#72",
         "path": [
           {
-            "x": 305.0,
-            "y": 195.0
+            "x": 420.0,
+            "y": 90.0
           },
           {
-            "x": 305.0,
-            "y": 235.0
+            "x": 420.0,
+            "y": 110.0
+          },
+          {
+            "x": 365.0,
+            "y": 110.0
+          },
+          {
+            "x": 365.0,
+            "y": 195.0
           }
         ]
       },
