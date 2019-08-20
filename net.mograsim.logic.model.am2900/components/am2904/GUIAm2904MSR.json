@@ -1,0 +1,1659 @@
+mograsim version: 0.1.3
+{
+  "width": 45.0,
+  "height": 46.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 21.5,
+        "y": 46.0
+      },
+      "name": "MUX",
+      "logicWidth": 3
+    },
+    {
+      "location": {
+        "x": 45.0,
+        "y": 19.0
+      },
+      "name": "Q",
+      "logicWidth": 4
+    },
+    {
+      "location": {
+        "x": 34.0,
+        "y": 46.0
+      },
+      "name": "C",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 5.5,
+        "y": 0.0
+      },
+      "name": "_EZ",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "mu",
+      "logicWidth": 4
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 18.0
+      },
+      "name": "Y",
+      "logicWidth": 4
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 31.0
+      },
+      "name": "I",
+      "logicWidth": 4
+    },
+    {
+      "location": {
+        "x": 25.5,
+        "y": 0.0
+      },
+      "name": "_EN",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 15.5,
+        "y": 0.0
+      },
+      "name": "_EC",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 35.5,
+        "y": 0.2
+      },
+      "name": "_EOVR",
+      "logicWidth": 1
+    }
+  ],
+  "submodel": {
+    "innerScale": 0.1,
+    "subComps": [
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#14",
+        "pos": {
+          "x": 89.0,
+          "y": 104.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#13",
+        "pos": {
+          "x": 194.0,
+          "y": 234.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#3",
+        "pos": {
+          "x": 5.0,
+          "y": 295.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#2",
+        "pos": {
+          "x": 220.0,
+          "y": 425.0
+        },
+        "params": 3
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#1",
+        "pos": {
+          "x": 5.0,
+          "y": 165.0
+        },
+        "params": 4
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 414.0,
+          "y": 174.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 29.0,
+          "y": 284.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#0",
+        "pos": {
+          "x": 5.0,
+          "y": 35.0
+        },
+        "params": 4
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "pos": {
+          "x": 424.0,
+          "y": 194.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 419.0,
+          "y": 184.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#5",
+        "pos": {
+          "x": 84.0,
+          "y": 344.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#4",
+        "pos": {
+          "x": 429.0,
+          "y": 204.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#7",
+        "pos": {
+          "x": 29.0,
+          "y": 254.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#6",
+        "pos": {
+          "x": 94.0,
+          "y": 364.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#9",
+        "pos": {
+          "x": 49.0,
+          "y": 114.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#8",
+        "pos": {
+          "x": 74.0,
+          "y": 314.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIdff4_finewe",
+        "name": "GUIdff4_finewe#0",
+        "pos": {
+          "x": 375.0,
+          "y": 170.0
+        }
+      },
+      {
+        "id": "GUIxor",
+        "name": "DeserializedSubmodelComponent#1",
+        "pos": {
+          "x": 35.0,
+          "y": 250.0
+        }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
+        "pos": {
+          "x": 89.0,
+          "y": 84.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUImux1_4",
+        "name": "DeserializedSubmodelComponent#0",
+        "pos": {
+          "x": 55.0,
+          "y": 110.0
+        }
+      },
+      {
+        "id": "GUInot4",
+        "name": "DeserializedSubmodelComponent#3",
+        "pos": {
+          "x": 100.0,
+          "y": 330.0
+        }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#12",
+        "pos": {
+          "x": 19.0,
+          "y": 294.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUImux1_4",
+        "name": "DeserializedSubmodelComponent#2",
+        "pos": {
+          "x": 150.0,
+          "y": 280.0
+        }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#11",
+        "pos": {
+          "x": 89.0,
+          "y": 94.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUImux1_4",
+        "name": "DeserializedSubmodelComponent#5",
+        "pos": {
+          "x": 200.0,
+          "y": 230.0
+        }
+      },
+      {
+        "id": "GUImux1_4",
+        "name": "DeserializedSubmodelComponent#4",
+        "pos": {
+          "x": 110.0,
+          "y": 60.0
+        }
+      },
+      {
+        "id": "GUImux1_4",
+        "name": "DeserializedSubmodelComponent#6",
+        "pos": {
+          "x": 250.0,
+          "y": 180.0
+        }
+      },
+      {
+        "id": "GUIMerger",
+        "name": "GUIMerger#0",
+        "pos": {
+          "x": 435.0,
+          "y": 175.0
+        },
+        "params": 4
+      }
+    ],
+    "innerWires": [
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#36",
+        "path": [
+          {
+            "x": 425.0,
+            "y": 390.0
+          },
+          {
+            "x": 90.0,
+            "y": 390.0
+          },
+          {
+            "x": 90.0,
+            "y": 355.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#35",
+        "path": [
+          {
+            "x": 420.0,
+            "y": 385.0
+          },
+          {
+            "x": 85.0,
+            "y": 385.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "I0_3"
+        },
+        "name": "unnamedWire#79",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 85.0
+          },
+          {
+            "x": 205.0,
+            "y": 215.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#3",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "name": "unnamedWire#38",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "name": "unnamedWire#37",
+        "path": [
+          {
+            "x": 430.0,
+            "y": 395.0
+          },
+          {
+            "x": 95.0,
+            "y": 395.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "I0_4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#39",
+        "path": [
+          {
+            "x": 85.0,
+            "y": 325.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "I0_1"
+        },
+        "name": "unnamedWire#81",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 65.0
+          },
+          {
+            "x": 215.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "I0_2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "Y2"
+        },
+        "name": "unnamedWire#80",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 205.0
+          },
+          {
+            "x": 210.0,
+            "y": 75.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#2",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#82",
+        "path": [
+          {
+            "x": 245.0,
+            "y": 445.0
+          },
+          {
+            "x": 245.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "I0_3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#41",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "I0_2"
+        },
+        "name": "unnamedWire#40",
+        "path": [
+          {
+            "x": 95.0,
+            "y": 305.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#43",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "name": "unnamedWire#42",
+        "path": [
+          {
+            "x": 30.0,
+            "y": 230.0
+          },
+          {
+            "x": 50.0,
+            "y": 230.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "name": "unnamedWire#45",
+        "path": [
+          {
+            "x": 50.0,
+            "y": 105.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "I1_1"
+        },
+        "name": "unnamedWire#44",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "I1_3"
+        },
+        "name": "unnamedWire#47",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "I1_2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "Y2"
+        },
+        "name": "unnamedWire#46",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "I0_4"
+        },
+        "name": "unnamedWire#49",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "I1_4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "Y4"
+        },
+        "name": "unnamedWire#48",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "Q2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "I1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "Q1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_EOVR"
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "_WE4"
+        },
+        "name": "unnamedWire#1",
+        "path": [
+          {
+            "x": 355.0,
+            "y": 30.0
+          },
+          {
+            "x": 355.0,
+            "y": 215.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "name": "unnamedWire#50",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#0",
+        "path": [
+          {
+            "x": 340.0,
+            "y": 175.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "I0_3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "name": "unnamedWire#52",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "name": "unnamedWire#51",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "O"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "mu"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "I0_1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "name": "unnamedWire#54",
+        "path": [
+          {
+            "x": 90.0,
+            "y": 75.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_EZ"
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "_WE1"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 55.0,
+            "y": 15.0
+          },
+          {
+            "x": 370.0,
+            "y": 15.0
+          },
+          {
+            "x": 370.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "I0_2"
+        },
+        "name": "unnamedWire#53",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_EC"
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "_WE2"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 155.0,
+            "y": 20.0
+          },
+          {
+            "x": 365.0,
+            "y": 20.0
+          },
+          {
+            "x": 365.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "I0_1"
+        },
+        "name": "unnamedWire#12",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 35.0
+          },
+          {
+            "x": 35.0,
+            "y": 125.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "A2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#56",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_EN"
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "_WE3"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 255.0,
+            "y": 25.0
+          },
+          {
+            "x": 360.0,
+            "y": 25.0
+          },
+          {
+            "x": 360.0,
+            "y": 205.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "A4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "name": "unnamedWire#55",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "I0_3"
+        },
+        "name": "unnamedWire#14",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 55.0
+          },
+          {
+            "x": 25.0,
+            "y": 145.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#3",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#58",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "I0_2"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#13",
+        "path": [
+          {
+            "x": 30.0,
+            "y": 135.0
+          },
+          {
+            "x": 30.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "I0_1"
+        },
+        "name": "unnamedWire#57",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "I1_1"
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "I0_4"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 155.0
+          },
+          {
+            "x": 20.0,
+            "y": 65.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I0_1"
+        },
+        "name": "unnamedWire#59",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 245.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "I1_3"
+        },
+        "name": "unnamedWire#18",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "I1_2"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "I1_4"
+        },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I0_3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#61",
+        "path": [
+          {
+            "x": 75.0,
+            "y": 265.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I0_2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#60",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I1_1"
+        },
+        "name": "unnamedWire#63",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#3",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I0_4"
+        },
+        "name": "unnamedWire#62",
+        "path": [
+          {
+            "x": 80.0,
+            "y": 325.0
+          },
+          {
+            "x": 80.0,
+            "y": 275.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "name": "unnamedWire#21",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I1_3"
+        },
+        "name": "unnamedWire#65",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "MUX"
+        },
+        "pin2": {
+          "compName": "GUISplitter#2",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#20",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 435.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I1_2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "Y2"
+        },
+        "name": "unnamedWire#64",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#2",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "name": "unnamedWire#67",
+        "path": [
+          {
+            "x": 240.0,
+            "y": 435.0
+          },
+          {
+            "x": 240.0,
+            "y": 350.0
+          },
+          {
+            "x": 195.0,
+            "y": 350.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#3",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#23",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 305.0
+          },
+          {
+            "x": 25.0,
+            "y": 265.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "GUISplitter#3",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#22",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I1_4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "Y4"
+        },
+        "name": "unnamedWire#66",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#69",
+        "path": [
+          {
+            "x": 105.0,
+            "y": 235.0
+          },
+          {
+            "x": 105.0,
+            "y": 65.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#2",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#24",
+        "path": [
+          {
+            "x": 235.0,
+            "y": 425.0
+          },
+          {
+            "x": 235.0,
+            "y": 415.0
+          },
+          {
+            "x": 30.0,
+            "y": 415.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#68",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I2"
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "Q3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "Q4"
+        },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "I3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#28",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "Y4"
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "D4"
+        },
+        "name": "unnamedWire#70",
+        "path": [
+          {
+            "x": 295.0,
+            "y": 215.0
+          },
+          {
+            "x": 295.0,
+            "y": 255.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "D2"
+        },
+        "name": "unnamedWire#72",
+        "path": [
+          {
+            "x": 305.0,
+            "y": 195.0
+          },
+          {
+            "x": 305.0,
+            "y": 235.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "D3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "Y3"
+        },
+        "name": "unnamedWire#71",
+        "path": [
+          {
+            "x": 300.0,
+            "y": 245.0
+          },
+          {
+            "x": 300.0,
+            "y": 205.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "I1_1"
+        },
+        "name": "unnamedWire#30",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "I1_4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "Y4"
+        },
+        "name": "unnamedWire#74",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdff4_finewe#0",
+          "pinName": "D1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "Y1"
+        },
+        "name": "unnamedWire#73",
+        "path": [
+          {
+            "x": 310.0,
+            "y": 225.0
+          },
+          {
+            "x": 310.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "I1_3"
+        },
+        "name": "unnamedWire#32",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "I1_2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "Y2"
+        },
+        "name": "unnamedWire#76",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "I1_2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Y2"
+        },
+        "name": "unnamedWire#31",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "Y3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "I1_3"
+        },
+        "name": "unnamedWire#75",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#34",
+        "path": [
+          {
+            "x": 415.0,
+            "y": 380.0
+          },
+          {
+            "x": 80.0,
+            "y": 380.0
+          },
+          {
+            "x": 80.0,
+            "y": 335.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "I0_4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "Y4"
+        },
+        "name": "unnamedWire#78",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 225.0
+          },
+          {
+            "x": 200.0,
+            "y": 95.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "I1_4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Y4"
+        },
+        "name": "unnamedWire#33",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "I1_1"
+        },
+        "name": "unnamedWire#77",
+        "path": []
+      }
+    ]
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "MSR",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 17.5,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {},
+    "atomicHighLevelStates": {}
+  }
+}
