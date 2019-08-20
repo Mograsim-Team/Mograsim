@@ -2,6 +2,7 @@ package net.mograsim.logic.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -83,8 +84,14 @@ public class LogicUICanvas extends ZoomableCanvas
 		Combo componentSelector = new Combo(debugShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 		componentSelector.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		List<GUIComponent> componentsByItemIndex = new ArrayList<>();
-		model.addComponentAddedListener(c -> recalculateComponentSelector(componentsByItemIndex, componentSelector, model));
-		model.addComponentRemovedListener(c -> recalculateComponentSelector(componentsByItemIndex, componentSelector, model));
+		Consumer<? super GUIComponent> compsChanged = c -> recalculateComponentSelector(componentsByItemIndex, componentSelector, model);
+		model.addComponentAddedListener(compsChanged);
+		model.addComponentRemovedListener(compsChanged);
+		debugShell.addListener(SWT.Dispose, e ->
+		{
+			model.removeComponentAddedListener(compsChanged);
+			model.removeComponentRemovedListener(compsChanged);
+		});
 		recalculateComponentSelector(componentsByItemIndex, componentSelector, model);
 		new Label(debugShell, SWT.NONE).setText("Target state ID: ");
 		Text stateIDText = new Text(debugShell, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
