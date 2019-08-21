@@ -1,7 +1,10 @@
 mograsim version: 0.1.3
 {
-  "standardOutlineRendererSuppliers": {},
+  "standardOutlineRendererSuppliers": {
+    "default": "net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer"
+  },
   "standardSymbolRendererSuppliers": {
+    "default": "net.mograsim.logic.model.snippets.symbolrenderers.DefaultSymbolRenderer",
     "centeredText": "net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer",
     "simpleRectangularLike": "net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
     "pinNames": "net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer"

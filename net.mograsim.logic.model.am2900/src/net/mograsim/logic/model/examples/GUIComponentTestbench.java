@@ -25,8 +25,7 @@ public class GUIComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model,
-				"class:net.mograsim.logic.model.am2900.components.am2904.ShiftInstrDecode");
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "file:components/am2904/GUIAm2904TestLogic.json");
 
 		// guess which pins are outputs and which are inputs
 		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
@@ -42,7 +41,7 @@ public class GUIComponentTestbench
 					outputPinNames.add(p.name);
 		} else
 			for (Pin p : comp.getPins().values())
-				if (p.getRelX() == 0)
+				if (p.getRelX() < comp.getWidth())
 					inputPinNames.add(p.name);
 				else
 					outputPinNames.add(p.name);
