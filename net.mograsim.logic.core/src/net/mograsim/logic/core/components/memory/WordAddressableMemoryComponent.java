@@ -57,7 +57,6 @@ public class WordAddressableMemoryComponent extends BasicComponent
 		else
 		{
 			data.clearSignals();
-			System.out.println(memory);
 			memory.setCell(addressed, data.getValues());
 		}
 	}
@@ -73,5 +72,4 @@ public class WordAddressableMemoryComponent extends BasicComponent
 	{
 		return List.of(data);
 	}
-
 }
