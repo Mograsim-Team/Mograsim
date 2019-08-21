@@ -48,10 +48,15 @@ public class GUIMerger extends GUIComponent
 		double posX = getPosX();
 		double posY = getPosY();
 
+		ColorDefinition c = BitVectorFormatter.formatAsColor(outputEnd);
+		if (c != null)
+			gc.setForeground(ColorManager.current().toColor(c));
+		double outLineY = posY + (logicWidth - 1) * heightPerPin / 2;
+		gc.drawLine(posX + width / 2, outLineY, posX + width, outLineY);
 		double inputHeight = posY;
 		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
 		{
-			ColorDefinition c = BitVectorFormatter.formatAsColor(inputEnds[i]);
+			c = BitVectorFormatter.formatAsColor(inputEnds[i]);
 			if (c != null)
 				gc.setForeground(ColorManager.current().toColor(c));
 			gc.drawLine(posX, inputHeight, posX + width / 2, inputHeight);
@@ -63,11 +68,6 @@ public class GUIMerger extends GUIComponent
 		gc.setLineCap(lineJoin == SWT.JOIN_MITER ? SWT.CAP_SQUARE : lineJoin == SWT.JOIN_ROUND ? SWT.CAP_ROUND : SWT.CAP_SQUARE);
 		gc.drawLine(posX + width / 2, posY, posX + width / 2, posY + heightPerPin * (logicWidth - 1));
 		gc.setLineCap(oldLineCap);
-		ColorDefinition c = BitVectorFormatter.formatAsColor(outputEnd);
-		if (c != null)
-			gc.setForeground(ColorManager.current().toColor(c));
-		double outLineY = posY + (logicWidth - 1) * heightPerPin / 2;
-		gc.drawLine(posX + width / 2, outLineY, posX + width, outLineY);
 	}
 
 	@Override
