@@ -26,7 +26,7 @@ public class WordAddressableMemory
 	public void setCell(long address, BitVector b)
 	{
 		if (address < minimalAddress || address > maximalAddress)
-			throw new IndexOutOfBoundsException(String.format("Memory address out of bounds! Minimum: %d Maimum: %d Actual: %d",
+			throw new IndexOutOfBoundsException(String.format("Memory address out of bounds! Minimum: %d Maximum: %d Actual: %d",
 					minimalAddress, maximalAddress, address));
 		long page = address / pageSize;
 		int offset = (int) (address % pageSize);
