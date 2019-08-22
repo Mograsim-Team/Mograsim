@@ -6,6 +6,7 @@ Bundle-Version: 0.1.0.qualifier
 Export-Package: net.mograsim.logic.core,
  net.mograsim.logic.core.components,
  net.mograsim.logic.core.components.gates,
+ net.mograsim.logic.core.components.memory,
  net.mograsim.logic.core.timeline,
  net.mograsim.logic.core.types,
  net.mograsim.logic.core.wires
