@@ -1,4 +1,4 @@
-package net.mograsim.logic.core.components.memory;
+package net.mograsim.machine.standard.memory;
 
 import java.util.List;
 
