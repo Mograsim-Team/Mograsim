@@ -2,6 +2,7 @@ package net.mograsim.logic.core.types;
 
 import static java.lang.String.format;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -371,6 +372,21 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		for (int i = 0; i < s.length(); i++)
 		{
 			values[i] = Bit.parse(s, i);
+		}
+		return new BitVector(values);
+	}
+
+	public static BitVector of(long value, int bits)
+	{
+		return of(BigInteger.valueOf(value), bits);
+	}
+
+	public static BitVector of(BigInteger value, int bits)
+	{
+		Bit[] values = new Bit[bits];
+		for (int i = 0; i < bits; i++)
+		{
+			values[bits - i - 1] = Bit.of(value.testBit(i));
 		}
 		return new BitVector(values);
 	}
