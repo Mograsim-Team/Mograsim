@@ -1,5 +1,15 @@
 package net.mograsim.logic.model.am2900;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.lang.reflect.Field;
+import java.util.Objects;
+
+import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
+import net.mograsim.logic.model.am2900.am2901.TestableAm2901Impl;
+
 public final class TestUtil
 {
 	private TestUtil()
@@ -80,5 +90,17 @@ public final class TestUtil
 			sb.append((x >> i) & 1);
 		}
 		return sb.reverse().toString();
+	}
+
+	public static BitVector of(int value, int length)
+	{
+		BitVectorMutator mutator = BitVectorMutator.ofLength(length);
+		int val = value;
+		for (int i = length - 1; i >= 0; i--)
+		{
+			mutator.setMSBit(i, Bit.lastBitOf(val));
+			val >>>= 1;
+		}
+		return mutator.toBitVector();
 	}
 }

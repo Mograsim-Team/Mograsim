@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.am2900;
+package net.mograsim.logic.model.am2900.am2901;
 
 import java.util.ArrayList;
 import java.util.Comparator;

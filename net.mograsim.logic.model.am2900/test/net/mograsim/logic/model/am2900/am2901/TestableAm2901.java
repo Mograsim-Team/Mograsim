@@ -1,15 +1,13 @@
-package net.mograsim.logic.model.am2900;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+package net.mograsim.logic.model.am2900.am2901;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-public interface TestableAm2901
-{
-	void setup();
+import net.mograsim.logic.model.am2900.TestUtil;
+import net.mograsim.logic.model.am2900.TestableCircuit;
 
-	Result run();
+public interface TestableAm2901 extends TestableCircuit
+{
 
 	void setDest(Am2901_Dest dest);
 
@@ -34,8 +32,6 @@ public interface TestableAm2901
 	void setRAM_0(String val_1_bit);
 
 	void setRAM_3(String val_1_bit);
-
-	void clockOn(boolean isClockOn);
 
 	void setDirectly(Register r, String val_4_bit);
 
@@ -62,25 +58,6 @@ public interface TestableAm2901
 	String getY();
 
 	String getDirectly(Register r);
-
-	default void assertRunSuccess()
-	{
-		assertEquals(Result.SUCCESS, run());
-	}
-
-	default void assertFullCycleSuccess()
-	{
-		assertRunSuccess();
-		clockOn(false);
-		assertRunSuccess();
-		clockOn(true);
-		assertRunSuccess();
-	}
-
-	public enum Result
-	{
-		SUCCESS, OUT_OF_TIME, ERROR;
-	}
 
 	public enum Am2901_Dest
 	{
