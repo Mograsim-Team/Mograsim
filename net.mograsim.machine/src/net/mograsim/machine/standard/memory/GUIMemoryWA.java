@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.model.components.atomic;
+package net.mograsim.machine.standard.memory;
 
 import org.eclipse.swt.graphics.Color;
 
@@ -11,9 +11,9 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.atomic.GUIAndGate;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
-import net.mograsim.logic.model.modeladapter.componentadapters.WordAddressableMemoryAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.Preferences;
