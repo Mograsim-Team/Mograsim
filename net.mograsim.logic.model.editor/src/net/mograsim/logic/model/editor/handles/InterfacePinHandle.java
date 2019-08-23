@@ -29,7 +29,7 @@ public class InterfacePinHandle extends PinHandle
 	private void initPos()
 	{
 		Point pos = parent.getPos();
-		moveTo(pos.x - CIRCLE_RADIUS, pos.y - CIRCLE_RADIUS);
+		moveTo(pos.x, pos.y);
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class InterfacePinHandle extends PinHandle
 	@Override
 	protected void moveTo(double x, double y)
 	{
-		super.moveTo(x, y);
+		super.moveTo(x - CIRCLE_RADIUS, y - CIRCLE_RADIUS);
 		parent.setRelPos(getCenterX(), getCenterY());
 	}
 
