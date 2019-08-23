@@ -83,6 +83,16 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return bits.clone();
 	}
 
+	public boolean isBinary()
+	{
+		for (int i = 0; i < bits.length; i++)
+		{
+			if (!bits[i].isBinary())
+				return false;
+		}
+		return true;
+	}
+
 	@Override
 	public BitVector join(BitVector t)
 	{
