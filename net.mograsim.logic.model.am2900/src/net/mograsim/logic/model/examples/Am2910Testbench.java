@@ -27,6 +27,7 @@ public class Am2910Testbench
 		GUIManualSwitch _CCEN = new GUIManualSwitch(model, 1, "_CCEN");
 		GUIManualSwitch I = new GUIManualSwitch(model, 4, "I");
 		GUIManualSwitch CI = new GUIManualSwitch(model, 1, "CI");
+		GUIManualSwitch _OE = new GUIManualSwitch(model, 1, "_OE");
 		GUIBitDisplay _FULL = new GUIBitDisplay(model, 1, "_FULL");
 		GUIBitDisplay _PL = new GUIBitDisplay(model, 1, "_PL");
 		GUIBitDisplay _MAP = new GUIBitDisplay(model, 1, "_MAP");
@@ -45,6 +46,7 @@ public class Am2910Testbench
 		_MAP.moveTo(30, 105);
 		_VECT.moveTo(30, 125);
 		Y.moveTo(40, 65);
+		_OE.moveTo(60, 85);
 
 		new GUIWire(model, C.getOutputPin(), am2910.getPin("C"), new Point(60, -27.5));
 		new GUIWire(model, D.getOutputPin(), am2910.getPin("D"), new Point(36, -12.5));
@@ -58,5 +60,6 @@ public class Am2910Testbench
 		new GUIWire(model, am2910.getPin("_MAP"), _MAP.getInputPin(), new Point(19, 112.5));
 		new GUIWire(model, am2910.getPin("_VECT"), _VECT.getInputPin(), new Point(25, 132.5));
 		new GUIWire(model, am2910.getPin("Y"), Y.getInputPin(), new Point(38, 72.5));
+		new GUIWire(model, am2910.getPin("_OE"), _OE.getOutputPin());
 	}
 }
