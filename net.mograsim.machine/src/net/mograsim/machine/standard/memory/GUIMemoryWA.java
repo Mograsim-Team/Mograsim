@@ -2,8 +2,8 @@ package net.mograsim.machine.standard.memory;
 
 import org.eclipse.swt.graphics.Color;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
@@ -16,26 +16,25 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.machine.DefaultMainMemoryDefinition;
+import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.standard.memory.WordAddressableMemoryComponent;
 import net.mograsim.preferences.Preferences;
 
 public class GUIMemoryWA extends GUIComponent
 {
-	private final static String paramAddr = "addrBits", paramWordWidth = "wordWidth", paramMaxAddr = "maxAddr", paramMinAddr = "minAddr";
-	private final int addressBits, wordWidth;
-	public final long maximalAddress, minimalAddress;
+	private final MainMemoryDefinition definition;
 	private final Pin addrPin, dataPin, rWPin;
+	private WordAddressableMemoryComponent memory;
 	private final static int width = 100, height = 300;
 
-	public GUIMemoryWA(ViewModelModifiable model, int addressBits, int wordWidth, long maximalAddress, long minimalAddress, String name)
+	public GUIMemoryWA(ViewModelModifiable model, MainMemoryDefinition definition, String name)
 	{
 		super(model, name);
-		this.addressBits = addressBits;
-		this.wordWidth = wordWidth;
-		this.maximalAddress = maximalAddress;
-		this.minimalAddress = minimalAddress;
+		this.definition = definition;
 		setSize(width, height);
-		addPin(addrPin = new Pin(this, "A", addressBits, 0, 10));
-		addPin(dataPin = new Pin(this, "D", wordWidth, 0, 30));
+		addPin(addrPin = new Pin(this, "A", definition.getMemoryAddressBits(), 0, 10));
+		addPin(dataPin = new Pin(this, "D", definition.getCellWidth(), 0, 30));
 		addPin(rWPin = new Pin(this, "RW", 1, 0, 50));
 	}
 
@@ -52,6 +51,21 @@ public class GUIMemoryWA extends GUIComponent
 	public Pin getReadWritePin()
 	{
 		return rWPin;
+	}
+	
+	public void setLogicModelBinding(WordAddressableMemoryComponent memory)
+	{
+		this.memory = memory;
+	}
+	
+	public MainMemoryDefinition getDefinition()
+	{
+		return definition;
+	}
+	
+	public WordAddressableMemoryComponent getMemory()
+	{
+		return memory;
 	}
 
 	@Override
@@ -77,12 +91,7 @@ public class GUIMemoryWA extends GUIComponent
 	@Override
 	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		JsonObject obj = new JsonObject();
-		obj.addProperty(paramAddr, addressBits);
-		obj.addProperty(paramWordWidth, wordWidth);
-		obj.addProperty(paramMaxAddr, maximalAddress);
-		obj.addProperty(paramMinAddr, minimalAddress);
-		return obj;
+		return new Gson().toJsonTree(new DefaultMainMemoryDefinition(definition));
 	}
 
 	static
@@ -90,9 +99,7 @@ public class GUIMemoryWA extends GUIComponent
 		ViewLogicModelAdapter.addComponentAdapter(new WordAddressableMemoryAdapter());
 		IndirectGUIComponentCreator.setComponentSupplier(GUIAndGate.class.getCanonicalName(), (m, p, n) ->
 		{
-			JsonObject obj = p.getAsJsonObject();
-			return new GUIMemoryWA(m, obj.get(paramAddr).getAsInt(), obj.get(paramWordWidth).getAsInt(), obj.get(paramMaxAddr).getAsLong(),
-					obj.get(paramMinAddr).getAsLong(), n);
+			return new GUIMemoryWA(m, new Gson().fromJson(p, DefaultMainMemoryDefinition.class), n);
 		});
 	}
 }
