@@ -2,6 +2,7 @@ package net.mograsim.plugin.asm;
 
 import static java.lang.String.format;
 
+import java.math.BigInteger;
 import java.util.regex.Pattern;
 
 public final class AsmNumberUtil
@@ -12,11 +13,11 @@ public final class AsmNumberUtil
 
 	}
 
-	private static final String sgnPat = "[-+]?";
-	private static final String binPat = "(?:[01]+_)*[01]+";
-	private static final String octPat = "(?:[0-7]+_)*[0-7]+";
-	private static final String decPat = "(?:[0-9]+_)*[0-9]+";
-	private static final String hexPat = "(?:[0-9a-f]+_)*[0-9a-f]+";
+	private static final String sgnPat = "([-+]?)";
+	private static final String binPat = "((?:[01]+_)*[01]+)";
+	private static final String octPat = "((?:[0-7]+_)*[0-7]+)";
+	private static final String decPat = "((?:[0-9]+_)*[0-9]+)";
+	private static final String hexPat = "((?:[0-9a-f]+_)*[0-9a-f]+)";
 	static final Pattern numberBin = Pattern.compile(format("%1$s0b%2$s|%1$s%2$sb", sgnPat, binPat), Pattern.CASE_INSENSITIVE);
 	static final Pattern numberOct = Pattern.compile(format("%s%sq", sgnPat, octPat), Pattern.CASE_INSENSITIVE);
 	static final Pattern numberDec = Pattern.compile(format("%s%s", sgnPat, decPat));
@@ -112,8 +113,31 @@ public final class AsmNumberUtil
 		return NumberType.NONE;
 	}
 
+	private static CharSequence extractSignAndDigits(NumberType type, CharSequence cs)
+	{
+		return type.numberPattern.matcher(cs).replaceAll("$1$2").replaceAll("_", "");
+	}
+
+	public static BigInteger valueOf(CharSequence cs)
+	{
+		NumberType type = getType(cs);
+		if (NumberType.NONE.equals(type))
+			throw new NumberFormatException();
+		return new BigInteger(extractSignAndDigits(type, cs).toString(), type.radix);
+	}
+
 	public enum NumberType
 	{
-		NONE, BINARY, OCTAL, DECIMAL, HEXADECIMAL, FLOATINGPOINT
+		NONE(-1, null), BINARY(2, AsmNumberUtil.numberBin), OCTAL(8, AsmNumberUtil.numberOct), DECIMAL(10, AsmNumberUtil.numberDec),
+		HEXADECIMAL(16, AsmNumberUtil.numberHex), FLOATINGPOINT(10, AsmNumberUtil.numberFloat);
+
+		public final int radix;
+		private final Pattern numberPattern;
+
+		NumberType(int radix, Pattern numberPattern)
+		{
+			this.radix = radix;
+			this.numberPattern = numberPattern;
+		}
 	}
 }
