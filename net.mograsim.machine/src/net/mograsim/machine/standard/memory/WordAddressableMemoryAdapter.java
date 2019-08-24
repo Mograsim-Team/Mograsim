@@ -27,7 +27,7 @@ public class WordAddressableMemoryAdapter implements ComponentAdapter<GUIMemoryW
 		ReadWriteEnd data = logicWiresPerPin.get(guiComponent.getDataPin()).createReadWriteEnd();
 		ReadEnd address = logicWiresPerPin.get(guiComponent.getAddressPin()).createReadOnlyEnd();
 		ReadEnd mode = logicWiresPerPin.get(guiComponent.getReadWritePin()).createReadOnlyEnd();
-		new WordAddressableMemoryComponent(timeline, 2, guiComponent.maximalAddress, guiComponent.minimalAddress, data, mode, address);
+		new WordAddressableMemoryComponent(timeline, 2, guiComponent.getDefinition(), data, mode, address);
 	}
 
 }

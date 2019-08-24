@@ -5,24 +5,29 @@ import java.util.HashMap;
 
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.machine.MainMemory;
+import net.mograsim.machine.MainMemoryDefinition;
 
-public class WordAddressableMemory
+public class WordAddressableMemory implements MainMemory
 {
 	private final int cellWidth;
 	private final long minimalAddress, maximalAddress;
+	private final MainMemoryDefinition definition;
 	private final int pageSize = 64;
 
 	private HashMap<Long, Page> pages;
 
-	public WordAddressableMemory(int cellWidth, long minimalAddress, long maximalAddress)
+	public WordAddressableMemory(MainMemoryDefinition definition)
 	{
 		super();
-		this.cellWidth = cellWidth;
-		this.minimalAddress = minimalAddress;
-		this.maximalAddress = maximalAddress;
+		this.cellWidth = definition.getCellWidth();
+		this.minimalAddress = definition.getMinimalAddress();
+		this.maximalAddress = definition.getMaximalAddress();
+		this.definition = definition;
 		this.pages = new HashMap<>();
 	}
 
+	@Override
 	public void setCell(long address, BitVector b)
 	{
 		if (address < minimalAddress || address > maximalAddress)
@@ -36,6 +41,7 @@ public class WordAddressableMemory
 		p.setCell(offset, b);
 	}
 
+	@Override
 	public BitVector getCell(long address)
 	{
 		long page = address / pageSize;
@@ -76,5 +82,11 @@ public class WordAddressableMemory
 		{
 			return Arrays.deepToString(memory);
 		}
+	}
+
+	@Override
+	public MainMemoryDefinition getDefinition()
+	{
+		return definition;
 	}
 }

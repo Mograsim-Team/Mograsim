@@ -8,6 +8,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.machine.MainMemoryDefinition;
 
 /**
  * A memory component that only allows access to words of a specific length
@@ -26,10 +27,16 @@ public class WordAddressableMemoryComponent extends BasicComponent
 	 * @param rWBit   The value of the 0th bit dictates the mode: 0: Write, 1: Read
 	 * @param address The bits of this ReadEnd address the memory cell to read/write
 	 */
-	public WordAddressableMemoryComponent(Timeline timeline, int processTime, long minimalAddress, long maximalAddress, ReadWriteEnd data,
+	public WordAddressableMemoryComponent(Timeline timeline, int processTime, MainMemoryDefinition definition, ReadWriteEnd data,
 			ReadEnd rWBit, ReadEnd address)
 	{
 		super(timeline, processTime);
+		if(data.length() != definition.getCellWidth())
+			throw new IllegalArgumentException(String.format("Bit width of data wire does not match main memory definition. Expected: %d Actual: %d", definition.getCellWidth(), data.length()));
+		if(rWBit.length() != 1)
+			throw new IllegalArgumentException(String.format("Bit width of read/write mode select wire is unexpected. Expected: 1 Actual: %d", rWBit.length()));
+		if(address.length() != definition.getMemoryAddressBits())
+			throw new IllegalArgumentException(String.format("Bit width of address wire does not match main memory definition. Expected: %d Actual: %d", definition.getMemoryAddressBits(), address.length()));
 		this.data = data;
 		this.rWBit = rWBit;
 		this.address = address;
@@ -37,7 +44,7 @@ public class WordAddressableMemoryComponent extends BasicComponent
 		rWBit.registerObserver(this);
 		address.registerObserver(this);
 
-		memory = new WordAddressableMemory(data.length(), minimalAddress, maximalAddress);
+		memory = new WordAddressableMemory(definition);
 	}
 
 	@Override
