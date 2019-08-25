@@ -1,5 +1,6 @@
 package net.mograsim.machine.standard.memory;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -26,15 +27,30 @@ public class WordAddressableMemory implements MainMemory
 		this.definition = definition;
 		this.pages = new HashMap<>();
 	}
-
-	@Override
-	public void setCell(long address, BitVector b)
+	
+	private void inBoundsCheck(long address)
 	{
 		if (address < minimalAddress || address > maximalAddress)
 			throw new IndexOutOfBoundsException(String.format("Memory address out of bounds! Minimum: %d Maximum: %d Actual: %d",
 					minimalAddress, maximalAddress, address));
-		long page = address / pageSize;
-		int offset = (int) (address % pageSize);
+	}
+
+	private long page(long address)
+	{
+		return address / pageSize;
+	}
+	
+	private int offset(long address)
+	{
+		return (int) (address % pageSize);
+	}
+	
+	@Override
+	public void setCell(long address, BitVector b)
+	{
+		inBoundsCheck(address);
+		long page = page(address);
+		int offset = offset(address);
 		Page p = pages.get(Long.valueOf(page));
 		if (p == null)
 			pages.put(page, p = new Page());
@@ -44,12 +60,37 @@ public class WordAddressableMemory implements MainMemory
 	@Override
 	public BitVector getCell(long address)
 	{
-		long page = address / pageSize;
-		int offset = (int) (address % pageSize);
+		inBoundsCheck(address);
+		long page = page(address);
+		int offset = offset(address);
 		Page p = pages.get(Long.valueOf(page));
 		if (p == null)
-			return BitVector.of(Bit.U, cellWidth);
+			return BitVector.of(Bit.ZERO, cellWidth);
 		return p.getCell(offset);
+	}
+	
+	@Override
+	public BigInteger getCellAsBigInteger(long address)
+	{
+		inBoundsCheck(address);
+		long page = page(address);
+		int offset = offset(address);
+		Page p = pages.get(Long.valueOf(page));
+		if (p == null)
+			return BigInteger.valueOf(0L);
+		return p.getCellAsBigInteger(offset);
+	}
+
+	@Override
+	public void setCellAsBigInteger(long address, BigInteger word)
+	{
+		inBoundsCheck(address);
+		long page = page(address);
+		int offset = offset(address);
+		Page p = pages.get(Long.valueOf(page));
+		if (p == null)
+			pages.put(page, p = new Page());
+		p.setCellAsBigInteger(offset, word);
 	}
 
 	private class Page
@@ -65,7 +106,7 @@ public class WordAddressableMemory implements MainMemory
 		{
 			BitVector b = memory[index];
 			if (b == null)
-				return BitVector.of(Bit.U, cellWidth);
+				return BitVector.of(Bit.ZERO, cellWidth);
 			return memory[index];
 		}
 
@@ -75,6 +116,22 @@ public class WordAddressableMemory implements MainMemory
 				throw new IllegalArgumentException(String.format(
 						"BitVector to be saved in memory cell has unexpected length. Expected: %d Actual: %d", cellWidth, bits.length()));
 			memory[index] = bits;
+		}
+
+		public void setCellAsBigInteger(int index, BigInteger bits)
+		{
+			setCell(index, BitVector.from(bits, cellWidth));
+		}
+		
+		public BigInteger getCellAsBigInteger(int index)
+		{
+			try {
+				return getCell(index).getUnsignedValue();
+			}
+			catch(NumberFormatException e)
+			{
+				throw new MemoryException(e);
+			}
 		}
 
 		@Override
