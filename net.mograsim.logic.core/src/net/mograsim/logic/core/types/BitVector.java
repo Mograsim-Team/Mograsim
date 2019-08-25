@@ -57,6 +57,39 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return new BitVector(bit.makeArray(length));
 	}
 
+	public BigInteger getUnsignedValue()
+	{
+		if (!isBinary())
+			throw new NumberFormatException("BitVector is non binary: " + toString());
+		Bit[] bits = getBits();
+		int length = length();
+		byte[] bytes = new byte[(length / 8) + 1];
+		for (int i = 0; i < length; i++)
+		{
+			if (Bit.ONE.equals(bits[i]))
+			{
+				bytes[(i / 8) + 1] |= 1 << (i % 8);
+			}
+		}
+		return new BigInteger(bytes);
+	}
+
+	public static BitVector from(BigInteger b, int length)
+	{
+		int bitLength = b.bitLength();
+		int actualLength = Integer.min(bitLength, length);
+		Bit[] bits = new Bit[length];
+		for (int i = 0; i < actualLength; i++)
+			bits[i] = b.testBit(i) ? Bit.ONE : Bit.ZERO;
+		if (b.signum() < 0)
+			for (int i = actualLength; i < length; i++)
+				bits[i] = Bit.ONE;
+		else
+			for (int i = actualLength; i < length; i++)
+				bits[i] = Bit.ZERO;
+		return BitVector.of(bits);
+	}
+
 	public BitVectorMutator mutator()
 	{
 		return BitVectorMutator.of(this);
