@@ -3,6 +3,7 @@ package net.mograsim.plugin.asm;
 import static java.lang.String.format;
 
 import java.math.BigInteger;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class AsmNumberUtil
@@ -18,12 +19,24 @@ public final class AsmNumberUtil
 	private static final String octPat = "((?:[0-7]+_)*[0-7]+)";
 	private static final String decPat = "((?:[0-9]+_)*[0-9]+)";
 	private static final String hexPat = "((?:[0-9a-f]+_)*[0-9a-f]+)";
-	static final Pattern numberBin = Pattern.compile(format("%1$s0b%2$s|%1$s%2$sb", sgnPat, binPat), Pattern.CASE_INSENSITIVE);
-	static final Pattern numberOct = Pattern.compile(format("%s%sq", sgnPat, octPat), Pattern.CASE_INSENSITIVE);
-	static final Pattern numberDec = Pattern.compile(format("%s%s", sgnPat, decPat));
-	static final Pattern numberHex = Pattern.compile(format("%1$s0x%2$s|%1$s%2$sh", sgnPat, hexPat), Pattern.CASE_INSENSITIVE);
+
+	private static final String preferredBinPat = "%1$s0b%2$s";
+	private static final String preferredOctPat = "%s%sq";
+	private static final String preferredDecPat = "%s%s";
+	private static final String preferredHexPat = "%1$s0x%2$s";
+
+	static final Pattern numberBin = Pattern.compile(format(preferredBinPat + "|%1$s%2$sb", sgnPat, binPat), Pattern.CASE_INSENSITIVE);
+	static final Pattern numberOct = Pattern.compile(format(preferredOctPat, sgnPat, octPat), Pattern.CASE_INSENSITIVE);
+	static final Pattern numberDec = Pattern.compile(format(preferredDecPat, sgnPat, decPat));
+	static final Pattern numberHex = Pattern.compile(format(preferredHexPat + "|%1$s%2$sh", sgnPat, hexPat), Pattern.CASE_INSENSITIVE);
 	static final Pattern numberFloat = Pattern.compile(format("%1$s%2$s(?:\\.%2$s)?(?:e%1$s%2$s)?", sgnPat, decPat),
 			Pattern.CASE_INSENSITIVE);
+
+	public static boolean isPrefix(CharSequence cs, Pattern p)
+	{
+		Matcher m = p.matcher(cs);
+		return m.matches() || m.hitEnd();
+	}
 
 	public static boolean isBinary(CharSequence cs)
 	{
@@ -113,11 +126,40 @@ public final class AsmNumberUtil
 		return NumberType.NONE;
 	}
 
+	/**
+	 * Checks if the {@link CharSequence} is a prefix of a valid number, and returns the NumberType it is a prefix of. If a String is a
+	 * prefix of multiple different {@link NumberType}s, the one with the smallest radix is returned. If no valid {@link NumberType} is
+	 * found, {@link NumberType#NONE} is returned.
+	 * 
+	 * @param cs The potential prefix
+	 * @return The type the {@link CharSequence} is a prefix of
+	 */
+	public static NumberType prefixOfType(CharSequence cs)
+	{
+		if (isPrefix(cs, numberBin))
+			return NumberType.BINARY;
+		if (isPrefix(cs, numberOct))
+			return NumberType.OCTAL;
+		if (isPrefix(cs, numberDec))
+			return NumberType.DECIMAL;
+		if (isPrefix(cs, numberHex))
+			return NumberType.HEXADECIMAL;
+		if (isPrefix(cs, numberFloat))
+			return NumberType.FLOATINGPOINT;
+		return NumberType.NONE;
+	}
+
 	private static CharSequence extractSignAndDigits(NumberType type, CharSequence cs)
 	{
 		return type.numberPattern.matcher(cs).replaceAll("$1$2").replaceAll("_", "");
 	}
 
+	/**
+	 * Computes the {@link BigInteger} value of a {@link CharSequence}, by determining the {@link NumberType} and parsing the number with
+	 * the determined radix.
+	 * 
+	 * @throws NumberFormatException if the {@link CharSequence} does not match any of the expected number patterns
+	 */
 	public static BigInteger valueOf(CharSequence cs)
 	{
 		NumberType type = getType(cs);
@@ -126,13 +168,39 @@ public final class AsmNumberUtil
 		return new BigInteger(extractSignAndDigits(type, cs).toString(), type.radix);
 	}
 
+	/**
+	 * Formats a {@link BigInteger} in accordance with the pattern associated with the supplied {@link NumberType}
+	 */
+	public static String toString(BigInteger number, NumberType type)
+	{
+		String pattern;
+		switch (type)
+		{
+		case BINARY:
+			pattern = preferredBinPat;
+			break;
+		case OCTAL:
+			pattern = preferredOctPat;
+			break;
+		default:
+		case DECIMAL:
+			pattern = preferredDecPat;
+			break;
+		case HEXADECIMAL:
+			pattern = preferredHexPat;
+		}
+		if (number.signum() < 0)
+			return String.format(pattern, "-", number.abs().toString(type.radix));
+		return String.format(pattern, "", number.toString(type.radix));
+	}
+
 	public enum NumberType
 	{
 		NONE(-1, null), BINARY(2, AsmNumberUtil.numberBin), OCTAL(8, AsmNumberUtil.numberOct), DECIMAL(10, AsmNumberUtil.numberDec),
 		HEXADECIMAL(16, AsmNumberUtil.numberHex), FLOATINGPOINT(10, AsmNumberUtil.numberFloat);
 
 		public final int radix;
-		private final Pattern numberPattern;
+		final Pattern numberPattern;
 
 		NumberType(int radix, Pattern numberPattern)
 		{
