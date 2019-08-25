@@ -32,10 +32,10 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		addPin(new Pin(this, "muSR_MUX", 2, 80, 10), Usage.OUTPUT, Position.LEFT);
 		addPin(new Pin(this, "muSR_OVRRET", 1, 80, 20), Usage.OUTPUT, Position.LEFT);
 		addPin(new Pin(this, "muSR_CINV", 1, 80, 30), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR__WEZ", 1, 80, 40), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR__WEC", 1, 80, 50), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR__WEN", 1, 80, 60), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR__WEOVR", 1, 80, 70), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "muSR_WEZ", 1, 80, 40), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "muSR_WEC", 1, 80, 50), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "muSR_WEN", 1, 80, 60), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "muSR_WEOVR", 1, 80, 70), Usage.OUTPUT, Position.LEFT);
 		// MSR MUX:
 		// 000: 0
 		// 001: 1
@@ -45,13 +45,15 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		// 101: I, invert C
 		// 110: Swap OVR and C
 		// 111: _M
-		addPin(new Pin(this, "MSR_MUX", 3, 40, 0), Usage.OUTPUT, Position.BOTTOM);
+		addPin(new Pin(this, "MSR_MUX", 3, 20, 0), Usage.OUTPUT, Position.BOTTOM);
+		// TODO when is this HIGH?
+		addPin(new Pin(this, "OEN", 1, 60, 0), Usage.OUTPUT, Position.BOTTOM);
 		// CT SRC MUX:
 		// 00: mu
 		// 01: mu
 		// 10: M
 		// 11: I
-		addPin(new Pin(this, "CT_SRC_MUX", 2, 10, 80), Usage.OUTPUT, Position.TOP);
+		addPin(new Pin(this, "Y_MUX", 2, 10, 80), Usage.OUTPUT, Position.TOP);
 		// CT MUX:
 		// see Am2900 Family Data Book, Am2904, Table 4 (CT_MUX2-0 = I3-1)
 		addPin(new Pin(this, "CT_MUX", 3, 30, 80), Usage.OUTPUT, Position.TOP);
@@ -91,110 +93,110 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEC").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEN").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEC").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEN").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		case 1:
 			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEC").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEN").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEC").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEN").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		case 3:
 			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEC").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEN").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEC").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEN").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		case 6:
 		case 7:
 			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ONE);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEC").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEN").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEC").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEN").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		case 8:
 			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEC").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEN").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEC").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEN").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 9:
 			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEC").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEN").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEC").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEN").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 10:
 			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEC").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEN").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEC").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEN").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 11:
 			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEC").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEN").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEC").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEN").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 12:
 			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEC").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEN").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEC").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEN").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 13:
 			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEC").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEN").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEC").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEN").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 14:
 			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEC").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEN").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEC").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEN").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		case 15:
 			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEC").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEN").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEC").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEN").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		case 24:
 		case 25:
@@ -205,19 +207,19 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ONE);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEC").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEN").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEC").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEN").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		default:
 			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEZ").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEC").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEN").feedSignals(ZERO);
-			readWriteEnds.get("muSR__WEOVR").feedSignals(ZERO);
+			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEC").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEN").feedSignals(ONE);
+			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 		}
 		switch (IAsInt)
 		{
@@ -253,7 +255,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("MSR_MUX").feedSignals(ZERO, ZERO, ONE);
 			break;
 		}
-		readWriteEnds.get("CT_SRC_MUX").feedSignals(IBits[0], IBits[1]);
+		readWriteEnds.get("Y_MUX").feedSignals(IBits[0], IBits[1]);
 		readWriteEnds.get("CT_INV").feedSignals(IBits[5]);
 		readWriteEnds.get("CT_MUX").feedSignals(IBits[2], IBits[3], IBits[4]);
 		readWriteEnds.get("CT_EXP").feedSignals((IAsInt & 0b1110) == 0b1110 ? ONE : ZERO);
