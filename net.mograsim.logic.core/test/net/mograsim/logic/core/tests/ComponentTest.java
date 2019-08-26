@@ -98,9 +98,9 @@ class ComponentTest
 	void fusionTest1()
 	{
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), out = new Wire(t, 8, 1);
-		Wire.fuse(a, out, 0, 0, a.length);
-		Wire.fuse(b, out, 0, a.length, b.length);
-		Wire.fuse(c, out, 0, a.length + b.length, c.length);
+		Wire.fuse(a, out, 0, 0, a.width);
+		Wire.fuse(b, out, 0, a.width, b.width);
+		Wire.fuse(c, out, 0, a.width + b.width, c.width);
 		ReadWriteEnd rA = a.createReadWriteEnd();
 		rA.feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO);
 		ReadWriteEnd rB = b.createReadWriteEnd();

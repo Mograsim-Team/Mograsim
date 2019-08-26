@@ -25,32 +25,32 @@ public class Mux extends BasicComponent
 	private final int outputSize;
 
 	/**
-	 * Input {@link Wire}s and out must be of uniform length
+	 * Input {@link Wire}s and out must be of uniform width
 	 * 
-	 * @param out    Must be of uniform length with all inputs.
+	 * @param out    Must be of uniform width with all inputs.
 	 * @param select Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
 	 * @param inputs One of these inputs is mapped to the output, depending on the select bits
 	 */
 	public Mux(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
 	{
 		super(timeline, processTime);
-		outputSize = out.length();
+		outputSize = out.width();
 
 		this.inputs = inputs.clone();
 		for (int i = 0; i < this.inputs.length; i++)
 		{
-			if (inputs[i].length() != outputSize)
-				throw new IllegalArgumentException("All MUX wire arrays must be of uniform length!");
+			if (inputs[i].width() != outputSize)
+				throw new IllegalArgumentException("All MUX wire arrays must be of uniform width!");
 			inputs[i].registerObserver(this);
 		}
 
 		this.select = select;
 		select.registerObserver(this);
 
-		int maxInputs = 1 << select.length();
+		int maxInputs = 1 << select.width();
 		if (this.inputs.length > maxInputs)
 			throw new IllegalArgumentException("There are more inputs (" + this.inputs.length + ") to the MUX than supported by "
-					+ select.length() + " select bits (" + maxInputs + ").");
+					+ select.width() + " select bits (" + maxInputs + ").");
 
 		this.out = out;
 	}

@@ -32,12 +32,12 @@ public class ManualSwitch extends Component implements LogicObservable
 
 	public void switchFullOn()
 	{
-		setState(BitVector.of(Bit.ONE, output.length()));
+		setState(BitVector.of(Bit.ONE, output.width()));
 	}
 
 	public void switchFullOff()
 	{
-		setState(BitVector.of(Bit.ZERO, output.length()));
+		setState(BitVector.of(Bit.ZERO, output.width()));
 	}
 
 	public void toggle()
@@ -55,8 +55,8 @@ public class ManualSwitch extends Component implements LogicObservable
 
 	public void setState(BitVector bits)
 	{
-		if (bits.length() != output.length())
-			throw new IllegalArgumentException("Incorrect bit vector length");
+		if (bits.width() != output.width())
+			throw new IllegalArgumentException("Incorrect bit vector width");
 		if (bits.equals(output.getInputValues()))
 			return;
 		output.feedSignals(bits);
@@ -65,7 +65,7 @@ public class ManualSwitch extends Component implements LogicObservable
 
 	public boolean isFullOn()
 	{
-		return BitVector.of(Bit.ONE, output.length()).equals(output.getInputValues());
+		return BitVector.of(Bit.ONE, output.width()).equals(output.getInputValues());
 	}
 
 	public BitVector getValues()

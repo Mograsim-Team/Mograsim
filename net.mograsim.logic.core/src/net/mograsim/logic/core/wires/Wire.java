@@ -25,45 +25,44 @@ public class Wire
 	private BitVector values;
 	public final int travelTime;
 	private List<ReadEnd> attached = new ArrayList<>();
-	public final int length;
+	public final int width;
 	List<ReadWriteEnd> inputs = new ArrayList<>();
 	Timeline timeline;
 
-	public Wire(Timeline timeline, int length, int travelTime)
+	public Wire(Timeline timeline, int width, int travelTime)
 	{
-		this(timeline, length, travelTime, null);
+		this(timeline, width, travelTime, null);
 	}
 
-	public Wire(Timeline timeline, int length, int travelTime, String name)
+	public Wire(Timeline timeline, int width, int travelTime, String name)
 	{
-		if (length < 1)
+		if (width < 1)
 			throw new IllegalArgumentException(
-					String.format("Tried to create an array of wires with length %d, but a length of less than 1 makes no sense.", length));
+					String.format("Tried to create an array of wires with width %d, but a width of less than 1 makes no sense.", width));
 		this.name = name;
 		this.timeline = timeline;
-		this.length = length;
+		this.width = width;
 		this.travelTime = travelTime;
 		initValues();
 	}
 
 	private void initValues()
 	{
-		values = U.toVector(length);
+		values = U.toVector(width);
 	}
 
 	private void setNewValues(BitVector newValues)
 	{
 		if (values.equals(newValues))
 			return;
-//		BitVector oldValues = values;
 		values = newValues;
 		notifyObservers();
 	}
 
 	void recalculate()
 	{
-		if (inputs.size() == 0)
-			setNewValues(BitVector.of(Bit.U, length));
+		if (inputs.isEmpty())
+			setNewValues(U.toVector(width));
 		else
 		{
 			BitVectorMutator mutator = BitVectorMutator.empty();
@@ -88,18 +87,13 @@ public class Wire
 	 * The {@link Wire} is interpreted as an unsigned integer with n bits.
 	 * 
 	 * @return <code>true</code> if all bits are either <code>Bit.ONE</code> or <code>Bit.ZERO</code> (they do not all have to have the same
-	 *         value), not <code>Bit.X</code> or <code>Bit.Z</code>. <code>false</code> is returned otherwise.
+	 *         value), not <code>Bit.U</code>, <code>Bit.X</code> or <code>Bit.Z</code>. <code>false</code> is returned otherwise.
 	 * 
 	 * @author Fabian Stemmler
 	 */
 	public boolean hasNumericValue()
 	{
-		for (Bit b : values)
-		{
-			if (b != Bit.ZERO && b != Bit.ONE)
-				return false;
-		}
-		return true;
+		return values.isBinary();
 	}
 
 	/**
@@ -141,10 +135,10 @@ public class Wire
 	public long getSignedValue()
 	{
 		long val = getUnsignedValue();
-		long mask = 1 << (length - 1);
+		long mask = 1 << (width - 1);
 		if ((mask & val) != 0)
 		{
-			int shifts = 64 - length;
+			int shifts = 64 - width;
 			return (val << shifts) >> shifts;
 		}
 		return val;
@@ -184,9 +178,9 @@ public class Wire
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	void attachEnd(ReadEnd end)
+	boolean attachEnd(ReadEnd end)
 	{
-		attached.add(end);
+		return attached.add(end);
 	}
 
 	void detachEnd(ReadEnd end)
@@ -196,7 +190,7 @@ public class Wire
 
 	private void notifyObservers()
 	{
-		attached.forEach(r -> r.update());
+		attached.forEach(ReadEnd::update);
 	}
 
 	/**
@@ -243,7 +237,7 @@ public class Wire
 		}
 
 		/**
-		 * Included for convenient use on {@link Wire}s of length 1.
+		 * Included for convenient use on {@link Wire}s of width 1.
 		 * 
 		 * @return The value of bit 0.
 		 * 
@@ -332,9 +326,9 @@ public class Wire
 			recalculate();
 		}
 
-		public int length()
+		public int width()
 		{
-			return length;
+			return width;
 		}
 
 		public Wire getWire()
@@ -363,7 +357,8 @@ public class Wire
 
 	public class ReadWriteEnd extends ReadEnd
 	{
-		private boolean open, isWriting;
+		private boolean open;
+		private boolean isWriting;
 		private BitVector inputValues;
 
 		ReadWriteEnd()
@@ -377,7 +372,7 @@ public class Wire
 
 		private void initValues()
 		{
-			inputValues = U.toVector(length);
+			inputValues = U.toVector(width);
 		}
 
 		/**
@@ -394,11 +389,11 @@ public class Wire
 
 		public void feedSignals(BitVector newValues)
 		{
-			if (newValues.length() != length)
+			if (newValues.width() != width)
 				throw new IllegalArgumentException(
-						String.format("Attempted to input %d bits instead of %d bits.", newValues.length(), length));
+						String.format("Attempted to input %d bits instead of %d bits.", newValues.width(), width));
 			if (!open)
-				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
+				throw new IllegalStateException("Attempted to write to closed WireArrayEnd.");
 			timeline.addEvent(e -> setValues(newValues), travelTime);
 		}
 
@@ -413,7 +408,7 @@ public class Wire
 		public void feedSignals(int startingBit, BitVector bitVector)
 		{
 			if (!open)
-				throw new RuntimeException("Attempted to write to closed WireArrayEnd.");
+				throw new IllegalStateException("Attempted to write to closed WireArrayEnd.");
 			timeline.addEvent(e -> setValues(startingBit, bitVector), travelTime);
 		}
 
@@ -427,7 +422,7 @@ public class Wire
 			if (!inputValues.equalsWithOffset(newValues, startingBit))
 			{
 				Bit[] vals = inputValues.getBits();
-				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.length());
+				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.width());
 				inputValues = BitVector.of(vals);
 				Wire.this.recalculate();
 			}
@@ -482,7 +477,7 @@ public class Wire
 		 */
 		public void clearSignals()
 		{
-			feedSignals(Z.toVector(length));
+			feedSignals(Z.toVector(width));
 		}
 
 		public BitVector wireValuesExcludingMe()
@@ -549,20 +544,20 @@ public class Wire
 	 * Fuses the selected bits of two wires together. If the bits change in one Wire, the other is changed accordingly immediately. Warning:
 	 * The bits are permanently fused together.
 	 * 
-	 * @param a      The {@link Wire} to be (partially) fused with b
-	 * @param b      The {@link Wire} to be (partially) fused with a
-	 * @param fromA  The first bit of {@link Wire} a to be fused
-	 * @param fromB  The first bit of {@link Wire} b to be fused
-	 * @param length The amount of bits to fuse
+	 * @param a     The {@link Wire} to be (partially) fused with b
+	 * @param b     The {@link Wire} to be (partially) fused with a
+	 * @param fromA The first bit of {@link Wire} a to be fused
+	 * @param fromB The first bit of {@link Wire} b to be fused
+	 * @param width The amount of bits to fuse
 	 */
-	public static void fuse(Wire a, Wire b, int fromA, int fromB, int length)
+	public static void fuse(Wire a, Wire b, int fromA, int fromB, int width)
 	{
 		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
 		rA.setWriting(false);
 		rB.setWriting(false);
-		rA.setValues(BitVector.of(Bit.Z, a.length));
-		rB.setValues(BitVector.of(Bit.Z, b.length));
-		Fusion aF = new Fusion(rB, fromA, fromB, length), bF = new Fusion(rA, fromB, fromA, length);
+		rA.setValues(BitVector.of(Bit.Z, a.width));
+		rB.setValues(BitVector.of(Bit.Z, b.width));
+		Fusion aF = new Fusion(rB, fromA, fromB, width), bF = new Fusion(rA, fromB, fromA, width);
 		rA.registerObserver(aF);
 		rB.registerObserver(bF);
 		aF.update(rA);
@@ -579,20 +574,20 @@ public class Wire
 	 */
 	public static void fuse(Wire a, Wire b)
 	{
-		fuse(a, b, 0, 0, a.length);
+		fuse(a, b, 0, 0, a.width);
 	}
 
 	private static class Fusion implements LogicObserver
 	{
 		private ReadWriteEnd target;
-		int fromSource, fromTarget, length;
+		int fromSource, fromTarget, width;
 
-		public Fusion(ReadWriteEnd target, int fromSource, int fromTarget, int length)
+		public Fusion(ReadWriteEnd target, int fromSource, int fromTarget, int width)
 		{
 			this.target = target;
 			this.fromSource = fromSource;
 			this.fromTarget = fromTarget;
-			this.length = length;
+			this.width = width;
 		}
 
 		@Override
@@ -604,7 +599,7 @@ public class Wire
 			else
 			{
 				target.setWriting(true);
-				BitVector targetInput = source.wireValuesExcludingMe().subVector(fromSource, fromSource + length);
+				BitVector targetInput = source.wireValuesExcludingMe().subVector(fromSource, fromSource + width);
 				target.setValues(fromTarget, targetInput);
 			}
 		}
