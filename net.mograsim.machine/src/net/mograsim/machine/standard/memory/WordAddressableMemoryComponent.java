@@ -10,7 +10,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.machine.MainMemoryDefinition;
 
 /**
- * A memory component that only allows access to words of a specific length
+ * A memory component that only allows access to words of a specific width
  */
 public class WordAddressableMemoryComponent extends BasicComponent
 {

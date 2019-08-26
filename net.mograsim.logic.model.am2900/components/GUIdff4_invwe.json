@@ -698,7 +698,7 @@ mograsim version: 0.1.3
             "q3",
             "q4"
           ],
-          "vectorPartLengthes": [
+          "vectorPartWidths": [
             1,
             1,
             1,

@@ -90,7 +90,7 @@ public class AsmFloatOperand implements AsmOperand
 		int bitLength = raw.bitLength() - (bi.signum() - 1) / 2;
 		if (bitLength > size)
 			throw new AsmNumberFormatException("Error parsing %s: bit count %d exceeds size %d", bi, bitLength, size);
-		BitVectorMutator bvm = BitVectorMutator.ofLength(size);
+		BitVectorMutator bvm = BitVectorMutator.ofWidth(size);
 		for (int i = 0; i < size; i++)
 			bvm.setLSBit(i, Bit.of(raw.testBit(i)));
 		return bvm.toBitVector();

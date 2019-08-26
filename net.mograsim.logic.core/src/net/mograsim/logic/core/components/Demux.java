@@ -24,7 +24,7 @@ public class Demux extends BasicComponent
 	/**
 	 * Output {@link Wire}s and in must be of uniform width
 	 * 
-	 * @param in      Must be of uniform length with all outputs.
+	 * @param in      Must be of uniform width with all outputs.
 	 * @param select  Indexes the output array to which the input is mapped. Must have enough bits to index all outputs.
 	 * @param outputs One of these outputs receives the input signal, depending on the select bits
 	 */
