@@ -1,10 +1,12 @@
-package net.mograsim.machine.mnemonics;
+package net.mograsim.machine.mi.parameters;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class MnemonicFamily
+import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
+
+public class MnemonicFamily implements ParameterClassification
 {
 	private final Mnemonic[] values;
 	private final Map<String, Mnemonic> byText;
@@ -17,9 +19,9 @@ public class MnemonicFamily
 			vectorLenght = 0;
 		else
 		{
-			vectorLenght = values[0].getVector().width();
+			vectorLenght = values[0].getValue().width();
 			for(int i = 1; i < values.length; i++)
-				if(values[i].getVector().width() != vectorLenght)
+				if(values[i].getValue().width() != vectorLenght)
 					throw new IllegalArgumentException("MnemonicFamily is not of uniform vector length!");
 		}
 		byText = Arrays.stream(values).collect(Collectors.toMap(m -> m.getText(), m -> m));
@@ -51,5 +53,17 @@ public class MnemonicFamily
 	public int getVectorLength()
 	{
 		return vectorLenght;
+	}
+
+	@Override
+	public boolean conforms(MicroInstructionParameter param)
+	{
+		return param instanceof Mnemonic ? contains((Mnemonic) param) : false;
+	}
+
+	@Override
+	public ParameterType getExpectedType()
+	{
+		return ParameterType.MNEMONIC;
 	}
 }

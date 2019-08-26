@@ -1,10 +1,11 @@
 package net.mograsim.machine;
 
-import net.mograsim.machine.mnemonics.Mnemonic;
+import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
+import net.mograsim.machine.mi.parameters.Mnemonic;
 
 public interface MicroInstruction {
 	
-	public Mnemonic getValue(int index);
+	public MicroInstructionParameter getParameter(int index);
 	
 	/**
 	 * @return The amount of {@link Mnemonic}s, the instruction is composed of
