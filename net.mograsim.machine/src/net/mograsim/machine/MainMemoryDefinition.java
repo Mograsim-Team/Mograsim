@@ -42,4 +42,14 @@ public interface MainMemoryDefinition {
 	 * @author Christian Femers
 	 */
 	long getMaximalAddress();
+	
+	/**
+	 * The size of the MainMemory as the amount of addressable memory cells.
+	 * 
+	 * @return the amount of addressable memory cells
+	 */
+	default long size()
+	{
+		return getMaximalAddress() - getMinimalAddress();
+	}
 }
