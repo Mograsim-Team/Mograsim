@@ -39,15 +39,6 @@ class BitVectorTest
 	}
 
 	@Test
-	void testFrom()
-	{
-		assertEquals(BitVector.parse("101"), BitVector.from(BigInteger.valueOf(0b101), 3));
-		assertEquals(BitVector.parse("01010"), BitVector.from(BigInteger.valueOf(0b01010), 5));
-		assertEquals(BitVector.parse("10101"), BitVector.from(BigInteger.valueOf(-11), 5));
-		assertEquals(BitVector.parse("0000"), BitVector.from(BigInteger.valueOf(0), 4));
-	}
-
-	@Test
 	void testGetUnsignedValue()
 	{
 		assertEquals(BigInteger.valueOf(0b101), BitVector.parse("101").getUnsignedValue());
@@ -59,33 +50,21 @@ class BitVectorTest
 	}
 
 	@Test
-	void testToBigInteger()
-	{
-		assertEquals(BigInteger.valueOf(0b101), BitVector.parse("101").toBigInteger(false));
-		assertEquals(BigInteger.valueOf(0b01010), BitVector.parse("01010").toBigInteger(false));
-		assertEquals(BigInteger.valueOf(0), BitVector.parse("0000").toBigInteger(false));
-
-//		assertEquals(BigInteger.valueOf(-11), BitVector.parse("10101").toBigInteger(true)); TODO
-
-		assertThrows(NumberFormatException.class, () -> BitVector.parse("00X1").toBigInteger(false));
-	}
-
-	@Test
 	void testOfLongInt()
 	{
-		assertEquals(BitVector.parse("101"), BitVector.of(0b101L, 3));
-		assertEquals(BitVector.parse("01010"), BitVector.of(0b01010L, 5));
-		assertEquals(BitVector.parse("10101"), BitVector.of(-11L, 5));
-		assertEquals(BitVector.parse("0000"), BitVector.of(0L, 4));
+		assertEquals(BitVector.parse("101"), BitVector.from(0b101L, 3));
+		assertEquals(BitVector.parse("01010"), BitVector.from(0b01010L, 5));
+		assertEquals(BitVector.parse("10101"), BitVector.from(-11L, 5));
+		assertEquals(BitVector.parse("0000"), BitVector.from(0L, 4));
 	}
 
 	@Test
 	void testOfBigIntegerInt()
 	{
-		assertEquals(BitVector.parse("101"), BitVector.of(BigInteger.valueOf(0b101), 3));
-		assertEquals(BitVector.parse("01010"), BitVector.of(BigInteger.valueOf(0b01010), 5));
-		assertEquals(BitVector.parse("10101"), BitVector.of(BigInteger.valueOf(-11), 5));
-		assertEquals(BitVector.parse("0000"), BitVector.of(BigInteger.valueOf(0), 4));
+		assertEquals(BitVector.parse("101"), BitVector.from(BigInteger.valueOf(0b101), 3));
+		assertEquals(BitVector.parse("01010"), BitVector.from(BigInteger.valueOf(0b01010), 5));
+		assertEquals(BitVector.parse("10101"), BitVector.from(BigInteger.valueOf(-11), 5));
+		assertEquals(BitVector.parse("0000"), BitVector.from(BigInteger.valueOf(0), 4));
 	}
 
 	@Test

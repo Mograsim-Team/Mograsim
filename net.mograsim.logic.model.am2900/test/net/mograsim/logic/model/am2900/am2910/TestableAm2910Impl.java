@@ -54,7 +54,7 @@ public class TestableAm2910Impl implements TestableAm2910
 	@Override
 	public void setInstruction(Am2910_Inst inst)
 	{
-		I.setState(BitVector.of(inst.ordinal(), 4));
+		I.setState(BitVector.from(inst.ordinal(), 4));
 	}
 
 	@Override
