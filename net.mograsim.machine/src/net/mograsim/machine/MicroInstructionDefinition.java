@@ -1,17 +1,17 @@
 package net.mograsim.machine;
 
-import net.mograsim.machine.mnemonics.Mnemonic;
-import net.mograsim.machine.mnemonics.MnemonicFamily;
+import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
+import net.mograsim.machine.mi.parameters.ParameterClassification;
 
 public interface MicroInstructionDefinition
 {
 	/**
-	 * @return The {@link MnemonicFamily}s of which a MicroInstruction is composed.
+	 * @return The {@link ParameterClassification}s of which a MicroInstruction is composed.
 	 */
-	public MnemonicFamily[] getMnemonicFamilies();
+	public ParameterClassification[] getParameterClassifications();
 	
 	/**
-	 * @return The amount of {@link Mnemonic}s a {@link MicroInstruction} that follows this definition consists of.
+	 * @return The amount of {@link MicroInstructionParameter}s in a {@link MicroInstruction} that follows this definition.
 	 */
 	public int size();
 	
