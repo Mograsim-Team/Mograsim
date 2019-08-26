@@ -57,43 +57,12 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return new BitVector(bit.makeArray(length));
 	}
 
-	public BigInteger getUnsignedValue()
+	public static BitVector from(long value, int bits)
 	{
-		if (!isBinary())
-			throw new NumberFormatException("BitVector is non binary: " + toString());
-		byte[] bytes = new byte[(bits.length / 8) + 1];
-		for (int i = 0; i < bits.length; i++)
-		{
-			if (Bit.ONE == bits[i])
-			{
-				bytes[i / 8] |= 1 << (i % 8);
-			}
-		}
-		return new BigInteger(bytes);
+		return from(BigInteger.valueOf(value), bits);
 	}
 
-	public static BitVector from(BigInteger b, int length)
-	{
-		int bitLength = b.bitLength();
-		int actualLength = Integer.min(bitLength, length);
-		Bit[] bits = new Bit[length];
-		for (int i = 0; i < actualLength; i++)
-			bits[i] = b.testBit(i) ? Bit.ONE : Bit.ZERO;
-		if (b.signum() < 0)
-			for (int i = actualLength; i < length; i++)
-				bits[i] = Bit.ONE;
-		else
-			for (int i = actualLength; i < length; i++)
-				bits[i] = Bit.ZERO;
-		return BitVector.of(bits);
-	}
-
-	public static BitVector of(long value, int bits)
-	{
-		return of(BigInteger.valueOf(value), bits);
-	}
-
-	public static BitVector of(BigInteger value, int bits)
+	public static BitVector from(BigInteger value, int bits)
 	{
 		Bit[] values = new Bit[bits];
 		for (int i = 0; i < bits; i++)
@@ -129,6 +98,11 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return bits.clone();
 	}
 
+	/**
+	 * Checks if all bits are {@link Bit#isBinary() binary}.
+	 * 
+	 * @see Bit#isBinary()
+	 */
 	public boolean isBinary()
 	{
 		for (int i = 0; i < bits.length; i++)
@@ -439,20 +413,23 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	}
 
 	/**
-	 * Returns the value of the BitVector as BigInteger either unsigned or as two-complement.
+	 * Returns the value of the BitVector as BigInteger.
 	 * 
-	 * @param signed if true and the BitVector represents a negative two-complement integer, an equivalent BigInteger is returned
-	 * @return the value of this BitVector as BigInteger
-	 * 
+	 * @throws NumberFormatException if the BitVector is not {@link #isBinary() binary}.
 	 */
-	public BigInteger toBigInteger(boolean signed)
+	public BigInteger getUnsignedValue()
 	{
 		if (!isBinary())
 			throw new NumberFormatException(this + " is not binary");
-		BigInteger val = new BigInteger(toString(), 2);
-		if (signed && bits[0] == Bit.ONE)
-			val = val.not().setBit(val.bitLength()).add(BigInteger.ONE);
-		return val;
+		byte[] bytes = new byte[(bits.length / 8) + 1];
+		for (int i = 0; i < bits.length; i++)
+		{
+			if (Bit.ONE == bits[i])
+			{
+				bytes[i / 8] |= 1 << (i % 8);
+			}
+		}
+		return new BigInteger(bytes);
 	}
 
 	/**

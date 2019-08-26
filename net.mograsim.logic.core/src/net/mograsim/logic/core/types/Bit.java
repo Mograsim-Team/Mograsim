@@ -18,6 +18,11 @@ public enum Bit implements StrictLogicType<Bit>
 		this.symbol = symbol;
 	}
 
+	/**
+	 * Returns if the Bit is binary, this is only true for <code>ZERO</code> and <code>ONE</code>.
+	 * 
+	 * @return true if and only if <code>this == ONE || this == ZERO</code>
+	 */
 	public boolean isBinary()
 	{
 		return this == ONE || this == ZERO;
