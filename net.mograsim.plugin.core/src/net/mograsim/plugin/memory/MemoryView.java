@@ -33,7 +33,6 @@ public class MemoryView extends ViewPart
 	@Override
 	public void createPartControl(Composite parent)
 	{
-		// TODO: externalize Strings!
 		provider = new MemoryTableContentProvider();
 		displaySettings = new DisplaySettings();
 		displaySettings.setDataNumberType(NumberType.HEXADECIMAL);
@@ -120,13 +119,14 @@ public class MemoryView extends ViewPart
 
 	private void createViewer(Composite parent)
 	{
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 		createColumns();
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
+		viewer.setUseHashlookup(true);
 		viewer.setContentProvider(provider);
-		setMemoryBinding(new WordAddressableMemory(new DefaultMainMemoryDefinition(8, 8, 8L, 256L)));
+		setMemoryBinding(new WordAddressableMemory(new DefaultMainMemoryDefinition(8, 8, 8L, Long.MAX_VALUE)));
 		getSite().setSelectionProvider(viewer);
 
 		GridData gd = new GridData();

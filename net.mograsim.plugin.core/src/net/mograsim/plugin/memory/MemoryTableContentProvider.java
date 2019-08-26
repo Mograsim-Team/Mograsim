@@ -1,48 +1,36 @@
 package net.mograsim.plugin.memory;
 
-import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.ILazyContentProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.Viewer;
 
 import net.mograsim.machine.MainMemory;
 
-public class MemoryTableContentProvider implements IStructuredContentProvider
+public class MemoryTableContentProvider implements ILazyContentProvider
 {
 	private long lower;
-	private int amount;
-	public final static int limit = 128;
-
-	@Override
-	public Object[] getElements(Object arg0)
-	{
-		if (arg0 == null)
-			return new Object[0];
-		MainMemory memory = (MainMemory) arg0;
-		lower = Long.max(lower, memory.getDefinition().getMinimalAddress());
-		Object[] rows = new Object[amount];
-		for (int i = 0; i < amount; i++)
-			rows[i] = new MemoryTableRow(lower + i, memory);
-		return rows;
-	}
-
-	/**
-	 * Sets the bounds for the addresses in memory to be provided to the table.
-	 * 
-	 * @param lower  lower bound for address (inclusive)
-	 * @param amount amount of cells to show; limited to {@link MemoryTableContentProvider#limit}
-	 */
-	public void setAddressRange(long lower, int amount)
-	{
-		this.lower = lower;
-		this.amount = Integer.min(Integer.max(amount, 0), limit);
-	}
+	private TableViewer viewer;
+	private final static int limit = 10_000;
+	private int amount = 0;
+	private MainMemory memory;
 
 	public void setLowerBound(long lower)
 	{
-		setAddressRange(lower, amount);
+		if (memory != null)
+			this.lower = Long.min(memory.getDefinition().getMaximalAddress(), Long.max(memory.getDefinition().getMinimalAddress(), lower));
+		else
+			this.lower = lower;
+		updateItemCount();
 	}
 
-	public void setAmount(int amount)
+	public void updateItemCount()
 	{
-		setAddressRange(lower, amount);
+		if (memory != null)
+		{
+			long size = memory.getDefinition().getMaximalAddress() - lower;
+			viewer.setItemCount(size > amount ? amount : (int) size);
+		} else
+			viewer.setItemCount(0);
 	}
 
 	public long getLowerBound()
@@ -50,8 +38,30 @@ public class MemoryTableContentProvider implements IStructuredContentProvider
 		return lower;
 	}
 
+	public void setAmount(int amount)
+	{
+		this.amount = Integer.min(amount, limit);
+		updateItemCount();
+	}
+
 	public int getAmount()
 	{
 		return amount;
+	}
+
+	@Override
+	public void updateElement(int index)
+	{
+		long address = lower + index;
+		if (address <= memory.getDefinition().getMaximalAddress())
+			viewer.replace(new MemoryTableRow(address, memory), index);
+	}
+
+	@Override
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
+	{
+		this.viewer = (TableViewer) viewer;
+		this.memory = (MainMemory) newInput;
+		setLowerBound(0L);
 	}
 }
