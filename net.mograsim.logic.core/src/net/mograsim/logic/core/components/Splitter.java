@@ -20,13 +20,13 @@ public class Splitter extends Component implements LogicObserver
 		this.input = input;
 		this.outputs = outputs;
 		input.registerObserver(this);
-		int length = 0;
+		int width = 0;
 		for (ReadEnd out : outputs)
-			length += out.length();
+			width += out.width();
 
-		if (input.length() != length)
+		if (input.width() != width)
 			throw new IllegalArgumentException(
-					"The input of splitting one into n WireArrays must have length = a1.length() + a2.length() + ... + an.length().");
+					"The input of splitting one into n WireArrays must have width = a1.width() + a2.width() + ... + an.width().");
 	}
 
 	protected void compute()
@@ -35,8 +35,8 @@ public class Splitter extends Component implements LogicObserver
 		int startIndex = 0;
 		for (int i = 0; i < outputs.length; i++)
 		{
-			outputs[i].feedSignals(inputBits.subVector(startIndex, startIndex + outputs[i].length()));
-			startIndex += outputs[i].length();
+			outputs[i].feedSignals(inputBits.subVector(startIndex, startIndex + outputs[i].width()));
+			startIndex += outputs[i].width();
 		}
 	}
 

@@ -95,7 +95,7 @@ public class ViewLogicModelAdapter
 					if (externalWireCandidate != null)
 						if (externalWire == null)
 							externalWire = externalWireCandidate;
-						else if (externalWire.length == externalWireCandidate.length)
+						else if (externalWire.width == externalWireCandidate.width)
 							Wire.fuse(externalWire, externalWireCandidate);
 						else
 							throw new IllegalArgumentException(

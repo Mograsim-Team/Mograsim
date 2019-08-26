@@ -5,7 +5,6 @@ import java.util.List;
 import net.mograsim.logic.core.components.BasicComponent;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
-import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.machine.MainMemoryDefinition;
@@ -31,12 +30,12 @@ public class WordAddressableMemoryComponent extends BasicComponent
 			ReadEnd rWBit, ReadEnd address)
 	{
 		super(timeline, processTime);
-		if(data.length() != definition.getCellWidth())
-			throw new IllegalArgumentException(String.format("Bit width of data wire does not match main memory definition. Expected: %d Actual: %d", definition.getCellWidth(), data.length()));
-		if(rWBit.length() != 1)
-			throw new IllegalArgumentException(String.format("Bit width of read/write mode select wire is unexpected. Expected: 1 Actual: %d", rWBit.length()));
-		if(address.length() != definition.getMemoryAddressBits())
-			throw new IllegalArgumentException(String.format("Bit width of address wire does not match main memory definition. Expected: %d Actual: %d", definition.getMemoryAddressBits(), address.length()));
+		if(data.width() != definition.getCellWidth())
+			throw new IllegalArgumentException(String.format("Bit width of data wire does not match main memory definition. Expected: %d Actual: %d", definition.getCellWidth(), data.width()));
+		if(rWBit.width() != 1)
+			throw new IllegalArgumentException(String.format("Bit width of read/write mode select wire is unexpected. Expected: 1 Actual: %d", rWBit.width()));
+		if(address.width() != definition.getMemoryAddressBits())
+			throw new IllegalArgumentException(String.format("Bit width of address wire does not match main memory definition. Expected: %d Actual: %d", definition.getMemoryAddressBits(), address.width()));
 		this.data = data;
 		this.rWBit = rWBit;
 		this.address = address;
@@ -53,7 +52,7 @@ public class WordAddressableMemoryComponent extends BasicComponent
 		if (!address.hasNumericValue())
 		{
 			if (read.equals(rWBit.getValue()))
-				data.feedSignals(BitVector.of(Bit.U, data.length()));
+				data.feedSignals(Bit.U.toVector(data.width()));
 			else
 				data.clearSignals();
 			return;
