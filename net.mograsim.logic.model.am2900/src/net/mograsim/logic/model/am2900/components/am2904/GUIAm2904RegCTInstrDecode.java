@@ -74,12 +74,12 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 				break;
 			case U:
 				for (ReadWriteEnd e : readWriteEnds.values())
-					e.feedSignals(BitVector.of(U, e.length()));
+					e.feedSignals(BitVector.of(U, e.width()));
 				return null;
 			case X:
 			case Z:
 				for (ReadWriteEnd e : readWriteEnds.values())
-					e.feedSignals(BitVector.of(X, e.length()));
+					e.feedSignals(BitVector.of(X, e.width()));
 				return null;
 			case ZERO:
 				break;

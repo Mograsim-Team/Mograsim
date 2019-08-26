@@ -22,7 +22,7 @@ public class Demux extends BasicComponent
 	private int selected = -1;
 
 	/**
-	 * Output {@link Wire}s and in must be of uniform length
+	 * Output {@link Wire}s and in must be of uniform width
 	 * 
 	 * @param in      Must be of uniform length with all outputs.
 	 * @param select  Indexes the output array to which the input is mapped. Must have enough bits to index all outputs.
@@ -31,24 +31,24 @@ public class Demux extends BasicComponent
 	public Demux(Timeline timeline, int processTime, ReadEnd in, ReadEnd select, ReadWriteEnd... outputs)
 	{
 		super(timeline, processTime);
-		outputSize = in.length();
+		outputSize = in.width();
 
 		this.in = in;
 		this.outputs = outputs;
 		for (int i = 0; i < this.outputs.length; i++)
 		{
-			if (outputs[i].length() != outputSize)
-				throw new IllegalArgumentException("All DEMUX wire arrays must be of uniform length!");
+			if (outputs[i].width() != outputSize)
+				throw new IllegalArgumentException("All DEMUX wire arrays must be of uniform width!");
 			this.outputs[i] = outputs[i];
 		}
 
 		this.select = select;
 		select.registerObserver(this);
 
-		int maxInputs = 1 << select.length();
+		int maxInputs = 1 << select.width();
 		if (this.outputs.length > maxInputs)
 			throw new IllegalArgumentException("There are more outputs (" + this.outputs.length + ") to the DEMUX than supported by "
-					+ select.length() + " select bits (" + maxInputs + ").");
+					+ select.width() + " select bits (" + maxInputs + ").");
 		in.registerObserver(this);
 	}
 

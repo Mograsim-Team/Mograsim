@@ -34,23 +34,23 @@ public class Mux extends BasicComponent
 	public Mux(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
 	{
 		super(timeline, processTime);
-		outputSize = out.length();
+		outputSize = out.width();
 
 		this.inputs = inputs.clone();
 		for (int i = 0; i < this.inputs.length; i++)
 		{
-			if (inputs[i].length() != outputSize)
-				throw new IllegalArgumentException("All MUX wire arrays must be of uniform length!");
+			if (inputs[i].width() != outputSize)
+				throw new IllegalArgumentException("All MUX wire arrays must be of uniform width!");
 			inputs[i].registerObserver(this);
 		}
 
 		this.select = select;
 		select.registerObserver(this);
 
-		int maxInputs = 1 << select.length();
+		int maxInputs = 1 << select.width();
 		if (this.inputs.length > maxInputs)
 			throw new IllegalArgumentException("There are more inputs (" + this.inputs.length + ") to the MUX than supported by "
-					+ select.length() + " select bits (" + maxInputs + ").");
+					+ select.width() + " select bits (" + maxInputs + ").");
 
 		this.out = out;
 	}

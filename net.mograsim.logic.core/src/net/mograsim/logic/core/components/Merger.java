@@ -17,7 +17,7 @@ public class Merger extends Component implements LogicObserver
 
 	/**
 	 * 
-	 * @param union  The output of merging n {@link Wire}s into one. Must have length = a1.length() + a2.length() + ... + an.length().
+	 * @param union  The output of merging n {@link Wire}s into one. Must have width = a1.width() + a2.width() + ... + an.width().
 	 * @param inputs The inputs to be merged into the union
 	 */
 	public Merger(Timeline timeline, ReadWriteEnd union, ReadEnd... inputs)
@@ -31,13 +31,13 @@ public class Merger extends Component implements LogicObserver
 		for (int i = 0; i < inputs.length; i++)
 		{
 			beginningIndex[i] = length;
-			length += inputs[i].length();
+			length += inputs[i].width();
 			inputs[i].registerObserver(this);
 		}
 
-		if (length != union.length())
+		if (length != union.width())
 			throw new IllegalArgumentException(
-					"The output of merging n WireArrays into one must have length = a1.length() + a2.length() + ... + an.length().");
+					"The output of merging n WireArrays into one must have width = a1.width() + a2.width() + ... + an.width().");
 	}
 
 	public ReadEnd getInput(int index)
