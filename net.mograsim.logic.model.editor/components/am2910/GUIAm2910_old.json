@@ -1,0 +1,1089 @@
+mograsim version: 0.1.3
+{
+  "width": 72.0,
+  "height": 61.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 19.0,
+        "y": 61.0
+      },
+      "name": "_MAP",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 44.0
+      },
+      "name": "_CCEN",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 60.0,
+        "y": 0.0
+      },
+      "name": "C",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 36.0,
+        "y": 0.0
+      },
+      "name": "D",
+      "logicWidth": 12
+    },
+    {
+      "location": {
+        "x": 72.0,
+        "y": 14.0
+      },
+      "name": "_FULL",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 72.0,
+        "y": 40.0
+      },
+      "name": "CI",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 6.0
+      },
+      "name": "_RLD",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 50.0
+      },
+      "name": "I",
+      "logicWidth": 4
+    },
+    {
+      "location": {
+        "x": 38.0,
+        "y": 61.0
+      },
+      "name": "Y",
+      "logicWidth": 12
+    },
+    {
+      "location": {
+        "x": 13.0,
+        "y": 61.0
+      },
+      "name": "_PL",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 25.0,
+        "y": 61.0
+      },
+      "name": "_VECT",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 38.0
+      },
+      "name": "_CC",
+      "logicWidth": 1
+    }
+  ],
+  "submodel": {
+    "innerScale": 0.2,
+    "subComps": [
+      {
+        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "name": "GUINandGate#1",
+        "pos": {
+          "x": 10.0,
+          "y": 210.0
+        },
+        "params": 1
+      },
+      {
+        "id": "class:net.mograsim.logic.model.am2900.components.GUIram5_12",
+        "name": "GUIram5_12#0",
+        "pos": {
+          "x": 305.0,
+          "y": 100.0
+        }
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "name": "GUINandGate#0",
+        "pos": {
+          "x": 40.0,
+          "y": 185.0
+        },
+        "params": 1
+      },
+      {
+        "id": "class:net.mograsim.logic.model.am2900.components.GUIdff12",
+        "name": "GUIdff12#0",
+        "pos": {
+          "x": 305.0,
+          "y": 160.0
+        }
+      },
+      {
+        "id": "class:net.mograsim.logic.model.am2900.components.GUIinc12",
+        "name": "GUIinc12#0",
+        "pos": {
+          "x": 305.0,
+          "y": 190.0
+        }
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "name": "GUIBitDisplay#3",
+        "pos": {
+          "x": 265.0,
+          "y": 150.0
+        },
+        "params": 12
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 294.0,
+          "y": 104.0
+        },
+        "params": 1
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 324.0,
+          "y": 149.0
+        },
+        "params": 12
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "pos": {
+          "x": 179.0,
+          "y": 89.0
+        },
+        "params": 12
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 189.0,
+          "y": 274.0
+        },
+        "params": 12
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#5",
+        "pos": {
+          "x": 4.0,
+          "y": 219.0
+        },
+        "params": 1
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#4",
+        "pos": {
+          "x": 179.0,
+          "y": 14.0
+        },
+        "params": 12
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#7",
+        "pos": {
+          "x": 299.0,
+          "y": 44.0
+        },
+        "params": 1
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#6",
+        "pos": {
+          "x": 299.0,
+          "y": 79.0
+        },
+        "params": 1
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#9",
+        "pos": {
+          "x": 299.0,
+          "y": 114.0
+        },
+        "params": 1
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "name": "WireCrossPoint#8",
+        "pos": {
+          "x": 299.0,
+          "y": 169.0
+        },
+        "params": 1
+      },
+      {
+        "id": "class:net.mograsim.logic.model.am2900.components.GUIsel4_12",
+        "name": "GUIsel4_12#0",
+        "pos": {
+          "x": 150.0,
+          "y": 175.0
+        }
+      },
+      {
+        "id": "class:net.mograsim.logic.model.am2900.components.GUInor12",
+        "name": "GUInor12#0",
+        "pos": {
+          "x": 190.0,
+          "y": 80.0
+        }
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "name": "GUIBitDisplay#0",
+        "pos": {
+          "x": 160.0,
+          "y": 95.0
+        },
+        "params": 12
+      },
+      {
+        "id": "class:net.mograsim.logic.model.am2900.components.am2910.GUIAm2910InstrPLA",
+        "name": "GUIAm2910InstrPLA#0",
+        "pos": {
+          "x": 80.0,
+          "y": 155.0
+        }
+      },
+      {
+        "id": "class:net.mograsim.logic.model.am2900.components.am2910.GUIAm2910SP",
+        "name": "GUIAm2910SP#0",
+        "pos": {
+          "x": 305.0,
+          "y": 55.0
+        }
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "name": "GUIBitDisplay#1",
+        "pos": {
+          "x": 260.0,
+          "y": 115.0
+        },
+        "params": 12
+      },
+      {
+        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "name": "GUIBitDisplay#2",
+        "pos": {
+          "x": 345.0,
+          "y": 180.0
+        },
+        "params": 12
+      },
+      {
+        "id": "class:net.mograsim.logic.model.am2900.components.am2910.GUIAm2910RegCntr",
+        "name": "GUIAm2910RegCntr#0",
+        "pos": {
+          "x": 160.0,
+          "y": 25.0
+        }
+      }
+    ],
+    "innerWires": [
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "name": "unnamedWire#36",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIdff12#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#35",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "name": "unnamedWire#38",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIAm2910SP#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#37",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIAm2910RegCntr#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#39",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIinc12#0",
+          "pinName": "CI"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "CI"
+        },
+        "name": "unnamedWire#41",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "name": "unnamedWire#40",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "_MAP"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_MAP"
+        },
+        "name": "unnamedWire#43",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "_PL"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_PL"
+        },
+        "name": "unnamedWire#42",
+        "path": [
+          {
+            "x": 85.0,
+            "y": 290.0
+          },
+          {
+            "x": 65.0,
+            "y": 290.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#45",
+        "path": [
+          {
+            "x": 70.0,
+            "y": 250.0
+          },
+          {
+            "x": 70.0,
+            "y": 175.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "_VECT"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_VECT"
+        },
+        "name": "unnamedWire#44",
+        "path": [
+          {
+            "x": 105.0,
+            "y": 290.0
+          },
+          {
+            "x": 125.0,
+            "y": 290.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram5_12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#47",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910RegCntr#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#46",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdff12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#49",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIinc12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#48",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910RegCntr#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910SP#0",
+          "pinName": "B"
+        },
+        "pin2": {
+          "compName": "GUIram5_12#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910SP#0",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "GUIram5_12#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram5_12#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "YR"
+        },
+        "pin2": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "SB"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIram5_12#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#50",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "YD"
+        },
+        "pin2": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "SA"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#51",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIdff12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUInor12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "R\u003d0"
+        },
+        "name": "unnamedWire#10",
+        "path": [
+          {
+            "x": 230.0,
+            "y": 90.0
+          },
+          {
+            "x": 230.0,
+            "y": 120.0
+          },
+          {
+            "x": 95.0,
+            "y": 120.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIinc12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIdff12#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "YmuPC"
+        },
+        "pin2": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "SD"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "RDEC"
+        },
+        "pin2": {
+          "compName": "GUIAm2910RegCntr#0",
+          "pinName": "DEC"
+        },
+        "name": "unnamedWire#12",
+        "path": [
+          {
+            "x": 120.0,
+            "y": 170.0
+          },
+          {
+            "x": 120.0,
+            "y": 55.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "YF"
+        },
+        "pin2": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "SC"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "RWE"
+        },
+        "pin2": {
+          "compName": "GUIAm2910RegCntr#0",
+          "pinName": "WE"
+        },
+        "name": "unnamedWire#11",
+        "path": [
+          {
+            "x": 115.0,
+            "y": 160.0
+          },
+          {
+            "x": 115.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "STKI1"
+        },
+        "pin2": {
+          "compName": "GUIAm2910SP#0",
+          "pinName": "STKI1"
+        },
+        "name": "unnamedWire#14",
+        "path": [
+          {
+            "x": 290.0,
+            "y": 230.0
+          },
+          {
+            "x": 290.0,
+            "y": 70.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "STKI0"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#13",
+        "path": [
+          {
+            "x": 295.0,
+            "y": 220.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIram5_12#0",
+          "pinName": "WE"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIAm2910SP#0",
+          "pinName": "STKI0"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 295.0,
+            "y": 60.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIinc12#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#18",
+        "path": [
+          {
+            "x": 325.0,
+            "y": 275.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIram5_12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#19",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 130.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#21",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#20",
+        "path": [
+          {
+            "x": 220.0,
+            "y": 150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUInor12#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#22",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIsel4_12#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#25",
+        "path": [
+          {
+            "x": 145.0,
+            "y": 15.0
+          },
+          {
+            "x": 145.0,
+            "y": 150.0
+          },
+          {
+            "x": 160.0,
+            "y": 150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIAm2910RegCntr#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#24",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_RLD"
+        },
+        "pin2": {
+          "compName": "GUIAm2910RegCntr#0",
+          "pinName": "_RLD"
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_CC"
+        },
+        "pin2": {
+          "compName": "GUINandGate#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUINandGate#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUIAm2910InstrPLA#0",
+          "pinName": "PASS"
+        },
+        "name": "unnamedWire#28",
+        "path": [
+          {
+            "x": 65.0,
+            "y": 195.0
+          },
+          {
+            "x": 65.0,
+            "y": 160.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_CCEN"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#30",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUINandGate#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#32",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 225.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUINandGate#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#31",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 215.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910SP#0",
+          "pinName": "_FULL"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_FULL"
+        },
+        "name": "unnamedWire#34",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUINandGate#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "GUINandGate#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#33",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 220.0
+          },
+          {
+            "x": 35.0,
+            "y": 200.0
+          }
+        ]
+      }
+    ]
+  },
+  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererParams": {
+    "centerText": "Am2910",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 17.5,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
+  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {},
+    "atomicHighLevelStates": {}
+  }
+}

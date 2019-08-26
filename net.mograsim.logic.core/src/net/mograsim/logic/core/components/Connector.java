@@ -17,8 +17,8 @@ public class Connector extends Component implements LogicObserver
 	public Connector(Timeline timeline, ReadWriteEnd a, ReadWriteEnd b)
 	{
 		super(timeline);
-		if (a.length() != b.length())
-			throw new IllegalArgumentException(String.format("WireArray width does not match: %d, %d", a.length(), b.length()));
+		if (a.width() != b.width())
+			throw new IllegalArgumentException(String.format("WireArray width does not match: %d, %d", a.width(), b.width()));
 		this.a = a;
 		this.b = b;
 		a.registerObserver(this);

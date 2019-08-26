@@ -13,7 +13,7 @@ public abstract class MultiInputGate extends BasicComponent
 {
 	protected ReadEnd[] in;
 	protected ReadWriteEnd out;
-	protected final int length;
+	protected final int width;
 	protected MutationOperation op;
 	protected boolean invert = false;
 
@@ -21,13 +21,13 @@ public abstract class MultiInputGate extends BasicComponent
 	{
 		super(timeline, processTime);
 		this.op = op;
-		length = out.length();
+		width = out.width();
 		this.in = in.clone();
 		if (in.length < 1)
 			throw new IllegalArgumentException(String.format("Cannot create gate with %d wires.", in.length));
 		for (ReadEnd w : in)
 		{
-			if (w.length() != length)
+			if (w.width() != width)
 				throw new IllegalArgumentException("All wires connected to the gate must be of uniform length.");
 			w.registerObserver(this);
 		}
