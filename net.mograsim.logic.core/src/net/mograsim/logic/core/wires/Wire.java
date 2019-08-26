@@ -389,9 +389,9 @@ public class Wire
 
 		public void feedSignals(BitVector newValues)
 		{
-			if (newValues.length() != width)
+			if (newValues.width() != width)
 				throw new IllegalArgumentException(
-						String.format("Attempted to input %d bits instead of %d bits.", newValues.length(), width));
+						String.format("Attempted to input %d bits instead of %d bits.", newValues.width(), width));
 			if (!open)
 				throw new IllegalStateException("Attempted to write to closed WireArrayEnd.");
 			timeline.addEvent(e -> setValues(newValues), travelTime);
@@ -422,7 +422,7 @@ public class Wire
 			if (!inputValues.equalsWithOffset(newValues, startingBit))
 			{
 				Bit[] vals = inputValues.getBits();
-				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.length());
+				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.width());
 				inputValues = BitVector.of(vals);
 				Wire.this.recalculate();
 			}
@@ -544,20 +544,20 @@ public class Wire
 	 * Fuses the selected bits of two wires together. If the bits change in one Wire, the other is changed accordingly immediately. Warning:
 	 * The bits are permanently fused together.
 	 * 
-	 * @param a      The {@link Wire} to be (partially) fused with b
-	 * @param b      The {@link Wire} to be (partially) fused with a
-	 * @param fromA  The first bit of {@link Wire} a to be fused
-	 * @param fromB  The first bit of {@link Wire} b to be fused
-	 * @param length The amount of bits to fuse
+	 * @param a     The {@link Wire} to be (partially) fused with b
+	 * @param b     The {@link Wire} to be (partially) fused with a
+	 * @param fromA The first bit of {@link Wire} a to be fused
+	 * @param fromB The first bit of {@link Wire} b to be fused
+	 * @param width The amount of bits to fuse
 	 */
-	public static void fuse(Wire a, Wire b, int fromA, int fromB, int length)
+	public static void fuse(Wire a, Wire b, int fromA, int fromB, int width)
 	{
 		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
 		rA.setWriting(false);
 		rB.setWriting(false);
 		rA.setValues(BitVector.of(Bit.Z, a.width));
 		rB.setValues(BitVector.of(Bit.Z, b.width));
-		Fusion aF = new Fusion(rB, fromA, fromB, length), bF = new Fusion(rA, fromB, fromA, length);
+		Fusion aF = new Fusion(rB, fromA, fromB, width), bF = new Fusion(rA, fromB, fromA, width);
 		rA.registerObserver(aF);
 		rB.registerObserver(bF);
 		aF.update(rA);
@@ -580,14 +580,14 @@ public class Wire
 	private static class Fusion implements LogicObserver
 	{
 		private ReadWriteEnd target;
-		int fromSource, fromTarget, length;
+		int fromSource, fromTarget, width;
 
-		public Fusion(ReadWriteEnd target, int fromSource, int fromTarget, int length)
+		public Fusion(ReadWriteEnd target, int fromSource, int fromTarget, int width)
 		{
 			this.target = target;
 			this.fromSource = fromSource;
 			this.fromTarget = fromTarget;
-			this.length = length;
+			this.width = width;
 		}
 
 		@Override
@@ -599,7 +599,7 @@ public class Wire
 			else
 			{
 				target.setWriting(true);
-				BitVector targetInput = source.wireValuesExcludingMe().subVector(fromSource, fromSource + length);
+				BitVector targetInput = source.wireValuesExcludingMe().subVector(fromSource, fromSource + width);
 				target.setValues(fromTarget, targetInput);
 			}
 		}

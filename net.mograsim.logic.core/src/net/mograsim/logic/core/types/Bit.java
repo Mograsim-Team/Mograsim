@@ -69,9 +69,9 @@ public enum Bit implements StrictLogicType<Bit>
 		return bits;
 	}
 
-	public BitVector toVector(int length)
+	public BitVector toVector(int width)
 	{
-		return BitVector.of(this, length);
+		return BitVector.of(this, width);
 	}
 
 	@Override

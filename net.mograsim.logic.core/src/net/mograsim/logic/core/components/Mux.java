@@ -25,9 +25,9 @@ public class Mux extends BasicComponent
 	private final int outputSize;
 
 	/**
-	 * Input {@link Wire}s and out must be of uniform length
+	 * Input {@link Wire}s and out must be of uniform width
 	 * 
-	 * @param out    Must be of uniform length with all inputs.
+	 * @param out    Must be of uniform width with all inputs.
 	 * @param select Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
 	 * @param inputs One of these inputs is mapped to the output, depending on the select bits
 	 */

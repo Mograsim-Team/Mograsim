@@ -50,11 +50,11 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return new BitVector(bits.clone());
 	}
 
-	public static BitVector of(Bit bit, int length)
+	public static BitVector of(Bit bit, int width)
 	{
-		if (length == 1)
+		if (width == 1)
 			return SINGLE_BIT_MAPPING[bit.ordinal()];
-		return new BitVector(bit.makeArray(length));
+		return new BitVector(bit.makeArray(width));
 	}
 
 	public static BitVector from(long value, int bits)
@@ -157,21 +157,21 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return new BitVector(unOp(bits.clone(), Bit::not));
 	}
 
-	public int length()
+	public int width()
 	{
 		return bits.length;
 	}
 
 	public BitVector concat(BitVector other)
 	{
-		Bit[] newBits = Arrays.copyOf(bits, length() + other.length());
-		System.arraycopy(other.bits, 0, newBits, length(), other.length());
+		Bit[] newBits = Arrays.copyOf(bits, width() + other.width());
+		System.arraycopy(other.bits, 0, newBits, width(), other.width());
 		return new BitVector(newBits);
 	}
 
 	public BitVector subVector(int start)
 	{
-		return new BitVector(Arrays.copyOfRange(bits, start, length()));
+		return new BitVector(Arrays.copyOfRange(bits, start, width()));
 	}
 
 	public BitVector subVector(int start, int end)
@@ -181,8 +181,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 
 	private void checkCompatibility(BitVector bv)
 	{
-		if (length() != bv.length())
-			throw new IllegalArgumentException(format("BitVector length does not match: %d and %d", length(), bv.length()));
+		if (width() != bv.width())
+			throw new IllegalArgumentException(format("BitVector width does not match: %d and %d", width(), bv.width()));
 	}
 
 	static Bit[] binOp(Bit[] dest, Bit[] second, BinaryOperator<Bit> op)
@@ -227,11 +227,11 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		}
 
 		/**
-		 * Returns a new mutator of the specified length, <b>with all bits set to <code>null</code></b>. Use with care!
+		 * Returns a new mutator of the specified width, <b>with all bits set to <code>null</code></b>. Use with care!
 		 */
-		public static BitVectorMutator ofLength(int length)
+		public static BitVectorMutator ofWidth(int width)
 		{
-			return new BitVectorMutator(new Bit[length]);
+			return new BitVectorMutator(new Bit[width]);
 		}
 
 		/**
@@ -344,17 +344,17 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 			return bits[bits.length - bitIndex - 1];
 		}
 
-		public int length()
+		public int width()
 		{
 			if (bits == null)
-				throw new IllegalStateException("cannot obtain a length of an empty mutator");
+				throw new IllegalStateException("cannot obtain a width of an empty mutator");
 			return bits.length;
 		}
 
 		private void checkCompatibility(BitVector bv)
 		{
-			if (bits != null && bits.length != bv.length())
-				throw new IllegalArgumentException(format("BitVector length does not match: %d and %d", bits.length, bv.length()));
+			if (bits != null && bits.length != bv.width())
+				throw new IllegalArgumentException(format("BitVector width does not match: %d and %d", bits.length, bv.width()));
 		}
 	}
 
@@ -385,9 +385,9 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 
 	/**
 	 * Does test for equality of values/content, shifting the other BitVector by <code>offset</code> to the right.<br>
-	 * Therefore <code>offset + other.length() <= this.length()</code> needs to be true.
+	 * Therefore <code>offset + other.width() <= this.wdith()</code> needs to be true.
 	 * 
-	 * @throws ArrayIndexOutOfBoundsException if <code>offset + other.length() > this.length()</code>
+	 * @throws ArrayIndexOutOfBoundsException if <code>offset + other.width() > this.width()</code>
 	 * 
 	 * @see Object#equals(Object)
 	 */
@@ -395,7 +395,7 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	{
 		if (other == null)
 			return false;
-		return Arrays.equals(bits, offset, offset + other.length(), other.bits, 0, other.length());
+		return Arrays.equals(bits, offset, offset + other.width(), other.bits, 0, other.width());
 	}
 
 	/**
@@ -468,7 +468,7 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 			@Override
 			public boolean hasNext()
 			{
-				return pos != length();
+				return pos != width();
 			}
 		};
 	}

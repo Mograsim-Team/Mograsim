@@ -55,8 +55,8 @@ public class ManualSwitch extends Component implements LogicObservable
 
 	public void setState(BitVector bits)
 	{
-		if (bits.length() != output.width())
-			throw new IllegalArgumentException("Incorrect bit vector length");
+		if (bits.width() != output.width())
+			throw new IllegalArgumentException("Incorrect bit vector width");
 		if (bits.equals(output.getInputValues()))
 			return;
 		output.feedSignals(bits);

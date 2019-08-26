@@ -27,15 +27,15 @@ public class Merger extends Component implements LogicObserver
 		this.out = union;
 		this.beginningIndex = new int[inputs.length];
 
-		int length = 0;
+		int width = 0;
 		for (int i = 0; i < inputs.length; i++)
 		{
-			beginningIndex[i] = length;
-			length += inputs[i].width();
+			beginningIndex[i] = width;
+			width += inputs[i].width();
 			inputs[i].registerObserver(this);
 		}
 
-		if (length != union.width())
+		if (width != union.width())
 			throw new IllegalArgumentException(
 					"The output of merging n WireArrays into one must have width = a1.width() + a2.width() + ... + an.width().");
 	}
