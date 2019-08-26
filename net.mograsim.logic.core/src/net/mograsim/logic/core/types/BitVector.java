@@ -61,14 +61,12 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	{
 		if (!isBinary())
 			throw new NumberFormatException("BitVector is non binary: " + toString());
-		Bit[] bits = getBits();
-		int length = length();
-		byte[] bytes = new byte[(length / 8) + 1];
-		for (int i = 0; i < length; i++)
+		byte[] bytes = new byte[(bits.length / 8) + 1];
+		for (int i = 0; i < bits.length; i++)
 		{
-			if (Bit.ONE.equals(bits[i]))
+			if (Bit.ONE == bits[i])
 			{
-				bytes[(i / 8) + 1] |= 1 << (i % 8);
+				bytes[i / 8] |= 1 << (i % 8);
 			}
 		}
 		return new BigInteger(bytes);
@@ -88,6 +86,21 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 			for (int i = actualLength; i < length; i++)
 				bits[i] = Bit.ZERO;
 		return BitVector.of(bits);
+	}
+
+	public static BitVector of(long value, int bits)
+	{
+		return of(BigInteger.valueOf(value), bits);
+	}
+
+	public static BitVector of(BigInteger value, int bits)
+	{
+		Bit[] values = new Bit[bits];
+		for (int i = 0; i < bits; i++)
+		{
+			values[bits - i - 1] = Bit.of(value.testBit(i));
+		}
+		return new BitVector(values);
 	}
 
 	public BitVectorMutator mutator()
@@ -249,10 +262,21 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 
 		/**
 		 * Returns an empty mutator which has no bits set and will simply copy the values from the first binary operation performed.
+		 * <p>
+		 * An empty BitVectorMutator <b>must not</b> be converted to BitVector or used to manipulate single bits until at least one two
+		 * operand logic operation is performed.
 		 */
 		public static BitVectorMutator empty()
 		{
 			return new BitVectorMutator(null);
+		}
+
+		/**
+		 * @see #empty()
+		 */
+		public boolean isEmpty()
+		{
+			return bits == null;
 		}
 
 		/**
@@ -311,6 +335,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		 */
 		public void setMSBit(int bitIndex, Bit bit)
 		{
+			if (bits == null)
+				throw new IllegalStateException("cannot set a bit of an empty mutator");
 			bits[bitIndex] = bit;
 		}
 
@@ -319,6 +345,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		 */
 		public void setLSBit(int bitIndex, Bit bit)
 		{
+			if (bits == null)
+				throw new IllegalStateException("cannot set a bit of an empty mutator");
 			bits[bits.length - bitIndex - 1] = bit;
 		}
 
@@ -327,6 +355,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		 */
 		public Bit getMSBit(int bitIndex)
 		{
+			if (bits == null)
+				throw new IllegalStateException("cannot get a bit of an empty mutator");
 			return bits[bitIndex];
 		}
 
@@ -335,11 +365,15 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		 */
 		public Bit getLSBit(int bitIndex)
 		{
+			if (bits == null)
+				throw new IllegalStateException("cannot get a bit of an empty mutator");
 			return bits[bits.length - bitIndex - 1];
 		}
 
 		public int length()
 		{
+			if (bits == null)
+				throw new IllegalStateException("cannot obtain a length of an empty mutator");
 			return bits.length;
 		}
 
@@ -405,6 +439,23 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	}
 
 	/**
+	 * Returns the value of the BitVector as BigInteger either unsigned or as two-complement.
+	 * 
+	 * @param signed if true and the BitVector represents a negative two-complement integer, an equivalent BigInteger is returned
+	 * @return the value of this BitVector as BigInteger
+	 * 
+	 */
+	public BigInteger toBigInteger(boolean signed)
+	{
+		if (!isBinary())
+			throw new NumberFormatException(this + " is not binary");
+		BigInteger val = new BigInteger(toString(), 2);
+		if (signed && bits[0] == Bit.ONE)
+			val = val.not().setBit(val.bitLength()).add(BigInteger.ONE);
+		return val;
+	}
+
+	/**
 	 * Parses a String containing solely {@link Bit} symbols (MSB first)
 	 * 
 	 * @see #toString()
@@ -415,21 +466,6 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		for (int i = 0; i < s.length(); i++)
 		{
 			values[i] = Bit.parse(s, i);
-		}
-		return new BitVector(values);
-	}
-
-	public static BitVector of(long value, int bits)
-	{
-		return of(BigInteger.valueOf(value), bits);
-	}
-
-	public static BitVector of(BigInteger value, int bits)
-	{
-		Bit[] values = new Bit[bits];
-		for (int i = 0; i < bits; i++)
-		{
-			values[bits - i - 1] = Bit.of(value.testBit(i));
 		}
 		return new BitVector(values);
 	}
