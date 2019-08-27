@@ -42,7 +42,8 @@ public class SimpleRectangularHardcodedGUIComponentAdapter implements ComponentA
 
 		AtomicReference<Object> state = new AtomicReference<>();
 
-		LogicObserver logicObs = c -> state.set(recalculate.recalculate(state.get(), readEnds, readWriteEnds));
+		LogicObserver logicObs = c -> timeline.addEvent(e -> state.set(recalculate.recalculate(state.get(), readEnds, readWriteEnds)),
+				params.gateProcessTime);
 
 		for (Pin pin : guiComponent.getPins().values())
 		{
