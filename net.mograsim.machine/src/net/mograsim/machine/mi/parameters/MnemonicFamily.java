@@ -19,9 +19,9 @@ public class MnemonicFamily implements ParameterClassification
 			vectorLenght = 0;
 		else
 		{
-			vectorLenght = values[0].getValue().width();
+			vectorLenght = values[0].getValue().length();
 			for(int i = 1; i < values.length; i++)
-				if(values[i].getValue().width() != vectorLenght)
+				if(values[i].getValue().length() != vectorLenght)
 					throw new IllegalArgumentException("MnemonicFamily is not of uniform vector length!");
 		}
 		byText = Arrays.stream(values).collect(Collectors.toMap(m -> m.getText(), m -> m));

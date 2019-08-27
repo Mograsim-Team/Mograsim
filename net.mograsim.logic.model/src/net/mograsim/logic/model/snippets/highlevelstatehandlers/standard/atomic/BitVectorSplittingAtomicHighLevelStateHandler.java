@@ -15,8 +15,8 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 {
 	private SubmodelComponent component;
 	private final List<String> vectorPartTargets;
-	private final List<Integer> vectorPartWidths;
-	private int width;
+	private final List<Integer> vectorPartLengthes;
+	private int length;
 
 	public BitVectorSplittingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
 	{
@@ -28,38 +28,38 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	{
 		this.component = context.component;
 		this.vectorPartTargets = new ArrayList<>();
-		this.vectorPartWidths = new ArrayList<>();
+		this.vectorPartLengthes = new ArrayList<>();
 		if (params != null)
-			setVectorParts(params.vectorPartTargets, params.vectorPartWidths);
+			setVectorParts(params.vectorPartTargets, params.vectorPartLengthes);
 	}
 
-	public void set(List<String> targets, List<Integer> widths)
+	public void set(List<String> targets, List<Integer> lengthes)
 	{
-		setVectorParts(targets, widths);
+		setVectorParts(targets, lengthes);
 	}
 
-	public void addVectorPart(String target, int width)
+	public void addVectorPart(String target, int length)
 	{
 		vectorPartTargets.add(target);
-		vectorPartWidths.add(width);
-		this.width += width;
+		vectorPartLengthes.add(length);
+		this.length += length;
 	}
 
 	public void clearVectorParts()
 	{
 		vectorPartTargets.clear();
-		vectorPartWidths.clear();
-		width = 0;
+		vectorPartLengthes.clear();
+		length = 0;
 	}
 
-	private void setVectorParts(List<String> targets, List<Integer> widths)
+	private void setVectorParts(List<String> targets, List<Integer> lengthes)
 	{
 		clearVectorParts();
-		if (targets.size() != widths.size())
-			throw new IllegalArgumentException("Targets list and widths list have different sizes");
+		if (targets.size() != lengthes.size())
+			throw new IllegalArgumentException("Targets list and lengthes list have different sizes");
 		vectorPartTargets.addAll(targets);
-		vectorPartWidths.addAll(widths);
-		width += widths.stream().mapToInt(Integer::intValue).sum();
+		vectorPartLengthes.addAll(lengthes);
+		length += lengthes.stream().mapToInt(Integer::intValue).sum();
 	}
 
 	@Override
@@ -74,9 +74,9 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 				vectorPart = BitVector.of((Bit) subStateUncasted);
 			else
 				vectorPart = (BitVector) subStateUncasted;
-			if (vectorPart.width() != vectorPartWidths.get(partIndex))
+			if (vectorPart.length() != vectorPartLengthes.get(partIndex))
 				throw new IllegalArgumentException(
-						"Incorrect vector part width: " + vectorPart.width() + "; expected " + vectorPartWidths.get(partIndex));
+						"Incorrect vector part length: " + vectorPart.length() + "; expected " + vectorPartLengthes.get(partIndex));
 			result = vectorPart.concat(result);
 		}
 		return result;
@@ -86,14 +86,14 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	public void setHighLevelState(Object newState)
 	{
 		BitVector newStateCasted = (BitVector) newState;
-		if (newStateCasted.width() != width)
-			throw new IllegalArgumentException("Incorrect vector width: " + newStateCasted.width() + "; expected " + width);
+		if (newStateCasted.length() != length)
+			throw new IllegalArgumentException("Incorrect vector length: " + newStateCasted.length() + "; expected " + length);
 		for (int partIndex = vectorPartTargets.size() - 1, bitIndex = 0; partIndex >= 0; partIndex--)
 		{
-			int vectorPartWidth = vectorPartWidths.get(partIndex);
-			BitVector vectorPart = newStateCasted.subVector(bitIndex, bitIndex + vectorPartWidth);
+			int vectorPartLength = vectorPartLengthes.get(partIndex);
+			BitVector vectorPart = newStateCasted.subVector(bitIndex, bitIndex + vectorPartLength);
 			component.setHighLevelState(vectorPartTargets.get(partIndex), vectorPart);
-			bitIndex += vectorPartWidth;
+			bitIndex += vectorPartLength;
 		}
 	}
 
@@ -102,14 +102,14 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	{
 		BitVectorSplittingAtomicHighLevelStateHandlerParams params = new BitVectorSplittingAtomicHighLevelStateHandlerParams();
 		params.vectorPartTargets = new ArrayList<>(vectorPartTargets);
-		params.vectorPartWidths = new ArrayList<>(vectorPartWidths);
+		params.vectorPartLengthes = new ArrayList<>(vectorPartLengthes);
 		return params;
 	}
 
 	public static class BitVectorSplittingAtomicHighLevelStateHandlerParams
 	{
 		public List<String> vectorPartTargets;
-		public List<Integer> vectorPartWidths;
+		public List<Integer> vectorPartLengthes;
 	}
 
 	static
