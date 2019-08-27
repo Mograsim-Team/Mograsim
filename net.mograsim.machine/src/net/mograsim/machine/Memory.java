@@ -17,4 +17,13 @@ public interface Memory<T>
 	public void setCell(long address, T data);
 	
 	public long size();
+	
+	/**
+	 * Registers an observer to be notified when a memory cell is modified
+	 */
+	public void registerObserver(MemoryObserver ob);
+	
+	public void deregisterObserver(MemoryObserver ob);
+	
+	public void notifyObservers(long address);
 }

@@ -3,11 +3,14 @@ package net.mograsim.machine.standard.memory;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.MemoryObserver;
 
 public class WordAddressableMemory implements MainMemory
 {
@@ -15,6 +18,7 @@ public class WordAddressableMemory implements MainMemory
 	private final long minimalAddress, maximalAddress;
 	private final MainMemoryDefinition definition;
 	private final int pageSize = 64;
+	private Set<MemoryObserver> observers = new HashSet<>();
 
 	private HashMap<Long, Page> pages;
 
@@ -55,6 +59,7 @@ public class WordAddressableMemory implements MainMemory
 		if (p == null)
 			pages.put(page, p = new Page());
 		p.setCell(offset, b);
+		notifyObservers(address);
 	}
 
 	@Override
@@ -91,6 +96,7 @@ public class WordAddressableMemory implements MainMemory
 		if (p == null)
 			pages.put(page, p = new Page());
 		p.setCellAsBigInteger(offset, word);
+		notifyObservers(address);
 	}
 
 	private class Page
@@ -145,5 +151,23 @@ public class WordAddressableMemory implements MainMemory
 	public MainMemoryDefinition getDefinition()
 	{
 		return definition;
+	}
+
+	@Override
+	public void registerObserver(MemoryObserver ob)
+	{
+		observers.add(ob);
+	}
+
+	@Override
+	public void deregisterObserver(MemoryObserver ob)
+	{
+		observers.remove(ob);
+	}
+
+	@Override
+	public void notifyObservers(long address)
+	{
+		observers.forEach(ob -> ob.update(address));
 	}
 }
