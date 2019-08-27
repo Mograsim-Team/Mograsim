@@ -92,11 +92,11 @@ public final class TestUtil
 		return sb.reverse().toString();
 	}
 
-	public static BitVector of(int value, int width)
+	public static BitVector of(int value, int length)
 	{
-		BitVectorMutator mutator = BitVectorMutator.ofWidth(width);
+		BitVectorMutator mutator = BitVectorMutator.ofLength(length);
 		int val = value;
-		for (int i = width - 1; i >= 0; i--)
+		for (int i = length - 1; i >= 0; i--)
 		{
 			mutator.setMSBit(i, Bit.lastBitOf(val));
 			val >>>= 1;

@@ -10,7 +10,7 @@ public interface ParameterClassification
 	 */
 	public default boolean conforms(MicroInstructionParameter param)
 	{
-		return param.getType().equals(getExpectedType()) && param.getValue().width() == getExpectedBits();
+		return param.getType().equals(getExpectedType()) && param.getValue().length() == getExpectedBits();
 	}
 	
 	/**

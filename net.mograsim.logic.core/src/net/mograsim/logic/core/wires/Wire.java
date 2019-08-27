@@ -389,9 +389,9 @@ public class Wire
 
 		public void feedSignals(BitVector newValues)
 		{
-			if (newValues.width() != width)
+			if (newValues.length() != width)
 				throw new IllegalArgumentException(
-						String.format("Attempted to input %d bits instead of %d bits.", newValues.width(), width));
+						String.format("Attempted to input %d bits instead of %d bits.", newValues.length(), width));
 			if (!open)
 				throw new IllegalStateException("Attempted to write to closed WireArrayEnd.");
 			timeline.addEvent(e -> setValues(newValues), travelTime);
@@ -422,7 +422,7 @@ public class Wire
 			if (!inputValues.equalsWithOffset(newValues, startingBit))
 			{
 				Bit[] vals = inputValues.getBits();
-				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.width());
+				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.length());
 				inputValues = BitVector.of(vals);
 				Wire.this.recalculate();
 			}

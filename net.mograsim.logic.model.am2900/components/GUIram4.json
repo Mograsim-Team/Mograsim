@@ -3490,7 +3490,7 @@ mograsim version: 0.1.3
             "c01.q",
             "c00.q"
           ],
-          "vectorPartWidths": [
+          "vectorPartLengthes": [
             16,
             16,
             16,

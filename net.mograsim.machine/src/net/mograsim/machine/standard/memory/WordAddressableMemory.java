@@ -112,9 +112,9 @@ public class WordAddressableMemory implements MainMemory
 
 		public void setCell(int index, BitVector bits)
 		{
-			if (bits.width() != cellWidth)
+			if (bits.length() != cellWidth)
 				throw new IllegalArgumentException(String.format(
-						"BitVector to be saved in memory cell has unexpected width. Expected: %d Actual: %d", cellWidth, bits.width()));
+						"BitVector to be saved in memory cell has unexpected width. Expected: %d Actual: %d", cellWidth, bits.length()));
 			memory[index] = bits;
 		}
 
