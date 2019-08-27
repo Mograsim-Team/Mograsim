@@ -55,7 +55,7 @@ public class AsmIntegerOperand implements AsmOperand
 		int bitLength = bi.bitLength() - (bi.signum() - 1) / 2;
 		if (bitLength > size)
 			throw new AsmNumberFormatException("Error parsing %s: bit count %d exceeds size %d", bi, bitLength, size);
-		BitVectorMutator bvm = BitVectorMutator.ofWidth(size);
+		BitVectorMutator bvm = BitVectorMutator.ofLength(size);
 		for (int i = 0; i < size; i++)
 			bvm.setLSBit(i, Bit.of(bi.testBit(i)));
 		return bvm.toBitVector();

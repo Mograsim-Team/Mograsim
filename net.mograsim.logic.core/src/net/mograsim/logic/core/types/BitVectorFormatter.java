@@ -28,7 +28,7 @@ public class BitVectorFormatter
 	public static ColorDefinition formatAsColor(BitVector bitVector)
 	{
 		// TODO maybe find a color assignment for multiple-bit bit vectors?
-		if (bitVector == null || bitVector.width() != 1)
+		if (bitVector == null || bitVector.length() != 1)
 			return new ColorDefinition(BuiltInColor.COLOR_BLACK);
 		switch (bitVector.getLSBit(0))
 		{
