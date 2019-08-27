@@ -8,10 +8,18 @@ public interface ParameterClassification
 	 * Determines whether a {@link MicroInstructionParameter} is part of this class of parameters.
 	 * @return true if the classification contains the Parameter, false otherwise
 	 */
-	public boolean conforms(MicroInstructionParameter param);
+	public default boolean conforms(MicroInstructionParameter param)
+	{
+		return param.getType().equals(getExpectedType()) && param.getValue().width() == getExpectedBits();
+	}
 	
 	/**
 	 * @return The type of the parameters in this classification.
 	 */
 	public ParameterType getExpectedType();
+	
+	/**
+	 * @return The number of bits of the parameters in this classification.
+	 */
+	public int getExpectedBits();
 }
