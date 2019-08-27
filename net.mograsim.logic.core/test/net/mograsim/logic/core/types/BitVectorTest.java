@@ -128,7 +128,7 @@ class BitVectorTest
 		assertEquals(SINGLE_U, SINGLE_0.join(SINGLE_U));
 		assertEquals(SINGLE_X, SINGLE_X.join(SINGLE_Z));
 
-		// higher width
+		// higher length
 		var result = BitVector.of(U, X, ZERO, ONE, Z).join(BitVector.of(ONE, ZERO, ZERO, ONE, Z));
 		assertEquals(BitVector.of(U, X, ZERO, ONE, Z), result);
 	}
@@ -146,7 +146,7 @@ class BitVectorTest
 		assertEquals(SINGLE_0, SINGLE_0.and(SINGLE_U));
 		assertEquals(SINGLE_X, SINGLE_X.and(SINGLE_Z));
 
-		// higher width
+		// higher length
 		var result = BitVector.of(U, X, ZERO, ONE, ONE).and(BitVector.of(ONE, ONE, ZERO, ZERO, ONE));
 		assertEquals(BitVector.of(U, X, ZERO, ZERO, ONE), result);
 	}
@@ -164,7 +164,7 @@ class BitVectorTest
 		assertEquals(SINGLE_1, SINGLE_1.or(SINGLE_U));
 		assertEquals(SINGLE_X, SINGLE_X.or(SINGLE_Z));
 
-		// higher width
+		// higher length
 		var result = BitVector.of(U, X, ZERO, ONE, ZERO).or(BitVector.of(ZERO, ZERO, ZERO, ONE, ONE));
 		assertEquals(BitVector.of(U, X, ZERO, ONE, ONE), result);
 	}
@@ -182,7 +182,7 @@ class BitVectorTest
 		assertEquals(SINGLE_U, SINGLE_0.xor(SINGLE_U));
 		assertEquals(SINGLE_X, SINGLE_X.xor(SINGLE_Z));
 
-		// higher width
+		// higher length
 		var result = BitVector.of(U, X, ZERO, ONE, ONE).xor(BitVector.of(ONE, ZERO, ZERO, ZERO, ONE));
 		assertEquals(BitVector.of(U, X, ZERO, ONE, ZERO), result);
 	}
@@ -199,17 +199,17 @@ class BitVectorTest
 		assertEquals(SINGLE_X, SINGLE_X.not());
 		assertEquals(SINGLE_X, SINGLE_Z.not());
 
-		// higher width
+		// higher length
 		var result = BitVector.of(U, X, ZERO, ONE, Z).not();
 		assertEquals(BitVector.of(U, X, ONE, ZERO, X), result);
 	}
 
 	@Test
-	void testWidth()
+	void testLength()
 	{
-		assertEquals(0, BitVector.of().width());
-		assertEquals(1, SINGLE_0.width());
-		assertEquals(3, BitVector.of(X, X, Z).width());
+		assertEquals(0, BitVector.of().length());
+		assertEquals(1, SINGLE_0.length());
+		assertEquals(3, BitVector.of(X, X, Z).length());
 	}
 
 	@Test
