@@ -66,9 +66,7 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	{
 		Bit[] values = new Bit[bits];
 		for (int i = 0; i < bits; i++)
-		{
 			values[bits - i - 1] = Bit.of(value.testBit(i));
-		}
 		return new BitVector(values);
 	}
 
@@ -421,12 +419,19 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	{
 		if (!isBinary())
 			throw new NumberFormatException(this + " is not binary");
-		byte[] bytes = new byte[(bits.length / 8) + 1];
+		byte[] bytes = new byte[(bits.length / 8 + (bits.length % 8 == 0 ? 0 : 1)) + 1];
 		for (int i = 0; i < bits.length; i++)
 		{
 			if (Bit.ONE == bits[i])
 			{
-				bytes[i / 8] |= 1 << (i % 8);
+				try
+				{
+					bytes[(i / 8) + 1] |= 1 << (i % 8);
+				}
+				catch (IndexOutOfBoundsException e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 		return new BigInteger(bytes);
