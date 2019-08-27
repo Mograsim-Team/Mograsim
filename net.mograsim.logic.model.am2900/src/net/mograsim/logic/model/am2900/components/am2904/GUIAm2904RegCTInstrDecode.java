@@ -23,7 +23,8 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 	{
 		super(model, name, "Instruction\ndecode");
 		setSize(80, 80);
-		addPin(new Pin(this, "I", 6, 0, 40), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "I5-0", 6, 0, 30), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "I12-11", 2, 0, 50), Usage.INPUT, Position.RIGHT);
 		// muSR MUX:
 		// 00: 0
 		// 01: 1
@@ -48,7 +49,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		addPin(new Pin(this, "MSR_MUX", 3, 20, 0), Usage.OUTPUT, Position.BOTTOM);
 		// TODO when is this HIGH?
 		addPin(new Pin(this, "OEN", 1, 60, 0), Usage.OUTPUT, Position.BOTTOM);
-		// CT SRC MUX:
+		// Y MUX:
 		// 00: mu
 		// 01: mu
 		// 10: M
@@ -57,17 +58,27 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		// CT MUX:
 		// see Am2900 Family Data Book, Am2904, Table 4 (CT_MUX2-0 = I3-1)
 		addPin(new Pin(this, "CT_MUX", 3, 30, 80), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "CT_INV", 1, 50, 80), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "CT_EXP", 1, 70, 80), Usage.OUTPUT, Position.TOP);
+		addPin(new Pin(this, "CT_INV", 1, 40, 80), Usage.OUTPUT, Position.TOP);
+		addPin(new Pin(this, "CT_EXP", 1, 50, 80), Usage.OUTPUT, Position.TOP);
+		// C0 MUX:
+		// 00xx: 0
+		// 01xx: 1
+		// 10xx: CX
+		// 1100: muC
+		// 1101: _muC
+		// 1110: MC
+		// 1111: _MC
+		addPin(new Pin(this, "C0_MUX", 4, 70, 80), Usage.OUTPUT, Position.TOP);
 	}
 
 	@Override
 	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
-		Bit[] IBits = readEnds.get("I").getValues().getBits();
+		Bit[] I5_0Bits = readEnds.get("I5-0").getValues().getBits();
+		Bit[] I12_11Bits = readEnds.get("I12-11").getValues().getBits();
 		int IAsInt = 0;
 		for (int i = 0; i < 6; i++)
-			switch (IBits[5 - i])
+			switch (I5_0Bits[5 - i])
 			{
 			case ONE:
 				IAsInt |= 1 << i;
@@ -84,7 +95,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			case ZERO:
 				break;
 			default:
-				throw new IllegalArgumentException("Unknown enum constant: " + IBits[i]);
+				throw new IllegalArgumentException("Unknown enum constant: " + I5_0Bits[i]);
 			}
 		switch (IAsInt)
 		{
@@ -255,10 +266,12 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("MSR_MUX").feedSignals(ZERO, ZERO, ONE);
 			break;
 		}
-		readWriteEnds.get("Y_MUX").feedSignals(IBits[0], IBits[1]);
-		readWriteEnds.get("CT_INV").feedSignals(IBits[5]);
-		readWriteEnds.get("CT_MUX").feedSignals(IBits[2], IBits[3], IBits[4]);
+		readWriteEnds.get("Y_MUX").feedSignals(I5_0Bits[0], I5_0Bits[1]);
+		readWriteEnds.get("CT_INV").feedSignals(I5_0Bits[5]);
+		readWriteEnds.get("CT_MUX").feedSignals(I5_0Bits[2], I5_0Bits[3], I5_0Bits[4]);
 		readWriteEnds.get("CT_EXP").feedSignals((IAsInt & 0b1110) == 0b1110 ? ONE : ZERO);
+		readWriteEnds.get("C0_MUX").feedSignals(I12_11Bits[0], I12_11Bits[1], I5_0Bits[0],
+				I5_0Bits[2].and(I5_0Bits[3].not()).and(I5_0Bits[4].not()));
 		return null;
 	}
 
