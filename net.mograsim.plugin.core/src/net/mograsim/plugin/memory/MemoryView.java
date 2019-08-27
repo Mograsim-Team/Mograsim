@@ -57,7 +57,6 @@ public class MemoryView extends ViewPart
 			{
 				// Nothing to do here
 			}
-//			fromText.setText(AsmNumberUtil.toString(BigInteger.valueOf(provider.getLowerBound()), NumberType.HEXADECIMAL));
 		});
 
 		Label amountLabel = new Label(parent, SWT.NONE);
@@ -77,7 +76,6 @@ public class MemoryView extends ViewPart
 			{
 				// Nothing to do here
 			}
-//			amountText.setText(Integer.toString(provider.getAmount()));
 		});
 
 		setupRadixSelector(parent);

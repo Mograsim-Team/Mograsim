@@ -3,10 +3,12 @@ package net.mograsim.plugin.memory;
 import org.eclipse.jface.viewers.ILazyContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.widgets.Display;
 
 import net.mograsim.machine.MainMemory;
+import net.mograsim.machine.MemoryObserver;
 
-public class MemoryTableContentProvider implements ILazyContentProvider
+public class MemoryTableContentProvider implements ILazyContentProvider, MemoryObserver
 {
 	private long lower;
 	private TableViewer viewer;
@@ -62,6 +64,16 @@ public class MemoryTableContentProvider implements ILazyContentProvider
 	{
 		this.viewer = (TableViewer) viewer;
 		this.memory = (MainMemory) newInput;
+		if (oldInput != null)
+			((MainMemory) oldInput).deregisterObserver(this);
+		if (memory != null)
+			memory.registerObserver(this);
 		setLowerBound(0L);
+	}
+
+	@Override
+	public void update(long address)
+	{
+		Display.getDefault().asyncExec(() -> updateElement((int) (address - lower)));
 	}
 }
