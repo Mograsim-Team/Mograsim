@@ -65,4 +65,10 @@ public final class Mnemonic implements MicroInstructionParameter
 	{
 		return ParameterType.MNEMONIC;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return text;
+	}
 }

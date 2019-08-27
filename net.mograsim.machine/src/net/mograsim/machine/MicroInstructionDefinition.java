@@ -13,6 +13,9 @@ public interface MicroInstructionDefinition
 	/**
 	 * @return The amount of {@link MicroInstructionParameter}s in a {@link MicroInstruction} that follows this definition.
 	 */
-	public int size();
+	public default int size()
+	{
+		return getParameterClassifications().length;
+	}
 	
 }
