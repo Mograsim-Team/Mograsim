@@ -6,12 +6,16 @@ public final class Mnemonic implements MicroInstructionParameter
 {
 	private final String text;
 	private final BitVector vector;
+	final MnemonicFamily owner;
+	private final int ordinal;
 	
-	public Mnemonic(String text, BitVector vector)
+	Mnemonic(String text, BitVector vector, MnemonicFamily owner, int ordinal)
 	{
 		super();
 		this.text = text;
 		this.vector = vector;
+		this.owner = owner;
+		this.ordinal = ordinal;
 	}
 
 	public String getText()
@@ -38,32 +42,18 @@ public final class Mnemonic implements MicroInstructionParameter
 	@Override
 	public boolean equals(Object obj)
 	{
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (!(obj instanceof Mnemonic))
-			return false;
-		Mnemonic other = (Mnemonic) obj;
-		if (text == null)
-		{
-			if (other.text != null)
-				return false;
-		} else if (!text.equals(other.text))
-			return false;
-		if (vector == null)
-		{
-			if (other.vector != null)
-				return false;
-		} else if (!vector.equals(other.vector))
-			return false;
-		return true;
+		return this == obj;
 	}
 
 	@Override
 	public ParameterType getType()
 	{
 		return ParameterType.MNEMONIC;
+	}
+	
+	public int ordinal()
+	{
+		return ordinal;
 	}
 	
 	@Override
