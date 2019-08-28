@@ -54,12 +54,7 @@ public class SaveLoadManager
 		try
 		{
 			IdentifierGetter idGetter = new IdentifierGetter();
-			idGetter.componentIDs = c ->
-			{
-				if (Editor.identifierPerComponent.containsKey(c))
-					return Editor.identifierPerComponent.get(c);
-				return getStandardID(c, IndirectGUIComponentCreator.getStandardComponentIDs(), true);
-			};
+			idGetter.componentIDs = c -> getStandardID(c, IndirectGUIComponentCreator.getStandardComponentIDs(), true);
 			idGetter.symbolRendererIDs = h -> getStandardID(h,
 					SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getStandardSnippetIDs());
 			idGetter.outlineRendererIDs = h -> getStandardID(h,
