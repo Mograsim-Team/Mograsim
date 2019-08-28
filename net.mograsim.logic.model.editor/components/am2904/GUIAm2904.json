@@ -1,7 +1,7 @@
 mograsim version: 0.1.3
 {
   "width": 120.0,
-  "height": 94.0,
+  "height": 139.0,
   "interfacePins": [
     {
       "location": {
@@ -69,8 +69,8 @@ mograsim version: 0.1.3
     },
     {
       "location": {
-        "x": -24.6,
-        "y": 24.400000000000002
+        "x": 120.0,
+        "y": 108.0
       },
       "name": "C0",
       "logicWidth": 1
@@ -93,8 +93,8 @@ mograsim version: 0.1.3
     },
     {
       "location": {
-        "x": -14.600000000000001,
-        "y": 14.4
+        "x": 0.0,
+        "y": 110.0
       },
       "name": "Cx",
       "logicWidth": 1
@@ -232,7 +232,7 @@ mograsim version: 0.1.3
     "innerScale": 0.2,
     "subComps": [
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#14",
         "pos": {
           "x": 520.0,
@@ -241,7 +241,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#13",
         "pos": {
           "x": 330.0,
@@ -250,7 +250,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#16",
         "pos": {
           "x": 255.0,
@@ -259,7 +259,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#15",
         "pos": {
           "x": 255.0,
@@ -268,7 +268,16 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#17",
+        "pos": {
+          "x": 360.0,
+          "y": 495.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
           "x": 180.0,
@@ -277,7 +286,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 165.0,
@@ -286,7 +295,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
           "x": 335.0,
@@ -295,7 +304,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 295.0,
@@ -304,7 +313,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#5",
         "pos": {
           "x": 530.0,
@@ -313,7 +322,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#4",
         "pos": {
           "x": 150.0,
@@ -322,7 +331,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#7",
         "pos": {
           "x": 215.0,
@@ -331,7 +340,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#0",
         "pos": {
           "x": 530.0,
@@ -343,7 +352,7 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#6",
         "pos": {
           "x": 120.0,
@@ -352,7 +361,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#9",
         "pos": {
           "x": 215.0,
@@ -361,7 +370,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#8",
         "pos": {
           "x": 215.0,
@@ -378,7 +387,7 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#10",
         "pos": {
           "x": 195.0,
@@ -395,7 +404,7 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#12",
         "pos": {
           "x": 195.0,
@@ -412,7 +421,7 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#11",
         "pos": {
           "x": 195.0,
@@ -445,7 +454,16 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
+        "id": "GUIMerger",
+        "name": "GUIMerger#4",
+        "pos": {
+          "x": 25.0,
+          "y": 355.0
+        },
+        "params": 2
+      },
+      {
+        "id": "GUIMerger",
         "name": "GUIMerger#3",
         "pos": {
           "x": 510.0,
@@ -462,7 +480,7 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
+        "id": "GUIMerger",
         "name": "GUIMerger#2",
         "pos": {
           "x": 15.0,
@@ -479,7 +497,7 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
+        "id": "GUIMerger",
         "name": "GUIMerger#1",
         "pos": {
           "x": 25.0,
@@ -496,7 +514,7 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
+        "id": "GUIMerger",
         "name": "GUIMerger#0",
         "pos": {
           "x": 25.0,
@@ -513,6 +531,38 @@ mograsim version: 0.1.3
         }
       },
       {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#14",
+        "pos": {
+          "x": 415.0,
+          "y": 465.0
+        }
+      },
+      {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#13",
+        "pos": {
+          "x": 365.0,
+          "y": 485.0
+        }
+      },
+      {
+        "id": "GUIxor",
+        "name": "DeserializedSubmodelComponent#12",
+        "pos": {
+          "x": 315.0,
+          "y": 505.0
+        }
+      },
+      {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#11",
+        "pos": {
+          "x": 265.0,
+          "y": 515.0
+        }
+      },
+      {
         "id": "GUIxor",
         "name": "DeserializedSubmodelComponent#10",
         "pos": {
@@ -521,7 +571,7 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#10",
         "pos": {
           "x": 340.0,
@@ -530,7 +580,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#9",
         "pos": {
           "x": 205.0,
@@ -539,7 +589,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#8",
         "pos": {
           "x": 205.0,
@@ -548,7 +598,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#5",
         "pos": {
           "x": 225.0,
@@ -557,7 +607,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#4",
         "pos": {
           "x": 225.0,
@@ -566,7 +616,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#7",
         "pos": {
           "x": 205.0,
@@ -575,7 +625,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#6",
         "pos": {
           "x": 205.0,
@@ -584,7 +634,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#1",
         "pos": {
           "x": 130.0,
@@ -593,7 +643,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#0",
         "pos": {
           "x": 190.0,
@@ -602,7 +652,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#3",
         "pos": {
           "x": 225.0,
@@ -611,7 +661,7 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#2",
         "pos": {
           "x": 225.0,
@@ -620,7 +670,16 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
+        "name": "GUISplitter#9",
+        "pos": {
+          "x": 240.0,
+          "y": 475.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
         "name": "GUISplitter#4",
         "pos": {
           "x": 395.0,
@@ -629,7 +688,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#3",
         "pos": {
           "x": 450.0,
@@ -638,7 +697,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#2",
         "pos": {
           "x": 395.0,
@@ -647,7 +706,7 @@ mograsim version: 0.1.3
         "params": 2
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#1",
         "pos": {
           "x": 555.0,
@@ -656,7 +715,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#8",
         "pos": {
           "x": 445.0,
@@ -665,7 +724,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#7",
         "pos": {
           "x": 445.0,
@@ -674,7 +733,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#6",
         "pos": {
           "x": 285.0,
@@ -683,7 +742,7 @@ mograsim version: 0.1.3
         "params": 3
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#5",
         "pos": {
           "x": 395.0,
@@ -692,7 +751,7 @@ mograsim version: 0.1.3
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#0",
         "pos": {
           "x": 10.0,
@@ -701,15 +760,24 @@ mograsim version: 0.1.3
         "params": 13
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.am2904.GUIAm2904RegCTInstrDecode",
+        "id": "GUIAm2904RegCTInstrDecode",
         "name": "GUIAm2904RegCTInstrDecode#0",
         "pos": {
           "x": 50.0,
-          "y": 230.0
+          "y": 240.0
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.am2904.GUIAm2904ShiftInstrDecode",
+        "id": "GUISplitter",
+        "name": "GUISplitter#10",
+        "pos": {
+          "x": 445.0,
+          "y": 410.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUIAm2904ShiftInstrDecode",
         "name": "GUIAm2904ShiftInstrDecode#0",
         "pos": {
           "x": 50.0,
@@ -1274,7 +1342,7 @@ mograsim version: 0.1.3
         },
         "pin2": {
           "compName": "GUIAm2904RegCTInstrDecode#0",
-          "pinName": "I"
+          "pinName": "I5-0"
         },
         "name": "unnamedWire#15",
         "path": []
@@ -1536,6 +1604,78 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#17",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#13",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#150",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#12",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#13",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#151",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#14",
+          "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#17",
+          "pinName": ""
+        },
+        "name": "unnamedWire#154",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#14",
+          "pinName": "S0"
+        },
+        "pin2": {
+          "compName": "GUISplitter#9",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#155",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#13",
+          "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Cx"
+        },
+        "name": "unnamedWire#152",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#13",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#14",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#153",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUINandGate#10",
           "pinName": "B"
         },
@@ -1544,6 +1684,18 @@ mograsim version: 0.1.3
           "pinName": ""
         },
         "name": "unnamedWire#81",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#14",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "C0"
+        },
+        "name": "unnamedWire#156",
         "path": []
       },
       {
@@ -1656,6 +1808,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "GUIMerger#4",
+          "pinName": "I1"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "O12"
+        },
+        "name": "unnamedWire#140",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUIMerger#0",
           "pinName": "I5"
         },
@@ -1664,6 +1828,18 @@ mograsim version: 0.1.3
           "pinName": "O5"
         },
         "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#8",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#11",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#143",
         "path": []
       },
       {
@@ -1680,6 +1856,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "GUISplitter#10",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#144",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUIMerger#0",
           "pinName": "I3"
         },
@@ -1688,6 +1876,18 @@ mograsim version: 0.1.3
           "pinName": "O3"
         },
         "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#4",
+          "pinName": "O"
+        },
+        "pin2": {
+          "compName": "GUIAm2904RegCTInstrDecode#0",
+          "pinName": "I12-11"
+        },
+        "name": "unnamedWire#141",
         "path": []
       },
       {
@@ -1704,6 +1904,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "GUIAm2904RegCTInstrDecode#0",
+          "pinName": "C0_MUX"
+        },
+        "pin2": {
+          "compName": "GUISplitter#9",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#142",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUIMerger#3",
           "pinName": "I1"
         },
@@ -1712,6 +1924,30 @@ mograsim version: 0.1.3
           "pinName": "Y2"
         },
         "name": "unnamedWire#90",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#11",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#12",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#147",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#12",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "GUISplitter#9",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#148",
         "path": []
       },
       {
@@ -1728,6 +1964,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "GUISplitter#10",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#11",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#145",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "DeserializedSubmodelComponent#3",
           "pinName": "Y3"
         },
@@ -1736,6 +1984,18 @@ mograsim version: 0.1.3
           "pinName": "I2"
         },
         "name": "unnamedWire#91",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#9",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#11",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#146",
         "path": []
       },
       {
@@ -1805,6 +2065,18 @@ mograsim version: 0.1.3
           "pinName": "S0"
         },
         "name": "unnamedWire#96",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#9",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#17",
+          "pinName": ""
+        },
+        "name": "unnamedWire#149",
         "path": []
       },
       {
@@ -2133,6 +2405,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O11"
+        },
+        "pin2": {
+          "compName": "GUIMerger#4",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#139",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "WireCrossPoint#12",
           "pinName": ""
         },
@@ -2433,7 +2717,7 @@ mograsim version: 0.1.3
       }
     ]
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "Am2904",
     "centerTextHeight": 5.0,
@@ -2441,8 +2725,8 @@ mograsim version: 0.1.3
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {},
     "atomicHighLevelStates": {}

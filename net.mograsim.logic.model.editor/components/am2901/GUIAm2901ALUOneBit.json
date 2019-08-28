@@ -532,7 +532,7 @@ mograsim version: 0.1.3
       }
     ]
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "GUIAm2901ALUOneBit",
     "centerTextHeight": 5.0,
@@ -540,5 +540,5 @@ mograsim version: 0.1.3
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer"
+  "outlineRendererSnippetID": "default"
 }

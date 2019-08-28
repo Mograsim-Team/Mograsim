@@ -6,7 +6,6 @@ import java.io.UncheckedIOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
@@ -19,7 +18,7 @@ import net.mograsim.logic.model.util.JsonHandler;
 public class IndirectGUIComponentCreator
 {
 	private static final Map<String, String> standardComponentIDs = new HashMap<>();
-	private static final Set<String> standardComponentIDSetUnmodifiable = Collections.unmodifiableSet(standardComponentIDs.keySet());
+	private static final Map<String, String> standardComponentIDsUnmodifiable = Collections.unmodifiableMap(standardComponentIDs);
 
 	private static final Map<String, ComponentSupplier> componentSuppliers = new HashMap<>();
 
@@ -56,9 +55,9 @@ public class IndirectGUIComponentCreator
 		standardComponentIDs.put(standardComponentID, associatedComponentID);
 	}
 
-	public static Set<String> getStandardComponentIDs()
+	public static Map<String, String> getStandardComponentIDs()
 	{
-		return standardComponentIDSetUnmodifiable;
+		return standardComponentIDsUnmodifiable;
 	}
 
 	public static void setComponentSupplier(String className, ComponentSupplier componentSupplier)
@@ -85,11 +84,7 @@ public class IndirectGUIComponentCreator
 	{
 		if (id != null)
 		{
-			String resolvedID;
-			if (id.startsWith("class:") || id.startsWith("file:"))
-				resolvedID = id;
-			else
-				resolvedID = standardComponentIDs.get(id);
+			String resolvedID = resolveID(id);
 			if (resolvedID != null)
 			{
 				if (resolvedID.startsWith("class:"))
@@ -116,6 +111,13 @@ public class IndirectGUIComponentCreator
 			}
 		}
 		throw new RuntimeException("Could not get component supplier for ID " + id);
+	}
+
+	public static String resolveID(String id)
+	{
+		if (id.startsWith("class:") || id.startsWith("file:"))
+			return id;
+		return standardComponentIDs.get(id);
 	}
 
 	private static void tryLoadComponentClass(String componentClassName)

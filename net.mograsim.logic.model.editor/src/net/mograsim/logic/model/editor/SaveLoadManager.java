@@ -1,6 +1,8 @@
 package net.mograsim.logic.model.editor;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
@@ -9,7 +11,10 @@ import org.eclipse.swt.widgets.Shell;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
+import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
 
 public class SaveLoadManager
 {
@@ -53,8 +58,18 @@ public class SaveLoadManager
 			{
 				if (Editor.identifierPerComponent.containsKey(c))
 					return Editor.identifierPerComponent.get(c);
-				return "class:" + c.getClass().getCanonicalName();
+				return getStandardID(c, IndirectGUIComponentCreator.getStandardComponentIDs(), true);
 			};
+			idGetter.symbolRendererIDs = h -> getStandardID(h,
+					SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getStandardSnippetIDs());
+			idGetter.outlineRendererIDs = h -> getStandardID(h,
+					SubmodelComponentSnippetSuppliers.outlineRendererSupplier.getStandardSnippetIDs());
+			idGetter.highLevelStateHandlerIDs = h -> getStandardID(h,
+					SubmodelComponentSnippetSuppliers.highLevelStateHandlerSupplier.getStandardSnippetIDs());
+			idGetter.atomicHighLevelStateHandlerIDs = h -> getStandardID(h,
+					StandardHighLevelStateHandlerSnippetSuppliers.atomicHandlerSupplier.getStandardSnippetIDs());
+			idGetter.subcomponentHighLevelStateHandlerIDs = h -> getStandardID(h,
+					StandardHighLevelStateHandlerSnippetSuppliers.subcomponentHandlerSupplier.getStandardSnippetIDs());
 			SubmodelComponentSerializer.serialize(editor.toBeEdited, idGetter, savePath);
 		}
 		catch (IOException e)
@@ -63,6 +78,18 @@ public class SaveLoadManager
 			System.err.println("Failed to save component!");
 			e.printStackTrace();
 		}
+	}
+
+	private static String getStandardID(Object o, Map<String, String> standardIDs)
+	{
+		return getStandardID(o, standardIDs, false);
+	}
+
+	private static String getStandardID(Object o, Map<String, String> standardIDs, boolean standardIDsHaveClassConcatenated)
+	{
+		String verboseID = (standardIDsHaveClassConcatenated ? "class:" : "") + o.getClass().getCanonicalName();
+		return standardIDs.entrySet().stream().filter(e -> e.getValue().equals(verboseID)).map(Entry::getKey).findAny()
+				.orElseGet(() -> (standardIDsHaveClassConcatenated ? "" : "class:") + verboseID);
 	}
 
 	public static void openLoadDialog() throws IOException

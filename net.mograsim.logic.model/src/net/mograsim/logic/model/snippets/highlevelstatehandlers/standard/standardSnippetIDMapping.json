@@ -5,6 +5,7 @@ mograsim version: 0.1.3
   },
   "standardAtomicHandlerSuppliers": {
     "delegating": "net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.DelegatingAtomicHighLevelStateHandler",
+    "wireForcing": "net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.WireForcingAtomicHighLevelStateHandler",
     "bitVectorSplitting": "net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.BitVectorSplittingAtomicHighLevelStateHandler"
   }
 }
