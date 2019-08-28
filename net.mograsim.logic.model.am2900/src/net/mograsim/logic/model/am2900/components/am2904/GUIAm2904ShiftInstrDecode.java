@@ -3,7 +3,6 @@ package net.mograsim.logic.model.am2900.components.am2904;
 import static net.mograsim.logic.core.types.Bit.ONE;
 import static net.mograsim.logic.core.types.Bit.U;
 import static net.mograsim.logic.core.types.Bit.X;
-import static net.mograsim.logic.core.types.Bit.Z;
 import static net.mograsim.logic.core.types.Bit.ZERO;
 
 import java.util.Map;
@@ -100,8 +99,8 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 			}
 		if (IAsInt < 16)
 		{
-			readWriteEnds.get("SIO0_MUX").feedSignals(Z, Z, Z);
-			readWriteEnds.get("QIO0_MUX").feedSignals(Z, Z, Z);
+			readWriteEnds.get("SIO0_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("QIO0_MUX").feedSignals(X, X, X);
 			switch (IAsInt)
 			{
 			case 0:
@@ -148,7 +147,7 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 				readWriteEnds.get("QIOn_MUX").feedSignals(ZERO, ZERO, ONE);
 				break;
 			case 2:
-				readWriteEnds.get("QIOn_MUX").feedSignals(ONE, ONE, Z);
+				readWriteEnds.get("QIOn_MUX").feedSignals(ONE, ONE, X);
 				break;
 			case 3:
 			case 4:
@@ -160,20 +159,20 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 			case 13:
 			case 14:
 			case 15:
-				readWriteEnds.get("QIOn_MUX").feedSignals(ZERO, ONE, Z);
+				readWriteEnds.get("QIOn_MUX").feedSignals(ZERO, ONE, X);
 				break;
 			case 8:
 			case 9:
 			case 10:
-				readWriteEnds.get("QIOn_MUX").feedSignals(ONE, ZERO, Z);
+				readWriteEnds.get("QIOn_MUX").feedSignals(ONE, ZERO, X);
 				break;
 			default:
 				throw new IllegalStateException("can't happen");
 			}
 		} else
 		{
-			readWriteEnds.get("SIOn_MUX").feedSignals(Z, Z, Z);
-			readWriteEnds.get("QIOn_MUX").feedSignals(Z, Z, Z);
+			readWriteEnds.get("SIOn_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("QIOn_MUX").feedSignals(X, X, X);
 			switch (IAsInt)
 			{
 			case 16:
@@ -192,15 +191,15 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 			case 29:
 			case 30:
 			case 31:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ZERO, Z);
+				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ZERO, X);
 				break;
 			case 24:
 			case 26:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ONE, Z);
+				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ONE, X);
 				break;
 			case 25:
 			case 27:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ZERO, ONE, Z);
+				readWriteEnds.get("SIO0_MUX").feedSignals(ZERO, ONE, X);
 				break;
 			default:
 				throw new IllegalStateException("can't happen");
@@ -223,15 +222,15 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 			case 24:
 			case 25:
 			case 26:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ZERO, Z);
+				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ZERO, X);
 				break;
 			case 28:
 			case 30:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ONE, Z);
+				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ONE, X);
 				break;
 			case 29:
 			case 31:
-				readWriteEnds.get("QIO0_MUX").feedSignals(ZERO, ONE, Z);
+				readWriteEnds.get("QIO0_MUX").feedSignals(ZERO, ONE, X);
 				break;
 			default:
 				throw new IllegalStateException("can't happen");
@@ -259,7 +258,7 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 		case 30:
 		case 31:
 			readWriteEnds.get("MC_EN").feedSignals(ZERO);
-			readWriteEnds.get("MC_MUX").feedSignals(Z, Z);
+			readWriteEnds.get("MC_MUX").feedSignals(X, X);
 			break;
 		case 2:
 		case 8:
@@ -282,7 +281,7 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 		case 28:
 		case 29:
 			readWriteEnds.get("MC_EN").feedSignals(ONE);
-			readWriteEnds.get("MC_MUX").feedSignals(ONE, Z);
+			readWriteEnds.get("MC_MUX").feedSignals(ONE, X);
 			break;
 		default:
 			throw new IllegalStateException("can't happen");

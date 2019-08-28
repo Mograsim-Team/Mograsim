@@ -175,7 +175,9 @@ public final class Editor
 
 	public static String getIdentifier(GUIComponent c)
 	{
-		return identifierPerComponent.get(c);
+		if (identifierPerComponent.containsKey(c))
+			return identifierPerComponent.get(c);
+		return "class:" + c.getClass().getCanonicalName();
 	}
 
 	public void duplicate()
