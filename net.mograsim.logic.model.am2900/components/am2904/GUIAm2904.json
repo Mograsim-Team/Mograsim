@@ -299,69 +299,6 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#1",
-        "pos": {
-          "x": 180.0,
-          "y": 135.0
-        },
-        "params": 4
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#0",
-        "pos": {
-          "x": 165.0,
-          "y": 150.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#3",
-        "pos": {
-          "x": 335.0,
-          "y": 270.0
-        },
-        "params": 4
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#2",
-        "pos": {
-          "x": 295.0,
-          "y": 120.0
-        },
-        "params": 4
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#5",
-        "pos": {
-          "x": 530.0,
-          "y": 100.0
-        },
-        "params": 4
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#4",
-        "pos": {
-          "x": 150.0,
-          "y": 160.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#7",
-        "pos": {
-          "x": 215.0,
-          "y": 180.0
-        },
-        "params": 1
-      },
-      {
         "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#0",
         "pos": {
@@ -374,15 +311,6 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#6",
-        "pos": {
-          "x": 120.0,
-          "y": 15.0
-        },
-        "params": 1
-      },
-      {
         "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#1",
         "pos": {
@@ -393,24 +321,6 @@ mograsim version: 0.1.3
           "logicWidth": 1,
           "orientation": "RIGHT"
         }
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#9",
-        "pos": {
-          "x": 215.0,
-          "y": 200.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#8",
-        "pos": {
-          "x": 215.0,
-          "y": 160.0
-        },
-        "params": 1
       },
       {
         "id": "GUIAm2904muSR",
@@ -565,80 +475,6 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "GUImux2",
-        "name": "DeserializedSubmodelComponent#16",
-        "pos": {
-          "x": 435.0,
-          "y": 655.0
-        }
-      },
-      {
-        "id": "GUImux2",
-        "name": "DeserializedSubmodelComponent#15",
-        "pos": {
-          "x": 435.0,
-          "y": 575.0
-        }
-      },
-      {
-        "id": "GUImux1",
-        "name": "DeserializedSubmodelComponent#14",
-        "pos": {
-          "x": 415.0,
-          "y": 465.0
-        }
-      },
-      {
-        "id": "GUImux1",
-        "name": "DeserializedSubmodelComponent#13",
-        "pos": {
-          "x": 365.0,
-          "y": 485.0
-        }
-      },
-      {
-        "id": "GUINandGate",
-        "name": "GUINandGate#11",
-        "pos": {
-          "x": 60.0,
-          "y": 570.0
-        },
-        "params": 1
-      },
-      {
-        "id": "GUIxor",
-        "name": "DeserializedSubmodelComponent#12",
-        "pos": {
-          "x": 315.0,
-          "y": 505.0
-        }
-      },
-      {
-        "id": "GUImux1",
-        "name": "DeserializedSubmodelComponent#11",
-        "pos": {
-          "x": 265.0,
-          "y": 515.0
-        }
-      },
-      {
-        "id": "GUIxor",
-        "name": "DeserializedSubmodelComponent#10",
-        "pos": {
-          "x": 500.0,
-          "y": 360.0
-        }
-      },
-      {
-        "id": "GUINandGate",
-        "name": "GUINandGate#10",
-        "pos": {
-          "x": 340.0,
-          "y": 120.0
-        },
-        "params": 1
-      },
-      {
         "id": "GUINandGate",
         "name": "GUINandGate#9",
         "pos": {
@@ -693,93 +529,12 @@ mograsim version: 0.1.3
         "params": 1
       },
       {
-        "id": "GUINandGate",
-        "name": "GUINandGate#1",
-        "pos": {
-          "x": 130.0,
-          "y": 5.0
-        },
-        "params": 1
-      },
-      {
-        "id": "GUINandGate",
-        "name": "GUINandGate#0",
-        "pos": {
-          "x": 190.0,
-          "y": 145.0
-        },
-        "params": 1
-      },
-      {
-        "id": "GUINandGate",
-        "name": "GUINandGate#3",
-        "pos": {
-          "x": 225.0,
-          "y": 215.0
-        },
-        "params": 1
-      },
-      {
-        "id": "GUINandGate",
-        "name": "GUINandGate#2",
-        "pos": {
-          "x": 225.0,
-          "y": 195.0
-        },
-        "params": 1
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#9",
-        "pos": {
-          "x": 240.0,
-          "y": 475.0
-        },
-        "params": 4
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#4",
-        "pos": {
-          "x": 395.0,
-          "y": 225.0
-        },
-        "params": 4
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#3",
-        "pos": {
-          "x": 450.0,
-          "y": 175.0
-        },
-        "params": 4
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#2",
-        "pos": {
-          "x": 395.0,
-          "y": 195.0
-        },
-        "params": 2
-      },
-      {
         "id": "GUImux3",
         "name": "DeserializedSubmodelComponent#23",
         "pos": {
           "x": 300.0,
           "y": 715.0
         }
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#1",
-        "pos": {
-          "x": 555.0,
-          "y": 80.0
-        },
-        "params": 4
       },
       {
         "id": "GUImux2",
@@ -790,57 +545,12 @@ mograsim version: 0.1.3
         }
       },
       {
-        "id": "GUISplitter",
-        "name": "GUISplitter#8",
-        "pos": {
-          "x": 445.0,
-          "y": 370.0
-        },
-        "params": 4
-      },
-      {
         "id": "GUIxor",
         "name": "DeserializedSubmodelComponent#21",
         "pos": {
           "x": 250.0,
           "y": 820.0
         }
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#7",
-        "pos": {
-          "x": 445.0,
-          "y": 330.0
-        },
-        "params": 4
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#6",
-        "pos": {
-          "x": 285.0,
-          "y": 320.0
-        },
-        "params": 3
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#5",
-        "pos": {
-          "x": 395.0,
-          "y": 265.0
-        },
-        "params": 4
-      },
-      {
-        "id": "GUISplitter",
-        "name": "GUISplitter#0",
-        "pos": {
-          "x": 10.0,
-          "y": 245.0
-        },
-        "params": 13
       },
       {
         "id": "WireCrossPoint",
@@ -933,12 +643,13 @@ mograsim version: 0.1.3
         "params": 3
       },
       {
-        "id": "GUIAm2904RegCTInstrDecode",
-        "name": "GUIAm2904RegCTInstrDecode#0",
+        "id": "GUISplitter",
+        "name": "GUISplitter#15",
         "pos": {
-          "x": 50.0,
-          "y": 240.0
-        }
+          "x": 120.0,
+          "y": 455.0
+        },
+        "params": 2
       },
       {
         "id": "GUISplitter",
@@ -977,14 +688,6 @@ mograsim version: 0.1.3
         "params": 3
       },
       {
-        "id": "GUIAm2904ShiftInstrDecode",
-        "name": "GUIAm2904ShiftInstrDecode#0",
-        "pos": {
-          "x": 50.0,
-          "y": 360.0
-        }
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#21",
         "pos": {
@@ -1019,6 +722,328 @@ mograsim version: 0.1.3
           "y": 540.0
         },
         "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 180.0,
+          "y": 135.0
+        },
+        "params": 4
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 165.0,
+          "y": 150.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "pos": {
+          "x": 335.0,
+          "y": 270.0
+        },
+        "params": 4
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 295.0,
+          "y": 120.0
+        },
+        "params": 4
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#5",
+        "pos": {
+          "x": 530.0,
+          "y": 100.0
+        },
+        "params": 4
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#4",
+        "pos": {
+          "x": 150.0,
+          "y": 160.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#7",
+        "pos": {
+          "x": 215.0,
+          "y": 180.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#6",
+        "pos": {
+          "x": 120.0,
+          "y": 15.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#9",
+        "pos": {
+          "x": 215.0,
+          "y": 200.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#8",
+        "pos": {
+          "x": 215.0,
+          "y": 160.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#18",
+        "pos": {
+          "x": 135.0,
+          "y": 470.0
+        }
+      },
+      {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#17",
+        "pos": {
+          "x": 190.0,
+          "y": 460.0
+        }
+      },
+      {
+        "id": "GUImux2",
+        "name": "DeserializedSubmodelComponent#16",
+        "pos": {
+          "x": 435.0,
+          "y": 655.0
+        }
+      },
+      {
+        "id": "GUImux2",
+        "name": "DeserializedSubmodelComponent#15",
+        "pos": {
+          "x": 435.0,
+          "y": 575.0
+        }
+      },
+      {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#14",
+        "pos": {
+          "x": 415.0,
+          "y": 465.0
+        }
+      },
+      {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#13",
+        "pos": {
+          "x": 365.0,
+          "y": 485.0
+        }
+      },
+      {
+        "id": "GUINandGate",
+        "name": "GUINandGate#11",
+        "pos": {
+          "x": 60.0,
+          "y": 570.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIxor",
+        "name": "DeserializedSubmodelComponent#12",
+        "pos": {
+          "x": 315.0,
+          "y": 505.0
+        }
+      },
+      {
+        "id": "GUImux1",
+        "name": "DeserializedSubmodelComponent#11",
+        "pos": {
+          "x": 265.0,
+          "y": 515.0
+        }
+      },
+      {
+        "id": "GUIxor",
+        "name": "DeserializedSubmodelComponent#10",
+        "pos": {
+          "x": 500.0,
+          "y": 360.0
+        }
+      },
+      {
+        "id": "GUINandGate",
+        "name": "GUINandGate#10",
+        "pos": {
+          "x": 340.0,
+          "y": 120.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUINandGate",
+        "name": "GUINandGate#1",
+        "pos": {
+          "x": 130.0,
+          "y": 5.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUINandGate",
+        "name": "GUINandGate#0",
+        "pos": {
+          "x": 190.0,
+          "y": 145.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUINandGate",
+        "name": "GUINandGate#3",
+        "pos": {
+          "x": 225.0,
+          "y": 215.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUINandGate",
+        "name": "GUINandGate#2",
+        "pos": {
+          "x": 225.0,
+          "y": 195.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#9",
+        "pos": {
+          "x": 240.0,
+          "y": 475.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#4",
+        "pos": {
+          "x": 395.0,
+          "y": 225.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#3",
+        "pos": {
+          "x": 450.0,
+          "y": 175.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#2",
+        "pos": {
+          "x": 395.0,
+          "y": 195.0
+        },
+        "params": 2
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#1",
+        "pos": {
+          "x": 555.0,
+          "y": 80.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#8",
+        "pos": {
+          "x": 445.0,
+          "y": 370.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#7",
+        "pos": {
+          "x": 445.0,
+          "y": 330.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#6",
+        "pos": {
+          "x": 285.0,
+          "y": 320.0
+        },
+        "params": 3
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#5",
+        "pos": {
+          "x": 395.0,
+          "y": 265.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#0",
+        "pos": {
+          "x": 10.0,
+          "y": 245.0
+        },
+        "params": 13
+      },
+      {
+        "id": "GUIAm2904RegCTInstrDecode",
+        "name": "GUIAm2904RegCTInstrDecode#0",
+        "pos": {
+          "x": 50.0,
+          "y": 240.0
+        }
+      },
+      {
+        "id": "GUIAm2904ShiftInstrDecode",
+        "name": "GUIAm2904ShiftInstrDecode#0",
+        "pos": {
+          "x": 50.0,
+          "y": 360.0
+        }
       }
     ],
     "innerWires": [
@@ -2344,6 +2369,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "DeserializedSubmodelComponent#18",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#17",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#221",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUISplitter#4",
           "pinName": "O1"
         },
@@ -2352,6 +2389,18 @@ mograsim version: 0.1.3
           "pinName": "I0_2"
         },
         "name": "unnamedWire#103",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#18",
+          "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#20",
+          "pinName": ""
+        },
+        "name": "unnamedWire#224",
         "path": []
       },
       {
@@ -2368,6 +2417,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#18",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#225",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUISplitter#3",
           "pinName": "I"
         },
@@ -2380,6 +2441,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "DeserializedSubmodelComponent#17",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "COVD_V"
+        },
+        "name": "unnamedWire#222",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUISplitter#4",
           "pinName": "O0"
         },
@@ -2388,6 +2461,18 @@ mograsim version: 0.1.3
           "pinName": "I0_1"
         },
         "name": "unnamedWire#102",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#17",
+          "pinName": "I1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
+        },
+        "name": "unnamedWire#223",
         "path": []
       },
       {
@@ -2412,6 +2497,18 @@ mograsim version: 0.1.3
           "pinName": "I1_1"
         },
         "name": "unnamedWire#107",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#15",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#17",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#228",
         "path": []
       },
       {
@@ -2452,6 +2549,18 @@ mograsim version: 0.1.3
       },
       {
         "pin1": {
+          "compName": "GUIAm2904ShiftInstrDecode#0",
+          "pinName": "MC_MUX"
+        },
+        "pin2": {
+          "compName": "GUISplitter#15",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#226",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "GUISplitter#1",
           "pinName": "O2"
         },
@@ -2472,6 +2581,18 @@ mograsim version: 0.1.3
           "pinName": ""
         },
         "name": "unnamedWire#106",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#15",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#18",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#227",
         "path": []
       },
       {
