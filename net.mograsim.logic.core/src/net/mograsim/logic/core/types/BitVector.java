@@ -477,12 +477,4 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 			}
 		};
 	}
-
-	public static void main(String[] args)
-	{
-//		System.out.println(new BigInteger(new byte[] { 0b1000000, 0b00000000 }).toString(2));
-//		System.out.println(BitVector.SINGLE_1.concat(BitVector.of(Bit.ZERO, 14)).getUnsignedValue().toString(2));
-		System.out.println(new BigInteger(new byte[] { 0b0000000, 0b00000101 }).toString(2));
-		System.out.println(BitVector.of(Bit.ZERO, 7).concat(BitVector.of(Bit.ONE, Bit.ZERO, Bit.ONE)).getUnsignedValue().toString(2));
-	}
 }
