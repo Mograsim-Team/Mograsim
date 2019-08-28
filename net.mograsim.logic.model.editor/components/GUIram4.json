@@ -3331,7 +3331,7 @@ mograsim version: 0.1.3
       }
     ]
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "GUIram4",
     "centerTextHeight": 5.0,
@@ -3339,141 +3339,141 @@ mograsim version: 0.1.3
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {
       "c00": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#0"
         }
       },
       "c11": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#3"
         }
       },
       "c10": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#2"
         }
       },
       "c01": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#1"
         }
       },
       "c1000": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#0",
           "prefix": "c10"
         }
       },
       "c1011": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#3",
           "prefix": "c10"
         }
       },
       "c1110": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#2",
           "prefix": "c11"
         }
       },
       "c1001": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#1",
           "prefix": "c10"
         }
       },
       "c1100": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#0",
           "prefix": "c11"
         }
       },
       "c1111": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#3",
           "prefix": "c11"
         }
       },
       "c0000": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#0",
           "prefix": "c00"
         }
       },
       "c0011": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#3",
           "prefix": "c00"
         }
       },
       "c0110": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#2",
           "prefix": "c01"
         }
       },
       "c0010": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#2",
           "prefix": "c00"
         }
       },
       "c1010": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#2",
           "prefix": "c10"
         }
       },
       "c0101": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#1",
           "prefix": "c01"
         }
       },
       "c0001": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#1",
           "prefix": "c00"
         }
       },
       "c0100": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#0",
           "prefix": "c01"
         }
       },
       "c0111": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#3",
           "prefix": "c01"
         }
       },
       "c1101": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIram2#1",
           "prefix": "c11"
@@ -3482,7 +3482,7 @@ mograsim version: 0.1.3
     },
     "atomicHighLevelStates": {
       "q": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.BitVectorSplittingAtomicHighLevelStateHandler",
+        "id": "bitVectorSplitting",
         "params": {
           "vectorPartTargets": [
             "c11.q",
