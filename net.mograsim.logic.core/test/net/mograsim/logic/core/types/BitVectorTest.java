@@ -44,9 +44,10 @@ class BitVectorTest
 		assertEquals(BigInteger.valueOf(0b101), BitVector.parse("101").getUnsignedValue());
 		assertEquals(BigInteger.valueOf(0b01010), BitVector.parse("01010").getUnsignedValue());
 		assertEquals(BigInteger.valueOf(0), BitVector.parse("0000").getUnsignedValue());
+		assertEquals(BigInteger.valueOf(0b0000000101), BitVector.parse("0000000101").getUnsignedValue());
+		assertEquals(BigInteger.valueOf(0b1010000000), BitVector.parse("1010000000").getUnsignedValue());
 
 		assertThrows(NumberFormatException.class, () -> BitVector.parse("00X1").getUnsignedValue());
-
 	}
 
 	@Test

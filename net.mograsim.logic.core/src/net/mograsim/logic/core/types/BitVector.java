@@ -420,13 +420,13 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		if (!isBinary())
 			throw new NumberFormatException(this + " is not binary");
 		byte[] bytes = new byte[(bits.length / 8 + (bits.length % 8 == 0 ? 0 : 1)) + 1];
-		for (int i = 0; i < bits.length; i++)
+		for (int i = bits.length - 1; i >= 0; i--)
 		{
-			if (Bit.ONE == bits[i])
+			if (Bit.ONE == bits[bits.length - i - 1])
 			{
 				try
 				{
-					bytes[(i / 8) + 1] |= 1 << (i % 8);
+					bytes[bytes.length - (i / 8) - 1] |= 1 << (i % 8);
 				}
 				catch (IndexOutOfBoundsException e)
 				{
@@ -476,5 +476,13 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 				return pos != length();
 			}
 		};
+	}
+
+	public static void main(String[] args)
+	{
+//		System.out.println(new BigInteger(new byte[] { 0b1000000, 0b00000000 }).toString(2));
+//		System.out.println(BitVector.SINGLE_1.concat(BitVector.of(Bit.ZERO, 14)).getUnsignedValue().toString(2));
+		System.out.println(new BigInteger(new byte[] { 0b0000000, 0b00000101 }).toString(2));
+		System.out.println(BitVector.of(Bit.ZERO, 7).concat(BitVector.of(Bit.ONE, Bit.ZERO, Bit.ONE)).getUnsignedValue().toString(2));
 	}
 }
