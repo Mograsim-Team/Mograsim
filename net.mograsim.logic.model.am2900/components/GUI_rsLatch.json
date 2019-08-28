@@ -219,7 +219,7 @@ mograsim version: 0.1.3
       }
     ]
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "_rsLatch",
     "centerTextHeight": 5.0,
@@ -227,13 +227,13 @@ mograsim version: 0.1.3
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {},
     "atomicHighLevelStates": {
       "q": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.WireForcingAtomicHighLevelStateHandler",
+        "id": "wireForcing",
         "params": {
           "wiresToForce": [
             "q"
