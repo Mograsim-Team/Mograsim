@@ -16,6 +16,11 @@ public class BooleanImmediate implements MicroInstructionParameter
 	{
 		return value ? BitVector.SINGLE_1 : BitVector.SINGLE_0;
 	}
+	
+	public boolean getBooleanValue()
+	{
+		return value;
+	}
 
 	@Override
 	public ParameterType getType()
@@ -47,5 +52,9 @@ public class BooleanImmediate implements MicroInstructionParameter
 		return true;
 	}
 	
-	
+	@Override
+	public String toString()
+	{
+		return value ? "H" : "L";
+	}
 }
