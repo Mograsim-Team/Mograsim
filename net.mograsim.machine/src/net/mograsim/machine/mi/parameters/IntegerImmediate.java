@@ -57,4 +57,18 @@ public final class IntegerImmediate implements MicroInstructionParameter
 			return false;
 		return true;
 	}
+
+	/**
+	 * @return The value of this IntegerImmediate as an unsigned BigInteger
+	 */
+	public BigInteger getValueAsBigInteger()
+	{
+		return value.getUnsignedValue();
+	}
+	
+	@Override
+	public String toString()
+	{
+		return getValueAsBigInteger().toString();
+	}
 }
