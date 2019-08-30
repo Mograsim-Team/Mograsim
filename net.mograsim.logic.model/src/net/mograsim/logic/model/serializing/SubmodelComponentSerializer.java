@@ -1,29 +1,19 @@
 package net.mograsim.logic.model.serializing;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 
 import com.google.gson.JsonElement;
 
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams.InterfacePinParams;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerComponentParams;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams;
-import net.mograsim.logic.model.serializing.SubmodelComponentParams.SubmodelParameters.InnerWireParams.InnerPinParams;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
 import net.mograsim.logic.model.util.JsonHandler;
+import net.mograsim.logic.model.util.Version;
 
 /**
  * Creates {@link SubmodelComponent}s from {@link SubmodelComponentParams}
@@ -33,6 +23,7 @@ import net.mograsim.logic.model.util.JsonHandler;
  */
 public final class SubmodelComponentSerializer
 {
+	public static final Version CURRENT_JSON_VERSION = Version.parseSemver("0.1.4");
 	// convenience methods
 
 	/**
@@ -128,8 +119,8 @@ public final class SubmodelComponentSerializer
 	}
 
 	/**
-	 * Like {@link #serialize(SubmodelComponent, Function)}, but instead of returning the generated {@link SubmodelComponentParams} they are
-	 * written to a file at the given path.
+	 * Like {@link #serialize(SubmodelComponent, IdentifierGetter)}, but instead of returning the generated {@link SubmodelComponentParams}
+	 * they are written to a file at the given path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -139,7 +130,7 @@ public final class SubmodelComponentSerializer
 	}
 
 	/**
-	 * {@link #serialize(SubmodelComponent, Function)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
+	 * {@link #serialize(SubmodelComponent, IdentifierGetter)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
 	 * {@link IdentifierGetter#IdentifierGetter() default constructor})
 	 * 
 	 * @author Daniel Kirschten
@@ -156,8 +147,8 @@ public final class SubmodelComponentSerializer
 	 * When serializing a <code>SubmodelComponent</code>, it is undesired for every subcomponent to be serialized with its complete inner
 	 * structure. Instead, these sub-<code>SubmodelComponent</code>s should be serialized with the ID and params which were used to
 	 * determine the <code>SubmodelComponentParams</code> defining the sub-<code>SubmodelComponent</code>. Because of this, it is possible
-	 * to override the ID and params used in {@link #serialize(SubmodelComponent, Function) serialize(...)} to describe this subcomponent.
-	 * See there for details.
+	 * to override the ID and params used in {@link #serialize(SubmodelComponent, IdentifierGetter) serialize(...)} to describe this
+	 * subcomponent. See there for details.
 	 * 
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
@@ -168,28 +159,13 @@ public final class SubmodelComponentSerializer
 	{
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model, name, idForSerializingOverride,
 				paramsForSerializingOverride);
-		comp.setSubmodelScale(params.submodel.innerScale);
+		comp.setSubmodelScale(params.innerScale);
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
 			comp.addSubmodelInterface(
 					new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y));
-		SubmodelParameters submodelParams = params.submodel;
 		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
-		Map<String, GUIComponent> componentsByName = submodelModifiable.getComponentsByName();
-		GUIComponent[] components = new GUIComponent[submodelParams.subComps.length];
-		for (int i = 0; i < components.length; i++)
-		{
-			InnerComponentParams cParams = submodelParams.subComps[i];
-			components[i] = IndirectGUIComponentCreator.createComponent(submodelModifiable, cParams.id, cParams.params, cParams.name);
-			components[i].moveTo(cParams.pos.x, cParams.pos.y);
-		}
-
-		for (int i = 0; i < submodelParams.innerWires.length; i++)
-		{
-			InnerWireParams innerWire = submodelParams.innerWires[i];
-			new GUIWire(submodelModifiable, innerWire.name, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
-					componentsByName.get(innerWire.pin2.compName).getPin(innerWire.pin2.pinName), innerWire.path);
-		}
+		ViewModelSerializer.deserialize(comp.getSubmodelModifiable(), params.submodel);
 		comp.setSymbolRenderer(SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getSnippetSupplier(params.symbolRendererSnippetID)
 				.create(comp, params.symbolRendererParams));
 		comp.setOutlineRenderer(SubmodelComponentSnippetSuppliers.outlineRendererSupplier
@@ -201,15 +177,8 @@ public final class SubmodelComponentSerializer
 
 	/**
 	 * Returns {@link SubmodelComponentParams}, which describe this {@link SubmodelComponent}. <br>
-	 * Subcomponents are serialized in the following way: <br>
-	 * If a subcomponent is a <code>SubmodelComponent</code> which has been deserialized, and it has an
-	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set (e.g. non-null; see
-	 * {@link #deserialize(ViewModelModifiable, SubmodelComponentParams, String, String, JsonElement) deserialize(...)}), this ID and the
-	 * component's {@link DeserializedSubmodelComponent#paramsForSerializingOverride paramsForSerializingOverride} are written.<br>
-	 * If this case doesn't apply (e.g. if the subcomponent is not a <code>SubmodelComponent</code>; or it is a
-	 * <code>SubmodelComponent</code>, but hasn't been deserialized; or it has no
-	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set), the ID defined by <code>idGetter</code>
-	 * and the params obtained by {@link GUIComponent#getParamsForSerializing() getParams()} are written.<br>
+	 * See {@link ViewModelSerializer#serialize(net.mograsim.logic.model.model.ViewModel, IdentifierGetter)
+	 * ViewModelSerializer.serialize(...)} for how subcomponents are serialized.<br>
 	 * CodeSnippets are serialized using the ID defined by <code>idGetter</code> and the params obtained by the respective
 	 * <coce>getParamsForSerializing</code> methods ({@link Renderer#getParamsForSerializing()}).
 	 * 
@@ -218,57 +187,9 @@ public final class SubmodelComponentSerializer
 	 */
 	public static SubmodelComponentParams serialize(SubmodelComponent comp, IdentifierGetter idGetter)
 	{
-		SubmodelParameters submodelParams = new SubmodelParameters();
-		submodelParams.innerScale = comp.getSubmodelScale();
-
-		Map<String, GUIComponent> components = new HashMap<>(comp.submodel.getComponentsByName());
-		components.remove(SubmodelComponent.SUBMODEL_INTERFACE_NAME);
-		InnerComponentParams[] componentParams = new InnerComponentParams[components.size()];
-		int i1 = 0;
-		for (GUIComponent innerComponent : components.values())
-		{
-			InnerComponentParams innerComponentParams = new InnerComponentParams();
-			componentParams[i1] = innerComponentParams;
-			innerComponentParams.pos = new Point(innerComponent.getPosX(), innerComponent.getPosY());
-			DeserializedSubmodelComponent innerCompCasted;
-			if (innerComponent instanceof DeserializedSubmodelComponent
-					&& (innerCompCasted = (DeserializedSubmodelComponent) innerComponent).idForSerializingOverride != null)
-			{
-				innerComponentParams.id = innerCompCasted.idForSerializingOverride;
-				innerComponentParams.params = innerCompCasted.paramsForSerializingOverride;
-			} else
-			{
-				innerComponentParams.id = idGetter.componentIDs.apply(innerComponent);
-				innerComponentParams.params = innerComponent.getParamsForSerializing(idGetter);
-			}
-			innerComponentParams.name = innerComponent.name;
-			i1++;
-		}
-		submodelParams.subComps = componentParams;
-
-		Collection<GUIWire> wires = comp.submodel.getWiresByName().values();
-		InnerWireParams wireParams[] = new InnerWireParams[wires.size()];
-		i1 = 0;
-		for (GUIWire innerWire : wires)
-		{
-			InnerWireParams innerWireParams = new InnerWireParams();
-			wireParams[i1] = innerWireParams;
-			InnerPinParams pin1Params = new InnerPinParams(), pin2Params = new InnerPinParams();
-
-			pin1Params.pinName = innerWire.getPin1().name;
-			pin1Params.compName = innerWire.getPin1().component.name;
-			pin2Params.pinName = innerWire.getPin2().name;
-			pin2Params.compName = innerWire.getPin2().component.name;
-			innerWireParams.name = innerWire.name;
-			innerWireParams.pin1 = pin1Params;
-			innerWireParams.pin2 = pin2Params;
-			innerWireParams.path = innerWire.getPath();
-			i1++;
-		}
-		submodelParams.innerWires = wireParams;
-
-		SubmodelComponentParams params = new SubmodelComponentParams();
-		params.submodel = submodelParams;
+		SubmodelComponentParams params = new SubmodelComponentParams(CURRENT_JSON_VERSION);
+		params.innerScale = comp.getSubmodelScale();
+		params.submodel = ViewModelSerializer.serialize(comp.submodel, idGetter);
 
 		params.width = comp.getWidth();
 		params.height = comp.getHeight();

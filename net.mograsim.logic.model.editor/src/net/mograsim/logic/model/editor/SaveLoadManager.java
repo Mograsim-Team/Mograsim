@@ -97,7 +97,8 @@ public class SaveLoadManager
 		fdShell.dispose();
 		if (result != null)
 		{
-			new Editor((DeserializedSubmodelComponent) SubmodelComponentSerializer.deserialize(new ViewModelModifiable(), result));
+			new Editor((DeserializedSubmodelComponent) IndirectGUIComponentCreator.createComponent(new ViewModelModifiable(),
+					"file:" + result));
 		}
 	}
 }

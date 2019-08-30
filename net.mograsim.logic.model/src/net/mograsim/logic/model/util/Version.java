@@ -1,8 +1,17 @@
 package net.mograsim.logic.model.util;
 
+import java.io.IOException;
+
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import net.mograsim.logic.model.util.Version.VersionJSONAdapter;
+
+@JsonAdapter(VersionJSONAdapter.class)
 public final class Version
 {
-	public final static Version jsonCompVersion = new Version(0, 1, 3);
 	public final int major, minor, patch;
 
 	public Version(int major, int minor, int patch)
@@ -21,7 +30,19 @@ public final class Version
 	@Override
 	public String toString()
 	{
+		return toSemverString();
+	}
+
+	public String toSemverString()
+	{
 		return major + "." + minor + "." + patch;
+	}
+
+	public static Version parseSemver(String semver)
+	{
+		String[] semverParts = semver.split("\\.");
+		return new Version(Integer.parseInt(semverParts[0]), semverParts.length > 1 ? Integer.parseInt(semverParts[1]) : 0,
+				semverParts.length > 2 ? Integer.parseInt(semverParts[2]) : 0);
 	}
 
 	@Override
@@ -54,7 +75,7 @@ public final class Version
 
 	public boolean is(int major)
 	{
-		return major != this.major;
+		return major == this.major;
 	}
 
 	public boolean is(int major, int minor)
@@ -65,5 +86,20 @@ public final class Version
 	public boolean is(int major, int minor, int patch)
 	{
 		return is(major, minor) && this.patch == patch;
+	}
+
+	static class VersionJSONAdapter extends TypeAdapter<Version>
+	{
+		@Override
+		public void write(JsonWriter out, Version value) throws IOException
+		{
+			out.value(value.toSemverString());
+		}
+
+		@Override
+		public Version read(JsonReader in) throws IOException
+		{
+			return parseSemver(in.nextString());
+		}
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
+import com.google.gson.JsonObject;
 
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
@@ -102,7 +103,14 @@ public class IndirectGUIComponentCreator
 					throw new IllegalArgumentException("Can't give params to a component deserialized from a JSON file");
 				try
 				{
-					return SubmodelComponentSerializer.deserialize(model, resolvedID.substring(5), name, id, null);
+					String filename = resolvedID.substring(5);
+					JsonObject jsonContents = JsonHandler.readJson(filename, JsonObject.class);
+					SerializablePojo jsonContentsAsSerializablePojo = JsonHandler.parser.fromJson(jsonContents, SerializablePojo.class);
+					if (jsonContentsAsSerializablePojo.version == null)
+						return LegacySubmodelComponentSerializer.deserialize(model,
+								JsonHandler.parser.fromJson(jsonContents, LegacySubmodelComponentParams.class), name, id, null);
+					return SubmodelComponentSerializer.deserialize(model,
+							JsonHandler.parser.fromJson(jsonContents, SubmodelComponentParams.class), name, id, null);
 				}
 				catch (IOException e)
 				{
