@@ -14,8 +14,7 @@ import com.google.gson.JsonElement;
 
 public class JsonHandler
 {
-	// TODO: write versions differently
-	private static Gson parser = new GsonBuilder().setPrettyPrinting().create();
+	public final static Gson parser = new GsonBuilder().setPrettyPrinting().create();
 
 	public static <T> T readJson(String path, Class<T> type) throws IOException
 	{
@@ -38,7 +37,7 @@ public class JsonHandler
 
 	public static <T> T fromJson(String src, Class<T> type)
 	{
-		// TODO actually parse and compare version
+		// throw away legacy version line
 		String rawJson = src.lines().dropWhile(s -> s.length() == 0 || s.charAt(0) != '{').collect(Collectors.joining());
 		return parser.fromJson(rawJson, type);
 	}
@@ -53,7 +52,7 @@ public class JsonHandler
 
 	public static String toJson(Object o)
 	{
-		return String.format("mograsim version: %s\n%s", Version.jsonCompVersion.toString(), parser.toJson(o));
+		return parser.toJson(o);
 	}
 
 	public static JsonElement toJsonTree(Object o)
