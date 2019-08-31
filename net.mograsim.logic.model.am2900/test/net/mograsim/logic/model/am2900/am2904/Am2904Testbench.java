@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.examples;
+package net.mograsim.logic.model.am2900.am2904;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
