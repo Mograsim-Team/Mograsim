@@ -27,6 +27,7 @@ public class GUIBitDisplay extends GUIComponent
 	private static final double height = 15;
 	private static final double fontHeight = 5;
 
+	public final int logicWidth;
 	private final Pin inputPin;
 
 	private final LogicObserver logicObs;
@@ -40,6 +41,7 @@ public class GUIBitDisplay extends GUIComponent
 	public GUIBitDisplay(ViewModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
+		this.logicWidth = logicWidth;
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
@@ -93,7 +95,7 @@ public class GUIBitDisplay extends GUIComponent
 	@Override
 	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(inputPin.logicWidth);
+		return new JsonPrimitive(logicWidth);
 	}
 
 	static
