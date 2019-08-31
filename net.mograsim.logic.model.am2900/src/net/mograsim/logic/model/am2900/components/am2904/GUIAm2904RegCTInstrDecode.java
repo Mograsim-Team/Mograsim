@@ -72,7 +72,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 	}
 
 	@Override
-	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		Bit[] I5_0Bits = readEnds.get("I5-0").getValues().getBits();
 		Bit[] I12_11Bits = readEnds.get("I12-11").getValues().getBits();

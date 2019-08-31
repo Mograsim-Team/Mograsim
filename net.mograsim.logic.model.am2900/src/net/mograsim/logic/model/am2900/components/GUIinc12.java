@@ -30,7 +30,7 @@ public class GUIinc12 extends SimpleRectangularHardcodedGUIComponent
 	}
 
 	@Override
-	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		Bit[] ABits = readEnds.get("A").getValues().getBits();
 		Bit CIVal = readEnds.get("CI").getValue();

@@ -33,7 +33,7 @@ public class GUIAm2910SP extends SimpleRectangularHardcodedGUIComponent
 	}
 
 	@Override
-	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		BitAndInt SPC = (BitAndInt) lastState;
 		if (SPC == null)

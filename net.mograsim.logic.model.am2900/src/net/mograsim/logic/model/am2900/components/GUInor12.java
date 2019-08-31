@@ -29,7 +29,7 @@ public class GUInor12 extends SimpleRectangularHardcodedGUIComponent
 	}
 
 	@Override
-	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		readWriteEnds.get("Y").feedSignals(getResult(readEnds.get("D").getValues().getBits()));
 		return null;

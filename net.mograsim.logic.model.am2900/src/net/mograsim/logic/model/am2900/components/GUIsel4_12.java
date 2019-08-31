@@ -37,7 +37,7 @@ public class GUIsel4_12 extends SimpleRectangularHardcodedGUIComponent
 	}
 
 	@Override
-	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		Bit SAVal = readEnds.get("SA").getValue();
 		Bit SBVal = readEnds.get("SB").getValue();

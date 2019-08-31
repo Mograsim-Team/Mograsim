@@ -40,7 +40,7 @@ public class GUIdff4_finewe extends SimpleRectangularHardcodedGUIComponent
 	}
 
 	@Override
-	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		Bit[] QC = (Bit[]) lastState;
 		if (QC == null)
