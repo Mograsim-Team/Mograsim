@@ -30,6 +30,10 @@ public class WireCrossPoint extends GUIComponent
 	private static final int CIRCLE_DIAM = CIRCLE_RADIUS * 2;
 
 	/**
+	 * The logical width of this cross point.
+	 */
+	public final int logicWidth;
+	/**
 	 * The (single) pin of this cross point.
 	 */
 	private final Pin pin;
@@ -53,6 +57,7 @@ public class WireCrossPoint extends GUIComponent
 	public WireCrossPoint(ViewModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
+		this.logicWidth = logicWidth;
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(CIRCLE_DIAM, CIRCLE_DIAM);
@@ -118,7 +123,7 @@ public class WireCrossPoint extends GUIComponent
 	@Override
 	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(pin.logicWidth);
+		return new JsonPrimitive(logicWidth);
 	}
 
 	static

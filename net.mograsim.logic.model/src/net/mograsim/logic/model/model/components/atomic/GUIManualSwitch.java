@@ -30,6 +30,7 @@ public class GUIManualSwitch extends GUIComponent
 	private static final double height = 15;
 	private static final double fontHeight = 5;
 
+	public final int logicWidth;
 	private final Pin outputPin;
 
 	private final LogicObserver logicObs;
@@ -44,6 +45,7 @@ public class GUIManualSwitch extends GUIComponent
 	public GUIManualSwitch(ViewModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
+		this.logicWidth = logicWidth;
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
@@ -147,7 +149,7 @@ public class GUIManualSwitch extends GUIComponent
 	@Override
 	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(outputPin.logicWidth);
+		return new JsonPrimitive(logicWidth);
 	}
 
 	static
