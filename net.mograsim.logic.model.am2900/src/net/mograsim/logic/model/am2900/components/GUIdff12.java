@@ -13,6 +13,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
@@ -22,9 +23,9 @@ public class GUIdff12 extends SimpleRectangularHardcodedGUIComponent
 	{
 		super(model, name, "D flip flop\n12 bits");
 		setSize(40, 20);
-		addPin(new Pin(this, "D", 12, 20, 20), Usage.INPUT, Position.TOP);
-		addPin(new Pin(this, "C", 1, 0, 10), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "Y", 12, 20, 0), Usage.OUTPUT, Position.BOTTOM);
+		addPin(new Pin(this, "D", 12, PinUsage.INPUT, 20, 20), Position.TOP);
+		addPin(new Pin(this, "C", 1, PinUsage.INPUT, 0, 10), Position.RIGHT);
+		addPin(new Pin(this, "Y", 12, PinUsage.OUTPUT, 20, 0), Position.BOTTOM);
 	}
 
 	@Override

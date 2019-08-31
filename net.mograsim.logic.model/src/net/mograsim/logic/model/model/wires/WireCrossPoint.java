@@ -61,7 +61,7 @@ public class WireCrossPoint extends GUIComponent
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(CIRCLE_DIAM, CIRCLE_DIAM);
-		addPin(this.pin = new Pin(this, "", logicWidth, CIRCLE_RADIUS, CIRCLE_RADIUS));
+		addPin(this.pin = new Pin(this, "", logicWidth, PinUsage.TRISTATE, CIRCLE_RADIUS, CIRCLE_RADIUS));
 	}
 
 	// pins

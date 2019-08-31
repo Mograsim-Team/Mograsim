@@ -9,15 +9,14 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.ManualSwitch;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.ManualSwitchAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
@@ -35,7 +34,6 @@ public class GUIManualSwitch extends GUIComponent
 
 	private final LogicObserver logicObs;
 	private ManualSwitch logicSwitch;
-	private ReadEnd end;
 
 	public GUIManualSwitch(ViewModelModifiable model, int logicWidth)
 	{
@@ -49,18 +47,17 @@ public class GUIManualSwitch extends GUIComponent
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
-		addPin(this.outputPin = new Pin(this, "", logicWidth, width, height / 2));
+		addPin(this.outputPin = new Pin(this, "", logicWidth, PinUsage.OUTPUT, width, height / 2));
 	}
 
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		// TODO maybe draw switch state too?
 		Color foreground = Preferences.current().getColor("net.mograsim.logic.model.color.foreground");
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-		String label = BitVectorFormatter.formatValueAsString(end);
+		String label = BitVectorFormatter.formatAsString(logicSwitch == null ? null : logicSwitch.getValues());
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
@@ -72,14 +69,13 @@ public class GUIManualSwitch extends GUIComponent
 		gc.setFont(oldFont);
 	}
 
-	public void setLogicModelBinding(ManualSwitch logicSwitch, ReadEnd end)
+	public void setLogicModelBinding(ManualSwitch logicSwitch)
 	{
-		deregisterLogicObs(this.end);
-		deregisterLogicObs(this.logicSwitch);
+		if (this.logicSwitch != null)
+			this.logicSwitch.deregisterObserver(logicObs);
 		this.logicSwitch = logicSwitch;
-		this.end = end;
-		registerLogicObs(end);
-		registerLogicObs(logicSwitch);
+		if (logicSwitch != null)
+			logicSwitch.registerObserver(logicObs);
 	}
 
 	public boolean hasLogicModelBinding()
@@ -114,18 +110,6 @@ public class GUIManualSwitch extends GUIComponent
 			super.setHighLevelState(stateID, newState);
 			break;
 		}
-	}
-
-	private void registerLogicObs(LogicObservable observable)
-	{
-		if (observable != null)
-			observable.registerObserver(logicObs);
-	}
-
-	private void deregisterLogicObs(LogicObservable observable)
-	{
-		if (observable != null)
-			observable.deregisterObserver(logicObs);
 	}
 
 	@Override

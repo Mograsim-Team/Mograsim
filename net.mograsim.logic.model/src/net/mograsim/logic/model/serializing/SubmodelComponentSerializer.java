@@ -8,6 +8,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams.InterfacePinParams;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.Renderer;
@@ -23,7 +24,11 @@ import net.mograsim.logic.model.util.Version;
  */
 public final class SubmodelComponentSerializer
 {
-	public static final Version CURRENT_JSON_VERSION = Version.parseSemver("0.1.4");
+	// TODO serialize pin usage
+	// TODO set pin usages of existing components
+	public static final Version JSON_VERSION_CURRENT_SERIALIZING = Version.parseSemver("0.1.4");
+	public static final Version JSON_VERSION_LATEST_SUPPORTED_DESERIALIZING = Version.parseSemver("0.1.5");
+	public static final Version JSON_VERSION_EARLIEST_WITH_USAGE_SERIALIZED = Version.parseSemver("0.1.4");
 	// convenience methods
 
 	/**
@@ -157,13 +162,17 @@ public final class SubmodelComponentSerializer
 	public static SubmodelComponent deserialize(ViewModelModifiable model, SubmodelComponentParams params, String name,
 			String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{
+		Version version = params.version;
+		if (version.compareTo(JSON_VERSION_LATEST_SUPPORTED_DESERIALIZING) > 0)
+			throw new IllegalArgumentException("JSON version " + version + " not supported yet");
+		boolean hasUsageSerialized = version.compareTo(JSON_VERSION_EARLIEST_WITH_USAGE_SERIALIZED) > 0;
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model, name, idForSerializingOverride,
 				paramsForSerializingOverride);
 		comp.setSubmodelScale(params.innerScale);
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
-			comp.addSubmodelInterface(
-					new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y));
+			comp.addSubmodelInterface(new MovablePin(comp, iPinParams.name, iPinParams.logicWidth,
+					hasUsageSerialized ? iPinParams.usage : PinUsage.TRISTATE, iPinParams.location.x, iPinParams.location.y));
 		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
 		ViewModelSerializer.deserialize(comp.getSubmodelModifiable(), params.submodel);
 		comp.setSymbolRenderer(SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getSnippetSupplier(params.symbolRendererSnippetID)
@@ -187,7 +196,7 @@ public final class SubmodelComponentSerializer
 	 */
 	public static SubmodelComponentParams serialize(SubmodelComponent comp, IdentifierGetter idGetter)
 	{
-		SubmodelComponentParams params = new SubmodelComponentParams(CURRENT_JSON_VERSION);
+		SubmodelComponentParams params = new SubmodelComponentParams(JSON_VERSION_CURRENT_SERIALIZING);
 		params.innerScale = comp.getSubmodelScale();
 		params.submodel = ViewModelSerializer.serialize(comp.submodel, idGetter);
 

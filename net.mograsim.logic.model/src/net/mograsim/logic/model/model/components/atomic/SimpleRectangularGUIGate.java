@@ -16,6 +16,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.preferences.Preferences;
 
@@ -41,7 +42,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 		this.logicWidth = logicWidth;
 		this.isInverted = isInverted;
 		this.rectWidth = width - (isInverted ? invertedCircleDiam : 0);
-		this.outputPin = new MovablePin(this, "Y", logicWidth, width, 0);
+		this.outputPin = new MovablePin(this, "Y", logicWidth, PinUsage.OUTPUT, width, 0);
 		addPin(outputPin);
 		this.inputPins = new ArrayList<>();
 		setInputCount(1);
@@ -58,7 +59,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
 				// TODO what for more than 24 input pins?
-				Pin pin = new Pin(this, String.valueOf((char) ('A' + i)), logicWidth, 0, pinDistance / 2 + i * pinDistance);
+				Pin pin = new Pin(this, String.valueOf((char) ('A' + i)), logicWidth, PinUsage.INPUT, 0, pinDistance / 2 + i * pinDistance);
 				inputPins.add(pin);
 				addPin(pin);
 			}

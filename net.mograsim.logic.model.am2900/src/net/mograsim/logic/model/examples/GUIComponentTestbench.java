@@ -9,10 +9,9 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
-import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
-import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent.Usage;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 
 public class GUIComponentTestbench
@@ -27,24 +26,13 @@ public class GUIComponentTestbench
 	{
 		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "file:components/am2904/GUIAm2904.json");
 
-		// guess which pins are outputs and which are inputs
-		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
-		if (comp instanceof SimpleRectangularHardcodedGUIComponent)
-		{
-			SimpleRectangularHardcodedGUIComponent compCasted = (SimpleRectangularHardcodedGUIComponent) comp;
-			for (Pin p : comp.getPins().values())
-				if (compCasted.getPinUsage(p) == Usage.INPUT)
-					inputPinNames.add(p.name);
-				else
-					outputPinNames.add(p.name);
-		} else
-			for (Pin p : comp.getPins().values())
-				if (p.getRelX() < comp.getWidth())
-					inputPinNames.add(p.name);
-				else
-					outputPinNames.add(p.name);
+		for (Pin p : comp.getPins().values())
+			if (p.usage == PinUsage.INPUT)
+				inputPinNames.add(p.name);
+			else
+				outputPinNames.add(p.name);
 
 		inputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));
 		outputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));

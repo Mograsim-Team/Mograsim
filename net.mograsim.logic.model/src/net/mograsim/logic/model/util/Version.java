@@ -10,7 +10,7 @@ import com.google.gson.stream.JsonWriter;
 import net.mograsim.logic.model.util.Version.VersionJSONAdapter;
 
 @JsonAdapter(VersionJSONAdapter.class)
-public final class Version
+public final class Version implements Comparable<Version>
 {
 	public final int major, minor, patch;
 
@@ -86,6 +86,40 @@ public final class Version
 	public boolean is(int major, int minor, int patch)
 	{
 		return is(major, minor) && this.patch == patch;
+	}
+
+	/**
+	 * Compares this {@link Version} with the specified version.<br>
+	 * As required by {@link Comparable#compareTo(Object)}, returns a negative integer, zero, or a positive integer as this version is less
+	 * (earlier) than, equal to, or greater (later) than the specified version.
+	 * <p>
+	 * If the versions are equal ({@link #major}, {@link #minor}, {@link #patch} are the same), returns 0. <br>
+	 * If they differ in {@link #patch}, but neither {@link #major} or {@link #minor} , returns +-1. <br>
+	 * If they differ in {@link #minor}, but not {@link #major}, returns +-2.<br>
+	 * If they differ in {@link #major}, returns +-3.
+	 */
+	@Override
+	public int compareTo(Version o)
+	{
+		if (major != o.major)
+		{
+			if (major > o.major)
+				return 3;
+			return -3;
+		}
+		if (minor != o.minor)
+		{
+			if (minor > o.minor)
+				return 2;
+			return -2;
+		}
+		if (patch != o.patch)
+		{
+			if (patch > o.patch)
+				return 1;
+			return -1;
+		}
+		return 0;
 	}
 
 	static class VersionJSONAdapter extends TypeAdapter<Version>

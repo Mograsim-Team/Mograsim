@@ -15,6 +15,7 @@ import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.BitDisplayAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
@@ -45,7 +46,7 @@ public class GUIBitDisplay extends GUIComponent
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
-		addPin(this.inputPin = new Pin(this, "", logicWidth, 0, height / 2));
+		addPin(this.inputPin = new Pin(this, "", logicWidth, PinUsage.INPUT, 0, height / 2));
 	}
 
 	@Override

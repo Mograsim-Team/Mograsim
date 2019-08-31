@@ -22,6 +22,7 @@ import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
@@ -85,11 +86,10 @@ public class LogicUIPart extends ViewPart
 	{
 		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "GUIAm2901");
 
-		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
 		for (Pin p : comp.getPins().values())
-			if (p.getRelX() == 0)
+			if (p.usage == PinUsage.INPUT)
 				inputPinNames.add(p.name);
 			else
 				outputPinNames.add(p.name);

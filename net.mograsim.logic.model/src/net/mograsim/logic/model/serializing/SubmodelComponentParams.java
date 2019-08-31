@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.util.Version;
 
 /**
@@ -37,5 +38,6 @@ public class SubmodelComponentParams extends SerializablePojo
 		public Point location;
 		public String name;
 		public int logicWidth;
+		public PinUsage usage;
 	}
 }

@@ -14,6 +14,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
@@ -23,12 +24,12 @@ public class GUIAm2910SP extends SimpleRectangularHardcodedGUIComponent
 	{
 		super(model, name, "Stack\npointer");
 		setSize(40, 30);
-		addPin(new Pin(this, "STKI0", 1, 0, 5), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "STKI1", 1, 0, 15), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "C", 1, 0, 25), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "A", 3, 10, 30), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "B", 3, 30, 30), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "_FULL", 1, 40, 15), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "STKI0", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
+		addPin(new Pin(this, "STKI1", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
+		addPin(new Pin(this, "C", 1, PinUsage.INPUT, 0, 25), Position.RIGHT);
+		addPin(new Pin(this, "A", 3, PinUsage.OUTPUT, 10, 30), Position.TOP);
+		addPin(new Pin(this, "B", 3, PinUsage.OUTPUT, 30, 30), Position.TOP);
+		addPin(new Pin(this, "_FULL", 1, PinUsage.OUTPUT, 40, 15), Position.LEFT);
 	}
 
 	@Override

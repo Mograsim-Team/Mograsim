@@ -11,8 +11,8 @@ import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
-import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent.Usage;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 
 //TODO support HighLevelStates
@@ -49,7 +49,7 @@ public class SimpleRectangularHardcodedGUIComponentAdapter implements ComponentA
 		{
 			Wire wire = logicWiresPerPin.get(pin);
 			ReadEnd end;
-			if (guiComponent.getPinUsage(pin) != Usage.INPUT)
+			if (pin.usage != PinUsage.INPUT)
 			{
 				ReadWriteEnd rwEnd = wire.createReadWriteEnd();
 				readWriteEnds.put(pin.name, rwEnd);
@@ -57,7 +57,7 @@ public class SimpleRectangularHardcodedGUIComponentAdapter implements ComponentA
 			} else
 				end = wire.createReadOnlyEnd();
 			readEnds.put(pin.name, end);
-			if (guiComponent.getPinUsage(pin) != Usage.OUTPUT)
+			if (pin.usage != PinUsage.OUTPUT)
 				end.registerObserver(logicObs);
 		}
 	}

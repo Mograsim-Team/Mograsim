@@ -15,6 +15,7 @@ import net.mograsim.logic.model.editor.handles.WireHandle.WireHandleClickInfo;
 import net.mograsim.logic.model.editor.ui.DialogManager;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 
 public class SelectionState extends EditorState
 {
@@ -98,18 +99,22 @@ public class SelectionState extends EditorState
 		editor.getSelection().clear();
 		if ((stateMask & SWT.ALT) == SWT.ALT)
 		{
-			String[] result = DialogManager.openMultiTextDialog("Add Pin...", "Add", "Cancel", "Name", "Logic Width");
+			String[] result = DialogManager.openMultiTextDialog("Add Pin...", "Add", "Cancel", "Name", "Logic Width", "Usage");
 			if (result != null)
 			{
 				try
 				{
-					Pin p = editor.toBeEdited.addSubmodelInterface(
-							new MovablePin(editor.toBeEdited, result[0], Integer.parseInt(result[1]), clicked.x, clicked.y));
+					Pin p = editor.toBeEdited.addSubmodelInterface(new MovablePin(editor.toBeEdited, result[0], Integer.parseInt(result[1]),
+							PinUsage.valueOf(result[2]), clicked.x, clicked.y));
 					editor.handleManager.getInterfacePinHandle(p).reqMove(clicked.x, clicked.y);
 				}
 				catch (NumberFormatException e)
 				{
 					editor.dialogManager.openWarningDialog("Failed to create Pin!", "Bit width must be a number!");
+				}
+				catch (IllegalArgumentException e)
+				{
+					editor.dialogManager.openWarningDialog("Failed to create Pin!", "Usage must be one of INPUT, OUTPUT, TRISTATE!");
 				}
 			}
 		}

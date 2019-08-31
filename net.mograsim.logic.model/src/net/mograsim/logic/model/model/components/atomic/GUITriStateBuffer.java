@@ -11,6 +11,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.TriStateBufferAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
@@ -50,11 +51,12 @@ public class GUITriStateBuffer extends GUIComponent
 		int isInv = ordi % 2;
 		int isStd = 1 ^ isInv;
 
-		this.input = new Pin(this, "IN", params.logicWidth, width * isInv * isHori + wHalf * isVerti,
+		this.input = new Pin(this, "IN", params.logicWidth, PinUsage.INPUT, width * isInv * isHori + wHalf * isVerti,
 				height * isVerti * isStd + hHalf * isHori);
-		this.output = new Pin(this, "OUT", params.logicWidth, width * isStd * isHori + wHalf * isVerti,
+		this.output = new Pin(this, "OUT", params.logicWidth, PinUsage.OUTPUT, width * isStd * isHori + wHalf * isVerti,
 				height * isVerti * isInv + hHalf * isHori);
-		this.enable = new Pin(this, "EN", 1, wQuar * isVerti + wHalf * (isAlt | isHori), hQuar * isHori + hHalf * (isAlt | isVerti));
+		this.enable = new Pin(this, "EN", 1, PinUsage.INPUT, wQuar * isVerti + wHalf * (isAlt | isHori),
+				hQuar * isHori + hHalf * (isAlt | isVerti));
 		this.path = new double[] { width * (isStd ^ isHori), height * (isStd ^ isHori), width * isInv, height * isStd,
 				width * isStd * isHori + wHalf * isVerti, height * isVerti * isInv + hHalf * isHori };
 
