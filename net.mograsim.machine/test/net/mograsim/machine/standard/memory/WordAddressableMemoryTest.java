@@ -12,7 +12,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
-import net.mograsim.machine.DefaultMainMemoryDefinition;
+import net.mograsim.machine.MainMemoryDefinition;
 
 class WordAddressableMemoryTest {
 	
@@ -28,7 +28,8 @@ class WordAddressableMemoryTest {
 		ReadWriteEnd dataI = data.createReadWriteEnd();
 		ReadWriteEnd addressI = address.createReadWriteEnd();
 
-		WordAddressableMemoryComponent memory = new WordAddressableMemoryComponent(t, 4, new DefaultMainMemoryDefinition(64, 16, 4096L, Long.MAX_VALUE), data.createReadWriteEnd(),
+		@SuppressWarnings("unused")
+		WordAddressableMemoryComponent memory = new WordAddressableMemoryComponent(t, 4, MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE), data.createReadWriteEnd(),
 				rW.createReadOnlyEnd(), address.createReadOnlyEnd());
 
 		Random r = new Random();

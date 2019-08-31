@@ -22,4 +22,6 @@ public interface ParameterClassification
 	 * @return The number of bits of the parameters in this classification.
 	 */
 	public int getExpectedBits();
+	
+	public MicroInstructionParameter parse(String toParse);
 }

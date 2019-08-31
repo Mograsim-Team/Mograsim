@@ -1,4 +1,4 @@
-package net.mograsim.plugin.memory;
+package net.mograsim.plugin.tables.memory;
 
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
