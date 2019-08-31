@@ -26,16 +26,22 @@ public class GUISplitter extends GUIComponent
 	private static final double heightPerPin = 10;
 
 	public final int logicWidth;
+	private final Pin inputPin;
 
 	private ReadEnd inputEnd;
 	private final ReadEnd[] outputEnds;
+
+	public GUISplitter(ViewModelModifiable model, int logicWidth)
+	{
+		this(model, logicWidth, null);
+	}
 
 	public GUISplitter(ViewModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
 		this.logicWidth = logicWidth;
 		setSize(width, logicWidth * heightPerPin);
-		addPin(new Pin(this, "I", logicWidth, 0, (logicWidth - 1) * heightPerPin / 2));
+		addPin(this.inputPin = new Pin(this, "I", logicWidth, 0, (logicWidth - 1) * heightPerPin / 2));
 		double outputHeight = 0;
 		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
 			addPin(new Pin(this, "O" + i, 1, width, outputHeight));
@@ -80,6 +86,11 @@ public class GUISplitter extends GUIComponent
 	{
 		this.inputEnd = inputEnd;
 		System.arraycopy(outputEnds, 0, this.outputEnds, 0, logicWidth);
+	}
+
+	public Pin getInputPin()
+	{
+		return inputPin;
 	}
 
 	static
