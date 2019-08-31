@@ -1087,7 +1087,15 @@
   "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {},
-    "atomicHighLevelStates": {}
+    "atomicHighLevelStates": {
+      "q": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.DelegatingAtomicHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIdff4_finewe#0",
+          "subStateID": "q"
+        }
+      }
+    }
   },
   "version": "0.1.5"
 }

@@ -4006,7 +4006,20 @@
   "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
   "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
   "highLevelStateHandlerParams": {
-    "subcomponentHighLevelStates": {},
+    "subcomponentHighLevelStates": {
+      "msr": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "DeserializedSubmodelComponent#0"
+        }
+      },
+      "musr": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "DeserializedSubmodelComponent#1"
+        }
+      }
+    },
     "atomicHighLevelStates": {}
   },
   "version": "0.1.5"
