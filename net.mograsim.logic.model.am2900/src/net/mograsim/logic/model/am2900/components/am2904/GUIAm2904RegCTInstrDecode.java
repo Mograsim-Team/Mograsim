@@ -47,7 +47,6 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		// 110: Swap OVR and C
 		// 111: _M
 		addPin(new Pin(this, "MSR_MUX", 3, 20, 0), Usage.OUTPUT, Position.BOTTOM);
-		// TODO when is this HIGH?
 		addPin(new Pin(this, "OEN", 1, 60, 0), Usage.OUTPUT, Position.BOTTOM);
 		// Y MUX:
 		// 00: mu
@@ -101,7 +100,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		{
 		case 0:
 		case 2:
-			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ONE);
+			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
 			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
@@ -110,7 +109,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		case 1:
-			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
+			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
 			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
@@ -147,7 +146,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 9:
-			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
+			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
 			readWriteEnds.get("muSR_WEZ").feedSignals(ONE);
@@ -165,7 +164,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 11:
-			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
+			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
 			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
@@ -183,7 +182,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("muSR_WEOVR").feedSignals(ZERO);
 			break;
 		case 13:
-			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
+			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
 			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
@@ -201,7 +200,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("muSR_WEOVR").feedSignals(ONE);
 			break;
 		case 15:
-			readWriteEnds.get("muSR_MUX").feedSignals(ONE, ZERO);
+			readWriteEnds.get("muSR_MUX").feedSignals(ZERO, ONE);
 			readWriteEnds.get("muSR_OVRRET").feedSignals(ZERO);
 			readWriteEnds.get("muSR_CINV").feedSignals(ZERO);
 			readWriteEnds.get("muSR_WEZ").feedSignals(ZERO);
@@ -235,10 +234,10 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		switch (IAsInt)
 		{
 		case 0:
-			readWriteEnds.get("MSR_MUX").feedSignals(ONE, ONE, ZERO);
+			readWriteEnds.get("MSR_MUX").feedSignals(ZERO, ONE, ONE);
 			break;
 		case 1:
-			readWriteEnds.get("MSR_MUX").feedSignals(ONE, ZERO, ZERO);
+			readWriteEnds.get("MSR_MUX").feedSignals(ZERO, ZERO, ONE);
 			break;
 		case 2:
 			readWriteEnds.get("MSR_MUX").feedSignals(ZERO, ONE, ZERO);
@@ -247,7 +246,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("MSR_MUX").feedSignals(ZERO, ZERO, ZERO);
 			break;
 		case 4:
-			readWriteEnds.get("MSR_MUX").feedSignals(ZERO, ONE, ONE);
+			readWriteEnds.get("MSR_MUX").feedSignals(ONE, ONE, ZERO);
 			break;
 		case 5:
 			readWriteEnds.get("MSR_MUX").feedSignals(ONE, ONE, ONE);
@@ -263,9 +262,10 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("MSR_MUX").feedSignals(ONE, ZERO, ONE);
 			break;
 		default:
-			readWriteEnds.get("MSR_MUX").feedSignals(ZERO, ZERO, ONE);
+			readWriteEnds.get("MSR_MUX").feedSignals(ONE, ZERO, ZERO);
 			break;
 		}
+		readWriteEnds.get("OEN").feedSignals(I5_0Bits[0].or(I5_0Bits[1]).or(I5_0Bits[2]).or(I5_0Bits[3]).or(I5_0Bits[4]).or(I5_0Bits[5]));
 		readWriteEnds.get("Y_MUX").feedSignals(I5_0Bits[0], I5_0Bits[1]);
 		readWriteEnds.get("CT_INV").feedSignals(I5_0Bits[5]);
 		readWriteEnds.get("CT_MUX").feedSignals(I5_0Bits[2], I5_0Bits[3], I5_0Bits[4]);
