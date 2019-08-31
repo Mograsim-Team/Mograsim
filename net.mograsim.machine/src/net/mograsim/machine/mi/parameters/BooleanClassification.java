@@ -15,4 +15,10 @@ public class BooleanClassification implements ParameterClassification
 	{
 		return 1;
 	}
+	
+	@Override
+	public BooleanImmediate parse(String toParse)
+	{
+		return new BooleanImmediate("H".equals(toParse));
+	}
 }

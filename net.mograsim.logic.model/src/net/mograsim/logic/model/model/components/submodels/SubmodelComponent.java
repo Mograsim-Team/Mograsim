@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.gcs.GCConfig;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -110,6 +111,13 @@ public abstract class SubmodelComponent extends GUIComponent
 		this.minVisibleRegionFillRatioForAlpha1 = 0.0;
 		this.renderer = new LogicUIRenderer(submodelModifiable);
 
+		Consumer<Runnable> redrawHandlerChangedListener = submodelModifiable::setRedrawHandler;
+		model.addRedrawHandlerChangedListener(redrawHandlerChangedListener);
+		model.addComponentRemovedListener(c ->
+		{
+			if (c == this)
+				model.removeRedrawHandlerChangedListener(redrawHandlerChangedListener);
+		});
 		submodelModifiable.setRedrawHandler(model.getRedrawHandler());
 	}
 

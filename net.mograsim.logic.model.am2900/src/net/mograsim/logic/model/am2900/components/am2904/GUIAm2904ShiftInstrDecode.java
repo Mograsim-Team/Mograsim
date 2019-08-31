@@ -3,6 +3,7 @@ package net.mograsim.logic.model.am2900.components.am2904;
 import static net.mograsim.logic.core.types.Bit.ONE;
 import static net.mograsim.logic.core.types.Bit.U;
 import static net.mograsim.logic.core.types.Bit.X;
+import static net.mograsim.logic.core.types.Bit.Z;
 import static net.mograsim.logic.core.types.Bit.ZERO;
 
 import java.util.Map;
@@ -21,8 +22,9 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 	public GUIAm2904ShiftInstrDecode(ViewModelModifiable model, String name)
 	{
 		super(model, name, "Shift \ninstruction\ndecode");
-		setSize(60, 70);
-		addPin(new Pin(this, "I", 5, 0, 35), Usage.INPUT, Position.RIGHT);
+		setSize(60, 80);
+		addPin(new Pin(this, "I", 5, 0, 25), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "_SE", 1, 0, 55), Usage.INPUT, Position.RIGHT);
 		// SIO0 MUX:
 		// 000: 0
 		// 001: 1
@@ -54,19 +56,51 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 		// 10x: QIO0
 		// 11x: MN
 		addPin(new Pin(this, "QIOn_MUX", 3, 60, 35), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "LSHIFT", 1, 60, 45), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "OEn", 1, 60, 45), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "OE0", 1, 60, 55), Usage.OUTPUT, Position.LEFT);
 		// 00: SIO0
 		// 01: QIO0
 		// 1x: SIOn
-		addPin(new Pin(this, "MC_MUX", 2, 60, 55), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "MC_EN", 1, 60, 65), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "MC_MUX", 2, 60, 65), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "MC_EN", 1, 60, 75), Usage.OUTPUT, Position.LEFT);
 	}
 
 	@Override
 	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
+		Bit _SE = readEnds.get("_SE").getValue();
 		Bit[] IBits = readEnds.get("I").getValues().getBits();
-		readWriteEnds.get("LSHIFT").feedSignals(IBits[0]);
+		readWriteEnds.get("OEn").feedSignals(IBits[0].not().and(_SE.not()));
+		readWriteEnds.get("OE0").feedSignals(IBits[0].and(_SE.not()));
+		if (_SE == Z || _SE == X)
+		{
+			readWriteEnds.get("SIO0_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("SIOn_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("QIO0_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("QIOn_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("MC_MUX").feedSignals(X, X);
+			readWriteEnds.get("MC_EN").feedSignals(X);
+			return null;
+		} else if (_SE == U)
+		{
+
+			readWriteEnds.get("SIO0_MUX").feedSignals(U, U, U);
+			readWriteEnds.get("SIOn_MUX").feedSignals(U, U, U);
+			readWriteEnds.get("QIO0_MUX").feedSignals(U, U, U);
+			readWriteEnds.get("QIOn_MUX").feedSignals(U, U, U);
+			readWriteEnds.get("MC_MUX").feedSignals(U, U);
+			readWriteEnds.get("MC_EN").feedSignals(U);
+			return null;
+		} else if (_SE == ONE)
+		{
+			readWriteEnds.get("SIO0_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("SIOn_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("QIO0_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("QIOn_MUX").feedSignals(X, X, X);
+			readWriteEnds.get("MC_MUX").feedSignals(X, X);
+			readWriteEnds.get("MC_EN").feedSignals(ZERO);
+			return null;
+		}
 		// TODO move the following loop to BitVector.
 		int IAsInt = 0;
 		for (int i = 0; i < 5; i++)

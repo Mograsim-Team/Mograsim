@@ -2,8 +2,8 @@ package net.mograsim.machine.standard.memory;
 
 import org.eclipse.swt.graphics.Color;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
@@ -16,7 +16,6 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
-import net.mograsim.machine.DefaultMainMemoryDefinition;
 import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.standard.memory.WordAddressableMemoryComponent;
 import net.mograsim.preferences.Preferences;
@@ -27,6 +26,8 @@ public class GUIMemoryWA extends GUIComponent
 	private final Pin addrPin, dataPin, rWPin;
 	private WordAddressableMemoryComponent memory;
 	private final static int width = 100, height = 300;
+	
+	private final static String addrKey = "addrBits", cellWidthKey = "cellWidth", minAddrKey = "minAddr", maxAddrKey = "maxAddr";
 
 	public GUIMemoryWA(ViewModelModifiable model, MainMemoryDefinition definition, String name)
 	{
@@ -91,7 +92,12 @@ public class GUIMemoryWA extends GUIComponent
 	@Override
 	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new Gson().toJsonTree(new DefaultMainMemoryDefinition(definition));
+		JsonObject o = new JsonObject();
+		o.addProperty(addrKey, definition.getMemoryAddressBits());
+		o.addProperty(cellWidthKey, definition.getCellWidth());
+		o.addProperty(maxAddrKey, definition.getMaximalAddress());
+		o.addProperty(minAddrKey, definition.getMinimalAddress());
+		return o;
 	}
 
 	static
@@ -99,7 +105,12 @@ public class GUIMemoryWA extends GUIComponent
 		ViewLogicModelAdapter.addComponentAdapter(new WordAddressableMemoryAdapter());
 		IndirectGUIComponentCreator.setComponentSupplier(GUIAndGate.class.getCanonicalName(), (m, p, n) ->
 		{
-			return new GUIMemoryWA(m, new Gson().fromJson(p, DefaultMainMemoryDefinition.class), n);
+			JsonObject o = (JsonObject) p;
+			int addressBits = o.get(addrKey).getAsInt();
+			int cellWidth = o.get(cellWidthKey).getAsInt();
+			long maxAddr = o.get(maxAddrKey).getAsLong();
+			long minAddr = o.get(minAddrKey).getAsLong();
+			return new GUIMemoryWA(m, MainMemoryDefinition.create(addressBits, cellWidth, minAddr, maxAddr), n);
 		});
 	}
 }

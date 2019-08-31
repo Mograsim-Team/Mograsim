@@ -16,7 +16,11 @@ public interface Memory<T>
 	 */
 	public void setCell(long address, T data);
 	
-	public long size();
+	public default long size()
+	{
+		MemoryDefinition def = getDefinition();
+		return Long.max(0, def.getMaximalAddress() - def.getMinimalAddress());
+	}
 	
 	/**
 	 * Registers an observer to be notified when a memory cell is modified
@@ -26,4 +30,6 @@ public interface Memory<T>
 	public void deregisterObserver(MemoryObserver ob);
 	
 	public void notifyObservers(long address);
+	
+	public MemoryDefinition getDefinition();
 }
