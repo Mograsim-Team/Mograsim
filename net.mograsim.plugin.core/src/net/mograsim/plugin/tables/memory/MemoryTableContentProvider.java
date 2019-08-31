@@ -1,4 +1,4 @@
-package net.mograsim.plugin.memory;
+package net.mograsim.plugin.tables.memory;
 
 import org.eclipse.jface.viewers.ILazyContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
