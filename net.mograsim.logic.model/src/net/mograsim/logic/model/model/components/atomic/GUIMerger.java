@@ -12,6 +12,7 @@ import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.MergerAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
@@ -43,8 +44,8 @@ public class GUIMerger extends GUIComponent
 		setSize(width, logicWidth * heightPerPin);
 		double inputHeight = 0;
 		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
-			addPin(new Pin(this, "I" + i, 1, 0, inputHeight));
-		addPin(this.outputPin = new Pin(this, "O", logicWidth, width, (logicWidth - 1) * heightPerPin / 2));
+			addPin(new Pin(this, "I" + i, 1, PinUsage.TRISTATE, 0, inputHeight));
+		addPin(this.outputPin = new Pin(this, "O", logicWidth, PinUsage.TRISTATE, width, (logicWidth - 1) * heightPerPin / 2));
 		inputEnds = new ReadEnd[logicWidth];
 	}
 

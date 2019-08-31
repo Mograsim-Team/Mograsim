@@ -16,6 +16,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.snippets.Renderer;
 
 /**
@@ -137,8 +138,24 @@ public abstract class SubmodelComponent extends GUIComponent
 		super.addPin(supermodelPin);// do this first to be fail-fast if the supermodel does not belong to this component
 
 		String name = supermodelPin.name;
-		MovablePin submodelPin = new MovablePin(submodelInterface, name, supermodelPin.logicWidth, supermodelPin.getRelX() / submodelScale,
-				supermodelPin.getRelY() / submodelScale);
+		// TODO if we upgrade to Java 12, replace with switch-expression
+		PinUsage submodelPinUsage;
+		switch (supermodelPin.usage)
+		{
+		case INPUT:
+			submodelPinUsage = PinUsage.OUTPUT;
+			break;
+		case OUTPUT:
+			submodelPinUsage = PinUsage.INPUT;
+			break;
+		case TRISTATE:
+			submodelPinUsage = PinUsage.TRISTATE;
+			break;
+		default:
+			throw new IllegalArgumentException("Unknown enum constant: " + supermodelPin.usage);
+		}
+		MovablePin submodelPin = new MovablePin(submodelInterface, name, supermodelPin.logicWidth, submodelPinUsage,
+				supermodelPin.getRelX() / submodelScale, supermodelPin.getRelY() / submodelScale);
 
 		submodelPin.addPinMovedListener(p ->
 		{

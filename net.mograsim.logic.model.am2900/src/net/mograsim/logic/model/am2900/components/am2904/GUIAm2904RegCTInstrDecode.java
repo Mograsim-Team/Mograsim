@@ -14,6 +14,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
@@ -23,20 +24,20 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 	{
 		super(model, name, "Instruction\ndecode");
 		setSize(80, 80);
-		addPin(new Pin(this, "I5-0", 6, 0, 30), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "I12-11", 2, 0, 50), Usage.INPUT, Position.RIGHT);
+		addPin(new Pin(this, "I5-0", 6, PinUsage.INPUT, 0, 30), Position.RIGHT);
+		addPin(new Pin(this, "I12-11", 2, PinUsage.INPUT, 0, 50), Position.RIGHT);
 		// muSR MUX:
 		// 00: 0
 		// 01: 1
 		// 10: M
 		// 11: I
-		addPin(new Pin(this, "muSR_MUX", 2, 80, 10), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR_OVRRET", 1, 80, 20), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR_CINV", 1, 80, 30), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR_WEZ", 1, 80, 40), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR_WEC", 1, 80, 50), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR_WEN", 1, 80, 60), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "muSR_WEOVR", 1, 80, 70), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "muSR_MUX", 2, PinUsage.OUTPUT, 80, 10), Position.LEFT);
+		addPin(new Pin(this, "muSR_OVRRET", 1, PinUsage.OUTPUT, 80, 20), Position.LEFT);
+		addPin(new Pin(this, "muSR_CINV", 1, PinUsage.OUTPUT, 80, 30), Position.LEFT);
+		addPin(new Pin(this, "muSR_WEZ", 1, PinUsage.OUTPUT, 80, 40), Position.LEFT);
+		addPin(new Pin(this, "muSR_WEC", 1, PinUsage.OUTPUT, 80, 50), Position.LEFT);
+		addPin(new Pin(this, "muSR_WEN", 1, PinUsage.OUTPUT, 80, 60), Position.LEFT);
+		addPin(new Pin(this, "muSR_WEOVR", 1, PinUsage.OUTPUT, 80, 70), Position.LEFT);
 		// MSR MUX:
 		// 000: 0
 		// 001: 1
@@ -46,19 +47,19 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		// 101: I, invert C
 		// 110: Swap OVR and C
 		// 111: _M
-		addPin(new Pin(this, "MSR_MUX", 3, 20, 0), Usage.OUTPUT, Position.BOTTOM);
-		addPin(new Pin(this, "OEN", 1, 60, 0), Usage.OUTPUT, Position.BOTTOM);
+		addPin(new Pin(this, "MSR_MUX", 3, PinUsage.OUTPUT, 20, 0), Position.BOTTOM);
+		addPin(new Pin(this, "OEN", 1, PinUsage.OUTPUT, 60, 0), Position.BOTTOM);
 		// Y MUX:
 		// 00: mu
 		// 01: mu
 		// 10: M
 		// 11: I
-		addPin(new Pin(this, "Y_MUX", 2, 10, 80), Usage.OUTPUT, Position.TOP);
+		addPin(new Pin(this, "Y_MUX", 2, PinUsage.OUTPUT, 10, 80), Position.TOP);
 		// CT MUX:
 		// see Am2900 Family Data Book, Am2904, Table 4 (CT_MUX2-0 = I3-1)
-		addPin(new Pin(this, "CT_MUX", 3, 30, 80), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "CT_INV", 1, 40, 80), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "CT_EXP", 1, 50, 80), Usage.OUTPUT, Position.TOP);
+		addPin(new Pin(this, "CT_MUX", 3, PinUsage.OUTPUT, 30, 80), Position.TOP);
+		addPin(new Pin(this, "CT_INV", 1, PinUsage.OUTPUT, 40, 80), Position.TOP);
+		addPin(new Pin(this, "CT_EXP", 1, PinUsage.OUTPUT, 50, 80), Position.TOP);
 		// C0 MUX:
 		// 00xx: 0
 		// 01xx: 1
@@ -67,7 +68,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		// 1101: _muC
 		// 1110: MC
 		// 1111: _MC
-		addPin(new Pin(this, "C0_MUX", 4, 70, 80), Usage.OUTPUT, Position.TOP);
+		addPin(new Pin(this, "C0_MUX", 4, PinUsage.OUTPUT, 70, 80), Position.TOP);
 	}
 
 	@Override

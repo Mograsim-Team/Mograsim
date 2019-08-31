@@ -24,6 +24,6 @@ public class ManualSwitchAdapter implements ComponentAdapter<GUIManualSwitch>
 	{
 		ReadWriteEnd end = logicWiresPerPin.get(guiComponent.getOutputPin()).createReadWriteEnd();
 		ManualSwitch manualSwitch = new ManualSwitch(timeline, end);
-		guiComponent.setLogicModelBinding(manualSwitch, end);
+		guiComponent.setLogicModelBinding(manualSwitch);
 	}
 }

@@ -9,9 +9,9 @@ import net.mograsim.logic.model.model.components.GUIComponent;
  */
 public class MovablePin extends Pin
 {
-	public MovablePin(GUIComponent component, String name, int logicWidth, double relX, double relY)
+	public MovablePin(GUIComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
 	{
-		super(component, name, logicWidth, relX, relY);
+		super(component, name, logicWidth, usage, relX, relY);
 	}
 
 	@Override

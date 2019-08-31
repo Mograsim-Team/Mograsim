@@ -16,6 +16,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
@@ -25,12 +26,12 @@ public class GUIram5_12 extends SimpleRectangularHardcodedGUIComponent
 	{
 		super(model, name, "RAM\n5 x 12 Bit");
 		setSize(40, 40);
-		addPin(new Pin(this, "A", 3, 10, 0), Usage.INPUT, Position.BOTTOM);
-		addPin(new Pin(this, "B", 3, 30, 0), Usage.INPUT, Position.BOTTOM);
-		addPin(new Pin(this, "WE", 1, 0, 5), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "C", 1, 0, 15), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "Y", 12, 0, 30), Usage.OUTPUT, Position.RIGHT);
-		addPin(new Pin(this, "D", 12, 20, 40), Usage.INPUT, Position.TOP);
+		addPin(new Pin(this, "A", 3, PinUsage.INPUT, 10, 0), Position.BOTTOM);
+		addPin(new Pin(this, "B", 3, PinUsage.INPUT, 30, 0), Position.BOTTOM);
+		addPin(new Pin(this, "WE", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
+		addPin(new Pin(this, "C", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
+		addPin(new Pin(this, "Y", 12, PinUsage.OUTPUT, 0, 30), Position.RIGHT);
+		addPin(new Pin(this, "D", 12, PinUsage.INPUT, 20, 40), Position.TOP);
 	}
 
 	@Override

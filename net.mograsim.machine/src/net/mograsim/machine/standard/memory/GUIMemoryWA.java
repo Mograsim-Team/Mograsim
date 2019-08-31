@@ -13,6 +13,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIAndGate;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
@@ -34,9 +35,10 @@ public class GUIMemoryWA extends GUIComponent
 		super(model, name);
 		this.definition = definition;
 		setSize(width, height);
-		addPin(addrPin = new Pin(this, "A", definition.getMemoryAddressBits(), 0, 10));
-		addPin(dataPin = new Pin(this, "D", definition.getCellWidth(), 0, 30));
-		addPin(rWPin = new Pin(this, "RW", 1, 0, 50));
+		//TODO check the usages
+		addPin(addrPin = new Pin(this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, 0, 10));
+		addPin(dataPin = new Pin(this, "D", definition.getCellWidth(), PinUsage.TRISTATE, 0, 30));
+		addPin(rWPin = new Pin(this, "RW", 1, PinUsage.INPUT, 0, 50));
 	}
 
 	public Pin getAddressPin()

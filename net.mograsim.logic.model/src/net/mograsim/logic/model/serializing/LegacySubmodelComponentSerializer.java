@@ -15,6 +15,7 @@ import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.LegacySubmodelComponentParams.LegacyInterfacePinParams;
 import net.mograsim.logic.model.serializing.LegacySubmodelComponentParams.LegacySubmodelParameters;
 import net.mograsim.logic.model.serializing.LegacySubmodelComponentParams.LegacySubmodelParameters.LegacyInnerComponentParams;
@@ -171,8 +172,9 @@ public final class LegacySubmodelComponentSerializer
 		comp.setSubmodelScale(params.submodel.innerScale);
 		comp.setSize(params.width, params.height);
 		for (LegacyInterfacePinParams iPinParams : params.interfacePins)
-			comp.addSubmodelInterface(
-					new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, iPinParams.location.x, iPinParams.location.y));
+			// TRISTATE because we don't have a better choice
+			comp.addSubmodelInterface(new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, PinUsage.TRISTATE, iPinParams.location.x,
+					iPinParams.location.y));
 		LegacySubmodelParameters submodelParams = params.submodel;
 		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
 		Map<String, GUIComponent> componentsByName = submodelModifiable.getComponentsByName();

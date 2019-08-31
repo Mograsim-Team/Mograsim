@@ -17,6 +17,7 @@ import net.mograsim.logic.model.model.components.atomic.GUINotGate;
 import net.mograsim.logic.model.model.components.atomic.TextComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.model.wires.WireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.util.ModellingTool;
@@ -55,12 +56,10 @@ public class Am2901Testbench
 		and.moveTo(135, -30);
 		Pin last = and.getPin("Y");
 
-		// guess which pins are outputs and which are inputs
-		// TODO this code exists four times... but it seems too "hacky" to put it in a helper class
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
 		for (Pin p : comp.getPins().values())
-			if (p.getRelX() == 0)
+			if (p.usage == PinUsage.INPUT)
 				inputPinNames.add(p.name);
 			else
 				outputPinNames.add(p.name);

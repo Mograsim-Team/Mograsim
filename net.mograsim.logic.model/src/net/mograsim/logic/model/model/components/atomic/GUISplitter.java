@@ -12,6 +12,7 @@ import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SplitterAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
@@ -41,10 +42,10 @@ public class GUISplitter extends GUIComponent
 		super(model, name);
 		this.logicWidth = logicWidth;
 		setSize(width, logicWidth * heightPerPin);
-		addPin(this.inputPin = new Pin(this, "I", logicWidth, 0, (logicWidth - 1) * heightPerPin / 2));
+		addPin(this.inputPin = new Pin(this, "I", logicWidth, PinUsage.TRISTATE, 0, (logicWidth - 1) * heightPerPin / 2));
 		double outputHeight = 0;
 		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
-			addPin(new Pin(this, "O" + i, 1, width, outputHeight));
+			addPin(new Pin(this, "O" + i, 1, PinUsage.TRISTATE, width, outputHeight));
 		outputEnds = new ReadEnd[logicWidth];
 	}
 

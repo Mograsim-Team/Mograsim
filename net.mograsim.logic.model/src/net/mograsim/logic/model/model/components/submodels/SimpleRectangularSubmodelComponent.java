@@ -9,6 +9,7 @@ import java.util.List;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
@@ -56,15 +57,16 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 
 	protected void setInputPins(String... pinNames)
 	{
-		setIOPins(0, inputPinNames, outputPinNames, pinNames);
+		setIOPins(0, inputPinNames, outputPinNames, PinUsage.INPUT, pinNames);
 	}
 
 	protected void setOutputPins(String... pinNames)
 	{
-		setIOPins(width, outputPinNames, inputPinNames, pinNames);
+		setIOPins(width, outputPinNames, inputPinNames, PinUsage.OUTPUT, pinNames);
 	}
 
-	private void setIOPins(double relX, List<String> pinNamesListThisSide, List<String> pinNamesListOtherSide, String... newPinNames)
+	private void setIOPins(double relX, List<String> pinNamesListThisSide, List<String> pinNamesListOtherSide, PinUsage usage,
+			String... newPinNames)
 	{
 		int inputCount = newPinNames.length;
 		List<String> newPinNamesList = Arrays.asList(newPinNames);
@@ -79,7 +81,7 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 			String pinName = newPinNames[i];
 			int oldPinIndex = pinNamesListThisSide.indexOf(pinName);
 			if (oldPinIndex == -1)
-				super.addSubmodelInterface(new MovablePin(this, pinName, logicWidth, relX, pinDistance / 2 + i * pinDistance));
+				super.addSubmodelInterface(new MovablePin(this, pinName, logicWidth, usage, relX, pinDistance / 2 + i * pinDistance));
 			else
 				getSupermodelMovablePin(pinName).setRelPos(relX, pinDistance / 2 + i * pinDistance);
 		}

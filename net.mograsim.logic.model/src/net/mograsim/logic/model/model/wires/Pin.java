@@ -2,6 +2,7 @@ package net.mograsim.logic.model.model.wires;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -19,7 +20,7 @@ public class Pin
 {
 	// TODO introduce input/output/tristate hints
 	/**
-	 * The {@link GUIComponent} this pin belongs to
+	 * The {@link GUIComponent} this pin belongs to.
 	 */
 	public final GUIComponent component;
 	/**
@@ -30,6 +31,11 @@ public class Pin
 	 * The logical width of this pin. Denotes how many bits this pin consists of.
 	 */
 	public final int logicWidth;
+	/**
+	 * How this pin is used by the component it belongs to.<br>
+	 * Note that this is only a hint.
+	 */
+	public final PinUsage usage;
 
 	/**
 	 * The X position of this pin, relative to its component's location.
@@ -50,11 +56,12 @@ public class Pin
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public Pin(GUIComponent component, String name, int logicWidth, double relX, double relY)
+	public Pin(GUIComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
 	{
 		this.component = component;
 		this.name = name;
 		this.logicWidth = logicWidth;
+		this.usage = Objects.requireNonNull(usage);
 		this.relX = relX;
 		this.relY = relY;
 

@@ -13,6 +13,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
@@ -22,20 +23,20 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 	{
 		super(model, name, "Instr.\nPLA");
 		setSize(30, 85);
-		addPin(new Pin(this, "PASS", 1, 0, 5), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "I", 4, 0, 20), Usage.INPUT, Position.RIGHT);
-		addPin(new Pin(this, "R=0", 1, 15, 0), Usage.INPUT, Position.BOTTOM);
-		addPin(new Pin(this, "_PL", 1, 5, 85), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "_MAP", 1, 15, 85), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "_VECT", 1, 25, 85), Usage.OUTPUT, Position.TOP);
-		addPin(new Pin(this, "RWE", 1, 30, 5), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "RDEC", 1, 30, 15), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "YD", 1, 30, 25), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "YR", 1, 30, 35), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "YF", 1, 30, 45), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "YmuPC", 1, 30, 55), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "STKI0", 1, 30, 65), Usage.OUTPUT, Position.LEFT);
-		addPin(new Pin(this, "STKI1", 1, 30, 75), Usage.OUTPUT, Position.LEFT);
+		addPin(new Pin(this, "PASS", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
+		addPin(new Pin(this, "I", 4, PinUsage.INPUT, 0, 20), Position.RIGHT);
+		addPin(new Pin(this, "R=0", 1, PinUsage.INPUT, 15, 0), Position.BOTTOM);
+		addPin(new Pin(this, "_PL", 1, PinUsage.OUTPUT, 5, 85), Position.TOP);
+		addPin(new Pin(this, "_MAP", 1, PinUsage.OUTPUT, 15, 85), Position.TOP);
+		addPin(new Pin(this, "_VECT", 1, PinUsage.OUTPUT, 25, 85), Position.TOP);
+		addPin(new Pin(this, "RWE", 1, PinUsage.OUTPUT, 30, 5), Position.LEFT);
+		addPin(new Pin(this, "RDEC", 1, PinUsage.OUTPUT, 30, 15), Position.LEFT);
+		addPin(new Pin(this, "YD", 1, PinUsage.OUTPUT, 30, 25), Position.LEFT);
+		addPin(new Pin(this, "YR", 1, PinUsage.OUTPUT, 30, 35), Position.LEFT);
+		addPin(new Pin(this, "YF", 1, PinUsage.OUTPUT, 30, 45), Position.LEFT);
+		addPin(new Pin(this, "YmuPC", 1, PinUsage.OUTPUT, 30, 55), Position.LEFT);
+		addPin(new Pin(this, "STKI0", 1, PinUsage.OUTPUT, 30, 65), Position.LEFT);
+		addPin(new Pin(this, "STKI1", 1, PinUsage.OUTPUT, 30, 75), Position.LEFT);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package net.mograsim.logic.model.model.components.atomic;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -25,9 +24,6 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 	private static final double pinNamesHeight = 3.5;
 	private static final double pinNamesMargin = .5;
 
-	// TODO maybe make this more general?
-	private final Map<Pin, Usage> pinUsages;
-
 	private final DefaultOutlineRenderer outlineRenderer;
 	private final CenteredTextSymbolRenderer centerTextRenderer;
 	private final PinNamesSymbolRenderer pinNamesRenderer;
@@ -37,7 +33,6 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 	public SimpleRectangularHardcodedGUIComponent(ViewModelModifiable model, String name, String centerText)
 	{
 		super(model, name);
-		pinUsages = new HashMap<>();
 		this.outlineRenderer = new DefaultOutlineRenderer(this);
 		CenteredTextParams centeredTextParams = new CenteredTextParams();
 		centeredTextParams.text = centerText;
@@ -52,22 +47,15 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 
 	// pins
 
-	protected void addPin(Pin pin, Usage usage, Position namePosition)
+	protected void addPin(Pin pin, Position namePosition)
 	{
 		super.addPin(pin); // do this first to catch errors
-		pinUsages.put(pin, usage);
 		pinNamesRenderer.setPinPosition(pin, namePosition);
 	}
 
 	private void pinRemoved(Pin pin)
 	{
-		pinUsages.remove(pin);
 		pinNamesRenderer.setPinPosition(pin, null);
-	}
-
-	public Usage getPinUsage(Pin pin)
-	{
-		return pinUsages.get(pin);
 	}
 
 	// logic
@@ -89,12 +77,7 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 	@Override
 	protected void addPin(Pin pin)
 	{
-		throw new UnsupportedOperationException("Can't add pins without setting usage, call addPin(Pin, Usage [, Position]) instead");
-	}
-
-	public static enum Usage
-	{
-		INPUT, OUTPUT, TRISTATE;
+		throw new UnsupportedOperationException("Can't add pins without setting usage, call addPin(Pin [, Position]) instead");
 	}
 
 	static

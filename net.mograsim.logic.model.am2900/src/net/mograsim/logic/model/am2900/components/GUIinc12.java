@@ -14,6 +14,7 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
@@ -23,9 +24,9 @@ public class GUIinc12 extends SimpleRectangularHardcodedGUIComponent
 	{
 		super(model, name, "Incrementer");
 		setSize(40, 20);
-		addPin(new Pin(this, "A", 12, 20, 20), Usage.INPUT, Position.TOP);
-		addPin(new Pin(this, "CI", 1, 40, 10), Usage.INPUT, Position.LEFT);
-		addPin(new Pin(this, "Y", 12, 20, 0), Usage.OUTPUT, Position.BOTTOM);
+		addPin(new Pin(this, "A", 12, PinUsage.INPUT, 20, 20), Position.TOP);
+		addPin(new Pin(this, "CI", 1, PinUsage.INPUT, 40, 10), Position.LEFT);
+		addPin(new Pin(this, "Y", 12, PinUsage.OUTPUT, 20, 0), Position.BOTTOM);
 	}
 
 	@Override
