@@ -1,0 +1,648 @@
+{
+  "width": 0.0,
+  "height": 0.0,
+  "interfacePins": [],
+  "innerScale": 1.0,
+  "submodel": {
+    "components": [
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#2",
+        "pos": {
+          "x": 185.0,
+          "y": 170.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#0",
+        "pos": {
+          "x": 391.0,
+          "y": 150.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#3",
+        "pos": {
+          "x": 391.0,
+          "y": 195.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#4",
+        "pos": {
+          "x": 185.0,
+          "y": 190.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#12",
+        "pos": {
+          "x": 380.0,
+          "y": 205.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
+        "pos": {
+          "x": 370.0,
+          "y": 175.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#5",
+        "pos": {
+          "x": 185.0,
+          "y": 210.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#7",
+        "pos": {
+          "x": 335.0,
+          "y": 135.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#4",
+        "pos": {
+          "x": 335.0,
+          "y": 105.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#7",
+        "pos": {
+          "x": 360.0,
+          "y": 110.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#2",
+        "pos": {
+          "x": 391.0,
+          "y": 180.0
+        },
+        "params": 1
+      },
+      {
+        "id": "file:FusionNotWorkingTestInner.json",
+        "name": "inner",
+        "pos": {
+          "x": 220.0,
+          "y": 175.0
+        }
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#32",
+        "pos": {
+          "x": 300.0,
+          "y": 107.5
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#33",
+        "pos": {
+          "x": 300.0,
+          "y": 137.5
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#1",
+        "pos": {
+          "x": 391.0,
+          "y": 165.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#0",
+        "pos": {
+          "x": 240.0,
+          "y": 150.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#11",
+        "pos": {
+          "x": 375.0,
+          "y": 190.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#35",
+        "pos": {
+          "x": 300.0,
+          "y": 122.5
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#34",
+        "pos": {
+          "x": 300.0,
+          "y": 92.5
+        },
+        "params": 1
+      },
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#5",
+        "pos": {
+          "x": 335.0,
+          "y": 90.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#6",
+        "pos": {
+          "x": 345.0,
+          "y": 85.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#9",
+        "pos": {
+          "x": 365.0,
+          "y": 160.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#36",
+        "pos": {
+          "x": 300.0,
+          "y": 77.5
+        },
+        "params": 1
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#6",
+        "pos": {
+          "x": 185.0,
+          "y": 230.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#8",
+        "pos": {
+          "x": 360.0,
+          "y": 125.0
+        },
+        "params": 1
+      },
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#6",
+        "pos": {
+          "x": 335.0,
+          "y": 120.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "inner",
+          "pinName": "YN"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 375.0,
+            "y": 210.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIManualSwitch#35",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#6",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#56",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inner",
+          "pinName": "YOVR"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "name": "unnamedWire#14",
+        "path": [
+          {
+            "x": 380.0,
+            "y": 220.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#6",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#64",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inner",
+          "pinName": "YC"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "name": "unnamedWire#68",
+        "path": [
+          {
+            "x": 370.0,
+            "y": 200.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "name": "unnamedWire#61",
+        "path": [
+          {
+            "x": 360.0,
+            "y": 85.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIManualSwitch#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "inner",
+          "pinName": "_OEY"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#72",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#5",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#59",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inner",
+          "pinName": "YZ"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "name": "unnamedWire#17",
+        "path": [
+          {
+            "x": 365.0,
+            "y": 190.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIManualSwitch#36",
+          "pinName": ""
+        },
+        "name": "unnamedWire#60",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#71",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIManualSwitch#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "inner",
+          "pinName": "IOVR"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inner",
+          "pinName": "IZ"
+        },
+        "pin2": {
+          "compName": "GUIManualSwitch#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#5",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#67",
+        "path": [
+          {
+            "x": 365.0,
+            "y": 100.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#63",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#7",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "GUIManualSwitch#33",
+          "pinName": ""
+        },
+        "name": "unnamedWire#55",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inner",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "GUIManualSwitch#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#4",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#69",
+        "path": [
+          {
+            "x": 370.0,
+            "y": 115.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#6",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#70",
+        "path": [
+          {
+            "x": 375.0,
+            "y": 130.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#4",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#62",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIManualSwitch#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "inner",
+          "pinName": "IC"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#7",
+          "pinName": "EN"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#65",
+        "path": [
+          {
+            "x": 360.0,
+            "y": 140.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#66",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#7",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#73",
+        "path": [
+          {
+            "x": 380.0,
+            "y": 145.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#4",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "GUIManualSwitch#32",
+          "pinName": ""
+        },
+        "name": "unnamedWire#57",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIManualSwitch#34",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#5",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#58",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "default",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.4"
+}

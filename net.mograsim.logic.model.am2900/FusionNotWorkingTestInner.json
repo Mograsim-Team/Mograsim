@@ -1,0 +1,320 @@
+{
+  "width": 115.0,
+  "height": 70.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 45.0
+      },
+      "name": "IOVR",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 115.0,
+        "y": 15.0
+      },
+      "name": "YZ",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "IZ",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 115.0,
+        "y": 35.0
+      },
+      "name": "YN",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 35.0
+      },
+      "name": "IN",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 55.0,
+        "y": 0.0
+      },
+      "name": "_OEY",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 115.0,
+        "y": 25.0
+      },
+      "name": "YC",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "IC",
+      "logicWidth": 1
+    },
+    {
+      "location": {
+        "x": 115.0,
+        "y": 45.0
+      },
+      "name": "YOVR",
+      "logicWidth": 1
+    }
+  ],
+  "innerScale": 1.0,
+  "submodel": {
+    "components": [
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#0",
+        "pos": {
+          "x": 45.0,
+          "y": 20.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#2",
+        "pos": {
+          "x": 35.0,
+          "y": 45.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUIMerger",
+        "name": "GUIMerger#2",
+        "pos": {
+          "x": 17.0,
+          "y": 15.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#1",
+        "pos": {
+          "x": 75.0,
+          "y": 35.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#1",
+        "pos": {
+          "x": 100.0,
+          "y": 15.0
+        },
+        "params": 4
+      },
+      {
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#3",
+        "pos": {
+          "x": 65.0,
+          "y": 5.0
+        },
+        "params": 1
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "GUIMerger#2",
+          "pinName": "O"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "YOVR"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#52",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "YZ"
+        },
+        "name": "unnamedWire#49",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "EN"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_OEY"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "IOVR"
+        },
+        "pin2": {
+          "compName": "GUIMerger#2",
+          "pinName": "I3"
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "GUIMerger#2",
+          "pinName": "I2"
+        },
+        "name": "unnamedWire#18",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIBitDisplay#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 30.0,
+            "y": 40.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#2",
+          "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "IZ"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "IC"
+        },
+        "pin2": {
+          "compName": "GUIMerger#2",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "EN"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#232",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "YC"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#50",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "OUT"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#230",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "YN"
+        },
+        "name": "unnamedWire#51",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "OUT"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "default",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.4"
+}
