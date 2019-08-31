@@ -26,7 +26,6 @@ import net.mograsim.logic.model.util.Version;
  */
 public final class SubmodelComponentSerializer
 {
-	// TODO set pin usages of existing components
 	public static final Version JSON_VERSION_CURRENT_SERIALIZING = Version.parseSemver("0.1.5");
 	public static final Version JSON_VERSION_LATEST_SUPPORTED_DESERIALIZING = Version.parseSemver("0.1.5");
 	public static final Version JSON_VERSION_EARLIEST_WITH_USAGE_SERIALIZED = Version.parseSemver("0.1.4");
