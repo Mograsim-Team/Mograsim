@@ -1,6 +1,8 @@
 package net.mograsim.logic.model.serializing;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import com.google.gson.JsonElement;
 
@@ -216,6 +218,7 @@ public final class SubmodelComponentSerializer
 			i++;
 		}
 		params.interfacePins = iPins;
+		Arrays.sort(params.interfacePins, Comparator.comparing(p -> p.name));
 
 		Renderer symbolRenderer = comp.getSymbolRenderer();
 		if (symbolRenderer != null)
