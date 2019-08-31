@@ -63,13 +63,48 @@ public class GUIAm2910SP extends SimpleRectangularHardcodedGUIComponent
 			else if (STKI0Val == ONE && STKI1Val == ONE)
 				// POP
 				SP = SP <= 0 ? SP : SP - 1;
-		readWriteEnds.get("A").feedSignals(getAsBitVector(SP == 0 ? 7 : SP - 1));
+		readWriteEnds.get("A").feedSignals(getAsBitVector(SP == 0 ? 7 : SP < 0 ? SP : SP - 1));
 		readWriteEnds.get("B").feedSignals(getAsBitVector(SP == 5 ? 4 : SP));
 		readWriteEnds.get("_FULL").feedSignals(SP == -2 ? U : SP == -1 ? X : SP == 5 ? ZERO : ONE);
 
 		SPC.i = SP;
 		SPC.bit = CVal;
 		return SPC;
+	}
+
+	@Override
+	protected Object getHighLevelState(Object state, String stateID)
+	{
+		switch (stateID)
+		{
+		case "q":
+			return getAsBitVector(((BitAndInt) state).i);
+		default:
+			return super.getHighLevelState(state, stateID);
+		}
+	}
+
+	@Override
+	protected Object setHighLevelState(Object lastState, String stateID, Object newHighLevelState)
+	{
+		switch (stateID)
+		{
+		case "q":
+			int i;
+			BitVector newHighLevelStateCasted = (BitVector) newHighLevelState;
+			if (newHighLevelStateCasted.length() != 3)
+				throw new IllegalArgumentException("Expected BitVector of length 3, not " + newHighLevelStateCasted.length());
+			if (newHighLevelStateCasted.isBinary())
+				i = newHighLevelStateCasted.getUnsignedValue().intValue();
+			else
+				i = -1;// this makes setting to U impossible
+			if (i > 5)
+				throw new IllegalArgumentException("Given value not in range (0-5 incl.): " + i);
+			((BitAndInt) lastState).i = i;
+			return lastState;
+		default:
+			return super.setHighLevelState(lastState, stateID, newHighLevelState);
+		}
 	}
 
 	private static class BitAndInt
