@@ -67,7 +67,7 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 	}
 
 	@Override
-	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		Bit _SE = readEnds.get("_SE").getValue();
 		Bit[] IBits = readEnds.get("I").getValues().getBits();

@@ -40,7 +40,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 	}
 
 	@Override
-	protected Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
+	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		ReadEnd PASS = readEnds.get("PASS");
 		ReadEnd I = readEnds.get("I");

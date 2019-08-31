@@ -1,6 +1,7 @@
 package net.mograsim.logic.model.model.components.atomic;
 
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -11,6 +12,8 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SimpleRectangularHardcodedGUIComponentAdapter;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer.CenteredTextParams;
@@ -28,6 +31,9 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 	private final CenteredTextSymbolRenderer centerTextRenderer;
 	private final PinNamesSymbolRenderer pinNamesRenderer;
 
+	private AtomicReference<Object> state;
+	private Runnable recalculate;
+
 	// creation and destruction
 
 	public SimpleRectangularHardcodedGUIComponent(ViewModelModifiable model, String name, String centerText)
@@ -43,6 +49,27 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 		pinNamesParams.pinLabelMargin = pinNamesMargin;
 		this.pinNamesRenderer = new PinNamesSymbolRenderer(this, pinNamesParams);
 		addPinRemovedListener(this::pinRemoved);
+		setHighLevelStateHandler(new HighLevelStateHandler()
+		{
+			@Override
+			public Object getParamsForSerializing(IdentifierGetter idGetter)
+			{
+				return null;
+			}
+
+			@Override
+			public Object getHighLevelState(String stateID)
+			{
+				return SimpleRectangularHardcodedGUIComponent.this.getHighLevelState(state.get(), stateID);
+			}
+
+			@Override
+			public void setHighLevelState(String stateID, Object newState)
+			{
+				state.updateAndGet(s -> SimpleRectangularHardcodedGUIComponent.this.setHighLevelState(s, stateID, newState));
+				recalculate.run();
+			}
+		});
 	}
 
 	// pins
@@ -58,9 +85,31 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 		pinNamesRenderer.setPinPosition(pin, null);
 	}
 
+	// high-level access
+
+	@SuppressWarnings({ "static-method", "unused" }) // this method is intended to be overridden
+	protected Object getHighLevelState(Object state, String stateID)
+	{
+		throw new IllegalArgumentException("No high level state with ID " + stateID);
+	}
+
+	@SuppressWarnings({ "static-method", "unused" }) // this method is intended to be overridden
+	protected Object setHighLevelState(Object lastState, String stateID, Object newHighLevelState)
+	{
+		throw new IllegalArgumentException("No high level state with ID " + stateID);
+	}
+
 	// logic
 
-	protected abstract Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds);
+	public abstract Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds);
+
+	// logic model binding
+
+	public void setLogicModelBindingAndResetState(AtomicReference<Object> state, Runnable recalculate)
+	{
+		this.state = state;
+		this.recalculate = recalculate;
+	}
 
 	// "graphical" operations
 
@@ -82,6 +131,6 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new SimpleRectangularHardcodedGUIComponentAdapter(c -> c::recalculate));
+		ViewLogicModelAdapter.addComponentAdapter(new SimpleRectangularHardcodedGUIComponentAdapter());
 	}
 }
