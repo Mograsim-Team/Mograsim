@@ -1145,7 +1145,32 @@
   "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
   "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
   "highLevelStateHandlerParams": {
-    "subcomponentHighLevelStates": {},
+    "subcomponentHighLevelStates": {
+      "r": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIAm2910RegCntr#0"
+        }
+      },
+      "sp": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIAm2910SP#0"
+        }
+      },
+      "stack": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIram5_12#0"
+        }
+      },
+      "mupc": {
+        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler",
+        "params": {
+          "delegateTarget": "GUIdff12#0"
+        }
+      }
+    },
     "atomicHighLevelStates": {}
   },
   "version": "0.1.5"
