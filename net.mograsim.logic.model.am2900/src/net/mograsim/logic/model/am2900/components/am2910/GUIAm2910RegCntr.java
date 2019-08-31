@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
@@ -73,6 +74,34 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 		Y.feedSignals(Arrays.copyOfRange(QC, 0, 12));
 
 		return QC;
+	}
+
+	@Override
+	protected Object getHighLevelState(Object state, String stateID)
+	{
+		switch (stateID)
+		{
+		case "q":
+			return BitVector.of(Arrays.copyOfRange((Bit[]) state, 0, 12));
+		default:
+			return super.getHighLevelState(state, stateID);
+		}
+	}
+
+	@Override
+	protected Object setHighLevelState(Object lastState, String stateID, Object newHighLevelState)
+	{
+		switch (stateID)
+		{
+		case "q":
+			BitVector newHighLevelStateCasted = (BitVector) newHighLevelState;
+			if (newHighLevelStateCasted.length() != 12)
+				throw new IllegalArgumentException("Expected BitVector of length 12, not " + newHighLevelStateCasted.length());
+			System.arraycopy(newHighLevelStateCasted.getBits(), 0, lastState, 0, 12);
+			return lastState;
+		default:
+			return super.setHighLevelState(lastState, stateID, newHighLevelState);
+		}
 	}
 
 	static
