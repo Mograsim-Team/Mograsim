@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
+import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIAndGate;
@@ -12,6 +15,7 @@ import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.model.model.components.atomic.GUINotGate;
 import net.mograsim.logic.model.model.components.atomic.TextComponent;
+import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.WireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
@@ -21,7 +25,7 @@ public class Am2901Testbench
 {
 	public static void main(String[] args)
 	{
-		SimpleLogicUIStandalone.executeVisualisation(Am2901Testbench::createTestbench);
+		SimpleLogicUIStandalone.executeVisualisation(Am2901Testbench::createTestbench, Am2901Testbench::beforeRun);
 	}
 
 	public static void createTestbench(ViewModelModifiable model)
@@ -98,5 +102,17 @@ public class Am2901Testbench
 			TextComponent label = new TextComponent(model, outputPinNames.get(i));
 			label.moveTo(x + 25, y);
 		}
+	}
+
+	public static void beforeRun(VisualisationObjects vis)
+	{
+		((SubmodelComponent) vis.model.getComponentsByName().get("testbench")).submodel.getComponentsByName().values().forEach(c ->
+		{
+			if (c instanceof GUIManualSwitch)
+			{
+				GUIManualSwitch cCasted = (GUIManualSwitch) c;
+				cCasted.setHighLevelState("out", BitVector.of(Bit.ZERO, cCasted.logicWidth));
+			}
+		});
 	}
 }

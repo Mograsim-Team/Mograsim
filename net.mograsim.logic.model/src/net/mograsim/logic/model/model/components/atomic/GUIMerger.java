@@ -26,9 +26,15 @@ public class GUIMerger extends GUIComponent
 	private static final double heightPerPin = 10;
 
 	public final int logicWidth;
+	private final Pin outputPin;
 
 	private final ReadEnd[] inputEnds;
 	private ReadEnd outputEnd;
+
+	public GUIMerger(ViewModelModifiable model, int logicWidth)
+	{
+		this(model, logicWidth, null);
+	}
 
 	public GUIMerger(ViewModelModifiable model, int logicWidth, String name)
 	{
@@ -38,7 +44,7 @@ public class GUIMerger extends GUIComponent
 		double inputHeight = 0;
 		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
 			addPin(new Pin(this, "I" + i, 1, 0, inputHeight));
-		addPin(new Pin(this, "O", logicWidth, width, (logicWidth - 1) * heightPerPin / 2));
+		addPin(this.outputPin = new Pin(this, "O", logicWidth, width, (logicWidth - 1) * heightPerPin / 2));
 		inputEnds = new ReadEnd[logicWidth];
 	}
 
@@ -80,6 +86,11 @@ public class GUIMerger extends GUIComponent
 	{
 		System.arraycopy(inputEnds, 0, this.inputEnds, 0, logicWidth);
 		this.outputEnd = outputEnd;
+	}
+
+	public Pin getOutputPin()
+	{
+		return outputPin;
 	}
 
 	static

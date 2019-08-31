@@ -11,13 +11,24 @@ public class SimpleLogicUIStandalone
 {
 	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel)
 	{
+		executeVisualisation(setupViewModel, (Consumer<VisualisationObjects>) null);
+	}
+
+	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, Consumer<VisualisationObjects> beforeRun)
+	{
 		LogicModelParameters params = new LogicModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
-		executeVisualisation(setupViewModel, params);
+		executeVisualisation(setupViewModel, params, beforeRun);
 	}
 
 	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, LogicModelParameters params)
+	{
+		executeVisualisation(setupViewModel, params, null);
+	}
+
+	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, LogicModelParameters params,
+			Consumer<VisualisationObjects> beforeRun)
 	{
 		// setup view model
 		ViewModelModifiable viewModel = new ViewModelModifiable();
@@ -30,10 +41,29 @@ public class SimpleLogicUIStandalone
 		LogicUIStandaloneGUI ui = new LogicUIStandaloneGUI(viewModel);
 		LogicExecuter exec = new LogicExecuter(timeline);
 
+		if (beforeRun != null)
+			beforeRun.accept(new VisualisationObjects(viewModel, timeline, ui, exec));
+
 		// run it
 		exec.startLiveExecution();
 		ui.run();
 		exec.stopLiveExecution();
+	}
+
+	public static class VisualisationObjects
+	{
+		public final ViewModelModifiable model;
+		public final Timeline timeline;
+		public final LogicUIStandaloneGUI gui;
+		public final LogicExecuter executer;
+
+		public VisualisationObjects(ViewModelModifiable model, Timeline timeline, LogicUIStandaloneGUI gui, LogicExecuter executer)
+		{
+			this.model = model;
+			this.timeline = timeline;
+			this.gui = gui;
+			this.executer = executer;
+		}
 	}
 
 	private SimpleLogicUIStandalone()

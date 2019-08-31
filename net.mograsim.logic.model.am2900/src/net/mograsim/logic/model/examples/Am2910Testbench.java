@@ -1,7 +1,10 @@
 package net.mograsim.logic.model.examples;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
+import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
@@ -13,7 +16,7 @@ public class Am2910Testbench
 {
 	public static void main(String[] args)
 	{
-		SimpleLogicUIStandalone.executeVisualisation(Am2910Testbench::create);
+		SimpleLogicUIStandalone.executeVisualisation(Am2910Testbench::create, Am2910Testbench::beforeRun);
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
@@ -61,5 +64,17 @@ public class Am2910Testbench
 		new GUIWire(model, am2910.getPin("_VECT"), _VECT.getInputPin(), new Point(25, 132.5));
 		new GUIWire(model, am2910.getPin("Y"), Y.getInputPin(), new Point(38, 72.5));
 		new GUIWire(model, am2910.getPin("_OE"), _OE.getOutputPin());
+	}
+
+	public static void beforeRun(VisualisationObjects vis)
+	{
+		vis.model.getComponentsByName().values().forEach(c ->
+		{
+			if (c instanceof GUIManualSwitch)
+			{
+				GUIManualSwitch cCasted = (GUIManualSwitch) c;
+				cCasted.setHighLevelState("out", BitVector.of(Bit.ZERO, cCasted.logicWidth));
+			}
+		});
 	}
 }
