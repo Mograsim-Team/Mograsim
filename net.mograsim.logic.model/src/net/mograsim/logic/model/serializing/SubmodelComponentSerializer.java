@@ -28,7 +28,7 @@ public final class SubmodelComponentSerializer
 {
 	public static final Version JSON_VERSION_CURRENT_SERIALIZING = Version.parseSemver("0.1.5");
 	public static final Version JSON_VERSION_LATEST_SUPPORTED_DESERIALIZING = Version.parseSemver("0.1.5");
-	public static final Version JSON_VERSION_EARLIEST_WITH_USAGE_SERIALIZED = Version.parseSemver("0.1.4");
+	public static final Version JSON_VERSION_EARLIEST_WITH_USAGE_SERIALIZED = Version.parseSemver("0.1.5");
 	// convenience methods
 
 	/**
@@ -165,7 +165,7 @@ public final class SubmodelComponentSerializer
 		Version version = params.version;
 		if (version.compareTo(JSON_VERSION_LATEST_SUPPORTED_DESERIALIZING) > 0)
 			throw new IllegalArgumentException("JSON version " + version + " not supported yet");
-		boolean hasUsageSerialized = version.compareTo(JSON_VERSION_EARLIEST_WITH_USAGE_SERIALIZED) > 0;
+		boolean hasUsageSerialized = version.compareTo(JSON_VERSION_EARLIEST_WITH_USAGE_SERIALIZED) >= 0;
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model, name, idForSerializingOverride,
 				paramsForSerializingOverride);
 		comp.setSubmodelScale(params.innerScale);
