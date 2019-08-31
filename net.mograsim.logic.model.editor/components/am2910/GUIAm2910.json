@@ -124,7 +124,7 @@
   "submodel": {
     "components": [
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.am2910.GUIAm2910InstrPLA",
+        "id": "GUIAm2910InstrPLA",
         "name": "GUIAm2910InstrPLA#0",
         "pos": {
           "x": 80.0,
@@ -132,7 +132,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.am2910.GUIAm2910RegCntr",
+        "id": "GUIAm2910RegCntr",
         "name": "GUIAm2910RegCntr#0",
         "pos": {
           "x": 160.0,
@@ -140,7 +140,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.am2910.GUIAm2910SP",
+        "id": "GUIAm2910SP",
         "name": "GUIAm2910SP#0",
         "pos": {
           "x": 305.0,
@@ -148,7 +148,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#0",
         "pos": {
           "x": 160.0,
@@ -157,7 +157,7 @@
         "params": 12
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#1",
         "pos": {
           "x": 260.0,
@@ -166,7 +166,7 @@
         "params": 12
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#2",
         "pos": {
           "x": 345.0,
@@ -175,7 +175,7 @@
         "params": 12
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#3",
         "pos": {
           "x": 265.0,
@@ -184,7 +184,25 @@
         "params": 12
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#4",
+        "pos": {
+          "x": 260.0,
+          "y": 85.0
+        },
+        "params": 3
+      },
+      {
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#5",
+        "pos": {
+          "x": 260.0,
+          "y": 70.0
+        },
+        "params": 3
+      },
+      {
+        "id": "GUINandGate",
         "name": "GUINandGate#0",
         "pos": {
           "x": 40.0,
@@ -193,7 +211,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#1",
         "pos": {
           "x": 10.0,
@@ -202,7 +220,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#0",
         "pos": {
           "x": 180.0,
@@ -214,7 +232,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.GUIdff12",
+        "id": "GUIdff12",
         "name": "GUIdff12#0",
         "pos": {
           "x": 305.0,
@@ -222,7 +240,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.GUIinc12",
+        "id": "GUIinc12",
         "name": "GUIinc12#0",
         "pos": {
           "x": 305.0,
@@ -230,7 +248,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.GUInor12",
+        "id": "GUInor12",
         "name": "GUInor12#0",
         "pos": {
           "x": 190.0,
@@ -238,7 +256,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.GUIram5_12",
+        "id": "GUIram5_12",
         "name": "GUIram5_12#0",
         "pos": {
           "x": 305.0,
@@ -246,7 +264,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.GUIsel4_12",
+        "id": "GUIsel4_12",
         "name": "GUIsel4_12#0",
         "pos": {
           "x": 150.0,
@@ -254,7 +272,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 324.0,
@@ -263,7 +281,7 @@
         "params": 12
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
           "x": 294.0,
@@ -272,7 +290,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 189.0,
@@ -281,7 +299,7 @@
         "params": 12
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
           "x": 179.0,
@@ -290,7 +308,7 @@
         "params": 12
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#4",
         "pos": {
           "x": 179.0,
@@ -299,7 +317,7 @@
         "params": 12
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#5",
         "pos": {
           "x": 4.0,
@@ -308,7 +326,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#6",
         "pos": {
           "x": 299.0,
@@ -317,7 +335,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#7",
         "pos": {
           "x": 299.0,
@@ -326,7 +344,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#8",
         "pos": {
           "x": 299.0,
@@ -335,7 +353,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#9",
         "pos": {
           "x": 299.0,
@@ -1085,6 +1103,30 @@
       },
       {
         "pin1": {
+          "compName": "GUIAm2910SP#0",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#54",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIAm2910SP#0",
+          "pinName": "B"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#55",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "WireCrossPoint#0",
           "pinName": ""
         },
@@ -1134,7 +1176,7 @@
     ],
     "version": "0.1.1"
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "Am2910",
     "centerTextHeight": 5.0,
@@ -1142,10 +1184,35 @@
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
   "highLevelStateHandlerParams": {
-    "subcomponentHighLevelStates": {},
+    "subcomponentHighLevelStates": {
+      "r": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "GUIAm2910RegCntr#0"
+        }
+      },
+      "stack": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "GUIram5_12#0"
+        }
+      },
+      "mupc": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "GUIdff12#0"
+        }
+      },
+      "sp": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "GUIAm2910SP#0"
+        }
+      }
+    },
     "atomicHighLevelStates": {}
   },
   "version": "0.1.5"
