@@ -1,7 +1,9 @@
 package net.mograsim.logic.model.serializing;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -161,6 +163,7 @@ public class ViewModelSerializer
 			compParams.name = component.name;
 		}
 		modelParams.components = componentsParams.toArray(ComponentParams[]::new);
+		Arrays.sort(modelParams.components, Comparator.comparing(c -> c.name));
 
 		Collection<GUIWire> wires = model.getWiresByName().values();
 		Set<WireParams> wiresParams = new HashSet<>();
@@ -180,6 +183,7 @@ public class ViewModelSerializer
 			innerWireParams.path = innerWire.getPath();
 		}
 		modelParams.wires = wiresParams.toArray(WireParams[]::new);
+		Arrays.sort(modelParams.wires, Comparator.comparing(c -> c.name));
 
 		return modelParams;
 	}
