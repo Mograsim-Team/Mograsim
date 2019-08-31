@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.examples;
+package net.mograsim.logic.model.am2900.am2910;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.core.types.Bit;
