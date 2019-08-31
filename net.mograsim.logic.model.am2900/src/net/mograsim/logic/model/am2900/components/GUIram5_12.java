@@ -8,6 +8,8 @@ import static net.mograsim.logic.core.types.Bit.ZERO;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
@@ -81,6 +83,32 @@ public class GUIram5_12 extends SimpleRectangularHardcodedGUIComponent
 				return -1;
 		// TODO maybe this is the wrong way around
 		return (bits[0] == ONE ? 4 : 0) + (bits[1] == ONE ? 2 : 0) + (bits[2] == ONE ? 1 : 0);
+	}
+
+	Pattern stateIDPattern = Pattern.compile("c(0[10][10]|100)");
+
+	@Override
+	protected Object getHighLevelState(Object state, String stateID)
+	{
+		Matcher m = stateIDPattern.matcher(stateID);
+		if (m.matches())
+			return ((BitVector[]) state)[Integer.parseInt(m.group(1), 2)];
+		return super.getHighLevelState(state, stateID);
+	}
+
+	@Override
+	protected Object setHighLevelState(Object lastState, String stateID, Object newHighLevelState)
+	{
+		Matcher m = stateIDPattern.matcher(stateID);
+		if (m.matches())
+		{
+			int addr = Integer.parseInt(m.group(1), 2);
+			BitVector newHighLevelStateCasted = (BitVector) newHighLevelState;
+			if (newHighLevelStateCasted.length() != 3)
+				throw new IllegalArgumentException("Expected BitVector of length 3, not " + newHighLevelStateCasted.length());
+			return ((BitVector[]) lastState)[addr] = newHighLevelStateCasted;
+		}
+		return super.setHighLevelState(lastState, stateID, newHighLevelState);
 	}
 
 	static
