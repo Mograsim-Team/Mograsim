@@ -24,9 +24,8 @@ import net.mograsim.logic.model.util.Version;
  */
 public final class SubmodelComponentSerializer
 {
-	// TODO serialize pin usage
 	// TODO set pin usages of existing components
-	public static final Version JSON_VERSION_CURRENT_SERIALIZING = Version.parseSemver("0.1.4");
+	public static final Version JSON_VERSION_CURRENT_SERIALIZING = Version.parseSemver("0.1.5");
 	public static final Version JSON_VERSION_LATEST_SUPPORTED_DESERIALIZING = Version.parseSemver("0.1.5");
 	public static final Version JSON_VERSION_EARLIEST_WITH_USAGE_SERIALIZED = Version.parseSemver("0.1.4");
 	// convenience methods
@@ -171,6 +170,7 @@ public final class SubmodelComponentSerializer
 		comp.setSubmodelScale(params.innerScale);
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
+			// TRISTATE because we don't have a better choice
 			comp.addSubmodelInterface(new MovablePin(comp, iPinParams.name, iPinParams.logicWidth,
 					hasUsageSerialized ? iPinParams.usage : PinUsage.TRISTATE, iPinParams.location.x, iPinParams.location.y));
 		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
@@ -212,6 +212,7 @@ public final class SubmodelComponentSerializer
 			iPinParams.location = p.getRelPos();
 			iPinParams.name = p.name;
 			iPinParams.logicWidth = p.logicWidth;
+			iPinParams.usage = p.usage;
 			i++;
 		}
 		params.interfacePins = iPins;
