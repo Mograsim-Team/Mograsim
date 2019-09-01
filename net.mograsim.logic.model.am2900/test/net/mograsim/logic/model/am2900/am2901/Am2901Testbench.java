@@ -15,7 +15,6 @@ import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.model.model.components.atomic.GUINotGate;
 import net.mograsim.logic.model.model.components.atomic.TextComponent;
-import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.model.wires.WireCrossPoint;
@@ -105,7 +104,7 @@ public class Am2901Testbench
 
 	public static void beforeRun(VisualisationObjects vis)
 	{
-		((SubmodelComponent) vis.model.getComponentsByName().get("testbench")).submodel.getComponentsByName().values().forEach(c ->
+		vis.model.getComponentsByName().values().forEach(c ->
 		{
 			if (c instanceof GUIManualSwitch)
 			{
