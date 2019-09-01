@@ -108,8 +108,8 @@ public abstract class SubmodelComponent extends GUIComponent
 		this.submodelInterface = new SubmodelInterface(submodelModifiable, SUBMODEL_INTERFACE_NAME);
 
 		this.submodelScale = 1;
-		this.maxVisibleRegionFillRatioForAlpha0 = 0.8;
-		this.minVisibleRegionFillRatioForAlpha1 = 0.9;
+		this.maxVisibleRegionFillRatioForAlpha0 = 0.0;
+		this.minVisibleRegionFillRatioForAlpha1 = 0.0;
 		this.renderer = new LogicUIRenderer(submodelModifiable);
 
 		Consumer<Runnable> redrawHandlerChangedListener = submodelModifiable::setRedrawHandler;

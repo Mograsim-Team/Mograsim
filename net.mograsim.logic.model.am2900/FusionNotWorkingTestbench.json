@@ -1,0 +1,46 @@
+{
+  "width": 0.0,
+  "height": 0.0,
+  "interfacePins": [],
+  "innerScale": 1.0,
+  "submodel": {
+    "components": [
+      {
+        "id": "file:FusionNotWorking.json",
+        "name": "FusionNotWorking#0",
+        "pos": {
+          "x": 220.0,
+          "y": 175.0
+        }
+      },
+      {
+        "id": "GUIManualSwitch",
+        "name": "GUIManualSwitch#0",
+        "pos": {
+          "x": 180.0,
+          "y": 235.0
+        },
+        "params": 13
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "GUIManualSwitch#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "FusionNotWorking#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "default",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}
