@@ -56,6 +56,7 @@ mograsim version: 0.1.3
   "GUIsel4_12": "class:net.mograsim.logic.model.am2900.components.GUIsel4_12",
   "GUISplitter": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
   "GUITriStateBuffer": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+  "GUIClock": "class:net.mograsim.logic.model.model.components.atomic.GUIClock",
   "GUIxor": "file:components/GUIxor.json",
   "TextComponent": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
   "WireCrossPoint": "class:net.mograsim.logic.model.model.wires.WireCrossPoint"
