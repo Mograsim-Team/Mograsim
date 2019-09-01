@@ -30,7 +30,7 @@ public class Wire
 	List<ReadWriteEnd> inputs = new ArrayList<>();
 	Timeline timeline;
 	private Bit[] bitsWithoutFusions;
-	FusionedBit[] fusedBits;
+	FusedBit[] fusedBits;
 
 	public Wire(Timeline timeline, int width, int travelTime)
 	{
@@ -65,7 +65,7 @@ public class Wire
 	{
 		invalidateCachedValues();
 		if (fusedBits != null)
-			for (FusionedBit fusion : fusedBits)
+			for (FusedBit fusion : fusedBits)
 				if (fusion != null)
 					fusion.invalidateCachedValuesForAllParticipatingWires();
 	}
@@ -104,7 +104,7 @@ public class Wire
 			bits = new Bit[width];
 			for (int i = 0; i < width; i++)
 			{
-				FusionedBit fusion = fusedBits[i];
+				FusedBit fusion = fusedBits[i];
 				if (fusion == null)
 					bits[i] = bitsWithoutFusions[i];
 				else
@@ -623,20 +623,9 @@ public class Wire
 	 */
 	public static void fuse(Wire a, Wire b, int fromA, int fromB, int width)
 	{
-		// TODO checks
-		for (int i = 0; i < width; i++)
+		// iterate in this direction to be fail-fast (rely on the checks in fuse(Wire, Wire, int, int)
+		for (int i = width - 1; i >= 0; i--)
 			fuse(a, b, fromA + i, fromB + i);
-//		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
-//		rA.registerObserver(x -> rB.feedSignals(fromB, rA.wireValuesExcludingMe().subVector(fromA, fromA + width)));
-//		rB.registerObserver(x -> rA.feedSignals(fromA, rB.wireValuesExcludingMe().subVector(fromB, fromB + width)));
-//
-//		rA.setValues(0, BitVector.of(Bit.Z, fromA));
-//		rB.setValues(0, BitVector.of(Bit.Z, fromB));
-//		rA.setValues(fromA + width, BitVector.of(Bit.Z, a.width - width - fromA));
-//		rB.setValues(fromB + width, BitVector.of(Bit.Z, b.width - width - fromB));
-//
-//		rA.notifyObservers();
-//		rB.notifyObservers();
 	}
 
 	/**
@@ -650,16 +639,20 @@ public class Wire
 	 */
 	private static void fuse(Wire a, Wire b, int bitA, int bitB)
 	{
+		if (bitA >= a.width)
+			throw new IllegalArgumentException("No bit " + bitA + " in " + a + " (width " + a.width + ")");
+		if (bitB >= b.width)
+			throw new IllegalArgumentException("No bit " + bitB + " in " + b + " (width " + b.width + ")");
 		if (a.fusedBits == null)
-			a.fusedBits = new FusionedBit[a.width];
+			a.fusedBits = new FusedBit[a.width];
 		if (b.fusedBits == null)
-			b.fusedBits = new FusionedBit[b.width];
-		FusionedBit oldFusionA = a.fusedBits[bitA];
-		FusionedBit oldFusionB = b.fusedBits[bitB];
+			b.fusedBits = new FusedBit[b.width];
+		FusedBit oldFusionA = a.fusedBits[bitA];
+		FusedBit oldFusionB = b.fusedBits[bitB];
 		if (oldFusionA == null)
 			if (oldFusionB == null)
 			{
-				FusionedBit fusion = new FusionedBit();
+				FusedBit fusion = new FusedBit();
 				fusion.addParticipatingWireBit(a, bitA);
 				fusion.addParticipatingWireBit(b, bitB);
 			} else
@@ -670,11 +663,11 @@ public class Wire
 			oldFusionA.mergeOtherIntoThis(oldFusionB);
 	}
 
-	private static class FusionedBit
+	private static class FusedBit
 	{
 		private final List<WireBit> participatingWireBits;
 
-		public FusionedBit()
+		public FusedBit()
 		{
 			this.participatingWireBits = new ArrayList<>();
 		}
@@ -691,7 +684,7 @@ public class Wire
 			wb.wire.invalidateCachedValuesForAllFusedWires();
 		}
 
-		public void mergeOtherIntoThis(FusionedBit other)
+		public void mergeOtherIntoThis(FusedBit other)
 		{
 			for (WireBit wb : other.participatingWireBits)
 				addParticipatingWireBit(wb);
@@ -705,8 +698,6 @@ public class Wire
 
 		public Bit getValue()
 		{
-			if (participatingWireBits.isEmpty())
-				return Bit.U;
 			Bit result = null;
 			for (WireBit wb : participatingWireBits)
 				if (!wb.wire.inputs.isEmpty())
