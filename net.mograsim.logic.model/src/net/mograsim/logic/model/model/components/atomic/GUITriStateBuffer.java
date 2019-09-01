@@ -10,6 +10,8 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.Orientation;
+import net.mograsim.logic.model.model.components.OrientationCalculator;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
@@ -29,6 +31,7 @@ public class GUITriStateBuffer extends GUIComponent
 	private double[] path;
 
 	private GUITriStateBufferParams params;
+	private OrientationCalculator oc;
 
 	public GUITriStateBuffer(ViewModelModifiable model, GUITriStateBufferParams params)
 	{
@@ -40,27 +43,19 @@ public class GUITriStateBuffer extends GUIComponent
 		super(model, name);
 		this.params = params;
 
+		oc = new OrientationCalculator(params.orientation, width, height);
+
 		double wHalf = width / 2;
 		double hHalf = height / 2;
-		double wQuar = width / 4;
 		double hQuar = height / 4;
-		int ordi = params.orientation.ordinal();
-		int isVerti = (ordi % 4) / 2;
-		int isHori = 1 ^ isVerti;
-		int isAlt = ordi / 4;
-		int isInv = ordi % 2;
-		int isStd = 1 ^ isInv;
 
-		this.input = new Pin(this, "IN", params.logicWidth, PinUsage.INPUT, width * isInv * isHori + wHalf * isVerti,
-				height * isVerti * isStd + hHalf * isHori);
-		this.output = new Pin(this, "OUT", params.logicWidth, PinUsage.OUTPUT, width * isStd * isHori + wHalf * isVerti,
-				height * isVerti * isInv + hHalf * isHori);
-		this.enable = new Pin(this, "EN", 1, PinUsage.INPUT, wQuar * isVerti + wHalf * (isAlt | isHori),
-				hQuar * isHori + hHalf * (isAlt | isVerti));
-		this.path = new double[] { width * (isStd ^ isHori), height * (isStd ^ isHori), width * isInv, height * isStd,
-				width * isStd * isHori + wHalf * isVerti, height * isVerti * isInv + hHalf * isHori };
+		this.input = new Pin(this, "IN", params.logicWidth, PinUsage.INPUT, oc.newX(0, hHalf), oc.newY(0, hHalf));
+		this.output = new Pin(this, "OUT", params.logicWidth, PinUsage.OUTPUT, oc.newX(width, hHalf), oc.newY(width, hHalf));
+		this.enable = new Pin(this, "EN", 1, PinUsage.INPUT, oc.newX(wHalf, hQuar), oc.newY(wHalf, hQuar));
+		this.path = new double[] { oc.newX(0, 0), oc.newY(0, 0), oc.newX(width, hHalf), oc.newY(width, hHalf), oc.newX(0, height),
+				oc.newY(0, height) };
 
-		setSize(width, height);
+		setSize(oc.width(), oc.height());
 		addPin(input);
 		addPin(output);
 		addPin(enable);
@@ -75,15 +70,6 @@ public class GUITriStateBuffer extends GUIComponent
 		double x = getPosX();
 		double y = getPosY();
 		gc.drawPolygon(new double[] { x + path[0], y + path[1], x + path[2], y + path[3], x + path[4], y + path[5] });
-//		Font oldFont = gc.getFont();
-//		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
-//		gc.setFont(labelFont);
-//		Point textExtent = gc.textExtent(label);
-//		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
-//		if (textColor != null)
-//			gc.setForeground(textColor);
-//		gc.drawText(label, getPosX() + (rectWidth - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
-//		gc.setFont(oldFont);
 	}
 
 	@Override
@@ -104,14 +90,15 @@ public class GUITriStateBuffer extends GUIComponent
 		});
 	}
 
-	private static class GUITriStateBufferParams
+	public static class GUITriStateBufferParams
 	{
 		int logicWidth;
 		Orientation orientation;
-	}
 
-	public enum Orientation
-	{
-		RIGHT, LEFT, UP, DOWN, RIGHT_ALT, LEFT_ALT, UP_ALT, DOWN_ALT;
+		public GUITriStateBufferParams(int logicWidth, Orientation orientation)
+		{
+			this.logicWidth = logicWidth;
+			this.orientation = orientation;
+		}
 	}
 }
