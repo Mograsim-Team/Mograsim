@@ -20,6 +20,7 @@ import net.mograsim.preferences.Preferences;
 public class TextComponent extends GUIComponent
 {
 	private final String text;
+	private boolean calculatedSize;
 
 	public TextComponent(ViewModelModifiable model, String text)
 	{
@@ -38,9 +39,12 @@ public class TextComponent extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		Point textExtent = gc.textExtent(text);
-		if (getWidth() != textExtent.x || getHeight() != textExtent.y)
+		if (!calculatedSize)
+		{
+			calculatedSize = true;
+			Point textExtent = gc.textExtent(text);
 			setSize(textExtent.x, textExtent.y);
+		}
 
 		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
 		if (textColor != null)
