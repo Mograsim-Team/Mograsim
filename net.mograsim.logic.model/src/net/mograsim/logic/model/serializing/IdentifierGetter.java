@@ -1,8 +1,17 @@
 package net.mograsim.logic.model.serializing;
 
+import static net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers.highLevelStateHandlerSupplier;
+import static net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers.outlineRendererSupplier;
+import static net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers.symbolRendererSupplier;
+import static net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers.atomicHandlerSupplier;
+import static net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers.subcomponentHandlerSupplier;
+
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.function.Function;
 
 import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.snippets.CodeSnippetSupplier;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.AtomicHighLevelStateHandler;
@@ -20,17 +29,33 @@ public class IdentifierGetter
 	public Function<AtomicHighLevelStateHandler, String> atomicHighLevelStateHandlerIDs;
 
 	/**
-	 * Creates a new IdentifierGetter using "class:" concatenated with a component's / snippet's complete (canonical) class name as the
-	 * default for all ID getter functions.
+	 * Creates a new IdentifierGetter using the following as the default for all ID getter functions: <br>
+	 * Define the verbose ID as <code>"class:" + canonicalClassName</code>.<br>
+	 * If there is a standard ID mapping to this verbose ID recorded in the matching {@link CodeSnippetSupplier}, use this ID; if not, use
+	 * the verbose ID.
 	 */
 	public IdentifierGetter()
 	{
-		Function<Object, String> defaultSnippetIDGetter = c -> "class:" + c.getClass().getCanonicalName();
-		this.componentIDs = defaultSnippetIDGetter::apply;
-		this.symbolRendererIDs = defaultSnippetIDGetter::apply;
-		this.outlineRendererIDs = defaultSnippetIDGetter::apply;
-		this.highLevelStateHandlerIDs = defaultSnippetIDGetter::apply;
-		this.subcomponentHighLevelStateHandlerIDs = defaultSnippetIDGetter::apply;
-		this.atomicHighLevelStateHandlerIDs = defaultSnippetIDGetter::apply;
+		componentIDs = generateStandardIDFunction(IndirectGUIComponentCreator.getStandardComponentIDs());
+		symbolRendererIDs = generateStandardIDFunction(symbolRendererSupplier);
+		outlineRendererIDs = generateStandardIDFunction(outlineRendererSupplier);
+		highLevelStateHandlerIDs = generateStandardIDFunction(highLevelStateHandlerSupplier);
+		atomicHighLevelStateHandlerIDs = generateStandardIDFunction(atomicHandlerSupplier);
+		subcomponentHighLevelStateHandlerIDs = generateStandardIDFunction(subcomponentHandlerSupplier);
+	}
+
+	private static <T> Function<T, String> generateStandardIDFunction(CodeSnippetSupplier<?, T> snippetSupplier)
+	{
+		return generateStandardIDFunction(snippetSupplier.getStandardSnippetIDs());
+	}
+
+	private static <T> Function<T, String> generateStandardIDFunction(Map<String, String> standardComponentIDs)
+	{
+		return t ->
+		{
+			String verboseID = "class:" + t.getClass().getCanonicalName();
+			return standardComponentIDs.entrySet().stream().filter(e -> e.getValue().equals(verboseID)).map(Entry::getKey).findAny()
+					.orElse(verboseID);
+		};
 	}
 }

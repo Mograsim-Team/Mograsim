@@ -16,9 +16,11 @@ public class CodeSnippetSupplier<C, S>
 		this.defaultSnippetSupplier = defaultSnippetSupplier;
 	}
 
-	public void addStandardSnippetID(String standardSnippetID, String associatedSnippetClassName)
+	public void addStandardSnippetID(String standardSnippetID, String associatedSnippetID)
 	{
-		standardSnippetIDClassNames.put(standardSnippetID, associatedSnippetClassName);
+		if (!associatedSnippetID.startsWith("class:"))
+			throw new IllegalArgumentException("Unrecognized snippet ID format: " + associatedSnippetID);
+		standardSnippetIDClassNames.put(standardSnippetID, associatedSnippetID);
 	}
 
 	public Map<String, String> getStandardSnippetIDs()
@@ -36,13 +38,10 @@ public class CodeSnippetSupplier<C, S>
 	{
 		if (id != null)
 		{
-			String snippetClassName;
-			if (id.startsWith("class:"))
-				snippetClassName = id.substring(6);
-			else
-				snippetClassName = standardSnippetIDClassNames.get(id);
-			if (snippetClassName != null)
+			String resolvedID = resolveID(id);
+			if (resolvedID != null)
 			{
+				String snippetClassName = resolvedID.substring(6);
 				tryLoadSnippetClass(snippetClassName);
 				SnippetDefinintion<C, ?, S> snippetSupplier = snippetSuppliersForClassNames.get(snippetClassName);
 				if (snippetSupplier != null)
@@ -53,6 +52,13 @@ public class CodeSnippetSupplier<C, S>
 		if (defaultSnippetSupplier == null)
 			throw new IllegalArgumentException("No default snippet set");
 		return defaultSnippetSupplier;
+	}
+
+	public String resolveID(String id)
+	{
+		if (id.startsWith("class:"))
+			return id;
+		return standardSnippetIDClassNames.get(id);
 	}
 
 	// static helpers
