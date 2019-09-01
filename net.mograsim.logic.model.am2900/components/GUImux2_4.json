@@ -94,7 +94,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
+        "id": "GUIMerger",
         "name": "GUIMerger#0",
         "pos": {
           "x": 140.0,
@@ -103,7 +103,7 @@
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#0",
         "pos": {
           "x": 25.0,
@@ -112,7 +112,7 @@
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#1",
         "pos": {
           "x": 25.0,
@@ -121,7 +121,7 @@
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#2",
         "pos": {
           "x": 25.0,
@@ -130,7 +130,7 @@
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#3",
         "pos": {
           "x": 25.0,
@@ -139,7 +139,7 @@
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 19.0,
@@ -686,7 +686,7 @@
     ],
     "version": "0.1.1"
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "GUImux1_4",
     "centerTextHeight": 5.0,
@@ -694,7 +694,7 @@
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
   "version": "0.1.5"
 }

@@ -52,7 +52,7 @@
   "submodel": {
     "components": [
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#0",
         "pos": {
           "x": 20.0,
@@ -61,7 +61,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#1",
         "pos": {
           "x": 20.0,
@@ -70,7 +70,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#2",
         "pos": {
           "x": 20.0,
@@ -79,7 +79,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#3",
         "pos": {
           "x": 20.0,
@@ -88,7 +88,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#4",
         "pos": {
           "x": 50.0,
@@ -97,7 +97,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#5",
         "pos": {
           "x": 50.0,
@@ -106,7 +106,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#6",
         "pos": {
           "x": 110.0,
@@ -115,7 +115,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#7",
         "pos": {
           "x": 110.0,
@@ -124,7 +124,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#8",
         "pos": {
           "x": 140.0,
@@ -133,7 +133,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 14.0,
@@ -142,7 +142,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
           "x": 14.0,
@@ -151,7 +151,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 14.0,
@@ -160,7 +160,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
           "x": 14.0,
@@ -169,7 +169,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#4",
         "pos": {
           "x": 104.0,
@@ -178,7 +178,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#5",
         "pos": {
           "x": 104.0,
@@ -544,7 +544,7 @@
     ],
     "version": "0.1.1"
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "GUIor4",
     "centerTextHeight": 5.0,
@@ -552,7 +552,7 @@
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
   "version": "0.1.5"
 }

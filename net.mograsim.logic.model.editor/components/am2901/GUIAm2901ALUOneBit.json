@@ -106,7 +106,7 @@
   "submodel": {
     "components": [
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#0",
         "pos": {
           "x": 60.0,
@@ -171,7 +171,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 49.0,
@@ -180,7 +180,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
           "x": 54.0,
@@ -543,7 +543,7 @@
     ],
     "version": "0.1.1"
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "GUIAm2901ALUOneBit",
     "centerTextHeight": 5.0,
@@ -551,7 +551,7 @@
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
   "version": "0.1.5"
 }
