@@ -39,7 +39,8 @@ public class TextComponent extends GUIComponent
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
 		Point textExtent = gc.textExtent(text);
-		setSize(textExtent.x, textExtent.y);
+		if (getWidth() != textExtent.x || getHeight() != textExtent.y)
+			setSize(textExtent.x, textExtent.y);
 
 		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
 		if (textColor != null)
