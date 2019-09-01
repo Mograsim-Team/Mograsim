@@ -1,4 +1,4 @@
-package net.mograsim.machine;
+package net.mograsim.machine.mi;
 
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
@@ -11,6 +11,12 @@ public interface MicroInstructionDefinition
 	public ParameterClassification[] getParameterClassifications();
 	
 	/**
+	 * @throws IndexOutOfBoundsException
+	 */
+	public ParameterClassification getParameterClassification(int index);
+	
+	
+	/**
 	 * @return The amount of {@link MicroInstructionParameter}s in a {@link MicroInstruction} that follows this definition.
 	 */
 	public default int size()
@@ -18,4 +24,8 @@ public interface MicroInstructionDefinition
 		return getParameterClassifications().length;
 	}
 	
+	public static MicroInstructionDefinition create(ParameterClassification... classes)
+	{
+		return new StandardMicroInstructionDefinition(classes);
+	}
 }

@@ -21,6 +21,7 @@ public class ViewModel
 	private final List<Consumer<? super GUIComponent>> componentRemovedListeners;
 	private final List<Consumer<? super GUIWire>> wireAddedListeners;
 	private final List<Consumer<? super GUIWire>> wireRemovedListeners;
+	private final List<Consumer<? super Runnable>> redrawHandlerChangedListeners;
 
 	private Runnable redrawHandler;
 
@@ -35,6 +36,7 @@ public class ViewModel
 		componentRemovedListeners = new ArrayList<>();
 		wireAddedListeners = new ArrayList<>();
 		wireRemovedListeners = new ArrayList<>();
+		redrawHandlerChangedListeners = new ArrayList<>();
 	}
 
 	/**
@@ -100,25 +102,29 @@ public class ViewModel
 	}
 
 	// @formatter:off
-	public void addComponentAddedListener     (Consumer<? super GUIComponent> listener) {componentAddedListeners  .add   (listener);}
-	public void addComponentRemovedListener   (Consumer<? super GUIComponent> listener) {componentRemovedListeners.add   (listener);}
-	public void addWireAddedListener          (Consumer<? super GUIWire     > listener) {wireAddedListeners       .add   (listener);}
-	public void addWireRemovedListener        (Consumer<? super GUIWire     > listener) {wireRemovedListeners     .add   (listener);}
+	public void addComponentAddedListener         (Consumer<? super GUIComponent> listener) {componentAddedListeners      .add   (listener);}
+	public void addComponentRemovedListener       (Consumer<? super GUIComponent> listener) {componentRemovedListeners    .add   (listener);}
+	public void addWireAddedListener              (Consumer<? super GUIWire     > listener) {wireAddedListeners           .add   (listener);}
+	public void addWireRemovedListener            (Consumer<? super GUIWire     > listener) {wireRemovedListeners         .add   (listener);}
+	public void addRedrawHandlerChangedListener   (Consumer<? super Runnable    > listener) {redrawHandlerChangedListeners.add   (listener);}
 
-	public void removeComponentAddedListener  (Consumer<? super GUIComponent> listener) {componentAddedListeners  .remove(listener);}
-	public void removeComponentRemovedListener(Consumer<? super GUIComponent> listener) {componentRemovedListeners.remove(listener);}
-	public void removeWireAddedListener       (Consumer<? super GUIWire     > listener) {wireAddedListeners       .remove(listener);}
-	public void removeWireRemovedListener     (Consumer<? super GUIWire     > listener) {wireRemovedListeners     .remove(listener);}
+	public void removeComponentAddedListener      (Consumer<? super GUIComponent> listener) {componentAddedListeners      .remove(listener);}
+	public void removeComponentRemovedListener    (Consumer<? super GUIComponent> listener) {componentRemovedListeners    .remove(listener);}
+	public void removeWireAddedListener           (Consumer<? super GUIWire     > listener) {wireAddedListeners           .remove(listener);}
+	public void removeWireRemovedListener         (Consumer<? super GUIWire     > listener) {wireRemovedListeners         .remove(listener);}
+	public void removeRedrawHandlerChangedListener(Consumer<? super Runnable    > listener) {redrawHandlerChangedListeners.remove(listener);}
 
-	private void callComponentAddedListeners  (GUIComponent c) {componentAddedListeners  .forEach(l -> l.accept(c));}
-	private void callComponentRemovedListeners(GUIComponent c) {componentRemovedListeners.forEach(l -> l.accept(c));}
-	private void callWireAddedListeners       (GUIWire w     ) {wireAddedListeners       .forEach(l -> l.accept(w));}
-	private void callWireRemovedListeners     (GUIWire w     ) {wireRemovedListeners     .forEach(l -> l.accept(w));}
+	private void callComponentAddedListeners     (GUIComponent c) {componentAddedListeners      .forEach(l -> l.accept(c));}
+	private void callComponentRemovedListeners   (GUIComponent c) {componentRemovedListeners    .forEach(l -> l.accept(c));}
+	private void callWireAddedListeners          (GUIWire      w) {wireAddedListeners           .forEach(l -> l.accept(w));}
+	private void callWireRemovedListeners        (GUIWire      w) {wireRemovedListeners         .forEach(l -> l.accept(w));}
+	private void callRedrawHandlerChangedListener(Runnable     r) {redrawHandlerChangedListeners.forEach(l -> l.accept(r));}
 	// @formatter:on
 
 	public void setRedrawHandler(Runnable handler)
 	{
 		this.redrawHandler = handler;
+		callRedrawHandlerChangedListener(handler);
 	}
 
 	public Runnable getRedrawHandler()

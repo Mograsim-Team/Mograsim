@@ -7,17 +7,8 @@ package net.mograsim.machine;
  * @author Christian Femers
  *
  */
-public interface MainMemoryDefinition {
-
-	/**
-	 * The number of bits that the main memory uses to address cells. Note that this
-	 * does not need to equal {@link MachineDefinition#getAddressBits()}.
-	 * 
-	 * @return the number of bits used to address a memory cell
-	 * @author Christian Femers
-	 */
-	int getMemoryAddressBits();
-
+public interface MainMemoryDefinition extends MemoryDefinition
+{
 	/**
 	 * The width in bits of an addressable memory cell/unit. This is often 8 (= one
 	 * byte). The actual cells/lines of the memory may be a lot larger.
@@ -26,30 +17,9 @@ public interface MainMemoryDefinition {
 	 * @author Christian Femers
 	 */
 	int getCellWidth();
-
-	/**
-	 * The minimal address possible to address/use. This is usually 0.
-	 * 
-	 * @return the minimal possible address.
-	 * @author Christian Femers
-	 */
-	long getMinimalAddress();
-
-	/**
-	 * The maximal address possible to address/use.
-	 * 
-	 * @return the maximal possible address as <b>unsigned long</b>
-	 * @author Christian Femers
-	 */
-	long getMaximalAddress();
 	
-	/**
-	 * The size of the MainMemory as the amount of addressable memory cells.
-	 * 
-	 * @return the amount of addressable memory cells
-	 */
-	default long size()
+	public static MainMemoryDefinition create(int memoryAddressBits, int cellWidth, long minimalAddress, long maximalAddress)
 	{
-		return getMaximalAddress() - getMinimalAddress();
+		return new StandardMainMemoryDefinition(memoryAddressBits, cellWidth, minimalAddress, maximalAddress);
 	}
 }
