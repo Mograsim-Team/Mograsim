@@ -4,6 +4,7 @@ import static net.mograsim.logic.core.types.Bit.U;
 import static net.mograsim.logic.core.types.Bit.Z;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import net.mograsim.logic.core.LogicObservable;
@@ -22,12 +23,14 @@ import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
 public class Wire
 {
 	public final String name;
-	private BitVector values;
+	private BitVector cachedValues;
 	public final int travelTime;
 	private List<ReadEnd> attached = new ArrayList<>();
 	public final int width;
 	List<ReadWriteEnd> inputs = new ArrayList<>();
 	Timeline timeline;
+	private Bit[] bitsWithoutFusions;
+	FusionedBit[] fusedBits;
 
 	public Wire(Timeline timeline, int width, int travelTime)
 	{
@@ -48,26 +51,67 @@ public class Wire
 
 	private void initValues()
 	{
-		values = U.toVector(width);
+		cachedValues = U.toVector(width);
+		bitsWithoutFusions = cachedValues.getBits();
 	}
 
 	private void setNewValues(BitVector newValues)
 	{
-		values = newValues;
+		cachedValues = newValues;
 		notifyObservers();
 	}
 
-	void recalculate()
+	private void invalidateCachedValuesForAllFusedWires()
 	{
+		invalidateCachedValues();
+		if (fusedBits != null)
+			for (FusionedBit fusion : fusedBits)
+				if (fusion != null)
+					fusion.invalidateCachedValuesForAllParticipatingWires();
+	}
+
+	private void invalidateCachedValues()
+	{
+		cachedValues = null;
+		notifyObservers();
+	}
+
+	void recalculateValuesWithoutFusions()
+	{
+		Bit[] bits = new Bit[width];
 		if (inputs.isEmpty())
-			setNewValues(U.toVector(width));
+			Arrays.fill(bits, U);
 		else
 		{
-			BitVectorMutator mutator = BitVectorMutator.empty();
-			for (ReadWriteEnd wireArrayEnd : inputs)
-				mutator.join(wireArrayEnd.getInputValues());
-			setNewValues(mutator.toBitVector());
+			System.arraycopy(inputs.get(0).getInputValues().getBits(), 0, bits, 0, width);
+			for (int i = 1; i < inputs.size(); i++)
+				Bit.join(bits, inputs.get(i).getInputValues().getBits());
 		}
+		bitsWithoutFusions = bits;
+		if (fusedBits == null)
+			setNewValues(BitVector.of(bits));
+		else
+			invalidateCachedValuesForAllFusedWires();
+	}
+
+	private void recalculatedCachedValues()
+	{
+		Bit[] bits;
+		if (fusedBits == null)
+			bits = bitsWithoutFusions;
+		else
+		{
+			bits = new Bit[width];
+			for (int i = 0; i < width; i++)
+			{
+				FusionedBit fusion = fusedBits[i];
+				if (fusion == null)
+					bits[i] = bitsWithoutFusions[i];
+				else
+					bits[i] = fusion.getValue();
+			}
+		}
+		cachedValues = BitVector.of(bits);
 	}
 
 	/**
@@ -91,7 +135,7 @@ public class Wire
 	 */
 	public boolean hasNumericValue()
 	{
-		return values.isBinary();
+		return getValues().isBinary();
 	}
 
 	/**
@@ -105,7 +149,7 @@ public class Wire
 	{
 		long val = 0;
 		long mask = 1;
-		for (Bit bit : values)
+		for (Bit bit : getValues())
 		{
 			switch (bit)
 			{
@@ -155,17 +199,19 @@ public class Wire
 	 */
 	public Bit getValue(int index)
 	{
-		return values.getLSBit(index);
+		return getValues().getLSBit(index);
 	}
 
 	public BitVector getValues(int start, int end)
 	{
-		return values.subVector(start, end);
+		return getValues().subVector(start, end);
 	}
 
 	public BitVector getValues()
 	{
-		return values;
+		if (cachedValues == null)
+			recalculatedCachedValues();
+		return cachedValues;
 	}
 
 	/**
@@ -210,7 +256,7 @@ public class Wire
 	void registerInput(ReadWriteEnd toRegister)
 	{
 		inputs.add(toRegister);
-		recalculate();
+		recalculateValuesWithoutFusions();
 	}
 
 	/**
@@ -322,7 +368,7 @@ public class Wire
 		{
 			inputs.remove(this);
 			detachEnd(this);
-			recalculate();
+			recalculateValuesWithoutFusions();
 		}
 
 		public int width()
@@ -433,7 +479,7 @@ public class Wire
 				Bit[] vals = inputValues.getBits();
 				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.length());
 				inputValues = BitVector.of(vals);
-				Wire.this.recalculate();
+				Wire.this.recalculateValuesWithoutFusions();
 			}
 		}
 
@@ -446,7 +492,7 @@ public class Wire
 			if (inputValues.equals(newValues))
 				return;
 			inputValues = newValues;
-			Wire.this.recalculate();
+			Wire.this.recalculateValuesWithoutFusions();
 		}
 
 		/**
@@ -527,7 +573,7 @@ public class Wire
 					inputs.add(this);
 				else
 					inputs.remove(this);
-				Wire.this.recalculate();
+				Wire.this.recalculateValuesWithoutFusions();
 			}
 		}
 
@@ -541,7 +587,7 @@ public class Wire
 	public String toString()
 	{
 		String name = this.name == null ? String.format("0x%08x", hashCode()) : this.name;
-		return String.format("wire %s value: %s inputs: %s", name, values, inputs);
+		return String.format("wire %s value: %s inputs: %s", name, getValues(), inputs);
 	}
 
 	public static ReadEnd[] extractEnds(Wire[] w)
@@ -577,16 +623,110 @@ public class Wire
 	 */
 	public static void fuse(Wire a, Wire b, int fromA, int fromB, int width)
 	{
-		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
-		rA.registerObserver(x -> rB.feedSignals(fromB, rA.wireValuesExcludingMe().subVector(fromA, fromA + width)));
-		rB.registerObserver(x -> rA.feedSignals(fromA, rB.wireValuesExcludingMe().subVector(fromB, fromB + width)));
+		// TODO checks
+		for (int i = 0; i < width; i++)
+			fuse(a, b, fromA + i, fromB + i);
+//		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
+//		rA.registerObserver(x -> rB.feedSignals(fromB, rA.wireValuesExcludingMe().subVector(fromA, fromA + width)));
+//		rB.registerObserver(x -> rA.feedSignals(fromA, rB.wireValuesExcludingMe().subVector(fromB, fromB + width)));
+//
+//		rA.setValues(0, BitVector.of(Bit.Z, fromA));
+//		rB.setValues(0, BitVector.of(Bit.Z, fromB));
+//		rA.setValues(fromA + width, BitVector.of(Bit.Z, a.width - width - fromA));
+//		rB.setValues(fromB + width, BitVector.of(Bit.Z, b.width - width - fromB));
+//
+//		rA.notifyObservers();
+//		rB.notifyObservers();
+	}
 
-		rA.setValues(0, BitVector.of(Bit.Z, fromA));
-		rB.setValues(0, BitVector.of(Bit.Z, fromB));
-		rA.setValues(fromA + width, BitVector.of(Bit.Z, a.width - width - fromA));
-		rB.setValues(fromB + width, BitVector.of(Bit.Z, b.width - width - fromB));
+	/**
+	 * Fuses one bit of two wires together. If this bit changes in one Wire, the other is changed accordingly immediately. Warning: The bits
+	 * are permanently fused together.
+	 * 
+	 * @param a    The {@link Wire} to be (partially) fused with b
+	 * @param b    The {@link Wire} to be (partially) fused with a
+	 * @param bitA The bit of {@link Wire} a to be fused
+	 * @param bitB The bit of {@link Wire} b to be fused
+	 */
+	private static void fuse(Wire a, Wire b, int bitA, int bitB)
+	{
+		if (a.fusedBits == null)
+			a.fusedBits = new FusionedBit[a.width];
+		if (b.fusedBits == null)
+			b.fusedBits = new FusionedBit[b.width];
+		FusionedBit oldFusionA = a.fusedBits[bitA];
+		FusionedBit oldFusionB = b.fusedBits[bitB];
+		if (oldFusionA == null)
+			if (oldFusionB == null)
+			{
+				FusionedBit fusion = new FusionedBit();
+				fusion.addParticipatingWireBit(a, bitA);
+				fusion.addParticipatingWireBit(b, bitB);
+			} else
+				oldFusionB.addParticipatingWireBit(a, bitA);
+		else if (oldFusionB == null)
+			oldFusionA.addParticipatingWireBit(b, bitB);
+		else
+			oldFusionA.mergeOtherIntoThis(oldFusionB);
+	}
 
-		rA.notifyObservers();
-		rB.notifyObservers();
+	private static class FusionedBit
+	{
+		private final List<WireBit> participatingWireBits;
+
+		public FusionedBit()
+		{
+			this.participatingWireBits = new ArrayList<>();
+		}
+
+		public void addParticipatingWireBit(Wire w, int bit)
+		{
+			addParticipatingWireBit(new WireBit(w, bit));
+		}
+
+		private void addParticipatingWireBit(WireBit wb)
+		{
+			wb.wire.fusedBits[wb.bit] = this;
+			participatingWireBits.add(wb);
+			wb.wire.invalidateCachedValuesForAllFusedWires();
+		}
+
+		public void mergeOtherIntoThis(FusionedBit other)
+		{
+			for (WireBit wb : other.participatingWireBits)
+				addParticipatingWireBit(wb);
+		}
+
+		public void invalidateCachedValuesForAllParticipatingWires()
+		{
+			for (WireBit wb : participatingWireBits)
+				wb.wire.invalidateCachedValues();
+		}
+
+		public Bit getValue()
+		{
+			if (participatingWireBits.isEmpty())
+				return Bit.U;
+			Bit result = null;
+			for (WireBit wb : participatingWireBits)
+				if (!wb.wire.inputs.isEmpty())
+				{
+					Bit bit = wb.wire.bitsWithoutFusions[wb.bit];
+					result = result == null ? bit : result.join(bit);
+				}
+			return result == null ? U : result;
+		}
+	}
+
+	private static class WireBit
+	{
+		public final Wire wire;
+		public final int bit;
+
+		public WireBit(Wire wire, int bit)
+		{
+			this.wire = wire;
+			this.bit = bit;
+		}
 	}
 }
