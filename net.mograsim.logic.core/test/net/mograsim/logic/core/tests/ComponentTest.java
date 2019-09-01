@@ -4,24 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.math.BigInteger;
-import java.util.Random;
-import java.util.function.LongConsumer;
-
-import org.junit.Ignore;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
 
-import net.mograsim.logic.core.components.Connector;
 import net.mograsim.logic.core.components.Demux;
-import net.mograsim.logic.core.components.Merger;
 import net.mograsim.logic.core.components.Mux;
-import net.mograsim.logic.core.components.Splitter;
 import net.mograsim.logic.core.components.TriStateBuffer;
+import net.mograsim.logic.core.components.UnidirectionalMerger;
+import net.mograsim.logic.core.components.UnidirectionalSplitter;
 import net.mograsim.logic.core.components.gates.AndGate;
 import net.mograsim.logic.core.components.gates.NandGate;
 import net.mograsim.logic.core.components.gates.NorGate;
@@ -54,9 +45,9 @@ class ComponentTest
 				k = new Wire(t, 1, 1);
 		new AndGate(t, 1, f.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
 		new NotGate(t, 1, f.createReadOnlyEnd(), g.createReadWriteEnd());
-		new Merger(t, h.createReadWriteEnd(), c.createReadOnlyEnd(), g.createReadOnlyEnd());
+		new UnidirectionalMerger(t, h.createReadWriteEnd(), c.createReadOnlyEnd(), g.createReadOnlyEnd());
 		new Mux(t, 1, i.createReadWriteEnd(), e.createReadOnlyEnd(), h.createReadOnlyEnd(), d.createReadOnlyEnd());
-		new Splitter(t, i.createReadOnlyEnd(), k.createReadWriteEnd(), j.createReadWriteEnd());
+		new UnidirectionalSplitter(t, i.createReadOnlyEnd(), k.createReadWriteEnd(), j.createReadWriteEnd());
 
 		a.createReadWriteEnd().feedSignals(Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ONE);
@@ -75,7 +66,7 @@ class ComponentTest
 	{
 		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), in = new Wire(t, 8, 1);
 		in.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
-		new Splitter(t, in.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(), c.createReadWriteEnd());
+		new UnidirectionalSplitter(t, in.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(), c.createReadWriteEnd());
 
 		t.executeAll();
 
@@ -92,7 +83,7 @@ class ComponentTest
 		b.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO);
 		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		new Merger(t, out.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		new UnidirectionalMerger(t, out.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 
 		t.executeAll();
 
@@ -463,79 +454,6 @@ class ComponentTest
 		wI1.registerObserver((i) -> fail("WireEnd notified observer, although it was closed."));
 		wI1.close();
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
-	}
-
-	@Disabled("Braucht den Connector noch irgendjemand?")
-	@Test
-	void wireConnections()
-	{
-		// Nur ein Experiment, was über mehrere 'passive' Bausteine hinweg passieren würde
-
-		Wire a = new Wire(t, 1, 2);
-		Wire b = new Wire(t, 1, 2);
-		Wire c = new Wire(t, 1, 2);
-		ReadWriteEnd aI = a.createReadWriteEnd();
-		ReadWriteEnd bI = b.createReadWriteEnd();
-		ReadWriteEnd cI = c.createReadWriteEnd();
-
-		TestBitDisplay test = new TestBitDisplay(t, c.createReadOnlyEnd());
-		TestBitDisplay test2 = new TestBitDisplay(t, a.createReadOnlyEnd());
-		LongConsumer print = time -> System.out.format("Time %2d\n a: %s\n b: %s\n c: %s\n", time, a, b, c);
-
-		cI.feedSignals(Bit.ONE);
-		test.assertAfterSimulationIs(print, Bit.ONE);
-
-		cI.feedSignals(Bit.X);
-		test.assertAfterSimulationIs(print, Bit.X);
-
-		cI.feedSignals(Bit.X);
-		cI.feedSignals(Bit.Z);
-		test.assertAfterSimulationIs(print, Bit.Z);
-
-		new Connector(t, b.createReadWriteEnd(), c.createReadWriteEnd()).connect();
-		test.assertAfterSimulationIs(print, Bit.Z);
-		System.err.println("ONE");
-		bI.feedSignals(Bit.ONE);
-		test.assertAfterSimulationIs(print, Bit.ONE);
-		System.err.println("ZERO");
-		bI.feedSignals(Bit.ZERO);
-		test.assertAfterSimulationIs(print, Bit.ZERO);
-		System.err.println("Z");
-		bI.feedSignals(Bit.Z);
-		test.assertAfterSimulationIs(print, Bit.Z);
-
-		new Connector(t, a.createReadWriteEnd(), b.createReadWriteEnd()).connect();
-		System.err.println("Z 2");
-		aI.feedSignals(Bit.Z);
-		test.assertAfterSimulationIs(print, Bit.Z);
-		test2.assertAfterSimulationIs(Bit.Z);
-		System.err.println("ONE 2");
-		aI.feedSignals(Bit.ONE);
-		test.assertAfterSimulationIs(print, Bit.ONE);
-		test2.assertAfterSimulationIs(Bit.ONE);
-		System.err.println("ZERO 2");
-		aI.feedSignals(Bit.ZERO);
-		test.assertAfterSimulationIs(print, Bit.ZERO);
-		test2.assertAfterSimulationIs(Bit.ZERO);
-		System.err.println("Z 2 II");
-		aI.feedSignals(Bit.Z);
-		test.assertAfterSimulationIs(print, Bit.Z);
-		test2.assertAfterSimulationIs(Bit.Z);
-
-		System.err.println("No Conflict yet");
-		bI.feedSignals(Bit.ONE);
-		test.assertAfterSimulationIs(print, Bit.ONE);
-		test2.assertAfterSimulationIs(Bit.ONE);
-		aI.feedSignals(Bit.ONE);
-		test.assertAfterSimulationIs(print, Bit.ONE);
-		test2.assertAfterSimulationIs(Bit.ONE);
-		System.err.println("Conflict");
-		aI.feedSignals(Bit.ZERO);
-		test.assertAfterSimulationIs(print, Bit.X);
-		test2.assertAfterSimulationIs(Bit.X);
-		aI.feedSignals(Bit.ONE);
-		test.assertAfterSimulationIs(print, Bit.ONE);
-		test2.assertAfterSimulationIs(Bit.ONE);
 	}
 
 	private static void assertBitArrayEquals(BitVector actual, Bit... expected)

@@ -9,7 +9,7 @@ import net.mograsim.logic.core.wires.Wire;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 
-public class Merger extends Component implements LogicObserver
+public class UnidirectionalMerger extends Component implements LogicObserver
 {
 	private ReadWriteEnd out;
 	private ReadEnd[] inputs;
@@ -20,7 +20,7 @@ public class Merger extends Component implements LogicObserver
 	 * @param union  The output of merging n {@link Wire}s into one. Must have width = a1.width() + a2.width() + ... + an.width().
 	 * @param inputs The inputs to be merged into the union
 	 */
-	public Merger(Timeline timeline, ReadWriteEnd union, ReadEnd... inputs)
+	public UnidirectionalMerger(Timeline timeline, ReadWriteEnd union, ReadEnd... inputs)
 	{
 		super(timeline);
 		this.inputs = inputs;

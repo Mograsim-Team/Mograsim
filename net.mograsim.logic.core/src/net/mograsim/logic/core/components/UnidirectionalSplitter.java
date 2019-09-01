@@ -9,12 +9,12 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 
-public class Splitter extends Component implements LogicObserver
+public class UnidirectionalSplitter extends Component implements LogicObserver
 {
 	private ReadEnd input;
 	private ReadWriteEnd[] outputs;
 
-	public Splitter(Timeline timeline, ReadEnd input, ReadWriteEnd... outputs)
+	public UnidirectionalSplitter(Timeline timeline, ReadEnd input, ReadWriteEnd... outputs)
 	{
 		super(timeline);
 		this.input = input;
