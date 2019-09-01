@@ -8,8 +8,13 @@ import java.math.BigInteger;
 import java.util.Random;
 import java.util.function.LongConsumer;
 
-import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import net.mograsim.logic.core.components.Connector;
 import net.mograsim.logic.core.components.Demux;
@@ -35,7 +40,7 @@ class ComponentTest
 {
 	private Timeline t = new Timeline(11);
 
-	@Before
+	@BeforeEach
 	void resetTimeline()
 	{
 		t.reset();
@@ -147,6 +152,18 @@ class ComponentTest
 		Wire.fuse(a, b);
 		t.executeAll();
 		assertBitArrayEquals(b.getValues(), Bit.Z, Bit.U, Bit.X);
+	}
+
+	@Test
+	void fusionTest4()
+	{
+		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
+		a.createReadWriteEnd();
+		t.executeAll();
+
+		Wire.fuse(a, b);
+		t.executeAll();
+		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U);
 	}
 
 //	@Test
@@ -416,6 +433,8 @@ class ComponentTest
 			fail("Not all events were executed in order!");
 	}
 
+	// TODO: Adapt this test, now that update notifications are issued whenever any input to a wire changes
+	@Disabled("Out of date")
 	@Test
 	void multipleInputs()
 	{
@@ -446,6 +465,7 @@ class ComponentTest
 		assertBitArrayEquals(w.getValues(), Bit.ONE, Bit.Z);
 	}
 
+	@Disabled("Braucht den Connector noch irgendjemand?")
 	@Test
 	void wireConnections()
 	{

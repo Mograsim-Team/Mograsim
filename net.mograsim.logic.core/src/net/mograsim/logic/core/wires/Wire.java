@@ -53,8 +53,6 @@ public class Wire
 
 	private void setNewValues(BitVector newValues)
 	{
-		if (values.equals(newValues))
-			return;
 		values = newValues;
 		notifyObservers();
 	}
@@ -212,6 +210,7 @@ public class Wire
 	void registerInput(ReadWriteEnd toRegister)
 	{
 		inputs.add(toRegister);
+		recalculate();
 	}
 
 	/**
@@ -348,6 +347,16 @@ public class Wire
 			observers.remove(ob);
 		}
 
+//		void registerCloseObserver(LogicObserver ob)
+//		{
+//			closeObserver.add(ob);
+//		}
+//		
+//		void deregisterCloseObserver(LogicObserver ob)
+//		{
+//			closeObserver.remove(ob);
+//		}
+
 		@Override
 		public void notifyObservers()
 		{
@@ -483,12 +492,16 @@ public class Wire
 		public BitVector wireValuesExcludingMe()
 		{
 			BitVectorMutator mutator = BitVectorMutator.empty();
+			boolean modified = false;
 			for (ReadWriteEnd wireEnd : inputs)
 			{
 				if (wireEnd == this)
 					continue;
+				modified = true;
 				mutator.join(wireEnd.inputValues);
 			}
+			if (!modified)
+				mutator.join(BitVector.of(Bit.Z, width));
 			return mutator.toBitVector();
 		}
 
@@ -539,31 +552,6 @@ public class Wire
 		return inputs;
 	}
 
-	// TODO Fix ReadWriteEnd feeding signals to entire Wire (Z) instead of only selected Bits
-	/**
-	 * Fuses the selected bits of two wires together. If the bits change in one Wire, the other is changed accordingly immediately. Warning:
-	 * The bits are permanently fused together.
-	 * 
-	 * @param a     The {@link Wire} to be (partially) fused with b
-	 * @param b     The {@link Wire} to be (partially) fused with a
-	 * @param fromA The first bit of {@link Wire} a to be fused
-	 * @param fromB The first bit of {@link Wire} b to be fused
-	 * @param width The amount of bits to fuse
-	 */
-	public static void fuse(Wire a, Wire b, int fromA, int fromB, int width)
-	{
-		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
-		rA.setWriting(false);
-		rB.setWriting(false);
-		rA.setValues(BitVector.of(Bit.Z, a.width));
-		rB.setValues(BitVector.of(Bit.Z, b.width));
-		Fusion aF = new Fusion(rB, fromA, fromB, width), bF = new Fusion(rA, fromB, fromA, width);
-		rA.registerObserver(aF);
-		rB.registerObserver(bF);
-		aF.update(rA);
-		bF.update(rB);
-	}
-
 	/**
 	 * 
 	 * Fuses two wires together. If the bits change in one Wire, the other is changed accordingly immediately. Warning: The bits are
@@ -577,31 +565,28 @@ public class Wire
 		fuse(a, b, 0, 0, a.width);
 	}
 
-	private static class Fusion implements LogicObserver
+	/**
+	 * Fuses the selected bits of two wires together. If the bits change in one Wire, the other is changed accordingly immediately. Warning:
+	 * The bits are permanently fused together.
+	 * 
+	 * @param a     The {@link Wire} to be (partially) fused with b
+	 * @param b     The {@link Wire} to be (partially) fused with a
+	 * @param fromA The first bit of {@link Wire} a to be fused
+	 * @param fromB The first bit of {@link Wire} b to be fused
+	 * @param width The amount of bits to fuse
+	 */
+	public static void fuse(Wire a, Wire b, int fromA, int fromB, int width)
 	{
-		private ReadWriteEnd target;
-		int fromSource, fromTarget, width;
+		ReadWriteEnd rA = a.createReadWriteEnd(), rB = b.createReadWriteEnd();
+		rA.registerObserver(x -> rB.feedSignals(fromB, rA.wireValuesExcludingMe().subVector(fromA, fromA + width)));
+		rB.registerObserver(x -> rA.feedSignals(fromA, rB.wireValuesExcludingMe().subVector(fromB, fromB + width)));
 
-		public Fusion(ReadWriteEnd target, int fromSource, int fromTarget, int width)
-		{
-			this.target = target;
-			this.fromSource = fromSource;
-			this.fromTarget = fromTarget;
-			this.width = width;
-		}
+		rA.setValues(0, BitVector.of(Bit.Z, fromA));
+		rB.setValues(0, BitVector.of(Bit.Z, fromB));
+		rA.setValues(fromA + width, BitVector.of(Bit.Z, a.width - width - fromA));
+		rB.setValues(fromB + width, BitVector.of(Bit.Z, b.width - width - fromB));
 
-		@Override
-		public void update(LogicObservable initiator)
-		{
-			ReadWriteEnd source = (ReadWriteEnd) initiator;
-			if (source.getWire().inputs.size() - (source.isWriting() ? 1 : 0) == 0)
-				target.setWriting(false);
-			else
-			{
-				target.setWriting(true);
-				BitVector targetInput = source.wireValuesExcludingMe().subVector(fromSource, fromSource + width);
-				target.setValues(fromTarget, targetInput);
-			}
-		}
+		rA.notifyObservers();
+		rB.notifyObservers();
 	}
 }
