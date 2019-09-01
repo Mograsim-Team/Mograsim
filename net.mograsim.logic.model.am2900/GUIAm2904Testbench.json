@@ -14,7 +14,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#0",
         "pos": {
           "x": 391.0,
@@ -23,7 +23,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#1",
         "pos": {
           "x": 391.0,
@@ -32,7 +32,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#2",
         "pos": {
           "x": 391.0,
@@ -41,7 +41,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#3",
         "pos": {
           "x": 391.0,
@@ -50,7 +50,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#4",
         "pos": {
           "x": 365.0,
@@ -59,7 +59,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#5",
         "pos": {
           "x": 365.0,
@@ -68,7 +68,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#6",
         "pos": {
           "x": 365.0,
@@ -77,7 +77,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#7",
         "pos": {
           "x": 365.0,
@@ -86,7 +86,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#8",
         "pos": {
           "x": 365.0,
@@ -95,7 +95,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+        "id": "GUIBitDisplay",
         "name": "GUIBitDisplay#9",
         "pos": {
           "x": 365.0,
@@ -104,7 +104,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#0",
         "pos": {
           "x": 255.0,
@@ -113,7 +113,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#1",
         "pos": {
           "x": 170.0,
@@ -122,7 +122,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#10",
         "pos": {
           "x": 160.0,
@@ -131,7 +131,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#11",
         "pos": {
           "x": 160.0,
@@ -140,7 +140,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#12",
         "pos": {
           "x": 160.0,
@@ -149,7 +149,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#13",
         "pos": {
           "x": 60.0,
@@ -158,7 +158,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#14",
         "pos": {
           "x": 165.0,
@@ -167,7 +167,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#15",
         "pos": {
           "x": 140.0,
@@ -176,7 +176,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#16",
         "pos": {
           "x": 140.0,
@@ -185,7 +185,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#17",
         "pos": {
           "x": 140.0,
@@ -194,7 +194,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#18",
         "pos": {
           "x": 140.0,
@@ -203,7 +203,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#19",
         "pos": {
           "x": 140.0,
@@ -212,7 +212,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#2",
         "pos": {
           "x": 170.0,
@@ -221,7 +221,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#20",
         "pos": {
           "x": 140.0,
@@ -230,7 +230,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#21",
         "pos": {
           "x": 55.0,
@@ -239,7 +239,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#22",
         "pos": {
           "x": 60.0,
@@ -248,7 +248,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#23",
         "pos": {
           "x": 60.0,
@@ -257,7 +257,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#24",
         "pos": {
           "x": 55.0,
@@ -266,7 +266,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#25",
         "pos": {
           "x": 55.0,
@@ -275,7 +275,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#26",
         "pos": {
           "x": 60.0,
@@ -284,7 +284,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#27",
         "pos": {
           "x": 60.0,
@@ -293,7 +293,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#28",
         "pos": {
           "x": 55.0,
@@ -302,7 +302,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#29",
         "pos": {
           "x": 55.0,
@@ -311,7 +311,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#3",
         "pos": {
           "x": 55.0,
@@ -320,7 +320,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#30",
         "pos": {
           "x": 60.0,
@@ -329,7 +329,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#31",
         "pos": {
           "x": 55.0,
@@ -338,7 +338,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#32",
         "pos": {
           "x": 300.0,
@@ -347,7 +347,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#33",
         "pos": {
           "x": 300.0,
@@ -356,7 +356,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#34",
         "pos": {
           "x": 300.0,
@@ -365,7 +365,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#35",
         "pos": {
           "x": 300.0,
@@ -374,7 +374,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#36",
         "pos": {
           "x": 300.0,
@@ -383,7 +383,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#37",
         "pos": {
           "x": 165.0,
@@ -392,7 +392,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#38",
         "pos": {
           "x": 385.0,
@@ -401,7 +401,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#4",
         "pos": {
           "x": 170.0,
@@ -410,7 +410,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#5",
         "pos": {
           "x": 170.0,
@@ -419,7 +419,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#6",
         "pos": {
           "x": 170.0,
@@ -428,7 +428,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#7",
         "pos": {
           "x": 155.0,
@@ -437,7 +437,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#8",
         "pos": {
           "x": 155.0,
@@ -446,7 +446,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
+        "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#9",
         "pos": {
           "x": 160.0,
@@ -455,7 +455,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
+        "id": "GUIMerger",
         "name": "GUIMerger#0",
         "pos": {
           "x": 85.0,
@@ -464,7 +464,7 @@
         "params": 13
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#0",
         "pos": {
           "x": 175.0,
@@ -476,7 +476,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#1",
         "pos": {
           "x": 175.0,
@@ -488,7 +488,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#2",
         "pos": {
           "x": 175.0,
@@ -500,7 +500,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#3",
         "pos": {
           "x": 175.0,
@@ -512,7 +512,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#4",
         "pos": {
           "x": 335.0,
@@ -524,7 +524,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#5",
         "pos": {
           "x": 335.0,
@@ -536,7 +536,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#6",
         "pos": {
           "x": 335.0,
@@ -548,7 +548,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
+        "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#7",
         "pos": {
           "x": 335.0,
@@ -560,7 +560,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#0",
         "pos": {
           "x": 140.0,
@@ -569,7 +569,7 @@
         "params": "IZ"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#1",
         "pos": {
           "x": 140.0,
@@ -578,7 +578,7 @@
         "params": "IC"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#10",
         "pos": {
           "x": 35.0,
@@ -587,7 +587,7 @@
         "params": "I0"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#11",
         "pos": {
           "x": 35.0,
@@ -596,7 +596,7 @@
         "params": "I12"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#12",
         "pos": {
           "x": 35.0,
@@ -605,7 +605,7 @@
         "params": "I2"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#13",
         "pos": {
           "x": 40.0,
@@ -614,7 +614,7 @@
         "params": "I5"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#14",
         "pos": {
           "x": 40.0,
@@ -623,7 +623,7 @@
         "params": "I1"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#15",
         "pos": {
           "x": 40.0,
@@ -632,7 +632,7 @@
         "params": "I3"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#16",
         "pos": {
           "x": 35.0,
@@ -641,7 +641,7 @@
         "params": "I4"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#17",
         "pos": {
           "x": 35.0,
@@ -650,7 +650,7 @@
         "params": "I6"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#18",
         "pos": {
           "x": 40.0,
@@ -659,7 +659,7 @@
         "params": "I7"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#19",
         "pos": {
           "x": 35.0,
@@ -668,7 +668,7 @@
         "params": "I8"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#2",
         "pos": {
           "x": 140.0,
@@ -677,7 +677,7 @@
         "params": "IN"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#20",
         "pos": {
           "x": 40.0,
@@ -686,7 +686,7 @@
         "params": "I9"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#21",
         "pos": {
           "x": 35.0,
@@ -695,7 +695,7 @@
         "params": "I10"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#22",
         "pos": {
           "x": 40.0,
@@ -704,7 +704,7 @@
         "params": "I11"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#23",
         "pos": {
           "x": 145.0,
@@ -713,7 +713,7 @@
         "params": "CX"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#24",
         "pos": {
           "x": 150.0,
@@ -722,7 +722,7 @@
         "params": "C"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#25",
         "pos": {
           "x": 225.0,
@@ -731,7 +731,7 @@
         "params": "_OEY"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#26",
         "pos": {
           "x": 416.0,
@@ -740,7 +740,7 @@
         "params": "YZ"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#27",
         "pos": {
           "x": 416.0,
@@ -749,7 +749,7 @@
         "params": "YC"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#28",
         "pos": {
           "x": 416.0,
@@ -758,7 +758,7 @@
         "params": "YN"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#29",
         "pos": {
           "x": 416.0,
@@ -767,7 +767,7 @@
         "params": "YOVR"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#3",
         "pos": {
           "x": 140.0,
@@ -776,7 +776,7 @@
         "params": "IOVR"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#30",
         "pos": {
           "x": 390.0,
@@ -785,7 +785,7 @@
         "params": "CT"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#31",
         "pos": {
           "x": 390.0,
@@ -794,7 +794,7 @@
         "params": "C0"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#32",
         "pos": {
           "x": 390.0,
@@ -803,7 +803,7 @@
         "params": "SIOn"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#33",
         "pos": {
           "x": 390.0,
@@ -812,7 +812,7 @@
         "params": "QIOn"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#34",
         "pos": {
           "x": 390.0,
@@ -821,7 +821,7 @@
         "params": "SIO0"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#35",
         "pos": {
           "x": 390.0,
@@ -830,7 +830,7 @@
         "params": "QIO0"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#36",
         "pos": {
           "x": 30.0,
@@ -839,7 +839,7 @@
         "params": "enable S/QIOn input"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#37",
         "pos": {
           "x": 30.0,
@@ -848,7 +848,7 @@
         "params": "enable S/QIO0 input"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#38",
         "pos": {
           "x": 110.0,
@@ -857,7 +857,7 @@
         "params": "QIO0"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#39",
         "pos": {
           "x": 110.0,
@@ -866,7 +866,7 @@
         "params": "SIO0"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#4",
         "pos": {
           "x": 115.0,
@@ -875,7 +875,7 @@
         "params": "_CEM"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#40",
         "pos": {
           "x": 110.0,
@@ -884,7 +884,7 @@
         "params": "SIOn"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#41",
         "pos": {
           "x": 110.0,
@@ -893,7 +893,7 @@
         "params": "QIOn"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#42",
         "pos": {
           "x": 270.0,
@@ -902,7 +902,7 @@
         "params": "YOVR"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#43",
         "pos": {
           "x": 270.0,
@@ -911,7 +911,7 @@
         "params": "YN"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#44",
         "pos": {
           "x": 270.0,
@@ -920,7 +920,7 @@
         "params": "YZ"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#45",
         "pos": {
           "x": 270.0,
@@ -929,7 +929,7 @@
         "params": "YC"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#46",
         "pos": {
           "x": 220.0,
@@ -938,7 +938,7 @@
         "params": "enable Y input"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#47",
         "pos": {
           "x": 145.0,
@@ -947,7 +947,7 @@
         "params": "_SE"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#48",
         "pos": {
           "x": 350.0,
@@ -956,7 +956,7 @@
         "params": "_OECT"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#5",
         "pos": {
           "x": 115.0,
@@ -965,7 +965,7 @@
         "params": "_CEmu"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#6",
         "pos": {
           "x": 125.0,
@@ -974,7 +974,7 @@
         "params": "_EZ"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#7",
         "pos": {
           "x": 125.0,
@@ -983,7 +983,7 @@
         "params": "_EC"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#8",
         "pos": {
           "x": 125.0,
@@ -992,7 +992,7 @@
         "params": "_EN"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
+        "id": "TextComponent",
         "name": "TextComponent#9",
         "pos": {
           "x": 125.0,
@@ -1001,7 +1001,7 @@
         "params": "_EOVR"
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 185.0,
@@ -1010,7 +1010,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
           "x": 185.0,
@@ -1019,7 +1019,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#10",
         "pos": {
           "x": 370.0,
@@ -1028,7 +1028,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#11",
         "pos": {
           "x": 375.0,
@@ -1037,7 +1037,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#12",
         "pos": {
           "x": 380.0,
@@ -1046,7 +1046,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 210.0,
@@ -1055,7 +1055,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
           "x": 215.0,
@@ -1064,7 +1064,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#4",
         "pos": {
           "x": 355.0,
@@ -1073,7 +1073,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#5",
         "pos": {
           "x": 360.0,
@@ -1082,7 +1082,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#6",
         "pos": {
           "x": 345.0,
@@ -1091,7 +1091,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#7",
         "pos": {
           "x": 360.0,
@@ -1100,7 +1100,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#8",
         "pos": {
           "x": 360.0,
@@ -1109,7 +1109,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#9",
         "pos": {
           "x": 365.0,
@@ -2331,8 +2331,8 @@
     ],
     "version": "0.1.1"
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.DefaultSymbolRenderer",
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler",
+  "symbolRendererSnippetID": "default",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
   "version": "0.1.5"
 }

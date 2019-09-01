@@ -130,7 +130,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
+        "id": "GUIMerger",
         "name": "GUIMerger#0",
         "pos": {
           "x": 435.0,
@@ -139,7 +139,7 @@
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#0",
         "pos": {
           "x": 245.0,
@@ -148,7 +148,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#1",
         "pos": {
           "x": 215.0,
@@ -157,7 +157,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
+        "id": "GUINandGate",
         "name": "GUINandGate#2",
         "pos": {
           "x": 215.0,
@@ -166,7 +166,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#0",
         "pos": {
           "x": 5.0,
@@ -175,7 +175,7 @@
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#1",
         "pos": {
           "x": 5.0,
@@ -184,7 +184,7 @@
         "params": 4
       },
       {
-        "id": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
+        "id": "GUISplitter",
         "name": "GUISplitter#2",
         "pos": {
           "x": 45.0,
@@ -193,7 +193,7 @@
         "params": 2
       },
       {
-        "id": "class:net.mograsim.logic.model.am2900.components.GUIdff4_finewe",
+        "id": "GUIdff4_finewe",
         "name": "GUIdff4_finewe#0",
         "pos": {
           "x": 375.0,
@@ -201,7 +201,7 @@
         }
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 89.0,
@@ -210,7 +210,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
           "x": 89.0,
@@ -219,7 +219,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 89.0,
@@ -228,7 +228,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
           "x": 429.0,
@@ -237,7 +237,7 @@
         "params": 1
       },
       {
-        "id": "class:net.mograsim.logic.model.model.wires.WireCrossPoint",
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#4",
         "pos": {
           "x": 209.0,
@@ -1075,7 +1075,7 @@
     ],
     "version": "0.1.1"
   },
-  "symbolRendererSnippetID": "class:net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer",
+  "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
     "centerText": "muSR",
     "centerTextHeight": 5.0,
@@ -1083,13 +1083,13 @@
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
-  "outlineRendererSnippetID": "class:net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer",
-  "highLevelStateHandlerSnippetID": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {},
     "atomicHighLevelStates": {
       "q": {
-        "id": "class:net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.DelegatingAtomicHighLevelStateHandler",
+        "id": "delegating",
         "params": {
           "delegateTarget": "GUIdff4_finewe#0",
           "subStateID": "q"
