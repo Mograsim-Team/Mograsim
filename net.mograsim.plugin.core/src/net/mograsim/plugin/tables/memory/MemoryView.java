@@ -1,4 +1,6 @@
-package net.mograsim.plugin.memory;
+package net.mograsim.plugin.tables.memory;
+
+import java.math.BigInteger;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
@@ -17,11 +19,12 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
-import net.mograsim.machine.DefaultMainMemoryDefinition;
 import net.mograsim.machine.MainMemory;
+import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.standard.memory.WordAddressableMemory;
 import net.mograsim.plugin.asm.AsmNumberUtil;
 import net.mograsim.plugin.asm.AsmNumberUtil.NumberType;
+import net.mograsim.plugin.tables.NumberColumnLabelProvider;
 
 public class MemoryView extends ViewPart
 {
@@ -34,8 +37,7 @@ public class MemoryView extends ViewPart
 	public void createPartControl(Composite parent)
 	{
 		provider = new MemoryTableContentProvider();
-		displaySettings = new DisplaySettings();
-		displaySettings.setDataNumberType(NumberType.HEXADECIMAL);
+		displaySettings = new DisplaySettings(NumberType.HEXADECIMAL);
 
 		GridLayout layout = new GridLayout(6, false);
 		parent.setLayout(layout);
@@ -124,7 +126,7 @@ public class MemoryView extends ViewPart
 		table.setLinesVisible(true);
 		viewer.setUseHashlookup(true);
 		viewer.setContentProvider(provider);
-		setMemoryBinding(new WordAddressableMemory(new DefaultMainMemoryDefinition(8, 8, 8L, Long.MAX_VALUE)));
+		setMemoryBinding(new WordAddressableMemory(MainMemoryDefinition.create(8, 8, 8L, Long.MAX_VALUE)));
 		getSite().setSelectionProvider(viewer);
 
 		GridData gd = new GridData();
@@ -148,19 +150,20 @@ public class MemoryView extends ViewPart
 			public String getText(Object element)
 			{
 				MemoryTableRow row = (MemoryTableRow) element;
-				return String.format(addressFormat, row.address);// TODO: make the string length dependent on memory address length
+				return String.format(addressFormat, row.address);
 			}
 		});
 
 		col = createTableViewerColumn(titles[1], bounds[1]);
-		col.setLabelProvider(new ColumnLabelProvider()
+		col.setLabelProvider(new NumberColumnLabelProvider(displaySettings)
 		{
 			@Override
-			public String getText(Object element)
+			public BigInteger getAsBigInteger(Object element)
 			{
 				MemoryTableRow row = (MemoryTableRow) element;
-				return AsmNumberUtil.toString(row.getMemory().getCellAsBigInteger(row.address), displaySettings.getDataNumberType());
+				return row.getMemory().getCellAsBigInteger(row.address);
 			}
+
 		});
 		col.setEditingSupport(new MemoryCellEditingSupport(viewer, displaySettings));
 	}
@@ -187,20 +190,5 @@ public class MemoryView extends ViewPart
 		int hexAddressLength = Long.toUnsignedString(m.getDefinition().getMaximalAddress(), 16).length();
 		addressFormat = "0x%0" + hexAddressLength + "X";
 		viewer.setInput(m);
-	}
-
-	public static class DisplaySettings
-	{
-		private AsmNumberUtil.NumberType dataNumberType;
-
-		public AsmNumberUtil.NumberType getDataNumberType()
-		{
-			return dataNumberType;
-		}
-
-		public void setDataNumberType(AsmNumberUtil.NumberType dataNumberType)
-		{
-			this.dataNumberType = dataNumberType;
-		}
 	}
 }

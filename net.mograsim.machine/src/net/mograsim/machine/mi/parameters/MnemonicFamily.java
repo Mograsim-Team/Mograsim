@@ -104,8 +104,6 @@ public class MnemonicFamily implements ParameterClassification
 		return stringValues.clone();
 	}
 	
-	
-	
 	@Override
 	public int hashCode()
 	{
@@ -120,8 +118,15 @@ public class MnemonicFamily implements ParameterClassification
 	{
 		return this == obj;
 	}
-
-
+	
+	@Override
+	public Mnemonic parse(String toParse)
+	{
+		Mnemonic parsed = get(toParse);
+		if(parsed == null)
+			throw new UnknownMnemonicException(toParse);
+		return parsed;
+	}
 
 	public static class MnemonicPair
 	{
