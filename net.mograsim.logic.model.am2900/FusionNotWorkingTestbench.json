@@ -1,24 +1,71 @@
 {
-  "width": 0.0,
-  "height": 0.0,
-  "interfacePins": [],
+  "width": 11110.0,
+  "height": 11110.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 70.0
+      },
+      "name": "I",
+      "logicWidth": 13,
+      "usage": "INPUT"
+    }
+  ],
   "innerScale": 1.0,
   "submodel": {
     "components": [
       {
-        "id": "file:FusionNotWorking.json",
-        "name": "FusionNotWorking#0",
+        "id": "GUIBitDisplay",
+        "name": "GUIBitDisplay#0",
         "pos": {
-          "x": 220.0,
-          "y": 175.0
-        }
+          "x": 150.0,
+          "y": 60.0
+        },
+        "params": 13
       },
       {
         "id": "GUIManualSwitch",
         "name": "GUIManualSwitch#0",
         "pos": {
-          "x": 180.0,
-          "y": 235.0
+          "x": 55.0,
+          "y": 60.0
+        },
+        "params": 13
+      },
+      {
+        "id": "GUIMerger",
+        "name": "GUIMerger#0",
+        "pos": {
+          "x": 100.0,
+          "y": 10.0
+        },
+        "params": 13
+      },
+      {
+        "id": "GUIMerger",
+        "name": "GUIMerger#1",
+        "pos": {
+          "x": 130.0,
+          "y": 10.0
+        },
+        "params": 13
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#0",
+        "pos": {
+          "x": 85.0,
+          "y": 10.0
+        },
+        "params": 13
+      },
+      {
+        "id": "GUISplitter",
+        "name": "GUISplitter#1",
+        "pos": {
+          "x": 115.0,
+          "y": 10.0
         },
         "params": 13
       }
@@ -30,10 +77,346 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "FusionNotWorking#0",
+          "compName": "GUISplitter#0",
           "pinName": "I"
         },
         "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O9"
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I9"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O10"
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I10"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "I11"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "O11"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O12"
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I12"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "O"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#14",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "GUIMerger#1",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#15",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#1",
+          "pinName": "I1"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "GUIMerger#1",
+          "pinName": "I2"
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#1",
+          "pinName": "I3"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#18",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O4"
+        },
+        "pin2": {
+          "compName": "GUIMerger#1",
+          "pinName": "I4"
+        },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "I1"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O5"
+        },
+        "pin2": {
+          "compName": "GUIMerger#1",
+          "pinName": "I5"
+        },
+        "name": "unnamedWire#20",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#1",
+          "pinName": "I6"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O6"
+        },
+        "name": "unnamedWire#21",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O7"
+        },
+        "pin2": {
+          "compName": "GUIMerger#1",
+          "pinName": "I7"
+        },
+        "name": "unnamedWire#22",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#1",
+          "pinName": "I8"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O8"
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O9"
+        },
+        "pin2": {
+          "compName": "GUIMerger#1",
+          "pinName": "I9"
+        },
+        "name": "unnamedWire#24",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#1",
+          "pinName": "I10"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O10"
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#1",
+          "pinName": "O11"
+        },
+        "pin2": {
+          "compName": "GUIMerger#1",
+          "pinName": "I11"
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#1",
+          "pinName": "I12"
+        },
+        "pin2": {
+          "compName": "GUISplitter#1",
+          "pinName": "O12"
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#1",
+          "pinName": "O"
+        },
+        "pin2": {
+          "compName": "GUIBitDisplay#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#28",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I2"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "I3"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O4"
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I4"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O5"
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I5"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "I6"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "O6"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#0",
+          "pinName": "O7"
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I7"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIMerger#0",
+          "pinName": "I8"
+        },
+        "pin2": {
+          "compName": "GUISplitter#0",
+          "pinName": "O8"
+        },
+        "name": "unnamedWire#9",
         "path": []
       }
     ],
