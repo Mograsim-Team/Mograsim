@@ -13,7 +13,6 @@ import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 
 public class TriStateBufferAdapter implements ComponentAdapter<GUITriStateBuffer>
 {
-
 	@Override
 	public Class<GUITriStateBuffer> getSupportedClass()
 	{
@@ -30,5 +29,4 @@ public class TriStateBufferAdapter implements ComponentAdapter<GUITriStateBuffer
 		ReadWriteEnd out = logicWiresPerPin.get(guiTsb.getPin("OUT")).createReadWriteEnd();
 		new TriStateBuffer(timeline, params.gateProcessTime, in, out, enable);
 	}
-
 }
