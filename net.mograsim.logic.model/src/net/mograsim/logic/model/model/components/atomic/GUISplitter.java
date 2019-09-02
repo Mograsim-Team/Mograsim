@@ -41,10 +41,10 @@ public class GUISplitter extends GUIComponent
 	{
 		super(model, name);
 		this.logicWidth = logicWidth;
-		setSize(width, logicWidth * heightPerPin);
+		setSize(width, (logicWidth - 1) * heightPerPin);
 		addPin(this.inputPin = new Pin(this, "I", logicWidth, PinUsage.TRISTATE, 0, (logicWidth - 1) * heightPerPin / 2));
-		double outputHeight = 0;
-		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
+		double outputHeight = (logicWidth - 1) * heightPerPin;
+		for (int i = 0; i < logicWidth; i++, outputHeight -= 10)
 			addPin(new Pin(this, "O" + i, 1, PinUsage.TRISTATE, width, outputHeight));
 		outputEnds = new ReadEnd[logicWidth];
 	}
