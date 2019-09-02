@@ -60,8 +60,8 @@ public class GUISplitter extends GUIComponent
 			gc.setForeground(ColorManager.current().toColor(c));
 		double inLineY = posY + (logicWidth - 1) * heightPerPin / 2;
 		gc.drawLine(posX, inLineY, posX + width / 2, inLineY);
-		double outputHeight = posY;
-		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
+		double outputHeight = posY + (logicWidth - 1) * heightPerPin;
+		for (int i = 0; i < logicWidth; i++, outputHeight -= 10)
 		{
 			c = BitVectorFormatter.formatAsColor(outputEnds[i]);
 			if (c != null)
