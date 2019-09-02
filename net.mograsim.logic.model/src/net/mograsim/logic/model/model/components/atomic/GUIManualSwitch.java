@@ -11,6 +11,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.model.model.ViewModelModifiable;
@@ -28,6 +29,7 @@ public class GUIManualSwitch extends GUIComponent
 	private static final double width = 20;
 	private static final double height = 15;
 	private static final double fontHeight = 5;
+	private static final double heightMiniButtons = 4; // 0 is disabled
 
 	public final int logicWidth;
 	private final Pin outputPin;
@@ -67,6 +69,30 @@ public class GUIManualSwitch extends GUIComponent
 			gc.setForeground(textColor);
 		gc.drawText(label, getPosX() + (width - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
+
+		if (logicSwitch != null && logicWidth > 1 && heightMiniButtons > 0 && visibleRegion.y < getPosY() + heightMiniButtons)
+		{
+			double x = getPosX();
+			double y = getPosY();
+			gc.drawLine(x, y + heightMiniButtons, x + width, y + heightMiniButtons);
+			Color c = gc.getBackground();
+			gc.setBackground(gc.getForeground());
+			BitVector bv = logicSwitch.getValues();
+			double part = width / bv.length();
+			for (int i = 0; i < bv.length(); i++)
+			{
+				double start = x + part * i;
+				if (i != 0)
+					gc.drawLine(start, y, start, y + heightMiniButtons);
+				if (bv.getMSBit(i) == Bit.ONE)
+				{
+//					gc.fillRectangle(start, y, part, heightMiniButtons); // alternative, but not always visible what Bit is where 
+					gc.drawLine(start, y, start + part, y + heightMiniButtons);
+					gc.drawLine(start + part, y, start, y + heightMiniButtons);
+				}
+			}
+			gc.setBackground(c);
+		}
 	}
 
 	public void setLogicModelBinding(ManualSwitch logicSwitch)
@@ -116,7 +142,16 @@ public class GUIManualSwitch extends GUIComponent
 	public boolean clicked(double x, double y)
 	{
 		if (logicSwitch != null)
-			logicSwitch.toggle();
+		{
+			if (heightMiniButtons > 0 && y - getPosY() < heightMiniButtons)
+			{
+				int part = (int) ((x - getPosX()) * logicWidth / width);
+				logicSwitch.setState(logicSwitch.getValues().withBitChanged(part, Bit::not));
+			} else
+			{
+				logicSwitch.toggle();
+			}
+		}
 		return true;
 	}
 
