@@ -59,7 +59,7 @@ public interface TestableAm2901 extends TestableCircuit
 
 	String getDirectly(Register r);
 
-	public enum Am2901_Dest
+	enum Am2901_Dest
 	{
 		QREG, NOP, RAMA, RAMF, RAMQD, RAMD, RAMQU, RAMU;
 
@@ -79,17 +79,17 @@ public interface TestableAm2901 extends TestableCircuit
 		}
 	}
 
-	public enum Am2901_Func
+	enum Am2901_Func
 	{
 		ADD, SUBR, SUBS, OR, AND, NOTRS, EXOR, EXNOR;
 	}
 
-	public enum Am2901_Src
+	enum Am2901_Src
 	{
 		AQ, AB, ZQ, ZB, ZA, DA, DQ, DZ;
 	}
 
-	public enum Register
+	enum Register
 	{
 		r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, rA, rB, rC, rD, rE, rF, Q;
 
