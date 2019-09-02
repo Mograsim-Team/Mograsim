@@ -41,9 +41,9 @@ public class GUIMerger extends GUIComponent
 	{
 		super(model, name);
 		this.logicWidth = logicWidth;
-		setSize(width, logicWidth * heightPerPin);
-		double inputHeight = 0;
-		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
+		setSize(width, (logicWidth - 1) * heightPerPin);
+		double inputHeight = (logicWidth - 1) * heightPerPin;
+		for (int i = 0; i < logicWidth; i++, inputHeight -= 10)
 			addPin(new Pin(this, "I" + i, 1, PinUsage.TRISTATE, 0, inputHeight));
 		addPin(this.outputPin = new Pin(this, "O", logicWidth, PinUsage.TRISTATE, width, (logicWidth - 1) * heightPerPin / 2));
 		inputEnds = new ReadEnd[logicWidth];
