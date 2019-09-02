@@ -368,10 +368,8 @@ public class GUIWire
 		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(end);
 		if (wireColor != null)
 			gc.setForeground(ColorManager.current().toColor(wireColor));
-		if (logicWidth == 1)
-			gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire.singlebit"));
-		else
-			gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire.multibit"));
+		gc.setLineWidth(
+				Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire." + (logicWidth == 1 ? "singlebit" : "multibit")));
 		gc.drawPolyline(effectivePath);
 		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
 	}
