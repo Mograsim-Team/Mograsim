@@ -1,8 +1,5 @@
 package net.mograsim.logic.model.model.wires;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
@@ -121,9 +118,9 @@ public class WireCrossPoint extends GUIComponent
 	// serializing
 
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public Integer getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(logicWidth);
+		return logicWidth;
 	}
 
 	static

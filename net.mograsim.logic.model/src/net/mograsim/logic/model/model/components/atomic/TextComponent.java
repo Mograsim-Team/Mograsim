@@ -2,9 +2,6 @@ package net.mograsim.logic.model.model.components.atomic;
 
 import org.eclipse.swt.graphics.Color;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -55,9 +52,9 @@ public class TextComponent extends GUIComponent
 	// serializing
 
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public String getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(text);
+		return text;
 	}
 
 	static

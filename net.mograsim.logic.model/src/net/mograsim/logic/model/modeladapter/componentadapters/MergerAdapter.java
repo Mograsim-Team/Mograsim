@@ -25,8 +25,8 @@ public class MergerAdapter implements ComponentAdapter<GUIMerger>
 		ReadEnd[] inputEnds = new ReadEnd[guiComponent.logicWidth];
 		for (int i = 0; i < guiComponent.logicWidth; i++)
 		{
-			Wire input = logicWiresPerPin.get(guiComponent.getPin("I" + i));
-			Wire.fuse(input, output, 0, guiComponent.logicWidth - 1 - i, 1);
+			Wire input = logicWiresPerPin.get(guiComponent.getPin("I" + (guiComponent.logicWidth - 1 - i)));
+			Wire.fuse(input, output, 0, i);
 			inputEnds[i] = input.createReadOnlyEnd();
 		}
 		guiComponent.setLogicModelBinding(inputEnds, output.createReadOnlyEnd());

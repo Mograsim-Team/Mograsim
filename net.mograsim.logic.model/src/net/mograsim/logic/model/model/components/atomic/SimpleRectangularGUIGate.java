@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.eclipse.swt.graphics.Color;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -96,8 +95,8 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	 * @see GUIComponent#getParamsForSerializing()
 	 */
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public Integer getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(logicWidth);
+		return logicWidth;
 	}
 }

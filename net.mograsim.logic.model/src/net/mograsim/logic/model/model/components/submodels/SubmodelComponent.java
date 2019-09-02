@@ -17,13 +17,17 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
+import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.SubmodelComponentParams;
+import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.snippets.Renderer;
+import net.mograsim.logic.model.util.JsonHandler;
 
 /**
  * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
  * inner and outer models.
  */
-//TODO override getParams
 public abstract class SubmodelComponent extends GUIComponent
 {
 	public static final String SUBMODEL_INTERFACE_NAME = "_submodelinterface";
@@ -347,6 +351,17 @@ public abstract class SubmodelComponent extends GUIComponent
 	}
 
 	@Override
+	public boolean clicked(double x, double y)
+	{
+		double scaledX = (x - getPosX()) / submodelScale;
+		double scaledY = (y - getPosY()) / submodelScale;
+		for (GUIComponent component : submodel.getComponentsByName().values())
+			if (component.getBounds().contains(scaledX, scaledY) && component.clicked(scaledX, scaledY))
+				return true;
+		return false;
+	}
+
+	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
 		GCConfig conf = new GCConfig(gc);
@@ -401,15 +416,12 @@ public abstract class SubmodelComponent extends GUIComponent
 		return mapMin + (val - valMin) * (mapMax - mapMin) / (valMax - valMin);
 	}
 
+	// serializing
+
 	@Override
-	public boolean clicked(double x, double y)
+	public SubmodelComponentParams getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		double scaledX = (x - getPosX()) / submodelScale;
-		double scaledY = (y - getPosY()) / submodelScale;
-		for (GUIComponent component : submodel.getComponentsByName().values())
-			if (component.getBounds().contains(scaledX, scaledY) && component.clicked(scaledX, scaledY))
-				return true;
-		return false;
+		return SubmodelComponentSerializer.serialize(this, idGetter);
 	}
 
 	// operations no longer supported
@@ -424,5 +436,11 @@ public abstract class SubmodelComponent extends GUIComponent
 	protected void removePin(String name)
 	{
 		throw new UnsupportedOperationException("Can't remove pins of a SubmodelComponent directly, call removeSubmodelInterface instead");
+	}
+
+	static
+	{
+		IndirectGUIComponentCreator.setComponentSupplier(SubmodelComponent.class.getCanonicalName(),
+				(m, p, n) -> SubmodelComponentSerializer.deserialize(m, JsonHandler.fromJsonTree(p, SubmodelComponentParams.class), n));
 	}
 }

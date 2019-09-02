@@ -2,9 +2,6 @@ package net.mograsim.logic.model.model.components.atomic;
 
 import org.eclipse.swt.SWT;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.types.BitVectorFormatter;
@@ -60,8 +57,8 @@ public class GUISplitter extends GUIComponent
 			gc.setForeground(ColorManager.current().toColor(c));
 		double inLineY = posY + (logicWidth - 1) * heightPerPin / 2;
 		gc.drawLine(posX, inLineY, posX + width / 2, inLineY);
-		double outputHeight = posY + (logicWidth - 1) * heightPerPin;
-		for (int i = 0; i < logicWidth; i++, outputHeight -= 10)
+		double outputHeight = posY;
+		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
 		{
 			c = BitVectorFormatter.formatAsColor(outputEnds[i]);
 			if (c != null)
@@ -78,9 +75,9 @@ public class GUISplitter extends GUIComponent
 	}
 
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public Integer getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(logicWidth);
+		return logicWidth;
 	}
 
 	public void setLogicModelBinding(ReadEnd inputEnd, ReadEnd[] outputEnds)
