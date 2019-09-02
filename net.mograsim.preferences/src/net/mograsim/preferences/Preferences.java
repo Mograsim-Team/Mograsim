@@ -20,6 +20,8 @@ public abstract class Preferences
 		return currentPreferences;
 	}
 
+	public abstract boolean getBoolean(String name);
+
 	public abstract int getInt(String name);
 
 	public abstract double getDouble(String name);

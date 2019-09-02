@@ -23,7 +23,6 @@ public class Am2904Testbench
 
 	public static void create(ViewModelModifiable model)
 	{
-		// TODO use _SE in GUIAm2904.json
 		// TODO replace with proper ViewModel deserialization
 		DeserializedSubmodelComponent testbench = (DeserializedSubmodelComponent) IndirectGUIComponentCreator.createComponent(model,
 				"file:GUIAm2904Testbench.json", "testbench");

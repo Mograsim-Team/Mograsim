@@ -42,7 +42,7 @@ public class LogicUICanvas extends ZoomableCanvas
 
 	public LogicUICanvas(Composite parent, int style, ViewModel model)
 	{
-		super(parent, style);
+		super(parent, style, Preferences.current().getBoolean("net.mograsim.logic.model.improvetext"));
 
 		this.model = model;
 
