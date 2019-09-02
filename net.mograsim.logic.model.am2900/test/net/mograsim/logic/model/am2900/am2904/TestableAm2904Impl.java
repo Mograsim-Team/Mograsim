@@ -209,6 +209,12 @@ public class TestableAm2904Impl implements TestableAm2904
 	}
 
 	@Override
+	public void setDirectly(CompleteStatus r, String z_c_n_ovr)
+	{
+		am2904.setHighLevelState(regToStateID(r), BitVector.parse(z_c_n_ovr));
+	}
+
+	@Override
 	public String getC0()
 	{
 		return C0.getDisplayedValue().toString();
@@ -262,11 +268,25 @@ public class TestableAm2904Impl implements TestableAm2904
 		return bv.getMSBit(r.ordinal() % 4).getSymbol();
 	}
 
+	@Override
+	public String getDirectly(CompleteStatus r)
+	{
+		var bv = (BitVector) am2904.getHighLevelState(regToStateID(r));
+		return bv.toString();
+	}
+
 	private static String regToStateID(Register r)
 	{
-		if (r.ordinal() > 3)
-			return "msr.q";
-		return "musr.q";
+		if (r.ordinal() < 4)
+			return "musr.q";
+		return "msr.q";
+	}
+
+	private static String regToStateID(CompleteStatus r)
+	{
+		if (r == CompleteStatus.micro)
+			return "musr.q";
+		return "msr.q";
 	}
 
 	@Override
