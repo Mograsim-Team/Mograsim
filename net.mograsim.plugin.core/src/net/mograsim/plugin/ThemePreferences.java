@@ -23,6 +23,12 @@ public class ThemePreferences extends Preferences
 	}
 
 	@Override
+	public boolean getBoolean(String name)
+	{
+		return new DefaultPreferences().getBoolean(name);
+	}
+
+	@Override
 	public int getInt(String name)
 	{
 		return new DefaultPreferences().getInt(name);

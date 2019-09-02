@@ -5,6 +5,18 @@ import net.mograsim.preferences.ColorDefinition.BuiltInColor;
 public class DefaultPreferences extends Preferences
 {
 	@Override
+	public boolean getBoolean(String name)
+	{
+		switch (name)
+		{
+		case "net.mograsim.logic.model.improvetext":
+			return true;
+		default:
+			throw new IllegalArgumentException("Unknown boolean preference name: " + name);
+		}
+	}
+
+	@Override
 	public int getInt(String name)
 	{
 		switch (name)
