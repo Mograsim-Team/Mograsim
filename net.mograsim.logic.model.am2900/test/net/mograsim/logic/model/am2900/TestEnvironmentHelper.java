@@ -116,6 +116,10 @@ public class TestEnvironmentHelper
 				GUIBitDisplay gbd = new GUIBitDisplay(viewModel, p.logicWidth);
 				modellingTool.connect(p, gbd.getInputPin());
 				idDisplayMap.put(p.name, gbd);
+			} else if (SwitchWithDisplay.class.isAssignableFrom(type))
+			{
+				SwitchWithDisplay swd = new SwitchWithDisplay(viewModel, p);
+				setField(f, swd);
 			} else
 			{
 				fail("unkown field type " + type);
