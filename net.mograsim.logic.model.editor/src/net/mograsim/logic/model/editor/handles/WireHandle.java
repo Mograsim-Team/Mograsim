@@ -9,6 +9,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.editor.states.EditorState;
+import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.wires.GUIWire;
 
 public class WireHandle extends Handle
@@ -16,11 +17,13 @@ public class WireHandle extends Handle
 	private boolean selected = false;
 	private final static double WIDTH = 2.0;
 	private final static double WIDTH_SQUARED = WIDTH * WIDTH;
+	private final ViewModelModifiable model;
 	public final GUIWire parent;
 
-	public WireHandle(GUIWire parent)
+	public WireHandle(ViewModelModifiable model, GUIWire parent)
 	{
 		super(5);
+		this.model = model;
 		this.parent = parent;
 		parent.addPathChangedListener(c -> updateBounds());
 		updateBounds();
@@ -68,7 +71,7 @@ public class WireHandle extends Handle
 	@Override
 	public void reqDelete()
 	{
-		parent.destroy();
+		model.destroyWire(parent);
 	}
 
 	@Override

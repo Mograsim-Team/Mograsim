@@ -252,18 +252,18 @@ public class GUIWire
 
 		recalculateEffectivePath();
 
-		model.wireCreated(this);
+		model.wireCreated(this, this::destroyed);
 	}
 
 	/**
-	 * Destroys this wire. This method implicitly calls {@link ViewModelModifiable#wireDestroyed(GUIWire) wireDestroyed()} for the model
-	 * this component is a part of.
+	 * Destroys this wire. This method is called from {@link ViewModelModifiable#wireDestroyed(GUIWire) wireDestroyed()} of the model this
+	 * wire is a part of.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public void destroy()
+	private void destroyed()
 	{
-		model.wireDestroyed(this);
+		// nothing to do
 	}
 
 	// pins

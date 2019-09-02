@@ -10,19 +10,22 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.Editor.ComponentInfo;
+import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 
 public class ComponentHandle extends Handle
 {
+	private final ViewModelModifiable model;
 	public final GUIComponent parent;
 	private final static double POS_OFFSET = 2.0d;
 	private final static double LENGTH_OFFSET = POS_OFFSET * 2;
 	boolean selected = false;
 
-	public ComponentHandle(GUIComponent parent)
+	public ComponentHandle(ViewModelModifiable model, GUIComponent parent)
 	{
 		super(4);
+		this.model = model;
 		this.parent = parent;
 		Rectangle bounds = parent.getBounds();
 		setSize(bounds.width, bounds.height);
@@ -80,7 +83,7 @@ public class ComponentHandle extends Handle
 	@Override
 	public void reqDelete()
 	{
-		parent.destroy();
+		model.destroyComponent(parent);
 	}
 
 	@Override
