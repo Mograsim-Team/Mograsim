@@ -47,7 +47,6 @@ public class GUIinc12 extends SimpleRectangularHardcodedGUIComponent
 		{
 			Bit carry = Bit.ONE;
 			// TODO extract to helper. This code almost also exists in GUIAM2910RegCntr.
-			// TODO maybe invert loop direction
 			for (int i = 11; i >= 0; i--)
 			{
 				Bit a = ABits[i];

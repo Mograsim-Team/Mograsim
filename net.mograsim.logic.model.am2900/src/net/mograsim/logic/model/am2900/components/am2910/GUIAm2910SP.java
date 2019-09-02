@@ -122,7 +122,6 @@ public class GUIAm2910SP extends SimpleRectangularHardcodedGUIComponent
 			return BitVector.of(X, 3);
 		if (i == -2)
 			return BitVector.of(U, 3);
-		// TODO maybe this is the wrong way around
 		return BitVector.of((i & 0b100) > 0 ? ONE : ZERO, (i & 0b10) > 0 ? ONE : ZERO, (i & 0b1) > 0 ? ONE : ZERO);
 	}
 
