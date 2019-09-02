@@ -55,8 +55,11 @@ public class GUIMerger extends GUIComponent
 		ColorDefinition c = BitVectorFormatter.formatAsColor(outputEnd);
 		if (c != null)
 			gc.setForeground(ColorManager.current().toColor(c));
+		gc.setLineWidth(
+				Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire." + (logicWidth == 1 ? "singlebit" : "multibit")));
 		double outLineY = posY + (logicWidth - 1) * heightPerPin / 2;
 		gc.drawLine(posX + width / 2, outLineY, posX + width, outLineY);
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire.singlebit"));
 		double inputHeight = posY;
 		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
 		{
@@ -69,8 +72,10 @@ public class GUIMerger extends GUIComponent
 		int oldLineCap = gc.getLineCap();
 		int lineJoin = gc.getLineJoin();
 		// TODO find better "replacement" for JOIN_BEVEL
+		// TODO it looks weird that the vertical line is thinner than the single multibit wire.
 		gc.setLineCap(lineJoin == SWT.JOIN_MITER ? SWT.CAP_SQUARE : lineJoin == SWT.JOIN_ROUND ? SWT.CAP_ROUND : SWT.CAP_SQUARE);
 		gc.drawLine(posX + width / 2, posY, posX + width / 2, posY + heightPerPin * (logicWidth - 1));
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
 		gc.setLineCap(oldLineCap);
 	}
 

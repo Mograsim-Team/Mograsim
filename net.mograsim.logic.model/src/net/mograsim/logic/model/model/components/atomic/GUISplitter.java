@@ -55,8 +55,11 @@ public class GUISplitter extends GUIComponent
 		ColorDefinition c = BitVectorFormatter.formatAsColor(inputEnd);
 		if (c != null)
 			gc.setForeground(ColorManager.current().toColor(c));
+		gc.setLineWidth(
+				Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire." + (logicWidth == 1 ? "singlebit" : "multibit")));
 		double inLineY = posY + (logicWidth - 1) * heightPerPin / 2;
 		gc.drawLine(posX, inLineY, posX + width / 2, inLineY);
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire.singlebit"));
 		double outputHeight = posY;
 		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
 		{
@@ -69,8 +72,10 @@ public class GUISplitter extends GUIComponent
 		int oldLineCap = gc.getLineCap();
 		int lineJoin = gc.getLineJoin();
 		// TODO find better "replacement" for JOIN_BEVEL
+		// TODO it looks weird that the vertical line is thinner than the single multibit wire.
 		gc.setLineCap(lineJoin == SWT.JOIN_MITER ? SWT.CAP_SQUARE : lineJoin == SWT.JOIN_ROUND ? SWT.CAP_ROUND : SWT.CAP_SQUARE);
 		gc.drawLine(posX + width / 2, posY, posX + width / 2, posY + heightPerPin * (logicWidth - 1));
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
 		gc.setLineCap(oldLineCap);
 	}
 
