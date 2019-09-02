@@ -582,7 +582,7 @@
         "name": "TextComponent#10",
         "pos": {
           "x": 35.0,
-          "y": 120.0
+          "y": 240.0
         },
         "params": "I0"
       },
@@ -591,7 +591,7 @@
         "name": "TextComponent#11",
         "pos": {
           "x": 35.0,
-          "y": 240.0
+          "y": 120.0
         },
         "params": "I12"
       },
@@ -600,7 +600,7 @@
         "name": "TextComponent#12",
         "pos": {
           "x": 35.0,
-          "y": 140.0
+          "y": 220.0
         },
         "params": "I2"
       },
@@ -609,7 +609,7 @@
         "name": "TextComponent#13",
         "pos": {
           "x": 40.0,
-          "y": 170.0
+          "y": 190.0
         },
         "params": "I5"
       },
@@ -618,7 +618,7 @@
         "name": "TextComponent#14",
         "pos": {
           "x": 40.0,
-          "y": 130.0
+          "y": 230.0
         },
         "params": "I1"
       },
@@ -627,7 +627,7 @@
         "name": "TextComponent#15",
         "pos": {
           "x": 40.0,
-          "y": 150.0
+          "y": 210.0
         },
         "params": "I3"
       },
@@ -636,7 +636,7 @@
         "name": "TextComponent#16",
         "pos": {
           "x": 35.0,
-          "y": 160.0
+          "y": 200.0
         },
         "params": "I4"
       },
@@ -654,7 +654,7 @@
         "name": "TextComponent#18",
         "pos": {
           "x": 40.0,
-          "y": 190.0
+          "y": 170.0
         },
         "params": "I7"
       },
@@ -663,7 +663,7 @@
         "name": "TextComponent#19",
         "pos": {
           "x": 35.0,
-          "y": 200.0
+          "y": 160.0
         },
         "params": "I8"
       },
@@ -681,7 +681,7 @@
         "name": "TextComponent#20",
         "pos": {
           "x": 40.0,
-          "y": 210.0
+          "y": 150.0
         },
         "params": "I9"
       },
@@ -690,7 +690,7 @@
         "name": "TextComponent#21",
         "pos": {
           "x": 35.0,
-          "y": 220.0
+          "y": 140.0
         },
         "params": "I10"
       },
@@ -699,7 +699,7 @@
         "name": "TextComponent#22",
         "pos": {
           "x": 40.0,
-          "y": 230.0
+          "y": 130.0
         },
         "params": "I11"
       },
@@ -1765,21 +1765,9 @@
         },
         "pin2": {
           "compName": "GUIMerger#0",
-          "pinName": "I0"
-        },
-        "name": "unnamedWire#42",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "GUIManualSwitch#31",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "GUIMerger#0",
           "pinName": "I12"
         },
-        "name": "unnamedWire#43",
+        "name": "unnamedWire#42",
         "path": []
       },
       {
@@ -1788,8 +1776,20 @@
           "pinName": "I11"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#27",
+          "compName": "GUIManualSwitch#13",
           "pinName": ""
+        },
+        "name": "unnamedWire#43",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIManualSwitch#21",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I10"
         },
         "name": "unnamedWire#44",
         "path": []
@@ -1797,10 +1797,10 @@
       {
         "pin1": {
           "compName": "GUIMerger#0",
-          "pinName": "I10"
+          "pinName": "I9"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#29",
+          "compName": "GUIManualSwitch#22",
           "pinName": ""
         },
         "name": "unnamedWire#45",
@@ -1808,12 +1808,12 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#30",
+          "compName": "GUIManualSwitch#24",
           "pinName": ""
         },
         "pin2": {
           "compName": "GUIMerger#0",
-          "pinName": "I9"
+          "pinName": "I8"
         },
         "name": "unnamedWire#46",
         "path": []
@@ -1821,10 +1821,10 @@
       {
         "pin1": {
           "compName": "GUIMerger#0",
-          "pinName": "I8"
+          "pinName": "I7"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#28",
+          "compName": "GUIManualSwitch#23",
           "pinName": ""
         },
         "name": "unnamedWire#47",
@@ -1832,12 +1832,12 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#26",
+          "compName": "GUIManualSwitch#25",
           "pinName": ""
         },
         "pin2": {
           "compName": "GUIMerger#0",
-          "pinName": "I7"
+          "pinName": "I6"
         },
         "name": "unnamedWire#48",
         "path": []
@@ -1845,10 +1845,10 @@
       {
         "pin1": {
           "compName": "GUIMerger#0",
-          "pinName": "I6"
+          "pinName": "I5"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#25",
+          "compName": "GUIManualSwitch#26",
           "pinName": ""
         },
         "name": "unnamedWire#49",
@@ -1877,12 +1877,12 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#23",
+          "compName": "GUIManualSwitch#28",
           "pinName": ""
         },
         "pin2": {
           "compName": "GUIMerger#0",
-          "pinName": "I5"
+          "pinName": "I4"
         },
         "name": "unnamedWire#50",
         "path": []
@@ -1890,10 +1890,10 @@
       {
         "pin1": {
           "compName": "GUIMerger#0",
-          "pinName": "I4"
+          "pinName": "I3"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#24",
+          "compName": "GUIManualSwitch#30",
           "pinName": ""
         },
         "name": "unnamedWire#51",
@@ -1901,26 +1901,14 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#22",
+          "compName": "GUIManualSwitch#29",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIMerger#0",
-          "pinName": "I3"
-        },
-        "name": "unnamedWire#52",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "GUIMerger#0",
           "pinName": "I2"
         },
-        "pin2": {
-          "compName": "GUIManualSwitch#21",
-          "pinName": ""
-        },
-        "name": "unnamedWire#53",
+        "name": "unnamedWire#52",
         "path": []
       },
       {
@@ -1929,8 +1917,20 @@
           "pinName": "I1"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#13",
+          "compName": "GUIManualSwitch#27",
           "pinName": ""
+        },
+        "name": "unnamedWire#53",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIManualSwitch#31",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIMerger#0",
+          "pinName": "I0"
         },
         "name": "unnamedWire#54",
         "path": []

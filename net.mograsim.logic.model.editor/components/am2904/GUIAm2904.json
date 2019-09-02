@@ -473,7 +473,7 @@
         "name": "GUIMerger#0",
         "pos": {
           "x": 25.0,
-          "y": 245.0
+          "y": 315.0
         },
         "params": 6
       },
@@ -482,7 +482,7 @@
         "name": "GUIMerger#1",
         "pos": {
           "x": 25.0,
-          "y": 305.0
+          "y": 265.0
         },
         "params": 5
       },
@@ -509,7 +509,7 @@
         "name": "GUIMerger#4",
         "pos": {
           "x": 25.0,
-          "y": 355.0
+          "y": 245.0
         },
         "params": 2
       },
@@ -1175,7 +1175,7 @@
       {
         "pin1": {
           "compName": "GUISplitter#3",
-          "pinName": "O3"
+          "pinName": "O0"
         },
         "pin2": {
           "compName": "DeserializedSubmodelComponent#3",
@@ -1199,7 +1199,7 @@
       {
         "pin1": {
           "compName": "GUISplitter#4",
-          "pinName": "O0"
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "DeserializedSubmodelComponent#5",
@@ -1210,36 +1210,36 @@
       },
       {
         "pin1": {
-          "compName": "GUISplitter#4",
-          "pinName": "O1"
-        },
-        "pin2": {
           "compName": "DeserializedSubmodelComponent#5",
           "pinName": "I0_2"
+        },
+        "pin2": {
+          "compName": "GUISplitter#4",
+          "pinName": "O2"
         },
         "name": "unnamedWire#103",
         "path": []
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#5",
-          "pinName": "I0_3"
+          "compName": "GUISplitter#4",
+          "pinName": "O1"
         },
         "pin2": {
-          "compName": "GUISplitter#4",
-          "pinName": "O2"
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I0_3"
         },
         "name": "unnamedWire#104",
         "path": []
       },
       {
         "pin1": {
-          "compName": "GUISplitter#4",
-          "pinName": "O3"
-        },
-        "pin2": {
           "compName": "DeserializedSubmodelComponent#5",
           "pinName": "I0_4"
+        },
+        "pin2": {
+          "compName": "GUISplitter#4",
+          "pinName": "O0"
         },
         "name": "unnamedWire#105",
         "path": []
@@ -1263,21 +1263,9 @@
         },
         "pin2": {
           "compName": "DeserializedSubmodelComponent#5",
-          "pinName": "I1_1"
+          "pinName": "I1_4"
         },
         "name": "unnamedWire#107",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "GUISplitter#5",
-          "pinName": "O1"
-        },
-        "pin2": {
-          "compName": "DeserializedSubmodelComponent#5",
-          "pinName": "I1_2"
-        },
-        "name": "unnamedWire#108",
         "path": []
       },
       {
@@ -1287,7 +1275,19 @@
         },
         "pin2": {
           "compName": "GUISplitter#5",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#108",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUISplitter#5",
           "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I1_2"
         },
         "name": "unnamedWire#109",
         "path": []
@@ -1306,12 +1306,12 @@
       },
       {
         "pin1": {
-          "compName": "GUISplitter#5",
-          "pinName": "O3"
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "I1_1"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#5",
-          "pinName": "I1_4"
+          "compName": "GUISplitter#5",
+          "pinName": "O3"
         },
         "name": "unnamedWire#110",
         "path": []
@@ -1631,7 +1631,7 @@
       {
         "pin1": {
           "compName": "GUISplitter#8",
-          "pinName": "O2"
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "WireCrossPoint#27",
@@ -1762,12 +1762,12 @@
       },
       {
         "pin1": {
-          "compName": "GUISplitter#10",
-          "pinName": "O1"
-        },
-        "pin2": {
           "compName": "DeserializedSubmodelComponent#11",
           "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "GUISplitter#10",
+          "pinName": "O2"
         },
         "name": "unnamedWire#145",
         "path": []
@@ -1965,11 +1965,11 @@
         "path": [
           {
             "x": 40.0,
-            "y": 395.0
+            "y": 385.0
           },
           {
             "x": 40.0,
-            "y": 325.0
+            "y": 285.0
           }
         ]
       },
@@ -2100,19 +2100,10 @@
         },
         "pin2": {
           "compName": "GUIMerger#2",
-          "pinName": "I3"
+          "pinName": "I0"
         },
         "name": "unnamedWire#17",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 125.0
-          },
-          {
-            "x": 10.0,
-            "y": 95.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2140,12 +2131,12 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#22",
-          "pinName": ""
+          "compName": "GUISplitter#8",
+          "pinName": "O2"
         },
         "pin2": {
-          "compName": "GUISplitter#8",
-          "pinName": "O1"
+          "compName": "WireCrossPoint#22",
+          "pinName": ""
         },
         "name": "unnamedWire#172",
         "path": []
@@ -2241,19 +2232,10 @@
         },
         "pin2": {
           "compName": "GUIMerger#2",
-          "pinName": "I2"
+          "pinName": "I1"
         },
         "name": "unnamedWire#18",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 100.0
-          },
-          {
-            "x": 5.0,
-            "y": 85.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2377,12 +2359,12 @@
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "IC"
+          "compName": "GUIMerger#2",
+          "pinName": "I2"
         },
         "pin2": {
-          "compName": "GUIMerger#2",
-          "pinName": "I1"
+          "compName": "_submodelinterface",
+          "pinName": "IC"
         },
         "name": "unnamedWire#19",
         "path": []
@@ -2526,19 +2508,10 @@
         },
         "pin2": {
           "compName": "GUIMerger#2",
-          "pinName": "I0"
+          "pinName": "I3"
         },
         "name": "unnamedWire#20",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 50.0
-          },
-          {
-            "x": 5.0,
-            "y": 65.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2619,7 +2592,7 @@
         },
         "pin2": {
           "compName": "GUISplitter#7",
-          "pinName": "O3"
+          "pinName": "O0"
         },
         "name": "unnamedWire#206",
         "path": []
@@ -3323,7 +3296,7 @@
       {
         "pin1": {
           "compName": "GUISplitter#1",
-          "pinName": "O0"
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "_submodelinterface",
@@ -3351,7 +3324,7 @@
         },
         "pin2": {
           "compName": "GUISplitter#1",
-          "pinName": "O1"
+          "pinName": "O2"
         },
         "name": "unnamedWire#50",
         "path": []
@@ -3359,7 +3332,7 @@
       {
         "pin1": {
           "compName": "GUISplitter#1",
-          "pinName": "O2"
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "_submodelinterface",
@@ -3375,7 +3348,7 @@
         },
         "pin2": {
           "compName": "GUISplitter#1",
-          "pinName": "O3"
+          "pinName": "O0"
         },
         "name": "unnamedWire#52",
         "path": []
@@ -3850,12 +3823,12 @@
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#3",
-          "pinName": "Y1"
-        },
-        "pin2": {
           "compName": "GUIMerger#3",
           "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Y4"
         },
         "name": "unnamedWire#89",
         "path": []
@@ -3874,36 +3847,36 @@
       },
       {
         "pin1": {
-          "compName": "GUIMerger#3",
-          "pinName": "I1"
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Y3"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#3",
-          "pinName": "Y2"
+          "compName": "GUIMerger#3",
+          "pinName": "I1"
         },
         "name": "unnamedWire#90",
         "path": []
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#3",
-          "pinName": "Y3"
-        },
-        "pin2": {
           "compName": "GUIMerger#3",
           "pinName": "I2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Y2"
         },
         "name": "unnamedWire#91",
         "path": []
       },
       {
         "pin1": {
-          "compName": "GUIMerger#3",
-          "pinName": "I3"
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Y1"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#3",
-          "pinName": "Y4"
+          "compName": "GUIMerger#3",
+          "pinName": "I3"
         },
         "name": "unnamedWire#92",
         "path": []
@@ -3959,7 +3932,7 @@
       {
         "pin1": {
           "compName": "GUISplitter#3",
-          "pinName": "O0"
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "DeserializedSubmodelComponent#3",
@@ -3970,12 +3943,12 @@
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#3",
-          "pinName": "I0_2"
+          "compName": "GUISplitter#3",
+          "pinName": "O2"
         },
         "pin2": {
-          "compName": "GUISplitter#3",
-          "pinName": "O1"
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "I0_2"
         },
         "name": "unnamedWire#98",
         "path": []
@@ -3987,7 +3960,7 @@
         },
         "pin2": {
           "compName": "GUISplitter#3",
-          "pinName": "O2"
+          "pinName": "O1"
         },
         "name": "unnamedWire#99",
         "path": []
