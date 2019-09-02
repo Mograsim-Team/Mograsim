@@ -453,6 +453,20 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	}
 
 	/**
+	 * Changes a single Bit using the given operation. This can be used to set, clear or flip bits.
+	 * 
+	 * @param msbIndex           index of the MSB to be changed
+	 * @param singleBitOperation the operation to perform on that Bit
+	 * @return the resulting, new BitVektor
+	 */
+	public BitVector withBitChanged(int msbIndex, UnaryOperator<Bit> singleBitOperation)
+	{
+		Bit[] newBits = bits.clone();
+		newBits[msbIndex] = singleBitOperation.apply(newBits[msbIndex]);
+		return new BitVector(newBits);
+	}
+
+	/**
 	 * Iterate over the {@link Bit}s of the BitVector <b>from MSB to LSB</b> (left to right).
 	 */
 	@Override
