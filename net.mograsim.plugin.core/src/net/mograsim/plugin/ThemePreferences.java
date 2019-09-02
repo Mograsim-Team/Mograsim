@@ -9,8 +9,10 @@ import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.ui.themes.ITheme;
 
 import net.mograsim.preferences.ColorDefinition;
+import net.mograsim.preferences.DefaultPreferences;
 import net.mograsim.preferences.Preferences;
 
+// TODO proper getInt/getDouble implementation, maybe via own preferences page?
 public class ThemePreferences extends Preferences
 {
 	private final ITheme theme;
@@ -18,6 +20,18 @@ public class ThemePreferences extends Preferences
 	public ThemePreferences(ITheme theme)
 	{
 		this.theme = theme;
+	}
+
+	@Override
+	public int getInt(String name)
+	{
+		return new DefaultPreferences().getInt(name);
+	}
+
+	@Override
+	public double getDouble(String name)
+	{
+		return new DefaultPreferences().getDouble(name);
 	}
 
 	@Override
