@@ -1,12 +1,9 @@
 package net.mograsim.logic.model.am2900.am2910;
 
-import org.junit.Test;
-
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.components.ManualSwitch;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.model.am2900.TestEnvironmentHelper;
 import net.mograsim.logic.model.am2900.TestEnvironmentHelper.DebugState;
 import net.mograsim.logic.model.model.components.GUIComponent;
@@ -22,13 +19,13 @@ public class TestableAm2910Impl implements TestableAm2910
 	private ManualSwitch D;
 	private ManualSwitch _CC;
 	private ManualSwitch _CCEN;
-	private ManualSwitch _RDL;
+	private ManualSwitch _RLD;
 	private ManualSwitch _OE;
 	private BitDisplay _FULL;
 	private BitDisplay Y;
 	private BitDisplay _PL, _MAP, _VECT;
 
-	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "GUIAm2910");
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "file:components/am2910/GUIAm2910.json");
 
 	@Override
 	public void setup()
@@ -84,13 +81,19 @@ public class TestableAm2910Impl implements TestableAm2910
 	@Override
 	public void set_RLD(String val_1_bit)
 	{
-		_RDL.setState(BitVector.parse(val_1_bit));
+		_RLD.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_OE(String val_1_bit)
 	{
 		_OE.setState(BitVector.parse(val_1_bit));
+	}
+
+	@Override
+	public void setDirectly(Register r, String val_X_bit)
+	{
+		am2901.setHighLevelState(regToStateID(r), BitVector.parse(val_X_bit));
 	}
 
 	@Override
@@ -123,4 +126,30 @@ public class TestableAm2910Impl implements TestableAm2910
 		return _VECT.getDisplayedValue().toString();
 	}
 
+	@Override
+	public String getDirectly(Register r)
+	{
+		return am2901.getHighLevelState(regToStateID(r)).toString();
+	}
+
+	private static String regToStateID(Register r)
+	{
+		switch (r)
+		{
+		case S_0:
+		case S_1:
+		case S_2:
+		case S_3:
+		case S_4:
+			return "stack.c" + BitVector.from(r.ordinal(), 3);
+		case SP:
+			return "sp.q";
+		case PC:
+			return "mupc.q";
+		case REG_COUNT:
+			return "r.q";
+		default:
+			throw new IllegalArgumentException("unknown: " + r);
+		}
+	}
 }
