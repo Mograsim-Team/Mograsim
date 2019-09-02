@@ -81,7 +81,6 @@ public class GUIram5_12 extends SimpleRectangularHardcodedGUIComponent
 		for (int i = 0; i < 3; i++)
 			if (bits[i] == Z)
 				return -1;
-		// TODO maybe this is the wrong way around
 		return (bits[0] == ONE ? 4 : 0) + (bits[1] == ONE ? 2 : 0) + (bits[2] == ONE ? 1 : 0);
 	}
 

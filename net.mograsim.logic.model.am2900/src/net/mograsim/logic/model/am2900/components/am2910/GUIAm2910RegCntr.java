@@ -61,7 +61,6 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 			{
 				Bit carry = Bit.ZERO;
 				// TODO extract to helper. This code almost also exists in GUIinc12.
-				// TODO maybe invert loop direction
 				for (int i = 11; i >= 0; i--)
 				{
 					Bit a = QC[i];

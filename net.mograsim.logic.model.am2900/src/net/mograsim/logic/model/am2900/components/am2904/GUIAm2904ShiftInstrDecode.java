@@ -9,6 +9,7 @@ import static net.mograsim.logic.core.types.Bit.ZERO;
 import java.util.Map;
 
 import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
@@ -70,9 +71,9 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
 		Bit _SE = readEnds.get("_SE").getValue();
-		Bit[] IBits = readEnds.get("I").getValues().getBits();
-		readWriteEnds.get("OEn").feedSignals(IBits[0].not().and(_SE.not()));
-		readWriteEnds.get("OE0").feedSignals(IBits[0].and(_SE.not()));
+		BitVector I = readEnds.get("I").getValues();
+		readWriteEnds.get("OEn").feedSignals(I.getMSBit(0).not().and(_SE.not()));
+		readWriteEnds.get("OE0").feedSignals(I.getMSBit(0).and(_SE.not()));
 		if (_SE == Z || _SE == X)
 		{
 			readWriteEnds.get("SIO0_MUX").feedSignals(X, X, X);
@@ -102,36 +103,24 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 			readWriteEnds.get("MC_EN").feedSignals(ZERO);
 			return null;
 		}
-		// TODO move the following loop to BitVector.
-		int IAsInt = 0;
-		for (int i = 0; i < 5; i++)
-			switch (IBits[4 - i])
-			{
-			case ONE:
-				IAsInt |= 1 << i;
-				break;
-			case U:
-				readWriteEnds.get("SIO0_MUX").feedSignals(U, U, U);
-				readWriteEnds.get("SIOn_MUX").feedSignals(U, U, U);
-				readWriteEnds.get("QIO0_MUX").feedSignals(U, U, U);
-				readWriteEnds.get("QIOn_MUX").feedSignals(U, U, U);
-				readWriteEnds.get("MC_MUX").feedSignals(U, U);
-				readWriteEnds.get("MC_EN").feedSignals(U);
-				return null;
-			case X:
-			case Z:
-				readWriteEnds.get("SIO0_MUX").feedSignals(X, X, X);
-				readWriteEnds.get("SIOn_MUX").feedSignals(X, X, X);
-				readWriteEnds.get("QIO0_MUX").feedSignals(X, X, X);
-				readWriteEnds.get("QIOn_MUX").feedSignals(X, X, X);
-				readWriteEnds.get("MC_MUX").feedSignals(X, X);
-				readWriteEnds.get("MC_EN").feedSignals(X);
-				return null;
-			case ZERO:
-				break;
-			default:
-				throw new IllegalArgumentException("Unknown enum constant: " + IBits[i]);
-			}
+		if (!I.isBinary())
+		{
+			Bit val = null;
+			for (Bit b : I.getBits())
+				if (!b.isBinary())
+				{
+					val = b;
+					break;
+				}
+			readWriteEnds.get("SIO0_MUX").feedSignals(val, val, val);
+			readWriteEnds.get("SIOn_MUX").feedSignals(val, val, val);
+			readWriteEnds.get("QIO0_MUX").feedSignals(val, val, val);
+			readWriteEnds.get("QIOn_MUX").feedSignals(val, val, val);
+			readWriteEnds.get("MC_MUX").feedSignals(val, val);
+			readWriteEnds.get("MC_EN").feedSignals(val);
+			return null;
+		}
+		int IAsInt = I.getUnsignedValue().intValue();
 		if (IAsInt < 16)
 		{
 			readWriteEnds.get("SIO0_MUX").feedSignals(X, X, X);
