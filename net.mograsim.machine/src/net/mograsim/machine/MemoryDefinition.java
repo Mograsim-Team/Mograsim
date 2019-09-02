@@ -34,7 +34,7 @@ public interface MemoryDefinition {
 	 */
 	default long size()
 	{
-		return getMaximalAddress() - getMinimalAddress();
+		return getMaximalAddress() - getMinimalAddress() + 1;
 	}
 	
 	public static MemoryDefinition create(int memoryAddressBits, long minimalAddress, long maximalAddress)
