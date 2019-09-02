@@ -2,9 +2,6 @@ package net.mograsim.logic.model.model.components.atomic;
 
 import org.eclipse.swt.SWT;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.types.BitVectorFormatter;
@@ -78,9 +75,9 @@ public class GUIMerger extends GUIComponent
 	}
 
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public Integer getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(logicWidth);
+		return logicWidth;
 	}
 
 	public void setLogicModelBinding(ReadEnd[] inputEnds, ReadEnd outputEnd)
