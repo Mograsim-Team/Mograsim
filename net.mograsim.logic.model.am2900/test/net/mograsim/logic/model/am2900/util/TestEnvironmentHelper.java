@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.am2900;
+package net.mograsim.logic.model.am2900.util;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
@@ -14,6 +15,8 @@ import java.util.TreeSet;
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.components.ManualSwitch;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.model.LogicUIStandaloneGUI;
+import net.mograsim.logic.model.am2900.TestableCircuit;
 import net.mograsim.logic.model.am2900.TestableCircuit.Result;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.ViewModelModifiable;
@@ -34,7 +37,7 @@ public class TestEnvironmentHelper
 	private final Class<?> testEnvClass;
 	private final String modelId;
 	private Field componentField;
-	private Field timelineField;
+	private Optional<Field> timelineField = Optional.empty();
 
 	private GUIComponent component;
 	private Timeline timeline;
@@ -63,11 +66,11 @@ public class TestEnvironmentHelper
 				componentField.setAccessible(true);
 			} else if (Timeline.class.isAssignableFrom(f.getType()))
 			{
-				timelineField = f;
-				timelineField.setAccessible(true);
+				f.setAccessible(true);
+				timelineField = Optional.of(f);
 			}
 		}
-		if (componentField == null || timelineField == null)
+		if (componentField == null)
 			throw new IllegalStateException("No component or timeline field found!");
 	}
 
@@ -87,7 +90,7 @@ public class TestEnvironmentHelper
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
 		timeline = ViewLogicModelAdapter.convert(viewModel, params);
-		setField(timelineField, timeline);
+		timelineField.ifPresent(f -> setField(f, timeline));
 
 		// Bind switches/displays to this test class
 		component.getPins().values().forEach(this::bindModelPin);
@@ -228,6 +231,7 @@ public class TestEnvironmentHelper
 	{
 		try
 		{
+			f.setAccessible(true);
 			f.set(testEnvInstance, Objects.requireNonNull(value));
 		}
 		catch (Exception e)
@@ -247,6 +251,19 @@ public class TestEnvironmentHelper
 		catch (Exception e)
 		{
 			fail(e);
+		}
+	}
+
+	public void displayState()
+	{
+		try
+		{
+			new LogicUIStandaloneGUI(viewModel).run();
+			viewModel.setRedrawHandler(null);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
 

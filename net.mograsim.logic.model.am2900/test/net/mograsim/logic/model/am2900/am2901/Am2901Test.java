@@ -1,10 +1,10 @@
 package net.mograsim.logic.model.am2900.am2901;
 
-import static net.mograsim.logic.model.am2900.TestUtil.*;
 import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Dest.*;
 import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Func.*;
 import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Src.*;
 import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Register.*;
+import static net.mograsim.logic.model.am2900.util.TestUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.awt.Point;
@@ -17,16 +17,21 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.RegisterExtension;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
 import net.mograsim.logic.model.am2900.am2901.TestableAm2901.Register;
+import net.mograsim.logic.model.am2900.util.DisplayStateOnFailure;
 
 @DisplayName("Am2901 Tests")
 @TestMethodOrder(OrderAnnotation.class)
 public class Am2901Test
 {
-	private TestableAm2901 am2901;
+	private TestableAm2901 am2901 = new TestableAm2901Impl();
+
+	@RegisterExtension
+	DisplayStateOnFailure failureRule = new DisplayStateOnFailure(am2901);
 
 	@BeforeEach
 	void initialize()
@@ -37,7 +42,6 @@ public class Am2901Test
 
 	void createAndSetup()
 	{
-		am2901 = new TestableAm2901Impl();
 		am2901.setup();
 	}
 

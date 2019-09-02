@@ -2,18 +2,16 @@ package net.mograsim.logic.model.am2900.am2901;
 
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.components.ManualSwitch;
-import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.model.am2900.TestEnvironmentHelper;
-import net.mograsim.logic.model.am2900.TestEnvironmentHelper.DebugState;
-import net.mograsim.logic.model.am2900.TestUtil;
+import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper;
+import net.mograsim.logic.model.am2900.util.TestUtil;
+import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper.DebugState;
 import net.mograsim.logic.model.model.components.GUIComponent;
 
 public class TestableAm2901Impl implements TestableAm2901
 {
 	private GUIComponent am2901;
-	private Timeline timeline;
 	private ManualSwitch I8, I7, I6, I5, I4, I3, I2, I1, I0;
 	private ManualSwitch C;
 	private ManualSwitch Cn;
@@ -225,5 +223,11 @@ public class TestableAm2901Impl implements TestableAm2901
 		if (r == Register.Q)
 			return "qreg.q";
 		return "regs.c" + r.toBitString() + ".q";
+	}
+
+	@Override
+	public TestEnvironmentHelper getTestEnvironmentHelper()
+	{
+		return testHelper;
 	}
 }

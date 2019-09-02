@@ -2,6 +2,8 @@ package net.mograsim.logic.model.am2900;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper;
+
 public interface TestableCircuit
 {
 	void setup();
@@ -9,6 +11,8 @@ public interface TestableCircuit
 	Result run();
 
 	void clockOn(boolean isClockOn);
+
+	TestEnvironmentHelper getTestEnvironmentHelper();
 
 	default void assertRunSuccess()
 	{
@@ -22,6 +26,11 @@ public interface TestableCircuit
 		assertRunSuccess();
 		clockOn(true);
 		assertRunSuccess();
+	}
+
+	default void displayState()
+	{
+		getTestEnvironmentHelper().displayState();
 	}
 
 	public enum Result

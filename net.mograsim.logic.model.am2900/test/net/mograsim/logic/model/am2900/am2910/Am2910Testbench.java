@@ -7,7 +7,10 @@ import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.Orientation;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
+import net.mograsim.logic.model.model.components.atomic.GUIClock;
+import net.mograsim.logic.model.model.components.atomic.GUIClock.GUIClockParams;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
@@ -23,7 +26,7 @@ public class Am2910Testbench
 	public static void create(ViewModelModifiable model)
 	{
 		GUIComponent am2910 = IndirectGUIComponentCreator.createComponent(model, "file:components/am2910/GUIAm2910.json", "Am2910");
-		GUIManualSwitch C = new GUIManualSwitch(model, 1, "C");
+		GUIClock C = new GUIClock(model, new GUIClockParams(1000, Orientation.RIGHT));
 		GUIManualSwitch D = new GUIManualSwitch(model, 12, "D");
 		GUIManualSwitch _RLD = new GUIManualSwitch(model, 1, "_RLD");
 		GUIManualSwitch _CC = new GUIManualSwitch(model, 1, "_CC");
