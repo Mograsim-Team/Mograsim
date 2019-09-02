@@ -2,8 +2,6 @@ package net.mograsim.logic.model.model.components.atomic;
 
 import org.eclipse.swt.graphics.Color;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -18,6 +16,7 @@ import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.TriStateBufferAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.preferences.Preferences;
 
 public class GUITriStateBuffer extends GUIComponent
@@ -88,9 +87,9 @@ public class GUITriStateBuffer extends GUIComponent
 	}
 
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public GUITriStateBufferParams getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new Gson().toJsonTree(params);
+		return params;
 	}
 
 	static
@@ -98,7 +97,7 @@ public class GUITriStateBuffer extends GUIComponent
 		ViewLogicModelAdapter.addComponentAdapter(new TriStateBufferAdapter());
 		IndirectGUIComponentCreator.setComponentSupplier(GUITriStateBuffer.class.getName(), (m, p, n) ->
 		{
-			GUITriStateBufferParams params = new Gson().fromJson(p, GUITriStateBufferParams.class);
+			GUITriStateBufferParams params = JsonHandler.fromJsonTree(p, GUITriStateBufferParams.class);
 			if (params == null)
 				throw new JsonSyntaxException("Invalid!!!");
 			return new GUITriStateBuffer(m, params, n);

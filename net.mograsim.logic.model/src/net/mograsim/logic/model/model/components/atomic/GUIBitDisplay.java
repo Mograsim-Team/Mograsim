@@ -2,9 +2,6 @@ package net.mograsim.logic.model.model.components.atomic;
 
 import org.eclipse.swt.graphics.Color;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
@@ -94,9 +91,9 @@ public class GUIBitDisplay extends GUIComponent
 	}
 
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public Integer getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new JsonPrimitive(logicWidth);
+		return logicWidth;
 	}
 
 	static

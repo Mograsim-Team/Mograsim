@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonNull;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
@@ -289,9 +286,9 @@ public abstract class GUIComponent implements JSONSerializable
 	// serializing
 
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public Object getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return JsonNull.INSTANCE;
+		return null;
 	}
 
 	// listeners

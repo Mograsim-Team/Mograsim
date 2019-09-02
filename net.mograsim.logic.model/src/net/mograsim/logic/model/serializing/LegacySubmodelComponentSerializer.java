@@ -241,7 +241,7 @@ public final class LegacySubmodelComponentSerializer
 			} else
 			{
 				innerComponentParams.id = idGetter.componentIDs.apply(innerComponent);
-				innerComponentParams.params = innerComponent.getParamsForSerializing(idGetter);
+				innerComponentParams.params = innerComponent.getParamsForSerializingJSON(idGetter);
 			}
 			innerComponentParams.name = innerComponent.name;
 			i1++;
