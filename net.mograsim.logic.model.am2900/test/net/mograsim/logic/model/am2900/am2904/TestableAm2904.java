@@ -85,12 +85,12 @@ public interface TestableAm2904 extends TestableCircuit
 
 	String getQIO3();
 
-	public enum Am2904_ShiftDir
+	enum Am2904_ShiftDir
 	{
 		RIGHT, LEFT;
 	}
 
-	public enum Am2904_Carry
+	enum Am2904_Carry
 	{
 		CI0, CI1, CX, USE_SR;
 	}
@@ -104,7 +104,7 @@ public interface TestableAm2904 extends TestableCircuit
 	 * <li>condCode = the boolean term defining the CT output</li>
 	 * </ul>
 	 */
-	public enum Am2904_Inst
+	enum Am2904_Inst
 	{
 		// @formatter:off
 		LoadM_LoadY_µ_NxorOVRorZ(0_00),

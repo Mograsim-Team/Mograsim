@@ -29,7 +29,7 @@ public interface TestableAm2910 extends TestableCircuit
 
 	String get_VECT();
 
-	public enum Am2910_Inst
+	enum Am2910_Inst
 	{
 		JZ, CJS, JMAP, CJP, PUSH, JSRP, CJV, JRP, RFCT, RPCT, CRTN, CJPP, LDCT, LOOP, CONT, TWB;
 	}
