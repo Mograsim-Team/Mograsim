@@ -1,237 +1,277 @@
 package net.mograsim.logic.model.am2900.am2904;
 
+import net.mograsim.logic.core.components.BitDisplay;
+import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.logic.model.am2900.util.SwitchWithDisplay;
+import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper;
+import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper.DebugState;
+import net.mograsim.logic.model.model.components.GUIComponent;
+
 public class TestableAm2904Impl implements TestableAm2904
 {
+
+	private GUIComponent am2904;
+	private ManualSwitch I;
+	private ManualSwitch C;
+	private ManualSwitch Cx;
+	private ManualSwitch IC, IN, IOVR, IZ;
+	private ManualSwitch _CEM, _CEmu;
+	private ManualSwitch _EC, _EN, _EOVR, _EZ;
+	private ManualSwitch _OECT, _OEY;
+	private ManualSwitch _SE;
+	private BitDisplay C0;
+	private BitDisplay CT;
+	private SwitchWithDisplay SIO0, SIOn, QIO0, QIOn;
+	private SwitchWithDisplay YC, YN, YOVR, YZ;
+
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "file:components/am2904/GUIAm2904.json");
 
 	@Override
 	public void setup()
 	{
-		// TODO Auto-generated method stub
-
+		testHelper.setup(DebugState.NO_DEBUG);
 	}
 
 	@Override
 	public Result run()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return testHelper.run();
 	}
 
 	@Override
 	public void clockOn(boolean isClockOn)
 	{
-		// TODO Auto-generated method stub
-
+		if (isClockOn)
+			C.switchFullOn();
+		else
+			C.switchFullOff();
 	}
 
 	@Override
 	public void setInstruction(Am2904_Inst inst)
 	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setCarry(Am2904_Carry carry)
-	{
-		// TODO Auto-generated method stub
-
+		var old = I.getValues();
+		var newPart = BitVector.from(inst.ordinal(), 6);
+		I.setState(old.subVector(0, 7).concat(newPart));
 	}
 
 	@Override
 	public void setShiftCode(String val_4_bit)
 	{
-		// TODO Auto-generated method stub
-
+		var old = I.getValues();
+		var newPart = BitVector.parse(val_4_bit);
+		I.setState(old.subVector(0, 3).concat(newPart).concat(old.subVector(7)));
 	}
 
 	@Override
 	public void setI10(Am2904_ShiftDir dir)
 	{
-		// TODO Auto-generated method stub
+		var old = I.getValues();
+		var newPart = BitVector.from(dir.ordinal(), 1);
+		I.setState(old.subVector(0, 2).concat(newPart).concat(old.subVector(3)));
+	}
 
+	@Override
+	public void setCarry(Am2904_Carry carry)
+	{
+		var old = I.getValues();
+		var newPart = BitVector.from(carry.ordinal(), 2);
+		I.setState(newPart.concat(old.subVector(2)));
 	}
 
 	@Override
 	public void setCX(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		Cx.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
-	public void setY3(String val_1_bit)
+	public void setY(String ovr_n_c_z)
 	{
-		// TODO Auto-generated method stub
-
+		var bv = BitVector.parse(ovr_n_c_z);
+		// correct order apparently unknown :/
+		YOVR.setState(bv.getLSBit(3).toVector());
+		YN.setState(bv.getLSBit(2).toVector());
+		YC.setState(bv.getLSBit(1).toVector());
+		YZ.setState(bv.getLSBit(0).toVector());
 	}
 
 	@Override
 	public void setIZ(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		IZ.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void setIC(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		IC.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void setIOVR(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		IOVR.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void setIN(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		IN.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_CEM(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_CEM.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_CEµ(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_CEmu.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_OEY(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_OEY.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_OECT(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_OECT.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_SE(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_SE.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_EZ(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_EZ.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_EC(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_EC.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_EOVR(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_EOVR.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void set_EN(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		_EN.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void setSIO0(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		SIO0.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void setSIO3(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		SIOn.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void setQIO0(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
-
+		QIO0.setState(BitVector.parse(val_1_bit));
 	}
 
 	@Override
 	public void setQIO3(String val_1_bit)
 	{
-		// TODO Auto-generated method stub
+		QIOn.setState(BitVector.parse(val_1_bit));
+	}
 
+	@Override
+	public void setDirectly(Register r, String val_1_bit)
+	{
+		var bv = (BitVector) am2904.getHighLevelState(regToStateID(r));
+		bv = bv.withBitChanged(3 - r.ordinal() % 4, b -> Bit.parse(val_1_bit));
+		am2904.setHighLevelState(regToStateID(r), bv);
 	}
 
 	@Override
 	public String getC0()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return C0.getDisplayedValue().toString();
 	}
 
 	@Override
 	public String getCT()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return CT.getDisplayedValue().toString();
 	}
 
 	@Override
-	public String getY3()
+	public String getY()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		// correct order apparently unknown :/
+		var y3 = YOVR.getDisplayedValue();
+		var y2 = YN.getDisplayedValue();
+		var y1 = YC.getDisplayedValue();
+		var y0 = YZ.getDisplayedValue();
+		return y3.concat(y2).concat(y1).concat(y0).toString();
 	}
 
 	@Override
 	public String getSIO0()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return SIO0.getDisplayedValue().toString();
 	}
 
 	@Override
 	public String getSIO3()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return SIOn.getDisplayedValue().toString();
 	}
 
 	@Override
 	public String getQIO0()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return QIO0.getDisplayedValue().toString();
 	}
 
 	@Override
 	public String getQIO3()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return QIOn.getDisplayedValue().toString();
 	}
 
+	@Override
+	public String getDirectly(Register r)
+	{
+		var bv = (BitVector) am2904.getHighLevelState(regToStateID(r));
+		return bv.getLSBit(r.ordinal() % 4).getSymbol();
+	}
+
+	private static String regToStateID(Register r)
+	{
+		if (r.ordinal() > 3)
+			return "msr.q";
+		return "musr.q";
+	}
+
+	@Override
+	public TestEnvironmentHelper getTestEnvironmentHelper()
+	{
+		return testHelper;
+	}
 }

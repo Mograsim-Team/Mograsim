@@ -1,14 +1,8 @@
-package net.mograsim.logic.model.am2900;
-
-import static org.junit.jupiter.api.Assertions.fail;
-
-import java.lang.reflect.Field;
-import java.util.Objects;
+package net.mograsim.logic.model.am2900.util;
 
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
-import net.mograsim.logic.model.am2900.am2901.TestableAm2901Impl;
 
 public final class TestUtil
 {

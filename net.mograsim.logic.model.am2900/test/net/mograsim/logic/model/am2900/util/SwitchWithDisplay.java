@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.am2900;
+package net.mograsim.logic.model.am2900.util;
 
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.components.ManualSwitch;

@@ -2,17 +2,15 @@ package net.mograsim.logic.model.am2900.am2910;
 
 import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.components.ManualSwitch;
-import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.model.am2900.TestEnvironmentHelper;
-import net.mograsim.logic.model.am2900.TestEnvironmentHelper.DebugState;
+import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper;
+import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper.DebugState;
 import net.mograsim.logic.model.model.components.GUIComponent;
 
 public class TestableAm2910Impl implements TestableAm2910
 {
 
 	private GUIComponent am2901;
-	private Timeline timeline;
 	private ManualSwitch I;
 	private ManualSwitch C;
 	private ManualSwitch CI;
@@ -151,5 +149,11 @@ public class TestableAm2910Impl implements TestableAm2910
 		default:
 			throw new IllegalArgumentException("unknown: " + r);
 		}
+	}
+
+	@Override
+	public TestEnvironmentHelper getTestEnvironmentHelper()
+	{
+		return testHelper;
 	}
 }

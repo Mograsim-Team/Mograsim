@@ -3,8 +3,8 @@ package net.mograsim.logic.model.am2900.am2901;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import net.mograsim.logic.model.am2900.TestUtil;
 import net.mograsim.logic.model.am2900.TestableCircuit;
+import net.mograsim.logic.model.am2900.util.TestUtil;
 
 public interface TestableAm2901 extends TestableCircuit
 {

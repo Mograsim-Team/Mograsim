@@ -19,7 +19,7 @@ public interface TestableAm2904 extends TestableCircuit
 
 	void setCX(String val_1_bit);
 
-	void setY3(String val_1_bit);
+	void setY(String ovr_n_c_z);
 
 	void setIZ(String val_1_bit);
 
@@ -29,12 +29,12 @@ public interface TestableAm2904 extends TestableCircuit
 
 	void setIN(String val_1_bit);
 
-	default void setI(String z_c_ovr_n)
+	default void setI(String z_c_n_ovr)
 	{
-		setIZ(z_c_ovr_n.substring(0, 1));
-		setIC(z_c_ovr_n.substring(1, 2));
-		setIOVR(z_c_ovr_n.substring(2, 3));
-		setIN(z_c_ovr_n.substring(3, 4));
+		setIZ(z_c_n_ovr.substring(0, 1));
+		setIC(z_c_n_ovr.substring(1, 2));
+		setIN(z_c_n_ovr.substring(2, 3));
+		setIOVR(z_c_n_ovr.substring(3, 4));
 	}
 
 	void set_CEM(String val_1_bit);
@@ -55,12 +55,12 @@ public interface TestableAm2904 extends TestableCircuit
 
 	void set_EN(String val_1_bit);
 
-	default void set_E(String z_c_ovr_n)
+	default void set_E(String z_c_n_ovr)
 	{
-		set_EZ(z_c_ovr_n.substring(0, 1));
-		set_EC(z_c_ovr_n.substring(1, 2));
-		set_EOVR(z_c_ovr_n.substring(2, 3));
-		set_EN(z_c_ovr_n.substring(3, 4));
+		set_EZ(z_c_n_ovr.substring(0, 1));
+		set_EC(z_c_n_ovr.substring(1, 2));
+		set_EN(z_c_n_ovr.substring(2, 3));
+		set_EOVR(z_c_n_ovr.substring(3, 4));
 	}
 
 	void setSIO0(String val_1_bit);
@@ -71,11 +71,13 @@ public interface TestableAm2904 extends TestableCircuit
 
 	void setQIO3(String val_1_bit);
 
+	void setDirectly(Register r, String val_1_bit);
+
 	String getC0();
 
 	String getCT();
 
-	String getY3();
+	String getY();
 
 	String getSIO0();
 
@@ -84,6 +86,8 @@ public interface TestableAm2904 extends TestableCircuit
 	String getQIO0();
 
 	String getQIO3();
+
+	String getDirectly(Register r);
 
 	enum Am2904_ShiftDir
 	{
@@ -213,5 +217,10 @@ public interface TestableAm2904 extends TestableCircuit
 		{
 			return (code & 0b001_110) == 0b001_000;
 		}
+	}
+
+	enum Register
+	{
+		µZ, µC, µN, µOVR, MZ, MC, MN, MOVR;
 	}
 }
