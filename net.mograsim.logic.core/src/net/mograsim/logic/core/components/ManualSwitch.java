@@ -22,12 +22,14 @@ public class ManualSwitch extends Component implements LogicObservable
 {
 	private Collection<LogicObserver> observers;
 	private ReadWriteEnd output;
+	private BitVector inputValues;
 
 	public ManualSwitch(Timeline timeline, ReadWriteEnd output)
 	{
 		super(timeline);
 		observers = new ArrayList<>();
 		this.output = output;
+		this.inputValues = output.getInputValues();
 	}
 
 	public void switchFullOn()
@@ -57,8 +59,9 @@ public class ManualSwitch extends Component implements LogicObservable
 	{
 		if (bits.length() != output.width())
 			throw new IllegalArgumentException("Incorrect bit vector length");
-		if (bits.equals(output.getInputValues()))
+		if (bits.equals(inputValues))
 			return;
+		inputValues = bits;
 		output.feedSignals(bits);
 		notifyObservers();
 	}
@@ -70,7 +73,7 @@ public class ManualSwitch extends Component implements LogicObservable
 
 	public BitVector getValues()
 	{
-		return output.getInputValues();
+		return inputValues;
 	}
 
 	@Override
