@@ -57,8 +57,8 @@ public class GUIMerger extends GUIComponent
 			gc.setForeground(ColorManager.current().toColor(c));
 		double outLineY = posY + (logicWidth - 1) * heightPerPin / 2;
 		gc.drawLine(posX + width / 2, outLineY, posX + width, outLineY);
-		double inputHeight = posY + (logicWidth - 1) * heightPerPin;
-		for (int i = 0; i < logicWidth; i++, inputHeight -= 10)
+		double inputHeight = posY;
+		for (int i = 0; i < logicWidth; i++, inputHeight += 10)
 		{
 			c = BitVectorFormatter.formatAsColor(inputEnds[i]);
 			if (c != null)
