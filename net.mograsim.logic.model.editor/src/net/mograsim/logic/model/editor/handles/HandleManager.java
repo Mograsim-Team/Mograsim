@@ -154,7 +154,7 @@ public class HandleManager
 
 	private void addComponentHandle(GUIComponent c)
 	{
-		ComponentHandle h = new ComponentHandle(c);
+		ComponentHandle h = new ComponentHandle(editor.getSubmodel(), c);
 		handlePerComp.put(c, h);
 		addHandle(h);
 	}
@@ -240,7 +240,7 @@ public class HandleManager
 
 	private void addWireHandle(GUIWire w)
 	{
-		WireHandle h = new WireHandle(w);
+		WireHandle h = new WireHandle(editor.getSubmodel(), w);
 		handlePerWire.put(w, h);
 		addHandle(h);
 	}

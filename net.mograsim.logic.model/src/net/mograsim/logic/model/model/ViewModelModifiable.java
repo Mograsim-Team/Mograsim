@@ -5,7 +5,6 @@ import java.util.Set;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 
-//TODO a ViewModel is modifiable without casting to ViewModelModifiable via GUIWire::destroy and GUIComponent::destroy
 public class ViewModelModifiable extends ViewModel
 {
 	public String getDefaultComponentName(GUIComponent component)
@@ -41,26 +40,26 @@ public class ViewModelModifiable extends ViewModel
 	}
 
 	@Override
-	public void componentCreated(GUIComponent component)
+	public void componentCreated(GUIComponent component, Runnable destroyed)
 	{
-		super.componentCreated(component);
+		super.componentCreated(component, destroyed);
 	}
 
 	@Override
-	public void componentDestroyed(GUIComponent component)
+	public void destroyComponent(GUIComponent component)
 	{
-		super.componentDestroyed(component);
+		super.destroyComponent(component);
 	}
 
 	@Override
-	public void wireCreated(GUIWire wire)
+	public void wireCreated(GUIWire wire, Runnable destroyed)
 	{
-		super.wireCreated(wire);
+		super.wireCreated(wire, destroyed);
 	}
 
 	@Override
-	public void wireDestroyed(GUIWire wire)
+	public void destroyWire(GUIWire wire)
 	{
-		super.wireDestroyed(wire);
+		super.destroyWire(wire);
 	}
 }

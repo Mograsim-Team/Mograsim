@@ -70,19 +70,19 @@ public abstract class GUIComponent implements JSONSerializable
 
 		// TODO this will crash the high level state debug shell because submodel is not yet set.
 		// The same problem exists in ViewModelModifiable.getDefaultComponentName; see there
-		model.componentCreated(this);
+		model.componentCreated(this, this::destroyed);
 	}
 
 	/**
-	 * Destroys this component. This method implicitly calls {@link ViewModelModifiable#componentDestroyed(GUIComponent)
-	 * componentDestroyed()} for the model this component is a part of.
+	 * Destroys this component. This method is called from {@link ViewModelModifiable#componentDestroyed(GUIComponent) destroyComponent()}
+	 * of the model this component is a part of.<br>
+	 * When overriding, make sure to also call the original implementation.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public void destroy()
+	protected void destroyed()
 	{
 		pinsByName.values().forEach(p -> pinRemovedListeners.forEach(l -> l.accept(p)));
-		model.componentDestroyed(this);
 	}
 
 	// pins

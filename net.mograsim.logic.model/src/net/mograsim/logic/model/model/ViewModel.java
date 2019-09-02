@@ -13,8 +13,10 @@ import net.mograsim.logic.model.model.wires.GUIWire;
 public class ViewModel
 {
 	private final Map<String, GUIComponent> components;
+	private final Map<String, Runnable> componentDestroyFunctions;
 	private final Map<String, GUIComponent> componentsUnmodifiable;
 	private final Map<String, GUIWire> wires;
+	private final Map<String, Runnable> wireDestroyFunctions;
 	private final Map<String, GUIWire> wiresUnmodifiable;
 
 	private final List<Consumer<? super GUIComponent>> componentAddedListeners;
@@ -28,8 +30,10 @@ public class ViewModel
 	protected ViewModel()
 	{
 		components = new HashMap<>();
+		componentDestroyFunctions = new HashMap<>();
 		componentsUnmodifiable = Collections.unmodifiableMap(components);
 		wires = new HashMap<>();
+		wireDestroyFunctions = new HashMap<>();
 		wiresUnmodifiable = Collections.unmodifiableMap(wires);
 
 		componentAddedListeners = new ArrayList<>();
@@ -42,22 +46,27 @@ public class ViewModel
 	/**
 	 * Adds the given component to the list of components and calls all componentAddedListeners. Don't call this method from application
 	 * code as it is automatically called in {@link GUIComponent}'s constructor.
+	 * 
+	 * @author Daniel Kirschten
 	 */
-	protected void componentCreated(GUIComponent component)
+	protected void componentCreated(GUIComponent component, Runnable destroyed)
 	{
 		if (components.containsKey(component.name))
 			throw new IllegalStateException("Don't add the same component twice!");
 		components.put(component.name, component);
+		componentDestroyFunctions.put(component.name, destroyed);
 		callComponentAddedListeners(component);
 		requestRedraw();
 	}
 
 	/**
-	 * Removes the given component from the list of components and calls all componentRemovedListeners. Don't call this method from
-	 * application code as it is automatically called in {@link GUIComponent#destroy()}.
+	 * Destroyes the given component, removes it from the list of components and calls all componentRemovedListeners.
+	 * 
+	 * @author Daniel Kirschten
 	 */
-	protected void componentDestroyed(GUIComponent component)
+	protected void destroyComponent(GUIComponent component)
 	{
+		componentDestroyFunctions.get(component.name).run();
 		if (!components.containsKey(component.name))
 			throw new IllegalStateException("Don't remove the same component twice!");
 		components.remove(component.name);
@@ -66,24 +75,28 @@ public class ViewModel
 	}
 
 	/**
-	 * Adds the given wire to the list of wires and calls all wireAddedListeners. Don't call this method from application code as it is
-	 * automatically called in {@link GUIWire}'s constructor(s).
+	 * Adds the given wire to the list of wires and calls all wireAddedListeners.
+	 * 
+	 * @author Daniel Kirschten
 	 */
-	protected void wireCreated(GUIWire wire)
+	protected void wireCreated(GUIWire wire, Runnable destroyed)
 	{
 		if (wires.containsKey(wire.name))
 			throw new IllegalStateException("Don't add the same wire twice!");
 		wires.put(wire.name, wire);
+		wireDestroyFunctions.put(wire.name, destroyed);
 		callWireAddedListeners(wire);
 		requestRedraw();
 	}
 
 	/**
-	 * Removes the given wire from the list of wires and calls all wireRemovedListeners. Don't call this method from application code as it
-	 * is automatically called in {@link GUIWire#destroy()}.
+	 * Destroys the given wire, removes it from the list of wires and calls all wireRemovedListeners.
+	 * 
+	 * @author Daniel Kirschten
 	 */
-	protected void wireDestroyed(GUIWire wire)
+	protected void destroyWire(GUIWire wire)
 	{
+		wireDestroyFunctions.get(wire.name).run();
 		if (!wires.containsKey(wire.name))
 			throw new IllegalStateException("Don't remove the same wire twice!");
 		wires.remove(wire.name);
