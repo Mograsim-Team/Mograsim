@@ -61,6 +61,21 @@ public class GUITriStateBuffer extends GUIComponent
 		addPin(enable);
 	}
 
+	public final Pin getInputPin()
+	{
+		return input;
+	}
+
+	public final Pin getOutputPin()
+	{
+		return output;
+	}
+
+	public final Pin getEnablePin()
+	{
+		return enable;
+	}
+
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
