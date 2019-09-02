@@ -25,7 +25,7 @@ public class LogicUIRenderer
 	{
 		gc.setAntialias(SWT.ON);
 		gc.setClipping(visibleRegion);
-		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth"));
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
 		model.getWiresByName().values().forEach(w ->
 		{
 			Rectangle bounds = w.getBounds();

@@ -18,6 +18,7 @@ import net.mograsim.logic.core.wires.Wire.ReadEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
+import net.mograsim.preferences.Preferences;
 
 /**
  * A wire connecting exactly two {@link Pin}s.
@@ -364,11 +365,15 @@ public class GUIWire
 	 */
 	public void render(GeneralGC gc)
 	{
-		// TODO maybe make wires with logicWidth!=1 thicker? Maybe make thickness selectable?
 		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(end);
 		if (wireColor != null)
 			gc.setForeground(ColorManager.current().toColor(wireColor));
+		if (logicWidth == 1)
+			gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire.singlebit"));
+		else
+			gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire.multibit"));
 		gc.drawPolyline(effectivePath);
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
 	}
 
 	// operations concerning the path

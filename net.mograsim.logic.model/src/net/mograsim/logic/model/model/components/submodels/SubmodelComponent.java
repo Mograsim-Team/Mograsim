@@ -387,7 +387,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		}
 		conf.reset(gc);
 		// reset line width explicitly to avoid rounding errors causing weird glitches
-		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth"));
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
 		// draw the outline after all other operations to make interface pins look better
 		renderOutline(gc, visibleRegion);
 	}

@@ -31,8 +31,12 @@ public class DefaultPreferences extends Preferences
 	{
 		switch (name)
 		{
-		case "net.mograsim.logic.model.linewidth":
+		case "net.mograsim.logic.model.linewidth.default":
 			return 0.5;
+		case "net.mograsim.logic.model.linewidth.wire.singlebit":
+			return 0.5;
+		case "net.mograsim.logic.model.linewidth.wire.multibit":
+			return 0.85;
 		default:
 			throw new IllegalArgumentException("Unknown double preference name: " + name);
 		}
