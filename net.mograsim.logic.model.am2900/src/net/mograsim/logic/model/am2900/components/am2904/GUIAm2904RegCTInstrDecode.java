@@ -270,7 +270,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 		readWriteEnds.get("Y_MUX").feedSignals(I5_0Bits[0], I5_0Bits[1]);
 		readWriteEnds.get("CT_INV").feedSignals(I5_0Bits[5]);
 		readWriteEnds.get("CT_MUX").feedSignals(I5_0Bits[2], I5_0Bits[3], I5_0Bits[4]);
-		readWriteEnds.get("CT_EXP").feedSignals((IAsInt & 0b1110) == 0b1110 ? ONE : ZERO);
+		readWriteEnds.get("CT_EXP").feedSignals((IAsInt & 0b111110) == 0b001110 ? ONE : ZERO);
 		readWriteEnds.get("C0_MUX").feedSignals(I12_11Bits[0], I12_11Bits[1], I5_0Bits[0],
 				I5_0Bits[2].and(I5_0Bits[3].not()).and(I5_0Bits[4].not()));
 		return null;
