@@ -19,7 +19,7 @@ public interface TestableAm2904 extends TestableCircuit
 
 	void setCX(String val_1_bit);
 
-	void setY(String ovr_n_c_z);
+	void setY(String z_c_n_ovr);
 
 	void setIZ(String val_1_bit);
 
