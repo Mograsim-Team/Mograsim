@@ -637,7 +637,7 @@ public class Wire
 	 * @param bitA The bit of {@link Wire} a to be fused
 	 * @param bitB The bit of {@link Wire} b to be fused
 	 */
-	private static void fuse(Wire a, Wire b, int bitA, int bitB)
+	public static void fuse(Wire a, Wire b, int bitA, int bitB)
 	{
 		if (bitA >= a.width)
 			throw new IllegalArgumentException("No bit " + bitA + " in " + a + " (width " + a.width + ")");

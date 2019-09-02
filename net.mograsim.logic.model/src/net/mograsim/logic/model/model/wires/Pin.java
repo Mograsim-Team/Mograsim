@@ -18,7 +18,6 @@ import net.mograsim.logic.model.model.components.GUIComponent;
  */
 public class Pin
 {
-	// TODO introduce input/output/tristate hints
 	/**
 	 * The {@link GUIComponent} this pin belongs to.
 	 */

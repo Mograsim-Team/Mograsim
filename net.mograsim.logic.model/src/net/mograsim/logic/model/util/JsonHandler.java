@@ -42,6 +42,11 @@ public class JsonHandler
 		return parser.fromJson(rawJson, type);
 	}
 
+	public static <T> T fromJsonTree(JsonElement src, Class<T> type)
+	{
+		return parser.fromJson(src, type);
+	}
+
 	public static void writeJson(Object o, String path) throws IOException
 	{
 		try (FileWriter writer = new FileWriter(path))

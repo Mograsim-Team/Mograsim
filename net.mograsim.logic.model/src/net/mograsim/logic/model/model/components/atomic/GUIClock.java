@@ -2,8 +2,6 @@ package net.mograsim.logic.model.model.components.atomic;
 
 import org.eclipse.swt.graphics.Color;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonSyntaxException;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -22,6 +20,7 @@ import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.ClockAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.preferences.Preferences;
 
 public class GUIClock extends GUIComponent
@@ -130,9 +129,9 @@ public class GUIClock extends GUIComponent
 	}
 
 	@Override
-	public JsonElement getParamsForSerializing(IdentifierGetter idGetter)
+	public GUIClockParams getParamsForSerializing(IdentifierGetter idGetter)
 	{
-		return new Gson().toJsonTree(params);
+		return params;
 	}
 
 	static
@@ -140,7 +139,7 @@ public class GUIClock extends GUIComponent
 		ViewLogicModelAdapter.addComponentAdapter(new ClockAdapter());
 		IndirectGUIComponentCreator.setComponentSupplier(GUIClock.class.getName(), (m, p, n) ->
 		{
-			GUIClockParams params = new Gson().fromJson(p, GUIClockParams.class);
+			GUIClockParams params = JsonHandler.fromJsonTree(p, GUIClockParams.class);
 			if (params == null)
 				throw new JsonSyntaxException("Invalid!!!");
 			return new GUIClock(m, params, n);

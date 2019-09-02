@@ -25,8 +25,8 @@ public class SplitterAdapter implements ComponentAdapter<GUISplitter>
 		ReadEnd[] outputEnds = new ReadEnd[guiComponent.logicWidth];
 		for (int i = 0; i < guiComponent.logicWidth; i++)
 		{
-			Wire output = logicWiresPerPin.get(guiComponent.getPin("O" + i));
-			Wire.fuse(input, output, guiComponent.logicWidth - 1 - i, 0, 1);
+			Wire output = logicWiresPerPin.get(guiComponent.getPin("O" + (guiComponent.logicWidth - 1 - i)));
+			Wire.fuse(input, output, i, 0);
 			outputEnds[i] = output.createReadOnlyEnd();
 		}
 		guiComponent.setLogicModelBinding(input.createReadOnlyEnd(), outputEnds);

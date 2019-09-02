@@ -158,7 +158,7 @@ public class ViewModelSerializer
 			} else
 			{
 				compParams.id = idGetter.componentIDs.apply(component);
-				compParams.params = component.getParamsForSerializing(idGetter);
+				compParams.params = component.getParamsForSerializingJSON(idGetter);
 			}
 			compParams.name = component.name;
 		}

@@ -31,7 +31,7 @@ public class Am2904Testbench
 		testbench.setOutlineRenderer(new Renderer()
 		{
 			@Override
-			public Object getParamsForSerializing(IdentifierGetter idGetter)
+			public Void getParamsForSerializing(IdentifierGetter idGetter)
 			{
 				return null;
 			}
