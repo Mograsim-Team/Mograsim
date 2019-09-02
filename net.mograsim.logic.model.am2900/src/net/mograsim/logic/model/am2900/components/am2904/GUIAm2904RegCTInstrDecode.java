@@ -24,8 +24,8 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 	{
 		super(model, name, "Instruction\ndecode");
 		setSize(80, 80);
-		addPin(new Pin(this, "I5-0", 6, PinUsage.INPUT, 0, 30), Position.RIGHT);
-		addPin(new Pin(this, "I12-11", 2, PinUsage.INPUT, 0, 50), Position.RIGHT);
+		addPin(new Pin(this, "I12-11", 2, PinUsage.INPUT, 0, 30), Position.RIGHT);
+		addPin(new Pin(this, "I5-0", 6, PinUsage.INPUT, 0, 50), Position.RIGHT);
 		// muSR MUX:
 		// 00: 0
 		// 01: 1
