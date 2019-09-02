@@ -1,10 +1,6 @@
 package net.mograsim.machine.standard.memory;
 
-import org.eclipse.swt.graphics.Color;
-
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
@@ -14,9 +10,12 @@ import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.serializing.IdentifierGetter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.snippets.Renderer;
+import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer.CenteredTextParams;
 import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.machine.MainMemoryDefinition;
-import net.mograsim.preferences.Preferences;
 
 public class GUIMemoryWA extends GUIComponent
 {
@@ -24,11 +23,20 @@ public class GUIMemoryWA extends GUIComponent
 	private final Pin						addrPin, dataPin, rWPin;
 	private WordAddressableMemoryComponent	memory;
 	private final static int				width	= 100, height = 300;
+	private Renderer						symbolRenderer;
+	private Renderer						outlineRenderer;
 
 	public GUIMemoryWA(ViewModelModifiable model, MainMemoryDefinition definition, String name)
 	{
 		super(model, name);
 		this.definition = definition;
+
+		CenteredTextParams renderer1Params = new CenteredTextParams();
+		renderer1Params.text = "RAM";
+		renderer1Params.fontHeight = 24;
+		this.symbolRenderer = new CenteredTextSymbolRenderer(this, renderer1Params);
+		this.outlineRenderer = new DefaultOutlineRenderer(this);
+
 		setSize(width, height);
 		//TODO check the usages
 		addPin(addrPin = new Pin(this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, 0, 10));
@@ -69,21 +77,8 @@ public class GUIMemoryWA extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
-		// TODO This is copied from SimpleRectangularGUIGate; do this via delegation instead
-		Color foreground = Preferences.current().getColor("net.mograsim.logic.model.color.foreground");
-		if(foreground != null)
-			gc.setForeground(foreground);
-		gc.drawRectangle(getPosX(), getPosY(), width, height);
-		Font oldFont = gc.getFont();
-		Font labelFont = new Font(oldFont.getName(), 24, oldFont.getStyle());
-		gc.setFont(labelFont);
-		String label = "RAM";
-		Point textExtent = gc.textExtent(label);
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
-		if(textColor != null)
-			gc.setForeground(textColor);
-		gc.drawText(label, getPosX() + (width - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
-		gc.setFont(oldFont);
+		symbolRenderer.render(gc, visibleRegion);
+		outlineRenderer.render(gc, visibleRegion);
 	}
 
 	@Override
