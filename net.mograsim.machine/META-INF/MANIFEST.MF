@@ -12,4 +12,6 @@ Require-Bundle: net.mograsim.logic.core;bundle-version="0.1.0",
 Export-Package: net.mograsim.machine,
  net.mograsim.machine.isa,
  net.mograsim.machine.isa.types,
+ net.mograsim.machine.mi,
+ net.mograsim.machine.mi.parameters,
  net.mograsim.machine.standard.memory

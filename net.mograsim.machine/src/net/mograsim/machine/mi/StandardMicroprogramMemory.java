@@ -10,7 +10,7 @@ class StandardMicroprogramMemory implements MicroprogramMemory
 {
 	private MicroInstruction[] data;
 	private MemoryDefinition definition;
-	private HashSet<MemoryObserver> observers;
+	private HashSet<MemoryObserver> observers = new HashSet<>();
 	
 	StandardMicroprogramMemory(MemoryDefinition definition)
 	{

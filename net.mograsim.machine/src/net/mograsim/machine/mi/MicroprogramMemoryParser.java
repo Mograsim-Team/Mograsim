@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.MemoryDefinition;
@@ -21,28 +23,34 @@ import net.mograsim.machine.mi.parameters.ParameterClassification;
 
 public class MicroprogramMemoryParser
 {
-	public static void parse(MicroprogramMemory memory, long startAddress, MicroInstructionDefinition definition, String input) throws IOException
+	public static MicroprogramMemory parseMemory(MicroInstructionDefinition definition, String input) throws IOException
 	{
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(input))))
 		{
-			parse(memory, startAddress, definition, reader);
+			return parseMemory(definition, reader);
 		}
 	}
 
-	public static void parse(MicroprogramMemory memory, long startAddress, MicroInstructionDefinition definition,
-			BufferedReader input)
+	public static MicroprogramMemory parseMemory(MicroInstructionDefinition definition, BufferedReader input)
 	{
-		MemoryDefinition def = memory.getDefinition();
-		long minAddress = Long.max(startAddress, def.getMinimalAddress()), maxAddress = def.getMaximalAddress();
+		List<MicroInstruction> instructions = new ArrayList<>();
 		try
 		{
 			String line;
-			for (long i = minAddress; i < maxAddress && input.ready() && !"".equals((line = input.readLine())); i++)
-				memory.setCell(i, parse(definition, line));
+			while (input.ready() && !"".equals((line = input.readLine())))
+				instructions.add(parse(definition, line));
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+
+		int maxAddress = instructions.size() - 1;
+		MicroprogramMemory memory = MicroprogramMemory
+				.create(MemoryDefinition.create((int) Math.ceil(Math.log(maxAddress)), 0, maxAddress));
+		int i = 0;
+		for (MicroInstruction inst : instructions)
+			memory.setCell(i++, inst);
+		return memory;
 	}
 
 	public static MicroInstruction parse(MicroInstructionDefinition definition, String toParse)
@@ -50,45 +58,73 @@ public class MicroprogramMemoryParser
 		int size = definition.size();
 		String[] strings = toParse.split(",");
 		if (size != strings.length)
-			throw new IllegalArgumentException(
+			throw new MicroprogramMemoryParseException(
 					"String does not match definition! The number of parameters does not match.");
 		MicroInstructionParameter[] params = new MicroInstructionParameter[size];
 		ParameterClassification[] classes = definition.getParameterClassifications();
-		for (int i = 0; i < size; i++)
+		try
 		{
-			params[i] = classes[i].parse(strings[i]);
+			for (int i = 0; i < size; i++)
+			{
+				params[i] = classes[i].parse(strings[i]);
+			}
+			return new StandardMicroInstruction(params);
+		} catch (Exception e)
+		{
+			throw new MicroprogramMemoryParseException(e.getCause());
 		}
-		return new StandardMicroInstruction(params);
 	}
-	
-	public static void write(MicroprogramMemory memory, long startAddress, long endAddress, String output) throws IOException
+
+	public static void write(MicroprogramMemory memory, String output) throws IOException
 	{
-		try(OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(output)))
+		try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(output)))
 		{
-			write(memory, startAddress, endAddress, writer);
+			write(memory, writer);
 		}
 	}
-	
-	public static void write(MicroprogramMemory memory, long startAddress, long endAddress, OutputStreamWriter output) throws IOException
+
+	public static void write(MicroprogramMemory memory, OutputStreamWriter output) throws IOException
 	{
 		MemoryDefinition def = memory.getDefinition();
-		long min = Long.max(def.getMinimalAddress(), startAddress), max = Long.min(def.getMaximalAddress(), endAddress) + 1;
-		for(long i = min; i < max; i++)
+		long min = def.getMinimalAddress(), max = def.getMaximalAddress() + 1;
+		for (long i = min; i < max; i++)
 		{
 			output.write(toCSV(memory.getCell(i)) + "\n");
 		}
 	}
-	
+
 	private static String toCSV(MicroInstruction inst)
 	{
 		int max = inst.getSize() - 1;
 		StringBuilder sb = new StringBuilder();
-		for(int i = 0; i < max; i++)
+		for (int i = 0; i < max; i++)
 		{
 			sb.append(inst.getParameter(i).toString());
 			sb.append(",");
 		}
 		sb.append(inst.getParameter(max).toString());
 		return sb.toString();
+	}
+
+	public static void main(String[] args)
+	{
+		MnemonicFamily family = new MnemonicFamily(new MnemonicPair("ZERO", BitVector.SINGLE_0),
+				new MnemonicPair("ONE", BitVector.SINGLE_1));
+		MicroInstructionDefinition def = MicroInstructionDefinition.create(new BooleanClassification(),
+				new IntegerClassification(8), family);
+		MicroprogramMemory memory = new StandardMicroprogramMemory(MemoryDefinition.create(4, 0, 16));
+		for (int i = 0; i < 17; i++)
+			memory.setCell(i, new StandardMicroInstruction(new BooleanImmediate(false),
+					new IntegerImmediate(BigInteger.valueOf(i), 8), family.get(i % 2)));
+		try
+		{
+			write(memory, "test.txt");
+			MicroprogramMemory newMemory = parseMemory(def, "test.txt");
+			write(newMemory, "test2.txt");
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+
 	}
 }
