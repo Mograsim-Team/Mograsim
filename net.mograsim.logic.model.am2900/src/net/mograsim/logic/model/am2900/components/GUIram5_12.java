@@ -106,7 +106,9 @@ public class GUIram5_12 extends SimpleRectangularHardcodedGUIComponent
 			BitVector newHighLevelStateCasted = (BitVector) newHighLevelState;
 			if (newHighLevelStateCasted.length() != 12)
 				throw new IllegalArgumentException("Expected BitVector of length 12, not " + newHighLevelStateCasted.length());
-			return ((BitVector[]) lastState)[addr] = newHighLevelStateCasted;
+			BitVector[] memC = (BitVector[]) lastState;
+			memC[addr] = newHighLevelStateCasted;
+			return memC;
 		}
 		return super.setHighLevelState(lastState, stateID, newHighLevelState);
 	}
