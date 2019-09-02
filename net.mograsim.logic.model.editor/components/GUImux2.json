@@ -41,7 +41,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 10.0
+        "y": 20.0
       },
       "name": "S0",
       "logicWidth": 1,
@@ -50,7 +50,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 20.0
+        "y": 10.0
       },
       "name": "S1",
       "logicWidth": 1,
@@ -104,15 +104,6 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#0",
-        "pos": {
-          "x": 24.0,
-          "y": 24.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
           "x": 24.0,
@@ -142,20 +133,15 @@
     "wires": [
       {
         "pin1": {
-          "compName": "GUINandGate#0",
-          "pinName": "A"
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#0",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "name": "unnamedWire#0",
-        "path": [
-          {
-            "x": 25.0,
-            "y": 20.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -171,12 +157,12 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#1",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
+          "compName": "_submodelinterface",
+          "pinName": "S0"
         },
         "name": "unnamedWire#10",
         "path": []
@@ -191,30 +177,6 @@
           "pinName": "S2"
         },
         "name": "unnamedWire#11",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "name": "unnamedWire#12",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "S0"
-        },
-        "name": "unnamedWire#13",
         "path": []
       },
       {
@@ -277,6 +239,23 @@
           {
             "x": 55.0,
             "y": 105.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUINandGate#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#18",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 20.0
           }
         ]
       },
@@ -422,7 +401,7 @@
         "path": [
           {
             "x": 15.0,
-            "y": 50.0
+            "y": 25.0
           },
           {
             "x": 15.0,

@@ -653,7 +653,7 @@
         "name": "GUISplitter#11",
         "pos": {
           "x": 405.0,
-          "y": 575.0
+          "y": 585.0
         },
         "params": 3
       },
@@ -661,8 +661,8 @@
         "id": "GUISplitter",
         "name": "GUISplitter#12",
         "pos": {
-          "x": 405.0,
-          "y": 655.0
+          "x": 410.0,
+          "y": 665.0
         },
         "params": 3
       },
@@ -680,7 +680,7 @@
         "name": "GUISplitter#14",
         "pos": {
           "x": 90.0,
-          "y": 720.0
+          "y": 730.0
         },
         "params": 3
       },
@@ -995,7 +995,7 @@
         "name": "WireCrossPoint#24",
         "pos": {
           "x": 285.0,
-          "y": 725.0
+          "y": 745.0
         },
         "params": 1
       },
