@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="net.mograsim.machine.machinedefinition.am2900"
+         name="Am2900 Machine"
+         point="net.mograsim.machine.machinedefinition">
+      <MachineDefinitionImplementation
+            class="net.mograsim.logic.model.am2900.machine.Am2900MachineDefinition"
+            name="net.mograsim.logic.model.am2900.machine.am2900machinedefinition">
+      </MachineDefinitionImplementation>
+   </extension>
+
+</plugin>

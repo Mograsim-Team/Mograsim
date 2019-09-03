@@ -3,7 +3,7 @@
 <schema targetNamespace="net.mograsim.machine" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="net.mograsim.machine" id="net.mograsim.machinedefinition" name="Mograsim Machine Definition"/>
+         <meta.schema plugin="net.mograsim.machine" id="net.mograsim.machine.machinedefinition" name="Mograsim Machine Definition"/>
       </appinfo>
       <documentation>
          Mograsim extension for defining a machine
