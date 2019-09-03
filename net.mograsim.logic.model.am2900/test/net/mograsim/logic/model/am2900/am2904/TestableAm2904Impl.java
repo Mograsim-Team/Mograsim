@@ -26,7 +26,7 @@ public class TestableAm2904Impl implements TestableAm2904
 	private SwitchWithDisplay SIO0, SIOn, QIO0, QIOn;
 	private SwitchWithDisplay YC, YN, YOVR, YZ;
 
-	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "file:components/am2904/GUIAm2904.json");
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "GUIAm2904");
 
 	@Override
 	public void setup()

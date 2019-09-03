@@ -24,7 +24,8 @@ public class GUIComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "file:components/am2904/GUIAm2904.json");
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model,
+				"resource:net.mograsim.logic.model.am2900.Am2900Activator:/components/GUIAm2900.json");
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
