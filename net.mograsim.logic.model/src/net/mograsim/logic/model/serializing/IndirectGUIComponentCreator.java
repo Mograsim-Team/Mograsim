@@ -15,7 +15,6 @@ import com.google.gson.JsonObject;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.snippets.CodeSnippetSupplier;
 import net.mograsim.logic.model.util.JsonHandler;
 
 public class IndirectGUIComponentCreator
@@ -213,7 +212,7 @@ public class IndirectGUIComponentCreator
 
 	private static void tryLoadResourceLoader(String loaderClassName)
 	{
-		CodeSnippetSupplier.tryInvokeStaticInitializer(loaderClassName, "Error loading resoruce loader %s: %s\n");
+		ReflectionHelper.tryInvokeStaticInitializer(loaderClassName, "Error loading resoruce loader %s: %s\n");
 	}
 
 	public static interface ComponentSupplier
