@@ -6,9 +6,10 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-Vendor: Mograsim Team
 Automatic-Module-Name: net.mograsim.machine
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: net.mograsim.logic.core;bundle-version="0.1.0",
- net.mograsim.logic.model;bundle-version="0.1.0",
- net.mograsim.preferences
+Require-Bundle: net.mograsim.logic.model;bundle-version="0.1.0";visibility:=reexport,
+ net.mograsim.preferences,
+ org.eclipse.e4.core.di.annotations,
+ org.eclipse.core.runtime
 Export-Package: net.mograsim.machine,
  net.mograsim.machine.isa,
  net.mograsim.machine.isa.types,
