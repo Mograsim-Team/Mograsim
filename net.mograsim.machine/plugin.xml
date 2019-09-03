@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="net.mograsim.machine.machinedefinition" name="Mograsim Machine Definition" schema="schema/net.mograsim.machine.machinedefinition.exsd"/>
+   <extension-point id="machine_definition" name="Mograsim Machine Definition" schema="schema/machine_definition.exsd"/>>
 </plugin>
