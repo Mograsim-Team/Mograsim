@@ -55,5 +55,11 @@ public class Am2900Loader implements BundleActivator
 		{
 			return Am2900ResourceLoader.class.getResourceAsStream(path);
 		}
+
+		@Override
+		public Class<?> loadClass(String name) throws ClassNotFoundException
+		{
+			return Class.forName(name, true, Am2900ResourceLoader.class.getClassLoader());
+		}
 	}
 }
