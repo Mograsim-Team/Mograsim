@@ -13,7 +13,6 @@ import java.util.List;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.MemoryDefinition;
 import net.mograsim.machine.mi.parameters.BooleanClassification;
-import net.mograsim.machine.mi.parameters.BooleanImmediate;
 import net.mograsim.machine.mi.parameters.IntegerClassification;
 import net.mograsim.machine.mi.parameters.IntegerImmediate;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
@@ -110,11 +109,12 @@ public class MicroprogramMemoryParser
 	{
 		MnemonicFamily family = new MnemonicFamily(new MnemonicPair("ZERO", BitVector.SINGLE_0),
 				new MnemonicPair("ONE", BitVector.SINGLE_1));
-		MicroInstructionDefinition def = MicroInstructionDefinition.create(new BooleanClassification(),
+		BooleanClassification boolClass = new BooleanClassification("H", "L");
+		MicroInstructionDefinition def = MicroInstructionDefinition.create(boolClass,
 				new IntegerClassification(8), family);
 		MicroprogramMemory memory = new StandardMicroprogramMemory(MemoryDefinition.create(4, 0, 16));
 		for (int i = 0; i < 17; i++)
-			memory.setCell(i, new StandardMicroInstruction(new BooleanImmediate(false),
+			memory.setCell(i, new StandardMicroInstruction(boolClass.get(false),
 					new IntegerImmediate(BigInteger.valueOf(i), 8), family.get(i % 2)));
 		try
 		{
