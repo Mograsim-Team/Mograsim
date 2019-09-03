@@ -2,38 +2,40 @@ package net.mograsim.machine;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.ISafeRunnable;
-import org.eclipse.core.runtime.SafeRunner;
-import org.eclipse.e4.core.di.annotations.Execute;
+import org.eclipse.core.runtime.Platform;
 
 public class MachineRegistry
 {
-	private static final String MACHINE_EXT_ID = "net.mograsim.machine.machinedefinition";
+	private static final String MACHINE_EXT_ID = "net.mograsim.machine.machine_definition";
 
-	private static Set<MachineDefinition> installedMachines = new HashSet<>();
+	private static Map<String, MachineDefinition> installedMachines = new HashMap<>();
 
-	@Execute
-	public void execute(IExtensionRegistry registry)
+	public static void reload()
 	{
+		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		System.out.println(Arrays.toString(registry.getExtensionPoints("net.mograsim.machine")));
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(MACHINE_EXT_ID);
 		try
 		{
 			for (IConfigurationElement e : config)
 			{
+				System.out.println(e.getNamespaceIdentifier());
+				System.out.println(Arrays.toString(e.getAttributeNames()));
 				final Object o = e.createExecutableExtension("class");
-				if (o instanceof MachineDefinition)
+				final String id = e.getAttribute("unique_id");
+				if (o instanceof MachineDefinition) 
 				{
-					executeExtension(o);
+					System.out.println("Found " + id);
+					installedMachines.put(id, (MachineDefinition) o);
 				} else
 				{
-					System.err.println("Invalid machine definition: " + o);
+					System.err.println("Invalid machine definition: " + o + "(id=" + id + "");
 				}
 			}
 		}
@@ -43,27 +45,8 @@ public class MachineRegistry
 		}
 	}
 
-	private void executeExtension(final Object o)
+	public static Map<String, MachineDefinition> getinstalledMachines()
 	{
-		ISafeRunnable runnable = new ISafeRunnable()
-		{
-			@Override
-			public void handleException(Throwable e)
-			{
-				System.out.println("Exception in client");
-			}
-
-			@Override
-			public void run() throws Exception
-			{
-				System.out.println(((MachineDefinition) o).getAddressBits());
-			}
-		};
-		SafeRunner.run(runnable);
-	}
-
-	public static Set<MachineDefinition> getinstalledMachines()
-	{
-		return Collections.unmodifiableSet(installedMachines);
+		return Collections.unmodifiableMap(installedMachines);
 	}
 }
