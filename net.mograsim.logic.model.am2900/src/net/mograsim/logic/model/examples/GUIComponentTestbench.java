@@ -25,7 +25,7 @@ public class GUIComponentTestbench
 	public static void createTestbench(ViewModelModifiable model)
 	{
 		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model,
-				"resource:net.mograsim.logic.model.am2900.Am2900Activator:/components/GUIAm2900.json");
+				"resource:net.mograsim.logic.model.am2900.Am2900Loader:/components/GUIAm2900.json");
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
