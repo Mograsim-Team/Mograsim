@@ -8,6 +8,6 @@ Export-Package: net.mograsim.logic.model.am2900.components,
  net.mograsim.logic.model.am2900.components.am2910,
  net.mograsim.logic.model.examples
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: net.mograsim.logic.model;bundle-version="0.1.0";visibility:=reexport
+Require-Bundle: net.mograsim.machine;bundle-version="0.1.0";visibility:=reexport
 Automatic-Module-Name: net.mograsim.logic.model.am2900
 Bundle-Vendor: Mograsim Team
