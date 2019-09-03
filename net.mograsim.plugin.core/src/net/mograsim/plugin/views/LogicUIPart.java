@@ -1,7 +1,5 @@
 package net.mograsim.plugin.views;
 
-import java.util.Optional;
-
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -18,8 +16,6 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
-import net.mograsim.machine.MachineDefinition;
-import net.mograsim.machine.MachineRegistry;
 import net.mograsim.plugin.ThemePreferences;
 import net.mograsim.preferences.Preferences;
 
@@ -43,8 +39,6 @@ public class LogicUIPart extends ViewPart
 	{
 		// set preferences
 		Preferences.setPreferences(new ThemePreferences(PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()));
-
-		Optional<MachineDefinition> mdo = MachineRegistry.getinstalledMachines().stream().findFirst();
 
 		Am2900Loader.setup();
 		ViewModelModifiable viewModelModifiable = new ViewModelModifiable();
