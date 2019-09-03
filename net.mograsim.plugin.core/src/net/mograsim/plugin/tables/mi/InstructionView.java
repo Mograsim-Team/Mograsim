@@ -126,7 +126,7 @@ public class InstructionView extends ViewPart
 		switch (parameterClassification.getExpectedType())
 		{
 		case BOOLEAN_IMMEDIATE:
-			return new BooleanEditingSupport(viewer, index);
+			return new BooleanEditingSupport(viewer, miDef, index);
 		case INTEGER_IMMEDIATE:
 			return new IntegerEditingSupport(viewer, miDef, index, new DisplaySettings(NumberType.DECIMAL));
 		case MNEMONIC:

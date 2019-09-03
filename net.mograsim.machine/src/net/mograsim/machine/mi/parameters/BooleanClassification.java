@@ -1,9 +1,23 @@
 package net.mograsim.machine.mi.parameters;
 
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
 
-public class BooleanClassification implements ParameterClassification
+public class BooleanClassification extends MnemonicFamily
 {
+	String trueName, falseName;
+	public BooleanClassification(String trueName, String falseName)
+	{
+		super(new MnemonicPair(trueName, BitVector.SINGLE_1), new MnemonicPair(falseName, BitVector.SINGLE_0));
+		this.trueName = trueName;
+		this.falseName = falseName;
+	}
+	
+	public Mnemonic get(boolean value)
+	{
+		return get(value ? trueName : falseName);
+	}
+	
 	@Override
 	public ParameterType getExpectedType()
 	{
@@ -14,11 +28,5 @@ public class BooleanClassification implements ParameterClassification
 	public int getExpectedBits()
 	{
 		return 1;
-	}
-	
-	@Override
-	public BooleanImmediate parse(String toParse)
-	{
-		return new BooleanImmediate("H".equals(toParse));
 	}
 }

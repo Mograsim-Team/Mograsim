@@ -48,7 +48,7 @@ public final class Mnemonic implements MicroInstructionParameter
 	@Override
 	public ParameterType getType()
 	{
-		return ParameterType.MNEMONIC;
+		return owner.getExpectedType();
 	}
 	
 	public int ordinal()
