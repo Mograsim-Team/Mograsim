@@ -3,13 +3,10 @@ package net.mograsim.logic.model.serializing;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Supplier;
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
@@ -27,6 +24,7 @@ public class IndirectGUIComponentCreator
 
 	private static final Map<String, ComponentSupplier> componentSuppliers = new HashMap<>();
 	private static final Map<String, ResourceLoader> resourceLoaders = new HashMap<>();
+	private static final Map<String, JsonObject> componentCache = new HashMap<>();
 
 	static
 	{
@@ -95,6 +93,8 @@ public class IndirectGUIComponentCreator
 	{
 		if (id != null)
 		{
+			if (componentCache.containsKey(id))
+				return loadComponentFromJsonObject(model, id, name, componentCache.get(id));
 			String resolvedID = resolveID(id);
 			if (resolvedID != null)
 			{
@@ -135,7 +135,8 @@ public class IndirectGUIComponentCreator
 							JsonObject jsonContents = JsonHandler.readJson(loader.loadResource(resID), JsonObject.class);
 							return loadComponentFromJsonObject(model, id, name, jsonContents);
 						}
-						loader.loadClass(resID);
+						if (!componentSuppliers.containsKey(resID))
+							loader.loadClass(resID);
 						ComponentSupplier componentSupplier = componentSuppliers.get(resID);
 						if (componentSupplier != null)
 							return componentSupplier.create(model, params, name);
@@ -179,6 +180,7 @@ public class IndirectGUIComponentCreator
 
 	private static SubmodelComponent loadComponentFromJsonObject(ViewModelModifiable model, String id, String name, JsonObject jsonContents)
 	{
+		componentCache.putIfAbsent(id, jsonContents);
 		SerializablePojo jsonContentsAsSerializablePojo = JsonHandler.parser.fromJson(jsonContents, SerializablePojo.class);
 		if (jsonContentsAsSerializablePojo.version == null)
 			return LegacySubmodelComponentSerializer.deserialize(model,
