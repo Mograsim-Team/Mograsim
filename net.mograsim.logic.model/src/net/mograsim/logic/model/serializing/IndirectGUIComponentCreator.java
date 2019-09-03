@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
@@ -26,8 +27,10 @@ public class IndirectGUIComponentCreator
 	private static final Map<String, ResourceLoader> resourceLoaders = new HashMap<>();
 	private static final Map<String, JsonObject> componentCache = new HashMap<>();
 
+	private static final ResourceLoader defaultResourceLoader;
 	static
 	{
+		defaultResourceLoader = ClassLoaderBasedResourceLoader.create(IndirectGUIComponentCreator.class.getClassLoader());
 		loadStandardComponentIDs(IndirectGUIComponentCreator.class.getResourceAsStream("standardComponentIDMapping.json"));
 	}
 
@@ -59,7 +62,7 @@ public class IndirectGUIComponentCreator
 
 	public static void addStandardComponentID(String standardComponentID, String associatedComponentID)
 	{
-		if (!associatedComponentID.matches("(file|class|resource):.+"))
+		if (!checkIDIsValidResolvedID(associatedComponentID))
 			throw new IllegalArgumentException("Unrecognized component ID format: " + associatedComponentID);
 		standardComponentIDs.put(standardComponentID, associatedComponentID);
 	}
@@ -91,91 +94,95 @@ public class IndirectGUIComponentCreator
 
 	public static GUIComponent createComponent(ViewModelModifiable model, String id, JsonElement params, String name)
 	{
-		if (id != null)
+		if (id == null)
+			throw new NullPointerException("Component ID is null");
+		if (componentCache.containsKey(id))
+			return loadComponentFromJsonObject(model, id, name, componentCache.get(id));
+		String resolvedID = resolveID(id);
+		if (resolvedID == null)
+			throw new IllegalArgumentException("Unknown standard ID or illegal resolved ID: " + id);
+		String[] parts = resolvedID.split(":");
+		String firstPart = parts[0];
+		if (firstPart.equals("jsonfile"))
 		{
-			if (componentCache.containsKey(id))
-				return loadComponentFromJsonObject(model, id, name, componentCache.get(id));
-			String resolvedID = resolveID(id);
-			if (resolvedID != null)
+			JsonObject jsonContents;
+			try
 			{
-				if (resolvedID.startsWith("class:"))
-				{
-					String className = resolvedID.substring(6);
-					tryLoadComponentClass(className);
-					ComponentSupplier componentSupplier = componentSuppliers.get(className);
-					if (componentSupplier != null)
-						return componentSupplier.create(model, params, name);
-					throw new IllegalArgumentException("Component supplier not found for ID " + id + " (resolved: " + resolvedID + ")");
-				} else if (params != null && !JsonNull.INSTANCE.equals(params))
-					throw new IllegalArgumentException("Can't give params to a component deserialized from a JSON file");
-				if (resolvedID.startsWith("resource:"))
-				{
-					String[] parts = resolvedID.split(":");
-					if (parts.length != 3)
-						throw new IllegalArgumentException("invaild resource id: " + resolvedID);
-					String rLoadID = parts[1];
-					String resID = parts[2];
-					try
-					{
-						ResourceLoader loader;
-						if (!resourceLoaders.containsKey(rLoadID))
-						{
-							Class<?> c = Class.forName(rLoadID);
-							if (ResourceLoader.class.isAssignableFrom(c))
-								loader = (ResourceLoader) c.getConstructor().newInstance();
-							else
-								loader = (ResourceLoader) Objects.requireNonNull(c.getMethod("resourceLoader").invoke(null));
-							resourceLoaders.put(rLoadID, loader);
-						} else
-						{
-							loader = Objects.requireNonNull(resourceLoaders.get(parts[1]));
-						}
-						if (resID.endsWith(".json"))
-						{
-							JsonObject jsonContents = JsonHandler.readJson(loader.loadResource(resID), JsonObject.class);
-							return loadComponentFromJsonObject(model, id, name, jsonContents);
-						}
-						if (!componentSuppliers.containsKey(resID))
-							loader.loadClass(resID);
-						ComponentSupplier componentSupplier = componentSuppliers.get(resID);
-						if (componentSupplier != null)
-							return componentSupplier.create(model, params, name);
-						throw new IllegalArgumentException("Component supplier not found for ID " + id + " (class cannot initialize?)");
-					}
-					catch (IOException e)
-					{
-						throw new UncheckedIOException(e);
-					}
-					catch (ClassCastException | ReflectiveOperationException e)
-					{
-						throw new IllegalArgumentException("class not found / invaild resource loader specified:" + parts[1], e);
-					}
-				} else if (resolvedID.startsWith("file:"))
-				{
-					try
-					{
-						String filename = resolvedID.substring(5);
-						JsonObject jsonContents = JsonHandler.readJson(filename, JsonObject.class);
-						return loadComponentFromJsonObject(model, id, name, jsonContents);
-					}
-					catch (IOException e)
-					{
-						throw new UncheckedIOException(e);
-					}
-				} else
-				{
-					throw new IllegalArgumentException("unable to resolve/interpret id" + resolvedID);
-				}
+				// don't use parts[1], because the path could contain ':'
+				jsonContents = JsonHandler.readJson(resolvedID.substring("jsonfile:".length()), JsonObject.class);
 			}
+			catch (IOException e)
+			{
+				throw new UncheckedIOException("Error loading JSON file", e);
+			}
+			return loadComponentFromJsonObject(model, id, name, jsonContents);
 		}
-		throw new RuntimeException("Could not get component supplier for ID " + id);
+		ResourceLoader loader;
+		String resTypeID;
+		String resID;
+		if (firstPart.equals("resloader"))
+		{
+			String loaderID = parts[1];
+			loader = resourceLoaders.get(loaderID);
+			if (loader == null)
+				tryLoadResourceLoader(loaderID);
+			loader = resourceLoaders.get(loaderID);
+			if (loader == null)
+				throw new IllegalArgumentException(
+						"Unknown resource loader: " + loaderID + " (but class was found. Probably the static initializer is missing)");
+			resTypeID = parts[2];
+			resID = parts[3];
+		} else
+		{
+			loader = defaultResourceLoader;
+			resTypeID = parts[0];
+			resID = parts[1];
+		}
+		if (resTypeID.equals("jsonres"))
+		{
+			JsonObject jsonContents;
+			try
+			{
+				@SuppressWarnings("resource") // jsonStream is closed in JsonHandler
+				InputStream jsonStream = Objects.requireNonNull(loader.loadResource(resID), "Error loading JSON resource: Not found");
+				jsonContents = JsonHandler.readJson(jsonStream, JsonObject.class);
+			}
+			catch (IOException e)
+			{
+				throw new UncheckedIOException("Error loading JSON resource", e);
+			}
+			return loadComponentFromJsonObject(model, id, name, jsonContents);
+		} else if (resTypeID.equals("class"))
+		{
+			ComponentSupplier componentSupplier = componentSuppliers.get(resID);
+			if (componentSupplier == null)
+				try
+				{
+					loader.loadClass(resID);
+				}
+				catch (@SuppressWarnings("unused") ClassNotFoundException e)
+				{
+					throw new IllegalArgumentException("Unknown component supplier: " + resID);
+				}
+			componentSupplier = componentSuppliers.get(resID);
+			if (componentSupplier == null)
+				throw new IllegalArgumentException(
+						"Unknown component supplier: " + resID + " (but class was found. Probably the static initializer is missing)");
+			return componentSupplier.create(model, params, name);
+		} else
+			throw new IllegalStateException("Unknown resource type ID: " + resTypeID);
 	}
 
 	public static String resolveID(String id)
 	{
-		if (id.matches("(file|class|resource):.+"))
+		if (checkIDIsValidResolvedID(id))
 			return id;
 		return standardComponentIDs.get(id);
+	}
+
+	private static boolean checkIDIsValidResolvedID(String id)
+	{
+		return id.matches("jsonfile:(.+)|(resloader:([^:]+):)?(jsonres|class):[^:]+");
 	}
 
 	private static SubmodelComponent loadComponentFromJsonObject(ViewModelModifiable model, String id, String name, JsonObject jsonContents)
@@ -204,9 +211,9 @@ public class IndirectGUIComponentCreator
 		resourceLoaders.put(reference, Objects.requireNonNull(resourceLoader));
 	}
 
-	private static void tryLoadComponentClass(String componentClassName)
+	private static void tryLoadResourceLoader(String loaderClassName)
 	{
-		CodeSnippetSupplier.tryInvokeStaticInitializer(componentClassName, "Error loading component class %s: %s\n");
+		CodeSnippetSupplier.tryInvokeStaticInitializer(loaderClassName, "Error loading resoruce loader %s: %s\n");
 	}
 
 	public static interface ComponentSupplier
