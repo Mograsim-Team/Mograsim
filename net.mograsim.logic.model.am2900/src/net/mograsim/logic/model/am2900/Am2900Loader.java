@@ -17,7 +17,7 @@ public class Am2900Loader implements BundleActivator
 	@Override
 	public void start(BundleContext context) throws Exception
 	{
-		setup(); // TODO: useful?
+		setup();
 	}
 
 	@Override
@@ -32,12 +32,7 @@ public class Am2900Loader implements BundleActivator
 			return;
 		IndirectGUIComponentCreator.registerResourceLoader(new Am2900ResourceLoader(), "Am2900Loader");
 		IndirectGUIComponentCreator.loadStandardComponentIDs(Am2900Loader.class.getResourceAsStream("standardComponentIDMapping.json"));
-		System.out.println("SETUP DONE");
-	}
-
-	static
-	{
-		setup();
+//		System.out.println("SETUP DONE"); // TODO: Debug
 	}
 
 	/**

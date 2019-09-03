@@ -40,7 +40,7 @@ public class LogicUIPart extends ViewPart
 		// set preferences
 		Preferences.setPreferences(new ThemePreferences(PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()));
 
-		Optional<MachineDefinition> mdo = MachineRegistry.getinstalledMachines().stream().findFirst();
+		Optional<MachineDefinition> mdo = MachineRegistry.getinstalledMachines().values().stream().findFirst();
 
 		MachineDefinition md = mdo.orElseThrow(IllegalStateException::new);
 		Machine m = md.createNew();
