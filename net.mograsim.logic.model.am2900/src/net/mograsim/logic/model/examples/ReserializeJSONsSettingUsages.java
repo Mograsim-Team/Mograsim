@@ -50,7 +50,7 @@ public class ReserializeJSONsSettingUsages
 		try
 		{
 			DeserializedSubmodelComponent comp = (DeserializedSubmodelComponent) IndirectGUIComponentCreator
-					.createComponent(new ViewModelModifiable(), "file:" + json.toString());
+					.createComponent(new ViewModelModifiable(), "jsonfile:" + json.toString());
 			System.out.println("Reserializing " + json);
 			comp.getSupermodelPins().entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).map(Entry::getValue).forEach(pin ->
 			{

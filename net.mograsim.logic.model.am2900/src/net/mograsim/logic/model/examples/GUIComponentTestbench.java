@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
+import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
@@ -24,8 +25,8 @@ public class GUIComponentTestbench
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model,
-				"resource:net.mograsim.logic.model.am2900.Am2900Loader:/components/GUIAm2900.json");
+		Am2900Loader.setup();
+		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "resloader:Am2900Loader:jsonres:components/GUIAm2900.json");
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();

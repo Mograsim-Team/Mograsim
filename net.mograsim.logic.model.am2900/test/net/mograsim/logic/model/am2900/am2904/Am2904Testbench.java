@@ -27,7 +27,7 @@ public class Am2904Testbench
 	{
 		// TODO replace with proper ViewModel deserialization
 		DeserializedSubmodelComponent testbench = (DeserializedSubmodelComponent) IndirectGUIComponentCreator.createComponent(model,
-				"file:GUIAm2904Testbench.json", "testbench");
+				"jsonfile:GUIAm2904Testbench.json", "testbench");
 		testbench.setSize(1000, 1000);
 		testbench.setOutlineRenderer(new Renderer()
 		{
