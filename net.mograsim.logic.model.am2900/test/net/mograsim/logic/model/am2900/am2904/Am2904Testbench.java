@@ -6,6 +6,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
+import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
@@ -18,6 +19,7 @@ public class Am2904Testbench
 {
 	public static void main(String[] args)
 	{
+		Am2900Loader.setup();
 		SimpleLogicUIStandalone.executeVisualisation(Am2904Testbench::create, Am2904Testbench::beforeRun);
 	}
 

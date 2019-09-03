@@ -16,6 +16,7 @@ import net.mograsim.logic.core.components.BitDisplay;
 import net.mograsim.logic.core.components.ManualSwitch;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.model.LogicUIStandaloneGUI;
+import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.am2900.TestableCircuit;
 import net.mograsim.logic.model.am2900.TestableCircuit.Result;
 import net.mograsim.logic.model.model.ViewModel;
@@ -80,6 +81,7 @@ public class TestEnvironmentHelper
 		// Create view model
 		viewModel = new ViewModelModifiable();
 		modellingTool = ModellingTool.createFor(viewModel);
+		Am2900Loader.setup();
 		component = IndirectGUIComponentCreator.createComponent(viewModel, modelId);
 		setField(componentField, component);
 
