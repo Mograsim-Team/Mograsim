@@ -130,8 +130,16 @@ public class IndirectGUIComponentCreator
 						{
 							loader = Objects.requireNonNull(resourceLoaders.get(parts[1]));
 						}
-						JsonObject jsonContents = JsonHandler.readJson(loader.loadResource(resID), JsonObject.class);
-						return loadComponentFromJsonObject(model, id, name, jsonContents);
+						if (resID.endsWith(".json"))
+						{
+							JsonObject jsonContents = JsonHandler.readJson(loader.loadResource(resID), JsonObject.class);
+							return loadComponentFromJsonObject(model, id, name, jsonContents);
+						}
+						loader.loadClass(resID);
+						ComponentSupplier componentSupplier = componentSuppliers.get(resID);
+						if (componentSupplier != null)
+							return componentSupplier.create(model, params, name);
+						throw new IllegalArgumentException("Component supplier not found for ID " + id + " (class cannot initialize?)");
 					}
 					catch (IOException e)
 					{
@@ -139,7 +147,7 @@ public class IndirectGUIComponentCreator
 					}
 					catch (ClassCastException | ReflectiveOperationException e)
 					{
-						throw new IllegalArgumentException("invaild resource loader specified:" + parts[1], e);
+						throw new IllegalArgumentException("class not found / invaild resource loader specified:" + parts[1], e);
 					}
 				} else if (resolvedID.startsWith("file:"))
 				{
