@@ -5,7 +5,6 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.atomic.GUIClock;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
@@ -16,20 +15,19 @@ import net.mograsim.machine.Register;
 public class Am2900Machine implements Machine
 {
 	private Am2900MachineDefinition machineDefinition;
-	private ViewModel viewModel;
+	private ViewModelModifiable viewModel;
 	private Timeline timeline;
 	private Clock clock;
 
 	public Am2900Machine(Am2900MachineDefinition am2900MachineDefinition)
 	{
 		this.machineDefinition = am2900MachineDefinition;
-		ViewModelModifiable viewModelModifiable = new ViewModelModifiable();
-		IndirectGUIComponentCreator.createComponent(viewModelModifiable, "resource:Am2900Loader:/components/GUIAm2900.json");
+		viewModel = new ViewModelModifiable();
+		IndirectGUIComponentCreator.createComponent(viewModel, "resource:Am2900Loader:/components/GUIAm2900.json");
 		LogicModelParameters params = new LogicModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
-		timeline = ViewLogicModelAdapter.convert(viewModelModifiable, params);
-		clock = ((GUIClock) viewModelModifiable.getComponentsByName().get("GUIClock#0")).getClock();
+		timeline = ViewLogicModelAdapter.convert(viewModel, params);
 	}
 
 	@Override
