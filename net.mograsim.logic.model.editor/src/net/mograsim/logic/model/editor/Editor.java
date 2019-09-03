@@ -13,6 +13,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.editor.handles.ComponentHandle;
 import net.mograsim.logic.model.editor.handles.Handle;
 import net.mograsim.logic.model.editor.handles.HandleManager;
@@ -237,6 +238,7 @@ public final class Editor
 
 	public static void main(String[] args) throws IOException
 	{
+		Am2900Loader.setup();
 		SaveLoadManager.openLoadDialog();
 	}
 
