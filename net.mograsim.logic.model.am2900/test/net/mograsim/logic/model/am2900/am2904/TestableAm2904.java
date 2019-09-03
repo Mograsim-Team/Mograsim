@@ -19,7 +19,7 @@ public interface TestableAm2904 extends TestableCircuit
 
 	void setCX(String val_1_bit);
 
-	void setY(String ovr_n_c_z);
+	void setY(String z_c_n_ovr);
 
 	void setIZ(String val_1_bit);
 
@@ -73,6 +73,8 @@ public interface TestableAm2904 extends TestableCircuit
 
 	void setDirectly(Register r, String val_1_bit);
 
+	void setDirectly(CompleteStatus r, String z_c_n_ovr);
+
 	String getC0();
 
 	String getCT();
@@ -88,6 +90,8 @@ public interface TestableAm2904 extends TestableCircuit
 	String getQIO3();
 
 	String getDirectly(Register r);
+
+	String getDirectly(CompleteStatus r);
 
 	enum Am2904_ShiftDir
 	{
@@ -223,4 +227,10 @@ public interface TestableAm2904 extends TestableCircuit
 	{
 		µZ, µC, µN, µOVR, MZ, MC, MN, MOVR;
 	}
+
+	enum CompleteStatus
+	{
+		micro, MAKRO;
+	}
+
 }

@@ -79,6 +79,4 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	{
 		super.removeSubmodelInterface(name);
 	}
-
-	// TODO static initializer?
 }

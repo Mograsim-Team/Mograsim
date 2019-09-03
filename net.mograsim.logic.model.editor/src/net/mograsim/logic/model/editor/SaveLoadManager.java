@@ -69,7 +69,7 @@ public class SaveLoadManager
 		if (result != null)
 		{
 			new Editor((DeserializedSubmodelComponent) IndirectGUIComponentCreator.createComponent(new ViewModelModifiable(),
-					"file:" + result));
+					"jsonfile:" + result));
 		}
 	}
 }

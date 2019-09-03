@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.EnumSource;
 import net.mograsim.logic.model.am2900.am2904.TestableAm2904.Am2904_Carry;
 import net.mograsim.logic.model.am2900.am2904.TestableAm2904.Am2904_Inst;
 import net.mograsim.logic.model.am2900.am2904.TestableAm2904.Am2904_ShiftDir;
+import net.mograsim.logic.model.am2900.am2904.TestableAm2904.CompleteStatus;
 import net.mograsim.logic.model.am2900.am2904.TestableAm2904.Register;
 import net.mograsim.logic.model.am2900.util.DisplayStateOnFailure;
 
@@ -188,5 +189,23 @@ public class Am2904Test
 		am2904.assertFullCycleSuccess();
 
 		assertEquals("1", am2904.getCT());
+	}
+
+	@Test
+	@Order(3)
+	void testRegisterContentAfterLoadLoad()
+	{
+		am2904.setInstruction(Am2904_Inst.Load_Load_I_Z);
+		am2904.assertFullCycleSuccess();
+
+		String[] statusValues = { "0001", "0010", "0100", "1000", "0000", "1111" };
+
+		for (String status : statusValues)
+		{
+			am2904.setI(status);
+			am2904.assertFullCycleSuccess();
+			assertEquals(status, am2904.getDirectly(CompleteStatus.micro));
+			assertEquals(status, am2904.getDirectly(CompleteStatus.MAKRO));
+		}
 	}
 }

@@ -23,7 +23,7 @@ public class TestableAm2910Impl implements TestableAm2910
 	private BitDisplay Y;
 	private BitDisplay _PL, _MAP, _VECT;
 
-	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "file:components/am2910/GUIAm2910.json");
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "GUIAm2910");
 
 	@Override
 	public void setup()

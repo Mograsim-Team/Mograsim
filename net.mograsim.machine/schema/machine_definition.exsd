@@ -3,7 +3,7 @@
 <schema targetNamespace="net.mograsim.machine" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="net.mograsim.machine" id="net.mograsim.machinedefinition" name="Mograsim Machine Definition"/>
+         <meta.schema plugin="net.mograsim.machine" id="machine_definition" name="Mograsim Machine Definition"/>
       </appinfo>
       <documentation>
          Mograsim extension for defining a machine
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <choice minOccurs="1" maxOccurs="unbounded">
-            <element ref="MachineDefinitionImplementation"/>
+            <element ref="machineDefinitionImplementation"/>
          </choice>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,12 +47,12 @@
       </complexType>
    </element>
 
-   <element name="MachineDefinitionImplementation">
+   <element name="machineDefinitionImplementation">
       <complexType>
-         <attribute name="name" type="string" use="required">
+         <attribute name="unique_id" type="string" use="required">
             <annotation>
                <documentation>
-                  The machines name
+                  The machines id, this should be unique, but still readable
                </documentation>
             </annotation>
          </attribute>

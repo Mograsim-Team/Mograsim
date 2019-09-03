@@ -26,7 +26,7 @@ public class TestableAm2904Impl implements TestableAm2904
 	private SwitchWithDisplay SIO0, SIOn, QIO0, QIOn;
 	private SwitchWithDisplay YC, YN, YOVR, YZ;
 
-	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "file:components/am2904/GUIAm2904.json");
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "GUIAm2904");
 
 	@Override
 	public void setup()
@@ -88,14 +88,14 @@ public class TestableAm2904Impl implements TestableAm2904
 	}
 
 	@Override
-	public void setY(String ovr_n_c_z)
+	public void setY(String z_c_n_ovr)
 	{
-		var bv = BitVector.parse(ovr_n_c_z);
-		// correct order apparently unknown :/
-		YOVR.setState(bv.getLSBit(3).toVector());
-		YN.setState(bv.getLSBit(2).toVector());
-		YC.setState(bv.getLSBit(1).toVector());
-		YZ.setState(bv.getLSBit(0).toVector());
+		var bv = BitVector.parse(z_c_n_ovr);
+		// correct order apparently unknown, most likely Z-C-N-OVR
+		YZ.setState(bv.getLSBit(3).toVector());
+		YC.setState(bv.getLSBit(2).toVector());
+		YN.setState(bv.getLSBit(1).toVector());
+		YOVR.setState(bv.getLSBit(0).toVector());
 	}
 
 	@Override
@@ -204,8 +204,14 @@ public class TestableAm2904Impl implements TestableAm2904
 	public void setDirectly(Register r, String val_1_bit)
 	{
 		var bv = (BitVector) am2904.getHighLevelState(regToStateID(r));
-		bv = bv.withBitChanged(3 - r.ordinal() % 4, b -> Bit.parse(val_1_bit));
+		bv = bv.withBitChanged(r.ordinal() % 4, b -> Bit.parse(val_1_bit));
 		am2904.setHighLevelState(regToStateID(r), bv);
+	}
+
+	@Override
+	public void setDirectly(CompleteStatus r, String z_c_n_ovr)
+	{
+		am2904.setHighLevelState(regToStateID(r), BitVector.parse(z_c_n_ovr));
 	}
 
 	@Override
@@ -223,11 +229,11 @@ public class TestableAm2904Impl implements TestableAm2904
 	@Override
 	public String getY()
 	{
-		// correct order apparently unknown :/
-		var y3 = YOVR.getDisplayedValue();
-		var y2 = YN.getDisplayedValue();
-		var y1 = YC.getDisplayedValue();
-		var y0 = YZ.getDisplayedValue();
+		// correct order apparently unknown, most likely Z-C-N-OVR
+		var y3 = YZ.getDisplayedValue();
+		var y2 = YC.getDisplayedValue();
+		var y1 = YN.getDisplayedValue();
+		var y0 = YOVR.getDisplayedValue();
 		return y3.concat(y2).concat(y1).concat(y0).toString();
 	}
 
@@ -259,14 +265,28 @@ public class TestableAm2904Impl implements TestableAm2904
 	public String getDirectly(Register r)
 	{
 		var bv = (BitVector) am2904.getHighLevelState(regToStateID(r));
-		return bv.getLSBit(r.ordinal() % 4).getSymbol();
+		return bv.getMSBit(r.ordinal() % 4).getSymbol();
+	}
+
+	@Override
+	public String getDirectly(CompleteStatus r)
+	{
+		var bv = (BitVector) am2904.getHighLevelState(regToStateID(r));
+		return bv.toString();
 	}
 
 	private static String regToStateID(Register r)
 	{
-		if (r.ordinal() > 3)
-			return "msr.q";
-		return "musr.q";
+		if (r.ordinal() < 4)
+			return "musr.q";
+		return "msr.q";
+	}
+
+	private static String regToStateID(CompleteStatus r)
+	{
+		if (r == CompleteStatus.micro)
+			return "musr.q";
+		return "msr.q";
 	}
 
 	@Override

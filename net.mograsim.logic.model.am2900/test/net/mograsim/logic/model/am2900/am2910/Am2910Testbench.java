@@ -5,6 +5,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
+import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.Orientation;
@@ -19,13 +20,14 @@ public class Am2910Testbench
 {
 	public static void main(String[] args)
 	{
+		Am2900Loader.setup();
 		SimpleLogicUIStandalone.executeVisualisation(Am2910Testbench::create, Am2910Testbench::beforeRun);
 	}
 
 	@SuppressWarnings("unused") // for GUIWires being created
 	public static void create(ViewModelModifiable model)
 	{
-		GUIComponent am2910 = IndirectGUIComponentCreator.createComponent(model, "file:components/am2910/GUIAm2910.json", "Am2910");
+		GUIComponent am2910 = IndirectGUIComponentCreator.createComponent(model, "GUIAm2910", "Am2910");
 		GUIClock C = new GUIClock(model, new GUIClockParams(1000, Orientation.RIGHT));
 		GUIManualSwitch D = new GUIManualSwitch(model, 12, "D");
 		GUIManualSwitch _RLD = new GUIManualSwitch(model, 1, "_RLD");
