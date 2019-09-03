@@ -14,7 +14,7 @@ public abstract class ClassLoaderBasedResourceLoader implements ResourceLoader
 	@Override
 	public Class<?> loadClass(String name) throws ClassNotFoundException
 	{
-		return Class.forName(name, true, getClassLoader());// TODO duplication
+		return ReflectionHelper.tryInvokeStaticInitializer(name, getClassLoader());
 	}
 
 	public abstract ClassLoader getClassLoader();

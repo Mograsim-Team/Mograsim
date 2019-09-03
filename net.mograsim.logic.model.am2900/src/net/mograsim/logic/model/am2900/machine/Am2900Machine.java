@@ -23,7 +23,8 @@ public class Am2900Machine implements Machine
 	{
 		this.machineDefinition = am2900MachineDefinition;
 		viewModel = new ViewModelModifiable();
-		IndirectGUIComponentCreator.createComponent(viewModel, "resloader:Am2900Loader:jsonres:components/GUIAm2900.json");
+		IndirectGUIComponentCreator.createComponent(viewModel,
+				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/GUIAm2900.json");
 		LogicModelParameters params = new LogicModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
