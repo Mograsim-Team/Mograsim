@@ -1,5 +1,7 @@
 package net.mograsim.plugin.views;
 
+import java.util.Optional;
+
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -11,11 +13,9 @@ import org.eclipse.ui.part.ViewPart;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
-import net.mograsim.logic.model.am2900.Am2900Loader;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.machine.Machine;
+import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.MachineRegistry;
 import net.mograsim.plugin.ThemePreferences;
 import net.mograsim.preferences.Preferences;
 
@@ -40,16 +40,13 @@ public class LogicUIPart extends ViewPart
 		// set preferences
 		Preferences.setPreferences(new ThemePreferences(PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()));
 
-		Am2900Loader.setup();
-		ViewModelModifiable viewModelModifiable = new ViewModelModifiable();
-		IndirectGUIComponentCreator.createComponent(viewModelModifiable, "resource:Am2900Loader:/components/GUIAm2900.json");
-		LogicModelParameters params = new LogicModelParameters();
-		params.gateProcessTime = 50;
-		params.wireTravelTime = 10;
-//		timeline = ;
+		Optional<MachineDefinition> mdo = MachineRegistry.getinstalledMachines().stream().findFirst();
+
+		MachineDefinition md = mdo.orElseThrow(IllegalStateException::new);
+		Machine m = md.createNew();
 
 		// initialize UI
-		ui = new LogicUICanvas(parent, SWT.NONE, viewModelModifiable);
+		ui = new LogicUICanvas(parent, SWT.NONE, m.getModel());
 		ui.addTransformListener((x, y, z) -> part.setDirty(z < 1));
 		ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(ui);
 		userInput.buttonDrag = 3;
@@ -57,7 +54,7 @@ public class LogicUIPart extends ViewPart
 		userInput.enableUserInput();
 
 		// initialize executer
-		exec = new LogicExecuter(ViewLogicModelAdapter.convert(viewModelModifiable, params));
+		exec = new LogicExecuter(m.getTimeline());
 
 		// run it
 		exec.startLiveExecution();
