@@ -23,6 +23,7 @@ import net.mograsim.logic.model.serializing.SubmodelComponentParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.util.JsonHandler;
+import net.mograsim.preferences.Preferences;
 
 /**
  * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
@@ -365,7 +366,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{
 		GCConfig conf = new GCConfig(gc);
-		TranslatedGC tgc = new TranslatedGC(gc, getPosX(), getPosY(), submodelScale, true);
+		GeneralGC tgc = new TranslatedGC(gc, getPosX(), getPosY(), submodelScale, true);
 		conf.reset(tgc);
 		double visibleRegionFillRatio = Math.max(getWidth() / visibleRegion.width, getHeight() / visibleRegion.height);
 		double alphaFactor = map(visibleRegionFillRatio, maxVisibleRegionFillRatioForAlpha0, minVisibleRegionFillRatioForAlpha1, 0, 1);
@@ -385,6 +386,8 @@ public abstract class SubmodelComponent extends GUIComponent
 			renderSymbol(gc, visibleRegion);
 		}
 		conf.reset(gc);
+		// reset line width explicitly to avoid rounding errors causing weird glitches
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
 		// draw the outline after all other operations to make interface pins look better
 		renderOutline(gc, visibleRegion);
 	}

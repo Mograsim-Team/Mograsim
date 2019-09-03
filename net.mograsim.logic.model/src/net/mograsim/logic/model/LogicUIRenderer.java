@@ -8,6 +8,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.preferences.Preferences;
 
 public class LogicUIRenderer
 {
@@ -24,7 +25,7 @@ public class LogicUIRenderer
 	{
 		gc.setAntialias(SWT.ON);
 		gc.setClipping(visibleRegion);
-		gc.setLineWidth(.5);
+		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
 		model.getWiresByName().values().forEach(w ->
 		{
 			Rectangle bounds = w.getBounds();

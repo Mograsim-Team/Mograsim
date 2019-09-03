@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.mograsim.logic.model.serializing.ReflectionHelper;
+
 public class CodeSnippetSupplier<C, S>
 {
 	private final Map<String, String> standardSnippetIDClassNames = new HashMap<>();
@@ -65,19 +67,6 @@ public class CodeSnippetSupplier<C, S>
 
 	private static void tryLoadSnippetClass(String snippetClassName)
 	{
-		tryInvokeStaticInitializer(snippetClassName, "Error getting snippet class: %s: %s\n");
+		ReflectionHelper.tryInvokeStaticInitializer(snippetClassName, "Error getting snippet class: %s: %s\n");
 	}
-
-	public static void tryInvokeStaticInitializer(String className, String errorMessageFormat)
-	{
-		try
-		{
-			Class.forName(className, true, CodeSnippetSupplier.class.getClassLoader());
-		}
-		catch (ClassNotFoundException e)
-		{
-			System.err.printf(errorMessageFormat, className, "ClassNotFoundException thrown: " + e.getMessage());
-		}
-	}
-
 }

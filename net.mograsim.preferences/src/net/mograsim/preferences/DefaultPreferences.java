@@ -5,6 +5,44 @@ import net.mograsim.preferences.ColorDefinition.BuiltInColor;
 public class DefaultPreferences extends Preferences
 {
 	@Override
+	public boolean getBoolean(String name)
+	{
+		switch (name)
+		{
+		case "net.mograsim.logic.model.improvetext":
+			return true;
+		default:
+			throw new IllegalArgumentException("Unknown boolean preference name: " + name);
+		}
+	}
+
+	@Override
+	public int getInt(String name)
+	{
+		switch (name)
+		{
+		default:
+			throw new IllegalArgumentException("Unknown int preference name: " + name);
+		}
+	}
+
+	@Override
+	public double getDouble(String name)
+	{
+		switch (name)
+		{
+		case "net.mograsim.logic.model.linewidth.default":
+			return 0.5;
+		case "net.mograsim.logic.model.linewidth.wire.singlebit":
+			return 0.5;
+		case "net.mograsim.logic.model.linewidth.wire.multibit":
+			return 0.85;
+		default:
+			throw new IllegalArgumentException("Unknown double preference name: " + name);
+		}
+	}
+
+	@Override
 	public ColorDefinition getColorDefinition(String name)
 	{
 		switch (name)
@@ -26,9 +64,7 @@ public class DefaultPreferences extends Preferences
 		case "net.mograsim.logic.model.color.text":
 			return new ColorDefinition(BuiltInColor.COLOR_BLACK);
 		default:
-			// TODO proper logging here...
-			System.err.println("Unknown color name: " + name);
-			return null;
+			throw new IllegalArgumentException("Unknown color preference name: " + name);
 		}
 	}
 }
