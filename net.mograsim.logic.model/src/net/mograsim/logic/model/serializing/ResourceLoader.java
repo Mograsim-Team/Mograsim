@@ -20,4 +20,6 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 public interface ResourceLoader
 {
 	InputStream loadResource(String path) throws IOException;
+
+	Class<?> loadClass(String name) throws ClassNotFoundException;
 }
