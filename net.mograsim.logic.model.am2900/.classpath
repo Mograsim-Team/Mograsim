@@ -8,7 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" output="bin/src" path="src"/>
-	<classpathentry kind="src" output="bin/src" path="resources"/>
+	<classpathentry kind="src" output="bin/src" path="components"/>
 	<classpathentry kind="src" output="bin/test" path="test">
 		<attributes>
 			<attribute name="test" value="true"/>
