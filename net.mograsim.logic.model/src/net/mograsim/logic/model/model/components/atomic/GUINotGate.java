@@ -15,7 +15,7 @@ public class GUINotGate extends SimpleRectangularGUIGate
 
 	public GUINotGate(ViewModelModifiable model, int logicWidth, String name)
 	{
-		super(model, "1", true, logicWidth, name);
+		super(model, "GUINotGate", "1", true, logicWidth, name);
 		setInputCount(1);
 	}
 

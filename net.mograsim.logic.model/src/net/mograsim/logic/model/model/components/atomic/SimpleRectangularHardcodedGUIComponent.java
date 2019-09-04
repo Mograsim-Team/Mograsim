@@ -12,7 +12,7 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SimpleRectangularHardcodedGUIComponentAdapter;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer;
@@ -27,6 +27,8 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 	private static final double pinNamesHeight = 3.5;
 	private static final double pinNamesMargin = .5;
 
+	private final String id;
+
 	private final DefaultOutlineRenderer outlineRenderer;
 	private final CenteredTextSymbolRenderer centerTextRenderer;
 	private final PinNamesSymbolRenderer pinNamesRenderer;
@@ -36,9 +38,10 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 
 	// creation and destruction
 
-	public SimpleRectangularHardcodedGUIComponent(ViewModelModifiable model, String name, String centerText)
+	public SimpleRectangularHardcodedGUIComponent(ViewModelModifiable model, String id, String name, String centerText)
 	{
 		super(model, name);
+		this.id = id;
 		this.outlineRenderer = new DefaultOutlineRenderer(this);
 		CenteredTextParams centeredTextParams = new CenteredTextParams();
 		centeredTextParams.text = centerText;
@@ -52,7 +55,13 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 		setHighLevelStateHandler(new HighLevelStateHandler()
 		{
 			@Override
-			public Object getParamsForSerializing(IdentifierGetter idGetter)
+			public String getIDForSerializing(IdentifyParams idParams)
+			{
+				return null;// we don't need to serialize this; it's implicit since we are a SimpleRectangularHardcodedGUIComponent
+			}
+
+			@Override
+			public Object getParamsForSerializing(IdentifyParams idParams)
 			{
 				return null;
 			}
@@ -119,6 +128,14 @@ public abstract class SimpleRectangularHardcodedGUIComponent extends GUIComponen
 		outlineRenderer.render(gc, visibleRegion);
 		centerTextRenderer.render(gc, visibleRegion);
 		pinNamesRenderer.render(gc, visibleRegion);
+	}
+
+	// serializing
+
+	@Override
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return id;
 	}
 
 	// operations no longer supported

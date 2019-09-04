@@ -16,7 +16,7 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.preferences.Preferences;
 
 public class SimpleRectangularGUIGate extends GUIComponent
@@ -26,6 +26,8 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	private static final double fontHeight = 5;
 	private static final double invertedCircleDiam = 3.5;
 
+	private final String id;
+
 	private final String label;
 	private final boolean isInverted;
 	protected final int logicWidth;
@@ -34,9 +36,10 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
 
-	protected SimpleRectangularGUIGate(ViewModelModifiable model, String label, boolean isInverted, int logicWidth, String name)
+	protected SimpleRectangularGUIGate(ViewModelModifiable model, String id, String label, boolean isInverted, int logicWidth, String name)
 	{
 		super(model, name);
+		this.id = id;
 		this.label = label;
 		this.logicWidth = logicWidth;
 		this.isInverted = isInverted;
@@ -88,6 +91,12 @@ public class SimpleRectangularGUIGate extends GUIComponent
 
 	// serializing
 
+	@Override
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return id;
+	}
+
 	/**
 	 * {@link SimpleRectangularGUIGate}s implementation returns a {@link JsonPrimitive} of type int containing the {@link #logicWidth} of
 	 * this component.
@@ -95,7 +104,7 @@ public class SimpleRectangularGUIGate extends GUIComponent
 	 * @see GUIComponent#getParamsForSerializing()
 	 */
 	@Override
-	public Integer getParamsForSerializing(IdentifierGetter idGetter)
+	public Integer getParamsForSerializing(IdentifyParams idParams)
 	{
 		return logicWidth;
 	}

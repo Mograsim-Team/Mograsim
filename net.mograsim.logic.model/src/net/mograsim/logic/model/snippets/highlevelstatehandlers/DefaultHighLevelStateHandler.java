@@ -1,7 +1,7 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers;
 
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -37,7 +37,13 @@ public class DefaultHighLevelStateHandler implements HighLevelStateHandler
 	}
 
 	@Override
-	public Void getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "default";
+	}
+
+	@Override
+	public Void getParamsForSerializing(IdentifyParams idParams)
 	{
 		return null;
 	}

@@ -9,7 +9,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -73,7 +73,13 @@ public class PinNamesSymbolRenderer implements Renderer
 	}
 
 	@Override
-	public PinNamesParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "pinNames";
+	}
+
+	@Override
+	public PinNamesParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		PinNamesParams params = new PinNamesParams();
 		params.pinNamePositions = new HashMap<>();

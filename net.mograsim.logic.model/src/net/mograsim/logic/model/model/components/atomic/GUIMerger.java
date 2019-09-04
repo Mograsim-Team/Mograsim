@@ -12,7 +12,7 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.MergerAdapter;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
@@ -80,7 +80,13 @@ public class GUIMerger extends GUIComponent
 	}
 
 	@Override
-	public Integer getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "GUIMerger";
+	}
+
+	@Override
+	public Integer getParamsForSerializing(IdentifyParams idParams)
 	{
 		return logicWidth;
 	}

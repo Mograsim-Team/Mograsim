@@ -78,9 +78,9 @@ public class ViewModelSerializer
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static void serialize(ViewModel model, IdentifierGetter idGetter, String targetPath) throws IOException
+	public static void serialize(ViewModel model, IdentifyParams idParams, String targetPath) throws IOException
 	{
-		JsonHandler.writeJson(serialize(model, idGetter), targetPath);
+		JsonHandler.writeJson(serialize(model, idParams), targetPath);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class ViewModelSerializer
 	 */
 	public static ViewModelParams serialize(ViewModel model)
 	{
-		return serialize(model, new IdentifierGetter());
+		return serialize(model, new IdentifyParams());
 	}
 
 	// "core" methods
@@ -137,7 +137,7 @@ public class ViewModelSerializer
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	public static ViewModelParams serialize(ViewModel model, IdentifierGetter idGetter)
+	public static ViewModelParams serialize(ViewModel model, IdentifyParams idParams)
 	{
 		ViewModelParams modelParams = new ViewModelParams(CURRENT_JSON_VERSION);
 
@@ -157,8 +157,8 @@ public class ViewModelSerializer
 				compParams.params = innerCompCasted.paramsForSerializingOverride;
 			} else
 			{
-				compParams.id = idGetter.componentIDs.apply(component);
-				compParams.params = component.getParamsForSerializingJSON(idGetter);
+				compParams.id = component.getIDForSerializing(idParams);
+				compParams.params = component.getParamsForSerializingJSON(idParams);
 			}
 			compParams.name = component.name;
 		}

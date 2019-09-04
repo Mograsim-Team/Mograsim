@@ -10,7 +10,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
@@ -107,7 +107,13 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 	}
 
 	@Override
-	public WireForcingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "wireForcing";
+	}
+
+	@Override
+	public WireForcingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		WireForcingAtomicHighLevelStateHandlerParams params = new WireForcingAtomicHighLevelStateHandlerParams();
 		params.wiresToForce = wiresToForce.stream().map(w -> w.name).collect(Collectors.toList());

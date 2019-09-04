@@ -23,7 +23,7 @@ public class GUIsel4_12 extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUIsel4_12(ViewModelModifiable model, String name)
 	{
-		super(model, name, "4-way SEL\n12 bit");
+		super(model, "GUIsel4_12", name, "4-way SEL\n12 bit");
 		setSize(80, 40);
 		addPin(new Pin(this, "SA", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
 		addPin(new Pin(this, "SB", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);

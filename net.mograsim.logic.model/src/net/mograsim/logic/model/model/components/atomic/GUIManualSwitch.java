@@ -17,7 +17,7 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.ManualSwitchAdapter;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.Preferences;
 
@@ -163,7 +163,13 @@ public class GUIManualSwitch extends GUIComponent
 	}
 
 	@Override
-	public Integer getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "GUIManualSwitch";
+	}
+
+	@Override
+	public Integer getParamsForSerializing(IdentifyParams idParams)
 	{
 		return logicWidth;
 	}

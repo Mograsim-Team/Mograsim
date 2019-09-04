@@ -21,7 +21,7 @@ public class GUIAm2910InstrPLA extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUIAm2910InstrPLA(ViewModelModifiable model, String name)
 	{
-		super(model, name, "Instr.\nPLA");
+		super(model, "GUIAm2910InstrPLA", name, "Instr.\nPLA");
 		setSize(30, 85);
 		addPin(new Pin(this, "PASS", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
 		addPin(new Pin(this, "I", 4, PinUsage.INPUT, 0, 20), Position.RIGHT);

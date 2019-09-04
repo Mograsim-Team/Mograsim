@@ -23,7 +23,7 @@ public class GUIAm2904ShiftInstrDecode extends SimpleRectangularHardcodedGUIComp
 {
 	public GUIAm2904ShiftInstrDecode(ViewModelModifiable model, String name)
 	{
-		super(model, name, "Shift \ninstruction\ndecode");
+		super(model, "GUIAm2904ShiftInstrDecode", name, "Shift \ninstruction\ndecode");
 		setSize(60, 80);
 		addPin(new Pin(this, "I", 5, PinUsage.INPUT, 0, 25), Position.RIGHT);
 		addPin(new Pin(this, "_SE", 1, PinUsage.INPUT, 0, 55), Position.RIGHT);

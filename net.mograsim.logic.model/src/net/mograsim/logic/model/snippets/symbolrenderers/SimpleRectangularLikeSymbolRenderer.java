@@ -10,7 +10,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -73,7 +73,13 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 	}
 
 	@Override
-	public SimpleRectangularLikeParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "simpleRectangularLike";
+	}
+
+	@Override
+	public SimpleRectangularLikeParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		SimpleRectangularLikeParams params = new SimpleRectangularLikeParams();
 		params.centerText = centerText;

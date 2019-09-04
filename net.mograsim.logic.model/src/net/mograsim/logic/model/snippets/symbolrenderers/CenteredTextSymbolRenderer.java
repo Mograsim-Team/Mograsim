@@ -5,7 +5,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -47,7 +47,13 @@ public class CenteredTextSymbolRenderer implements Renderer
 	}
 
 	@Override
-	public CenteredTextParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "centeredText";
+	}
+
+	@Override
+	public CenteredTextParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		CenteredTextParams params = new CenteredTextParams();
 		params.text = text;

@@ -129,9 +129,9 @@ public final class SubmodelComponentSerializer
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static void serialize(SubmodelComponent comp, IdentifierGetter idGetter, String targetPath) throws IOException
+	public static void serialize(SubmodelComponent comp, IdentifyParams idParams, String targetPath) throws IOException
 	{
-		JsonHandler.writeJson(serialize(comp, idGetter), targetPath);
+		JsonHandler.writeJson(serialize(comp, idParams), targetPath);
 	}
 
 	/**
@@ -142,7 +142,7 @@ public final class SubmodelComponentSerializer
 	 */
 	public static SubmodelComponentParams serialize(SubmodelComponent comp)
 	{
-		return serialize(comp, new IdentifierGetter());
+		return serialize(comp, new IdentifyParams());
 	}
 
 	// "core" methods
@@ -195,11 +195,11 @@ public final class SubmodelComponentSerializer
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponentParams serialize(SubmodelComponent comp, IdentifierGetter idGetter)
+	public static SubmodelComponentParams serialize(SubmodelComponent comp, IdentifyParams idParams)
 	{
 		SubmodelComponentParams params = new SubmodelComponentParams(JSON_VERSION_CURRENT_SERIALIZING);
 		params.innerScale = comp.getSubmodelScale();
-		params.submodel = ViewModelSerializer.serialize(comp.submodel, idGetter);
+		params.submodel = ViewModelSerializer.serialize(comp.submodel, idParams);
 
 		params.width = comp.getWidth();
 		params.height = comp.getHeight();
@@ -222,22 +222,22 @@ public final class SubmodelComponentSerializer
 		Renderer symbolRenderer = comp.getSymbolRenderer();
 		if (symbolRenderer != null)
 		{
-			params.symbolRendererSnippetID = idGetter.symbolRendererIDs.apply(symbolRenderer);
-			params.symbolRendererParams = symbolRenderer.getParamsForSerializingJSON(idGetter);
+			params.symbolRendererSnippetID = symbolRenderer.getIDForSerializing(idParams);
+			params.symbolRendererParams = symbolRenderer.getParamsForSerializingJSON(idParams);
 		}
 
 		Renderer outlineRenderer = comp.getOutlineRenderer();
 		if (outlineRenderer != null)
 		{
-			params.outlineRendererSnippetID = idGetter.outlineRendererIDs.apply(outlineRenderer);
-			params.outlineRendererParams = outlineRenderer.getParamsForSerializingJSON(idGetter);
+			params.outlineRendererSnippetID = outlineRenderer.getIDForSerializing(idParams);
+			params.outlineRendererParams = outlineRenderer.getParamsForSerializingJSON(idParams);
 		}
 
 		HighLevelStateHandler highLevelStateHandler = comp.getHighLevelStateHandler();
 		if (highLevelStateHandler != null)
 		{
-			params.highLevelStateHandlerSnippetID = idGetter.highLevelStateHandlerIDs.apply(highLevelStateHandler);
-			params.highLevelStateHandlerParams = highLevelStateHandler.getParamsForSerializingJSON(idGetter);
+			params.highLevelStateHandlerSnippetID = highLevelStateHandler.getIDForSerializing(idParams);
+			params.highLevelStateHandlerParams = highLevelStateHandler.getParamsForSerializingJSON(idParams);
 		}
 
 		return params;
