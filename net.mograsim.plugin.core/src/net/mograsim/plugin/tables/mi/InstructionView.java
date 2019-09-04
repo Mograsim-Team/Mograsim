@@ -3,6 +3,7 @@ package net.mograsim.plugin.tables.mi;
 import java.io.File;
 import java.io.IOException;
 
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -21,7 +22,8 @@ import net.mograsim.machine.mi.MicroprogramMemoryParseException;
 import net.mograsim.machine.mi.MicroprogramMemoryParser;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.plugin.asm.AsmNumberUtil.NumberType;
-import net.mograsim.plugin.tables.memory.DisplaySettings;
+import net.mograsim.plugin.tables.DisplaySettings;
+import net.mograsim.plugin.tables.RadixSelector;
 import net.mograsim.plugin.util.DropDownMenu;
 import net.mograsim.plugin.util.DropDownMenu.DropDownEntry;
 
@@ -32,13 +34,19 @@ public class InstructionView extends ViewPart
 	private TableViewerColumn[] columns = new TableViewerColumn[0];
 	private MicroInstructionDefinition miDef;
 	private MicroprogramMemory memory;
+	private DisplaySettings displaySettings;
 
+	@SuppressWarnings("unused")
 	@Override
 	public void createPartControl(Composite parent)
 	{
 		InstructionTableContentProvider provider = new InstructionTableContentProvider();
-		GridLayout layout = new GridLayout(1, false);
+		GridLayout layout = new GridLayout(3, false);
 		setupMenuButtons(parent);
+
+		displaySettings = new DisplaySettings();
+		new RadixSelector(parent, displaySettings);
+
 		parent.setLayout(layout);
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 		Table table = viewer.getTable();
@@ -47,7 +55,11 @@ public class InstructionView extends ViewPart
 		viewer.setUseHashlookup(true);
 		viewer.setContentProvider(provider);
 
-		viewer.getTable().setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH));
+		GridData viewerData = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
+		viewerData.horizontalSpan = 3;
+		viewer.getTable().setLayoutData(viewerData);
+
+		displaySettings.addObserver(() -> viewer.refresh());
 	}
 
 	@SuppressWarnings("unused")
@@ -114,27 +126,36 @@ public class InstructionView extends ViewPart
 			int bounds = 20 + 20 * classes[i].getExpectedBits();
 
 			TableViewerColumn col = createTableViewerColumn(name, bounds);
-			col.setLabelProvider(new ParameterLabelProvider(i));
-			col.setEditingSupport(createEditingSupport(miDef, i));
+			createEditingAndLabel(col, miDef, i);
 		}
 
 	}
 
-	private EditingSupport createEditingSupport(MicroInstructionDefinition miDef, int index)
+	private void createEditingAndLabel(TableViewerColumn col, MicroInstructionDefinition miDef, int index)
 	{
 		ParameterClassification parameterClassification = miDef.getParameterClassifications()[index];
+		EditingSupport support;
+		ColumnLabelProvider provider;
 		switch (parameterClassification.getExpectedType())
 		{
 		case BOOLEAN_IMMEDIATE:
-			return new BooleanEditingSupport(viewer, miDef, index);
+			support = new BooleanEditingSupport(viewer, miDef, index);
+			provider = new ParameterLabelProvider(index);
+			break;
 		case INTEGER_IMMEDIATE:
-			return new IntegerEditingSupport(viewer, miDef, index, new DisplaySettings(NumberType.DECIMAL));
+			support = new IntegerEditingSupport(viewer, miDef, index, new DisplaySettings(NumberType.DECIMAL));
+			provider = new IntegerColumnLabelProvider(displaySettings, index);
+			break;
 		case MNEMONIC:
-			return new MnemonicEditingSupport(viewer, miDef, index);
+			support = new MnemonicEditingSupport(viewer, miDef, index);
+			provider = new ParameterLabelProvider(index);
+			break;
 		default:
 			throw new IllegalStateException(
 					"Unable to create EditingSupport for unknown ParameterType " + parameterClassification.getExpectedType());
 		}
+		col.setEditingSupport(support);
+		col.setLabelProvider(provider);
 	}
 
 	private TableViewerColumn createTableViewerColumn(String title, int bound)

@@ -8,8 +8,8 @@ import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.parameters.IntegerClassification;
 import net.mograsim.machine.mi.parameters.IntegerImmediate;
+import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.NumberCellEditingSupport;
-import net.mograsim.plugin.tables.memory.DisplaySettings;
 
 public class IntegerEditingSupport extends NumberCellEditingSupport
 {
