@@ -220,6 +220,15 @@
         "params": 1
       },
       {
+        "id": "GUINandGate",
+        "name": "GUINandGate#2",
+        "pos": {
+          "x": 250.0,
+          "y": 305.0
+        },
+        "params": 1
+      },
+      {
         "id": "GUITriStateBuffer",
         "name": "GUITriStateBuffer#0",
         "pos": {
@@ -286,6 +295,15 @@
         "pos": {
           "x": 294.0,
           "y": 104.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
+        "pos": {
+          "x": 244.0,
+          "y": 319.0
         },
         "params": 1
       },
@@ -1086,20 +1104,15 @@
       },
       {
         "pin1": {
-          "compName": "GUITriStateBuffer#0",
-          "pinName": "EN"
-        },
-        "pin2": {
           "compName": "_submodelinterface",
           "pinName": "_OE"
         },
+        "pin2": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
         "name": "unnamedWire#53",
-        "path": [
-          {
-            "x": 245.0,
-            "y": 300.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1124,6 +1137,56 @@
         },
         "name": "unnamedWire#55",
         "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUINandGate#2",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#56",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUINandGate#2",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "name": "unnamedWire#57",
+        "path": [
+          {
+            "x": 245.0,
+            "y": 310.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "EN"
+        },
+        "pin2": {
+          "compName": "GUINandGate#2",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#58",
+        "path": [
+          {
+            "x": 275.0,
+            "y": 300.0
+          },
+          {
+            "x": 275.0,
+            "y": 315.0
+          }
+        ]
       },
       {
         "pin1": {
