@@ -8,7 +8,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
 
 import net.mograsim.plugin.asm.AsmNumberUtil;
-import net.mograsim.plugin.tables.memory.DisplaySettings;
 
 public abstract class NumberCellEditingSupport extends EditingSupport
 {

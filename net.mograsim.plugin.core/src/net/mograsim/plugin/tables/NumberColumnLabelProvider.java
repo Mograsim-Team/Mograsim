@@ -5,7 +5,6 @@ import java.math.BigInteger;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 
 import net.mograsim.plugin.asm.AsmNumberUtil;
-import net.mograsim.plugin.tables.memory.DisplaySettings;
 
 public abstract class NumberColumnLabelProvider extends ColumnLabelProvider
 {

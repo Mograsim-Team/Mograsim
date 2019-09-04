@@ -6,12 +6,9 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
@@ -23,8 +20,9 @@ import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.standard.memory.WordAddressableMemory;
 import net.mograsim.plugin.asm.AsmNumberUtil;
-import net.mograsim.plugin.asm.AsmNumberUtil.NumberType;
+import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.NumberColumnLabelProvider;
+import net.mograsim.plugin.tables.RadixSelector;
 
 public class MemoryView extends ViewPart
 {
@@ -33,11 +31,12 @@ public class MemoryView extends ViewPart
 	private DisplaySettings displaySettings;
 	private String addressFormat;
 
+	@SuppressWarnings("unused")
 	@Override
 	public void createPartControl(Composite parent)
 	{
 		provider = new MemoryTableContentProvider();
-		displaySettings = new DisplaySettings(NumberType.HEXADECIMAL);
+		displaySettings = new DisplaySettings();
 
 		GridLayout layout = new GridLayout(6, false);
 		parent.setLayout(layout);
@@ -55,7 +54,7 @@ public class MemoryView extends ViewPart
 				provider.setLowerBound(AsmNumberUtil.valueOf(fromText.getText()).longValue());
 				viewer.refresh();
 			}
-			catch (@SuppressWarnings("unused") NumberFormatException ex)
+			catch (NumberFormatException ex)
 			{
 				// Nothing to do here
 			}
@@ -74,47 +73,15 @@ public class MemoryView extends ViewPart
 				provider.setAmount(AsmNumberUtil.valueOf(amountText.getText()).intValue());
 				viewer.refresh();
 			}
-			catch (@SuppressWarnings("unused") NumberFormatException ex)
+			catch (NumberFormatException ex)
 			{
 				// Nothing to do here
 			}
 		});
-
-		setupRadixSelector(parent);
-
+		new RadixSelector(parent, displaySettings);
 		createViewer(parent);
-	}
 
-	private void setupRadixSelector(Composite parent)
-	{
-		Label radixLabel = new Label(parent, SWT.NONE);
-		radixLabel.setText("Radix: ");
-		Combo selectRadix = new Combo(parent, SWT.READ_ONLY);
-
-		String entries[] = new String[] { "Binary", "Octal", "Decimal", "Hexadecimal" };
-		NumberType corTypes[] = new NumberType[] { NumberType.BINARY, NumberType.OCTAL, NumberType.DECIMAL, NumberType.HEXADECIMAL };
-		selectRadix.setItems(entries);
-		selectRadix.addSelectionListener(new SelectionListener()
-		{
-			@Override
-			public void widgetSelected(SelectionEvent e)
-			{
-				int index = selectRadix.getSelectionIndex();
-				if (index == -1)
-					displaySettings.setDataNumberType(NumberType.HEXADECIMAL);
-				else
-				{
-					displaySettings.setDataNumberType(corTypes[index]);
-				}
-				viewer.refresh();
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e)
-			{
-				widgetSelected(e);
-			}
-		});
+		displaySettings.addObserver(() -> viewer.refresh());
 	}
 
 	private void createViewer(Composite parent)

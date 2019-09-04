@@ -4,6 +4,7 @@ import java.math.BigInteger;
 
 import org.eclipse.jface.viewers.TableViewer;
 
+import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.NumberCellEditingSupport;
 
 public class MemoryCellEditingSupport extends NumberCellEditingSupport
