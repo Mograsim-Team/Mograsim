@@ -1,6 +1,6 @@
 {
-  "width": 224.0,
-  "height": 136.0,
+  "width": 304.0,
+  "height": 174.0,
   "interfacePins": [],
   "innerScale": 0.4,
   "submodel": {
@@ -9,7 +9,7 @@
         "id": "GUIAm2901",
         "name": "DeserializedSubmodelComponent#0",
         "pos": {
-          "x": 315.0,
+          "x": 355.0,
           "y": 25.0
         }
       },
@@ -17,7 +17,7 @@
         "id": "GUIAm2901",
         "name": "DeserializedSubmodelComponent#1",
         "pos": {
-          "x": 375.0,
+          "x": 420.0,
           "y": 25.0
         }
       },
@@ -25,7 +25,7 @@
         "id": "GUIAm2901",
         "name": "DeserializedSubmodelComponent#2",
         "pos": {
-          "x": 435.0,
+          "x": 485.0,
           "y": 25.0
         }
       },
@@ -33,7 +33,7 @@
         "id": "GUIAm2901",
         "name": "DeserializedSubmodelComponent#3",
         "pos": {
-          "x": 495.0,
+          "x": 550.0,
           "y": 25.0
         }
       },
@@ -54,6 +54,30 @@
         }
       },
       {
+        "id": "GUIand",
+        "name": "DeserializedSubmodelComponent#6",
+        "pos": {
+          "x": 600.0,
+          "y": 285.0
+        }
+      },
+      {
+        "id": "GUIand",
+        "name": "DeserializedSubmodelComponent#7",
+        "pos": {
+          "x": 485.0,
+          "y": 325.0
+        }
+      },
+      {
+        "id": "GUIand",
+        "name": "DeserializedSubmodelComponent#8",
+        "pos": {
+          "x": 665.0,
+          "y": 310.0
+        }
+      },
+      {
         "id": "GUIClock",
         "name": "GUIClock#0",
         "pos": {
@@ -64,9 +88,466 @@
           "delta": 1000,
           "orientation": "DOWN"
         }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 135.0,
+          "y": 20.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 335.0,
+          "y": 15.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 405.0,
+          "y": 15.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "pos": {
+          "x": 470.0,
+          "y": 15.0
+        },
+        "params": 1
       }
     ],
-    "wires": [],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "CT"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "_CC"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "Qn+3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "Qn"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "QIOn"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Qn+3"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "F3"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "F\u003d0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "F\u003d0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#14",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#15",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "B"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "F\u003d0"
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "F\u003d0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "IZ"
+        },
+        "name": "unnamedWire#18",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "OVR"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "IOVR"
+        },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "RAMn+3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "RAMn"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Cn+4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "IC"
+        },
+        "name": "unnamedWire#20",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "Cn+4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "Cn"
+        },
+        "name": "unnamedWire#21",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "Cn+4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "Cn"
+        },
+        "name": "unnamedWire#22",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "Cn+4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Cn"
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#24",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIClock#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#28",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "Qn+3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "Qn"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#30",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#31",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#32",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "Cn"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "C0"
+        },
+        "name": "unnamedWire#33",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#34",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "RAMn"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#1",
+          "pinName": "RAMn+3"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "RAMn"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "RAMn+3"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#2",
+          "pinName": "Qn+3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "Qn"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "Qn"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "QIO0"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "SIO0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#0",
+          "pinName": "RAMn"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "SIOn"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#3",
+          "pinName": "RAMn+3"
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      }
+    ],
     "version": "0.1.1"
   },
   "symbolRendererSnippetID": "simpleRectangularLike",
