@@ -71,9 +71,9 @@ public class IndirectGUIComponentCreator
 		return standardComponentIDsUnmodifiable;
 	}
 
-	public static void setComponentSupplier(String className, ComponentSupplier componentSupplier)
+	public static void setComponentSupplier(String id, ComponentSupplier componentSupplier)
 	{
-		componentSuppliers.put(className, componentSupplier);
+		componentSuppliers.put(id, componentSupplier);
 	}
 
 	public static GUIComponent createComponent(ViewModelModifiable model, String id)

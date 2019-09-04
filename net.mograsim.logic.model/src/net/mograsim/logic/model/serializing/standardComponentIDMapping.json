@@ -1,14 +1,15 @@
 mograsim version: 0.1.3
 {
-  "GUIManualSwitch": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
-  "GUIBitDisplay": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
   "GUIAndGate": "class:net.mograsim.logic.model.model.components.atomic.GUIAndGate",
+  "GUIBitDisplay": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
+  "GUIClock": "class:net.mograsim.logic.model.model.components.atomic.GUIClock",
+  "GUIFixedOutput": "class:net.mograsim.logic.model.model.components.atomic.GUIFixedOutput",
+  "GUIManualSwitch": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
   "GUIMerger": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
   "GUINandGate": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
   "GUIOrGate": "class:net.mograsim.logic.model.model.components.atomic.GUIOrGate",
   "GUISplitter": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
   "GUITriStateBuffer": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
-  "GUIClock": "class:net.mograsim.logic.model.model.components.atomic.GUIClock",
   "TextComponent": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
   "WireCrossPoint": "class:net.mograsim.logic.model.model.wires.WireCrossPoint"
 }
