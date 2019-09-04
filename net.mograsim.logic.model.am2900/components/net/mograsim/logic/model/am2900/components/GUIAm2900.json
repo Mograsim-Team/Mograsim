@@ -90,6 +90,84 @@
         }
       },
       {
+        "id": "GUIFixedOutput",
+        "name": "GUIFixedOutput#1",
+        "pos": {
+          "x": 305.0,
+          "y": 85.0
+        },
+        "params": {
+          "bits": [
+            "ZERO"
+          ]
+        }
+      },
+      {
+        "id": "GUIFixedOutput",
+        "name": "GUIFixedOutput#11",
+        "pos": {
+          "x": 145.0,
+          "y": 65.0
+        },
+        "params": {
+          "bits": [
+            "ZERO"
+          ]
+        }
+      },
+      {
+        "id": "GUIFixedOutput",
+        "name": "GUIFixedOutput#3",
+        "pos": {
+          "x": 5.0,
+          "y": 130.0
+        },
+        "params": {
+          "bits": [
+            "ONE"
+          ]
+        }
+      },
+      {
+        "id": "GUIFixedOutput",
+        "name": "GUIFixedOutput#5",
+        "pos": {
+          "x": 110.0,
+          "y": 180.0
+        },
+        "params": {
+          "bits": [
+            "ONE"
+          ]
+        }
+      },
+      {
+        "id": "GUIFixedOutput",
+        "name": "GUIFixedOutput#7",
+        "pos": {
+          "x": 75.0,
+          "y": 215.0
+        },
+        "params": {
+          "bits": [
+            "ZERO"
+          ]
+        }
+      },
+      {
+        "id": "GUIFixedOutput",
+        "name": "GUIFixedOutput#9",
+        "pos": {
+          "x": 145.0,
+          "y": 100.0
+        },
+        "params": {
+          "bits": [
+            "ZERO"
+          ]
+        }
+      },
+      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -122,6 +200,15 @@
         "pos": {
           "x": 470.0,
           "y": 15.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#5",
+        "pos": {
+          "x": 170.0,
+          "y": 65.0
         },
         "params": 1
       }
@@ -477,6 +564,66 @@
       },
       {
         "pin1": {
+          "compName": "GUIFixedOutput#1",
+          "pinName": "out"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "_OECT"
+        },
+        "name": "unnamedWire#35",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIFixedOutput#3",
+          "pinName": "out"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "_RLD"
+        },
+        "name": "unnamedWire#36",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "CI"
+        },
+        "pin2": {
+          "compName": "GUIFixedOutput#5",
+          "pinName": "out"
+        },
+        "name": "unnamedWire#37",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "_OE"
+        },
+        "pin2": {
+          "compName": "GUIFixedOutput#7",
+          "pinName": "out"
+        },
+        "name": "unnamedWire#38",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIFixedOutput#9",
+          "pinName": "out"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "_SE"
+        },
+        "name": "unnamedWire#39",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "DeserializedSubmodelComponent#2",
           "pinName": "RAMn"
         },
@@ -485,6 +632,66 @@
           "pinName": "RAMn+3"
         },
         "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "GUIFixedOutput#11",
+          "pinName": "out"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#40",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "_EZ"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#41",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "_EOVR"
+        },
+        "name": "unnamedWire#42",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "_EC"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#43",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "_EN"
+        },
+        "name": "unnamedWire#44",
         "path": []
       },
       {
