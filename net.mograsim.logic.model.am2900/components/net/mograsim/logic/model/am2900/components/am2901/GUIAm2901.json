@@ -238,84 +238,48 @@
     },
     {
       "location": {
-        "x": 0.0,
-        "y": 255.0
-      },
-      "name": "IQn",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 265.0
-      },
-      "name": "IQn+3",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 235.0
-      },
-      "name": "IRAMn",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 245.0
-      },
-      "name": "IRAMn+3",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 105.0
-      },
-      "name": "OQn",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 115.0
-      },
-      "name": "OQn+3",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 85.0
-      },
-      "name": "ORAMn",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 95.0
-      },
-      "name": "ORAMn+3",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
         "x": 35.0,
         "y": 65.0
       },
       "name": "OVR",
       "logicWidth": 1,
       "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 255.0
+      },
+      "name": "Qn",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 115.0
+      },
+      "name": "Qn+3",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 235.0
+      },
+      "name": "RAMn",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 95.0
+      },
+      "name": "RAMn+3",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
     },
     {
       "location": {
@@ -390,6 +354,54 @@
           "y": 440.0
         },
         "params": 1
+      },
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#0",
+        "pos": {
+          "x": 255.0,
+          "y": 2485.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#1",
+        "pos": {
+          "x": 270.0,
+          "y": 2435.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "DOWN"
+        }
+      },
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#3",
+        "pos": {
+          "x": 300.0,
+          "y": 2515.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "GUITriStateBuffer",
+        "name": "GUITriStateBuffer#4",
+        "pos": {
+          "x": 300.0,
+          "y": 2310.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT_ALT"
+        }
       },
       {
         "id": "GUIand",
@@ -593,8 +605,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#21",
         "pos": {
-          "x": 329.0,
-          "y": 949.0
+          "x": 334.0,
+          "y": 2319.0
         },
         "params": 1
       },
@@ -784,6 +796,69 @@
         "pos": {
           "x": 314.0,
           "y": 449.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#41",
+        "pos": {
+          "x": 4.0,
+          "y": 2549.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#42",
+        "pos": {
+          "x": 4.0,
+          "y": 2349.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#43",
+        "pos": {
+          "x": 339.0,
+          "y": 2524.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#44",
+        "pos": {
+          "x": 29.0,
+          "y": 2469.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#45",
+        "pos": {
+          "x": 264.0,
+          "y": 2469.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#46",
+        "pos": {
+          "x": 39.0,
+          "y": 2474.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#47",
+        "pos": {
+          "x": 309.0,
+          "y": 2474.0
         },
         "params": 1
       },
@@ -1151,22 +1226,18 @@
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "IRAMn"
+          "compName": "GUIsel3_4#1",
+          "pinName": "A1"
         },
         "pin2": {
-          "compName": "GUIsel3_4#0",
-          "pinName": "A1"
+          "compName": "WireCrossPoint#41",
+          "pinName": ""
         },
         "name": "unnamedWire#117",
         "path": [
           {
             "x": 5.0,
-            "y": 2350.0
-          },
-          {
-            "x": 5.0,
-            "y": 2345.0
+            "y": 2545.0
           }
         ]
       },
@@ -1405,24 +1476,15 @@
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "IRAMn+3"
+          "compName": "WireCrossPoint#16",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "GUIsel3_4#0",
-          "pinName": "C4"
+          "compName": "GUITriStateBuffer#3",
+          "pinName": "IN"
         },
         "name": "unnamedWire#135",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 2450.0
-          },
-          {
-            "x": 5.0,
-            "y": 2455.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1793,6 +1855,55 @@
       },
       {
         "pin1": {
+          "compName": "GUITriStateBuffer#3",
+          "pinName": "OUT"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#43",
+          "pinName": ""
+        },
+        "name": "unnamedWire#157",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#41",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#158",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 2690.0
+          },
+          {
+            "x": 280.0,
+            "y": 2690.0
+          },
+          {
+            "x": 280.0,
+            "y": 2495.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#1",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#159",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "WireCrossPoint#3",
           "pinName": ""
         },
@@ -1801,6 +1912,163 @@
           "pinName": "C"
         },
         "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#42",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUIsel3_4#0",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#160",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 2345.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#42",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#1",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#161",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 2465.0
+          },
+          {
+            "x": 280.0,
+            "y": 2465.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#20",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "F3"
+        },
+        "name": "unnamedWire#162",
+        "path": [
+          {
+            "x": 330.0,
+            "y": 2145.0
+          },
+          {
+            "x": 330.0,
+            "y": 750.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "Qn+3"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#43",
+          "pinName": ""
+        },
+        "name": "unnamedWire#163",
+        "path": [
+          {
+            "x": 340.0,
+            "y": 1150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "name": "unnamedWire#164",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#45",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#1",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#165",
+        "path": [
+          {
+            "x": 290.0,
+            "y": 2470.0
+          },
+          {
+            "x": 290.0,
+            "y": 2445.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#45",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#166",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#45",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
+        },
+        "name": "unnamedWire#167",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#46",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#168",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#46",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#47",
+          "pinName": ""
+        },
+        "name": "unnamedWire#169",
         "path": []
       },
       {
@@ -1825,6 +2093,35 @@
           {
             "x": 80.0,
             "y": 2495.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "GUITriStateBuffer#3",
+          "pinName": "EN"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#47",
+          "pinName": ""
+        },
+        "name": "unnamedWire#170",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#20",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "GUITriStateBuffer#4",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#171",
+        "path": [
+          {
+            "x": 295.0,
+            "y": 2320.0
           }
         ]
       },
@@ -1962,7 +2259,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#4",
+          "compName": "WireCrossPoint#46",
           "pinName": ""
         },
         "pin2": {
@@ -1996,12 +2293,12 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#6",
-          "pinName": ""
-        },
-        "pin2": {
           "compName": "GUIsel3_4#1",
           "pinName": "SC"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
         },
         "name": "unnamedWire#26",
         "path": [
@@ -2814,20 +3111,11 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "OQn"
+          "compName": "GUITriStateBuffer#0",
+          "pinName": "IN"
         },
         "name": "unnamedWire#69",
-        "path": [
-          {
-            "x": 335.0,
-            "y": 2495.0
-          },
-          {
-            "x": 335.0,
-            "y": 1050.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2864,24 +3152,15 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#16",
-          "pinName": ""
+          "compName": "_submodelinterface",
+          "pinName": "Qn"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "OQn+3"
+          "compName": "WireCrossPoint#41",
+          "pinName": ""
         },
         "name": "unnamedWire#71",
-        "path": [
-          {
-            "x": 340.0,
-            "y": 2525.0
-          },
-          {
-            "x": 340.0,
-            "y": 1150.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2992,45 +3271,27 @@
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "IQn+3"
+          "compName": "WireCrossPoint#43",
+          "pinName": ""
         },
         "pin2": {
           "compName": "GUIsel3_4#1",
           "pinName": "C4"
         },
         "name": "unnamedWire#77",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 2650.0
-          },
-          {
-            "x": 5.0,
-            "y": 2655.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "IQn"
+          "pinName": "RAMn"
         },
         "pin2": {
-          "compName": "GUIsel3_4#1",
-          "pinName": "A1"
+          "compName": "WireCrossPoint#42",
+          "pinName": ""
         },
         "name": "unnamedWire#78",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 2550.0
-          },
-          {
-            "x": 5.0,
-            "y": 2545.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -3324,41 +3585,27 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#19",
-          "pinName": ""
+          "compName": "GUITriStateBuffer#4",
+          "pinName": "OUT"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "ORAMn"
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
         },
         "name": "unnamedWire#94",
-        "path": [
-          {
-            "x": 325.0,
-            "y": 2115.0
-          },
-          {
-            "x": 325.0,
-            "y": 850.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#20",
+          "compName": "WireCrossPoint#47",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#21",
-          "pinName": ""
+          "compName": "GUITriStateBuffer#4",
+          "pinName": "EN"
         },
         "name": "unnamedWire#95",
-        "path": [
-          {
-            "x": 330.0,
-            "y": 2145.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -3366,8 +3613,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "ORAMn+3"
+          "compName": "GUIsel3_4#0",
+          "pinName": "C4"
         },
         "name": "unnamedWire#96",
         "path": []
@@ -3379,13 +3626,13 @@
         },
         "pin2": {
           "compName": "_submodelinterface",
-          "pinName": "F3"
+          "pinName": "RAMn+3"
         },
         "name": "unnamedWire#97",
         "path": [
           {
-            "x": 330.0,
-            "y": 750.0
+            "x": 335.0,
+            "y": 950.0
           }
         ]
       },
