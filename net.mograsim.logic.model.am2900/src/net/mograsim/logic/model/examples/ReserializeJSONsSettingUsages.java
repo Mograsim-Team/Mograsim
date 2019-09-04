@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
@@ -24,6 +25,7 @@ public class ReserializeJSONsSettingUsages
 {
 	public static void main(String[] args) throws IOException
 	{
+		Am2900Loader.setup();
 		try (Scanner sysin = new Scanner(System.in))
 		{
 			System.out.print("Directory to search for JSONs in / JSON file to reserialize >");
