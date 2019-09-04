@@ -14,7 +14,7 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.TriStateBufferAdapter;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.preferences.Preferences;
@@ -87,7 +87,13 @@ public class GUITriStateBuffer extends GUIComponent
 	}
 
 	@Override
-	public GUITriStateBufferParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "GUITriStateBuffer";
+	}
+
+	@Override
+	public GUITriStateBufferParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		return params;
 	}

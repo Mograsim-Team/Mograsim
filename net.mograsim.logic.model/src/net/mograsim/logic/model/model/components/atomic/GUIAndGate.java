@@ -15,7 +15,7 @@ public class GUIAndGate extends SimpleRectangularGUIGate
 
 	public GUIAndGate(ViewModelModifiable model, int logicWidth, String name)
 	{
-		super(model, "&", false, logicWidth, name);
+		super(model, "GUIAndGate", "&", false, logicWidth, name);
 		setInputCount(2);// TODO make variable
 	}
 

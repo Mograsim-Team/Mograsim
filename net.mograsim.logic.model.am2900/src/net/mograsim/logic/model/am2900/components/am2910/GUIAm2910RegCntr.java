@@ -22,7 +22,7 @@ public class GUIAm2910RegCntr extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUIAm2910RegCntr(ViewModelModifiable model, String name)
 	{
-		super(model, name, "Register/\nCounter");
+		super(model, "GUIAm2910RegCntr", name, "Register/\nCounter");
 		setSize(40, 40);
 		addPin(new Pin(this, "D", 12, PinUsage.INPUT, 20, 0), Position.BOTTOM);
 		addPin(new Pin(this, "_RLD", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);

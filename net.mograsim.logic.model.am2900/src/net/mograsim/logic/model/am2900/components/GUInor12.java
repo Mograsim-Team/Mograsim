@@ -22,7 +22,7 @@ public class GUInor12 extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUInor12(ViewModelModifiable model, String name)
 	{
-		super(model, name, "=0");
+		super(model, "GUInor12", name, "=0");
 		setSize(35, 20);
 		addPin(new Pin(this, "D", 12, PinUsage.INPUT, 0, 10), Position.RIGHT);
 		addPin(new Pin(this, "Y", 1, PinUsage.OUTPUT, 35, 10), Position.LEFT);

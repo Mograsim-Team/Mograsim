@@ -2,7 +2,7 @@ package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic
 
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
@@ -66,7 +66,13 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 	}
 
 	@Override
-	public DelegatingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "delegating";
+	}
+
+	@Override
+	public DelegatingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		DelegatingAtomicHighLevelStateHandlerParams params = new DelegatingAtomicHighLevelStateHandlerParams();
 		params.delegateTarget = delegateTarget.name;

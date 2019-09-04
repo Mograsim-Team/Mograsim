@@ -22,7 +22,7 @@ public class GUIAm2910SP extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUIAm2910SP(ViewModelModifiable model, String name)
 	{
-		super(model, name, "Stack\npointer");
+		super(model, "GUIAm2910SP", name, "Stack\npointer");
 		setSize(40, 30);
 		addPin(new Pin(this, "STKI0", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
 		addPin(new Pin(this, "STKI1", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);

@@ -22,7 +22,7 @@ public class GUIdff12 extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUIdff12(ViewModelModifiable model, String name)
 	{
-		super(model, name, "D flip flop\n12 bits");
+		super(model, "GUIdff12", name, "D flip flop\n12 bits");
 		setSize(40, 20);
 		addPin(new Pin(this, "D", 12, PinUsage.INPUT, 20, 20), Position.TOP);
 		addPin(new Pin(this, "C", 1, PinUsage.INPUT, 0, 10), Position.RIGHT);

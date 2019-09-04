@@ -22,7 +22,7 @@ public class GUIAm2904RegCTInstrDecode extends SimpleRectangularHardcodedGUIComp
 {
 	public GUIAm2904RegCTInstrDecode(ViewModelModifiable model, String name)
 	{
-		super(model, name, "Instruction\ndecode");
+		super(model, "GUIAm2904RegCTInstrDecode", name, "Instruction\ndecode");
 		setSize(80, 80);
 		addPin(new Pin(this, "I12-11", 2, PinUsage.INPUT, 0, 30), Position.RIGHT);
 		addPin(new Pin(this, "I5-0", 6, PinUsage.INPUT, 0, 50), Position.RIGHT);

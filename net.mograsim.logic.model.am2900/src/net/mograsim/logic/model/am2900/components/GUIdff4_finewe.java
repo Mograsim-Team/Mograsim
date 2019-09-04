@@ -24,7 +24,7 @@ public class GUIdff4_finewe extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUIdff4_finewe(ViewModelModifiable model, String name)
 	{
-		super(model, name, "D flip flop\n4 bits");
+		super(model, "GUIdff4_finewe", name, "D flip flop\n4 bits");
 		setSize(35, 90);
 		addPin(new Pin(this, "C", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
 		addPin(new Pin(this, "_WE1", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);

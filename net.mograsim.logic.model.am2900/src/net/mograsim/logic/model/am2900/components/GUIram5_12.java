@@ -26,7 +26,7 @@ public class GUIram5_12 extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUIram5_12(ViewModelModifiable model, String name)
 	{
-		super(model, name, "RAM\n5 x 12 Bit");
+		super(model, "GUIram5_12", name, "RAM\n5 x 12 Bit");
 		setSize(40, 40);
 		addPin(new Pin(this, "A", 3, PinUsage.INPUT, 10, 0), Position.BOTTOM);
 		addPin(new Pin(this, "B", 3, PinUsage.INPUT, 30, 0), Position.BOTTOM);

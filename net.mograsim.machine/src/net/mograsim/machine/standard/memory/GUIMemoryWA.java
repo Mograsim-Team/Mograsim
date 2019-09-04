@@ -8,7 +8,7 @@ import net.mograsim.logic.model.model.components.atomic.GUIAndGate;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
@@ -82,7 +82,13 @@ public class GUIMemoryWA extends GUIComponent
 	}
 
 	@Override
-	public GUIMemoryWAParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "GUIMemoryWA";//TODO
+	}
+
+	@Override
+	public GUIMemoryWAParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		GUIMemoryWAParams params = new GUIMemoryWAParams();
 		params.addrBits = definition.getMemoryAddressBits();

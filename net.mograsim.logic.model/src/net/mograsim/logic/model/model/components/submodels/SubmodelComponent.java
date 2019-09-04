@@ -17,7 +17,7 @@ import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
@@ -422,9 +422,15 @@ public abstract class SubmodelComponent extends GUIComponent
 	// serializing
 
 	@Override
-	public SubmodelComponentParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
 	{
-		return SubmodelComponentSerializer.serialize(this, idGetter);
+		return "submodel";// TODO what ID?
+	}
+
+	@Override
+	public SubmodelComponentParams getParamsForSerializing(IdentifyParams idParams)
+	{
+		return SubmodelComponentSerializer.serialize(this, idParams);
 	}
 
 	// operations no longer supported

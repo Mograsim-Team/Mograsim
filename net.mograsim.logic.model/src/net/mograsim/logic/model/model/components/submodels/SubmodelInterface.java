@@ -5,6 +5,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 
 public class SubmodelInterface extends GUIComponent
 {
@@ -16,6 +17,12 @@ public class SubmodelInterface extends GUIComponent
 	@Override
 	public void render(GeneralGC gc, Rectangle visibleRegion)
 	{// nothing to do here
+	}
+
+	@Override
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		throw new UnsupportedOperationException("A SubmodelInterface can't be serialized. Use SubmodelComponent.addSubmodelInterface");
 	}
 
 	/**

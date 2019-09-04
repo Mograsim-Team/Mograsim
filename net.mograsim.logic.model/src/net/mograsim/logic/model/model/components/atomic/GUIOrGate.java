@@ -15,7 +15,7 @@ public class GUIOrGate extends SimpleRectangularGUIGate
 
 	public GUIOrGate(ViewModelModifiable model, int logicWidth, String name)
 	{
-		super(model, "\u22651", false, logicWidth, name);// ">=1"
+		super(model, "GUIOrGate", "\u22651", false, logicWidth, name);// ">=1"
 		setInputCount(2);
 	}
 

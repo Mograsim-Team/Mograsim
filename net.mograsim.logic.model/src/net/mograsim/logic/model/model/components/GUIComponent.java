@@ -11,7 +11,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.JSONSerializable;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 
@@ -286,7 +286,7 @@ public abstract class GUIComponent implements JSONSerializable
 	// serializing
 
 	@Override
-	public Object getParamsForSerializing(IdentifierGetter idGetter)
+	public Object getParamsForSerializing(IdentifyParams idParams)
 	{
 		return null;
 	}

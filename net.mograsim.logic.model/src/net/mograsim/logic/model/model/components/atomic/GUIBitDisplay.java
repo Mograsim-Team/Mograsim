@@ -15,7 +15,7 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.BitDisplayAdapter;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.preferences.Preferences;
 
@@ -91,7 +91,13 @@ public class GUIBitDisplay extends GUIComponent
 	}
 
 	@Override
-	public Integer getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "GUIBitDisplay";
+	}
+
+	@Override
+	public Integer getParamsForSerializing(IdentifyParams idParams)
 	{
 		return logicWidth;
 	}

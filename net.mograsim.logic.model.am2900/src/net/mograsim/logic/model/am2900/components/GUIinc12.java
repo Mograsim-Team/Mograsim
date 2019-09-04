@@ -22,7 +22,7 @@ public class GUIinc12 extends SimpleRectangularHardcodedGUIComponent
 {
 	public GUIinc12(ViewModelModifiable model, String name)
 	{
-		super(model, name, "Incrementer");
+		super(model, "GUIinc12", name, "Incrementer");
 		setSize(40, 20);
 		addPin(new Pin(this, "A", 12, PinUsage.INPUT, 20, 20), Position.TOP);
 		addPin(new Pin(this, "CI", 1, PinUsage.INPUT, 40, 10), Position.LEFT);

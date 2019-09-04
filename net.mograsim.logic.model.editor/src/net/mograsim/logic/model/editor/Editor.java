@@ -25,7 +25,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 
 public final class Editor
@@ -179,7 +179,7 @@ public final class Editor
 	{
 		if (identifierPerComponent.containsKey(c))
 			return identifierPerComponent.get(c);
-		return new IdentifierGetter().componentIDs.apply(c);
+		return c.getIDForSerializing(new IdentifyParams());
 	}
 
 	public void duplicate()

@@ -11,7 +11,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.logic.model.snippets.Renderer;
 
@@ -32,7 +32,13 @@ public class Am2904Testbench
 		testbench.setOutlineRenderer(new Renderer()
 		{
 			@Override
-			public Void getParamsForSerializing(IdentifierGetter idGetter)
+			public String getIDForSerializing(IdentifyParams idParams)
+			{
+				return null;
+			}
+
+			@Override
+			public Void getParamsForSerializing(IdentifyParams idParams)
 			{
 				return null;
 			}
