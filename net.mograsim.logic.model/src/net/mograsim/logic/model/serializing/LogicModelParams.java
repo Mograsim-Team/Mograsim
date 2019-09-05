@@ -5,12 +5,12 @@ import com.google.gson.JsonElement;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.util.Version;
 
-public class ViewModelParams extends SerializablePojo
+public class LogicModelParams extends SerializablePojo
 {
 	public ComponentParams[] components;
 	public WireParams[] wires;
 
-	public ViewModelParams(Version version)
+	public LogicModelParams(Version version)
 	{
 		super(version);
 	}

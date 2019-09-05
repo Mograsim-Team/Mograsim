@@ -2,7 +2,7 @@ package net.mograsim.machine.standard.memory;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelAndGate;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -26,7 +26,7 @@ public class ModelMemoryWA extends ModelComponent
 	private Renderer						symbolRenderer;
 	private Renderer						outlineRenderer;
 
-	public ModelMemoryWA(ViewModelModifiable model, MainMemoryDefinition definition, String name)
+	public ModelMemoryWA(LogicModelModifiable model, MainMemoryDefinition definition, String name)
 	{
 		super(model, name);
 		this.definition = definition;

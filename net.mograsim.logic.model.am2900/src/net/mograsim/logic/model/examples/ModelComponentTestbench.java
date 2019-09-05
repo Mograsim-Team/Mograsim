@@ -6,7 +6,7 @@ import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.am2900.Am2900Loader;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
@@ -23,7 +23,7 @@ public class ModelComponentTestbench
 	}
 
 	@SuppressWarnings("unused") // for ModelWires being created
-	public static void createTestbench(ViewModelModifiable model)
+	public static void createTestbench(LogicModelModifiable model)
 	{
 		Am2900Loader.setup();
 		ModelComponent comp = IndirectModelComponentCreator.createComponent(model,

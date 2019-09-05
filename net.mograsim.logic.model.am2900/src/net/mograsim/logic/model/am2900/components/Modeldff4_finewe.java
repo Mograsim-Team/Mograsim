@@ -13,7 +13,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -22,7 +22,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.
 
 public class Modeldff4_finewe extends SimpleRectangularHardcodedModelComponent
 {
-	public Modeldff4_finewe(ViewModelModifiable model, String name)
+	public Modeldff4_finewe(LogicModelModifiable model, String name)
 	{
 		super(model, "dff4_finewe", name, "D flip flop\n4 bits");
 		setSize(35, 90);

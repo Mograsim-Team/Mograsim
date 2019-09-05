@@ -11,7 +11,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -20,7 +20,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.
 
 public class Modeldff12 extends SimpleRectangularHardcodedModelComponent
 {
-	public Modeldff12(ViewModelModifiable model, String name)
+	public Modeldff12(LogicModelModifiable model, String name)
 	{
 		super(model, "dff12", name, "D flip flop\n12 bits");
 		setSize(40, 20);

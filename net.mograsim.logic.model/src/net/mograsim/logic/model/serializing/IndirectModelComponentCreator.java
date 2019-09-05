@@ -12,7 +12,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 import com.google.gson.JsonObject;
 
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.util.JsonHandler;
@@ -76,22 +76,22 @@ public class IndirectModelComponentCreator
 		componentSuppliers.put(id, componentSupplier);
 	}
 
-	public static ModelComponent createComponent(ViewModelModifiable model, String id)
+	public static ModelComponent createComponent(LogicModelModifiable model, String id)
 	{
 		return createComponent(model, id, (String) null);
 	}
 
-	public static ModelComponent createComponent(ViewModelModifiable model, String id, String name)
+	public static ModelComponent createComponent(LogicModelModifiable model, String id, String name)
 	{
 		return createComponent(model, id, JsonNull.INSTANCE, name);
 	}
 
-	public static ModelComponent createComponent(ViewModelModifiable model, String id, JsonElement params)
+	public static ModelComponent createComponent(LogicModelModifiable model, String id, JsonElement params)
 	{
 		return createComponent(model, id, params, null);
 	}
 
-	public static ModelComponent createComponent(ViewModelModifiable model, String id, JsonElement params, String name)
+	public static ModelComponent createComponent(LogicModelModifiable model, String id, JsonElement params, String name)
 	{
 		if (id == null)
 			throw new NullPointerException("Component ID is null");
@@ -184,7 +184,7 @@ public class IndirectModelComponentCreator
 		return id.matches("jsonfile:(.+)|(resloader:([^:]+):)?(jsonres|class):[^:]+");
 	}
 
-	private static SubmodelComponent loadComponentFromJsonObject(ViewModelModifiable model, String id, String name, JsonObject jsonContents)
+	private static SubmodelComponent loadComponentFromJsonObject(LogicModelModifiable model, String id, String name, JsonObject jsonContents)
 	{
 		componentCache.putIfAbsent(id, jsonContents);
 		SerializablePojo jsonContentsAsSerializablePojo = JsonHandler.parser.fromJson(jsonContents, SerializablePojo.class);
@@ -217,6 +217,6 @@ public class IndirectModelComponentCreator
 
 	public static interface ComponentSupplier
 	{
-		public ModelComponent create(ViewModelModifiable model, JsonElement params, String name);
+		public ModelComponent create(LogicModelModifiable model, JsonElement params, String name);
 	}
 }

@@ -7,7 +7,7 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
 import net.mograsim.logic.model.am2900.Am2900Loader;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
@@ -23,9 +23,9 @@ public class Am2904Testbench
 		SimpleLogicUIStandalone.executeVisualisation(Am2904Testbench::create, Am2904Testbench::beforeRun);
 	}
 
-	public static void create(ViewModelModifiable model)
+	public static void create(LogicModelModifiable model)
 	{
-		// TODO replace with proper ViewModel deserialization
+		// TODO replace with proper LogicModel deserialization
 		DeserializedSubmodelComponent testbench = (DeserializedSubmodelComponent) IndirectModelComponentCreator.createComponent(model,
 				"jsonfile:Am2904Testbench.json", "testbench");
 		testbench.setSize(1000, 1000);

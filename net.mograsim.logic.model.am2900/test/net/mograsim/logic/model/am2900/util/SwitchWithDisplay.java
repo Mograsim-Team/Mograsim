@@ -3,7 +3,7 @@ package net.mograsim.logic.model.am2900.util;
 import net.mograsim.logic.core.components.CoreBitDisplay;
 import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -16,7 +16,7 @@ public class SwitchWithDisplay
 	private final ModelBitDisplay modelBitDisplay;
 	private final ModelManualSwitch modelManualSwitch;
 
-	public SwitchWithDisplay(ViewModelModifiable model, Pin target)
+	public SwitchWithDisplay(LogicModelModifiable model, Pin target)
 	{
 		pin = target;
 		modelBitDisplay = new ModelBitDisplay(model, pin.logicWidth);

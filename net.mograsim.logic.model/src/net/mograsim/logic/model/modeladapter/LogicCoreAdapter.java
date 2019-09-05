@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
-import net.mograsim.logic.model.model.ViewModel;
+import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelInterface;
@@ -31,23 +31,23 @@ public class LogicCoreAdapter
 		componentAdapters.put(componentAdapter.getSupportedClass(), componentAdapter);
 	}
 
-	public static Timeline convert(ViewModel viewModel, CoreModelParameters params)
+	public static Timeline convert(LogicModel logicModel, CoreModelParameters params)
 	{
 		// TODO replace Timeline with CoreModel as soon as it exists
 		Timeline timeline = new Timeline(10);
 
-		convert(viewModel, params, timeline, Map.of());
+		convert(logicModel, params, timeline, Map.of());
 
 		return timeline;
 	}
 
-	private static void convert(ViewModel viewModel, CoreModelParameters params, Timeline timeline, Map<Pin, CoreWire> externalWires)
+	private static void convert(LogicModel logicModel, CoreModelParameters params, Timeline timeline, Map<Pin, CoreWire> externalWires)
 	{
-		Map<Pin, CoreWire> logicWiresPerPin = convertWires(getAllPins(viewModel), viewModel.getWiresByName().values(), externalWires,
+		Map<Pin, CoreWire> logicWiresPerPin = convertWires(getAllPins(logicModel), logicModel.getWiresByName().values(), externalWires,
 				params, timeline);
 		Map<Pin, CoreWire> logicWiresPerPinUnmodifiable = Collections.unmodifiableMap(logicWiresPerPin);
 
-		for (ModelComponent modelComp : viewModel.getComponentsByName().values())
+		for (ModelComponent modelComp : logicModel.getComponentsByName().values())
 		{
 			if (modelComp instanceof SubmodelComponent)
 			{
@@ -65,9 +65,9 @@ public class LogicCoreAdapter
 		}
 	}
 
-	private static Set<Pin> getAllPins(ViewModel viewModel)
+	private static Set<Pin> getAllPins(LogicModel logicModel)
 	{
-		return viewModel.getComponentsByName().values().stream().flatMap(component -> component.getPins().values().stream())
+		return logicModel.getComponentsByName().values().stream().flatMap(component -> component.getPins().values().stream())
 				.collect(Collectors.toSet());
 	}
 

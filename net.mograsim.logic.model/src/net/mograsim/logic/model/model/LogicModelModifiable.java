@@ -5,7 +5,7 @@ import java.util.Set;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 
-public class ViewModelModifiable extends ViewModel
+public class LogicModelModifiable extends LogicModel
 {
 	public String getDefaultComponentName(ModelComponent component)
 	{

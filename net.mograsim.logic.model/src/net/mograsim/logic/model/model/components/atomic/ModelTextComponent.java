@@ -5,7 +5,7 @@ import org.eclipse.swt.graphics.Color;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.NoLogicAdapter;
@@ -19,12 +19,12 @@ public class ModelTextComponent extends ModelComponent
 	private final String text;
 	private boolean calculatedSize;
 
-	public ModelTextComponent(ViewModelModifiable model, String text)
+	public ModelTextComponent(LogicModelModifiable model, String text)
 	{
 		this(model, text, null);
 	}
 
-	public ModelTextComponent(ViewModelModifiable model, String text, String name)
+	public ModelTextComponent(LogicModelModifiable model, String text, String name)
 	{
 		super(model, name);
 		this.text = text;

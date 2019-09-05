@@ -11,7 +11,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -36,7 +36,7 @@ public class SimpleRectangularModelGate extends ModelComponent
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
 
-	protected SimpleRectangularModelGate(ViewModelModifiable model, String id, String label, boolean isInverted, int logicWidth, String name)
+	protected SimpleRectangularModelGate(LogicModelModifiable model, String id, String label, boolean isInverted, int logicWidth, String name)
 	{
 		super(model, name);
 		this.id = id;

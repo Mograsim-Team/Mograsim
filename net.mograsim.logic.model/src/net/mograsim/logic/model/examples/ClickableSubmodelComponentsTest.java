@@ -1,7 +1,7 @@
 package net.mograsim.logic.model.examples;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubmodelComponent;
@@ -14,7 +14,7 @@ public class ClickableSubmodelComponentsTest
 		SimpleLogicUIStandalone.executeVisualisation(ClickableSubmodelComponentsTest::createExample);
 	}
 
-	public static void createExample(ViewModelModifiable model)
+	public static void createExample(LogicModelModifiable model)
 	{
 		@SuppressWarnings("unused") // Wire
 		SimpleRectangularSubmodelComponent comp = new SimpleRectangularSubmodelComponent(model, 1, "")

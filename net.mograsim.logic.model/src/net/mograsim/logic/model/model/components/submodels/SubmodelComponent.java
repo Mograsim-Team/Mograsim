@@ -11,8 +11,8 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.LogicUIRenderer;
-import net.mograsim.logic.model.model.ViewModel;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModel;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -35,11 +35,11 @@ public abstract class SubmodelComponent extends ModelComponent
 	/**
 	 * A modifiable view of {@link #submodel}.
 	 */
-	protected final ViewModelModifiable submodelModifiable;
+	protected final LogicModelModifiable submodelModifiable;
 	/**
 	 * The model this {@link SubmodelComponent} consists of.
 	 */
-	public final ViewModel submodel;
+	public final LogicModel submodel;
 	/**
 	 * The list of all submodel interface pins of this {@link SubmodelComponent} on the submodel side.
 	 */
@@ -99,10 +99,10 @@ public abstract class SubmodelComponent extends ModelComponent
 
 	// creation and destruction
 
-	public SubmodelComponent(ViewModelModifiable model, String name)
+	public SubmodelComponent(LogicModelModifiable model, String name)
 	{
 		super(model, name);
-		this.submodelModifiable = new ViewModelModifiable();
+		this.submodelModifiable = new LogicModelModifiable();
 		this.submodel = submodelModifiable;
 		this.submodelPins = new HashMap<>();
 		this.submodelMovablePinsUnmodifiable = Collections.unmodifiableMap(submodelPins);

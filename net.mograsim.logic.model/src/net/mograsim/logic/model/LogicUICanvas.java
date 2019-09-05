@@ -22,7 +22,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.model.model.ViewModel;
+import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelInterface;
@@ -38,9 +38,9 @@ public class LogicUICanvas extends ZoomableCanvas
 {
 	private static final boolean OPEN_DEBUG_SETHIGHLEVELSTATE_SHELL = false;
 
-	private final ViewModel model;
+	private final LogicModel model;
 
-	public LogicUICanvas(Composite parent, int style, ViewModel model)
+	public LogicUICanvas(Composite parent, int style, LogicModel model)
 	{
 		super(parent, style, Preferences.current().getBoolean("net.mograsim.logic.model.improvetext"));
 
@@ -76,7 +76,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		}
 	}
 
-	private void openDebugSetHighLevelStateShell(ViewModel model)
+	private void openDebugSetHighLevelStateShell(LogicModel model)
 	{
 		Shell debugShell = new Shell();
 		debugShell.setLayout(new GridLayout(2, false));
@@ -161,14 +161,14 @@ public class LogicUICanvas extends ZoomableCanvas
 		debugShell.open();
 	}
 
-	private void recalculateComponentSelector(List<ModelComponent> componentsByItemIndex, Combo componentSelector, ViewModel model)
+	private void recalculateComponentSelector(List<ModelComponent> componentsByItemIndex, Combo componentSelector, LogicModel model)
 	{
 		componentsByItemIndex.clear();
 		componentSelector.setItems();
 		addComponentSelectorItems(componentsByItemIndex, "", componentSelector, model);
 	}
 
-	private void addComponentSelectorItems(List<ModelComponent> componentsByItemIndex, String base, Combo componentSelector, ViewModel model)
+	private void addComponentSelectorItems(List<ModelComponent> componentsByItemIndex, String base, Combo componentSelector, LogicModel model)
 	{
 		model.getComponentsByName().values().stream().sorted((c1, c2) -> c1.name.compareTo(c2.name)).forEach(c ->
 		{

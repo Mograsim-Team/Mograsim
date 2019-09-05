@@ -9,7 +9,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.editor.states.EditorState;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.ModelWire;
 
 public class WireHandle extends Handle
@@ -17,10 +17,10 @@ public class WireHandle extends Handle
 	private boolean selected = false;
 	private final static double WIDTH = 2.0;
 	private final static double WIDTH_SQUARED = WIDTH * WIDTH;
-	private final ViewModelModifiable model;
+	private final LogicModelModifiable model;
 	public final ModelWire parent;
 
-	public WireHandle(ViewModelModifiable model, ModelWire parent)
+	public WireHandle(LogicModelModifiable model, ModelWire parent)
 	{
 		super(5);
 		this.model = model;

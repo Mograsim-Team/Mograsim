@@ -10,7 +10,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -29,7 +29,7 @@ public class ModelFixedOutput extends ModelComponent
 
 	public final BitVector bits;
 
-	public ModelFixedOutput(ViewModelModifiable model, BitVector bits, String name)
+	public ModelFixedOutput(LogicModelModifiable model, BitVector bits, String name)
 	{
 		super(model, name);
 		this.bits = bits;

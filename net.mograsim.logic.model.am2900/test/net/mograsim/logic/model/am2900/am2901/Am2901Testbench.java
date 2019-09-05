@@ -9,7 +9,7 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
 import net.mograsim.logic.model.am2900.Am2900Loader;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelAndGate;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
@@ -30,7 +30,7 @@ public class Am2901Testbench
 		SimpleLogicUIStandalone.executeVisualisation(Am2901Testbench::createTestbench, Am2901Testbench::beforeRun);
 	}
 
-	public static void createTestbench(ViewModelModifiable model)
+	public static void createTestbench(LogicModelModifiable model)
 	{
 		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "Am2901");
 		ModellingTool tool = ModellingTool.createFor(model);

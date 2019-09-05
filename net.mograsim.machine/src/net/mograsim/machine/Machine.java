@@ -3,14 +3,14 @@ package net.mograsim.machine;
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.model.model.ViewModel;
+import net.mograsim.logic.model.model.LogicModel;
 
 public interface Machine {
 	MachineDefinition getDefinition();
 	
 	void reset();
 	
-	ViewModel getModel();
+	LogicModel getModel();
 	
 	CoreClock getClock();
 	

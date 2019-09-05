@@ -6,7 +6,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -29,12 +29,12 @@ public class ModelMerger extends ModelComponent
 	private final ReadEnd[] inputEnds;
 	private ReadEnd outputEnd;
 
-	public ModelMerger(ViewModelModifiable model, int logicWidth)
+	public ModelMerger(LogicModelModifiable model, int logicWidth)
 	{
 		this(model, logicWidth, null);
 	}
 
-	public ModelMerger(ViewModelModifiable model, int logicWidth, String name)
+	public ModelMerger(LogicModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
 		this.logicWidth = logicWidth;

@@ -10,7 +10,7 @@ import java.util.Map;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -19,7 +19,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.
 
 public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponent
 {
-	public ModelAm2910InstrPLA(ViewModelModifiable model, String name)
+	public ModelAm2910InstrPLA(LogicModelModifiable model, String name)
 	{
 		super(model, "Am2910InstrPLA", name, "Instr.\nPLA");
 		setSize(30, 85);

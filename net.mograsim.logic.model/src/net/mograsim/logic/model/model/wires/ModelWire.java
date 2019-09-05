@@ -15,7 +15,7 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
 import net.mograsim.preferences.Preferences;
@@ -30,7 +30,7 @@ public class ModelWire
 	/**
 	 * The model this wire is a part of.
 	 */
-	private final ViewModelModifiable model;
+	private final LogicModelModifiable model;
 	/**
 	 * The name of this wire. Is unique for all wires in its model.
 	 */
@@ -80,7 +80,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, ModelWireCrossPoint pin1, ModelWireCrossPoint pin2)
+	public ModelWire(LogicModelModifiable model, ModelWireCrossPoint pin1, ModelWireCrossPoint pin2)
 	{
 		this(model, null, pin1, pin2);
 	}
@@ -90,7 +90,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, ModelWireCrossPoint pin1, Pin pin2)
+	public ModelWire(LogicModelModifiable model, ModelWireCrossPoint pin1, Pin pin2)
 	{
 		this(model, null, pin1, pin2);
 	}
@@ -100,7 +100,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, Pin pin1, ModelWireCrossPoint pin2)
+	public ModelWire(LogicModelModifiable model, Pin pin1, ModelWireCrossPoint pin2)
 	{
 		this(model, null, pin1, pin2);
 	}
@@ -110,7 +110,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, Pin pin1, Pin pin2)
+	public ModelWire(LogicModelModifiable model, Pin pin1, Pin pin2)
 	{
 		this(model, null, pin1, pin2);
 	}
@@ -120,7 +120,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, ModelWireCrossPoint pin1, ModelWireCrossPoint pin2, Point... path)
+	public ModelWire(LogicModelModifiable model, ModelWireCrossPoint pin1, ModelWireCrossPoint pin2, Point... path)
 	{
 		this(model, null, pin1, pin2, path);
 	}
@@ -130,7 +130,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, ModelWireCrossPoint pin1, Pin pin2, Point... path)
+	public ModelWire(LogicModelModifiable model, ModelWireCrossPoint pin1, Pin pin2, Point... path)
 	{
 		this(model, null, pin1, pin2, path);
 	}
@@ -140,7 +140,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, Pin pin1, ModelWireCrossPoint pin2, Point... path)
+	public ModelWire(LogicModelModifiable model, Pin pin1, ModelWireCrossPoint pin2, Point... path)
 	{
 		this(model, null, pin1, pin2, path);
 	}
@@ -150,7 +150,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, Pin pin1, Pin pin2, Point... path)
+	public ModelWire(LogicModelModifiable model, Pin pin1, Pin pin2, Point... path)
 	{
 		this(model, null, pin1, pin2, path);
 	}
@@ -160,7 +160,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, String name, ModelWireCrossPoint pin1, ModelWireCrossPoint pin2)
+	public ModelWire(LogicModelModifiable model, String name, ModelWireCrossPoint pin1, ModelWireCrossPoint pin2)
 	{
 		this(model, name, pin1, pin2, (Point[]) null);
 	}
@@ -170,7 +170,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, String name, ModelWireCrossPoint pin1, Pin pin2)
+	public ModelWire(LogicModelModifiable model, String name, ModelWireCrossPoint pin1, Pin pin2)
 	{
 		this(model, name, pin1, pin2, (Point[]) null);
 	}
@@ -180,7 +180,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, String name, Pin pin1, ModelWireCrossPoint pin2)
+	public ModelWire(LogicModelModifiable model, String name, Pin pin1, ModelWireCrossPoint pin2)
 	{
 		this(model, name, pin1, pin2, (Point[]) null);
 	}
@@ -190,7 +190,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, String name, Pin pin1, Pin pin2)
+	public ModelWire(LogicModelModifiable model, String name, Pin pin1, Pin pin2)
 	{
 		this(model, name, pin1, pin2, (Point[]) null);
 	}
@@ -200,7 +200,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, String name, ModelWireCrossPoint pin1, ModelWireCrossPoint pin2, Point... path)
+	public ModelWire(LogicModelModifiable model, String name, ModelWireCrossPoint pin1, ModelWireCrossPoint pin2, Point... path)
 	{
 		this(model, name, pin1.getPin(), pin2.getPin(), path);
 	}
@@ -210,7 +210,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, String name, ModelWireCrossPoint pin1, Pin pin2, Point... path)
+	public ModelWire(LogicModelModifiable model, String name, ModelWireCrossPoint pin1, Pin pin2, Point... path)
 	{
 		this(model, name, pin1.getPin(), pin2, path);
 	}
@@ -220,7 +220,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, String name, Pin pin1, ModelWireCrossPoint pin2, Point... path)
+	public ModelWire(LogicModelModifiable model, String name, Pin pin1, ModelWireCrossPoint pin2, Point... path)
 	{
 		this(model, name, pin1, pin2.getPin(), path);
 	}
@@ -230,7 +230,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public ModelWire(ViewModelModifiable model, String name, Pin pin1, Pin pin2, Point... path)
+	public ModelWire(LogicModelModifiable model, String name, Pin pin1, Pin pin2, Point... path)
 	{
 		this.model = model;
 		this.name = name == null ? model.getDefaultWireName() : name;
@@ -257,7 +257,7 @@ public class ModelWire
 	}
 
 	/**
-	 * Destroys this wire. This method is called from {@link ViewModelModifiable#wireDestroyed(ModelWire) wireDestroyed()} of the model this
+	 * Destroys this wire. This method is called from {@link LogicModelModifiable#wireDestroyed(ModelWire) wireDestroyed()} of the model this
 	 * wire is a part of.
 	 * 
 	 * @author Daniel Kirschten

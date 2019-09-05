@@ -19,8 +19,8 @@ import net.mograsim.logic.model.LogicUIStandaloneGUI;
 import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.am2900.TestableCircuit;
 import net.mograsim.logic.model.am2900.TestableCircuit.Result;
-import net.mograsim.logic.model.model.ViewModel;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModel;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
@@ -42,7 +42,7 @@ public class TestEnvironmentHelper
 
 	private ModelComponent component;
 	private Timeline timeline;
-	private ViewModelModifiable viewModel;
+	private LogicModelModifiable logicModel;
 	private ModellingTool modellingTool;
 	private HashMap<String, ModelManualSwitch> idSwitchMap = new HashMap<>();
 	private HashMap<String, ModelBitDisplay> idDisplayMap = new HashMap<>();
@@ -78,11 +78,11 @@ public class TestEnvironmentHelper
 	public void setup(DebugState debug)
 	{
 		this.debug = debug;
-		// Create view model
-		viewModel = new ViewModelModifiable();
-		modellingTool = ModellingTool.createFor(viewModel);
+		// Create logic model
+		logicModel = new LogicModelModifiable();
+		modellingTool = ModellingTool.createFor(logicModel);
 		Am2900Loader.setup();
-		component = IndirectModelComponentCreator.createComponent(viewModel, modelId);
+		component = IndirectModelComponentCreator.createComponent(logicModel, modelId);
 		setField(componentField, component);
 
 		component.getPins().values().forEach(this::extendModelPin);
@@ -91,7 +91,7 @@ public class TestEnvironmentHelper
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
-		timeline = LogicCoreAdapter.convert(viewModel, params);
+		timeline = LogicCoreAdapter.convert(logicModel, params);
 		timelineField.ifPresent(f -> setField(f, timeline));
 
 		// Bind switches/displays to this test class
@@ -113,17 +113,17 @@ public class TestEnvironmentHelper
 			Class<?> type = f.getType();
 			if (CoreManualSwitch.class.isAssignableFrom(type))
 			{
-				ModelManualSwitch gms = new ModelManualSwitch(viewModel, p.logicWidth);
+				ModelManualSwitch gms = new ModelManualSwitch(logicModel, p.logicWidth);
 				modellingTool.connect(p, gms.getOutputPin());
 				idSwitchMap.put(p.name, gms);
 			} else if (CoreBitDisplay.class.isAssignableFrom(type))
 			{
-				ModelBitDisplay gbd = new ModelBitDisplay(viewModel, p.logicWidth);
+				ModelBitDisplay gbd = new ModelBitDisplay(logicModel, p.logicWidth);
 				modellingTool.connect(p, gbd.getInputPin());
 				idDisplayMap.put(p.name, gbd);
 			} else if (SwitchWithDisplay.class.isAssignableFrom(type))
 			{
-				SwitchWithDisplay swd = new SwitchWithDisplay(viewModel, p);
+				SwitchWithDisplay swd = new SwitchWithDisplay(logicModel, p);
 				setField(f, swd);
 			} else
 			{
@@ -149,18 +149,18 @@ public class TestEnvironmentHelper
 	{
 		// Debug code
 		HashSet<ModelWire> wiresIncludingSubmodels = new HashSet<>();
-		Queue<ViewModel> modelsToIterate = new LinkedList<>();
-		modelsToIterate.add(viewModel);
+		Queue<LogicModel> modelsToIterate = new LinkedList<>();
+		modelsToIterate.add(logicModel);
 		while (modelsToIterate.size() > 0)
 		{
-			ViewModel model = modelsToIterate.poll();
+			LogicModel model = modelsToIterate.poll();
 			wiresIncludingSubmodels.addAll(model.getWiresByName().values());
 			for (ModelComponent comp : model.getComponentsByName().values())
 				if (comp instanceof SubmodelComponent)
 					modelsToIterate.offer(((SubmodelComponent) comp).submodel);
 		}
 		System.out.println(wiresIncludingSubmodels.size());
-		viewModel.setRedrawHandler(() -> wiresIncludingSubmodels.forEach(w ->
+		logicModel.setRedrawHandler(() -> wiresIncludingSubmodels.forEach(w ->
 		{
 			if (debugWires)
 			{
@@ -260,8 +260,8 @@ public class TestEnvironmentHelper
 	{
 		try
 		{
-			new LogicUIStandaloneGUI(viewModel).run();
-			viewModel.setRedrawHandler(null);
+			new LogicUIStandaloneGUI(logicModel).run();
+			logicModel.setRedrawHandler(null);
 		}
 		catch (Exception e)
 		{

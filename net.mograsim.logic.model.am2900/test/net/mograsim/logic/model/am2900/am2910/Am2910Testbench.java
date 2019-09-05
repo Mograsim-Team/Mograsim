@@ -6,7 +6,7 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
 import net.mograsim.logic.model.am2900.Am2900Loader;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.Orientation;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
@@ -25,7 +25,7 @@ public class Am2910Testbench
 	}
 
 	@SuppressWarnings("unused") // for ModelWires being created
-	public static void create(ViewModelModifiable model)
+	public static void create(LogicModelModifiable model)
 	{
 		ModelComponent am2910 = IndirectModelComponentCreator.createComponent(model, "Am2910", "Am2910");
 		ModelClock C = new ModelClock(model, new ModelClockParams(1000, Orientation.RIGHT));

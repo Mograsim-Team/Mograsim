@@ -12,7 +12,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -21,7 +21,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.
 
 public class Modelsel4_12 extends SimpleRectangularHardcodedModelComponent
 {
-	public Modelsel4_12(ViewModelModifiable model, String name)
+	public Modelsel4_12(LogicModelModifiable model, String name)
 	{
 		super(model, "sel4_12", name, "4-way SEL\n12 bit");
 		setSize(80, 40);

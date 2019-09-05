@@ -2,7 +2,7 @@ package net.mograsim.logic.model.examples;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.atomic.ModelNotGate;
 import net.mograsim.logic.model.model.components.atomic.ModelOrGate;
@@ -17,7 +17,7 @@ public class RSLatchExample
 	}
 
 	@SuppressWarnings("unused") // for Wires being created
-	public static void createRSLatchExample(ViewModelModifiable model)
+	public static void createRSLatchExample(LogicModelModifiable model)
 	{
 		ModelManualSwitch rIn = new ModelManualSwitch(model, 1);
 		rIn.moveTo(100, 100);
