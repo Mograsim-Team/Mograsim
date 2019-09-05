@@ -3,7 +3,7 @@ package net.mograsim.logic.model.snippets.symbolrenderers;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
@@ -16,14 +16,14 @@ public class DefaultSymbolRenderer implements Renderer
 {
 	private static final String id = "<Symbol\nunknown>";
 
-	private final GUIComponent component;
+	private final ModelComponent component;
 
-	public DefaultSymbolRenderer(GUIComponent component)
+	public DefaultSymbolRenderer(ModelComponent component)
 	{
 		this(component, null);
 	}
 
-	public DefaultSymbolRenderer(GUIComponent component, @SuppressWarnings("unused") Void params)
+	public DefaultSymbolRenderer(ModelComponent component, @SuppressWarnings("unused") Void params)
 	{
 		this.component = component;
 	}

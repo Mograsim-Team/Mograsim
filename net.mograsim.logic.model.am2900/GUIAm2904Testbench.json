@@ -6,7 +6,7 @@
   "submodel": {
     "components": [
       {
-        "id": "GUIAm2904",
+        "id": "Am2904",
         "name": "Am2904",
         "pos": {
           "x": 220.0,
@@ -14,8 +14,8 @@
         }
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#0",
+        "id": "BitDisplay",
+        "name": "BitDisplay#0",
         "pos": {
           "x": 391.0,
           "y": 150.0
@@ -23,8 +23,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#1",
+        "id": "BitDisplay",
+        "name": "BitDisplay#1",
         "pos": {
           "x": 391.0,
           "y": 165.0
@@ -32,8 +32,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#2",
+        "id": "BitDisplay",
+        "name": "BitDisplay#2",
         "pos": {
           "x": 391.0,
           "y": 180.0
@@ -41,8 +41,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#3",
+        "id": "BitDisplay",
+        "name": "BitDisplay#3",
         "pos": {
           "x": 391.0,
           "y": 195.0
@@ -50,8 +50,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#4",
+        "id": "BitDisplay",
+        "name": "BitDisplay#4",
         "pos": {
           "x": 365.0,
           "y": 240.0
@@ -59,8 +59,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#5",
+        "id": "BitDisplay",
+        "name": "BitDisplay#5",
         "pos": {
           "x": 365.0,
           "y": 275.0
@@ -68,8 +68,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#6",
+        "id": "BitDisplay",
+        "name": "BitDisplay#6",
         "pos": {
           "x": 365.0,
           "y": 370.0
@@ -77,8 +77,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#7",
+        "id": "BitDisplay",
+        "name": "BitDisplay#7",
         "pos": {
           "x": 365.0,
           "y": 385.0
@@ -86,8 +86,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#8",
+        "id": "BitDisplay",
+        "name": "BitDisplay#8",
         "pos": {
           "x": 365.0,
           "y": 330.0
@@ -95,8 +95,8 @@
         "params": 1
       },
       {
-        "id": "GUIBitDisplay",
-        "name": "GUIBitDisplay#9",
+        "id": "BitDisplay",
+        "name": "BitDisplay#9",
         "pos": {
           "x": 365.0,
           "y": 315.0
@@ -104,8 +104,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#0",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#0",
         "pos": {
           "x": 255.0,
           "y": 152.5
@@ -113,8 +113,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#1",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#1",
         "pos": {
           "x": 170.0,
           "y": 82.5
@@ -122,8 +122,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#10",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#10",
         "pos": {
           "x": 160.0,
           "y": 247.5
@@ -131,8 +131,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#11",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#11",
         "pos": {
           "x": 160.0,
           "y": 217.5
@@ -140,8 +140,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#12",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#12",
         "pos": {
           "x": 160.0,
           "y": 202.5
@@ -149,8 +149,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#13",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#13",
         "pos": {
           "x": 60.0,
           "y": 132.5
@@ -158,8 +158,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#14",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#14",
         "pos": {
           "x": 165.0,
           "y": 287.5
@@ -167,8 +167,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#15",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#15",
         "pos": {
           "x": 140.0,
           "y": 317.5
@@ -176,8 +176,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#16",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#16",
         "pos": {
           "x": 140.0,
           "y": 332.5
@@ -185,8 +185,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#17",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#17",
         "pos": {
           "x": 140.0,
           "y": 387.5
@@ -194,8 +194,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#18",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#18",
         "pos": {
           "x": 140.0,
           "y": 372.5
@@ -203,8 +203,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#19",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#19",
         "pos": {
           "x": 140.0,
           "y": 357.5
@@ -212,8 +212,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#2",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#2",
         "pos": {
           "x": 170.0,
           "y": 112.5
@@ -221,8 +221,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#20",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#20",
         "pos": {
           "x": 140.0,
           "y": 302.5
@@ -230,8 +230,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#21",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#21",
         "pos": {
           "x": 55.0,
           "y": 142.5
@@ -239,8 +239,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#22",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#22",
         "pos": {
           "x": 60.0,
           "y": 152.5
@@ -248,8 +248,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#23",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#23",
         "pos": {
           "x": 60.0,
           "y": 172.5
@@ -257,8 +257,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#24",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#24",
         "pos": {
           "x": 55.0,
           "y": 162.5
@@ -266,8 +266,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#25",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#25",
         "pos": {
           "x": 55.0,
           "y": 182.5
@@ -275,8 +275,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#26",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#26",
         "pos": {
           "x": 60.0,
           "y": 192.5
@@ -284,8 +284,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#27",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#27",
         "pos": {
           "x": 60.0,
           "y": 232.5
@@ -293,8 +293,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#28",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#28",
         "pos": {
           "x": 55.0,
           "y": 202.5
@@ -302,8 +302,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#29",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#29",
         "pos": {
           "x": 55.0,
           "y": 222.5
@@ -311,8 +311,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#3",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#3",
         "pos": {
           "x": 55.0,
           "y": 122.5
@@ -320,8 +320,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#30",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#30",
         "pos": {
           "x": 60.0,
           "y": 212.5
@@ -329,8 +329,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#31",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#31",
         "pos": {
           "x": 55.0,
           "y": 242.5
@@ -338,8 +338,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#32",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#32",
         "pos": {
           "x": 300.0,
           "y": 107.5
@@ -347,8 +347,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#33",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#33",
         "pos": {
           "x": 300.0,
           "y": 137.5
@@ -356,8 +356,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#34",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#34",
         "pos": {
           "x": 300.0,
           "y": 92.5
@@ -365,8 +365,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#35",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#35",
         "pos": {
           "x": 300.0,
           "y": 122.5
@@ -374,8 +374,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#36",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#36",
         "pos": {
           "x": 300.0,
           "y": 77.5
@@ -383,8 +383,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#37",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#37",
         "pos": {
           "x": 165.0,
           "y": 270.0
@@ -392,8 +392,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#38",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#38",
         "pos": {
           "x": 385.0,
           "y": 220.0
@@ -401,8 +401,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#4",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#4",
         "pos": {
           "x": 170.0,
           "y": 127.5
@@ -410,8 +410,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#5",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#5",
         "pos": {
           "x": 170.0,
           "y": 142.5
@@ -419,8 +419,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#6",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#6",
         "pos": {
           "x": 170.0,
           "y": 157.5
@@ -428,8 +428,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#7",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#7",
         "pos": {
           "x": 155.0,
           "y": 172.5
@@ -437,8 +437,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#8",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#8",
         "pos": {
           "x": 155.0,
           "y": 187.5
@@ -446,8 +446,8 @@
         "params": 1
       },
       {
-        "id": "GUIManualSwitch",
-        "name": "GUIManualSwitch#9",
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#9",
         "pos": {
           "x": 160.0,
           "y": 232.5
@@ -455,8 +455,8 @@
         "params": 1
       },
       {
-        "id": "GUIMerger",
-        "name": "GUIMerger#0",
+        "id": "Merger",
+        "name": "Merger#0",
         "pos": {
           "x": 85.0,
           "y": 130.0
@@ -464,8 +464,8 @@
         "params": 13
       },
       {
-        "id": "GUITriStateBuffer",
-        "name": "GUITriStateBuffer#0",
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#0",
         "pos": {
           "x": 175.0,
           "y": 315.0
@@ -476,8 +476,8 @@
         }
       },
       {
-        "id": "GUITriStateBuffer",
-        "name": "GUITriStateBuffer#1",
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#1",
         "pos": {
           "x": 175.0,
           "y": 330.0
@@ -488,8 +488,8 @@
         }
       },
       {
-        "id": "GUITriStateBuffer",
-        "name": "GUITriStateBuffer#2",
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#2",
         "pos": {
           "x": 175.0,
           "y": 385.0
@@ -500,8 +500,8 @@
         }
       },
       {
-        "id": "GUITriStateBuffer",
-        "name": "GUITriStateBuffer#3",
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#3",
         "pos": {
           "x": 175.0,
           "y": 370.0
@@ -512,8 +512,8 @@
         }
       },
       {
-        "id": "GUITriStateBuffer",
-        "name": "GUITriStateBuffer#4",
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#4",
         "pos": {
           "x": 335.0,
           "y": 105.0
@@ -524,8 +524,8 @@
         }
       },
       {
-        "id": "GUITriStateBuffer",
-        "name": "GUITriStateBuffer#5",
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#5",
         "pos": {
           "x": 335.0,
           "y": 90.0
@@ -536,8 +536,8 @@
         }
       },
       {
-        "id": "GUITriStateBuffer",
-        "name": "GUITriStateBuffer#6",
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#6",
         "pos": {
           "x": 335.0,
           "y": 120.0
@@ -548,8 +548,8 @@
         }
       },
       {
-        "id": "GUITriStateBuffer",
-        "name": "GUITriStateBuffer#7",
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#7",
         "pos": {
           "x": 335.0,
           "y": 135.0
@@ -1121,7 +1121,7 @@
     "wires": [
       {
         "pin1": {
-          "compName": "GUIManualSwitch#0",
+          "compName": "ManualSwitch#0",
           "pinName": ""
         },
         "pin2": {
@@ -1138,7 +1138,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#1",
+          "compName": "ManualSwitch#1",
           "pinName": ""
         },
         "pin2": {
@@ -1163,7 +1163,7 @@
           "pinName": "_EOVR"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#10",
+          "compName": "ManualSwitch#10",
           "pinName": ""
         },
         "name": "unnamedWire#10",
@@ -1180,7 +1180,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#9",
+          "compName": "ManualSwitch#9",
           "pinName": ""
         },
         "pin2": {
@@ -1201,7 +1201,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "O"
         },
         "pin2": {
@@ -1230,7 +1230,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#14",
+          "compName": "ManualSwitch#14",
           "pinName": ""
         },
         "pin2": {
@@ -1284,7 +1284,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIBitDisplay#1",
+          "compName": "BitDisplay#1",
           "pinName": ""
         },
         "name": "unnamedWire#16",
@@ -1313,7 +1313,7 @@
           "pinName": "CT"
         },
         "pin2": {
-          "compName": "GUIBitDisplay#4",
+          "compName": "BitDisplay#4",
           "pinName": ""
         },
         "name": "unnamedWire#18",
@@ -1334,7 +1334,7 @@
           "pinName": "C0"
         },
         "pin2": {
-          "compName": "GUIBitDisplay#5",
+          "compName": "BitDisplay#5",
           "pinName": ""
         },
         "name": "unnamedWire#19",
@@ -1342,7 +1342,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#2",
+          "compName": "ManualSwitch#2",
           "pinName": ""
         },
         "pin2": {
@@ -1384,7 +1384,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#0",
+          "compName": "TriStateBuffer#0",
           "pinName": "OUT"
         },
         "name": "unnamedWire#21",
@@ -1409,7 +1409,7 @@
       },
       {
         "pin1": {
-          "compName": "GUITriStateBuffer#1",
+          "compName": "TriStateBuffer#1",
           "pinName": "OUT"
         },
         "pin2": {
@@ -1421,11 +1421,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#15",
+          "compName": "ManualSwitch#15",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#0",
+          "compName": "TriStateBuffer#0",
           "pinName": "IN"
         },
         "name": "unnamedWire#24",
@@ -1433,11 +1433,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#16",
+          "compName": "ManualSwitch#16",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#1",
+          "compName": "TriStateBuffer#1",
           "pinName": "IN"
         },
         "name": "unnamedWire#25",
@@ -1445,11 +1445,11 @@
       },
       {
         "pin1": {
-          "compName": "GUITriStateBuffer#2",
+          "compName": "TriStateBuffer#2",
           "pinName": "IN"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#17",
+          "compName": "ManualSwitch#17",
           "pinName": ""
         },
         "name": "unnamedWire#26",
@@ -1457,11 +1457,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#18",
+          "compName": "ManualSwitch#18",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#3",
+          "compName": "TriStateBuffer#3",
           "pinName": "IN"
         },
         "name": "unnamedWire#27",
@@ -1469,7 +1469,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#19",
+          "compName": "ManualSwitch#19",
           "pinName": ""
         },
         "pin2": {
@@ -1485,7 +1485,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#3",
+          "compName": "TriStateBuffer#3",
           "pinName": "EN"
         },
         "name": "unnamedWire#29",
@@ -1497,7 +1497,7 @@
           "pinName": "IC"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#4",
+          "compName": "ManualSwitch#4",
           "pinName": ""
         },
         "name": "unnamedWire#3",
@@ -1518,7 +1518,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#2",
+          "compName": "TriStateBuffer#2",
           "pinName": "EN"
         },
         "name": "unnamedWire#30",
@@ -1535,7 +1535,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#20",
+          "compName": "ManualSwitch#20",
           "pinName": ""
         },
         "pin2": {
@@ -1551,7 +1551,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#0",
+          "compName": "TriStateBuffer#0",
           "pinName": "EN"
         },
         "name": "unnamedWire#32",
@@ -1563,7 +1563,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#1",
+          "compName": "TriStateBuffer#1",
           "pinName": "EN"
         },
         "name": "unnamedWire#33",
@@ -1584,7 +1584,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIBitDisplay#9",
+          "compName": "BitDisplay#9",
           "pinName": ""
         },
         "name": "unnamedWire#34",
@@ -1605,7 +1605,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIBitDisplay#8",
+          "compName": "BitDisplay#8",
           "pinName": ""
         },
         "pin2": {
@@ -1630,7 +1630,7 @@
       },
       {
         "pin1": {
-          "compName": "GUITriStateBuffer#3",
+          "compName": "TriStateBuffer#3",
           "pinName": "OUT"
         },
         "pin2": {
@@ -1659,7 +1659,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#2",
+          "compName": "TriStateBuffer#2",
           "pinName": "OUT"
         },
         "name": "unnamedWire#37",
@@ -1680,7 +1680,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIBitDisplay#7",
+          "compName": "BitDisplay#7",
           "pinName": ""
         },
         "name": "unnamedWire#38",
@@ -1693,7 +1693,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIBitDisplay#6",
+          "compName": "BitDisplay#6",
           "pinName": ""
         },
         "pin2": {
@@ -1705,7 +1705,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#5",
+          "compName": "ManualSwitch#5",
           "pinName": ""
         },
         "pin2": {
@@ -1760,11 +1760,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#3",
+          "compName": "ManualSwitch#3",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I12"
         },
         "name": "unnamedWire#42",
@@ -1772,11 +1772,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I11"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#13",
+          "compName": "ManualSwitch#13",
           "pinName": ""
         },
         "name": "unnamedWire#43",
@@ -1784,11 +1784,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#21",
+          "compName": "ManualSwitch#21",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I10"
         },
         "name": "unnamedWire#44",
@@ -1796,11 +1796,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I9"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#22",
+          "compName": "ManualSwitch#22",
           "pinName": ""
         },
         "name": "unnamedWire#45",
@@ -1808,11 +1808,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#24",
+          "compName": "ManualSwitch#24",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I8"
         },
         "name": "unnamedWire#46",
@@ -1820,11 +1820,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I7"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#23",
+          "compName": "ManualSwitch#23",
           "pinName": ""
         },
         "name": "unnamedWire#47",
@@ -1832,11 +1832,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#25",
+          "compName": "ManualSwitch#25",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I6"
         },
         "name": "unnamedWire#48",
@@ -1844,11 +1844,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I5"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#26",
+          "compName": "ManualSwitch#26",
           "pinName": ""
         },
         "name": "unnamedWire#49",
@@ -1860,7 +1860,7 @@
           "pinName": "IOVR"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#6",
+          "compName": "ManualSwitch#6",
           "pinName": ""
         },
         "name": "unnamedWire#5",
@@ -1877,11 +1877,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#28",
+          "compName": "ManualSwitch#28",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I4"
         },
         "name": "unnamedWire#50",
@@ -1889,11 +1889,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I3"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#30",
+          "compName": "ManualSwitch#30",
           "pinName": ""
         },
         "name": "unnamedWire#51",
@@ -1901,11 +1901,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#29",
+          "compName": "ManualSwitch#29",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I2"
         },
         "name": "unnamedWire#52",
@@ -1913,11 +1913,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I1"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#27",
+          "compName": "ManualSwitch#27",
           "pinName": ""
         },
         "name": "unnamedWire#53",
@@ -1925,11 +1925,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#31",
+          "compName": "ManualSwitch#31",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIMerger#0",
+          "compName": "Merger#0",
           "pinName": "I0"
         },
         "name": "unnamedWire#54",
@@ -1937,11 +1937,11 @@
       },
       {
         "pin1": {
-          "compName": "GUITriStateBuffer#7",
+          "compName": "TriStateBuffer#7",
           "pinName": "IN"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#33",
+          "compName": "ManualSwitch#33",
           "pinName": ""
         },
         "name": "unnamedWire#55",
@@ -1949,11 +1949,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#35",
+          "compName": "ManualSwitch#35",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#6",
+          "compName": "TriStateBuffer#6",
           "pinName": "IN"
         },
         "name": "unnamedWire#56",
@@ -1961,11 +1961,11 @@
       },
       {
         "pin1": {
-          "compName": "GUITriStateBuffer#4",
+          "compName": "TriStateBuffer#4",
           "pinName": "IN"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#32",
+          "compName": "ManualSwitch#32",
           "pinName": ""
         },
         "name": "unnamedWire#57",
@@ -1973,11 +1973,11 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#34",
+          "compName": "ManualSwitch#34",
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#5",
+          "compName": "TriStateBuffer#5",
           "pinName": "IN"
         },
         "name": "unnamedWire#58",
@@ -1989,7 +1989,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#5",
+          "compName": "TriStateBuffer#5",
           "pinName": "EN"
         },
         "name": "unnamedWire#59",
@@ -1997,7 +1997,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#7",
+          "compName": "ManualSwitch#7",
           "pinName": ""
         },
         "pin2": {
@@ -2022,7 +2022,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIManualSwitch#36",
+          "compName": "ManualSwitch#36",
           "pinName": ""
         },
         "name": "unnamedWire#60",
@@ -2051,7 +2051,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#4",
+          "compName": "TriStateBuffer#4",
           "pinName": "EN"
         },
         "name": "unnamedWire#62",
@@ -2075,7 +2075,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#6",
+          "compName": "TriStateBuffer#6",
           "pinName": "EN"
         },
         "name": "unnamedWire#64",
@@ -2083,7 +2083,7 @@
       },
       {
         "pin1": {
-          "compName": "GUITriStateBuffer#7",
+          "compName": "TriStateBuffer#7",
           "pinName": "EN"
         },
         "pin2": {
@@ -2104,7 +2104,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIBitDisplay#0",
+          "compName": "BitDisplay#0",
           "pinName": ""
         },
         "name": "unnamedWire#66",
@@ -2116,7 +2116,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#5",
+          "compName": "TriStateBuffer#5",
           "pinName": "OUT"
         },
         "name": "unnamedWire#67",
@@ -2150,7 +2150,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#4",
+          "compName": "TriStateBuffer#4",
           "pinName": "OUT"
         },
         "name": "unnamedWire#69",
@@ -2167,7 +2167,7 @@
           "pinName": "_CEmu"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#8",
+          "compName": "ManualSwitch#8",
           "pinName": ""
         },
         "name": "unnamedWire#7",
@@ -2188,7 +2188,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#6",
+          "compName": "TriStateBuffer#6",
           "pinName": "OUT"
         },
         "name": "unnamedWire#70",
@@ -2205,7 +2205,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIBitDisplay#2",
+          "compName": "BitDisplay#2",
           "pinName": ""
         },
         "name": "unnamedWire#71",
@@ -2217,7 +2217,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUIBitDisplay#3",
+          "compName": "BitDisplay#3",
           "pinName": ""
         },
         "name": "unnamedWire#72",
@@ -2234,7 +2234,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "GUITriStateBuffer#7",
+          "compName": "TriStateBuffer#7",
           "pinName": "OUT"
         },
         "name": "unnamedWire#73",
@@ -2251,7 +2251,7 @@
           "pinName": "_SE"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#37",
+          "compName": "ManualSwitch#37",
           "pinName": ""
         },
         "name": "unnamedWire#74",
@@ -2268,7 +2268,7 @@
       },
       {
         "pin1": {
-          "compName": "GUIManualSwitch#38",
+          "compName": "ManualSwitch#38",
           "pinName": ""
         },
         "pin2": {
@@ -2301,7 +2301,7 @@
           "pinName": "_EZ"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#12",
+          "compName": "ManualSwitch#12",
           "pinName": ""
         },
         "name": "unnamedWire#8",
@@ -2313,7 +2313,7 @@
           "pinName": "_EC"
         },
         "pin2": {
-          "compName": "GUIManualSwitch#11",
+          "compName": "ManualSwitch#11",
           "pinName": ""
         },
         "name": "unnamedWire#9",

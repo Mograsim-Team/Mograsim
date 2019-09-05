@@ -4,22 +4,22 @@ import java.util.Map;
 
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.CoreWire;
-import net.mograsim.logic.model.model.components.atomic.GUIFixedOutput;
+import net.mograsim.logic.model.model.components.atomic.ModelFixedOutput;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 
-public class FixedOutputAdapter implements ComponentAdapter<GUIFixedOutput>
+public class FixedOutputAdapter implements ComponentAdapter<ModelFixedOutput>
 {
 	@Override
-	public Class<GUIFixedOutput> getSupportedClass()
+	public Class<ModelFixedOutput> getSupportedClass()
 	{
-		return GUIFixedOutput.class;
+		return ModelFixedOutput.class;
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, GUIFixedOutput guiComponent,
+	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, ModelFixedOutput modelComponent,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
-		logicWiresPerPin.get(guiComponent.getPin("out")).createReadWriteEnd().feedSignals(guiComponent.bits);
+		logicWiresPerPin.get(modelComponent.getPin("out")).createReadWriteEnd().feedSignals(modelComponent.bits);
 	}
 }

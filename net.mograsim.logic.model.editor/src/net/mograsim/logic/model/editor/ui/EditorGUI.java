@@ -24,7 +24,7 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasOverlay;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.SaveLoadManager;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 
 public class EditorGUI
 {
@@ -210,7 +210,7 @@ public class EditorGUI
 
 	public void refreshAddList()
 	{
-		addList.setItems(IndirectGUIComponentCreator.getStandardComponentIDs().keySet().stream().sorted().toArray(String[]::new));
+		addList.setItems(IndirectModelComponentCreator.getStandardComponentIDs().keySet().stream().sorted().toArray(String[]::new));
 		addList.select(0);
 	}
 

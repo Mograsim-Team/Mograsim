@@ -7,7 +7,7 @@ import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.Register;
@@ -23,8 +23,8 @@ public class Am2900Machine implements Machine
 	{
 		this.machineDefinition = am2900MachineDefinition;
 		viewModel = new ViewModelModifiable();
-		IndirectGUIComponentCreator.createComponent(viewModel,
-				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/GUIAm2900.json");
+		IndirectModelComponentCreator.createComponent(viewModel,
+				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/ModelAm2900.json");
 		LogicModelParameters params = new LogicModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;

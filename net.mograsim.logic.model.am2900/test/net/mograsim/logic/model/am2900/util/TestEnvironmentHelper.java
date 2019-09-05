@@ -21,15 +21,15 @@ import net.mograsim.logic.model.am2900.TestableCircuit;
 import net.mograsim.logic.model.am2900.TestableCircuit.Result;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
-import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
+import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.ModellingTool;
 
 public class TestEnvironmentHelper
@@ -40,12 +40,12 @@ public class TestEnvironmentHelper
 	private Field componentField;
 	private Optional<Field> timelineField = Optional.empty();
 
-	private GUIComponent component;
+	private ModelComponent component;
 	private Timeline timeline;
 	private ViewModelModifiable viewModel;
 	private ModellingTool modellingTool;
-	private HashMap<String, GUIManualSwitch> idSwitchMap = new HashMap<>();
-	private HashMap<String, GUIBitDisplay> idDisplayMap = new HashMap<>();
+	private HashMap<String, ModelManualSwitch> idSwitchMap = new HashMap<>();
+	private HashMap<String, ModelBitDisplay> idDisplayMap = new HashMap<>();
 
 	private DebugState debug = DebugState.NO_DEBUG;
 	private Set<String> wireDebugChangeSet;
@@ -61,7 +61,7 @@ public class TestEnvironmentHelper
 		this.testEnvClass = testEnvInstance.getClass();
 		for (Field f : testEnvClass.getDeclaredFields())
 		{
-			if (GUIComponent.class.isAssignableFrom(f.getType()))
+			if (ModelComponent.class.isAssignableFrom(f.getType()))
 			{
 				componentField = f;
 				componentField.setAccessible(true);
@@ -82,7 +82,7 @@ public class TestEnvironmentHelper
 		viewModel = new ViewModelModifiable();
 		modellingTool = ModellingTool.createFor(viewModel);
 		Am2900Loader.setup();
-		component = IndirectGUIComponentCreator.createComponent(viewModel, modelId);
+		component = IndirectModelComponentCreator.createComponent(viewModel, modelId);
 		setField(componentField, component);
 
 		component.getPins().values().forEach(this::extendModelPin);
@@ -113,12 +113,12 @@ public class TestEnvironmentHelper
 			Class<?> type = f.getType();
 			if (CoreManualSwitch.class.isAssignableFrom(type))
 			{
-				GUIManualSwitch gms = new GUIManualSwitch(viewModel, p.logicWidth);
+				ModelManualSwitch gms = new ModelManualSwitch(viewModel, p.logicWidth);
 				modellingTool.connect(p, gms.getOutputPin());
 				idSwitchMap.put(p.name, gms);
 			} else if (CoreBitDisplay.class.isAssignableFrom(type))
 			{
-				GUIBitDisplay gbd = new GUIBitDisplay(viewModel, p.logicWidth);
+				ModelBitDisplay gbd = new ModelBitDisplay(viewModel, p.logicWidth);
 				modellingTool.connect(p, gbd.getInputPin());
 				idDisplayMap.put(p.name, gbd);
 			} else if (SwitchWithDisplay.class.isAssignableFrom(type))
@@ -148,14 +148,14 @@ public class TestEnvironmentHelper
 	private void setupDebugging()
 	{
 		// Debug code
-		HashSet<GUIWire> wiresIncludingSubmodels = new HashSet<>();
+		HashSet<ModelWire> wiresIncludingSubmodels = new HashSet<>();
 		Queue<ViewModel> modelsToIterate = new LinkedList<>();
 		modelsToIterate.add(viewModel);
 		while (modelsToIterate.size() > 0)
 		{
 			ViewModel model = modelsToIterate.poll();
 			wiresIncludingSubmodels.addAll(model.getWiresByName().values());
-			for (GUIComponent comp : model.getComponentsByName().values())
+			for (ModelComponent comp : model.getComponentsByName().values())
 				if (comp instanceof SubmodelComponent)
 					modelsToIterate.offer(((SubmodelComponent) comp).submodel);
 		}

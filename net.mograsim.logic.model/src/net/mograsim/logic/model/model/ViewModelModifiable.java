@@ -2,12 +2,12 @@ package net.mograsim.logic.model.model;
 
 import java.util.Set;
 
-import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.wires.ModelWire;
 
 public class ViewModelModifiable extends ViewModel
 {
-	public String getDefaultComponentName(GUIComponent component)
+	public String getDefaultComponentName(ModelComponent component)
 	{
 		Set<String> componentNames = getComponentsByName().keySet();
 		// TODO get the ID of component
@@ -40,25 +40,25 @@ public class ViewModelModifiable extends ViewModel
 	}
 
 	@Override
-	public void componentCreated(GUIComponent component, Runnable destroyed)
+	public void componentCreated(ModelComponent component, Runnable destroyed)
 	{
 		super.componentCreated(component, destroyed);
 	}
 
 	@Override
-	public void destroyComponent(GUIComponent component)
+	public void destroyComponent(ModelComponent component)
 	{
 		super.destroyComponent(component);
 	}
 
 	@Override
-	public void wireCreated(GUIWire wire, Runnable destroyed)
+	public void wireCreated(ModelWire wire, Runnable destroyed)
 	{
 		super.wireCreated(wire, destroyed);
 	}
 
 	@Override
-	public void destroyWire(GUIWire wire)
+	public void destroyWire(ModelWire wire)
 	{
 		super.destroyWire(wire);
 	}

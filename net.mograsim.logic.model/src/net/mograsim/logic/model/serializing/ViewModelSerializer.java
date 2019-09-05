@@ -14,9 +14,9 @@ import com.google.gson.JsonElement;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.serializing.ViewModelParams.ComponentParams;
 import net.mograsim.logic.model.serializing.ViewModelParams.WireParams;
 import net.mograsim.logic.model.serializing.ViewModelParams.WireParams.PinParams;
@@ -101,22 +101,22 @@ public class ViewModelSerializer
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	@SuppressWarnings("unused") // for GUIWire being created
+	@SuppressWarnings("unused") // for ModelWire being created
 	public static void deserialize(ViewModelModifiable model, ViewModelParams params)
 	{
-		Map<String, GUIComponent> componentsByName = model.getComponentsByName();
-		GUIComponent[] components = new GUIComponent[params.components.length];
+		Map<String, ModelComponent> componentsByName = model.getComponentsByName();
+		ModelComponent[] components = new ModelComponent[params.components.length];
 		for (int i = 0; i < components.length; i++)
 		{
 			ComponentParams compParams = params.components[i];
-			components[i] = IndirectGUIComponentCreator.createComponent(model, compParams.id, compParams.params, compParams.name);
+			components[i] = IndirectModelComponentCreator.createComponent(model, compParams.id, compParams.params, compParams.name);
 			components[i].moveTo(compParams.pos.x, compParams.pos.y);
 		}
 
 		for (int i = 0; i < params.wires.length; i++)
 		{
 			WireParams wire = params.wires[i];
-			new GUIWire(model, wire.name, componentsByName.get(wire.pin1.compName).getPin(wire.pin1.pinName),
+			new ModelWire(model, wire.name, componentsByName.get(wire.pin1.compName).getPin(wire.pin1.pinName),
 					componentsByName.get(wire.pin2.compName).getPin(wire.pin2.pinName), wire.path);
 		}
 	}
@@ -131,7 +131,7 @@ public class ViewModelSerializer
 	 * {@link DeserializedSubmodelComponent#paramsForSerializingOverride paramsForSerializingOverride} are written.<br>
 	 * If this case doesn't apply (e.g. if the component is not a <code>SubmodelComponent</code>; or it is a <code>SubmodelComponent</code>,
 	 * but hasn't been deserialized; or it has no {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride}
-	 * set), the ID defined by <code>idGetter</code> and the params obtained by {@link GUIComponent#getParamsForSerializing() getParams()}
+	 * set), the ID defined by <code>idGetter</code> and the params obtained by {@link ModelComponent#getParamsForSerializing() getParams()}
 	 * are written.
 	 * 
 	 * @author Fabian Stemmler
@@ -141,10 +141,10 @@ public class ViewModelSerializer
 	{
 		ViewModelParams modelParams = new ViewModelParams(CURRENT_JSON_VERSION);
 
-		Map<String, GUIComponent> components = new HashMap<>(model.getComponentsByName());
+		Map<String, ModelComponent> components = new HashMap<>(model.getComponentsByName());
 		components.remove(SubmodelComponent.SUBMODEL_INTERFACE_NAME);
 		Set<ComponentParams> componentsParams = new HashSet<>();
-		for (GUIComponent component : components.values())
+		for (ModelComponent component : components.values())
 		{
 			ComponentParams compParams = new ComponentParams();
 			componentsParams.add(compParams);
@@ -165,9 +165,9 @@ public class ViewModelSerializer
 		modelParams.components = componentsParams.toArray(ComponentParams[]::new);
 		Arrays.sort(modelParams.components, Comparator.comparing(c -> c.name));
 
-		Collection<GUIWire> wires = model.getWiresByName().values();
+		Collection<ModelWire> wires = model.getWiresByName().values();
 		Set<WireParams> wiresParams = new HashSet<>();
-		for (GUIWire innerWire : wires)
+		for (ModelWire innerWire : wires)
 		{
 			WireParams innerWireParams = new WireParams();
 			wiresParams.add(innerWireParams);

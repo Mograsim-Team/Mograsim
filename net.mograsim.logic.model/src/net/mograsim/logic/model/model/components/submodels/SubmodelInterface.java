@@ -3,11 +3,11 @@ package net.mograsim.logic.model.model.components.submodels;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 
-public class SubmodelInterface extends GUIComponent
+public class SubmodelInterface extends ModelComponent
 {
 	public SubmodelInterface(ViewModelModifiable model, String name)
 	{
@@ -30,7 +30,7 @@ public class SubmodelInterface extends GUIComponent
 	 * This method is only marked public in {@link SubmodelInterface} for {@link SubmodelComponent} to be able to add / remove pins to /
 	 * from a SubmodelInterface.<br>
 	 * 
-	 * @see GUIComponent#removePin(Pin)
+	 * @see ModelComponent#removePin(Pin)
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -45,7 +45,7 @@ public class SubmodelInterface extends GUIComponent
 	 * This method is only marked public in {@link SubmodelInterface} for {@link SubmodelComponent} to be able to add / remove pins to /
 	 * from a SubmodelInterface.<br>
 	 * 
-	 * @see GUIComponent#removePin(Pin)
+	 * @see ModelComponent#removePin(Pin)
 	 * 
 	 * @author Daniel Kirschten
 	 */

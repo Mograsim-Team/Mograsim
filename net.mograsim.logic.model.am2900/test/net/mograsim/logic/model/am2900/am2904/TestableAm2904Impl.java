@@ -7,12 +7,12 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.am2900.util.SwitchWithDisplay;
 import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper;
 import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper.DebugState;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 
 public class TestableAm2904Impl implements TestableAm2904
 {
 
-	private GUIComponent am2904;
+	private ModelComponent am2904;
 	private CoreManualSwitch I;
 	private CoreManualSwitch C;
 	private CoreManualSwitch Cx;
@@ -26,7 +26,7 @@ public class TestableAm2904Impl implements TestableAm2904
 	private SwitchWithDisplay SIO0, SIOn, QIO0, QIOn;
 	private SwitchWithDisplay YC, YN, YOVR, YZ;
 
-	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "GUIAm2904");
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "Am2904");
 
 	@Override
 	public void setup()

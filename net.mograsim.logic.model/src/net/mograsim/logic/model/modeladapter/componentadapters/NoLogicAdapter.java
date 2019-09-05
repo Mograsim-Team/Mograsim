@@ -4,32 +4,33 @@ import java.util.Map;
 
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.CoreWire;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 
 /**
- * For GUIComponents that do not have any simulation logic behaviour
+ * For ModelComponents that do not have any simulation logic behaviour
  *
  * @author Christian Femers
  */
-public class NoLogicAdapter<T extends GUIComponent> implements ComponentAdapter<T>
+public class NoLogicAdapter<T extends ModelComponent> implements ComponentAdapter<T>
 {
-	private final Class<T> guiComponentClass;
+	private final Class<T> modelComponentClass;
 
-	public NoLogicAdapter(Class<T> guiComponentClass)
+	public NoLogicAdapter(Class<T> modelComponentClass)
 	{
-		this.guiComponentClass = guiComponentClass;
+		this.modelComponentClass = modelComponentClass;
 	}
 
 	@Override
 	public Class<T> getSupportedClass()
 	{
-		return guiComponentClass;
+		return modelComponentClass;
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, T guiComponent, Map<Pin, CoreWire> logicWiresPerPin)
+	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, T modelComponent,
+			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		// do nothing
 	}

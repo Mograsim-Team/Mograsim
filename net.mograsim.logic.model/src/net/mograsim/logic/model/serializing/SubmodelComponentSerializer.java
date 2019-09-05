@@ -158,7 +158,7 @@ public final class SubmodelComponentSerializer
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	@SuppressWarnings("unused") // for GUIWire being created
+	@SuppressWarnings("unused") // for ModelWire being created
 	public static SubmodelComponent deserialize(ViewModelModifiable model, SubmodelComponentParams params, String name,
 			String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{

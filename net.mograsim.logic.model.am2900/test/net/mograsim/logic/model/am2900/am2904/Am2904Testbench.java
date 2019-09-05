@@ -8,11 +8,11 @@ import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
 import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.snippets.Renderer;
 
 public class Am2904Testbench
@@ -26,8 +26,8 @@ public class Am2904Testbench
 	public static void create(ViewModelModifiable model)
 	{
 		// TODO replace with proper ViewModel deserialization
-		DeserializedSubmodelComponent testbench = (DeserializedSubmodelComponent) IndirectGUIComponentCreator.createComponent(model,
-				"jsonfile:GUIAm2904Testbench.json", "testbench");
+		DeserializedSubmodelComponent testbench = (DeserializedSubmodelComponent) IndirectModelComponentCreator.createComponent(model,
+				"jsonfile:Am2904Testbench.json", "testbench");
 		testbench.setSize(1000, 1000);
 		testbench.setOutlineRenderer(new Renderer()
 		{
@@ -55,9 +55,9 @@ public class Am2904Testbench
 	{
 		((SubmodelComponent) vis.model.getComponentsByName().get("testbench")).submodel.getComponentsByName().values().forEach(c ->
 		{
-			if (c instanceof GUIManualSwitch)
+			if (c instanceof ModelManualSwitch)
 			{
-				GUIManualSwitch cCasted = (GUIManualSwitch) c;
+				ModelManualSwitch cCasted = (ModelManualSwitch) c;
 				cCasted.setHighLevelState("out", BitVector.of(Bit.ZERO, cCasted.logicWidth));
 			}
 		});

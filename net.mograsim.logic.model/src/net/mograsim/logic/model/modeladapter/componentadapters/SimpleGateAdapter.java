@@ -7,11 +7,11 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.components.atomic.SimpleRectangularGUIGate;
+import net.mograsim.logic.model.model.components.atomic.SimpleRectangularModelGate;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 
-public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements ComponentAdapter<G>
+public class SimpleGateAdapter<G extends SimpleRectangularModelGate> implements ComponentAdapter<G>
 {
 	private final Class<G> supportedClass;
 	private final ComponentConstructor constructor;
@@ -29,15 +29,16 @@ public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements Co
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent, Map<Pin, CoreWire> logicWiresPerPin)
+	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, G modelComponent,
+			Map<Pin, CoreWire> logicWiresPerPin)
 	{
-		ReadWriteEnd out = logicWiresPerPin.get(guiComponent.getPin("Y")).createReadWriteEnd();
+		ReadWriteEnd out = logicWiresPerPin.get(modelComponent.getPin("Y")).createReadWriteEnd();
 
 		// TODO can we do this prettier?
-		int inputPinCount = guiComponent.getPins().size() - 1;
+		int inputPinCount = modelComponent.getPins().size() - 1;
 		ReadEnd[] ins = new ReadEnd[inputPinCount];
 		for (int i = 0; i < inputPinCount; i++)
-			ins[i] = logicWiresPerPin.get(guiComponent.getPin(String.valueOf((char) ('A' + i)))).createReadOnlyEnd();
+			ins[i] = logicWiresPerPin.get(modelComponent.getPin(String.valueOf((char) ('A' + i)))).createReadOnlyEnd();
 
 		constructor.newComponent(timeline, params.gateProcessTime, out, ins);
 	}

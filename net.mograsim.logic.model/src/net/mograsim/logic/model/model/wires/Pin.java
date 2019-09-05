@@ -6,24 +6,24 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 
 /**
- * A connection interface between a GUIComponent and the rest of a ViewModel. Pins usually are created by {@link GUIComponent}s themselves.
- * <br>
- * A pin has a name identifying it. Pin names are unique for a {@link GUIComponent}: Every pin of a {@link GUIComponent} has a different
- * name, but different {@link GUIComponent}s can have pins with the same name.
+ * A connection interface between a ModelComponent and the rest of a ViewModel. Pins usually are created by {@link ModelComponent}s
+ * themselves. <br>
+ * A pin has a name identifying it. Pin names are unique for a {@link ModelComponent}: Every pin of a {@link ModelComponent} has a different
+ * name, but different {@link ModelComponent}s can have pins with the same name.
  * 
  * @author Daniel Kirschten
  */
 public class Pin
 {
 	/**
-	 * The {@link GUIComponent} this pin belongs to.
+	 * The {@link ModelComponent} this pin belongs to.
 	 */
-	public final GUIComponent component;
+	public final ModelComponent component;
 	/**
-	 * The name identifying this pin. Is unique for a {@link GUIComponent}.
+	 * The name identifying this pin. Is unique for a {@link ModelComponent}.
 	 */
 	public final String name;
 	/**
@@ -51,11 +51,12 @@ public class Pin
 	// creation and destruction
 
 	/**
-	 * Creates a new pin. Usually it is not needed to call this constructor manually, as {@link GUIComponent}s create their pins themselves.
+	 * Creates a new pin. Usually it is not needed to call this constructor manually, as {@link ModelComponent}s create their pins
+	 * themselves.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public Pin(GUIComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
+	public Pin(ModelComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
 	{
 		this.component = component;
 		this.name = name;

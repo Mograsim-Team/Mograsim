@@ -2,7 +2,7 @@ package net.mograsim.logic.model.snippets.outlinerenderers;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
@@ -13,14 +13,14 @@ import net.mograsim.preferences.Preferences;
 
 public class DefaultOutlineRenderer implements Renderer
 {
-	private final GUIComponent component;
+	private final ModelComponent component;
 
-	public DefaultOutlineRenderer(GUIComponent component)
+	public DefaultOutlineRenderer(ModelComponent component)
 	{
 		this(component, null);
 	}
 
-	public DefaultOutlineRenderer(GUIComponent component, @SuppressWarnings("unused") Void params)
+	public DefaultOutlineRenderer(ModelComponent component, @SuppressWarnings("unused") Void params)
 	{
 		this.component = component;
 	}
