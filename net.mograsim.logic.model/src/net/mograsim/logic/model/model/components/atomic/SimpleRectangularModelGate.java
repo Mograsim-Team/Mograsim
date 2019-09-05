@@ -39,7 +39,13 @@ public class SimpleRectangularModelGate extends ModelComponent
 	protected SimpleRectangularModelGate(LogicModelModifiable model, String id, String label, boolean isInverted, int logicWidth,
 			String name)
 	{
-		super(model, name);
+		this(model, id, label, isInverted, logicWidth, name, true);
+	}
+
+	protected SimpleRectangularModelGate(LogicModelModifiable model, String id, String label, boolean isInverted, int logicWidth,
+			String name, boolean callInit)
+	{
+		super(model, name, false);
 		this.id = id;
 		this.label = label;
 		this.logicWidth = logicWidth;
@@ -49,6 +55,9 @@ public class SimpleRectangularModelGate extends ModelComponent
 		addPin(outputPin);
 		this.inputPins = new ArrayList<>();
 		setInputCount(1);
+
+		if (callInit)
+			init();
 	}
 
 	protected void setInputCount(int inputCount)

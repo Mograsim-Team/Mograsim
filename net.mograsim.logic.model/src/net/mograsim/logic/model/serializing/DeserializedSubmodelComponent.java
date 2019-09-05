@@ -28,9 +28,10 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	public DeserializedSubmodelComponent(LogicModelModifiable model, String name, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.idForSerializingOverride = idForSerializingOverride;
 		this.paramsForSerializingOverride = paramsForSerializingOverride;
+		init();
 	}
 
 	@Override

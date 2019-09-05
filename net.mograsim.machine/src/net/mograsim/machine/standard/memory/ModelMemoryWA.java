@@ -28,7 +28,7 @@ public class ModelMemoryWA extends ModelComponent
 
 	public ModelMemoryWA(LogicModelModifiable model, MainMemoryDefinition definition, String name)
 	{
-		super(model, name);
+		super(model, name,false);
 		this.definition = definition;
 
 		CenteredTextParams renderer1Params = new CenteredTextParams();
@@ -42,6 +42,8 @@ public class ModelMemoryWA extends ModelComponent
 		addPin(addrPin = new Pin(model, this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, 0, 10));
 		addPin(dataPin = new Pin(model, this, "D", definition.getCellWidth(), PinUsage.TRISTATE, 0, 30));
 		addPin(rWPin = new Pin(model, this, "RW", 1, PinUsage.INPUT, 0, 50));
+		
+		init();
 	}
 
 	public Pin getAddressPin()

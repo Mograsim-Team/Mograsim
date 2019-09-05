@@ -22,11 +22,13 @@ public class Modeldff12 extends SimpleRectangularHardcodedModelComponent
 {
 	public Modeldff12(LogicModelModifiable model, String name)
 	{
-		super(model, "dff12", name, "D flip flop\n12 bits");
+		super(model, "dff12", name, "D flip flop\n12 bits", false);
 		setSize(40, 20);
 		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 20, 20), Position.TOP);
 		addPin(new Pin(model, this, "C", 1, PinUsage.INPUT, 0, 10), Position.RIGHT);
 		addPin(new Pin(model, this, "Y", 12, PinUsage.OUTPUT, 20, 0), Position.BOTTOM);
+
+		init();
 	}
 
 	@Override

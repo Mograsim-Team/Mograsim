@@ -38,9 +38,9 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 
 	// creation and destruction
 
-	public SimpleRectangularHardcodedModelComponent(LogicModelModifiable model, String id, String name, String centerText)
+	public SimpleRectangularHardcodedModelComponent(LogicModelModifiable model, String id, String name, String centerText, boolean callInit)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.id = id;
 		this.outlineRenderer = new DefaultOutlineRenderer(this);
 		CenteredTextParams centeredTextParams = new CenteredTextParams();
@@ -79,6 +79,9 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 				recalculate.run();
 			}
 		});
+
+		if (callInit)
+			init();
 	}
 
 	// pins

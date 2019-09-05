@@ -15,8 +15,9 @@ public class ModelNandGate extends SimpleRectangularModelGate
 
 	public ModelNandGate(LogicModelModifiable model, int logicWidth, String name)
 	{
-		super(model, "NandGate", "&", true, logicWidth, name);
+		super(model, "NandGate", "&", true, logicWidth, name, false);
 		setInputCount(2);// TODO make variable
+		init();
 	}
 
 	static

@@ -22,11 +22,13 @@ public class Modelinc12 extends SimpleRectangularHardcodedModelComponent
 {
 	public Modelinc12(LogicModelModifiable model, String name)
 	{
-		super(model, "inc12", name, "Incrementer");
+		super(model, "inc12", name, "Incrementer", false);
 		setSize(40, 20);
 		addPin(new Pin(model, this, "A", 12, PinUsage.INPUT, 20, 20), Position.TOP);
 		addPin(new Pin(model, this, "CI", 1, PinUsage.INPUT, 40, 10), Position.LEFT);
 		addPin(new Pin(model, this, "Y", 12, PinUsage.OUTPUT, 20, 0), Position.BOTTOM);
+
+		init();
 	}
 
 	@Override

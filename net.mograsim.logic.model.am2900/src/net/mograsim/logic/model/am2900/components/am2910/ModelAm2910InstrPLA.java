@@ -21,7 +21,7 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 {
 	public ModelAm2910InstrPLA(LogicModelModifiable model, String name)
 	{
-		super(model, "Am2910InstrPLA", name, "Instr.\nPLA");
+		super(model, "Am2910InstrPLA", name, "Instr.\nPLA", false);
 		setSize(30, 85);
 		addPin(new Pin(model, this, "PASS", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
 		addPin(new Pin(model, this, "I", 4, PinUsage.INPUT, 0, 20), Position.RIGHT);
@@ -37,6 +37,8 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 		addPin(new Pin(model, this, "YmuPC", 1, PinUsage.OUTPUT, 30, 55), Position.LEFT);
 		addPin(new Pin(model, this, "STKI0", 1, PinUsage.OUTPUT, 30, 65), Position.LEFT);
 		addPin(new Pin(model, this, "STKI1", 1, PinUsage.OUTPUT, 30, 75), Position.LEFT);
+
+		init();
 	}
 
 	@Override

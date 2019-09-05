@@ -15,8 +15,9 @@ public class ModelOrGate extends SimpleRectangularModelGate
 
 	public ModelOrGate(LogicModelModifiable model, int logicWidth, String name)
 	{
-		super(model, "OrGate", "\u22651", false, logicWidth, name);// ">=1"
+		super(model, "OrGate", "\u22651", false, logicWidth, name, false);// ">=1"
 		setInputCount(2);
+		init();
 	}
 
 	static

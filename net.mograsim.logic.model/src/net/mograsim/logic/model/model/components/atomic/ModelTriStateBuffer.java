@@ -39,7 +39,7 @@ public class ModelTriStateBuffer extends ModelComponent
 
 	public ModelTriStateBuffer(LogicModelModifiable model, ModelTriStateBufferParams params, String name)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.params = params;
 
 		oc = new OrientationCalculator(params.orientation, width, height);
@@ -58,6 +58,8 @@ public class ModelTriStateBuffer extends ModelComponent
 		addPin(input);
 		addPin(output);
 		addPin(enable);
+
+		init();
 	}
 
 	public final Pin getInputPin()
