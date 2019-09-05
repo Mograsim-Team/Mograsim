@@ -464,102 +464,6 @@
         "params": 13
       },
       {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#0",
-        "pos": {
-          "x": 175.0,
-          "y": 315.0
-        },
-        "params": {
-          "logicWidth": 1,
-          "orientation": "RIGHT"
-        }
-      },
-      {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#1",
-        "pos": {
-          "x": 175.0,
-          "y": 330.0
-        },
-        "params": {
-          "logicWidth": 1,
-          "orientation": "RIGHT"
-        }
-      },
-      {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#2",
-        "pos": {
-          "x": 175.0,
-          "y": 385.0
-        },
-        "params": {
-          "logicWidth": 1,
-          "orientation": "RIGHT"
-        }
-      },
-      {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#3",
-        "pos": {
-          "x": 175.0,
-          "y": 370.0
-        },
-        "params": {
-          "logicWidth": 1,
-          "orientation": "RIGHT"
-        }
-      },
-      {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#4",
-        "pos": {
-          "x": 335.0,
-          "y": 105.0
-        },
-        "params": {
-          "logicWidth": 1,
-          "orientation": "RIGHT"
-        }
-      },
-      {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#5",
-        "pos": {
-          "x": 335.0,
-          "y": 90.0
-        },
-        "params": {
-          "logicWidth": 1,
-          "orientation": "RIGHT"
-        }
-      },
-      {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#6",
-        "pos": {
-          "x": 335.0,
-          "y": 120.0
-        },
-        "params": {
-          "logicWidth": 1,
-          "orientation": "RIGHT"
-        }
-      },
-      {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#7",
-        "pos": {
-          "x": 335.0,
-          "y": 135.0
-        },
-        "params": {
-          "logicWidth": 1,
-          "orientation": "RIGHT"
-        }
-      },
-      {
         "id": "TextComponent",
         "name": "TextComponent#0",
         "pos": {
@@ -999,6 +903,102 @@
           "y": 245.0
         },
         "params": "_EOVR"
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#0",
+        "pos": {
+          "x": 175.0,
+          "y": 315.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#1",
+        "pos": {
+          "x": 175.0,
+          "y": 330.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#2",
+        "pos": {
+          "x": 175.0,
+          "y": 385.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#3",
+        "pos": {
+          "x": 175.0,
+          "y": 370.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#4",
+        "pos": {
+          "x": 335.0,
+          "y": 105.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#5",
+        "pos": {
+          "x": 335.0,
+          "y": 90.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#6",
+        "pos": {
+          "x": 335.0,
+          "y": 120.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#7",
+        "pos": {
+          "x": 335.0,
+          "y": 135.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "WireCrossPoint",

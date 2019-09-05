@@ -241,6 +241,58 @@
   "submodel": {
     "components": [
       {
+        "id": "Am2904RegCTInstrDecode",
+        "name": "Am2904RegCTInstrDecode#0",
+        "pos": {
+          "x": 50.0,
+          "y": 240.0
+        }
+      },
+      {
+        "id": "Am2904ShiftInstrDecode",
+        "name": "Am2904ShiftInstrDecode#0",
+        "pos": {
+          "x": 50.0,
+          "y": 360.0
+        }
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#0",
+        "pos": {
+          "x": 530.0,
+          "y": 70.0
+        },
+        "params": 4
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#1",
+        "pos": {
+          "x": 565.0,
+          "y": 180.0
+        },
+        "params": 4
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#2",
+        "pos": {
+          "x": 530.0,
+          "y": 200.0
+        },
+        "params": 4
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#3",
+        "pos": {
+          "x": 560.0,
+          "y": 150.0
+        },
+        "params": 1
+      },
+      {
         "id": "Am2904MSR",
         "name": "DeserializedSubmodelComponent#0",
         "pos": {
@@ -415,58 +467,6 @@
           "x": 450.0,
           "y": 310.0
         }
-      },
-      {
-        "id": "Am2904RegCTInstrDecode",
-        "name": "Am2904RegCTInstrDecode#0",
-        "pos": {
-          "x": 50.0,
-          "y": 240.0
-        }
-      },
-      {
-        "id": "Am2904ShiftInstrDecode",
-        "name": "Am2904ShiftInstrDecode#0",
-        "pos": {
-          "x": 50.0,
-          "y": 360.0
-        }
-      },
-      {
-        "id": "BitDisplay",
-        "name": "BitDisplay#0",
-        "pos": {
-          "x": 530.0,
-          "y": 70.0
-        },
-        "params": 4
-      },
-      {
-        "id": "BitDisplay",
-        "name": "BitDisplay#1",
-        "pos": {
-          "x": 565.0,
-          "y": 180.0
-        },
-        "params": 4
-      },
-      {
-        "id": "BitDisplay",
-        "name": "BitDisplay#2",
-        "pos": {
-          "x": 530.0,
-          "y": 200.0
-        },
-        "params": 4
-      },
-      {
-        "id": "BitDisplay",
-        "name": "BitDisplay#3",
-        "pos": {
-          "x": 560.0,
-          "y": 150.0
-        },
-        "params": 1
       },
       {
         "id": "Merger",

@@ -79,38 +79,6 @@
         "params": 1
       },
       {
-        "id": "and",
-        "name": "and#0",
-        "pos": {
-          "x": 40.0,
-          "y": 2.5
-        }
-      },
-      {
-        "id": "and",
-        "name": "and#1",
-        "pos": {
-          "x": 40.0,
-          "y": 27.5
-        }
-      },
-      {
-        "id": "and",
-        "name": "and#2",
-        "pos": {
-          "x": 40.0,
-          "y": 52.5
-        }
-      },
-      {
-        "id": "and",
-        "name": "and#3",
-        "pos": {
-          "x": 40.0,
-          "y": 77.5
-        }
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -181,6 +149,38 @@
           "y": 36.5
         },
         "params": 1
+      },
+      {
+        "id": "and",
+        "name": "and#0",
+        "pos": {
+          "x": 40.0,
+          "y": 2.5
+        }
+      },
+      {
+        "id": "and",
+        "name": "and#1",
+        "pos": {
+          "x": 40.0,
+          "y": 27.5
+        }
+      },
+      {
+        "id": "and",
+        "name": "and#2",
+        "pos": {
+          "x": 40.0,
+          "y": 52.5
+        }
+      },
+      {
+        "id": "and",
+        "name": "and#3",
+        "pos": {
+          "x": 40.0,
+          "y": 77.5
+        }
       }
     ],
     "wires": [
