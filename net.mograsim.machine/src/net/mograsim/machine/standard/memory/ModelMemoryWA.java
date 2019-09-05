@@ -7,7 +7,7 @@ import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelAndGate;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.snippets.Renderer;
@@ -59,7 +59,7 @@ public class ModelMemoryWA extends ModelComponent
 		return rWPin;
 	}
 
-	public void setLogicModelBinding(WordAddressableMemoryComponent memory)
+	public void setCoreModelBinding(WordAddressableMemoryComponent memory)
 	{
 		this.memory = memory;
 	}
@@ -100,7 +100,7 @@ public class ModelMemoryWA extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new WordAddressableMemoryAdapter());
+		LogicCoreAdapter.addComponentAdapter(new WordAddressableMemoryAdapter());
 		IndirectModelComponentCreator.setComponentSupplier(ModelAndGate.class.getCanonicalName(), (m, p, n) ->
 		{
 			ModelMemoryWAParams params = JsonHandler.fromJsonTree(p, ModelMemoryWAParams.class);

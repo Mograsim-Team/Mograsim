@@ -7,7 +7,7 @@ import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.model.model.components.atomic.ModelMerger;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 
 public class MergerAdapter implements ComponentAdapter<ModelMerger>
 {
@@ -18,7 +18,7 @@ public class MergerAdapter implements ComponentAdapter<ModelMerger>
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, ModelMerger modelComponent,
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, ModelMerger modelComponent,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		CoreWire output = logicWiresPerPin.get(modelComponent.getPin("O"));
@@ -29,6 +29,6 @@ public class MergerAdapter implements ComponentAdapter<ModelMerger>
 			CoreWire.fuse(input, output, 0, i);
 			inputEnds[i] = input.createReadOnlyEnd();
 		}
-		modelComponent.setLogicModelBinding(inputEnds, output.createReadOnlyEnd());
+		modelComponent.setCoreModelBinding(inputEnds, output.createReadOnlyEnd());
 	}
 }

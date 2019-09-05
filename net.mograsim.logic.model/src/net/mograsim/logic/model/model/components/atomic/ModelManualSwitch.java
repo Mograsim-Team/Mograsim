@@ -15,7 +15,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.ManualSwitchAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -32,7 +32,7 @@ public class ModelManualSwitch extends ModelComponent
 	private final Pin outputPin;
 
 	private final LogicObserver logicObs;
-	private CoreManualSwitch logicSwitch;
+	private CoreManualSwitch manualSwitch;
 
 	public ModelManualSwitch(ViewModelModifiable model, int logicWidth)
 	{
@@ -56,7 +56,7 @@ public class ModelManualSwitch extends ModelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-		String label = BitVectorFormatter.formatAsString(logicSwitch == null ? null : logicSwitch.getValues());
+		String label = BitVectorFormatter.formatAsString(manualSwitch == null ? null : manualSwitch.getValues());
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
@@ -67,14 +67,14 @@ public class ModelManualSwitch extends ModelComponent
 		gc.drawText(label, getPosX() + (width - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
 		gc.setFont(oldFont);
 
-		if (logicSwitch != null && logicWidth > 1 && heightMiniButtons > 0 && visibleRegion.y < getPosY() + heightMiniButtons)
+		if (manualSwitch != null && logicWidth > 1 && heightMiniButtons > 0 && visibleRegion.y < getPosY() + heightMiniButtons)
 		{
 			double x = getPosX();
 			double y = getPosY();
 			gc.drawLine(x, y + heightMiniButtons, x + width, y + heightMiniButtons);
 			Color c = gc.getBackground();
 			gc.setBackground(gc.getForeground());
-			BitVector bv = logicSwitch.getValues();
+			BitVector bv = manualSwitch.getValues();
 			double part = width / bv.length();
 			for (int i = 0; i < bv.length(); i++)
 			{
@@ -92,18 +92,18 @@ public class ModelManualSwitch extends ModelComponent
 		}
 	}
 
-	public void setLogicModelBinding(CoreManualSwitch logicSwitch)
+	public void setCoreModelBinding(CoreManualSwitch logicSwitch)
 	{
-		if (this.logicSwitch != null)
-			this.logicSwitch.deregisterObserver(logicObs);
-		this.logicSwitch = logicSwitch;
+		if (this.manualSwitch != null)
+			this.manualSwitch.deregisterObserver(logicObs);
+		this.manualSwitch = logicSwitch;
 		if (logicSwitch != null)
 			logicSwitch.registerObserver(logicObs);
 	}
 
-	public boolean hasLogicModelBinding()
+	public boolean hasCoreModelBinding()
 	{
-		return logicSwitch != null;
+		return manualSwitch != null;
 	}
 
 	@Override
@@ -112,8 +112,8 @@ public class ModelManualSwitch extends ModelComponent
 		switch (stateID)
 		{
 		case "out":
-			if (logicSwitch != null)
-				return logicSwitch.getValues();
+			if (manualSwitch != null)
+				return manualSwitch.getValues();
 			return null;
 		default:
 			return super.getHighLevelState(stateID);
@@ -126,8 +126,8 @@ public class ModelManualSwitch extends ModelComponent
 		switch (stateID)
 		{
 		case "out":
-			if (logicSwitch != null)
-				logicSwitch.setState((BitVector) newState);
+			if (manualSwitch != null)
+				manualSwitch.setState((BitVector) newState);
 			break;
 		default:
 			super.setHighLevelState(stateID, newState);
@@ -138,15 +138,15 @@ public class ModelManualSwitch extends ModelComponent
 	@Override
 	public boolean clicked(double x, double y)
 	{
-		if (logicSwitch != null)
+		if (manualSwitch != null)
 		{
 			if (heightMiniButtons > 0 && y - getPosY() < heightMiniButtons)
 			{
 				int part = (int) ((x - getPosX()) * logicWidth / width);
-				logicSwitch.setState(logicSwitch.getValues().withBitChanged(part, Bit::not));
+				manualSwitch.setState(manualSwitch.getValues().withBitChanged(part, Bit::not));
 			} else
 			{
-				logicSwitch.toggle();
+				manualSwitch.toggle();
 			}
 		}
 		return true;
@@ -154,7 +154,7 @@ public class ModelManualSwitch extends ModelComponent
 
 	public CoreManualSwitch getManualSwitch()
 	{
-		return logicSwitch;
+		return manualSwitch;
 	}
 
 	public Pin getOutputPin()
@@ -176,7 +176,7 @@ public class ModelManualSwitch extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new ManualSwitchAdapter());
+		LogicCoreAdapter.addComponentAdapter(new ManualSwitchAdapter());
 		IndirectModelComponentCreator.setComponentSupplier(ModelManualSwitch.class.getName(),
 				(m, p, n) -> new ModelManualSwitch(m, p.getAsInt(), n));
 	}

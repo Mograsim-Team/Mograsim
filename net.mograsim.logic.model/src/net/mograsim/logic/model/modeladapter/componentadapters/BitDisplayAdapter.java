@@ -8,7 +8,7 @@ import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 
 public class BitDisplayAdapter implements ComponentAdapter<ModelBitDisplay>
 {
@@ -19,11 +19,11 @@ public class BitDisplayAdapter implements ComponentAdapter<ModelBitDisplay>
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, ModelBitDisplay modelComponent,
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, ModelBitDisplay modelComponent,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		ReadEnd end = logicWiresPerPin.get(modelComponent.getInputPin()).createReadOnlyEnd();
 		CoreBitDisplay bitDisplay = new CoreBitDisplay(timeline, end);
-		modelComponent.setLogicModelBinding(bitDisplay);
+		modelComponent.setCoreModelBinding(bitDisplay);
 	}
 }

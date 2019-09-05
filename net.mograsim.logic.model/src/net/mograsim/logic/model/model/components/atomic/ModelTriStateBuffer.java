@@ -12,7 +12,7 @@ import net.mograsim.logic.model.model.components.Orientation;
 import net.mograsim.logic.model.model.components.OrientationCalculator;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.TriStateBufferAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -100,7 +100,7 @@ public class ModelTriStateBuffer extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new TriStateBufferAdapter());
+		LogicCoreAdapter.addComponentAdapter(new TriStateBufferAdapter());
 		IndirectModelComponentCreator.setComponentSupplier(ModelTriStateBuffer.class.getName(), (m, p, n) ->
 		{
 			ModelTriStateBufferParams params = JsonHandler.fromJsonTree(p, ModelTriStateBufferParams.class);

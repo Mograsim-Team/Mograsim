@@ -4,8 +4,8 @@ import java.util.function.Consumer;
 
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 
 public class SimpleLogicUIStandalone
 {
@@ -16,26 +16,26 @@ public class SimpleLogicUIStandalone
 
 	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, Consumer<VisualisationObjects> beforeRun)
 	{
-		LogicModelParameters params = new LogicModelParameters();
+		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
 		executeVisualisation(setupViewModel, params, beforeRun);
 	}
 
-	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, LogicModelParameters params)
+	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, CoreModelParameters params)
 	{
 		executeVisualisation(setupViewModel, params, null);
 	}
 
-	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, LogicModelParameters params,
+	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, CoreModelParameters params,
 			Consumer<VisualisationObjects> beforeRun)
 	{
 		// setup view model
 		ViewModelModifiable viewModel = new ViewModelModifiable();
 		setupViewModel.accept(viewModel);
 
-		// convert to logic model
-		Timeline timeline = ViewLogicModelAdapter.convert(viewModel, params);
+		// convert to core model
+		Timeline timeline = LogicCoreAdapter.convert(viewModel, params);
 
 		// initialize UI and executer
 		LogicUIStandaloneGUI ui = new LogicUIStandaloneGUI(viewModel);

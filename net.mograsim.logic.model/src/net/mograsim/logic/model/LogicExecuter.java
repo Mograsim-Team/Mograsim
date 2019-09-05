@@ -8,7 +8,7 @@ import net.mograsim.logic.core.timeline.Timeline;
 //TODO maybe move to logic core?
 public class LogicExecuter
 {
-	// TODO replace with LogicModel when it exists
+	// TODO replace with CoreModel when it exists
 	private final Timeline timeline;
 
 	private final AtomicBoolean shouldBeRunningLive;

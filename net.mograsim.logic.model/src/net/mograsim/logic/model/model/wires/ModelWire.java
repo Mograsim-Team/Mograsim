@@ -36,7 +36,7 @@ public class ModelWire
 	 */
 	public final String name;
 	/**
-	 * The logical width of this wire. Is equal to the logical with of {@link #pin1} and {@link #pin2}.
+	 * The logical width of this wire. Is equal to the logical width of {@link #pin1} and {@link #pin2}.
 	 */
 	public final int logicWidth;
 	/**
@@ -65,11 +65,11 @@ public class ModelWire
 	private final List<Consumer<ModelWire>> pathChangedListeners;
 
 	/**
-	 * A LogicObserver calling redrawListeners. Used for logic model bindings.
+	 * A LogicObserver calling redrawListeners. Used for core model bindings.
 	 */
 	private final LogicObserver logicObs;
 	/**
-	 * A ReadEnd of the logic wire this model wire currently is bound to.
+	 * A ReadEnd of the core wire this model wire currently is bound to.
 	 */
 	private ReadEnd end;
 
@@ -463,7 +463,7 @@ public class ModelWire
 		return new Point(p.x, p.y);
 	}
 
-	// logic model binding
+	// core model binding
 
 	/**
 	 * Binds this {@link ModelWire} to the given {@link ReadEnd}: The color of this {@link ModelWire} will now depend on the state of the
@@ -472,7 +472,7 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public void setLogicModelBinding(ReadEnd end)
+	public void setCoreModelBinding(ReadEnd end)
 	{
 		if (this.end != null)
 			this.end.deregisterObserver(logicObs);
@@ -482,17 +482,17 @@ public class ModelWire
 	}
 
 	/**
-	 * Returns whether this {@link ModelWire} has a logic model binding or not.
+	 * Returns whether this {@link ModelWire} has a core model binding or not.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public boolean hasLogicModelBinding()
+	public boolean hasCoreModelBinding()
 	{
 		return end != null;
 	}
 
 	/**
-	 * If this {@link ModelWire} has a logic model binding, delegates to {@link CoreWire#forceValues(BitVector)} for the {@link CoreWire}
+	 * If this {@link ModelWire} has a core model binding, delegates to {@link CoreWire#forceValues(BitVector)} for the {@link CoreWire}
 	 * corresponding to this {@link ModelWire}.
 	 * 
 	 * @author Daniel Kirschten
@@ -503,8 +503,8 @@ public class ModelWire
 	}
 
 	/**
-	 * If this {@link ModelWire} has a logic model binding, delegates to {@link ReadEnd#getValues()} for the {@link ReadEnd} corresponding
-	 * to this {@link ModelWire}.
+	 * If this {@link ModelWire} has a core model binding, delegates to {@link ReadEnd#getValues()} for the {@link ReadEnd} corresponding to
+	 * this {@link ModelWire}.
 	 * 
 	 * @author Daniel Kirschten
 	 */

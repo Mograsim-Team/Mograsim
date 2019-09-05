@@ -22,7 +22,7 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.modeladapter.componentadapters.ComponentAdapter;
 
-public class ViewLogicModelAdapter
+public class LogicCoreAdapter
 {
 	private final static Map<Class<? extends ModelComponent>, ComponentAdapter<? extends ModelComponent>> componentAdapters = new HashMap<>();
 
@@ -31,9 +31,9 @@ public class ViewLogicModelAdapter
 		componentAdapters.put(componentAdapter.getSupportedClass(), componentAdapter);
 	}
 
-	public static Timeline convert(ViewModel viewModel, LogicModelParameters params)
+	public static Timeline convert(ViewModel viewModel, CoreModelParameters params)
 	{
-		// TODO replace Timeline with LogicModel as soon as it exists
+		// TODO replace Timeline with CoreModel as soon as it exists
 		Timeline timeline = new Timeline(10);
 
 		convert(viewModel, params, timeline, Map.of());
@@ -41,7 +41,7 @@ public class ViewLogicModelAdapter
 		return timeline;
 	}
 
-	private static void convert(ViewModel viewModel, LogicModelParameters params, Timeline timeline, Map<Pin, CoreWire> externalWires)
+	private static void convert(ViewModel viewModel, CoreModelParameters params, Timeline timeline, Map<Pin, CoreWire> externalWires)
 	{
 		Map<Pin, CoreWire> logicWiresPerPin = convertWires(getAllPins(viewModel), viewModel.getWiresByName().values(), externalWires,
 				params, timeline);
@@ -59,7 +59,7 @@ public class ViewLogicModelAdapter
 			} else if (modelComp instanceof ModelWireCrossPoint)
 			{
 				ModelWireCrossPoint modelCompCasted = (ModelWireCrossPoint) modelComp;
-				modelCompCasted.setLogicModelBinding(logicWiresPerPin.get(modelCompCasted.getPin()).createReadOnlyEnd());
+				modelCompCasted.setCoreModelBinding(logicWiresPerPin.get(modelCompCasted.getPin()).createReadOnlyEnd());
 			} else if (!(modelComp instanceof SubmodelInterface))// nothing to do for SubmodelInterfaces
 				createAndLinkComponent(timeline, params, modelComp, logicWiresPerPinUnmodifiable);
 		}
@@ -72,16 +72,16 @@ public class ViewLogicModelAdapter
 	}
 
 	private static Map<Pin, CoreWire> convertWires(Set<Pin> allPins, Collection<ModelWire> wires, Map<Pin, CoreWire> externalWires,
-			LogicModelParameters params, Timeline timeline)
+			CoreModelParameters params, Timeline timeline)
 	{
 		Map<Pin, Set<Pin>> connectedPinGroups = getConnectedPinGroups(allPins, wires);
 		Map<Pin, CoreWire> logicWiresPerPin = createLogicWires(params, timeline, connectedPinGroups, externalWires);
-		setModelWiresLogicModelBinding(wires, logicWiresPerPin);
+		setModelWiresCoreModelBinding(wires, logicWiresPerPin);
 		return logicWiresPerPin;
 	}
 
-	private static Map<Pin, CoreWire> createLogicWires(LogicModelParameters params, Timeline timeline,
-			Map<Pin, Set<Pin>> connectedPinGroups, Map<Pin, CoreWire> externalWires)
+	private static Map<Pin, CoreWire> createLogicWires(CoreModelParameters params, Timeline timeline, Map<Pin, Set<Pin>> connectedPinGroups,
+			Map<Pin, CoreWire> externalWires)
 	{
 		Map<Pin, CoreWire> logicWiresPerPin = new HashMap<>();
 		Map<Set<Pin>, CoreWire> logicWiresPerPinGroup = new HashMap<>();
@@ -106,12 +106,12 @@ public class ViewLogicModelAdapter
 		return logicWiresPerPin;
 	}
 
-	private static void setModelWiresLogicModelBinding(Collection<ModelWire> wires, Map<Pin, CoreWire> logicWiresPerPin)
+	private static void setModelWiresCoreModelBinding(Collection<ModelWire> wires, Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		Map<CoreWire, ReadEnd> modelWireSharedReadEnd = logicWiresPerPin.values().stream().distinct()
 				.collect(Collectors.toMap(Function.identity(), CoreWire::createReadOnlyEnd));
 		for (ModelWire modelWire : wires)
-			modelWire.setLogicModelBinding(modelWireSharedReadEnd.get(logicWiresPerPin.get(modelWire.getPin1())));
+			modelWire.setCoreModelBinding(modelWireSharedReadEnd.get(logicWiresPerPin.get(modelWire.getPin1())));
 	}
 
 	private static Map<Pin, Set<Pin>> getConnectedPinGroups(Set<Pin> allPins, Collection<ModelWire> wires)
@@ -143,7 +143,7 @@ public class ViewLogicModelAdapter
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <G extends ModelComponent> void createAndLinkComponent(Timeline timeline, LogicModelParameters params,
+	private static <G extends ModelComponent> void createAndLinkComponent(Timeline timeline, CoreModelParameters params,
 			ModelComponent modelComponent, Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		Class<?> cls = modelComponent.getClass();
@@ -158,8 +158,8 @@ public class ViewLogicModelAdapter
 		adapter.createAndLinkComponent(timeline, params, (G) modelComponent, logicWiresPerPin);
 	}
 
-	private ViewLogicModelAdapter()
+	private LogicCoreAdapter()
 	{
-		throw new UnsupportedOperationException("No ViewLogicModelConverter instances");
+		throw new UnsupportedOperationException("No LogicCoreAdapter instances");
 	}
 }

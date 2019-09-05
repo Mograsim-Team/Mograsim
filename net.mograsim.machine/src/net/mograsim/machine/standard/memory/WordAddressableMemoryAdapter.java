@@ -28,7 +28,7 @@ public class WordAddressableMemoryAdapter implements ComponentAdapter<ModelMemor
 		ReadEnd address = logicWiresPerPin.get(modelComponent.getAddressPin()).createReadOnlyEnd();
 		ReadEnd mode = logicWiresPerPin.get(modelComponent.getReadWritePin()).createReadOnlyEnd();
 		WordAddressableMemoryComponent mem = new WordAddressableMemoryComponent(timeline, 2, modelComponent.getDefinition(), data, mode, address);
-		modelComponent.setLogicModelBinding(mem);
+		modelComponent.setCoreModelBinding(mem);
 	}
 
 }

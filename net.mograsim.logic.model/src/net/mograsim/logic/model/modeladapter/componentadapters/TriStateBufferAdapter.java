@@ -9,7 +9,7 @@ import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.components.atomic.ModelTriStateBuffer;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 
 public class TriStateBufferAdapter implements ComponentAdapter<ModelTriStateBuffer>
 {
@@ -21,7 +21,7 @@ public class TriStateBufferAdapter implements ComponentAdapter<ModelTriStateBuff
 
 	@SuppressWarnings("unused")
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, ModelTriStateBuffer modelTsb,
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, ModelTriStateBuffer modelTsb,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		ReadEnd in = logicWiresPerPin.get(modelTsb.getPin("IN")).createReadOnlyEnd();

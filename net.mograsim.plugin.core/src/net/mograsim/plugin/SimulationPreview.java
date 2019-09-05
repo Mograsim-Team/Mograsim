@@ -15,8 +15,8 @@ import net.mograsim.logic.model.model.components.atomic.ModelNotGate;
 import net.mograsim.logic.model.model.components.atomic.ModelOrGate;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.preferences.Preferences;
 
 public class SimulationPreview implements IThemePreview
@@ -37,7 +37,7 @@ public class SimulationPreview implements IThemePreview
 		Preferences.setPreferences(currentThemePreferences);
 
 		ViewModelModifiable model = new ViewModelModifiable();
-		LogicModelParameters params = new LogicModelParameters();
+		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
 
@@ -80,7 +80,7 @@ public class SimulationPreview implements IThemePreview
 		o2.moveCenterTo(150, 72.5);
 		new ModelWire(model, p2, o2);
 
-		Timeline t = ViewLogicModelAdapter.convert(model, params);
+		Timeline t = LogicCoreAdapter.convert(model, params);
 		exec = new LogicExecuter(t);
 
 		rIn.clicked(0, 0);

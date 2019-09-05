@@ -16,7 +16,7 @@ import net.mograsim.logic.model.model.components.Orientation;
 import net.mograsim.logic.model.model.components.OrientationCalculator;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.ClockAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -73,7 +73,7 @@ public class ModelClock extends ModelComponent
 		gc.setFont(oldFont);
 	}
 
-	public void setLogicModelBinding(CoreClock clock)
+	public void setCoreModelBinding(CoreClock clock)
 	{
 		if (this.clock != null)
 			this.clock.deregisterObserver(logicObs);
@@ -82,7 +82,7 @@ public class ModelClock extends ModelComponent
 			clock.registerObserver(logicObs);
 	}
 
-	public boolean hasLogicModelBinding()
+	public boolean hasCoreModelBinding()
 	{
 		return clock != null;
 	}
@@ -142,7 +142,7 @@ public class ModelClock extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new ClockAdapter());
+		LogicCoreAdapter.addComponentAdapter(new ClockAdapter());
 		IndirectModelComponentCreator.setComponentSupplier(ModelClock.class.getName(), (m, p, n) ->
 		{
 			ModelClockParams params = JsonHandler.fromJsonTree(p, ModelClockParams.class);

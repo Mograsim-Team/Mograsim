@@ -7,7 +7,7 @@ import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.model.model.components.atomic.ModelSplitter;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 
 public class SplitterAdapter implements ComponentAdapter<ModelSplitter>
 {
@@ -18,7 +18,7 @@ public class SplitterAdapter implements ComponentAdapter<ModelSplitter>
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, ModelSplitter modelComponent,
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, ModelSplitter modelComponent,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		CoreWire input = logicWiresPerPin.get(modelComponent.getPin("I"));
@@ -29,6 +29,6 @@ public class SplitterAdapter implements ComponentAdapter<ModelSplitter>
 			CoreWire.fuse(input, output, i, 0);
 			outputEnds[i] = output.createReadOnlyEnd();
 		}
-		modelComponent.setLogicModelBinding(input.createReadOnlyEnd(), outputEnds);
+		modelComponent.setCoreModelBinding(input.createReadOnlyEnd(), outputEnds);
 	}
 }

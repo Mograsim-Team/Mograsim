@@ -6,7 +6,7 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 
 /**
  * For ModelComponents that do not have any simulation logic behaviour
@@ -29,7 +29,7 @@ public class NoLogicAdapter<T extends ModelComponent> implements ComponentAdapte
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, T modelComponent,
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, T modelComponent,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		// do nothing

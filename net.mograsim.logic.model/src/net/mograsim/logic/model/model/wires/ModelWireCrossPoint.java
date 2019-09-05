@@ -89,7 +89,7 @@ public class ModelWireCrossPoint extends ModelComponent
 		gc.fillOval(getPosX(), getPosY(), CIRCLE_DIAM, CIRCLE_DIAM);
 	}
 
-	// logic model binding
+	// core model binding
 
 	/**
 	 * Binds this {@link ModelWireCrossPoint} to the given {@link ReadEnd}: The color of this {@link ModelWireCrossPoint} will now depend on
@@ -99,7 +99,7 @@ public class ModelWireCrossPoint extends ModelComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public void setLogicModelBinding(ReadEnd end)
+	public void setCoreModelBinding(ReadEnd end)
 	{
 		if (this.end != null)
 			this.end.deregisterObserver(logicObs);
@@ -109,9 +109,9 @@ public class ModelWireCrossPoint extends ModelComponent
 	}
 
 	/**
-	 * Returns whether this {@link ModelWireCrossPoint} has a logic model binding or not.
+	 * Returns whether this {@link ModelWireCrossPoint} has a core model binding or not.
 	 */
-	public boolean hasLogicModelBinding()
+	public boolean hasCoreModelBinding()
 	{
 		return end != null;
 	}
