@@ -381,7 +381,7 @@
       },
       {
         "id": "TriStateBuffer",
-        "name": "TriStateBuffer#3",
+        "name": "TriStateBuffer#2",
         "pos": {
           "x": 300.0,
           "y": 2515.0
@@ -393,7 +393,7 @@
       },
       {
         "id": "TriStateBuffer",
-        "name": "TriStateBuffer#4",
+        "name": "TriStateBuffer#3",
         "pos": {
           "x": 300.0,
           "y": 2310.0
@@ -1480,7 +1480,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "TriStateBuffer#3",
+          "compName": "TriStateBuffer#2",
           "pinName": "IN"
         },
         "name": "unnamedWire#135",
@@ -1855,7 +1855,7 @@
       },
       {
         "pin1": {
-          "compName": "TriStateBuffer#3",
+          "compName": "TriStateBuffer#2",
           "pinName": "OUT"
         },
         "pin2": {
@@ -2098,7 +2098,7 @@
       },
       {
         "pin1": {
-          "compName": "TriStateBuffer#3",
+          "compName": "TriStateBuffer#2",
           "pinName": "EN"
         },
         "pin2": {
@@ -2114,7 +2114,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "TriStateBuffer#4",
+          "compName": "TriStateBuffer#3",
           "pinName": "IN"
         },
         "name": "unnamedWire#171",
@@ -3585,7 +3585,7 @@
       },
       {
         "pin1": {
-          "compName": "TriStateBuffer#4",
+          "compName": "TriStateBuffer#3",
           "pinName": "OUT"
         },
         "pin2": {
@@ -3601,7 +3601,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "TriStateBuffer#4",
+          "compName": "TriStateBuffer#3",
           "pinName": "EN"
         },
         "name": "unnamedWire#95",

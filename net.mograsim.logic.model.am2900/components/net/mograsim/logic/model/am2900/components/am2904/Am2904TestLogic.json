@@ -88,14 +88,6 @@
   "submodel": {
     "components": [
       {
-        "id": "xor",
-        "name": "DeserializedSubmodelComponent#0",
-        "pos": {
-          "x": 40.0,
-          "y": 20.0
-        }
-      },
-      {
         "id": "NandGate",
         "name": "NandGate#0",
         "pos": {
@@ -256,6 +248,14 @@
           "y": 149.0
         },
         "params": 1
+      },
+      {
+        "id": "xor",
+        "name": "xor#0",
+        "pos": {
+          "x": 40.0,
+          "y": 20.0
+        }
       }
     ],
     "wires": [
@@ -581,7 +581,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#0",
+          "compName": "xor#0",
           "pinName": "A"
         },
         "name": "unnamedWire#3",
@@ -683,7 +683,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#0",
+          "compName": "xor#0",
           "pinName": "B"
         },
         "name": "unnamedWire#4",
@@ -696,7 +696,7 @@
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#0",
+          "compName": "xor#0",
           "pinName": "Y"
         },
         "pin2": {
