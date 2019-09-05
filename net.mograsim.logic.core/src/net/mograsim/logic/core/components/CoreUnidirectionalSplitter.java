@@ -6,15 +6,15 @@ import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
-public class UnidirectionalSplitter extends Component implements LogicObserver
+public class CoreUnidirectionalSplitter extends CoreComponent implements LogicObserver
 {
 	private ReadEnd input;
 	private ReadWriteEnd[] outputs;
 
-	public UnidirectionalSplitter(Timeline timeline, ReadEnd input, ReadWriteEnd... outputs)
+	public CoreUnidirectionalSplitter(Timeline timeline, ReadEnd input, ReadWriteEnd... outputs)
 	{
 		super(timeline);
 		this.input = input;

@@ -2,17 +2,17 @@ package net.mograsim.machine.standard.memory;
 
 import java.util.List;
 
-import net.mograsim.logic.core.components.BasicComponent;
+import net.mograsim.logic.core.components.BasicCoreComponent;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.machine.MainMemoryDefinition;
 
 /**
  * A memory component that only allows access to words of a specific width
  */
-public class WordAddressableMemoryComponent extends BasicComponent
+public class WordAddressableMemoryComponent extends BasicCoreComponent
 {
 	private final WordAddressableMemory memory;
 	private final static Bit read = Bit.ONE;

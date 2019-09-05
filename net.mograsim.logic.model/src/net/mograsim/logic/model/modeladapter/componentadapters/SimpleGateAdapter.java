@@ -2,11 +2,11 @@ package net.mograsim.logic.model.modeladapter.componentadapters;
 
 import java.util.Map;
 
-import net.mograsim.logic.core.components.Component;
+import net.mograsim.logic.core.components.CoreComponent;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularGUIGate;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
@@ -29,7 +29,7 @@ public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements Co
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent, Map<Pin, Wire> logicWiresPerPin)
+	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent, Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		ReadWriteEnd out = logicWiresPerPin.get(guiComponent.getPin("Y")).createReadWriteEnd();
 
@@ -44,7 +44,7 @@ public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements Co
 
 	public static interface ComponentConstructor
 	{
-		public Component newComponent(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd[] ins);
+		public CoreComponent newComponent(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd[] ins);
 	}
 
 }

@@ -11,8 +11,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
@@ -41,11 +41,11 @@ public class ViewLogicModelAdapter
 		return timeline;
 	}
 
-	private static void convert(ViewModel viewModel, LogicModelParameters params, Timeline timeline, Map<Pin, Wire> externalWires)
+	private static void convert(ViewModel viewModel, LogicModelParameters params, Timeline timeline, Map<Pin, CoreWire> externalWires)
 	{
-		Map<Pin, Wire> logicWiresPerPin = convertWires(getAllPins(viewModel), viewModel.getWiresByName().values(), externalWires, params,
+		Map<Pin, CoreWire> logicWiresPerPin = convertWires(getAllPins(viewModel), viewModel.getWiresByName().values(), externalWires, params,
 				timeline);
-		Map<Pin, Wire> logicWiresPerPinUnmodifiable = Collections.unmodifiableMap(logicWiresPerPin);
+		Map<Pin, CoreWire> logicWiresPerPinUnmodifiable = Collections.unmodifiableMap(logicWiresPerPin);
 
 		for (GUIComponent guiComp : viewModel.getComponentsByName().values())
 		{
@@ -53,7 +53,7 @@ public class ViewLogicModelAdapter
 			{
 				SubmodelComponent guiCompCasted = (SubmodelComponent) guiComp;
 				Map<String, Pin> supermodelPins = guiCompCasted.getSupermodelPins();
-				Map<Pin, Wire> externalWiresForSubmodel = supermodelPins.entrySet().stream()
+				Map<Pin, CoreWire> externalWiresForSubmodel = supermodelPins.entrySet().stream()
 						.collect(Collectors.toMap(e -> guiCompCasted.getSubmodelPin(e.getKey()), e -> logicWiresPerPin.get(e.getValue())));
 				convert(guiCompCasted.submodel, params, timeline, externalWiresForSubmodel);
 			} else if (guiComp instanceof WireCrossPoint)
@@ -71,45 +71,45 @@ public class ViewLogicModelAdapter
 				.collect(Collectors.toSet());
 	}
 
-	private static Map<Pin, Wire> convertWires(Set<Pin> allPins, Collection<GUIWire> wires, Map<Pin, Wire> externalWires,
+	private static Map<Pin, CoreWire> convertWires(Set<Pin> allPins, Collection<GUIWire> wires, Map<Pin, CoreWire> externalWires,
 			LogicModelParameters params, Timeline timeline)
 	{
 		Map<Pin, Set<Pin>> connectedPinGroups = getConnectedPinGroups(allPins, wires);
-		Map<Pin, Wire> logicWiresPerPin = createLogicWires(params, timeline, connectedPinGroups, externalWires);
+		Map<Pin, CoreWire> logicWiresPerPin = createLogicWires(params, timeline, connectedPinGroups, externalWires);
 		setGUIWiresLogicModelBinding(wires, logicWiresPerPin);
 		return logicWiresPerPin;
 	}
 
-	private static Map<Pin, Wire> createLogicWires(LogicModelParameters params, Timeline timeline, Map<Pin, Set<Pin>> connectedPinGroups,
-			Map<Pin, Wire> externalWires)
+	private static Map<Pin, CoreWire> createLogicWires(LogicModelParameters params, Timeline timeline, Map<Pin, Set<Pin>> connectedPinGroups,
+			Map<Pin, CoreWire> externalWires)
 	{
-		Map<Pin, Wire> logicWiresPerPin = new HashMap<>();
-		Map<Set<Pin>, Wire> logicWiresPerPinGroup = new HashMap<>();
+		Map<Pin, CoreWire> logicWiresPerPin = new HashMap<>();
+		Map<Set<Pin>, CoreWire> logicWiresPerPinGroup = new HashMap<>();
 		for (Entry<Pin, Set<Pin>> e : connectedPinGroups.entrySet())
 			logicWiresPerPin.put(e.getKey(), logicWiresPerPinGroup.computeIfAbsent(e.getValue(), set ->
 			{
-				Wire externalWire = null;
+				CoreWire externalWire = null;
 				for (Pin p : set)
 				{
-					Wire externalWireCandidate = externalWires.get(p);
+					CoreWire externalWireCandidate = externalWires.get(p);
 					if (externalWireCandidate != null)
 						if (externalWire == null)
 							externalWire = externalWireCandidate;
 						else if (externalWire.width == externalWireCandidate.width)
-							Wire.fuse(externalWire, externalWireCandidate);
+							CoreWire.fuse(externalWire, externalWireCandidate);
 						else
 							throw new IllegalArgumentException(
 									"Two pins to external wires with different logicWidths can't be connected directly");
 				}
-				return externalWire == null ? new Wire(timeline, e.getKey().logicWidth, params.wireTravelTime) : externalWire;
+				return externalWire == null ? new CoreWire(timeline, e.getKey().logicWidth, params.wireTravelTime) : externalWire;
 			}));
 		return logicWiresPerPin;
 	}
 
-	private static void setGUIWiresLogicModelBinding(Collection<GUIWire> wires, Map<Pin, Wire> logicWiresPerPin)
+	private static void setGUIWiresLogicModelBinding(Collection<GUIWire> wires, Map<Pin, CoreWire> logicWiresPerPin)
 	{
-		Map<Wire, ReadEnd> guiWireSharedReadEnd = logicWiresPerPin.values().stream().distinct()
-				.collect(Collectors.toMap(Function.identity(), Wire::createReadOnlyEnd));
+		Map<CoreWire, ReadEnd> guiWireSharedReadEnd = logicWiresPerPin.values().stream().distinct()
+				.collect(Collectors.toMap(Function.identity(), CoreWire::createReadOnlyEnd));
 		for (GUIWire guiWire : wires)
 			guiWire.setLogicModelBinding(guiWireSharedReadEnd.get(logicWiresPerPin.get(guiWire.getPin1())));
 	}
@@ -144,7 +144,7 @@ public class ViewLogicModelAdapter
 
 	@SuppressWarnings("unchecked")
 	private static <G extends GUIComponent> void createAndLinkComponent(Timeline timeline, LogicModelParameters params,
-			GUIComponent guiComponent, Map<Pin, Wire> logicWiresPerPin)
+			GUIComponent guiComponent, Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		Class<?> cls = guiComponent.getClass();
 		ComponentAdapter<? super G> adapter = null;

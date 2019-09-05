@@ -8,26 +8,26 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import net.mograsim.logic.core.components.Demux;
-import net.mograsim.logic.core.components.Mux;
-import net.mograsim.logic.core.components.TriStateBuffer;
-import net.mograsim.logic.core.components.UnidirectionalMerger;
-import net.mograsim.logic.core.components.UnidirectionalSplitter;
-import net.mograsim.logic.core.components.gates.AndGate;
-import net.mograsim.logic.core.components.gates.NandGate;
-import net.mograsim.logic.core.components.gates.NorGate;
-import net.mograsim.logic.core.components.gates.NotGate;
-import net.mograsim.logic.core.components.gates.OrGate;
-import net.mograsim.logic.core.components.gates.XorGate;
+import net.mograsim.logic.core.components.CoreDemux;
+import net.mograsim.logic.core.components.CoreMux;
+import net.mograsim.logic.core.components.CoreTriStateBuffer;
+import net.mograsim.logic.core.components.CoreUnidirectionalMerger;
+import net.mograsim.logic.core.components.CoreUnidirectionalSplitter;
+import net.mograsim.logic.core.components.gates.CoreAndGate;
+import net.mograsim.logic.core.components.gates.CoreNandGate;
+import net.mograsim.logic.core.components.gates.CoreNorGate;
+import net.mograsim.logic.core.components.gates.CoreNotGate;
+import net.mograsim.logic.core.components.gates.CoreOrGate;
+import net.mograsim.logic.core.components.gates.CoreXorGate;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
 @SuppressWarnings("unused")
-class ComponentTest
+class CoreComponentTest
 {
 	private Timeline t = new Timeline(11);
 
@@ -40,14 +40,14 @@ class ComponentTest
 	@Test
 	void circuitExampleTest()
 	{
-		Wire a = new Wire(t, 1, 1), b = new Wire(t, 1, 1), c = new Wire(t, 1, 10), d = new Wire(t, 2, 1), e = new Wire(t, 1, 1),
-				f = new Wire(t, 1, 1), g = new Wire(t, 1, 1), h = new Wire(t, 2, 1), i = new Wire(t, 2, 1), j = new Wire(t, 1, 1),
-				k = new Wire(t, 1, 1);
-		new AndGate(t, 1, f.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
-		new NotGate(t, 1, f.createReadOnlyEnd(), g.createReadWriteEnd());
-		new UnidirectionalMerger(t, h.createReadWriteEnd(), c.createReadOnlyEnd(), g.createReadOnlyEnd());
-		new Mux(t, 1, i.createReadWriteEnd(), e.createReadOnlyEnd(), h.createReadOnlyEnd(), d.createReadOnlyEnd());
-		new UnidirectionalSplitter(t, i.createReadOnlyEnd(), k.createReadWriteEnd(), j.createReadWriteEnd());
+		CoreWire a = new CoreWire(t, 1, 1), b = new CoreWire(t, 1, 1), c = new CoreWire(t, 1, 10), d = new CoreWire(t, 2, 1), e = new CoreWire(t, 1, 1),
+				f = new CoreWire(t, 1, 1), g = new CoreWire(t, 1, 1), h = new CoreWire(t, 2, 1), i = new CoreWire(t, 2, 1), j = new CoreWire(t, 1, 1),
+				k = new CoreWire(t, 1, 1);
+		new CoreAndGate(t, 1, f.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
+		new CoreNotGate(t, 1, f.createReadOnlyEnd(), g.createReadWriteEnd());
+		new CoreUnidirectionalMerger(t, h.createReadWriteEnd(), c.createReadOnlyEnd(), g.createReadOnlyEnd());
+		new CoreMux(t, 1, i.createReadWriteEnd(), e.createReadOnlyEnd(), h.createReadOnlyEnd(), d.createReadOnlyEnd());
+		new CoreUnidirectionalSplitter(t, i.createReadOnlyEnd(), k.createReadWriteEnd(), j.createReadWriteEnd());
 
 		a.createReadWriteEnd().feedSignals(Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ONE);
@@ -64,9 +64,9 @@ class ComponentTest
 	@Test
 	void splitterTest()
 	{
-		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), in = new Wire(t, 8, 1);
+		CoreWire a = new CoreWire(t, 3, 1), b = new CoreWire(t, 2, 1), c = new CoreWire(t, 3, 1), in = new CoreWire(t, 8, 1);
 		in.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
-		new UnidirectionalSplitter(t, in.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(), c.createReadWriteEnd());
+		new CoreUnidirectionalSplitter(t, in.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(), c.createReadWriteEnd());
 
 		t.executeAll();
 
@@ -78,12 +78,12 @@ class ComponentTest
 	@Test
 	void mergerTest()
 	{
-		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), out = new Wire(t, 8, 1);
+		CoreWire a = new CoreWire(t, 3, 1), b = new CoreWire(t, 2, 1), c = new CoreWire(t, 3, 1), out = new CoreWire(t, 8, 1);
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO);
 		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		new UnidirectionalMerger(t, out.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		new CoreUnidirectionalMerger(t, out.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 
 		t.executeAll();
 
@@ -93,10 +93,10 @@ class ComponentTest
 	@Test
 	void fusionTest1()
 	{
-		Wire a = new Wire(t, 3, 1), b = new Wire(t, 2, 1), c = new Wire(t, 3, 1), out = new Wire(t, 8, 1);
-		Wire.fuse(a, out, 0, 0, a.width);
-		Wire.fuse(b, out, 0, a.width, b.width);
-		Wire.fuse(c, out, 0, a.width + b.width, c.width);
+		CoreWire a = new CoreWire(t, 3, 1), b = new CoreWire(t, 2, 1), c = new CoreWire(t, 3, 1), out = new CoreWire(t, 8, 1);
+		CoreWire.fuse(a, out, 0, 0, a.width);
+		CoreWire.fuse(b, out, 0, a.width, b.width);
+		CoreWire.fuse(c, out, 0, a.width + b.width, c.width);
 		ReadWriteEnd rA = a.createReadWriteEnd();
 		rA.feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO);
 		ReadWriteEnd rB = b.createReadWriteEnd();
@@ -123,8 +123,8 @@ class ComponentTest
 	@Test
 	void fusionTest2()
 	{
-		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
-		Wire.fuse(a, b);
+		CoreWire a = new CoreWire(t, 3, 1), b = new CoreWire(t, 3, 1);
+		CoreWire.fuse(a, b);
 		ReadWriteEnd rw = a.createReadWriteEnd();
 		t.executeAll();
 		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U);
@@ -137,10 +137,10 @@ class ComponentTest
 	@Test
 	void fusionTest3()
 	{
-		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
+		CoreWire a = new CoreWire(t, 3, 1), b = new CoreWire(t, 3, 1);
 		a.createReadWriteEnd().feedSignals(Bit.Z, Bit.U, Bit.X);
 		t.executeAll();
-		Wire.fuse(a, b);
+		CoreWire.fuse(a, b);
 		t.executeAll();
 		assertBitArrayEquals(b.getValues(), Bit.Z, Bit.U, Bit.X);
 	}
@@ -148,11 +148,11 @@ class ComponentTest
 	@Test
 	void fusionTest4()
 	{
-		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 1);
+		CoreWire a = new CoreWire(t, 3, 1), b = new CoreWire(t, 3, 1);
 		a.createReadWriteEnd();
 		t.executeAll();
 
-		Wire.fuse(a, b);
+		CoreWire.fuse(a, b);
 		t.executeAll();
 		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U);
 	}
@@ -172,10 +172,10 @@ class ComponentTest
 	@Test
 	void triStateBufferTest()
 	{
-		Wire a = new Wire(t, 1, 1), b = new Wire(t, 1, 1), en = new Wire(t, 1, 1), notEn = new Wire(t, 1, 1);
-		new NotGate(t, 1, en.createReadOnlyEnd(), notEn.createReadWriteEnd());
-		new TriStateBuffer(t, 1, a.createReadOnlyEnd(), b.createReadWriteEnd(), en.createReadOnlyEnd());
-		new TriStateBuffer(t, 1, b.createReadOnlyEnd(), a.createReadWriteEnd(), notEn.createReadOnlyEnd());
+		CoreWire a = new CoreWire(t, 1, 1), b = new CoreWire(t, 1, 1), en = new CoreWire(t, 1, 1), notEn = new CoreWire(t, 1, 1);
+		new CoreNotGate(t, 1, en.createReadOnlyEnd(), notEn.createReadWriteEnd());
+		new CoreTriStateBuffer(t, 1, a.createReadOnlyEnd(), b.createReadWriteEnd(), en.createReadOnlyEnd());
+		new CoreTriStateBuffer(t, 1, b.createReadOnlyEnd(), a.createReadWriteEnd(), notEn.createReadOnlyEnd());
 
 		ReadWriteEnd enI = en.createReadWriteEnd(), aI = a.createReadWriteEnd(), bI = b.createReadWriteEnd();
 		enI.feedSignals(Bit.ONE);
@@ -205,14 +205,14 @@ class ComponentTest
 	@Test
 	void muxTest()
 	{
-		Wire a = new Wire(t, 4, 3), b = new Wire(t, 4, 6), c = new Wire(t, 4, 4), select = new Wire(t, 2, 5), out = new Wire(t, 4, 1);
+		CoreWire a = new CoreWire(t, 4, 3), b = new CoreWire(t, 4, 6), c = new CoreWire(t, 4, 4), select = new CoreWire(t, 2, 5), out = new CoreWire(t, 4, 1);
 		ReadWriteEnd selectIn = select.createReadWriteEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 		c.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
-		new Mux(t, 1, out.createReadWriteEnd(), select.createReadOnlyEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(),
+		new CoreMux(t, 1, out.createReadWriteEnd(), select.createReadOnlyEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(),
 				c.createReadOnlyEnd());
 		t.executeAll();
 
@@ -232,13 +232,13 @@ class ComponentTest
 	@Test
 	void demuxTest()
 	{
-		Wire a = new Wire(t, 4, 3), b = new Wire(t, 4, 6), c = new Wire(t, 4, 4), select = new Wire(t, 2, 5), in = new Wire(t, 4, 1);
+		CoreWire a = new CoreWire(t, 4, 3), b = new CoreWire(t, 4, 6), c = new CoreWire(t, 4, 4), select = new CoreWire(t, 2, 5), in = new CoreWire(t, 4, 1);
 		ReadWriteEnd selectIn = select.createReadWriteEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
 		in.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 
-		new Demux(t, 1, in.createReadOnlyEnd(), select.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(),
+		new CoreDemux(t, 1, in.createReadOnlyEnd(), select.createReadOnlyEnd(), a.createReadWriteEnd(), b.createReadWriteEnd(),
 				c.createReadWriteEnd());
 		t.executeAll();
 
@@ -264,8 +264,8 @@ class ComponentTest
 	@Test
 	void andTest()
 	{
-		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1);
-		new AndGate(t, 1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
+		CoreWire a = new CoreWire(t, 4, 1), b = new CoreWire(t, 4, 3), c = new CoreWire(t, 4, 1);
+		new CoreAndGate(t, 1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
@@ -277,8 +277,8 @@ class ComponentTest
 	@Test
 	void orTest()
 	{
-		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1);
-		new OrGate(t, 1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
+		CoreWire a = new CoreWire(t, 4, 1), b = new CoreWire(t, 4, 3), c = new CoreWire(t, 4, 1);
+		new CoreOrGate(t, 1, c.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 
@@ -290,8 +290,8 @@ class ComponentTest
 	@Test
 	void nandTest()
 	{
-		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1), d = new Wire(t, 4, 1);
-		new NandGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		CoreWire a = new CoreWire(t, 4, 1), b = new CoreWire(t, 4, 3), c = new CoreWire(t, 4, 1), d = new CoreWire(t, 4, 1);
+		new CoreNandGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
@@ -304,8 +304,8 @@ class ComponentTest
 	@Test
 	void norTest()
 	{
-		Wire a = new Wire(t, 4, 1), b = new Wire(t, 4, 3), c = new Wire(t, 4, 1), d = new Wire(t, 4, 1);
-		new NorGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		CoreWire a = new CoreWire(t, 4, 1), b = new CoreWire(t, 4, 3), c = new CoreWire(t, 4, 1), d = new CoreWire(t, 4, 1);
+		new CoreNorGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
 		b.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
 		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ZERO, Bit.ZERO);
@@ -318,8 +318,8 @@ class ComponentTest
 	@Test
 	void xorTest()
 	{
-		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 2), c = new Wire(t, 3, 1), d = new Wire(t, 3, 1);
-		new XorGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
+		CoreWire a = new CoreWire(t, 3, 1), b = new CoreWire(t, 3, 2), c = new CoreWire(t, 3, 1), d = new CoreWire(t, 3, 1);
+		new CoreXorGate(t, 1, d.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd(), c.createReadOnlyEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
 		b.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
 		c.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE);
@@ -332,8 +332,8 @@ class ComponentTest
 	@Test
 	void notTest()
 	{
-		Wire a = new Wire(t, 3, 1), b = new Wire(t, 3, 2);
-		new NotGate(t, 1, a.createReadOnlyEnd(), b.createReadWriteEnd());
+		CoreWire a = new CoreWire(t, 3, 1), b = new CoreWire(t, 3, 2);
+		new CoreNotGate(t, 1, a.createReadOnlyEnd(), b.createReadWriteEnd());
 		a.createReadWriteEnd().feedSignals(Bit.ZERO, Bit.ONE, Bit.ONE);
 
 		t.executeAll();
@@ -344,13 +344,13 @@ class ComponentTest
 	@Test
 	void rsLatchCircuitTest()
 	{
-		Wire r = new Wire(t, 1, 1), s = new Wire(t, 1, 1), t1 = new Wire(t, 1, 15), t2 = new Wire(t, 1, 1), q = new Wire(t, 1, 1),
-				nq = new Wire(t, 1, 1);
+		CoreWire r = new CoreWire(t, 1, 1), s = new CoreWire(t, 1, 1), t1 = new CoreWire(t, 1, 15), t2 = new CoreWire(t, 1, 1), q = new CoreWire(t, 1, 1),
+				nq = new CoreWire(t, 1, 1);
 
-		new OrGate(t, 1, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
-		new OrGate(t, 1, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
-		new NotGate(t, 1, t2.createReadOnlyEnd(), q.createReadWriteEnd());
-		new NotGate(t, 1, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
+		new CoreOrGate(t, 1, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
+		new CoreOrGate(t, 1, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
+		new CoreNotGate(t, 1, t2.createReadOnlyEnd(), q.createReadWriteEnd());
+		new CoreNotGate(t, 1, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
 
 		ReadWriteEnd sIn = s.createReadWriteEnd(), rIn = r.createReadWriteEnd();
 
@@ -379,7 +379,7 @@ class ComponentTest
 	@Test
 	void numericValueTest()
 	{
-		Wire a = new Wire(t, 4, 1);
+		CoreWire a = new CoreWire(t, 4, 1);
 		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE);
 
 		t.executeAll();
@@ -429,7 +429,7 @@ class ComponentTest
 	@Test
 	void multipleInputs()
 	{
-		Wire w = new Wire(t, 2, 1);
+		CoreWire w = new CoreWire(t, 2, 1);
 		ReadWriteEnd wI1 = w.createReadWriteEnd(), wI2 = w.createReadWriteEnd();
 		wI1.feedSignals(Bit.ONE, Bit.Z);
 		wI2.feedSignals(Bit.Z, Bit.X);

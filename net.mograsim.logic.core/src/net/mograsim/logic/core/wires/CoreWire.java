@@ -20,7 +20,7 @@ import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
  * @author Fabian Stemmler
  *
  */
-public class Wire
+public class CoreWire
 {
 	public final String name;
 	private BitVector cachedValues;
@@ -32,12 +32,12 @@ public class Wire
 	private Bit[] bitsWithoutFusions;
 	FusedBit[] fusedBits;
 
-	public Wire(Timeline timeline, int width, int travelTime)
+	public CoreWire(Timeline timeline, int width, int travelTime)
 	{
 		this(timeline, width, travelTime, null);
 	}
 
-	public Wire(Timeline timeline, int width, int travelTime, String name)
+	public CoreWire(Timeline timeline, int width, int travelTime, String name)
 	{
 		if (width < 1)
 			throw new IllegalArgumentException(
@@ -126,7 +126,7 @@ public class Wire
 	}
 
 	/**
-	 * The {@link Wire} is interpreted as an unsigned integer with n bits.
+	 * The {@link CoreWire} is interpreted as an unsigned integer with n bits.
 	 * 
 	 * @return <code>true</code> if all bits are either <code>Bit.ONE</code> or <code>Bit.ZERO</code> (they do not all have to have the same
 	 *         value), not <code>Bit.U</code>, <code>Bit.X</code> or <code>Bit.Z</code>. <code>false</code> is returned otherwise.
@@ -139,9 +139,9 @@ public class Wire
 	}
 
 	/**
-	 * The {@link Wire} is interpreted as an unsigned integer with n bits.
+	 * The {@link CoreWire} is interpreted as an unsigned integer with n bits.
 	 * 
-	 * @return The unsigned value of the {@link Wire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
+	 * @return The unsigned value of the {@link CoreWire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
 	 * 
 	 * @author Fabian Stemmler
 	 */
@@ -168,9 +168,9 @@ public class Wire
 	}
 
 	/**
-	 * The {@link Wire} is interpreted as a signed integer with n bits.
+	 * The {@link CoreWire} is interpreted as a signed integer with n bits.
 	 * 
-	 * @return The signed value of the {@link Wire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
+	 * @return The signed value of the {@link CoreWire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
 	 * 
 	 * @author Fabian Stemmler
 	 */
@@ -215,7 +215,7 @@ public class Wire
 	}
 
 	/**
-	 * Adds an {@link LogicObserver}, who will be notified when the value of the {@link Wire} is updated.
+	 * Adds an {@link LogicObserver}, who will be notified when the value of the {@link CoreWire} is updated.
 	 * 
 	 * @param ob The {@link LogicObserver} to be notified of changes.
 	 * @return true if the given {@link LogicObserver} was not already registered, false otherwise
@@ -238,7 +238,7 @@ public class Wire
 	}
 
 	/**
-	 * Create and register a {@link ReadWriteEnd} object, which is tied to this {@link Wire}. This {@link ReadWriteEnd} can be written to.
+	 * Create and register a {@link ReadWriteEnd} object, which is tied to this {@link CoreWire}. This {@link ReadWriteEnd} can be written to.
 	 */
 	public ReadWriteEnd createReadWriteEnd()
 	{
@@ -246,7 +246,7 @@ public class Wire
 	}
 
 	/**
-	 * Create a {@link ReadEnd} object, which is tied to this {@link Wire}. This {@link ReadEnd} cannot be written to.
+	 * Create a {@link ReadEnd} object, which is tied to this {@link CoreWire}. This {@link ReadEnd} cannot be written to.
 	 */
 	public ReadEnd createReadOnlyEnd()
 	{
@@ -260,8 +260,8 @@ public class Wire
 	}
 
 	/**
-	 * A {@link ReadEnd} feeds a constant signal into the {@link Wire} it is tied to. The combination of all inputs determines the
-	 * {@link Wire}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs than Z 0
+	 * A {@link ReadEnd} feeds a constant signal into the {@link CoreWire} it is tied to. The combination of all inputs determines the
+	 * {@link CoreWire}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs than Z 0
 	 * and 1 turn into X when they are mixed
 	 * 
 	 * @author Fabian Stemmler
@@ -273,7 +273,7 @@ public class Wire
 		ReadEnd()
 		{
 			super();
-			Wire.this.attachEnd(this);
+			CoreWire.this.attachEnd(this);
 		}
 
 		public void update()
@@ -282,7 +282,7 @@ public class Wire
 		}
 
 		/**
-		 * Included for convenient use on {@link Wire}s of width 1.
+		 * Included for convenient use on {@link CoreWire}s of width 1.
 		 * 
 		 * @return The value of bit 0.
 		 * 
@@ -290,7 +290,7 @@ public class Wire
 		 */
 		public Bit getValue()
 		{
-			return Wire.this.getValue();
+			return CoreWire.this.getValue();
 		}
 
 		/**
@@ -301,12 +301,12 @@ public class Wire
 		 */
 		public Bit getValue(int index)
 		{
-			return Wire.this.getValue(index);
+			return CoreWire.this.getValue(index);
 		}
 
 		public BitVector getValues()
 		{
-			return Wire.this.getValues();
+			return CoreWire.this.getValues();
 		}
 
 		/**
@@ -318,11 +318,11 @@ public class Wire
 		 */
 		public BitVector getValues(int start, int end)
 		{
-			return Wire.this.getValues(start, end);
+			return CoreWire.this.getValues(start, end);
 		}
 
 		/**
-		 * The {@link Wire} is interpreted as an unsigned integer with n bits.
+		 * The {@link CoreWire} is interpreted as an unsigned integer with n bits.
 		 * 
 		 * @return <code>true</code> if all bits are either <code>Bit.ONE</code> or <code>Bit.ZERO</code> (they do not all have to have the
 		 *         same value), not <code>Bit.X</code> or <code>Bit.Z</code>. <code>false</code> is returned otherwise.
@@ -331,37 +331,37 @@ public class Wire
 		 */
 		public boolean hasNumericValue()
 		{
-			return Wire.this.hasNumericValue();
+			return CoreWire.this.hasNumericValue();
 		}
 
 		/**
-		 * The {@link Wire} is interpreted as an unsigned integer with n bits.
+		 * The {@link CoreWire} is interpreted as an unsigned integer with n bits.
 		 * 
-		 * @return The unsigned value of the {@link Wire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
+		 * @return The unsigned value of the {@link CoreWire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
 		 * 
 		 * @author Fabian Stemmler
 		 */
 		public long getUnsignedValue()
 		{
-			return Wire.this.getUnsignedValue();
+			return CoreWire.this.getUnsignedValue();
 		}
 
 		/**
-		 * The {@link Wire} is interpreted as a signed integer with n bits.
+		 * The {@link CoreWire} is interpreted as a signed integer with n bits.
 		 * 
-		 * @return The signed value of the {@link Wire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
+		 * @return The signed value of the {@link CoreWire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
 		 * 
 		 * @author Fabian Stemmler
 		 */
 		public long getSignedValue()
 		{
-			return Wire.this.getSignedValue();
+			return CoreWire.this.getSignedValue();
 		}
 
 		@Override
 		public String toString()
 		{
-			return Wire.this.toString();
+			return CoreWire.this.toString();
 		}
 
 		public void close()
@@ -376,9 +376,9 @@ public class Wire
 			return width;
 		}
 
-		public Wire getWire()
+		public CoreWire getWire()
 		{
-			return Wire.this;
+			return CoreWire.this;
 		}
 
 		@Override
@@ -431,7 +431,7 @@ public class Wire
 		}
 
 		/**
-		 * Sets the wires values. This takes up time, as specified by the {@link Wire}s travel time.
+		 * Sets the wires values. This takes up time, as specified by the {@link CoreWire}s travel time.
 		 * 
 		 * @param newValues The new values the wires should take on.
 		 * 
@@ -453,7 +453,7 @@ public class Wire
 		}
 
 		/**
-		 * Sets values of a subarray of wires. This takes up time, as specified by the {@link Wire}s travel time.
+		 * Sets values of a subarray of wires. This takes up time, as specified by the {@link CoreWire}s travel time.
 		 * 
 		 * @param bitVector   The new values the wires should take on.
 		 * @param startingBit The first index of the subarray of wires.
@@ -468,7 +468,7 @@ public class Wire
 		}
 
 		/**
-		 * Sets the values that are being fed into the {@link Wire}. The preferred way of setting {@link ReadWriteEnd} values is via
+		 * Sets the values that are being fed into the {@link CoreWire}. The preferred way of setting {@link ReadWriteEnd} values is via
 		 * feedValues(...) with a delay.
 		 */
 		void setValues(int startingBit, BitVector newValues)
@@ -479,12 +479,12 @@ public class Wire
 				Bit[] vals = inputValues.getBits();
 				System.arraycopy(newValues.getBits(), 0, vals, startingBit, newValues.length());
 				inputValues = BitVector.of(vals);
-				Wire.this.recalculateValuesWithoutFusions();
+				CoreWire.this.recalculateValuesWithoutFusions();
 			}
 		}
 
 		/**
-		 * Sets the values that are being fed into the {@link Wire}. The preferred way of setting {@link ReadWriteEnd} values is via
+		 * Sets the values that are being fed into the {@link CoreWire}. The preferred way of setting {@link ReadWriteEnd} values is via
 		 * feedValues(...) with a delay.
 		 */
 		void setValues(BitVector newValues)
@@ -492,11 +492,11 @@ public class Wire
 			if (inputValues.equals(newValues))
 				return;
 			inputValues = newValues;
-			Wire.this.recalculateValuesWithoutFusions();
+			CoreWire.this.recalculateValuesWithoutFusions();
 		}
 
 		/**
-		 * @return The value (of bit 0) the {@link ReadEnd} is currently feeding into the associated {@link Wire}.Returns the least
+		 * @return The value (of bit 0) the {@link ReadEnd} is currently feeding into the associated {@link CoreWire}.Returns the least
 		 *         significant bit (LSB)
 		 */
 		public Bit getInputValue()
@@ -505,7 +505,7 @@ public class Wire
 		}
 
 		/**
-		 * @return The value which the {@link ReadEnd} is currently feeding into the associated {@link Wire} at the indexed {@link Bit}.
+		 * @return The value which the {@link ReadEnd} is currently feeding into the associated {@link CoreWire} at the indexed {@link Bit}.
 		 *         Returns the least significant bit (LSB)
 		 * 
 		 */
@@ -515,7 +515,7 @@ public class Wire
 		}
 
 		/**
-		 * @return A copy (safe to modify) of the values the {@link ReadEnd} is currently feeding into the associated {@link Wire}.
+		 * @return A copy (safe to modify) of the values the {@link ReadEnd} is currently feeding into the associated {@link CoreWire}.
 		 */
 		public BitVector getInputValues()
 		{
@@ -528,7 +528,7 @@ public class Wire
 		}
 
 		/**
-		 * {@link ReadEnd} now feeds Z into the associated {@link Wire}.
+		 * {@link ReadEnd} now feeds Z into the associated {@link CoreWire}.
 		 */
 		public void clearSignals()
 		{
@@ -573,7 +573,7 @@ public class Wire
 					inputs.add(this);
 				else
 					inputs.remove(this);
-				Wire.this.recalculateValuesWithoutFusions();
+				CoreWire.this.recalculateValuesWithoutFusions();
 			}
 		}
 
@@ -590,7 +590,7 @@ public class Wire
 		return String.format("wire %s value: %s inputs: %s", name, getValues(), inputs);
 	}
 
-	public static ReadEnd[] extractEnds(Wire[] w)
+	public static ReadEnd[] extractEnds(CoreWire[] w)
 	{
 		ReadEnd[] inputs = new ReadEnd[w.length];
 		for (int i = 0; i < w.length; i++)
@@ -603,10 +603,10 @@ public class Wire
 	 * Fuses two wires together. If the bits change in one Wire, the other is changed accordingly immediately. Warning: The bits are
 	 * permanently fused together.
 	 * 
-	 * @param a The {@link Wire} to be fused with b
-	 * @param b The {@link Wire} to be fused with a
+	 * @param a The {@link CoreWire} to be fused with b
+	 * @param b The {@link CoreWire} to be fused with a
 	 */
-	public static void fuse(Wire a, Wire b)
+	public static void fuse(CoreWire a, CoreWire b)
 	{
 		fuse(a, b, 0, 0, a.width);
 	}
@@ -615,13 +615,13 @@ public class Wire
 	 * Fuses the selected bits of two wires together. If the bits change in one Wire, the other is changed accordingly immediately. Warning:
 	 * The bits are permanently fused together.
 	 * 
-	 * @param a     The {@link Wire} to be (partially) fused with b
-	 * @param b     The {@link Wire} to be (partially) fused with a
-	 * @param fromA The first bit of {@link Wire} a to be fused
-	 * @param fromB The first bit of {@link Wire} b to be fused
+	 * @param a     The {@link CoreWire} to be (partially) fused with b
+	 * @param b     The {@link CoreWire} to be (partially) fused with a
+	 * @param fromA The first bit of {@link CoreWire} a to be fused
+	 * @param fromB The first bit of {@link CoreWire} b to be fused
 	 * @param width The amount of bits to fuse
 	 */
-	public static void fuse(Wire a, Wire b, int fromA, int fromB, int width)
+	public static void fuse(CoreWire a, CoreWire b, int fromA, int fromB, int width)
 	{
 		// iterate in this direction to be fail-fast (rely on the checks in fuse(Wire, Wire, int, int)
 		for (int i = width - 1; i >= 0; i--)
@@ -632,12 +632,12 @@ public class Wire
 	 * Fuses one bit of two wires together. If this bit changes in one Wire, the other is changed accordingly immediately. Warning: The bits
 	 * are permanently fused together.
 	 * 
-	 * @param a    The {@link Wire} to be (partially) fused with b
-	 * @param b    The {@link Wire} to be (partially) fused with a
-	 * @param bitA The bit of {@link Wire} a to be fused
-	 * @param bitB The bit of {@link Wire} b to be fused
+	 * @param a    The {@link CoreWire} to be (partially) fused with b
+	 * @param b    The {@link CoreWire} to be (partially) fused with a
+	 * @param bitA The bit of {@link CoreWire} a to be fused
+	 * @param bitB The bit of {@link CoreWire} b to be fused
 	 */
-	public static void fuse(Wire a, Wire b, int bitA, int bitB)
+	public static void fuse(CoreWire a, CoreWire b, int bitA, int bitB)
 	{
 		if (bitA >= a.width)
 			throw new IllegalArgumentException("No bit " + bitA + " in " + a + " (width " + a.width + ")");
@@ -672,7 +672,7 @@ public class Wire
 			this.participatingWireBits = new ArrayList<>();
 		}
 
-		public void addParticipatingWireBit(Wire w, int bit)
+		public void addParticipatingWireBit(CoreWire w, int bit)
 		{
 			addParticipatingWireBit(new WireBit(w, bit));
 		}
@@ -711,10 +711,10 @@ public class Wire
 
 	private static class WireBit
 	{
-		public final Wire wire;
+		public final CoreWire wire;
 		public final int bit;
 
-		public WireBit(Wire wire, int bit)
+		public WireBit(CoreWire wire, int bit)
 		{
 			this.wire = wire;
 			this.bit = bit;

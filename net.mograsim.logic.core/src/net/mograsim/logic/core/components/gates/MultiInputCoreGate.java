@@ -2,14 +2,14 @@ package net.mograsim.logic.core.components.gates;
 
 import java.util.List;
 
-import net.mograsim.logic.core.components.BasicComponent;
+import net.mograsim.logic.core.components.BasicCoreComponent;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
 import net.mograsim.logic.core.types.MutationOperation;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
-public abstract class MultiInputGate extends BasicComponent
+public abstract class MultiInputCoreGate extends BasicCoreComponent
 {
 	protected ReadEnd[] in;
 	protected ReadWriteEnd out;
@@ -17,7 +17,7 @@ public abstract class MultiInputGate extends BasicComponent
 	protected MutationOperation op;
 	protected boolean invert = false;
 
-	protected MultiInputGate(Timeline timeline, int processTime, MutationOperation op, ReadWriteEnd out, ReadEnd... in)
+	protected MultiInputCoreGate(Timeline timeline, int processTime, MutationOperation op, ReadWriteEnd out, ReadEnd... in)
 	{
 		super(timeline, processTime);
 		this.op = op;
@@ -34,7 +34,7 @@ public abstract class MultiInputGate extends BasicComponent
 		this.out = out;
 	}
 
-	protected MultiInputGate(Timeline timeline, int processTime, MutationOperation op, boolean invert, ReadWriteEnd out, ReadEnd... in)
+	protected MultiInputCoreGate(Timeline timeline, int processTime, MutationOperation op, boolean invert, ReadWriteEnd out, ReadEnd... in)
 	{
 		this(timeline, processTime, op, out, in);
 		this.invert = invert;

@@ -10,11 +10,11 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.timeline.TimelineEvent;
 import net.mograsim.logic.core.timeline.TimelineEventHandler;
 import net.mograsim.logic.core.types.Bit;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
-public class Clock extends Component implements TimelineEventHandler, LogicObservable
+public class CoreClock extends CoreComponent implements TimelineEventHandler, LogicObservable
 {
 	private Collection<LogicObserver> observers;
 	private boolean toggle = false;
@@ -23,10 +23,10 @@ public class Clock extends Component implements TimelineEventHandler, LogicObser
 
 	/**
 	 * 
-	 * @param out   {@link Wire} the clock's impulses are fed into
+	 * @param out   {@link CoreWire} the clock's impulses are fed into
 	 * @param delta ticks between rising and falling edge
 	 */
-	public Clock(Timeline timeline, ReadWriteEnd out, int delta)
+	public CoreClock(Timeline timeline, ReadWriteEnd out, int delta)
 	{
 		super(timeline);
 		this.delta = delta;

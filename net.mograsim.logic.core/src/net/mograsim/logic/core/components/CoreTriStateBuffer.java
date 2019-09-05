@@ -4,15 +4,15 @@ import java.util.List;
 
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
-public class TriStateBuffer extends BasicComponent
+public class CoreTriStateBuffer extends BasicCoreComponent
 {
 	ReadEnd in, enable;
 	ReadWriteEnd out;
 
-	public TriStateBuffer(Timeline timeline, int processTime, ReadEnd in, ReadWriteEnd out, ReadEnd enable)
+	public CoreTriStateBuffer(Timeline timeline, int processTime, ReadEnd in, ReadWriteEnd out, ReadEnd enable)
 	{
 		super(timeline, processTime);
 		if (in.width() != out.width())

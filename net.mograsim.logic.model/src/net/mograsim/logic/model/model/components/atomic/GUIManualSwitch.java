@@ -7,7 +7,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
-import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
@@ -32,7 +32,7 @@ public class GUIManualSwitch extends GUIComponent
 	private final Pin outputPin;
 
 	private final LogicObserver logicObs;
-	private ManualSwitch logicSwitch;
+	private CoreManualSwitch logicSwitch;
 
 	public GUIManualSwitch(ViewModelModifiable model, int logicWidth)
 	{
@@ -92,7 +92,7 @@ public class GUIManualSwitch extends GUIComponent
 		}
 	}
 
-	public void setLogicModelBinding(ManualSwitch logicSwitch)
+	public void setLogicModelBinding(CoreManualSwitch logicSwitch)
 	{
 		if (this.logicSwitch != null)
 			this.logicSwitch.deregisterObserver(logicObs);
@@ -152,7 +152,7 @@ public class GUIManualSwitch extends GUIComponent
 		return true;
 	}
 
-	public ManualSwitch getManualSwitch()
+	public CoreManualSwitch getManualSwitch()
 	{
 		return logicSwitch;
 	}
