@@ -27,7 +27,7 @@ public class GUIComponentTestbench
 	{
 		Am2900Loader.setup();
 		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model,
-				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/GUIAm2900.json");
+				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/GUIdff16_invwe.json");
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
