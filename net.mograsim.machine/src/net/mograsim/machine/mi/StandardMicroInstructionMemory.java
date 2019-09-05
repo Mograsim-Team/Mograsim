@@ -6,16 +6,16 @@ import net.mograsim.machine.MemoryDefinition;
 import net.mograsim.machine.MemoryObserver;
 import net.mograsim.machine.standard.memory.MemoryException;
 
-class StandardMicroprogramMemory implements MicroprogramMemory
+class StandardMicroInstructionMemory implements MicroInstructionMemory
 {
 	private MicroInstruction[] data;
 	private MemoryDefinition definition;
 	private HashSet<MemoryObserver> observers = new HashSet<>();
 	
-	StandardMicroprogramMemory(MemoryDefinition definition)
+	StandardMicroInstructionMemory(MemoryDefinition definition)
 	{
 		if(definition.size() > Integer.MAX_VALUE)
-			throw new MemoryException("Size of MicroprogramMemory must be an int, not a long");
+			throw new MemoryException("Size of MicroInstructionMemory must be an int, not a long");
 		this.definition = definition;
 		data = new MicroInstruction[(int) definition.size()];
 	}

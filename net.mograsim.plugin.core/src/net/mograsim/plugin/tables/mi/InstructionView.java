@@ -17,9 +17,9 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.part.ViewPart;
 
 import net.mograsim.machine.mi.MicroInstructionDefinition;
-import net.mograsim.machine.mi.MicroprogramMemory;
-import net.mograsim.machine.mi.MicroprogramMemoryParseException;
-import net.mograsim.machine.mi.MicroprogramMemoryParser;
+import net.mograsim.machine.mi.MicroInstructionMemory;
+import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
+import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.plugin.asm.AsmNumberUtil.NumberType;
 import net.mograsim.plugin.tables.DisplaySettings;
@@ -33,7 +33,7 @@ public class InstructionView extends ViewPart
 	private TableViewer viewer;
 	private TableViewerColumn[] columns = new TableViewerColumn[0];
 	private MicroInstructionDefinition miDef;
-	private MicroprogramMemory memory;
+	private MicroInstructionMemory memory;
 	private DisplaySettings displaySettings;
 
 	@SuppressWarnings("unused")
@@ -97,7 +97,7 @@ public class InstructionView extends ViewPart
 			saveLoc = d.getFilterPath() + File.separator + filename;
 	}
 
-	public void bindMicroprogramMemory(MicroprogramMemory memory)
+	public void bindMicroprogramMemory(MicroInstructionMemory memory)
 	{
 		this.memory = memory;
 		viewer.setInput(memory);
@@ -178,11 +178,11 @@ public class InstructionView extends ViewPart
 		}
 		try
 		{
-			MicroprogramMemory newMemory = MicroprogramMemoryParser.parseMemory(miDef, file);
+			MicroInstructionMemory newMemory = MicroInstructionMemoryParser.parseMemory(miDef, file);
 			bindMicroprogramMemory(newMemory);
 			saveLoc = file;
 		}
-		catch (IOException | MicroprogramMemoryParseException e)
+		catch (IOException | MicroInstructionMemoryParseException e)
 		{
 			e.printStackTrace();
 		}
@@ -198,7 +198,7 @@ public class InstructionView extends ViewPart
 		{
 			try
 			{
-				MicroprogramMemoryParser.write(memory, file);
+				MicroInstructionMemoryParser.write(memory, file);
 			}
 			catch (IOException e)
 			{
