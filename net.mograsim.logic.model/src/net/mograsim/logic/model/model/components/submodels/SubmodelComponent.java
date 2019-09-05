@@ -13,12 +13,12 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.LogicUIRenderer;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.IdentifyParams;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.snippets.Renderer;
@@ -26,10 +26,10 @@ import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.preferences.Preferences;
 
 /**
- * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
+ * A {@link ModelComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
  * inner and outer models.
  */
-public abstract class SubmodelComponent extends GUIComponent
+public abstract class SubmodelComponent extends ModelComponent
 {
 	public static final String SUBMODEL_INTERFACE_NAME = "_submodelinterface";
 	/**
@@ -356,7 +356,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	{
 		double scaledX = (x - getPosX()) / submodelScale;
 		double scaledY = (y - getPosY()) / submodelScale;
-		for (GUIComponent component : submodel.getComponentsByName().values())
+		for (ModelComponent component : submodel.getComponentsByName().values())
 			if (component.getBounds().contains(scaledX, scaledY) && component.clicked(scaledX, scaledY))
 				return true;
 		return false;
@@ -449,7 +449,7 @@ public abstract class SubmodelComponent extends GUIComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(SubmodelComponent.class.getCanonicalName(),
+		IndirectModelComponentCreator.setComponentSupplier(SubmodelComponent.class.getCanonicalName(),
 				(m, p, n) -> SubmodelComponentSerializer.deserialize(m, JsonHandler.fromJsonTree(p, SubmodelComponentParams.class), n));
 	}
 }

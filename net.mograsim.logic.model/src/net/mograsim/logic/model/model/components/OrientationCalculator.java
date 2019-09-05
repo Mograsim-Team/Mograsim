@@ -1,13 +1,13 @@
 package net.mograsim.logic.model.model.components;
 
 /**
- * This class simplifies the calculation of coordinates, especially for GUI components.
+ * This class simplifies the calculation of coordinates, especially for model components.
  * <p>
  * Supply it with the original width and height and an orientation, and use the methods {@link #newX(double, double)} and
  * {@link #newY(double, double)} to retrieve the new coordinates, relative to the upper left corner of {@link Orientation#RIGHT}. The
  * {@link #height()} and {@link #width()} methods return the width and height in the new orientation.
  * <p>
- * This is meant to be used in the context of a a classic display coordinate system, as done in the {@link GUIComponent}s.
+ * This is meant to be used in the context of a a classic display coordinate system, as done in the {@link ModelComponent}s.
  *
  * @see Orientation
  * @author Christian Femers

@@ -4,7 +4,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
@@ -20,11 +20,11 @@ import net.mograsim.preferences.Preferences;
  */
 public class CenteredTextSymbolRenderer implements Renderer
 {
-	private final GUIComponent component;
+	private final ModelComponent component;
 	private final String text;
 	private final double fontHeight;
 
-	public CenteredTextSymbolRenderer(GUIComponent component, CenteredTextParams params)
+	public CenteredTextSymbolRenderer(ModelComponent component, CenteredTextParams params)
 	{
 		this.component = component;
 		this.text = params.text;

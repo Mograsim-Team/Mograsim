@@ -23,10 +23,10 @@ import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.ViewModel;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelInterface;
-import net.mograsim.logic.model.model.wires.WireCrossPoint;
+import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.preferences.Preferences;
 
 /**
@@ -67,7 +67,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		if (e.button == 1)
 		{
 			Point click = canvasToWorldCoords(e.x, e.y);
-			for (GUIComponent component : model.getComponentsByName().values())
+			for (ModelComponent component : model.getComponentsByName().values())
 				if (component.getBounds().contains(click) && component.clicked(click.x, click.y))
 				{
 					redraw();
@@ -83,8 +83,8 @@ public class LogicUICanvas extends ZoomableCanvas
 		new Label(debugShell, SWT.NONE).setText("Target component: ");
 		Combo componentSelector = new Combo(debugShell, SWT.DROP_DOWN | SWT.READ_ONLY);
 		componentSelector.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		List<GUIComponent> componentsByItemIndex = new ArrayList<>();
-		Consumer<? super GUIComponent> compsChanged = c -> recalculateComponentSelector(componentsByItemIndex, componentSelector, model);
+		List<ModelComponent> componentsByItemIndex = new ArrayList<>();
+		Consumer<? super ModelComponent> compsChanged = c -> recalculateComponentSelector(componentsByItemIndex, componentSelector, model);
 		model.addComponentAddedListener(compsChanged);
 		model.addComponentRemovedListener(compsChanged);
 		debugShell.addListener(SWT.Dispose, e ->
@@ -123,7 +123,7 @@ public class LogicUICanvas extends ZoomableCanvas
 				int componentIndex = componentSelector.getSelectionIndex();
 				if (componentIndex < 0 || componentIndex >= componentsByItemIndex.size())
 					throw new RuntimeException("No component selected");
-				GUIComponent target = componentsByItemIndex.get(componentIndex);
+				ModelComponent target = componentsByItemIndex.get(componentIndex);
 				String valueString = valueText.getText();
 				Object value;
 				if (radioBit.getSelection())
@@ -161,18 +161,18 @@ public class LogicUICanvas extends ZoomableCanvas
 		debugShell.open();
 	}
 
-	private void recalculateComponentSelector(List<GUIComponent> componentsByItemIndex, Combo componentSelector, ViewModel model)
+	private void recalculateComponentSelector(List<ModelComponent> componentsByItemIndex, Combo componentSelector, ViewModel model)
 	{
 		componentsByItemIndex.clear();
 		componentSelector.setItems();
 		addComponentSelectorItems(componentsByItemIndex, "", componentSelector, model);
 	}
 
-	private void addComponentSelectorItems(List<GUIComponent> componentsByItemIndex, String base, Combo componentSelector, ViewModel model)
+	private void addComponentSelectorItems(List<ModelComponent> componentsByItemIndex, String base, Combo componentSelector, ViewModel model)
 	{
 		model.getComponentsByName().values().stream().sorted((c1, c2) -> c1.name.compareTo(c2.name)).forEach(c ->
 		{
-			if (!(c instanceof WireCrossPoint || c instanceof SubmodelInterface))
+			if (!(c instanceof ModelWireCrossPoint || c instanceof SubmodelInterface))
 			{
 				String item = base + c.name;
 				componentsByItemIndex.add(c);

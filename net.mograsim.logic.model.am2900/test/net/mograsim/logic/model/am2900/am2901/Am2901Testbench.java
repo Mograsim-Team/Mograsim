@@ -10,16 +10,16 @@ import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.SimpleLogicUIStandalone.VisualisationObjects;
 import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.components.atomic.GUIAndGate;
-import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
-import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
-import net.mograsim.logic.model.model.components.atomic.GUINotGate;
-import net.mograsim.logic.model.model.components.atomic.TextComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.components.atomic.ModelAndGate;
+import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
+import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
+import net.mograsim.logic.model.model.components.atomic.ModelNotGate;
+import net.mograsim.logic.model.model.components.atomic.ModelTextComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.model.wires.WireCrossPoint;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.ModellingTool;
 
 public class Am2901Testbench
@@ -32,17 +32,17 @@ public class Am2901Testbench
 
 	public static void createTestbench(ViewModelModifiable model)
 	{
-		GUIComponent comp = IndirectGUIComponentCreator.createComponent(model, "GUIAm2901");
+		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "Am2901");
 		ModellingTool tool = ModellingTool.createFor(model);
 
 		comp.moveTo(240, 0);
 
-		GUIManualSwitch enable = new GUIManualSwitch(model, 1);
-		WireCrossPoint wcp0 = new WireCrossPoint(model, 1);
-		GUINotGate not1 = new GUINotGate(model, 1);
-		GUINotGate not2 = new GUINotGate(model, 1);
-		GUINotGate not3 = new GUINotGate(model, 1);
-		GUIAndGate and = new GUIAndGate(model, 1);
+		ModelManualSwitch enable = new ModelManualSwitch(model, 1);
+		ModelWireCrossPoint wcp0 = new ModelWireCrossPoint(model, 1);
+		ModelNotGate not1 = new ModelNotGate(model, 1);
+		ModelNotGate not2 = new ModelNotGate(model, 1);
+		ModelNotGate not3 = new ModelNotGate(model, 1);
+		ModelAndGate and = new ModelAndGate(model, 1);
 		tool.connect(wcp0, enable, "");
 		tool.connect(wcp0, and, "A");
 		tool.connect(wcp0, not1, "A");
@@ -73,9 +73,9 @@ public class Am2901Testbench
 			double x = 55 + 70 * (i % 2);
 			double y = 10 * i;
 
-			WireCrossPoint wcp = new WireCrossPoint(model, 1);
-			GUIComponent d_ff = IndirectGUIComponentCreator.createComponent(model, "GUIdff");
-			GUIManualSwitch sw = new GUIManualSwitch(model, 1);
+			ModelWireCrossPoint wcp = new ModelWireCrossPoint(model, 1);
+			ModelComponent d_ff = IndirectModelComponentCreator.createComponent(model, "dff");
+			ModelManualSwitch sw = new ModelManualSwitch(model, 1);
 
 			tool.connect(last, wcp);
 			tool.connect(wcp, d_ff, "C");
@@ -83,7 +83,7 @@ public class Am2901Testbench
 			tool.connect(d_ff, comp, "Q", inputPinNames.get(i));
 			last = wcp.getPin();
 
-			TextComponent label = new TextComponent(model, inputPinNames.get(i));
+			ModelTextComponent label = new ModelTextComponent(model, inputPinNames.get(i));
 
 			sw.moveTo(x, y + 7.5);
 			wcp.moveTo(160, y);
@@ -95,11 +95,11 @@ public class Am2901Testbench
 		{
 			double x = 300 + 75 * (i % 2);
 			double y = 10 * i - 2.5;
-			GUIBitDisplay bd = new GUIBitDisplay(model, 1);
+			ModelBitDisplay bd = new ModelBitDisplay(model, 1);
 			bd.moveTo(x, y);
 			tool.connect(bd.getInputPin(), comp, outputPinNames.get(i));
 
-			TextComponent label = new TextComponent(model, outputPinNames.get(i));
+			ModelTextComponent label = new ModelTextComponent(model, outputPinNames.get(i));
 			label.moveTo(x + 25, y);
 		}
 	}
@@ -108,9 +108,9 @@ public class Am2901Testbench
 	{
 		vis.model.getComponentsByName().values().forEach(c ->
 		{
-			if (c instanceof GUIManualSwitch)
+			if (c instanceof ModelManualSwitch)
 			{
-				GUIManualSwitch cCasted = (GUIManualSwitch) c;
+				ModelManualSwitch cCasted = (ModelManualSwitch) c;
 				cCasted.setHighLevelState("out", BitVector.of(Bit.ZERO, cCasted.logicWidth));
 			}
 		});

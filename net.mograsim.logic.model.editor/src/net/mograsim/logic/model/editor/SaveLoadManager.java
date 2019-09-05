@@ -8,7 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 
 public class SaveLoadManager
@@ -68,7 +68,7 @@ public class SaveLoadManager
 		fdShell.dispose();
 		if (result != null)
 		{
-			new Editor((DeserializedSubmodelComponent) IndirectGUIComponentCreator.createComponent(new ViewModelModifiable(),
+			new Editor((DeserializedSubmodelComponent) IndirectModelComponentCreator.createComponent(new ViewModelModifiable(),
 					"jsonfile:" + result));
 		}
 	}

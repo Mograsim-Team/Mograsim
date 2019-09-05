@@ -10,9 +10,9 @@ import com.google.gson.JsonElement;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -163,7 +163,7 @@ public final class LegacySubmodelComponentSerializer
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	@SuppressWarnings("unused") // for GUIWire being created
+	@SuppressWarnings("unused") // for ModelWire being created
 	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params, String name,
 			String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{
@@ -177,19 +177,19 @@ public final class LegacySubmodelComponentSerializer
 					iPinParams.location.y));
 		LegacySubmodelParameters submodelParams = params.submodel;
 		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
-		Map<String, GUIComponent> componentsByName = submodelModifiable.getComponentsByName();
-		GUIComponent[] components = new GUIComponent[submodelParams.subComps.length];
+		Map<String, ModelComponent> componentsByName = submodelModifiable.getComponentsByName();
+		ModelComponent[] components = new ModelComponent[submodelParams.subComps.length];
 		for (int i = 0; i < components.length; i++)
 		{
 			LegacyInnerComponentParams cParams = submodelParams.subComps[i];
-			components[i] = IndirectGUIComponentCreator.createComponent(submodelModifiable, cParams.id, cParams.params, cParams.name);
+			components[i] = IndirectModelComponentCreator.createComponent(submodelModifiable, cParams.id, cParams.params, cParams.name);
 			components[i].moveTo(cParams.pos.x, cParams.pos.y);
 		}
 
 		for (int i = 0; i < submodelParams.innerWires.length; i++)
 		{
 			LegacyInnerWireParams innerWire = submodelParams.innerWires[i];
-			new GUIWire(submodelModifiable, innerWire.name, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
+			new ModelWire(submodelModifiable, innerWire.name, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
 					componentsByName.get(innerWire.pin2.compName).getPin(innerWire.pin2.pinName), innerWire.path);
 		}
 		comp.setSymbolRenderer(SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getSnippetSupplier(params.symbolRendererSnippetID)
@@ -211,7 +211,7 @@ public final class LegacySubmodelComponentSerializer
 	 * If this case doesn't apply (e.g. if the subcomponent is not a <code>SubmodelComponent</code>; or it is a
 	 * <code>SubmodelComponent</code>, but hasn't been deserialized; or it has no
 	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set), the ID defined by <code>idGetter</code>
-	 * and the params obtained by {@link GUIComponent#getParamsForSerializing() getParams()} are written.<br>
+	 * and the params obtained by {@link ModelComponent#getParamsForSerializing() getParams()} are written.<br>
 	 * CodeSnippets are serialized using the ID defined by <code>idGetter</code> and the params obtained by the respective
 	 * <coce>getParamsForSerializing</code> methods ({@link Renderer#getParamsForSerializing()}).
 	 * 
@@ -223,11 +223,11 @@ public final class LegacySubmodelComponentSerializer
 		LegacySubmodelParameters submodelParams = new LegacySubmodelParameters();
 		submodelParams.innerScale = comp.getSubmodelScale();
 
-		Map<String, GUIComponent> components = new HashMap<>(comp.submodel.getComponentsByName());
+		Map<String, ModelComponent> components = new HashMap<>(comp.submodel.getComponentsByName());
 		components.remove(SubmodelComponent.SUBMODEL_INTERFACE_NAME);
 		LegacyInnerComponentParams[] componentParams = new LegacyInnerComponentParams[components.size()];
 		int i1 = 0;
-		for (GUIComponent innerComponent : components.values())
+		for (ModelComponent innerComponent : components.values())
 		{
 			LegacyInnerComponentParams innerComponentParams = new LegacyInnerComponentParams();
 			componentParams[i1] = innerComponentParams;
@@ -248,10 +248,10 @@ public final class LegacySubmodelComponentSerializer
 		}
 		submodelParams.subComps = componentParams;
 
-		Collection<GUIWire> wires = comp.submodel.getWiresByName().values();
+		Collection<ModelWire> wires = comp.submodel.getWiresByName().values();
 		LegacyInnerWireParams wireParams[] = new LegacyInnerWireParams[wires.size()];
 		i1 = 0;
-		for (GUIWire innerWire : wires)
+		for (ModelWire innerWire : wires)
 		{
 			LegacyInnerWireParams innerWireParams = new LegacyInnerWireParams();
 			wireParams[i1] = innerWireParams;

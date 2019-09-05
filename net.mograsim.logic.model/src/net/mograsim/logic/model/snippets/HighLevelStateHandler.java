@@ -1,6 +1,6 @@
 package net.mograsim.logic.model.snippets;
 
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.serializing.JSONSerializable;
 
 /**
@@ -21,7 +21,7 @@ public interface HighLevelStateHandler extends JSONSerializable
 	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
 	 * @see #setHighLevelState(String, Object)
-	 * @see GUIComponent#getHighLevelState(String)
+	 * @see ModelComponent#getHighLevelState(String)
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -32,7 +32,7 @@ public interface HighLevelStateHandler extends JSONSerializable
 	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
 	 * @see #getHighLevelState(String)
-	 * @see GUIComponent#setHighLevelState(String, Object)
+	 * @see ModelComponent#setHighLevelState(String, Object)
 	 * 
 	 * @author Daniel Kirschten
 	 */

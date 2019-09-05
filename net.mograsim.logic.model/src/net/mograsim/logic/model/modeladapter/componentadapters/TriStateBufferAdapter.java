@@ -7,26 +7,26 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer;
+import net.mograsim.logic.model.model.components.atomic.ModelTriStateBuffer;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicModelParameters;
 
-public class TriStateBufferAdapter implements ComponentAdapter<GUITriStateBuffer>
+public class TriStateBufferAdapter implements ComponentAdapter<ModelTriStateBuffer>
 {
 	@Override
-	public Class<GUITriStateBuffer> getSupportedClass()
+	public Class<ModelTriStateBuffer> getSupportedClass()
 	{
-		return GUITriStateBuffer.class;
+		return ModelTriStateBuffer.class;
 	}
 
 	@SuppressWarnings("unused")
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, GUITriStateBuffer guiTsb,
+	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, ModelTriStateBuffer modelTsb,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
-		ReadEnd in = logicWiresPerPin.get(guiTsb.getPin("IN")).createReadOnlyEnd();
-		ReadEnd enable = logicWiresPerPin.get(guiTsb.getPin("EN")).createReadOnlyEnd();
-		ReadWriteEnd out = logicWiresPerPin.get(guiTsb.getPin("OUT")).createReadWriteEnd();
+		ReadEnd in = logicWiresPerPin.get(modelTsb.getPin("IN")).createReadOnlyEnd();
+		ReadEnd enable = logicWiresPerPin.get(modelTsb.getPin("EN")).createReadOnlyEnd();
+		ReadWriteEnd out = logicWiresPerPin.get(modelTsb.getPin("OUT")).createReadWriteEnd();
 		new CoreTriStateBuffer(timeline, params.gateProcessTime, in, out, enable);
 	}
 }

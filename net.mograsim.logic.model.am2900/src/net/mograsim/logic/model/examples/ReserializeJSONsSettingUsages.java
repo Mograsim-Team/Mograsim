@@ -13,12 +13,12 @@ import java.util.stream.Stream;
 
 import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 
 public class ReserializeJSONsSettingUsages
@@ -51,7 +51,7 @@ public class ReserializeJSONsSettingUsages
 	{
 		try
 		{
-			DeserializedSubmodelComponent comp = (DeserializedSubmodelComponent) IndirectGUIComponentCreator
+			DeserializedSubmodelComponent comp = (DeserializedSubmodelComponent) IndirectModelComponentCreator
 					.createComponent(new ViewModelModifiable(), "jsonfile:" + json.toString());
 			System.out.println("Reserializing " + json);
 			comp.getSupermodelPins().entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).map(Entry::getValue).forEach(pin ->
@@ -75,13 +75,13 @@ public class ReserializeJSONsSettingUsages
 
 	private static void setInterfacePinUsage(DeserializedSubmodelComponent comp, Pin interfacePin, PinUsage usage)
 	{
-		Set<GUIWire> wiresConnectedToPin = comp.submodel.getWiresByName().values().stream()
+		Set<ModelWire> wiresConnectedToPin = comp.submodel.getWiresByName().values().stream()
 				.filter(w -> w.getPin1() == interfacePin || w.getPin2() == interfacePin).collect(Collectors.toSet());
 		wiresConnectedToPin.forEach(comp.getSubmodelModifiable()::destroyWire);
 		comp.removeSubmodelInterface(interfacePin.name);
 		comp.addSubmodelInterface(
 				new MovablePin(comp, interfacePin.name, interfacePin.logicWidth, usage, interfacePin.getRelX(), interfacePin.getRelY()));
 		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
-		wiresConnectedToPin.forEach(w -> new GUIWire(submodelModifiable, w.getPin1(), w.getPin2()));
+		wiresConnectedToPin.forEach(w -> new ModelWire(submodelModifiable, w.getPin1(), w.getPin2()));
 	}
 }
