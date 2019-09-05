@@ -1,6 +1,5 @@
 package net.mograsim.logic.model.editor;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -27,6 +26,9 @@ import net.mograsim.logic.model.model.wires.GUIWire;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.DefaultSymbolRenderer;
 
 public final class Editor
 {
@@ -158,7 +160,8 @@ public final class Editor
 				moveSelection(x, y);
 				successful = true;
 			}
-			catch (@SuppressWarnings("unused") UnsupportedOperationException | JsonSyntaxException | NumberFormatException e)
+			catch (@SuppressWarnings("unused") UnsupportedOperationException | JsonSyntaxException | NumberFormatException
+					| NullPointerException e)
 			{
 				String result = DialogManager.openMultiLineTextDialog("Add component", "Create", "Cancel", "Parameters:");
 				if (result == null)
@@ -236,10 +239,20 @@ public final class Editor
 		}
 	}
 
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
 		Am2900Loader.setup();
-		SaveLoadManager.openLoadDialog();
+		openNewEditor();
+//		SaveLoadManager.openLoadDialog();
+	}
+
+	public static void openNewEditor()
+	{
+		DeserializedSubmodelComponent toBeEdited = new DeserializedSubmodelComponent(new ViewModelModifiable(), null, null, null);
+		toBeEdited.setOutlineRenderer(new DefaultOutlineRenderer(toBeEdited));
+		toBeEdited.setSymbolRenderer(new DefaultSymbolRenderer(toBeEdited));
+		toBeEdited.setHighLevelStateHandler(new DefaultHighLevelStateHandler());
+		new Editor(toBeEdited);
 	}
 
 	public Snapping getSnapping()
