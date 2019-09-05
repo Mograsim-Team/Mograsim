@@ -95,8 +95,7 @@ public class EditorGUI
 		ToolItem file = new ToolItem(toolBar, SWT.DROP_DOWN);
 
 		// TODO
-//		DropDownEntry newEntry = new DropDownEntry("New", e -> {
-//		});
+		DropDownEntry newEntry = new DropDownEntry("New", e -> Editor.openNewEditor());
 		DropDownEntry loadEntry = new DropDownEntry("Load", e ->
 		{
 			try
@@ -111,7 +110,7 @@ public class EditorGUI
 		DropDownEntry saveEntry = new DropDownEntry("Save", e -> editor.save());
 		DropDownEntry saveAsEntry = new DropDownEntry("Save as...", e -> editor.saveAs());
 
-		DropDownEntry[] entries = new DropDownEntry[] { loadEntry, saveEntry, saveAsEntry };
+		DropDownEntry[] entries = new DropDownEntry[] { newEntry, loadEntry, saveEntry, saveAsEntry };
 
 		setupDrowpDownMenu(file, entries);
 
@@ -230,5 +229,4 @@ public class EditorGUI
 			if (!display.readAndDispatch())
 				display.sleep();
 	}
-
 }
