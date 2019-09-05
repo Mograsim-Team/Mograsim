@@ -9,9 +9,9 @@ import net.mograsim.logic.model.serializing.IdentifyParams;
 
 public class SubmodelInterface extends ModelComponent
 {
-	public SubmodelInterface(LogicModelModifiable model, String name)
+	public SubmodelInterface(LogicModelModifiable model)
 	{
-		super(model, name, true);
+		super(model, SubmodelComponent.SUBMODEL_INTERFACE_NAME, true);
 	}
 
 	@Override

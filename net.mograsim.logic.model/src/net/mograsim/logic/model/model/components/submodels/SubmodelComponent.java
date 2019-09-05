@@ -115,7 +115,7 @@ public abstract class SubmodelComponent extends ModelComponent
 		this.supermodelPins = new HashMap<>();
 		this.supermodelMovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
 		this.supermodelUnmovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
-		this.submodelInterface = new SubmodelInterface(submodelModifiable, SUBMODEL_INTERFACE_NAME);
+		this.submodelInterface = new SubmodelInterface(submodelModifiable);
 
 		this.submodelScale = 1;
 		this.maxVisibleRegionFillRatioForAlpha0 = 0.8;
@@ -429,14 +429,28 @@ public abstract class SubmodelComponent extends ModelComponent
 
 	// serializing
 
+	/**
+	 * {@link SubmodelComponent}'s implementation of {@link ModelComponent#getIDForSerializing(IdentifyParams)} returns "submodel". It is
+	 * recommended to override this behaviour.
+	 * 
+	 * @see ModelComponent#getIDForSerializing(IdentifyParams)
+	 * @see ModelComponent#getParamsForSerializing(IdentifyParams)
+	 */
 	@Override
 	public String getIDForSerializing(IdentifyParams idParams)
 	{
 		return "submodel";// TODO what ID?
 	}
 
+	/**
+	 * {@link SubmodelComponent}'s implementation of {@link ModelComponent#getParamsForSerializing(IdentifyParams)} returns an instance of
+	 * {@link SubmodelComponentParams}. It is recommended to override this behaviour.
+	 * 
+	 * @see ModelComponent#getIDForSerializing(IdentifyParams)
+	 * @see ModelComponent#getParamsForSerializing(IdentifyParams)
+	 */
 	@Override
-	public SubmodelComponentParams getParamsForSerializing(IdentifyParams idParams)
+	public Object getParamsForSerializing(IdentifyParams idParams)
 	{
 		return SubmodelComponentSerializer.serialize(this, idParams);
 	}

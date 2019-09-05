@@ -23,15 +23,41 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	/**
 	 * See {@link #idForSerializingOverride}
 	 */
-	public final JsonElement paramsForSerializingOverride;
+	public final Object paramsForSerializingOverride;
 
 	public DeserializedSubmodelComponent(LogicModelModifiable model, String name, String idForSerializingOverride,
-			JsonElement paramsForSerializingOverride)
+			Object paramsForSerializingOverride)
 	{
 		super(model, name, false);
 		this.idForSerializingOverride = idForSerializingOverride;
 		this.paramsForSerializingOverride = paramsForSerializingOverride;
 		init();
+	}
+
+	/**
+	 * If this component has an {@link #idForSerializingOverride} set (e.g. non-null) (see
+	 * {@link SubmodelComponentSerializer#deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)
+	 * SubmodelComponentSerializer.deserialize(...)}), this ID is returned<br>
+	 * If this case doesn't apply (this component has no {@link #idForSerializingOverride} set),
+	 * {@link SubmodelComponent#getIDForSerializing(IdentifyParams)} is invoced.
+	 */
+	@Override
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return idForSerializingOverride == null ? super.getIDForSerializing(idParams) : idForSerializingOverride;
+	}
+
+	/**
+	 * If this component has an {@link #idForSerializingOverride} set (e.g. non-null) (see
+	 * {@link SubmodelComponentSerializer#deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)
+	 * SubmodelComponentSerializer.deserialize(...)}), {@link #paramsForSerializingOverride} is returned<br>
+	 * If this case doesn't apply (this component has no {@link #idForSerializingOverride} set),
+	 * {@link SubmodelComponent#getParamsForSerializing(IdentifyParams)} is invoced.
+	 */
+	@Override
+	public Object getParamsForSerializing(IdentifyParams idParams)
+	{
+		return idForSerializingOverride == null ? super.getParamsForSerializing(idParams) : paramsForSerializingOverride;
 	}
 
 	@Override
