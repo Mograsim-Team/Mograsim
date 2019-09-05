@@ -2,14 +2,14 @@ package net.mograsim.logic.model.model.components.submodels;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 
 public class SubmodelInterface extends ModelComponent
 {
-	public SubmodelInterface(ViewModelModifiable model, String name)
+	public SubmodelInterface(LogicModelModifiable model, String name)
 	{
 		super(model, name);
 	}

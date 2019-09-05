@@ -9,7 +9,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreBitDisplay;
 import net.mograsim.logic.core.types.BitVectorFormatter;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -31,12 +31,12 @@ public class ModelBitDisplay extends ModelComponent
 	private final LogicObserver logicObs;
 	private CoreBitDisplay bitDisplay;
 
-	public ModelBitDisplay(ViewModelModifiable model, int logicWidth)
+	public ModelBitDisplay(LogicModelModifiable model, int logicWidth)
 	{
 		this(model, logicWidth, null);
 	}
 
-	public ModelBitDisplay(ViewModelModifiable model, int logicWidth, String name)
+	public ModelBitDisplay(LogicModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
 		this.logicWidth = logicWidth;

@@ -9,7 +9,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.model.components.ModelComponent;
 
 /**
- * A connection interface between a ModelComponent and the rest of a ViewModel. Pins usually are created by {@link ModelComponent}s
+ * A connection interface between a ModelComponent and the rest of a LogicModel. Pins usually are created by {@link ModelComponent}s
  * themselves. <br>
  * A pin has a name identifying it. Pin names are unique for a {@link ModelComponent}: Every pin of a {@link ModelComponent} has a different
  * name, but different {@link ModelComponent}s can have pins with the same name.

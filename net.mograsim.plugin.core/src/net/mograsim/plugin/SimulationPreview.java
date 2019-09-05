@@ -9,7 +9,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.atomic.ModelNotGate;
 import net.mograsim.logic.model.model.components.atomic.ModelOrGate;
@@ -36,7 +36,7 @@ public class SimulationPreview implements IThemePreview
 		// TODO this will change the global preferences; so if another LogicUICanvas redraws, it will use the "new" colors too.
 		Preferences.setPreferences(currentThemePreferences);
 
-		ViewModelModifiable model = new ViewModelModifiable();
+		LogicModelModifiable model = new LogicModelModifiable();
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;

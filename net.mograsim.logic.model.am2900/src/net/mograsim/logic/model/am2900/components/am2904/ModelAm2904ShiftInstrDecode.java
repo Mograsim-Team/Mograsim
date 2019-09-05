@@ -12,7 +12,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -21,7 +21,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.
 
 public class ModelAm2904ShiftInstrDecode extends SimpleRectangularHardcodedModelComponent
 {
-	public ModelAm2904ShiftInstrDecode(ViewModelModifiable model, String name)
+	public ModelAm2904ShiftInstrDecode(LogicModelModifiable model, String name)
 	{
 		super(model, "Am2904ShiftInstrDecode", name, "Shift \ninstruction\ndecode");
 		setSize(60, 80);

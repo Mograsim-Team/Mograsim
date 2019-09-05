@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -30,12 +30,12 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	private final List<String> outputPinNames;
 	private final List<String> outputPinNamesUnmodifiable;
 
-	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label)
+	public SimpleRectangularSubmodelComponent(LogicModelModifiable model, int logicWidth, String label)
 	{
 		this(model, logicWidth, label, null);
 	}
 
-	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label, String name)
+	public SimpleRectangularSubmodelComponent(LogicModelModifiable model, int logicWidth, String label, String name)
 	{
 		super(model, name);
 		this.label = label;

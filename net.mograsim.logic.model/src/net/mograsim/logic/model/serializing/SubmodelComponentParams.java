@@ -16,7 +16,7 @@ public class SubmodelComponentParams extends SerializablePojo
 	public double width, height;
 	public InterfacePinParams[] interfacePins;
 	public double innerScale;
-	public ViewModelParams submodel;
+	public LogicModelParams submodel;
 
 	// functionality that needs to be expressed in Java code
 	public String symbolRendererSnippetID;

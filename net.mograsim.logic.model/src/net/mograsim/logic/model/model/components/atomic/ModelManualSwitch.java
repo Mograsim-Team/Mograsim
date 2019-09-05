@@ -11,7 +11,7 @@ import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -34,12 +34,12 @@ public class ModelManualSwitch extends ModelComponent
 	private final LogicObserver logicObs;
 	private CoreManualSwitch manualSwitch;
 
-	public ModelManualSwitch(ViewModelModifiable model, int logicWidth)
+	public ModelManualSwitch(LogicModelModifiable model, int logicWidth)
 	{
 		this(model, logicWidth, null);
 	}
 
-	public ModelManualSwitch(ViewModelModifiable model, int logicWidth, String name)
+	public ModelManualSwitch(LogicModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
 		this.logicWidth = logicWidth;

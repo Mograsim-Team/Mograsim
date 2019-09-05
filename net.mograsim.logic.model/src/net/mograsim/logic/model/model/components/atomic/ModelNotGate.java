@@ -1,19 +1,19 @@
 package net.mograsim.logic.model.model.components.atomic;
 
 import net.mograsim.logic.core.components.gates.CoreNotGate;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SimpleGateAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 
 public class ModelNotGate extends SimpleRectangularModelGate
 {
-	public ModelNotGate(ViewModelModifiable model, int logicWidth)
+	public ModelNotGate(LogicModelModifiable model, int logicWidth)
 	{
 		this(model, logicWidth, null);
 	}
 
-	public ModelNotGate(ViewModelModifiable model, int logicWidth, String name)
+	public ModelNotGate(LogicModelModifiable model, int logicWidth, String name)
 	{
 		super(model, "NotGate", "1", true, logicWidth, name);
 		setInputCount(1);

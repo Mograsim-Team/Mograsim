@@ -15,7 +15,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -24,7 +24,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.
 
 public class Modelram5_12 extends SimpleRectangularHardcodedModelComponent
 {
-	public Modelram5_12(ViewModelModifiable model, String name)
+	public Modelram5_12(LogicModelModifiable model, String name)
 	{
 		super(model, "ram5_12", name, "RAM\n5 x 12 Bit");
 		setSize(40, 40);

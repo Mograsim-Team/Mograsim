@@ -9,7 +9,7 @@ import java.util.function.Function;
 import com.google.gson.JsonElement;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
@@ -37,23 +37,23 @@ public final class LegacySubmodelComponentSerializer
 	// convenience methods
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams)}, but first reading the
 	 * {@link LegacySubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath) throws IOException
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, LegacySubmodelComponentParams.class));
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, JsonElement)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, JsonElement)}, but first reading the
 	 * {@link LegacySubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String idForSerializingOverride,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, LegacySubmodelComponentParams.class), idForSerializingOverride,
@@ -61,23 +61,23 @@ public final class LegacySubmodelComponentSerializer
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String)}, but first reading the
 	 * {@link LegacySubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String name) throws IOException
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String name) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, LegacySubmodelComponentParams.class), name);
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)}, but first reading the
 	 * {@link LegacySubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String name, String idForSerializingOverride,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String name, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, LegacySubmodelComponentParams.class), name, idForSerializingOverride,
@@ -85,34 +85,34 @@ public final class LegacySubmodelComponentSerializer
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} with no
+	 * {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} with no
 	 * <code>idForSerializingOverride</code> set and using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params)
+	public static SubmodelComponent deserialize(LogicModelModifiable model, LegacySubmodelComponentParams params)
 	{
 		return deserialize(model, params, null, null, null);
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} using the default name.
+	 * {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, LegacySubmodelComponentParams params,
 			String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{
 		return deserialize(model, params, null, idForSerializingOverride, paramsForSerializingOverride);
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} with no
+	 * {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} with no
 	 * <code>idForSerializingOverride</code> set.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params, String name)
+	public static SubmodelComponent deserialize(LogicModelModifiable model, LegacySubmodelComponentParams params, String name)
 	{
 		return deserialize(model, params, name, null, null);
 	}
@@ -164,7 +164,7 @@ public final class LegacySubmodelComponentSerializer
 	 * @author Daniel Kirschten
 	 */
 	@SuppressWarnings("unused") // for ModelWire being created
-	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params, String name,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, LegacySubmodelComponentParams params, String name,
 			String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model, name, idForSerializingOverride,
@@ -176,7 +176,7 @@ public final class LegacySubmodelComponentSerializer
 			comp.addSubmodelInterface(new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, PinUsage.TRISTATE, iPinParams.location.x,
 					iPinParams.location.y));
 		LegacySubmodelParameters submodelParams = params.submodel;
-		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
+		LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
 		Map<String, ModelComponent> componentsByName = submodelModifiable.getComponentsByName();
 		ModelComponent[] components = new ModelComponent[submodelParams.subComps.length];
 		for (int i = 0; i < components.length; i++)
@@ -206,7 +206,7 @@ public final class LegacySubmodelComponentSerializer
 	 * Subcomponents are serialized in the following way: <br>
 	 * If a subcomponent is a <code>SubmodelComponent</code> which has been deserialized, and it has an
 	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set (e.g. non-null; see
-	 * {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement) deserialize(...)}), this ID and
+	 * {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement) deserialize(...)}), this ID and
 	 * the component's {@link DeserializedSubmodelComponent#paramsForSerializingOverride paramsForSerializingOverride} are written.<br>
 	 * If this case doesn't apply (e.g. if the subcomponent is not a <code>SubmodelComponent</code>; or it is a
 	 * <code>SubmodelComponent</code>, but hasn't been deserialized; or it has no

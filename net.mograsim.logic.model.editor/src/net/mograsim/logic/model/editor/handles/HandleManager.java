@@ -16,7 +16,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.states.EditorState;
 import net.mograsim.logic.model.editor.util.PrioritySet;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
@@ -52,7 +52,7 @@ public class HandleManager
 		handleAddedListeners = new ArrayList<>();
 		handleRemovedListeners = new ArrayList<>();
 
-		ViewModelModifiable model = editor.getSubmodel();
+		LogicModelModifiable model = editor.getSubmodel();
 
 		model.addComponentAddedListener(c -> registerComponent(c));
 
@@ -83,7 +83,7 @@ public class HandleManager
 			System.err.println("Warning! HandleManager was already initialized.");
 		else
 		{
-			ViewModelModifiable model = editor.getSubmodel();
+			LogicModelModifiable model = editor.getSubmodel();
 			Map<String, ModelComponent> compsByName = model.getComponentsByName();
 			Set<ModelComponent> comps = new HashSet<>(compsByName.values());
 			ModelComponent interfaceComp = compsByName.get(SubmodelComponent.SUBMODEL_INTERFACE_NAME);

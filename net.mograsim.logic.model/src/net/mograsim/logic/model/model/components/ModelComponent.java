@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.JSONSerializable;
@@ -17,7 +17,7 @@ import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 
 /**
  * The base class for all model components.<br>
- * A <code>ModelComponent</code> has a reference to the ViewModel it belongs to.<br>
+ * A <code>ModelComponent</code> has a reference to the LogicModel it belongs to.<br>
  * A <code>ModelComponent</code> has a name. This name is unique in the model the <code>ModelComponent</code> belongs to.<br>
  * A <code>ModelComponent</code> has a position and size. The size can only be modified by subclasses.
  * 
@@ -28,7 +28,7 @@ public abstract class ModelComponent implements JSONSerializable
 	/**
 	 * The model this component is a part of.
 	 */
-	protected final ViewModelModifiable model;
+	protected final LogicModelModifiable model;
 	/**
 	 * The name of this component. Is unique for all components in its model.
 	 */
@@ -52,7 +52,7 @@ public abstract class ModelComponent implements JSONSerializable
 
 	// creation and destruction
 
-	public ModelComponent(ViewModelModifiable model, String name)
+	public ModelComponent(LogicModelModifiable model, String name)
 	{
 		this.model = model;
 		this.name = name == null ? model.getDefaultComponentName(this) : name;
@@ -66,13 +66,13 @@ public abstract class ModelComponent implements JSONSerializable
 		this.pinRemovedListeners = new ArrayList<>();
 
 		// TODO this will crash the high level state debug shell because submodel is not yet set.
-		// The same problem exists in ViewModelModifiable.getDefaultComponentName; see there
+		// The same problem exists in LogicModelModifiable.getDefaultComponentName; see there
 		model.componentCreated(this, this::destroyed);
 	}
 
 	/**
-	 * Destroys this component. This method is called from {@link ViewModelModifiable#componentDestroyed(ModelComponent) destroyComponent()}
-	 * of the model this component is a part of.<br>
+	 * Destroys this component. This method is called from {@link LogicModelModifiable#componentDestroyed(ModelComponent)
+	 * destroyComponent()} of the model this component is a part of.<br>
 	 * When overriding, make sure to also call the original implementation.
 	 * 
 	 * @author Daniel Kirschten

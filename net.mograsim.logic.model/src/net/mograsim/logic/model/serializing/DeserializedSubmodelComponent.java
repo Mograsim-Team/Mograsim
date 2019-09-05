@@ -2,7 +2,7 @@ package net.mograsim.logic.model.serializing;
 
 import com.google.gson.JsonElement;
 
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -15,7 +15,7 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	 * If a DeserializedSubmodelComponent is part of another SubmodelComponent, when it it serialized, it should not return its internal
 	 * structure, but rather the component ID used to create it.
 	 * 
-	 * @see SubmodelComponentSerializer#deserialize(ViewModelModifiable, SubmodelComponentParams, String, String, JsonElement)
+	 * @see SubmodelComponentSerializer#deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)
 	 *      SubmodelComponentSerializer.deserialize(...)
 	 * @see SubmodelComponentSerializer#serialize(SubmodelComponent, java.util.function.Function) SubmodelComponentSerializer.serialize(...)
 	 */
@@ -25,7 +25,7 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 	 */
 	public final JsonElement paramsForSerializingOverride;
 
-	public DeserializedSubmodelComponent(ViewModelModifiable model, String name, String idForSerializingOverride,
+	public DeserializedSubmodelComponent(LogicModelModifiable model, String name, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride)
 	{
 		super(model, name);
@@ -51,7 +51,7 @@ public class DeserializedSubmodelComponent extends SubmodelComponent
 		super.setHighLevelStateHandler(handler);
 	}
 
-	public ViewModelModifiable getSubmodelModifiable()
+	public LogicModelModifiable getSubmodelModifiable()
 	{
 		return submodelModifiable;
 	}

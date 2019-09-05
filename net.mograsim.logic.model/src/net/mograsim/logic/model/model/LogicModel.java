@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 
-public class ViewModel
+public class LogicModel
 {
 	private final Map<String, ModelComponent> components;
 	private final Map<String, Runnable> componentDestroyFunctions;
@@ -27,7 +27,7 @@ public class ViewModel
 
 	private Runnable redrawHandler;
 
-	protected ViewModel()
+	protected LogicModel()
 	{
 		components = new HashMap<>();
 		componentDestroyFunctions = new HashMap<>();

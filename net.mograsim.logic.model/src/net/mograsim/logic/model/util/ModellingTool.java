@@ -1,6 +1,6 @@
 package net.mograsim.logic.model.util;
 
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -8,9 +8,9 @@ import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 
 public class ModellingTool
 {
-	private ViewModelModifiable model;
+	private LogicModelModifiable model;
 
-	ModellingTool(ViewModelModifiable model)
+	ModellingTool(LogicModelModifiable model)
 	{
 		this.model = model;
 	}
@@ -105,7 +105,7 @@ public class ModellingTool
 		return new ModelWire(model, name, a, b);
 	}
 
-	public static ModellingTool createFor(ViewModelModifiable model)
+	public static ModellingTool createFor(LogicModelModifiable model)
 	{
 		return new ModellingTool(model);
 	}

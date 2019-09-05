@@ -6,7 +6,7 @@ import com.google.gson.JsonSyntaxException;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.Orientation;
 import net.mograsim.logic.model.model.components.OrientationCalculator;
@@ -32,12 +32,12 @@ public class ModelTriStateBuffer extends ModelComponent
 	private ModelTriStateBufferParams params;
 	private OrientationCalculator oc;
 
-	public ModelTriStateBuffer(ViewModelModifiable model, ModelTriStateBufferParams params)
+	public ModelTriStateBuffer(LogicModelModifiable model, ModelTriStateBufferParams params)
 	{
 		this(model, params, null);
 	}
 
-	public ModelTriStateBuffer(ViewModelModifiable model, ModelTriStateBufferParams params, String name)
+	public ModelTriStateBuffer(LogicModelModifiable model, ModelTriStateBufferParams params, String name)
 	{
 		super(model, name);
 		this.params = params;

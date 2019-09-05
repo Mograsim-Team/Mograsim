@@ -10,7 +10,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreClock;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.Orientation;
 import net.mograsim.logic.model.model.components.OrientationCalculator;
@@ -36,12 +36,12 @@ public class ModelClock extends ModelComponent
 	private OrientationCalculator oc;
 	private CoreClock clock;
 
-	public ModelClock(ViewModelModifiable model, ModelClockParams params)
+	public ModelClock(LogicModelModifiable model, ModelClockParams params)
 	{
 		this(model, params, null);
 	}
 
-	public ModelClock(ViewModelModifiable model, ModelClockParams params, String name)
+	public ModelClock(LogicModelModifiable model, ModelClockParams params, String name)
 	{
 		super(model, name);
 		this.params = params;

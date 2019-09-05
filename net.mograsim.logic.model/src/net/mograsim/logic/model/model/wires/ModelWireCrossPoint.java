@@ -5,7 +5,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -46,12 +46,12 @@ public class ModelWireCrossPoint extends ModelComponent
 
 	// creation and destruction
 
-	public ModelWireCrossPoint(ViewModelModifiable model, int logicWidth)
+	public ModelWireCrossPoint(LogicModelModifiable model, int logicWidth)
 	{
 		this(model, logicWidth, null);
 	}
 
-	public ModelWireCrossPoint(ViewModelModifiable model, int logicWidth, String name)
+	public ModelWireCrossPoint(LogicModelModifiable model, int logicWidth, String name)
 	{
 		super(model, name);
 		this.logicWidth = logicWidth;

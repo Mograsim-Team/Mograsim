@@ -12,97 +12,97 @@ import java.util.Set;
 import com.google.gson.JsonElement;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.model.model.ViewModel;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModel;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
-import net.mograsim.logic.model.serializing.ViewModelParams.ComponentParams;
-import net.mograsim.logic.model.serializing.ViewModelParams.WireParams;
-import net.mograsim.logic.model.serializing.ViewModelParams.WireParams.PinParams;
+import net.mograsim.logic.model.serializing.LogicModelParams.ComponentParams;
+import net.mograsim.logic.model.serializing.LogicModelParams.WireParams;
+import net.mograsim.logic.model.serializing.LogicModelParams.WireParams.PinParams;
 import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.logic.model.util.Version;
 
-public class ViewModelSerializer
+public class LogicModelSerializer
 {
 	public static final Version CURRENT_JSON_VERSION = Version.parseSemver("0.1.1");
 
 	// convenience methods
 	/**
-	 * Like {@link #deserialize(ViewModelParams)}, but first reading the {@link ViewModelParams} from the given file path.
+	 * Like {@link #deserialize(LogicModelParams)}, but first reading the {@link LogicModelParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static ViewModelModifiable deserialize(String sourcePath) throws IOException
+	public static LogicModelModifiable deserialize(String sourcePath) throws IOException
 	{
-		return deserialize(JsonHandler.readJson(sourcePath, ViewModelParams.class));
+		return deserialize(JsonHandler.readJson(sourcePath, LogicModelParams.class));
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, ViewModelParams)}, but first reading the {@link ViewModelParams} from the given file
+	 * Like {@link #deserialize(LogicModelModifiable, LogicModelParams)}, but first reading the {@link LogicModelParams} from the given file
 	 * path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static void deserialize(ViewModelModifiable model, String sourcePath) throws IOException
+	public static void deserialize(LogicModelModifiable model, String sourcePath) throws IOException
 	{
-		deserialize(model, JsonHandler.readJson(sourcePath, ViewModelParams.class));
+		deserialize(model, JsonHandler.readJson(sourcePath, LogicModelParams.class));
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, ViewModelParams)}, but using a newly created {@link ViewModelModifiable}.
+	 * Like {@link #deserialize(LogicModelModifiable, LogicModelParams)}, but using a newly created {@link LogicModelModifiable}.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static ViewModelModifiable deserialize(ViewModelParams params)
+	public static LogicModelModifiable deserialize(LogicModelParams params)
 	{
-		ViewModelModifiable model = new ViewModelModifiable();
+		LogicModelModifiable model = new LogicModelModifiable();
 		deserialize(model, params);
 		return model;
 	}
 
 	/**
-	 * Like {@link #serialize(ViewModel)}, but instead of returning the generated {@link ViewModelParams} they are written to a file at the
+	 * Like {@link #serialize(LogicModel)}, but instead of returning the generated {@link LogicModelParams} they are written to a file at the
 	 * given path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static void serialize(ViewModel model, String targetPath) throws IOException
+	public static void serialize(LogicModel model, String targetPath) throws IOException
 	{
 		JsonHandler.writeJson(serialize(model), targetPath);
 	}
 
 	/**
-	 * Like {@link #serialize(ViewModel, IdentifierGetter)}, but instead of returning the generated {@link ViewModelParams} they are written
+	 * Like {@link #serialize(LogicModel, IdentifierGetter)}, but instead of returning the generated {@link LogicModelParams} they are written
 	 * to a file at the given path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static void serialize(ViewModel model, IdentifyParams idParams, String targetPath) throws IOException
+	public static void serialize(LogicModel model, IdentifyParams idParams, String targetPath) throws IOException
 	{
 		JsonHandler.writeJson(serialize(model, idParams), targetPath);
 	}
 
 	/**
-	 * {@link #serialize(ViewModel, IdentifierGetter)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
+	 * {@link #serialize(LogicModel, IdentifierGetter)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
 	 * {@link IdentifierGetter#IdentifierGetter() default constructor})
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static ViewModelParams serialize(ViewModel model)
+	public static LogicModelParams serialize(LogicModel model)
 	{
 		return serialize(model, new IdentifyParams());
 	}
 
 	// "core" methods
 	/**
-	 * Deserializes components and wires from the specified {@link ViewModelParams} and adds them to the given {@link ViewModelModifiable}.
+	 * Deserializes components and wires from the specified {@link LogicModelParams} and adds them to the given {@link LogicModelModifiable}.
 	 * 
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
 	@SuppressWarnings("unused") // for ModelWire being created
-	public static void deserialize(ViewModelModifiable model, ViewModelParams params)
+	public static void deserialize(LogicModelModifiable model, LogicModelParams params)
 	{
 		Map<String, ModelComponent> componentsByName = model.getComponentsByName();
 		ModelComponent[] components = new ModelComponent[params.components.length];
@@ -122,11 +122,11 @@ public class ViewModelSerializer
 	}
 
 	/**
-	 * Returns {@link ViewModelModifiable}, which describe the components and wires in the given {@link ViewModel}. <br>
+	 * Returns {@link LogicModelModifiable}, which describe the components and wires in the given {@link LogicModel}. <br>
 	 * Components are serialized in the following way: <br>
 	 * If a component is a <code>SubmodelComponent</code> which has been deserialized, and it has an
 	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set (e.g. non-null; see
-	 * {@link SubmodelComponentSerializer#deserialize(ViewModelModifiable, SubmodelComponentParams, String, String, JsonElement)
+	 * {@link SubmodelComponentSerializer#deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)
 	 * SubmodelComponentSerializer.deserialize(...)}), this ID and the component's
 	 * {@link DeserializedSubmodelComponent#paramsForSerializingOverride paramsForSerializingOverride} are written.<br>
 	 * If this case doesn't apply (e.g. if the component is not a <code>SubmodelComponent</code>; or it is a <code>SubmodelComponent</code>,
@@ -137,9 +137,9 @@ public class ViewModelSerializer
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	public static ViewModelParams serialize(ViewModel model, IdentifyParams idParams)
+	public static LogicModelParams serialize(LogicModel model, IdentifyParams idParams)
 	{
-		ViewModelParams modelParams = new ViewModelParams(CURRENT_JSON_VERSION);
+		LogicModelParams modelParams = new LogicModelParams(CURRENT_JSON_VERSION);
 
 		Map<String, ModelComponent> components = new HashMap<>(model.getComponentsByName());
 		components.remove(SubmodelComponent.SUBMODEL_INTERFACE_NAME);

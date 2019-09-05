@@ -7,7 +7,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
@@ -38,7 +38,7 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 
 	// creation and destruction
 
-	public SimpleRectangularHardcodedModelComponent(ViewModelModifiable model, String id, String name, String centerText)
+	public SimpleRectangularHardcodedModelComponent(LogicModelModifiable model, String id, String name, String centerText)
 	{
 		super(model, name);
 		this.id = id;

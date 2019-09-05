@@ -10,19 +10,19 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.Editor.ComponentInfo;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 
 public class ComponentHandle extends Handle
 {
-	private final ViewModelModifiable model;
+	private final LogicModelModifiable model;
 	public final ModelComponent parent;
 	private final static double POS_OFFSET = 2.0d;
 	private final static double LENGTH_OFFSET = POS_OFFSET * 2;
 	boolean selected = false;
 
-	public ComponentHandle(ViewModelModifiable model, ModelComponent parent)
+	public ComponentHandle(LogicModelModifiable model, ModelComponent parent)
 	{
 		super(4);
 		this.model = model;

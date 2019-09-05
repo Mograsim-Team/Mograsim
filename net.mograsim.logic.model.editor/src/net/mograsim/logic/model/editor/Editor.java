@@ -20,7 +20,7 @@ import net.mograsim.logic.model.editor.handles.PinHandle;
 import net.mograsim.logic.model.editor.states.StateManager;
 import net.mograsim.logic.model.editor.ui.DialogManager;
 import net.mograsim.logic.model.editor.ui.EditorGUI;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
@@ -61,7 +61,7 @@ public final class Editor
 		gui.open();
 	}
 
-	public ViewModelModifiable getSubmodel()
+	public LogicModelModifiable getSubmodel()
 	{
 		return toBeEdited.getSubmodelModifiable();
 	}
@@ -248,7 +248,7 @@ public final class Editor
 
 	public static void openNewEditor()
 	{
-		DeserializedSubmodelComponent toBeEdited = new DeserializedSubmodelComponent(new ViewModelModifiable(), null, null, null);
+		DeserializedSubmodelComponent toBeEdited = new DeserializedSubmodelComponent(new LogicModelModifiable(), null, null, null);
 		toBeEdited.setOutlineRenderer(new DefaultOutlineRenderer(toBeEdited));
 		toBeEdited.setSymbolRenderer(new DefaultSymbolRenderer(toBeEdited));
 		toBeEdited.setHighLevelStateHandler(new DefaultHighLevelStateHandler());

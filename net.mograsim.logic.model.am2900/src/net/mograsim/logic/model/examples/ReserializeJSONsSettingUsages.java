@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import net.mograsim.logic.model.am2900.Am2900Loader;
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -52,7 +52,7 @@ public class ReserializeJSONsSettingUsages
 		try
 		{
 			DeserializedSubmodelComponent comp = (DeserializedSubmodelComponent) IndirectModelComponentCreator
-					.createComponent(new ViewModelModifiable(), "jsonfile:" + json.toString());
+					.createComponent(new LogicModelModifiable(), "jsonfile:" + json.toString());
 			System.out.println("Reserializing " + json);
 			comp.getSupermodelPins().entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).map(Entry::getValue).forEach(pin ->
 			{
@@ -81,7 +81,7 @@ public class ReserializeJSONsSettingUsages
 		comp.removeSubmodelInterface(interfacePin.name);
 		comp.addSubmodelInterface(
 				new MovablePin(comp, interfacePin.name, interfacePin.logicWidth, usage, interfacePin.getRelX(), interfacePin.getRelY()));
-		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
+		LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
 		wiresConnectedToPin.forEach(w -> new ModelWire(submodelModifiable, w.getPin1(), w.getPin2()));
 	}
 }
