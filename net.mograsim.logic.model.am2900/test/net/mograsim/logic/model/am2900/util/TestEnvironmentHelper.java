@@ -27,8 +27,8 @@ import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.ModellingTool;
 
@@ -87,11 +87,11 @@ public class TestEnvironmentHelper
 
 		component.getPins().values().forEach(this::extendModelPin);
 
-		// Create logic model
-		LogicModelParameters params = new LogicModelParameters();
+		// Create core model
+		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
-		timeline = ViewLogicModelAdapter.convert(viewModel, params);
+		timeline = LogicCoreAdapter.convert(viewModel, params);
 		timelineField.ifPresent(f -> setField(f, timeline));
 
 		// Bind switches/displays to this test class

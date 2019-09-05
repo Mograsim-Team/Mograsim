@@ -10,7 +10,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.MergerAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -91,7 +91,7 @@ public class ModelMerger extends ModelComponent
 		return logicWidth;
 	}
 
-	public void setLogicModelBinding(ReadEnd[] inputEnds, ReadEnd outputEnd)
+	public void setCoreModelBinding(ReadEnd[] inputEnds, ReadEnd outputEnd)
 	{
 		System.arraycopy(inputEnds, 0, this.inputEnds, 0, logicWidth);
 		this.outputEnd = outputEnd;
@@ -104,7 +104,7 @@ public class ModelMerger extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new MergerAdapter());
+		LogicCoreAdapter.addComponentAdapter(new MergerAdapter());
 		IndirectModelComponentCreator.setComponentSupplier(ModelMerger.class.getCanonicalName(),
 				(m, p, n) -> new ModelMerger(m, p.getAsInt(), n));
 	}

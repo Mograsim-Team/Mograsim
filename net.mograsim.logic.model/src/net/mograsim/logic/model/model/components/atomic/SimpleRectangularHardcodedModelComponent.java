@@ -10,7 +10,7 @@ import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SimpleRectangularHardcodedModelComponentAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
@@ -112,9 +112,9 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 
 	public abstract Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds);
 
-	// logic model binding
+	// core model binding
 
-	public void setLogicModelBindingAndResetState(AtomicReference<Object> state, Runnable recalculate)
+	public void setCoreModelBindingAndResetState(AtomicReference<Object> state, Runnable recalculate)
 	{
 		this.state = state;
 		this.recalculate = recalculate;
@@ -148,6 +148,6 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new SimpleRectangularHardcodedModelComponentAdapter());
+		LogicCoreAdapter.addComponentAdapter(new SimpleRectangularHardcodedModelComponentAdapter());
 	}
 }

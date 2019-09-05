@@ -14,7 +14,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.FixedOutputAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -70,7 +70,7 @@ public class ModelFixedOutput extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new FixedOutputAdapter());
+		LogicCoreAdapter.addComponentAdapter(new FixedOutputAdapter());
 		IndirectModelComponentCreator.setComponentSupplier(ModelFixedOutput.class.getCanonicalName(),
 				(m, p, n) -> new ModelFixedOutput(m, Objects.requireNonNull(JsonHandler.fromJsonTree(p, BitVector.class)), n));
 	}

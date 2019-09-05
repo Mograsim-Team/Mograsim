@@ -8,7 +8,7 @@ import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.components.atomic.ModelClock;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 
 public class ClockAdapter implements ComponentAdapter<ModelClock>
 {
@@ -20,12 +20,12 @@ public class ClockAdapter implements ComponentAdapter<ModelClock>
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, ModelClock modelClock,
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, ModelClock modelClock,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		ReadWriteEnd out = logicWiresPerPin.get(modelClock.getOutputPin()).createReadWriteEnd();
 		CoreClock c = new CoreClock(timeline, out, modelClock.getDelta());
-		modelClock.setLogicModelBinding(c);
+		modelClock.setCoreModelBinding(c);
 	}
 
 }

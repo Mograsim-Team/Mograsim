@@ -7,7 +7,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.NoLogicAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -65,7 +65,7 @@ public class ModelTextComponent extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new NoLogicAdapter<>(ModelTextComponent.class));
+		LogicCoreAdapter.addComponentAdapter(new NoLogicAdapter<>(ModelTextComponent.class));
 		IndirectModelComponentCreator.setComponentSupplier(ModelTextComponent.class.getName(),
 				(m, p, n) -> new ModelTextComponent(m, p.getAsString(), n));
 	}

@@ -13,7 +13,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.BitDisplayAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -66,7 +66,7 @@ public class ModelBitDisplay extends ModelComponent
 		gc.setFont(oldFont);
 	}
 
-	public void setLogicModelBinding(CoreBitDisplay bitDisplay)
+	public void setCoreModelBinding(CoreBitDisplay bitDisplay)
 	{
 		if (this.bitDisplay != null)
 			this.bitDisplay.deregisterObserver(logicObs);
@@ -75,7 +75,7 @@ public class ModelBitDisplay extends ModelComponent
 			bitDisplay.registerObserver(logicObs);
 	}
 
-	public boolean hasLogicModelBinding()
+	public boolean hasCoreModelBinding()
 	{
 		return bitDisplay != null;
 	}
@@ -104,7 +104,7 @@ public class ModelBitDisplay extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new BitDisplayAdapter());
+		LogicCoreAdapter.addComponentAdapter(new BitDisplayAdapter());
 		IndirectModelComponentCreator.setComponentSupplier(ModelBitDisplay.class.getCanonicalName(),
 				(m, p, n) -> new ModelBitDisplay(m, p.getAsInt(), n));
 	}

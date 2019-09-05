@@ -9,7 +9,7 @@ import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularModelGate;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 
 public class SimpleGateAdapter<G extends SimpleRectangularModelGate> implements ComponentAdapter<G>
 {
@@ -29,7 +29,7 @@ public class SimpleGateAdapter<G extends SimpleRectangularModelGate> implements 
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, G modelComponent,
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, G modelComponent,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		ReadWriteEnd out = logicWiresPerPin.get(modelComponent.getPin("Y")).createReadWriteEnd();

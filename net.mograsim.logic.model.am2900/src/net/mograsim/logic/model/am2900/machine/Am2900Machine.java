@@ -5,8 +5,8 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.ViewModel;
 import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
@@ -25,10 +25,10 @@ public class Am2900Machine implements Machine
 		viewModel = new ViewModelModifiable();
 		IndirectModelComponentCreator.createComponent(viewModel,
 				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/ModelAm2900.json");
-		LogicModelParameters params = new LogicModelParameters();
+		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
-		timeline = ViewLogicModelAdapter.convert(viewModel, params);
+		timeline = LogicCoreAdapter.convert(viewModel, params);
 	}
 
 	@Override

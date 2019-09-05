@@ -10,7 +10,7 @@ import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SplitterAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -91,7 +91,7 @@ public class ModelSplitter extends ModelComponent
 		return logicWidth;
 	}
 
-	public void setLogicModelBinding(ReadEnd inputEnd, ReadEnd[] outputEnds)
+	public void setCoreModelBinding(ReadEnd inputEnd, ReadEnd[] outputEnds)
 	{
 		this.inputEnd = inputEnd;
 		System.arraycopy(outputEnds, 0, this.outputEnds, 0, logicWidth);
@@ -104,7 +104,7 @@ public class ModelSplitter extends ModelComponent
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new SplitterAdapter());
+		LogicCoreAdapter.addComponentAdapter(new SplitterAdapter());
 		IndirectModelComponentCreator.setComponentSupplier(ModelSplitter.class.getCanonicalName(),
 				(m, p, n) -> new ModelSplitter(m, p.getAsInt(), n));
 	}
