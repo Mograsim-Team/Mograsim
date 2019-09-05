@@ -124,7 +124,7 @@ public final class SubmodelComponentSerializer
 	}
 
 	/**
-	 * Like {@link #serialize(SubmodelComponent, IdentifierGetter)}, but instead of returning the generated {@link SubmodelComponentParams}
+	 * Like {@link #serialize(SubmodelComponent, IdentifyParams)}, but instead of returning the generated {@link SubmodelComponentParams}
 	 * they are written to a file at the given path.
 	 * 
 	 * @author Daniel Kirschten
@@ -135,8 +135,8 @@ public final class SubmodelComponentSerializer
 	}
 
 	/**
-	 * {@link #serialize(SubmodelComponent, IdentifierGetter)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
-	 * {@link IdentifierGetter#IdentifierGetter() default constructor})
+	 * {@link #serialize(SubmodelComponent, IdentifyParams)} using the default {@link IdentifyParams} (see <code>IdentifyParams</code>'s
+	 * {@link IdentifyParams#IdentifyParams() default constructor})
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -152,7 +152,7 @@ public final class SubmodelComponentSerializer
 	 * When serializing a <code>SubmodelComponent</code>, it is undesired for every subcomponent to be serialized with its complete inner
 	 * structure. Instead, these sub-<code>SubmodelComponent</code>s should be serialized with the ID and params which were used to
 	 * determine the <code>SubmodelComponentParams</code> defining the sub-<code>SubmodelComponent</code>. Because of this, it is possible
-	 * to override the ID and params used in {@link #serialize(SubmodelComponent, IdentifierGetter) serialize(...)} to describe this
+	 * to override the ID and params used in {@link #serialize(SubmodelComponent, IdentifyParams) serialize(...)} to describe this
 	 * subcomponent. See there for details.
 	 * 
 	 * @author Fabian Stemmler

@@ -9,8 +9,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.gson.JsonElement;
-
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
@@ -62,8 +60,8 @@ public class LogicModelSerializer
 	}
 
 	/**
-	 * Like {@link #serialize(LogicModel)}, but instead of returning the generated {@link LogicModelParams} they are written to a file at the
-	 * given path.
+	 * Like {@link #serialize(LogicModel)}, but instead of returning the generated {@link LogicModelParams} they are written to a file at
+	 * the given path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -73,7 +71,7 @@ public class LogicModelSerializer
 	}
 
 	/**
-	 * Like {@link #serialize(LogicModel, IdentifierGetter)}, but instead of returning the generated {@link LogicModelParams} they are written
+	 * Like {@link #serialize(LogicModel, IdentifyParams)}, but instead of returning the generated {@link LogicModelParams} they are written
 	 * to a file at the given path.
 	 * 
 	 * @author Daniel Kirschten
@@ -84,8 +82,8 @@ public class LogicModelSerializer
 	}
 
 	/**
-	 * {@link #serialize(LogicModel, IdentifierGetter)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
-	 * {@link IdentifierGetter#IdentifierGetter() default constructor})
+	 * {@link #serialize(LogicModel, IdentifyParams)} using the default {@link IdentifyParams} (see <code>IdentifyParams</code>'s
+	 * {@link IdentifyParams#IdentifyParams() default constructor})
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -96,7 +94,8 @@ public class LogicModelSerializer
 
 	// "core" methods
 	/**
-	 * Deserializes components and wires from the specified {@link LogicModelParams} and adds them to the given {@link LogicModelModifiable}.
+	 * Deserializes components and wires from the specified {@link LogicModelParams} and adds them to the given
+	 * {@link LogicModelModifiable}.
 	 * 
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
@@ -123,16 +122,8 @@ public class LogicModelSerializer
 
 	/**
 	 * Returns {@link LogicModelModifiable}, which describe the components and wires in the given {@link LogicModel}. <br>
-	 * Components are serialized in the following way: <br>
-	 * If a component is a <code>SubmodelComponent</code> which has been deserialized, and it has an
-	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set (e.g. non-null; see
-	 * {@link SubmodelComponentSerializer#deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)
-	 * SubmodelComponentSerializer.deserialize(...)}), this ID and the component's
-	 * {@link DeserializedSubmodelComponent#paramsForSerializingOverride paramsForSerializingOverride} are written.<br>
-	 * If this case doesn't apply (e.g. if the component is not a <code>SubmodelComponent</code>; or it is a <code>SubmodelComponent</code>,
-	 * but hasn't been deserialized; or it has no {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride}
-	 * set), the ID defined by <code>idGetter</code> and the params obtained by {@link ModelComponent#getParamsForSerializing() getParams()}
-	 * are written.
+	 * Components are serialized using {@link ModelComponent#getIDForSerializing(IdentifyParams)} and
+	 * {@link ModelComponent#getParamsForSerializingJSON(IdentifyParams)} <br>
 	 * 
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
@@ -149,17 +140,8 @@ public class LogicModelSerializer
 			ComponentParams compParams = new ComponentParams();
 			componentsParams.add(compParams);
 			compParams.pos = new Point(component.getPosX(), component.getPosY());
-			DeserializedSubmodelComponent innerCompCasted;
-			if (component instanceof DeserializedSubmodelComponent
-					&& (innerCompCasted = (DeserializedSubmodelComponent) component).idForSerializingOverride != null)
-			{
-				compParams.id = innerCompCasted.idForSerializingOverride;
-				compParams.params = innerCompCasted.paramsForSerializingOverride;
-			} else
-			{
-				compParams.id = component.getIDForSerializing(idParams);
-				compParams.params = component.getParamsForSerializingJSON(idParams);
-			}
+			compParams.id = component.getIDForSerializing(idParams);
+			compParams.params = component.getParamsForSerializingJSON(idParams);
 			compParams.name = component.name;
 		}
 		modelParams.components = componentsParams.toArray(ComponentParams[]::new);

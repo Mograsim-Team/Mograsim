@@ -140,8 +140,8 @@ public final class LegacySubmodelComponentSerializer
 	}
 
 	/**
-	 * {@link #serialize(SubmodelComponent, Function)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
-	 * {@link IdentifierGetter#IdentifierGetter() default constructor})
+	 * {@link #serialize(SubmodelComponent, Function)} using the default {@link IdentifyParams} (see <code>IdentifyParams</code>'s
+	 * {@link IdentifyParams#IdentifyParams() default constructor})
 	 * 
 	 * @author Daniel Kirschten
 	 */
@@ -232,17 +232,8 @@ public final class LegacySubmodelComponentSerializer
 			LegacyInnerComponentParams innerComponentParams = new LegacyInnerComponentParams();
 			componentParams[i1] = innerComponentParams;
 			innerComponentParams.pos = new Point(innerComponent.getPosX(), innerComponent.getPosY());
-			DeserializedSubmodelComponent innerCompCasted;
-			if (innerComponent instanceof DeserializedSubmodelComponent
-					&& (innerCompCasted = (DeserializedSubmodelComponent) innerComponent).idForSerializingOverride != null)
-			{
-				innerComponentParams.id = innerCompCasted.idForSerializingOverride;
-				innerComponentParams.params = innerCompCasted.paramsForSerializingOverride;
-			} else
-			{
-				innerComponentParams.id = innerComponent.getIDForSerializing(idParams);
-				innerComponentParams.params = innerComponent.getParamsForSerializingJSON(idParams);
-			}
+			innerComponentParams.id = innerComponent.getIDForSerializing(idParams);
+			innerComponentParams.params = innerComponent.getParamsForSerializingJSON(idParams);
 			innerComponentParams.name = innerComponent.name;
 			i1++;
 		}
