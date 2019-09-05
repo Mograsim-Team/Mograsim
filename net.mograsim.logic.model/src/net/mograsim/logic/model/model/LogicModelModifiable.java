@@ -4,21 +4,14 @@ import java.util.Set;
 
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 
 public class LogicModelModifiable extends LogicModel
 {
 	public String getDefaultComponentName(ModelComponent component)
 	{
 		Set<String> componentNames = getComponentsByName().keySet();
-		// TODO get the ID of component
-		// The following does not work because this method is called in the constructor of DeserializedSubmodelComponent at a time where
-		// idForSerializingOverride is not yet set
-//		String componentID = null;
-//		if (component instanceof DeserializedSubmodelComponent)
-//			componentID = ((DeserializedSubmodelComponent) component).idForSerializingOverride;
-//		if (componentID == null)
-//			componentID = component.getClass().getSimpleName();
-		String componentID = component.getClass().getSimpleName();
+		String componentID = component.getIDForSerializing(new IdentifyParams());
 		String nameBase = componentID + '#';
 		for (int i = 0;; i++)
 		{
