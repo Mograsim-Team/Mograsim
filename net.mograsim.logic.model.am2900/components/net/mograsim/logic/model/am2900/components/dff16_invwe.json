@@ -1458,7 +1458,7 @@
   "symbolRendererParams": {
     "centerText": "D flip flop\n16 bit",
     "centerTextHeight": 5.0,
-    "horizontalComponentCenter": 30,
+    "horizontalComponentCenter": 30.0,
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },

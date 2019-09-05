@@ -193,14 +193,6 @@
         "params": 2
       },
       {
-        "id": "dff4_finewe",
-        "name": "dff4_finewe#0",
-        "pos": {
-          "x": 375.0,
-          "y": 170.0
-        }
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -244,6 +236,14 @@
           "y": 244.0
         },
         "params": 1
+      },
+      {
+        "id": "dff4_finewe",
+        "name": "dff4_finewe#0",
+        "pos": {
+          "x": 375.0,
+          "y": 170.0
+        }
       }
     ],
     "wires": [

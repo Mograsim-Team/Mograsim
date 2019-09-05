@@ -88,6 +88,33 @@
   "submodel": {
     "components": [
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 24.0,
+          "y": 46.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 24.0,
+          "y": 71.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 24.0,
+          "y": 96.5
+        },
+        "params": 1
+      },
+      {
         "id": "and",
         "name": "and#0",
         "pos": {
@@ -118,33 +145,6 @@
           "x": 30.0,
           "y": 82.5
         }
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#0",
-        "pos": {
-          "x": 24.0,
-          "y": 46.5
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#1",
-        "pos": {
-          "x": 24.0,
-          "y": 71.5
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#2",
-        "pos": {
-          "x": 24.0,
-          "y": 96.5
-        },
-        "params": 1
       }
     ],
     "wires": [

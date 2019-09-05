@@ -115,6 +115,24 @@
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 49.0,
+          "y": 59.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 54.0,
+          "y": 69.0
+        },
+        "params": 1
+      },
+      {
         "id": "and",
         "name": "and#0",
         "pos": {
@@ -169,24 +187,6 @@
           "x": 135.0,
           "y": 70.0
         }
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#0",
-        "pos": {
-          "x": 49.0,
-          "y": 59.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#1",
-        "pos": {
-          "x": 54.0,
-          "y": 69.0
-        },
-        "params": 1
       }
     ],
     "wires": [

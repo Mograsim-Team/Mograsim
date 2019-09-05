@@ -209,14 +209,6 @@
         }
       },
       {
-        "id": "xor",
-        "name": "xor#0",
-        "pos": {
-          "x": 95.0,
-          "y": 400.0
-        }
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -395,6 +387,14 @@
           "y": 144.0
         },
         "params": 1
+      },
+      {
+        "id": "xor",
+        "name": "xor#0",
+        "pos": {
+          "x": 95.0,
+          "y": 400.0
+        }
       }
     ],
     "wires": [

@@ -6,6 +6,18 @@
   "submodel": {
     "components": [
       {
+        "id": "Clock",
+        "name": "Clock#0",
+        "pos": {
+          "x": 155.0,
+          "y": 246.0
+        },
+        "params": {
+          "delta": 1000,
+          "orientation": "DOWN"
+        }
+      },
+      {
         "id": "Am2901",
         "name": "DeserializedSubmodelComponent#0",
         "pos": {
@@ -115,18 +127,6 @@
         "pos": {
           "x": 135.0,
           "y": 106.0
-        }
-      },
-      {
-        "id": "Clock",
-        "name": "Clock#0",
-        "pos": {
-          "x": 155.0,
-          "y": 246.0
-        },
-        "params": {
-          "delta": 1000,
-          "orientation": "DOWN"
         }
       },
       {
@@ -383,14 +383,6 @@
         "params": 4
       },
       {
-        "id": "inc12",
-        "name": "inc12#0",
-        "pos": {
-          "x": 245.0,
-          "y": 525.0
-        }
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -524,6 +516,14 @@
           "y": 225.0
         },
         "params": 4
+      },
+      {
+        "id": "inc12",
+        "name": "inc12#0",
+        "pos": {
+          "x": 245.0,
+          "y": 525.0
+        }
       }
     ],
     "wires": [

@@ -250,22 +250,6 @@
         "params": 1
       },
       {
-        "id": "not4",
-        "name": "not4#0",
-        "pos": {
-          "x": 75.0,
-          "y": 250.0
-        }
-      },
-      {
-        "id": "sel2_4",
-        "name": "sel2_4#0",
-        "pos": {
-          "x": 35.0,
-          "y": 250.0
-        }
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -291,6 +275,22 @@
           "y": 684.0
         },
         "params": 1
+      },
+      {
+        "id": "not4",
+        "name": "not4#0",
+        "pos": {
+          "x": 75.0,
+          "y": 250.0
+        }
+      },
+      {
+        "id": "sel2_4",
+        "name": "sel2_4#0",
+        "pos": {
+          "x": 35.0,
+          "y": 250.0
+        }
       }
     ],
     "wires": [

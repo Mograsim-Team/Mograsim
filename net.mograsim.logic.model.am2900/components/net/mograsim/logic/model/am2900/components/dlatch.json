@@ -61,14 +61,6 @@
         "params": 1
       },
       {
-        "id": "_rsLatch",
-        "name": "_rsLatch#0",
-        "pos": {
-          "x": 45.0,
-          "y": 7.5
-        }
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -85,6 +77,14 @@
           "y": 11.5
         },
         "params": 1
+      },
+      {
+        "id": "_rsLatch",
+        "name": "_rsLatch#0",
+        "pos": {
+          "x": 45.0,
+          "y": 7.5
+        }
       }
     ],
     "wires": [
