@@ -43,7 +43,7 @@ public class ModelClock extends ModelComponent
 
 	public ModelClock(LogicModelModifiable model, ModelClockParams params, String name)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.params = params;
 		logicObs = (i) -> model.requestRedraw();
 
@@ -52,6 +52,8 @@ public class ModelClock extends ModelComponent
 
 		this.outputPin = new Pin(model, this, "", 1, PinUsage.OUTPUT, oc.newX(width, height / 2), oc.newY(width, height / 2));
 		addPin(outputPin);
+
+		init();
 	}
 
 	@Override

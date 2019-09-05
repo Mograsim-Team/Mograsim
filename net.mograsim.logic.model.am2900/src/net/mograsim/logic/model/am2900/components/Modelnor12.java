@@ -22,10 +22,12 @@ public class Modelnor12 extends SimpleRectangularHardcodedModelComponent
 {
 	public Modelnor12(LogicModelModifiable model, String name)
 	{
-		super(model, "nor12", name, "=0");
+		super(model, "nor12", name, "=0", false);
 		setSize(35, 20);
 		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 0, 10), Position.RIGHT);
 		addPin(new Pin(model, this, "Y", 1, PinUsage.OUTPUT, 35, 10), Position.LEFT);
+
+		init();
 	}
 
 	@Override

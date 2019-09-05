@@ -36,7 +36,7 @@ public class ModelMerger extends ModelComponent
 
 	public ModelMerger(LogicModelModifiable model, int logicWidth, String name)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.logicWidth = logicWidth;
 		setSize(width, (logicWidth - 1) * heightPerPin);
 		double inputHeight = (logicWidth - 1) * heightPerPin;
@@ -44,6 +44,8 @@ public class ModelMerger extends ModelComponent
 			addPin(new Pin(model, this, "I" + i, 1, PinUsage.TRISTATE, 0, inputHeight));
 		addPin(this.outputPin = new Pin(model, this, "O", logicWidth, PinUsage.TRISTATE, width, (logicWidth - 1) * heightPerPin / 2));
 		inputEnds = new ReadEnd[logicWidth];
+
+		init();
 	}
 
 	@Override

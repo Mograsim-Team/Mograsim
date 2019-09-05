@@ -11,7 +11,7 @@ public class SubmodelInterface extends ModelComponent
 {
 	public SubmodelInterface(LogicModelModifiable model, String name)
 	{
-		super(model, name);
+		super(model, name, true);
 	}
 
 	@Override

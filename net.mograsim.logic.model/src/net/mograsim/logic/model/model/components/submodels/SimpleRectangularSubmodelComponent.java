@@ -37,7 +37,12 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 
 	public SimpleRectangularSubmodelComponent(LogicModelModifiable model, int logicWidth, String label, String name)
 	{
-		super(model, name);
+		this(model, logicWidth, label, name, true);
+	}
+
+	protected SimpleRectangularSubmodelComponent(LogicModelModifiable model, int logicWidth, String label, String name, boolean callInit)
+	{
+		super(model, name, false);
 		this.label = label;
 		this.logicWidth = logicWidth;
 		this.inputPinNames = new ArrayList<>();
@@ -53,6 +58,9 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		rendererParams.pinLabelMargin = pinNameMargin;
 		setSymbolRenderer(new SimpleRectangularLikeSymbolRenderer(this, rendererParams));
 		setOutlineRenderer(new DefaultOutlineRenderer(this));
+
+		if (callInit)
+			init();
 	}
 
 	protected void setInputPins(String... pinNames)

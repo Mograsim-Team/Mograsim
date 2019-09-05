@@ -22,7 +22,7 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 {
 	public ModelAm2910RegCntr(LogicModelModifiable model, String name)
 	{
-		super(model, "Am2910RegCntr", name, "Register/\nCounter");
+		super(model, "Am2910RegCntr", name, "Register/\nCounter", false);
 		setSize(40, 40);
 		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 20, 0), Position.BOTTOM);
 		addPin(new Pin(model, this, "_RLD", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
@@ -30,6 +30,8 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 		addPin(new Pin(model, this, "DEC", 1, PinUsage.INPUT, 0, 30), Position.RIGHT);
 		addPin(new Pin(model, this, "C", 1, PinUsage.INPUT, 40, 20), Position.LEFT);
 		addPin(new Pin(model, this, "Y", 12, PinUsage.OUTPUT, 20, 40), Position.TOP);
+
+		init();
 	}
 
 	@Override

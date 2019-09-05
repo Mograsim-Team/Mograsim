@@ -31,10 +31,12 @@ public class ModelFixedOutput extends ModelComponent
 
 	public ModelFixedOutput(LogicModelModifiable model, BitVector bits, String name)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.bits = bits;
 		setSize(width, height);
 		addPin(new Pin(model, this, "out", bits.length(), PinUsage.OUTPUT, width, height / 2));
+
+		init();
 	}
 
 	@Override

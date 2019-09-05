@@ -23,7 +23,7 @@ public class ModelAm2904ShiftInstrDecode extends SimpleRectangularHardcodedModel
 {
 	public ModelAm2904ShiftInstrDecode(LogicModelModifiable model, String name)
 	{
-		super(model, "Am2904ShiftInstrDecode", name, "Shift \ninstruction\ndecode");
+		super(model, "Am2904ShiftInstrDecode", name, "Shift \ninstruction\ndecode", false);
 		setSize(60, 80);
 		addPin(new Pin(model, this, "I", 5, PinUsage.INPUT, 0, 25), Position.RIGHT);
 		addPin(new Pin(model, this, "_SE", 1, PinUsage.INPUT, 0, 55), Position.RIGHT);
@@ -65,6 +65,8 @@ public class ModelAm2904ShiftInstrDecode extends SimpleRectangularHardcodedModel
 		// 1x: SIOn
 		addPin(new Pin(model, this, "MC_MUX", 2, PinUsage.OUTPUT, 60, 65), Position.LEFT);
 		addPin(new Pin(model, this, "MC_EN", 1, PinUsage.OUTPUT, 60, 75), Position.LEFT);
+
+		init();
 	}
 
 	@Override

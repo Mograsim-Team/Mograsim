@@ -36,7 +36,7 @@ public class ModelSplitter extends ModelComponent
 
 	public ModelSplitter(LogicModelModifiable model, int logicWidth, String name)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.logicWidth = logicWidth;
 		setSize(width, (logicWidth - 1) * heightPerPin);
 		addPin(this.inputPin = new Pin(model, this, "I", logicWidth, PinUsage.TRISTATE, 0, (logicWidth - 1) * heightPerPin / 2));
@@ -44,6 +44,8 @@ public class ModelSplitter extends ModelComponent
 		for (int i = 0; i < logicWidth; i++, outputHeight -= 10)
 			addPin(new Pin(model, this, "O" + i, 1, PinUsage.TRISTATE, width, outputHeight));
 		outputEnds = new ReadEnd[logicWidth];
+
+		init();
 	}
 
 	@Override

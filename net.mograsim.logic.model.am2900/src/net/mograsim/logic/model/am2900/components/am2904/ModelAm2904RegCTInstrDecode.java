@@ -22,7 +22,7 @@ public class ModelAm2904RegCTInstrDecode extends SimpleRectangularHardcodedModel
 {
 	public ModelAm2904RegCTInstrDecode(LogicModelModifiable model, String name)
 	{
-		super(model, "Am2904RegCTInstrDecode", name, "Instruction\ndecode");
+		super(model, "Am2904RegCTInstrDecode", name, "Instruction\ndecode", false);
 		setSize(80, 80);
 		addPin(new Pin(model, this, "I12-11", 2, PinUsage.INPUT, 0, 30), Position.RIGHT);
 		addPin(new Pin(model, this, "I5-0", 6, PinUsage.INPUT, 0, 50), Position.RIGHT);
@@ -69,6 +69,8 @@ public class ModelAm2904RegCTInstrDecode extends SimpleRectangularHardcodedModel
 		// 1110: MC
 		// 1111: _MC
 		addPin(new Pin(model, this, "C0_MUX", 4, PinUsage.OUTPUT, 70, 80), Position.TOP);
+
+		init();
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class ModelAm2910SP extends SimpleRectangularHardcodedModelComponent
 {
 	public ModelAm2910SP(LogicModelModifiable model, String name)
 	{
-		super(model, "Am2910SP", name, "Stack\npointer");
+		super(model, "Am2910SP", name, "Stack\npointer", false);
 		setSize(40, 30);
 		addPin(new Pin(model, this, "STKI0", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
 		addPin(new Pin(model, this, "STKI1", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
@@ -30,6 +30,8 @@ public class ModelAm2910SP extends SimpleRectangularHardcodedModelComponent
 		addPin(new Pin(model, this, "A", 3, PinUsage.OUTPUT, 10, 30), Position.TOP);
 		addPin(new Pin(model, this, "B", 3, PinUsage.OUTPUT, 30, 30), Position.TOP);
 		addPin(new Pin(model, this, "_FULL", 1, PinUsage.OUTPUT, 40, 15), Position.LEFT);
+
+		init();
 	}
 
 	@Override

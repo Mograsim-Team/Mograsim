@@ -54,6 +54,17 @@ public abstract class ModelComponent implements JSONSerializable
 
 	public ModelComponent(LogicModelModifiable model, String name)
 	{
+		this(model, name, true);
+	}
+
+	/**
+	 * Creates a new {@link ModelComponent} and, if <code>callInit</code>, initializes the component (See {@link #init()}).<br>
+	 * If <code>callInit==false</code>, make sure to call {@link #init()}!
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	protected ModelComponent(LogicModelModifiable model, String name, boolean callInit)
+	{
 		this.model = model;
 		this.name = name == null ? model.getDefaultComponentName(this) : name;
 		this.bounds = new Rectangle(0, 0, 0, 0);
@@ -65,8 +76,16 @@ public abstract class ModelComponent implements JSONSerializable
 		this.pinAddedListeners = new ArrayList<>();
 		this.pinRemovedListeners = new ArrayList<>();
 
-		// TODO this will crash the high level state debug shell because submodel is not yet set.
-		// The same problem exists in LogicModelModifiable.getDefaultComponentName; see there
+		if (callInit)
+			init();
+	}
+
+	/**
+	 * Initializes this component. This method should be called exactly once in this component's constructor.<br>
+	 * Currently, this method only registers this component in the model.
+	 */
+	protected void init()
+	{
 		model.componentCreated(this, this::destroyed);
 	}
 

@@ -24,7 +24,7 @@ public class Modeldff4_finewe extends SimpleRectangularHardcodedModelComponent
 {
 	public Modeldff4_finewe(LogicModelModifiable model, String name)
 	{
-		super(model, "dff4_finewe", name, "D flip flop\n4 bits");
+		super(model, "dff4_finewe", name, "D flip flop\n4 bits", false);
 		setSize(35, 90);
 		addPin(new Pin(model, this, "C", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
 		addPin(new Pin(model, this, "_WE1", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
@@ -39,6 +39,8 @@ public class Modeldff4_finewe extends SimpleRectangularHardcodedModelComponent
 		addPin(new Pin(model, this, "Q2", 1, PinUsage.OUTPUT, 35, 15), Position.LEFT);
 		addPin(new Pin(model, this, "Q3", 1, PinUsage.OUTPUT, 35, 25), Position.LEFT);
 		addPin(new Pin(model, this, "Q4", 1, PinUsage.OUTPUT, 35, 35), Position.LEFT);
+
+		init();
 	}
 
 	@Override

@@ -26,11 +26,13 @@ public class ModelTextComponent extends ModelComponent
 
 	public ModelTextComponent(LogicModelModifiable model, String text, String name)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.text = text;
 		// If size is unset, it defaults to 0, which could prohibit this component from being rendered, which would prohibit the size being
 		// set to a better guess
 		setSize(1, 1);
+
+		init();
 	}
 
 	@Override

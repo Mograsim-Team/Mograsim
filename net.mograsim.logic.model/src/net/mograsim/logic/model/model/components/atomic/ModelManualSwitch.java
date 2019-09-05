@@ -41,12 +41,14 @@ public class ModelManualSwitch extends ModelComponent
 
 	public ModelManualSwitch(LogicModelModifiable model, int logicWidth, String name)
 	{
-		super(model, name);
+		super(model, name, false);
 		this.logicWidth = logicWidth;
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
 		addPin(this.outputPin = new Pin(model, this, "", logicWidth, PinUsage.OUTPUT, width, height / 2));
+
+		init();
 	}
 
 	@Override

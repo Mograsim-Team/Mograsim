@@ -101,7 +101,12 @@ public abstract class SubmodelComponent extends ModelComponent
 
 	public SubmodelComponent(LogicModelModifiable model, String name)
 	{
-		super(model, name);
+		this(model, name, true);
+	}
+
+	protected SubmodelComponent(LogicModelModifiable model, String name, boolean callInit)
+	{
+		super(model, name, false);
 		this.submodelModifiable = new LogicModelModifiable();
 		this.submodel = submodelModifiable;
 		this.submodelPins = new HashMap<>();
@@ -125,6 +130,9 @@ public abstract class SubmodelComponent extends ModelComponent
 				model.removeRedrawHandlerChangedListener(redrawHandlerChangedListener);
 		});
 		submodelModifiable.setRedrawHandler(model.getRedrawHandler());
+
+		if (callInit)
+			init();
 	}
 
 	// pins

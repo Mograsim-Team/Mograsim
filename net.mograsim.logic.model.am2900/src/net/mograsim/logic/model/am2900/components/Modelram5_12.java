@@ -26,7 +26,7 @@ public class Modelram5_12 extends SimpleRectangularHardcodedModelComponent
 {
 	public Modelram5_12(LogicModelModifiable model, String name)
 	{
-		super(model, "ram5_12", name, "RAM\n5 x 12 Bit");
+		super(model, "ram5_12", name, "RAM\n5 x 12 Bit", false);
 		setSize(40, 40);
 		addPin(new Pin(model, this, "A", 3, PinUsage.INPUT, 10, 0), Position.BOTTOM);
 		addPin(new Pin(model, this, "B", 3, PinUsage.INPUT, 30, 0), Position.BOTTOM);
@@ -34,6 +34,8 @@ public class Modelram5_12 extends SimpleRectangularHardcodedModelComponent
 		addPin(new Pin(model, this, "C", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
 		addPin(new Pin(model, this, "Y", 12, PinUsage.OUTPUT, 0, 30), Position.RIGHT);
 		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 20, 40), Position.TOP);
+
+		init();
 	}
 
 	@Override
