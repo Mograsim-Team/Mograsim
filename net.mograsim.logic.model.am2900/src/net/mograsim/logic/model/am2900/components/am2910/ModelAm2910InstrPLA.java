@@ -23,20 +23,20 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 	{
 		super(model, "Am2910InstrPLA", name, "Instr.\nPLA");
 		setSize(30, 85);
-		addPin(new Pin(this, "PASS", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
-		addPin(new Pin(this, "I", 4, PinUsage.INPUT, 0, 20), Position.RIGHT);
-		addPin(new Pin(this, "R=0", 1, PinUsage.INPUT, 15, 0), Position.BOTTOM);
-		addPin(new Pin(this, "_PL", 1, PinUsage.OUTPUT, 5, 85), Position.TOP);
-		addPin(new Pin(this, "_MAP", 1, PinUsage.OUTPUT, 15, 85), Position.TOP);
-		addPin(new Pin(this, "_VECT", 1, PinUsage.OUTPUT, 25, 85), Position.TOP);
-		addPin(new Pin(this, "RWE", 1, PinUsage.OUTPUT, 30, 5), Position.LEFT);
-		addPin(new Pin(this, "RDEC", 1, PinUsage.OUTPUT, 30, 15), Position.LEFT);
-		addPin(new Pin(this, "YD", 1, PinUsage.OUTPUT, 30, 25), Position.LEFT);
-		addPin(new Pin(this, "YR", 1, PinUsage.OUTPUT, 30, 35), Position.LEFT);
-		addPin(new Pin(this, "YF", 1, PinUsage.OUTPUT, 30, 45), Position.LEFT);
-		addPin(new Pin(this, "YmuPC", 1, PinUsage.OUTPUT, 30, 55), Position.LEFT);
-		addPin(new Pin(this, "STKI0", 1, PinUsage.OUTPUT, 30, 65), Position.LEFT);
-		addPin(new Pin(this, "STKI1", 1, PinUsage.OUTPUT, 30, 75), Position.LEFT);
+		addPin(new Pin(model, this, "PASS", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
+		addPin(new Pin(model, this, "I", 4, PinUsage.INPUT, 0, 20), Position.RIGHT);
+		addPin(new Pin(model, this, "R=0", 1, PinUsage.INPUT, 15, 0), Position.BOTTOM);
+		addPin(new Pin(model, this, "_PL", 1, PinUsage.OUTPUT, 5, 85), Position.TOP);
+		addPin(new Pin(model, this, "_MAP", 1, PinUsage.OUTPUT, 15, 85), Position.TOP);
+		addPin(new Pin(model, this, "_VECT", 1, PinUsage.OUTPUT, 25, 85), Position.TOP);
+		addPin(new Pin(model, this, "RWE", 1, PinUsage.OUTPUT, 30, 5), Position.LEFT);
+		addPin(new Pin(model, this, "RDEC", 1, PinUsage.OUTPUT, 30, 15), Position.LEFT);
+		addPin(new Pin(model, this, "YD", 1, PinUsage.OUTPUT, 30, 25), Position.LEFT);
+		addPin(new Pin(model, this, "YR", 1, PinUsage.OUTPUT, 30, 35), Position.LEFT);
+		addPin(new Pin(model, this, "YF", 1, PinUsage.OUTPUT, 30, 45), Position.LEFT);
+		addPin(new Pin(model, this, "YmuPC", 1, PinUsage.OUTPUT, 30, 55), Position.LEFT);
+		addPin(new Pin(model, this, "STKI0", 1, PinUsage.OUTPUT, 30, 65), Position.LEFT);
+		addPin(new Pin(model, this, "STKI1", 1, PinUsage.OUTPUT, 30, 75), Position.LEFT);
 	}
 
 	@Override

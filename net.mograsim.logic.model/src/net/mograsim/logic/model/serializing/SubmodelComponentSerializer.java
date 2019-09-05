@@ -172,7 +172,7 @@ public final class SubmodelComponentSerializer
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
 			// TRISTATE because we don't have a better choice
-			comp.addSubmodelInterface(new MovablePin(comp, iPinParams.name, iPinParams.logicWidth,
+			comp.addSubmodelInterface(new MovablePin(model, comp, iPinParams.name, iPinParams.logicWidth,
 					hasUsageSerialized ? iPinParams.usage : PinUsage.TRISTATE, iPinParams.location.x, iPinParams.location.y));
 		LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
 		LogicModelSerializer.deserialize(comp.getSubmodelModifiable(), params.submodel);

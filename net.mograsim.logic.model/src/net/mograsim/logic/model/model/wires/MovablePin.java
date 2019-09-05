@@ -1,5 +1,6 @@
 package net.mograsim.logic.model.model.wires;
 
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 
 /**
@@ -9,9 +10,10 @@ import net.mograsim.logic.model.model.components.ModelComponent;
  */
 public class MovablePin extends Pin
 {
-	public MovablePin(ModelComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
+	public MovablePin(LogicModelModifiable model, ModelComponent component, String name, int logicWidth, PinUsage usage, double relX,
+			double relY)
 	{
-		super(component, name, logicWidth, usage, relX, relY);
+		super(model, component, name, logicWidth, usage, relX, relY);
 	}
 
 	@Override

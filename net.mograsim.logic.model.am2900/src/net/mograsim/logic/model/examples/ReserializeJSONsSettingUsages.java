@@ -77,11 +77,11 @@ public class ReserializeJSONsSettingUsages
 	{
 		Set<ModelWire> wiresConnectedToPin = comp.submodel.getWiresByName().values().stream()
 				.filter(w -> w.getPin1() == interfacePin || w.getPin2() == interfacePin).collect(Collectors.toSet());
-		wiresConnectedToPin.forEach(comp.getSubmodelModifiable()::destroyWire);
-		comp.removeSubmodelInterface(interfacePin.name);
-		comp.addSubmodelInterface(
-				new MovablePin(comp, interfacePin.name, interfacePin.logicWidth, usage, interfacePin.getRelX(), interfacePin.getRelY()));
 		LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
+		wiresConnectedToPin.forEach(submodelModifiable::destroyWire);
+		comp.removeSubmodelInterface(interfacePin.name);
+		comp.addSubmodelInterface(new MovablePin(submodelModifiable, comp, interfacePin.name, interfacePin.logicWidth, usage,
+				interfacePin.getRelX(), interfacePin.getRelY()));
 		wiresConnectedToPin.forEach(w -> new ModelWire(submodelModifiable, w.getPin1(), w.getPin2()));
 	}
 }

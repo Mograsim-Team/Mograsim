@@ -24,12 +24,12 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 	{
 		super(model, "Am2910RegCntr", name, "Register/\nCounter");
 		setSize(40, 40);
-		addPin(new Pin(this, "D", 12, PinUsage.INPUT, 20, 0), Position.BOTTOM);
-		addPin(new Pin(this, "_RLD", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
-		addPin(new Pin(this, "WE", 1, PinUsage.INPUT, 0, 20), Position.RIGHT);
-		addPin(new Pin(this, "DEC", 1, PinUsage.INPUT, 0, 30), Position.RIGHT);
-		addPin(new Pin(this, "C", 1, PinUsage.INPUT, 40, 20), Position.LEFT);
-		addPin(new Pin(this, "Y", 12, PinUsage.OUTPUT, 20, 40), Position.TOP);
+		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 20, 0), Position.BOTTOM);
+		addPin(new Pin(model, this, "_RLD", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
+		addPin(new Pin(model, this, "WE", 1, PinUsage.INPUT, 0, 20), Position.RIGHT);
+		addPin(new Pin(model, this, "DEC", 1, PinUsage.INPUT, 0, 30), Position.RIGHT);
+		addPin(new Pin(model, this, "C", 1, PinUsage.INPUT, 40, 20), Position.LEFT);
+		addPin(new Pin(model, this, "Y", 12, PinUsage.OUTPUT, 20, 40), Position.TOP);
 	}
 
 	@Override

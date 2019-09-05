@@ -25,15 +25,15 @@ public class Modelsel4_12 extends SimpleRectangularHardcodedModelComponent
 	{
 		super(model, "sel4_12", name, "4-way SEL\n12 bit");
 		setSize(80, 40);
-		addPin(new Pin(this, "SA", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
-		addPin(new Pin(this, "SB", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
-		addPin(new Pin(this, "SC", 1, PinUsage.INPUT, 0, 25), Position.RIGHT);
-		addPin(new Pin(this, "SD", 1, PinUsage.INPUT, 0, 35), Position.RIGHT);
-		addPin(new Pin(this, "A", 12, PinUsage.INPUT, 10, 0), Position.BOTTOM);
-		addPin(new Pin(this, "B", 12, PinUsage.INPUT, 30, 0), Position.BOTTOM);
-		addPin(new Pin(this, "C", 12, PinUsage.INPUT, 50, 0), Position.BOTTOM);
-		addPin(new Pin(this, "D", 12, PinUsage.INPUT, 70, 0), Position.BOTTOM);
-		addPin(new Pin(this, "Y", 12, PinUsage.OUTPUT, 40, 40), Position.TOP);
+		addPin(new Pin(model, this, "SA", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
+		addPin(new Pin(model, this, "SB", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
+		addPin(new Pin(model, this, "SC", 1, PinUsage.INPUT, 0, 25), Position.RIGHT);
+		addPin(new Pin(model, this, "SD", 1, PinUsage.INPUT, 0, 35), Position.RIGHT);
+		addPin(new Pin(model, this, "A", 12, PinUsage.INPUT, 10, 0), Position.BOTTOM);
+		addPin(new Pin(model, this, "B", 12, PinUsage.INPUT, 30, 0), Position.BOTTOM);
+		addPin(new Pin(model, this, "C", 12, PinUsage.INPUT, 50, 0), Position.BOTTOM);
+		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 70, 0), Position.BOTTOM);
+		addPin(new Pin(model, this, "Y", 12, PinUsage.OUTPUT, 40, 40), Position.TOP);
 	}
 
 	@Override

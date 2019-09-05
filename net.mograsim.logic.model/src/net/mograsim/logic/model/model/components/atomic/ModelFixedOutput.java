@@ -34,7 +34,7 @@ public class ModelFixedOutput extends ModelComponent
 		super(model, name);
 		this.bits = bits;
 		setSize(width, height);
-		addPin(new Pin(this, "out", bits.length(), PinUsage.OUTPUT, width, height / 2));
+		addPin(new Pin(model, this, "out", bits.length(), PinUsage.OUTPUT, width, height / 2));
 	}
 
 	@Override

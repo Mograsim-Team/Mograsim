@@ -173,8 +173,8 @@ public final class LegacySubmodelComponentSerializer
 		comp.setSize(params.width, params.height);
 		for (LegacyInterfacePinParams iPinParams : params.interfacePins)
 			// TRISTATE because we don't have a better choice
-			comp.addSubmodelInterface(new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, PinUsage.TRISTATE, iPinParams.location.x,
-					iPinParams.location.y));
+			comp.addSubmodelInterface(new MovablePin(model, comp, iPinParams.name, iPinParams.logicWidth, PinUsage.TRISTATE,
+					iPinParams.location.x, iPinParams.location.y));
 		LegacySubmodelParameters submodelParams = params.submodel;
 		LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
 		Map<String, ModelComponent> componentsByName = submodelModifiable.getComponentsByName();

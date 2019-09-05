@@ -36,7 +36,8 @@ public class SimpleRectangularModelGate extends ModelComponent
 	private MovablePin outputPin;
 	private final List<Pin> inputPins;
 
-	protected SimpleRectangularModelGate(LogicModelModifiable model, String id, String label, boolean isInverted, int logicWidth, String name)
+	protected SimpleRectangularModelGate(LogicModelModifiable model, String id, String label, boolean isInverted, int logicWidth,
+			String name)
 	{
 		super(model, name);
 		this.id = id;
@@ -44,7 +45,7 @@ public class SimpleRectangularModelGate extends ModelComponent
 		this.logicWidth = logicWidth;
 		this.isInverted = isInverted;
 		this.rectWidth = width - (isInverted ? invertedCircleDiam : 0);
-		this.outputPin = new MovablePin(this, "Y", logicWidth, PinUsage.OUTPUT, width, 0);
+		this.outputPin = new MovablePin(model, this, "Y", logicWidth, PinUsage.OUTPUT, width, 0);
 		addPin(outputPin);
 		this.inputPins = new ArrayList<>();
 		setInputCount(1);
@@ -61,7 +62,8 @@ public class SimpleRectangularModelGate extends ModelComponent
 			for (int i = oldInputCount; i < inputCount; i++)
 			{
 				// TODO what for more than 24 input pins?
-				Pin pin = new Pin(this, String.valueOf((char) ('A' + i)), logicWidth, PinUsage.INPUT, 0, pinDistance / 2 + i * pinDistance);
+				Pin pin = new Pin(model, this, String.valueOf((char) ('A' + i)), logicWidth, PinUsage.INPUT, 0,
+						pinDistance / 2 + i * pinDistance);
 				inputPins.add(pin);
 				addPin(pin);
 			}

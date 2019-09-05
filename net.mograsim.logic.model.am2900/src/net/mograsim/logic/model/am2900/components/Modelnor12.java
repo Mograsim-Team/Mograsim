@@ -24,8 +24,8 @@ public class Modelnor12 extends SimpleRectangularHardcodedModelComponent
 	{
 		super(model, "nor12", name, "=0");
 		setSize(35, 20);
-		addPin(new Pin(this, "D", 12, PinUsage.INPUT, 0, 10), Position.RIGHT);
-		addPin(new Pin(this, "Y", 1, PinUsage.OUTPUT, 35, 10), Position.LEFT);
+		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 0, 10), Position.RIGHT);
+		addPin(new Pin(model, this, "Y", 1, PinUsage.OUTPUT, 35, 10), Position.LEFT);
 	}
 
 	@Override

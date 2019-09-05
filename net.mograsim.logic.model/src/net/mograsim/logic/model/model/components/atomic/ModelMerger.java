@@ -41,8 +41,8 @@ public class ModelMerger extends ModelComponent
 		setSize(width, (logicWidth - 1) * heightPerPin);
 		double inputHeight = (logicWidth - 1) * heightPerPin;
 		for (int i = 0; i < logicWidth; i++, inputHeight -= 10)
-			addPin(new Pin(this, "I" + i, 1, PinUsage.TRISTATE, 0, inputHeight));
-		addPin(this.outputPin = new Pin(this, "O", logicWidth, PinUsage.TRISTATE, width, (logicWidth - 1) * heightPerPin / 2));
+			addPin(new Pin(model, this, "I" + i, 1, PinUsage.TRISTATE, 0, inputHeight));
+		addPin(this.outputPin = new Pin(model, this, "O", logicWidth, PinUsage.TRISTATE, width, (logicWidth - 1) * heightPerPin / 2));
 		inputEnds = new ReadEnd[logicWidth];
 	}
 

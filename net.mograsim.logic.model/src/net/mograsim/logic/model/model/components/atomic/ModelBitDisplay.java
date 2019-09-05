@@ -43,7 +43,7 @@ public class ModelBitDisplay extends ModelComponent
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
-		addPin(this.inputPin = new Pin(this, "", logicWidth, PinUsage.INPUT, 0, height / 2));
+		addPin(this.inputPin = new Pin(model, this, "", logicWidth, PinUsage.INPUT, 0, height / 2));
 	}
 
 	@Override

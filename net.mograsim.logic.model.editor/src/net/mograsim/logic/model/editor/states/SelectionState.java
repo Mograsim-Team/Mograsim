@@ -104,8 +104,8 @@ public class SelectionState extends EditorState
 			{
 				try
 				{
-					Pin p = editor.toBeEdited.addSubmodelInterface(new MovablePin(editor.toBeEdited, result[0], Integer.parseInt(result[1]),
-							PinUsage.valueOf(result[2]), clicked.x, clicked.y));
+					Pin p = editor.toBeEdited.addSubmodelInterface(new MovablePin(editor.getSubmodel(), editor.toBeEdited, result[0],
+							Integer.parseInt(result[1]), PinUsage.valueOf(result[2]), clicked.x, clicked.y));
 					editor.handleManager.getInterfacePinHandle(p).reqMove(clicked.x, clicked.y);
 				}
 				catch (NumberFormatException e)
