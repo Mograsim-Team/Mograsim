@@ -13,8 +13,8 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
@@ -492,7 +492,7 @@ public class GUIWire
 	}
 
 	/**
-	 * If this {@link GUIWire} has a logic model binding, delegates to {@link Wire#forceValues(BitVector)} for the {@link Wire}
+	 * If this {@link GUIWire} has a logic model binding, delegates to {@link CoreWire#forceValues(BitVector)} for the {@link CoreWire}
 	 * corresponding to this {@link GUIWire}.
 	 * 
 	 * @author Daniel Kirschten

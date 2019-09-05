@@ -6,18 +6,18 @@ import java.util.Collections;
 import java.util.List;
 
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
 /**
- * Models a multiplexer. Takes an arbitrary amount of input {@link Wire}s, one of which, as determined by select, is put through to the
+ * Models a multiplexer. Takes an arbitrary amount of input {@link CoreWire}s, one of which, as determined by select, is put through to the
  * output.
  * 
  * @author Fabian Stemmler
  *
  */
-public class Mux extends BasicComponent
+public class CoreMux extends BasicCoreComponent
 {
 	private ReadEnd select;
 	private ReadWriteEnd out;
@@ -25,13 +25,13 @@ public class Mux extends BasicComponent
 	private final int outputSize;
 
 	/**
-	 * Input {@link Wire}s and out must be of uniform width
+	 * Input {@link CoreWire}s and out must be of uniform width
 	 * 
 	 * @param out    Must be of uniform width with all inputs.
 	 * @param select Indexes the input array which is to be mapped to the output. Must have enough bits to index all inputs.
 	 * @param inputs One of these inputs is mapped to the output, depending on the select bits
 	 */
-	public Mux(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
+	public CoreMux(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd select, ReadEnd... inputs)
 	{
 		super(timeline, processTime);
 		outputSize = out.width();

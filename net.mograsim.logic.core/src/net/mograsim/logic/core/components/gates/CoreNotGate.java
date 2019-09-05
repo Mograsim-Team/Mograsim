@@ -2,17 +2,17 @@ package net.mograsim.logic.core.components.gates;
 
 import java.util.List;
 
-import net.mograsim.logic.core.components.BasicComponent;
+import net.mograsim.logic.core.components.BasicCoreComponent;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
-public class NotGate extends BasicComponent
+public class CoreNotGate extends BasicCoreComponent
 {
 	private ReadEnd in;
 	private ReadWriteEnd out;
 
-	public NotGate(Timeline timeline, int processTime, ReadEnd in, ReadWriteEnd out)
+	public CoreNotGate(Timeline timeline, int processTime, ReadEnd in, ReadWriteEnd out)
 	{
 		super(timeline, processTime);
 		this.in = in;

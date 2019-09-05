@@ -9,8 +9,8 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
 /**
  * This class models a simple on/off (ONE/ZERO) switch for user interaction.
@@ -18,13 +18,13 @@ import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
  * @author Christian Femers
  *
  */
-public class ManualSwitch extends Component implements LogicObservable
+public class CoreManualSwitch extends CoreComponent implements LogicObservable
 {
 	private Collection<LogicObserver> observers;
 	private ReadWriteEnd output;
 	private BitVector inputValues;
 
-	public ManualSwitch(Timeline timeline, ReadWriteEnd output)
+	public CoreManualSwitch(Timeline timeline, ReadWriteEnd output)
 	{
 		super(timeline);
 		observers = new ArrayList<>();

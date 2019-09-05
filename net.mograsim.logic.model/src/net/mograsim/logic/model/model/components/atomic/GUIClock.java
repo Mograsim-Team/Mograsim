@@ -9,7 +9,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
-import net.mograsim.logic.core.components.Clock;
+import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
 import net.mograsim.logic.model.model.components.Orientation;
@@ -34,7 +34,7 @@ public class GUIClock extends GUIComponent
 	private final LogicObserver logicObs;
 	private GUIClockParams params;
 	private OrientationCalculator oc;
-	private Clock clock;
+	private CoreClock clock;
 
 	public GUIClock(ViewModelModifiable model, GUIClockParams params)
 	{
@@ -73,7 +73,7 @@ public class GUIClock extends GUIComponent
 		gc.setFont(oldFont);
 	}
 
-	public void setLogicModelBinding(Clock clock)
+	public void setLogicModelBinding(CoreClock clock)
 	{
 		if (this.clock != null)
 			this.clock.deregisterObserver(logicObs);
@@ -113,7 +113,7 @@ public class GUIClock extends GUIComponent
 		}
 	}
 
-	public Clock getClock()
+	public CoreClock getClock()
 	{
 		return clock;
 	}

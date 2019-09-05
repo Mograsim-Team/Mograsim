@@ -1,6 +1,6 @@
 package net.mograsim.logic.model.model.components.atomic;
 
-import net.mograsim.logic.core.components.gates.NotGate;
+import net.mograsim.logic.core.components.gates.CoreNotGate;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SimpleGateAdapter;
@@ -21,7 +21,7 @@ public class GUINotGate extends SimpleRectangularGUIGate
 
 	static
 	{
-		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUINotGate.class, (t, p, o, i) -> new NotGate(t, p, i[0], o)));
+		ViewLogicModelAdapter.addComponentAdapter(new SimpleGateAdapter<>(GUINotGate.class, (t, p, o, i) -> new CoreNotGate(t, p, i[0], o)));
 		IndirectGUIComponentCreator.setComponentSupplier(GUINotGate.class.getCanonicalName(),
 				(m, p, n) -> new GUINotGate(m, p.getAsInt(), n));
 	}

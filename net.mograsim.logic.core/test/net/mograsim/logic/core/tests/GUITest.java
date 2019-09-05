@@ -15,12 +15,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import net.mograsim.logic.core.components.ManualSwitch;
-import net.mograsim.logic.core.components.gates.NotGate;
-import net.mograsim.logic.core.components.gates.OrGate;
+import net.mograsim.logic.core.components.CoreManualSwitch;
+import net.mograsim.logic.core.components.gates.CoreNotGate;
+import net.mograsim.logic.core.components.gates.CoreOrGate;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.timeline.Timeline.ExecutionResult;
-import net.mograsim.logic.core.wires.Wire;
+import net.mograsim.logic.core.wires.CoreWire;
 
 public class GUITest extends JPanel
 {
@@ -33,22 +33,22 @@ public class GUITest extends JPanel
 
 	private Timeline t = new Timeline(11);
 
-	Wire r = new Wire(t, 1, WIRE_DELAY);
-	Wire s = new Wire(t, 1, WIRE_DELAY);
-	Wire t1 = new Wire(t, 1, WIRE_DELAY);
-	Wire t2 = new Wire(t, 1, WIRE_DELAY);
-	Wire q = new Wire(t, 1, WIRE_DELAY);
-	Wire nq = new Wire(t, 1, WIRE_DELAY);
+	CoreWire r = new CoreWire(t, 1, WIRE_DELAY);
+	CoreWire s = new CoreWire(t, 1, WIRE_DELAY);
+	CoreWire t1 = new CoreWire(t, 1, WIRE_DELAY);
+	CoreWire t2 = new CoreWire(t, 1, WIRE_DELAY);
+	CoreWire q = new CoreWire(t, 1, WIRE_DELAY);
+	CoreWire nq = new CoreWire(t, 1, WIRE_DELAY);
 
-	ManualSwitch rIn = new ManualSwitch(t, r.createReadWriteEnd());
-	ManualSwitch sIn = new ManualSwitch(t, s.createReadWriteEnd());
+	CoreManualSwitch rIn = new CoreManualSwitch(t, r.createReadWriteEnd());
+	CoreManualSwitch sIn = new CoreManualSwitch(t, s.createReadWriteEnd());
 
-	OrGate or1 = new OrGate(t, OR_DELAY, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
-	OrGate or2 = new OrGate(t, OR_DELAY, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
-	NotGate not1 = new NotGate(t, NOT_DELAY, t2.createReadOnlyEnd(), q.createReadWriteEnd());
-	NotGate not2 = new NotGate(t, NOT_DELAY, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
+	CoreOrGate or1 = new CoreOrGate(t, OR_DELAY, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
+	CoreOrGate or2 = new CoreOrGate(t, OR_DELAY, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
+	CoreNotGate not1 = new CoreNotGate(t, NOT_DELAY, t2.createReadOnlyEnd(), q.createReadWriteEnd());
+	CoreNotGate not2 = new CoreNotGate(t, NOT_DELAY, t1.createReadOnlyEnd(), nq.createReadWriteEnd());
 
-	Map<ManualSwitch, Rectangle> switchMap = new HashMap<>();
+	Map<CoreManualSwitch, Rectangle> switchMap = new HashMap<>();
 
 	int height;
 	int width;
@@ -62,7 +62,7 @@ public class GUITest extends JPanel
 			@Override
 			public void mouseReleased(MouseEvent e)
 			{
-				for (Entry<ManualSwitch, Rectangle> dim : switchMap.entrySet())
+				for (Entry<CoreManualSwitch, Rectangle> dim : switchMap.entrySet())
 				{
 					if (dim.getValue().contains(e.getPoint()))
 					{
@@ -75,7 +75,7 @@ public class GUITest extends JPanel
 			@Override
 			public void mousePressed(MouseEvent e)
 			{
-				for (Entry<ManualSwitch, Rectangle> dim : switchMap.entrySet())
+				for (Entry<CoreManualSwitch, Rectangle> dim : switchMap.entrySet())
 				{
 					if (dim.getValue().contains(e.getPoint()))
 					{
@@ -185,7 +185,7 @@ public class GUITest extends JPanel
 		g.drawString(s, x - (int) (w * anchorX), y + (int) (h * anchorY));
 	}
 
-	private void drawWire(Graphics g, Wire wa, String name, double x1, double y1, double x2, double y2)
+	private void drawWire(Graphics g, CoreWire wa, String name, double x1, double y1, double x2, double y2)
 	{
 		setTo(g, wa);
 		g.drawLine(gX(x1), gY(y1), gX(x2), gY(y2));
@@ -207,7 +207,7 @@ public class GUITest extends JPanel
 
 	}
 
-	private void drawSwitch(Graphics g, ManualSwitch ms, String text, double posX1, double posY1, double posX2, double posY2)
+	private void drawSwitch(Graphics g, CoreManualSwitch ms, String text, double posX1, double posY1, double posX2, double posY2)
 	{
 		int x1 = gX(posX1) - 5;
 		int x2 = gX(posX2) + 5;
@@ -232,7 +232,7 @@ public class GUITest extends JPanel
 		g.setColor(Color.BLACK);
 	}
 
-	private static void setTo(Graphics g, Wire wa)
+	private static void setTo(Graphics g, CoreWire wa)
 	{
 		switch (wa.getValue())
 		{

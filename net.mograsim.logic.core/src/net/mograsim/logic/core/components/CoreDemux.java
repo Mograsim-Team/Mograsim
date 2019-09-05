@@ -3,18 +3,18 @@ package net.mograsim.logic.core.components;
 import java.util.List;
 
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
 /**
- * Models a multiplexer. Takes an arbitrary amount of input {@link Wire}s, one of which, as determined by select, is put through to the
+ * Models a multiplexer. Takes an arbitrary amount of input {@link CoreWire}s, one of which, as determined by select, is put through to the
  * output.
  * 
  * @author Fabian Stemmler
  *
  */
-public class Demux extends BasicComponent
+public class CoreDemux extends BasicCoreComponent
 {
 	private final ReadEnd select, in;
 	private final ReadWriteEnd[] outputs;
@@ -22,13 +22,13 @@ public class Demux extends BasicComponent
 	private int selected = -1;
 
 	/**
-	 * Output {@link Wire}s and in must be of uniform width
+	 * Output {@link CoreWire}s and in must be of uniform width
 	 * 
 	 * @param in      Must be of uniform width with all outputs.
 	 * @param select  Indexes the output array to which the input is mapped. Must have enough bits to index all outputs.
 	 * @param outputs One of these outputs receives the input signal, depending on the select bits
 	 */
-	public Demux(Timeline timeline, int processTime, ReadEnd in, ReadEnd select, ReadWriteEnd... outputs)
+	public CoreDemux(Timeline timeline, int processTime, ReadEnd in, ReadEnd select, ReadWriteEnd... outputs)
 	{
 		super(timeline, processTime);
 		outputSize = in.width();

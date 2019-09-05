@@ -5,11 +5,11 @@ import java.util.List;
 import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
-public class UnidirectionalMerger extends Component implements LogicObserver
+public class CoreUnidirectionalMerger extends CoreComponent implements LogicObserver
 {
 	private ReadWriteEnd out;
 	private ReadEnd[] inputs;
@@ -17,10 +17,10 @@ public class UnidirectionalMerger extends Component implements LogicObserver
 
 	/**
 	 * 
-	 * @param union  The output of merging n {@link Wire}s into one. Must have width = a1.width() + a2.width() + ... + an.width().
+	 * @param union  The output of merging n {@link CoreWire}s into one. Must have width = a1.width() + a2.width() + ... + an.width().
 	 * @param inputs The inputs to be merged into the union
 	 */
-	public UnidirectionalMerger(Timeline timeline, ReadWriteEnd union, ReadEnd... inputs)
+	public CoreUnidirectionalMerger(Timeline timeline, ReadWriteEnd union, ReadEnd... inputs)
 	{
 		super(timeline);
 		this.inputs = inputs;

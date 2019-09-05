@@ -9,7 +9,7 @@ import net.mograsim.logic.core.timeline.Timeline;
  * 
  * @author Fabian Stemmler
  */
-public abstract class BasicComponent extends Component implements LogicObserver
+public abstract class BasicCoreComponent extends CoreComponent implements LogicObserver
 {
 	private int processTime;
 
@@ -19,7 +19,7 @@ public abstract class BasicComponent extends Component implements LogicObserver
 	 * 
 	 * @author Fabian Stemmler
 	 */
-	public BasicComponent(Timeline timeline, int processTime)
+	public BasicCoreComponent(Timeline timeline, int processTime)
 	{
 		super(timeline);
 		this.processTime = processTime > 0 ? processTime : 1;

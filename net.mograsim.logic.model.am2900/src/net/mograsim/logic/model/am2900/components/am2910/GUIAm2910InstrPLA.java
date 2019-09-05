@@ -8,8 +8,8 @@ import static net.mograsim.logic.core.types.Bit.ZERO;
 import java.util.Map;
 
 import net.mograsim.logic.core.types.Bit;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;

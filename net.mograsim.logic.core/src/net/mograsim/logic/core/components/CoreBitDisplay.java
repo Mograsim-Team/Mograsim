@@ -9,16 +9,16 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
-public class BitDisplay extends BasicComponent implements LogicObservable
+public class CoreBitDisplay extends BasicCoreComponent implements LogicObservable
 {
 	private Collection<LogicObserver> observers;
 	private final ReadEnd in;
 	private BitVector displayedValue;
 
-	public BitDisplay(Timeline timeline, ReadEnd in)
+	public CoreBitDisplay(Timeline timeline, ReadEnd in)
 	{
 		super(timeline, 1);
 		observers = new ArrayList<>();

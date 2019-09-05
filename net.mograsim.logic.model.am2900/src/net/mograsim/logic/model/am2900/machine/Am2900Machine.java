@@ -1,6 +1,6 @@
 package net.mograsim.logic.model.am2900.machine;
 
-import net.mograsim.logic.core.components.Clock;
+import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.ViewModel;
@@ -17,7 +17,7 @@ public class Am2900Machine implements Machine
 	private Am2900MachineDefinition machineDefinition;
 	private ViewModelModifiable viewModel;
 	private Timeline timeline;
-	private Clock clock;
+	private CoreClock clock;
 
 	public Am2900Machine(Am2900MachineDefinition am2900MachineDefinition)
 	{
@@ -57,7 +57,7 @@ public class Am2900Machine implements Machine
 	}
 
 	@Override
-	public Clock getClock()
+	public CoreClock getClock()
 	{
 		return clock;
 	}

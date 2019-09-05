@@ -1,7 +1,7 @@
 package net.mograsim.logic.model.am2900.am2910;
 
-import net.mograsim.logic.core.components.BitDisplay;
-import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.components.CoreBitDisplay;
+import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper;
 import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper.DebugState;
@@ -11,17 +11,17 @@ public class TestableAm2910Impl implements TestableAm2910
 {
 
 	private GUIComponent am2901;
-	private ManualSwitch I;
-	private ManualSwitch C;
-	private ManualSwitch CI;
-	private ManualSwitch D;
-	private ManualSwitch _CC;
-	private ManualSwitch _CCEN;
-	private ManualSwitch _RLD;
-	private ManualSwitch _OE;
-	private BitDisplay _FULL;
-	private BitDisplay Y;
-	private BitDisplay _PL, _MAP, _VECT;
+	private CoreManualSwitch I;
+	private CoreManualSwitch C;
+	private CoreManualSwitch CI;
+	private CoreManualSwitch D;
+	private CoreManualSwitch _CC;
+	private CoreManualSwitch _CCEN;
+	private CoreManualSwitch _RLD;
+	private CoreManualSwitch _OE;
+	private CoreBitDisplay _FULL;
+	private CoreBitDisplay Y;
+	private CoreBitDisplay _PL, _MAP, _VECT;
 
 	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "GUIAm2910");
 

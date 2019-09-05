@@ -6,9 +6,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedGUIComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -24,7 +24,7 @@ public class SimpleRectangularHardcodedGUIComponentAdapter implements ComponentA
 
 	@Override
 	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, SimpleRectangularHardcodedGUIComponent guiComponent,
-			Map<Pin, Wire> logicWiresPerPin)
+			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		Map<String, ReadEnd> readEnds = new HashMap<>();
 		Map<String, ReadWriteEnd> readWriteEnds = new HashMap<>();
@@ -38,7 +38,7 @@ public class SimpleRectangularHardcodedGUIComponentAdapter implements ComponentA
 
 		for (Pin pin : guiComponent.getPins().values())
 		{
-			Wire wire = logicWiresPerPin.get(pin);
+			CoreWire wire = logicWiresPerPin.get(pin);
 			ReadEnd end;
 			if (pin.usage != PinUsage.INPUT)
 			{

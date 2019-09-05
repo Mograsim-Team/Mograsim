@@ -7,7 +7,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
-import net.mograsim.logic.core.components.BitDisplay;
+import net.mograsim.logic.core.components.CoreBitDisplay;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.model.model.ViewModelModifiable;
 import net.mograsim.logic.model.model.components.GUIComponent;
@@ -29,7 +29,7 @@ public class GUIBitDisplay extends GUIComponent
 	private final Pin inputPin;
 
 	private final LogicObserver logicObs;
-	private BitDisplay bitDisplay;
+	private CoreBitDisplay bitDisplay;
 
 	public GUIBitDisplay(ViewModelModifiable model, int logicWidth)
 	{
@@ -66,7 +66,7 @@ public class GUIBitDisplay extends GUIComponent
 		gc.setFont(oldFont);
 	}
 
-	public void setLogicModelBinding(BitDisplay bitDisplay)
+	public void setLogicModelBinding(CoreBitDisplay bitDisplay)
 	{
 		if (this.bitDisplay != null)
 			this.bitDisplay.deregisterObserver(logicObs);
@@ -80,7 +80,7 @@ public class GUIBitDisplay extends GUIComponent
 		return bitDisplay != null;
 	}
 
-	public BitDisplay getBitDisplay()
+	public CoreBitDisplay getBitDisplay()
 	{
 		return bitDisplay;
 	}

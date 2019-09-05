@@ -5,7 +5,7 @@ import org.eclipse.swt.widgets.Display;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.core.wires.Wire;
+import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.model.model.wires.GUIWire;
 
 public class WirePointHandle extends Handle
@@ -76,7 +76,7 @@ public class WirePointHandle extends Handle
 	}
 
 	/**
-	 * Sets the index of the {@link Point} within the parent {@link Wire}s path that is controlled by this handle
+	 * Sets the index of the {@link Point} within the parent {@link CoreWire}s path that is controlled by this handle
 	 * 
 	 * @param index Index of the Point in the Wires path.
 	 * @throws IndexOutOfBoundsException

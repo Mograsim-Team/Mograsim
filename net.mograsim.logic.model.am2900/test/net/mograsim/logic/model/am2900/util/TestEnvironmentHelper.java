@@ -12,8 +12,8 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 
-import net.mograsim.logic.core.components.BitDisplay;
-import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.components.CoreBitDisplay;
+import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.model.LogicUIStandaloneGUI;
 import net.mograsim.logic.model.am2900.Am2900Loader;
@@ -111,12 +111,12 @@ public class TestEnvironmentHelper
 		{
 			Field f = testEnvClass.getDeclaredField(javaIdentId);
 			Class<?> type = f.getType();
-			if (ManualSwitch.class.isAssignableFrom(type))
+			if (CoreManualSwitch.class.isAssignableFrom(type))
 			{
 				GUIManualSwitch gms = new GUIManualSwitch(viewModel, p.logicWidth);
 				modellingTool.connect(p, gms.getOutputPin());
 				idSwitchMap.put(p.name, gms);
-			} else if (BitDisplay.class.isAssignableFrom(type))
+			} else if (CoreBitDisplay.class.isAssignableFrom(type))
 			{
 				GUIBitDisplay gbd = new GUIBitDisplay(viewModel, p.logicWidth);
 				modellingTool.connect(p, gbd.getInputPin());

@@ -1,6 +1,6 @@
 package net.mograsim.machine;
 
-import net.mograsim.logic.core.components.Clock;
+import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.ViewModel;
@@ -12,7 +12,7 @@ public interface Machine {
 	
 	ViewModel getModel();
 	
-	Clock getClock();
+	CoreClock getClock();
 	
 	BitVector getRegister(Register r);
 	
