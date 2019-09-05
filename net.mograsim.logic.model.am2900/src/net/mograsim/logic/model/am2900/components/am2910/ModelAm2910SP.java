@@ -24,12 +24,12 @@ public class ModelAm2910SP extends SimpleRectangularHardcodedModelComponent
 	{
 		super(model, "Am2910SP", name, "Stack\npointer");
 		setSize(40, 30);
-		addPin(new Pin(this, "STKI0", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
-		addPin(new Pin(this, "STKI1", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
-		addPin(new Pin(this, "C", 1, PinUsage.INPUT, 0, 25), Position.RIGHT);
-		addPin(new Pin(this, "A", 3, PinUsage.OUTPUT, 10, 30), Position.TOP);
-		addPin(new Pin(this, "B", 3, PinUsage.OUTPUT, 30, 30), Position.TOP);
-		addPin(new Pin(this, "_FULL", 1, PinUsage.OUTPUT, 40, 15), Position.LEFT);
+		addPin(new Pin(model, this, "STKI0", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
+		addPin(new Pin(model, this, "STKI1", 1, PinUsage.INPUT, 0, 15), Position.RIGHT);
+		addPin(new Pin(model, this, "C", 1, PinUsage.INPUT, 0, 25), Position.RIGHT);
+		addPin(new Pin(model, this, "A", 3, PinUsage.OUTPUT, 10, 30), Position.TOP);
+		addPin(new Pin(model, this, "B", 3, PinUsage.OUTPUT, 30, 30), Position.TOP);
+		addPin(new Pin(model, this, "_FULL", 1, PinUsage.OUTPUT, 40, 15), Position.LEFT);
 	}
 
 	@Override

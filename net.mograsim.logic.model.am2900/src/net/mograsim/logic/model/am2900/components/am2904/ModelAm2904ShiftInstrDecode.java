@@ -25,15 +25,15 @@ public class ModelAm2904ShiftInstrDecode extends SimpleRectangularHardcodedModel
 	{
 		super(model, "Am2904ShiftInstrDecode", name, "Shift \ninstruction\ndecode");
 		setSize(60, 80);
-		addPin(new Pin(this, "I", 5, PinUsage.INPUT, 0, 25), Position.RIGHT);
-		addPin(new Pin(this, "_SE", 1, PinUsage.INPUT, 0, 55), Position.RIGHT);
+		addPin(new Pin(model, this, "I", 5, PinUsage.INPUT, 0, 25), Position.RIGHT);
+		addPin(new Pin(model, this, "_SE", 1, PinUsage.INPUT, 0, 55), Position.RIGHT);
 		// SIO0 MUX:
 		// 000: 0
 		// 001: 1
 		// 01x: SIOn
 		// 10x: QIOn
 		// 11x: MC
-		addPin(new Pin(this, "SIO0_MUX", 3, PinUsage.OUTPUT, 60, 5), Position.LEFT);
+		addPin(new Pin(model, this, "SIO0_MUX", 3, PinUsage.OUTPUT, 60, 5), Position.LEFT);
 		// SIOn MUX:
 		// 000: 0
 		// 001: 1
@@ -43,28 +43,28 @@ public class ModelAm2904ShiftInstrDecode extends SimpleRectangularHardcodedModel
 		// 101: MN
 		// 110: IC
 		// 111: IN xor IVOR
-		addPin(new Pin(this, "SIOn_MUX", 3, PinUsage.OUTPUT, 60, 15), Position.LEFT);
+		addPin(new Pin(model, this, "SIOn_MUX", 3, PinUsage.OUTPUT, 60, 15), Position.LEFT);
 		// QIO0 MUX:
 		// 000: 0
 		// 001: 1
 		// 01x: SIOn
 		// 10x: QIOn
 		// 11x: MC
-		addPin(new Pin(this, "QIO0_MUX", 3, PinUsage.OUTPUT, 60, 25), Position.LEFT);
+		addPin(new Pin(model, this, "QIO0_MUX", 3, PinUsage.OUTPUT, 60, 25), Position.LEFT);
 		// QIOn MUX:
 		// 000: 0
 		// 001: 1
 		// 01x: SIO0
 		// 10x: QIO0
 		// 11x: MN
-		addPin(new Pin(this, "QIOn_MUX", 3, PinUsage.OUTPUT, 60, 35), Position.LEFT);
-		addPin(new Pin(this, "OEn", 1, PinUsage.OUTPUT, 60, 45), Position.LEFT);
-		addPin(new Pin(this, "OE0", 1, PinUsage.OUTPUT, 60, 55), Position.LEFT);
+		addPin(new Pin(model, this, "QIOn_MUX", 3, PinUsage.OUTPUT, 60, 35), Position.LEFT);
+		addPin(new Pin(model, this, "OEn", 1, PinUsage.OUTPUT, 60, 45), Position.LEFT);
+		addPin(new Pin(model, this, "OE0", 1, PinUsage.OUTPUT, 60, 55), Position.LEFT);
 		// 00: SIO0
 		// 01: QIO0
 		// 1x: SIOn
-		addPin(new Pin(this, "MC_MUX", 2, PinUsage.OUTPUT, 60, 65), Position.LEFT);
-		addPin(new Pin(this, "MC_EN", 1, PinUsage.OUTPUT, 60, 75), Position.LEFT);
+		addPin(new Pin(model, this, "MC_MUX", 2, PinUsage.OUTPUT, 60, 65), Position.LEFT);
+		addPin(new Pin(model, this, "MC_EN", 1, PinUsage.OUTPUT, 60, 75), Position.LEFT);
 	}
 
 	@Override

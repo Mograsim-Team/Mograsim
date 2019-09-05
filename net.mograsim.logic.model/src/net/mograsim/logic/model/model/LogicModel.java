@@ -75,7 +75,8 @@ public class LogicModel
 	}
 
 	/**
-	 * Adds the given wire to the list of wires and calls all wireAddedListeners.
+	 * Adds the given wire to the list of wires and calls all wireAddedListeners. Don't call this method from application code as it is
+	 * automatically called in {@link ModelWire}'s constructor.
 	 * 
 	 * @author Daniel Kirschten
 	 */

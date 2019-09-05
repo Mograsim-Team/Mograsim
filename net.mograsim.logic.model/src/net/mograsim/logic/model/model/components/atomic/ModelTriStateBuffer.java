@@ -48,9 +48,9 @@ public class ModelTriStateBuffer extends ModelComponent
 		double hHalf = height / 2;
 		double hQuar = height / 4;
 
-		this.input = new Pin(this, "IN", params.logicWidth, PinUsage.INPUT, oc.newX(0, hHalf), oc.newY(0, hHalf));
-		this.output = new Pin(this, "OUT", params.logicWidth, PinUsage.OUTPUT, oc.newX(width, hHalf), oc.newY(width, hHalf));
-		this.enable = new Pin(this, "EN", 1, PinUsage.INPUT, oc.newX(wHalf, hQuar), oc.newY(wHalf, hQuar));
+		this.input = new Pin(model, this, "IN", params.logicWidth, PinUsage.INPUT, oc.newX(0, hHalf), oc.newY(0, hHalf));
+		this.output = new Pin(model, this, "OUT", params.logicWidth, PinUsage.OUTPUT, oc.newX(width, hHalf), oc.newY(width, hHalf));
+		this.enable = new Pin(model, this, "EN", 1, PinUsage.INPUT, oc.newX(wHalf, hQuar), oc.newY(wHalf, hQuar));
 		this.path = new double[] { oc.newX(0, 0), oc.newY(0, 0), oc.newX(width, hHalf), oc.newY(width, hHalf), oc.newX(0, height),
 				oc.newY(0, height) };
 

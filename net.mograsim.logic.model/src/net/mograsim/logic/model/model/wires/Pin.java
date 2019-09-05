@@ -1,11 +1,14 @@
 package net.mograsim.logic.model.model.wires;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 
 /**
@@ -18,6 +21,10 @@ import net.mograsim.logic.model.model.components.ModelComponent;
  */
 public class Pin
 {
+	/**
+	 * The {@link LogicModel} the component this pin belongs to is a part of.
+	 */
+	private final LogicModelModifiable model;
 	/**
 	 * The {@link ModelComponent} this pin belongs to.
 	 */
@@ -56,8 +63,9 @@ public class Pin
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public Pin(ModelComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
+	public Pin(LogicModelModifiable model, ModelComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
 	{
+		this.model = model;
 		this.component = component;
 		this.name = name;
 		this.logicWidth = logicWidth;
@@ -69,6 +77,19 @@ public class Pin
 		this.redrawListeners = new ArrayList<>();
 
 		component.addComponentMovedListener(c -> callPinMovedListeners());
+	}
+
+	/**
+	 * Destroys this pin by removing all wires connected to it from the model the component is a part of.<br>
+	 * Don't call this method from application code as it is automatically called in {@link ModelComponent#removePin(String)}.
+	 */
+	public void destroyed()
+	{
+		Set<ModelWire> connectedWires = new HashSet<>();
+		for (ModelWire w : model.getWiresByName().values())
+			if (w.getPin1() == this || w.getPin2() == this)
+				connectedWires.add(w);
+		connectedWires.forEach(model::destroyWire);
 	}
 
 	// "graphical" operations

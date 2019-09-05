@@ -39,10 +39,10 @@ public class ModelSplitter extends ModelComponent
 		super(model, name);
 		this.logicWidth = logicWidth;
 		setSize(width, (logicWidth - 1) * heightPerPin);
-		addPin(this.inputPin = new Pin(this, "I", logicWidth, PinUsage.TRISTATE, 0, (logicWidth - 1) * heightPerPin / 2));
+		addPin(this.inputPin = new Pin(model, this, "I", logicWidth, PinUsage.TRISTATE, 0, (logicWidth - 1) * heightPerPin / 2));
 		double outputHeight = (logicWidth - 1) * heightPerPin;
 		for (int i = 0; i < logicWidth; i++, outputHeight -= 10)
-			addPin(new Pin(this, "O" + i, 1, PinUsage.TRISTATE, width, outputHeight));
+			addPin(new Pin(model, this, "O" + i, 1, PinUsage.TRISTATE, width, outputHeight));
 		outputEnds = new ReadEnd[logicWidth];
 	}
 

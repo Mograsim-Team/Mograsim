@@ -50,7 +50,7 @@ public class ModelClock extends ModelComponent
 		oc = new OrientationCalculator(params.orientation, width, height);
 		setSize(oc.width(), oc.height());
 
-		this.outputPin = new Pin(this, "", 1, PinUsage.OUTPUT, oc.newX(width, height / 2), oc.newY(width, height / 2));
+		this.outputPin = new Pin(model, this, "", 1, PinUsage.OUTPUT, oc.newX(width, height / 2), oc.newY(width, height / 2));
 		addPin(outputPin);
 	}
 

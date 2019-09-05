@@ -39,9 +39,9 @@ public class ModelMemoryWA extends ModelComponent
 
 		setSize(width, height);
 		//TODO check the usages
-		addPin(addrPin = new Pin(this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, 0, 10));
-		addPin(dataPin = new Pin(this, "D", definition.getCellWidth(), PinUsage.TRISTATE, 0, 30));
-		addPin(rWPin = new Pin(this, "RW", 1, PinUsage.INPUT, 0, 50));
+		addPin(addrPin = new Pin(model, this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, 0, 10));
+		addPin(dataPin = new Pin(model, this, "D", definition.getCellWidth(), PinUsage.TRISTATE, 0, 30));
+		addPin(rWPin = new Pin(model, this, "RW", 1, PinUsage.INPUT, 0, 50));
 	}
 
 	public Pin getAddressPin()

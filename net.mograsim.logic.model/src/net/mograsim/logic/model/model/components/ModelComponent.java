@@ -79,7 +79,7 @@ public abstract class ModelComponent implements JSONSerializable
 	 */
 	protected void destroyed()
 	{
-		pinsByName.values().forEach(p -> pinRemovedListeners.forEach(l -> l.accept(p)));
+		pinsByName.values().forEach(this::removePinWithoutRedraw);
 	}
 
 	// pins
@@ -112,9 +112,14 @@ public abstract class ModelComponent implements JSONSerializable
 	 */
 	protected void removePin(String name)
 	{
-		Pin pin = pinsByName.remove(name);
-		callPinRemovedListeners(pin);
+		removePinWithoutRedraw(pinsByName.remove(name));
 		model.requestRedraw();
+	}
+
+	private void removePinWithoutRedraw(Pin pin)
+	{
+		pin.destroyed();
+		callPinRemovedListeners(pin);
 	}
 
 	/**

@@ -81,7 +81,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 			String pinName = newPinNames[i];
 			int oldPinIndex = pinNamesListThisSide.indexOf(pinName);
 			if (oldPinIndex == -1)
-				super.addSubmodelInterface(new MovablePin(this, pinName, logicWidth, usage, relX, pinDistance / 2 + i * pinDistance));
+				super.addSubmodelInterface(
+						new MovablePin(model, this, pinName, logicWidth, usage, relX, pinDistance / 2 + i * pinDistance));
 			else
 				getSupermodelMovablePin(pinName).setRelPos(relX, pinDistance / 2 + i * pinDistance);
 		}

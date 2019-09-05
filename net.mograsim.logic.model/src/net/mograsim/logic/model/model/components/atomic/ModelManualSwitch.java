@@ -46,7 +46,7 @@ public class ModelManualSwitch extends ModelComponent
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
-		addPin(this.outputPin = new Pin(this, "", logicWidth, PinUsage.OUTPUT, width, height / 2));
+		addPin(this.outputPin = new Pin(model, this, "", logicWidth, PinUsage.OUTPUT, width, height / 2));
 	}
 
 	@Override
