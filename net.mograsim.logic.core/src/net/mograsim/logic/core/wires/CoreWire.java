@@ -5,7 +5,9 @@ import static net.mograsim.logic.core.types.Bit.Z;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
@@ -238,7 +240,8 @@ public class CoreWire
 	}
 
 	/**
-	 * Create and register a {@link ReadWriteEnd} object, which is tied to this {@link CoreWire}. This {@link ReadWriteEnd} can be written to.
+	 * Create and register a {@link ReadWriteEnd} object, which is tied to this {@link CoreWire}. This {@link ReadWriteEnd} can be written
+	 * to.
 	 */
 	public ReadWriteEnd createReadWriteEnd()
 	{
@@ -261,8 +264,8 @@ public class CoreWire
 
 	/**
 	 * A {@link ReadEnd} feeds a constant signal into the {@link CoreWire} it is tied to. The combination of all inputs determines the
-	 * {@link CoreWire}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs than Z 0
-	 * and 1 turn into X when they are mixed
+	 * {@link CoreWire}s final value. X dominates all other inputs Z does not affect the final value, unless there are no other inputs than
+	 * Z 0 and 1 turn into X when they are mixed
 	 * 
 	 * @author Fabian Stemmler
 	 */
@@ -665,11 +668,11 @@ public class CoreWire
 
 	private static class FusedBit
 	{
-		private final List<WireBit> participatingWireBits;
+		private final Set<WireBit> participatingWireBits;
 
 		public FusedBit()
 		{
-			this.participatingWireBits = new ArrayList<>();
+			this.participatingWireBits = new HashSet<>();
 		}
 
 		public void addParticipatingWireBit(CoreWire w, int bit)
@@ -718,6 +721,37 @@ public class CoreWire
 		{
 			this.wire = wire;
 			this.bit = bit;
+		}
+
+		@Override
+		public int hashCode()
+		{
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + bit;
+			result = prime * result + ((wire == null) ? 0 : wire.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj)
+		{
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			WireBit other = (WireBit) obj;
+			if (bit != other.bit)
+				return false;
+			if (wire == null)
+			{
+				if (other.wire != null)
+					return false;
+			} else if (!wire.equals(other.wire))
+				return false;
+			return true;
 		}
 	}
 }
