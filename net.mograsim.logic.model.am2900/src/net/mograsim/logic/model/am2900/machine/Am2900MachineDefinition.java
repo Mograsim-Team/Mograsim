@@ -7,10 +7,12 @@ import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.Register;
+import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 
 public class Am2900MachineDefinition implements MachineDefinition
 {
 	private MainMemoryDefinition memoryDefinition = new Am2900MainMemoryDefinition();
+	private MicroInstructionMemoryDefinition microInstMemoryDefinition = new Am2900MicroInstructionMemoryDefinition();
 
 	@Override
 	public Machine createNew()
@@ -44,4 +46,9 @@ public class Am2900MachineDefinition implements MachineDefinition
 		return memoryDefinition;
 	}
 
+	@Override
+	public MicroInstructionMemoryDefinition getMicroInstructionMemoryDefinition()
+	{
+		return microInstMemoryDefinition;
+	}
 }

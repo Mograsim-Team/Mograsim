@@ -2,6 +2,8 @@ package net.mograsim.machine;
 
 import java.util.Set;
 
+import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
+
 public interface MachineDefinition {
 
 	/**
@@ -47,4 +49,12 @@ public interface MachineDefinition {
 	 * @author Christian Femers
 	 */
 	MainMemoryDefinition getMainMemoryDefinition();
+	
+	/**
+	 * Returns the definition of the machines instruction memory.
+	 * 
+	 * @return the {@link InstructionMemoryDefinition} that defines the instruction memory.
+	 */
+	MicroInstructionMemoryDefinition getMicroInstructionMemoryDefinition();
+	
 }

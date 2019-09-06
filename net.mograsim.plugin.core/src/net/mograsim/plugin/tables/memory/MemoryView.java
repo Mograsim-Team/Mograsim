@@ -1,6 +1,7 @@
 package net.mograsim.plugin.tables.memory;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
@@ -16,22 +17,24 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.part.ViewPart;
 
+import net.mograsim.machine.Machine;
 import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.standard.memory.WordAddressableMemory;
+import net.mograsim.plugin.MachineContext;
+import net.mograsim.plugin.MachineContext.ContextObserver;
 import net.mograsim.plugin.asm.AsmNumberUtil;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.NumberColumnLabelProvider;
 import net.mograsim.plugin.tables.RadixSelector;
 
-public class MemoryView extends ViewPart
+public class MemoryView extends ViewPart implements ContextObserver
 {
 	private TableViewer viewer;
 	private MemoryTableContentProvider provider;
 	private DisplaySettings displaySettings;
 	private String addressFormat;
 
-	@SuppressWarnings("unused")
 	@Override
 	public void createPartControl(Composite parent)
 	{
@@ -40,6 +43,18 @@ public class MemoryView extends ViewPart
 
 		GridLayout layout = new GridLayout(6, false);
 		parent.setLayout(layout);
+
+		createHeader(parent);
+		createViewer(parent);
+
+		displaySettings.addObserver(() -> viewer.refresh());
+
+		setupContextBinding();
+	}
+
+	@SuppressWarnings("unused")
+	private void createHeader(Composite parent)
+	{
 		Label fromLabel = new Label(parent, SWT.NONE);
 		fromLabel.setText("Address: ");
 		Text fromText = new Text(parent, SWT.BORDER | SWT.SEARCH);
@@ -79,9 +94,6 @@ public class MemoryView extends ViewPart
 			}
 		});
 		new RadixSelector(parent, displaySettings);
-		createViewer(parent);
-
-		displaySettings.addObserver(() -> viewer.refresh());
 	}
 
 	private void createViewer(Composite parent)
@@ -93,7 +105,7 @@ public class MemoryView extends ViewPart
 		table.setLinesVisible(true);
 		viewer.setUseHashlookup(true);
 		viewer.setContentProvider(provider);
-		setMemoryBinding(new WordAddressableMemory(MainMemoryDefinition.create(8, 8, 8L, Long.MAX_VALUE)));
+		bindMainMemory(new WordAddressableMemory(MainMemoryDefinition.create(8, 8, 8L, Long.MAX_VALUE)));
 		getSite().setSelectionProvider(viewer);
 
 		GridData gd = new GridData();
@@ -152,10 +164,22 @@ public class MemoryView extends ViewPart
 		viewer.getControl().setFocus();
 	}
 
-	public void setMemoryBinding(MainMemory m)
+	private void bindMainMemory(MainMemory m)
 	{
 		int hexAddressLength = Long.toUnsignedString(m.getDefinition().getMaximalAddress(), 16).length();
 		addressFormat = "0x%0" + hexAddressLength + "X";
 		viewer.setInput(m);
+	}
+
+	private void setupContextBinding()
+	{
+		MachineContext.getInstance().registerObserver(this);
+	}
+
+	@Override
+	public void setMachine(Optional<Machine> machine)
+	{
+		if (machine.isPresent())
+			bindMainMemory(machine.get().getMainMemory());
 	}
 }

@@ -11,7 +11,8 @@ Export-Package: net.mograsim.logic.model.am2900,
  net.mograsim.logic.model.examples
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.osgi,
- net.mograsim.machine;bundle-version="0.1.0";visibility:=reexport
+ net.mograsim.machine;bundle-version="0.1.0";visibility:=reexport,
+ net.mograsim.logic.core
 Automatic-Module-Name: net.mograsim.logic.model.am2900
 Bundle-Vendor: Mograsim Team
 Bundle-Activator: net.mograsim.logic.model.am2900.Am2900Loader

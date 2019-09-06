@@ -6,52 +6,44 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 
-import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.MemoryDefinition;
-import net.mograsim.machine.mi.parameters.BooleanClassification;
-import net.mograsim.machine.mi.parameters.IntegerClassification;
-import net.mograsim.machine.mi.parameters.IntegerImmediate;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
-import net.mograsim.machine.mi.parameters.MnemonicFamily;
-import net.mograsim.machine.mi.parameters.MnemonicFamily.MnemonicPair;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 
 public class MicroInstructionMemoryParser
 {
-	public static MicroInstructionMemory parseMemory(MicroInstructionDefinition definition, String input) throws IOException
+	public static void parseMemory(final MicroInstructionMemory memory, String inputPath) throws IOException
 	{
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(input))))
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(inputPath))))
 		{
-			return parseMemory(definition, reader);
+			parseMemory(memory, reader);
 		}
 	}
 
-	public static MicroInstructionMemory parseMemory(MicroInstructionDefinition definition, BufferedReader input)
+	public static void parseMemory(final MicroInstructionMemory memory, BufferedReader input)
 	{
-		List<MicroInstruction> instructions = new ArrayList<>();
+		MicroInstructionMemoryDefinition def = memory.getDefinition();
+		MicroInstructionDefinition miDef = def.getMicroInstructionDefinition();
+
+		long minAddr = def.getMinimalAddress();
+		long maxAddr = def.getMaximalAddress();
+		
+		String line;
+		long i = minAddr;
 		try
 		{
-			String line;
-			while (input.ready() && !"".equals((line = input.readLine())))
-				instructions.add(parse(definition, line));
+			for (; i <= maxAddr && input.ready() && !"".equals((line = input.readLine())); i++)
+				memory.setCell(i, parse(miDef, line));
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-
-		int maxAddress = instructions.size() - 1;
-		MicroInstructionMemory memory = MicroInstructionMemory
-				.create(MemoryDefinition.create((int) Math.ceil(Math.log(maxAddress)), 0, maxAddress));
-		int i = 0;
-		for (MicroInstruction inst : instructions)
-			memory.setCell(i++, inst);
-		return memory;
+		
+		for(; i <= maxAddr; i++)
+			memory.setCell(i, miDef.createDefaultInstruction());
 	}
-
+	
 	public static MicroInstruction parse(MicroInstructionDefinition definition, String toParse)
 	{
 		int size = definition.size();
@@ -74,9 +66,9 @@ public class MicroInstructionMemoryParser
 		}
 	}
 
-	public static void write(MicroInstructionMemory memory, String output) throws IOException
+	public static void write(MicroInstructionMemory memory, String outputPath) throws IOException
 	{
-		try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(output)))
+		try (OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(outputPath)))
 		{
 			write(memory, writer);
 		}
