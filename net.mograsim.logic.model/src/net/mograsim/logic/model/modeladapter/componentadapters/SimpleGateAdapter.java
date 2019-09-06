@@ -2,16 +2,16 @@ package net.mograsim.logic.model.modeladapter.componentadapters;
 
 import java.util.Map;
 
-import net.mograsim.logic.core.components.Component;
+import net.mograsim.logic.core.components.CoreComponent;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
-import net.mograsim.logic.model.model.components.atomic.SimpleRectangularGUIGate;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
+import net.mograsim.logic.model.model.components.atomic.SimpleRectangularModelGate;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 
-public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements ComponentAdapter<G>
+public class SimpleGateAdapter<G extends SimpleRectangularModelGate> implements ComponentAdapter<G>
 {
 	private final Class<G> supportedClass;
 	private final ComponentConstructor constructor;
@@ -29,22 +29,23 @@ public class SimpleGateAdapter<G extends SimpleRectangularGUIGate> implements Co
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, LogicModelParameters params, G guiComponent, Map<Pin, Wire> logicWiresPerPin)
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, G modelComponent,
+			Map<Pin, CoreWire> logicWiresPerPin)
 	{
-		ReadWriteEnd out = logicWiresPerPin.get(guiComponent.getPin("Y")).createReadWriteEnd();
+		ReadWriteEnd out = logicWiresPerPin.get(modelComponent.getPin("Y")).createReadWriteEnd();
 
 		// TODO can we do this prettier?
-		int inputPinCount = guiComponent.getPins().size() - 1;
+		int inputPinCount = modelComponent.getPins().size() - 1;
 		ReadEnd[] ins = new ReadEnd[inputPinCount];
 		for (int i = 0; i < inputPinCount; i++)
-			ins[i] = logicWiresPerPin.get(guiComponent.getPin(String.valueOf((char) ('A' + i)))).createReadOnlyEnd();
+			ins[i] = logicWiresPerPin.get(modelComponent.getPin(String.valueOf((char) ('A' + i)))).createReadOnlyEnd();
 
 		constructor.newComponent(timeline, params.gateProcessTime, out, ins);
 	}
 
 	public static interface ComponentConstructor
 	{
-		public Component newComponent(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd[] ins);
+		public CoreComponent newComponent(Timeline timeline, int processTime, ReadWriteEnd out, ReadEnd[] ins);
 	}
 
 }

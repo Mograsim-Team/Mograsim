@@ -1,6 +1,5 @@
 package net.mograsim.logic.model.editor;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -21,12 +20,15 @@ import net.mograsim.logic.model.editor.handles.PinHandle;
 import net.mograsim.logic.model.editor.states.StateManager;
 import net.mograsim.logic.model.editor.ui.DialogManager;
 import net.mograsim.logic.model.editor.ui.EditorGUI;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IdentifyParams;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.DefaultSymbolRenderer;
 
 public final class Editor
 {
@@ -34,7 +36,7 @@ public final class Editor
 	final Set<ComponentInfo> copyBuffer = new HashSet<>();
 	public final DeserializedSubmodelComponent toBeEdited;
 	public final HandleManager handleManager;
-	final static Map<GUIComponent, String> identifierPerComponent = new HashMap<>();
+	final static Map<ModelComponent, String> identifierPerComponent = new HashMap<>();
 	public final EditorGUI gui;
 	public final StateManager stateManager;
 	private final SaveLoadManager saveManager;
@@ -59,7 +61,7 @@ public final class Editor
 		gui.open();
 	}
 
-	public ViewModelModifiable getSubmodel()
+	public LogicModelModifiable getSubmodel()
 	{
 		return toBeEdited.getSubmodelModifiable();
 	}
@@ -125,7 +127,7 @@ public final class Editor
 		selection.clear();
 		for (ComponentInfo info : copyBuffer)
 		{
-			GUIComponent comp = addComponent(info.identifier, info.params);
+			ModelComponent comp = addComponent(info.identifier, info.params);
 			ComponentHandle h = handleManager.getHandle(comp);
 			h.reqMove(info.relX, info.relY);
 			selection.add(h);
@@ -152,13 +154,14 @@ public final class Editor
 			String selected = gui.getAddListSelected();
 			try
 			{
-				GUIComponent c = addComponent(selected, params);
+				ModelComponent c = addComponent(selected, params);
 				selection.clear();
 				selection.add(handleManager.getHandle(c));
 				moveSelection(x, y);
 				successful = true;
 			}
-			catch (@SuppressWarnings("unused") UnsupportedOperationException | JsonSyntaxException | NumberFormatException e)
+			catch (@SuppressWarnings("unused") UnsupportedOperationException | JsonSyntaxException | NumberFormatException
+					| NullPointerException e)
 			{
 				String result = DialogManager.openMultiLineTextDialog("Add component", "Create", "Cancel", "Parameters:");
 				if (result == null)
@@ -168,18 +171,18 @@ public final class Editor
 		}
 	}
 
-	private GUIComponent addComponent(String identifier, JsonElement params)
+	private ModelComponent addComponent(String identifier, JsonElement params)
 	{
-		GUIComponent comp = IndirectGUIComponentCreator.createComponent(toBeEdited.getSubmodelModifiable(), identifier, params);
+		ModelComponent comp = IndirectModelComponentCreator.createComponent(toBeEdited.getSubmodelModifiable(), identifier, params);
 		identifierPerComponent.put(comp, identifier);
 		return comp;
 	}
 
-	public static String getIdentifier(GUIComponent c)
+	public static String getIdentifier(ModelComponent c)
 	{
 		if (identifierPerComponent.containsKey(c))
 			return identifierPerComponent.get(c);
-		return new IdentifierGetter().componentIDs.apply(c);
+		return c.getIDForSerializing(new IdentifyParams());
 	}
 
 	public void duplicate()
@@ -222,7 +225,7 @@ public final class Editor
 	@SuppressWarnings("unused")
 	public void addWire(PinHandle a, PinHandle b)
 	{
-		new GUIWire(toBeEdited.getSubmodelModifiable(), a.getPin(), b.getPin(), new Point[0]);
+		new ModelWire(toBeEdited.getSubmodelModifiable(), a.getPin(), b.getPin(), new Point[0]);
 	}
 
 	public static enum Snapping
@@ -236,10 +239,20 @@ public final class Editor
 		}
 	}
 
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
 	{
 		Am2900Loader.setup();
-		SaveLoadManager.openLoadDialog();
+		openNewEditor();
+//		SaveLoadManager.openLoadDialog();
+	}
+
+	public static void openNewEditor()
+	{
+		DeserializedSubmodelComponent toBeEdited = new DeserializedSubmodelComponent(new LogicModelModifiable(), null, null, null);
+		toBeEdited.setOutlineRenderer(new DefaultOutlineRenderer(toBeEdited));
+		toBeEdited.setSymbolRenderer(new DefaultSymbolRenderer(toBeEdited));
+		toBeEdited.setHighLevelStateHandler(new DefaultHighLevelStateHandler());
+		new Editor(toBeEdited);
 	}
 
 	public Snapping getSnapping()

@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -30,14 +30,19 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 	private final List<String> outputPinNames;
 	private final List<String> outputPinNamesUnmodifiable;
 
-	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label)
+	public SimpleRectangularSubmodelComponent(LogicModelModifiable model, int logicWidth, String label)
 	{
 		this(model, logicWidth, label, null);
 	}
 
-	public SimpleRectangularSubmodelComponent(ViewModelModifiable model, int logicWidth, String label, String name)
+	public SimpleRectangularSubmodelComponent(LogicModelModifiable model, int logicWidth, String label, String name)
 	{
-		super(model, name);
+		this(model, logicWidth, label, name, true);
+	}
+
+	protected SimpleRectangularSubmodelComponent(LogicModelModifiable model, int logicWidth, String label, String name, boolean callInit)
+	{
+		super(model, name, false);
 		this.label = label;
 		this.logicWidth = logicWidth;
 		this.inputPinNames = new ArrayList<>();
@@ -53,6 +58,9 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 		rendererParams.pinLabelMargin = pinNameMargin;
 		setSymbolRenderer(new SimpleRectangularLikeSymbolRenderer(this, rendererParams));
 		setOutlineRenderer(new DefaultOutlineRenderer(this));
+
+		if (callInit)
+			init();
 	}
 
 	protected void setInputPins(String... pinNames)
@@ -81,7 +89,8 @@ public class SimpleRectangularSubmodelComponent extends SubmodelComponent
 			String pinName = newPinNames[i];
 			int oldPinIndex = pinNamesListThisSide.indexOf(pinName);
 			if (oldPinIndex == -1)
-				super.addSubmodelInterface(new MovablePin(this, pinName, logicWidth, usage, relX, pinDistance / 2 + i * pinDistance));
+				super.addSubmodelInterface(
+						new MovablePin(model, this, pinName, logicWidth, usage, relX, pinDistance / 2 + i * pinDistance));
 			else
 				getSupermodelMovablePin(pinName).setRelPos(relX, pinDistance / 2 + i * pinDistance);
 		}

@@ -12,24 +12,24 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.TreeSet;
 
-import net.mograsim.logic.core.components.BitDisplay;
-import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.components.CoreBitDisplay;
+import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.model.LogicUIStandaloneGUI;
 import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.am2900.TestableCircuit;
 import net.mograsim.logic.model.am2900.TestableCircuit.Result;
-import net.mograsim.logic.model.model.ViewModel;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
-import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.LogicModel;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
+import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.ModellingTool;
 
 public class TestEnvironmentHelper
@@ -40,12 +40,12 @@ public class TestEnvironmentHelper
 	private Field componentField;
 	private Optional<Field> timelineField = Optional.empty();
 
-	private GUIComponent component;
+	private ModelComponent component;
 	private Timeline timeline;
-	private ViewModelModifiable viewModel;
+	private LogicModelModifiable logicModel;
 	private ModellingTool modellingTool;
-	private HashMap<String, GUIManualSwitch> idSwitchMap = new HashMap<>();
-	private HashMap<String, GUIBitDisplay> idDisplayMap = new HashMap<>();
+	private HashMap<String, ModelManualSwitch> idSwitchMap = new HashMap<>();
+	private HashMap<String, ModelBitDisplay> idDisplayMap = new HashMap<>();
 
 	private DebugState debug = DebugState.NO_DEBUG;
 	private Set<String> wireDebugChangeSet;
@@ -61,7 +61,7 @@ public class TestEnvironmentHelper
 		this.testEnvClass = testEnvInstance.getClass();
 		for (Field f : testEnvClass.getDeclaredFields())
 		{
-			if (GUIComponent.class.isAssignableFrom(f.getType()))
+			if (ModelComponent.class.isAssignableFrom(f.getType()))
 			{
 				componentField = f;
 				componentField.setAccessible(true);
@@ -78,20 +78,20 @@ public class TestEnvironmentHelper
 	public void setup(DebugState debug)
 	{
 		this.debug = debug;
-		// Create view model
-		viewModel = new ViewModelModifiable();
-		modellingTool = ModellingTool.createFor(viewModel);
+		// Create logic model
+		logicModel = new LogicModelModifiable();
+		modellingTool = ModellingTool.createFor(logicModel);
 		Am2900Loader.setup();
-		component = IndirectGUIComponentCreator.createComponent(viewModel, modelId);
+		component = IndirectModelComponentCreator.createComponent(logicModel, modelId);
 		setField(componentField, component);
 
 		component.getPins().values().forEach(this::extendModelPin);
 
-		// Create logic model
-		LogicModelParameters params = new LogicModelParameters();
+		// Create core model
+		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
-		timeline = ViewLogicModelAdapter.convert(viewModel, params);
+		timeline = LogicCoreAdapter.convert(logicModel, params);
 		timelineField.ifPresent(f -> setField(f, timeline));
 
 		// Bind switches/displays to this test class
@@ -111,19 +111,19 @@ public class TestEnvironmentHelper
 		{
 			Field f = testEnvClass.getDeclaredField(javaIdentId);
 			Class<?> type = f.getType();
-			if (ManualSwitch.class.isAssignableFrom(type))
+			if (CoreManualSwitch.class.isAssignableFrom(type))
 			{
-				GUIManualSwitch gms = new GUIManualSwitch(viewModel, p.logicWidth);
+				ModelManualSwitch gms = new ModelManualSwitch(logicModel, p.logicWidth);
 				modellingTool.connect(p, gms.getOutputPin());
 				idSwitchMap.put(p.name, gms);
-			} else if (BitDisplay.class.isAssignableFrom(type))
+			} else if (CoreBitDisplay.class.isAssignableFrom(type))
 			{
-				GUIBitDisplay gbd = new GUIBitDisplay(viewModel, p.logicWidth);
+				ModelBitDisplay gbd = new ModelBitDisplay(logicModel, p.logicWidth);
 				modellingTool.connect(p, gbd.getInputPin());
 				idDisplayMap.put(p.name, gbd);
 			} else if (SwitchWithDisplay.class.isAssignableFrom(type))
 			{
-				SwitchWithDisplay swd = new SwitchWithDisplay(viewModel, p);
+				SwitchWithDisplay swd = new SwitchWithDisplay(logicModel, p);
 				setField(f, swd);
 			} else
 			{
@@ -148,19 +148,19 @@ public class TestEnvironmentHelper
 	private void setupDebugging()
 	{
 		// Debug code
-		HashSet<GUIWire> wiresIncludingSubmodels = new HashSet<>();
-		Queue<ViewModel> modelsToIterate = new LinkedList<>();
-		modelsToIterate.add(viewModel);
+		HashSet<ModelWire> wiresIncludingSubmodels = new HashSet<>();
+		Queue<LogicModel> modelsToIterate = new LinkedList<>();
+		modelsToIterate.add(logicModel);
 		while (modelsToIterate.size() > 0)
 		{
-			ViewModel model = modelsToIterate.poll();
+			LogicModel model = modelsToIterate.poll();
 			wiresIncludingSubmodels.addAll(model.getWiresByName().values());
-			for (GUIComponent comp : model.getComponentsByName().values())
+			for (ModelComponent comp : model.getComponentsByName().values())
 				if (comp instanceof SubmodelComponent)
 					modelsToIterate.offer(((SubmodelComponent) comp).submodel);
 		}
 		System.out.println(wiresIncludingSubmodels.size());
-		viewModel.setRedrawHandler(() -> wiresIncludingSubmodels.forEach(w ->
+		logicModel.setRedrawHandler(() -> wiresIncludingSubmodels.forEach(w ->
 		{
 			if (debugWires)
 			{
@@ -260,8 +260,8 @@ public class TestEnvironmentHelper
 	{
 		try
 		{
-			new LogicUIStandaloneGUI(viewModel).run();
-			viewModel.setRedrawHandler(null);
+			new LogicUIStandaloneGUI(logicModel).run();
+			logicModel.setRedrawHandler(null);
 		}
 		catch (Exception e)
 		{

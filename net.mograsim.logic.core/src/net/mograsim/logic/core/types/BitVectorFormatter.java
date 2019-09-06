@@ -1,6 +1,6 @@
 package net.mograsim.logic.core.types;
 
-import net.mograsim.logic.core.wires.Wire.ReadEnd;
+import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorDefinition.BuiltInColor;
 import net.mograsim.preferences.Preferences;

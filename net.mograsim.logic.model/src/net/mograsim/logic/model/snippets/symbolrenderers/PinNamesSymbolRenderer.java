@@ -7,9 +7,9 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -17,12 +17,12 @@ import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.
 
 public class PinNamesSymbolRenderer implements Renderer
 {
-	private final GUIComponent component;
+	private final ModelComponent component;
 	private final Map<Pin, Position> pinPositions;
 	private final double pinLabelHeight;
 	private final double pinLabelMargin;
 
-	public PinNamesSymbolRenderer(GUIComponent component, PinNamesParams params)
+	public PinNamesSymbolRenderer(ModelComponent component, PinNamesParams params)
 	{
 		this.component = component;
 		this.pinPositions = new HashMap<>();
@@ -73,7 +73,13 @@ public class PinNamesSymbolRenderer implements Renderer
 	}
 
 	@Override
-	public PinNamesParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "pinNames";
+	}
+
+	@Override
+	public PinNamesParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		PinNamesParams params = new PinNamesParams();
 		params.pinNamePositions = new HashMap<>();

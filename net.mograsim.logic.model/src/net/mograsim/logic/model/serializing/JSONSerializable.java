@@ -6,10 +6,12 @@ import net.mograsim.logic.model.util.JsonHandler;
 
 public interface JSONSerializable
 {
-	public Object getParamsForSerializing(IdentifierGetter idGetter);
+	public String getIDForSerializing(IdentifyParams idParams);
 
-	public default JsonElement getParamsForSerializingJSON(IdentifierGetter idGetter)
+	public Object getParamsForSerializing(IdentifyParams idParams);
+
+	public default JsonElement getParamsForSerializingJSON(IdentifyParams idParams)
 	{
-		return JsonHandler.toJsonTree(getParamsForSerializing(idGetter));
+		return JsonHandler.toJsonTree(getParamsForSerializing(idParams));
 	}
 }

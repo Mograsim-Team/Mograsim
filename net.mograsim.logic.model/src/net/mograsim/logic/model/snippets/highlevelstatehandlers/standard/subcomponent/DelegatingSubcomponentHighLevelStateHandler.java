@@ -1,8 +1,8 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent;
 
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
@@ -10,7 +10,7 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.Standar
 public class DelegatingSubcomponentHighLevelStateHandler implements SubcomponentHighLevelStateHandler
 {
 	private final SubmodelComponent parentComponent;
-	private GUIComponent delegateTarget;
+	private ModelComponent delegateTarget;
 	private String prefix;
 
 	public DelegatingSubcomponentHighLevelStateHandler(HighLevelStateHandlerContext context)
@@ -33,13 +33,13 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 		}
 	}
 
-	public void set(GUIComponent delegateTarget, String prefix)
+	public void set(ModelComponent delegateTarget, String prefix)
 	{
 		setDelegateTarget(delegateTarget);
 		setPrefix(prefix);
 	}
 
-	public void setDelegateTarget(GUIComponent delegateTarget)
+	public void setDelegateTarget(ModelComponent delegateTarget)
 	{
 		if (delegateTarget == null)
 			this.delegateTarget = parentComponent;
@@ -72,7 +72,13 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 	}
 
 	@Override
-	public DelegatingSubcomponentHighLevelStateHandlerParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "delegating";
+	}
+
+	@Override
+	public DelegatingSubcomponentHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		DelegatingSubcomponentHighLevelStateHandlerParams params = new DelegatingSubcomponentHighLevelStateHandlerParams();
 		params.delegateTarget = delegateTarget.name;

@@ -7,7 +7,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasOverlay;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
-import net.mograsim.logic.model.model.ViewModel;
+import net.mograsim.logic.model.model.LogicModel;
 
 /**
  * Standalone simulation visualizer graphical user interface.
@@ -20,7 +20,7 @@ public class LogicUIStandaloneGUI implements Runnable
 	private final Shell shell;
 	private final LogicUICanvas ui;
 
-	public LogicUIStandaloneGUI(ViewModel model)
+	public LogicUIStandaloneGUI(LogicModel model)
 	{
 		display = new Display();
 		shell = new Shell(display);

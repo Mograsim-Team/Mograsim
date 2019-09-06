@@ -1,14 +1,15 @@
 mograsim version: 0.1.3
 {
-  "GUIManualSwitch": "class:net.mograsim.logic.model.model.components.atomic.GUIManualSwitch",
-  "GUIBitDisplay": "class:net.mograsim.logic.model.model.components.atomic.GUIBitDisplay",
-  "GUIAndGate": "class:net.mograsim.logic.model.model.components.atomic.GUIAndGate",
-  "GUIMerger": "class:net.mograsim.logic.model.model.components.atomic.GUIMerger",
-  "GUINandGate": "class:net.mograsim.logic.model.model.components.atomic.GUINandGate",
-  "GUIOrGate": "class:net.mograsim.logic.model.model.components.atomic.GUIOrGate",
-  "GUISplitter": "class:net.mograsim.logic.model.model.components.atomic.GUISplitter",
-  "GUITriStateBuffer": "class:net.mograsim.logic.model.model.components.atomic.GUITriStateBuffer",
-  "GUIClock": "class:net.mograsim.logic.model.model.components.atomic.GUIClock",
-  "TextComponent": "class:net.mograsim.logic.model.model.components.atomic.TextComponent",
-  "WireCrossPoint": "class:net.mograsim.logic.model.model.wires.WireCrossPoint"
+  "AndGate": "class:net.mograsim.logic.model.model.components.atomic.ModelAndGate",
+  "BitDisplay": "class:net.mograsim.logic.model.model.components.atomic.ModelBitDisplay",
+  "Clock": "class:net.mograsim.logic.model.model.components.atomic.ModelClock",
+  "FixedOutput": "class:net.mograsim.logic.model.model.components.atomic.ModelFixedOutput",
+  "ManualSwitch": "class:net.mograsim.logic.model.model.components.atomic.ModelManualSwitch",
+  "Merger": "class:net.mograsim.logic.model.model.components.atomic.ModelMerger",
+  "NandGate": "class:net.mograsim.logic.model.model.components.atomic.ModelNandGate",
+  "OrGate": "class:net.mograsim.logic.model.model.components.atomic.ModelOrGate",
+  "Splitter": "class:net.mograsim.logic.model.model.components.atomic.ModelSplitter",
+  "TriStateBuffer": "class:net.mograsim.logic.model.model.components.atomic.ModelTriStateBuffer",
+  "TextComponent": "class:net.mograsim.logic.model.model.components.atomic.ModelTextComponent",
+  "WireCrossPoint": "class:net.mograsim.logic.model.model.wires.ModelWireCrossPoint"
 }

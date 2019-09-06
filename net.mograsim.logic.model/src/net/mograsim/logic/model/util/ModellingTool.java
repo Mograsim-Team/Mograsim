@@ -1,111 +1,111 @@
 package net.mograsim.logic.model.util;
 
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.model.wires.WireCrossPoint;
+import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 
 public class ModellingTool
 {
-	private ViewModelModifiable model;
+	private LogicModelModifiable model;
 
-	ModellingTool(ViewModelModifiable model)
+	ModellingTool(LogicModelModifiable model)
 	{
 		this.model = model;
 	}
 
-	public GUIWire connect(GUIComponent a, GUIComponent b, String pinA, String pinB)
+	public ModelWire connect(ModelComponent a, ModelComponent b, String pinA, String pinB)
 	{
 		return connect(null, a, b, pinA, pinB);
 	}
 
-	public GUIWire connect(WireCrossPoint a, GUIComponent b, String pinB)
+	public ModelWire connect(ModelWireCrossPoint a, ModelComponent b, String pinB)
 	{
 		return connect(null, a, b, pinB);
 	}
 
-	public GUIWire connect(Pin a, GUIComponent b, String pinB)
+	public ModelWire connect(Pin a, ModelComponent b, String pinB)
 	{
 		return connect(null, a, b, pinB);
 	}
 
-	public GUIWire connect(GUIComponent a, WireCrossPoint b, String pinA)
+	public ModelWire connect(ModelComponent a, ModelWireCrossPoint b, String pinA)
 	{
 		return connect(null, a, b, pinA);
 	}
 
-	public GUIWire connect(WireCrossPoint a, WireCrossPoint b)
+	public ModelWire connect(ModelWireCrossPoint a, ModelWireCrossPoint b)
 	{
 		return connect(null, a, b);
 	}
 
-	public GUIWire connect(Pin a, WireCrossPoint b)
+	public ModelWire connect(Pin a, ModelWireCrossPoint b)
 	{
 		return connect(null, a, b);
 	}
 
-	public GUIWire connect(GUIComponent a, Pin b, String pinA)
+	public ModelWire connect(ModelComponent a, Pin b, String pinA)
 	{
 		return connect(null, a, b, pinA);
 	}
 
-	public GUIWire connect(WireCrossPoint a, Pin b)
+	public ModelWire connect(ModelWireCrossPoint a, Pin b)
 	{
 		return connect(null, a, b);
 	}
 
-	public GUIWire connect(Pin a, Pin b)
+	public ModelWire connect(Pin a, Pin b)
 	{
 		return connect(null, a, b);
 	}
 
-	public GUIWire connect(String name, GUIComponent a, GUIComponent b, String pinA, String pinB)
+	public ModelWire connect(String name, ModelComponent a, ModelComponent b, String pinA, String pinB)
 	{
 		return connect(name, a.getPin(pinA), b.getPin(pinB));
 	}
 
-	public GUIWire connect(String name, WireCrossPoint a, GUIComponent b, String pinB)
+	public ModelWire connect(String name, ModelWireCrossPoint a, ModelComponent b, String pinB)
 	{
 		return connect(name, a.getPin(), b.getPin(pinB));
 	}
 
-	public GUIWire connect(String name, Pin a, GUIComponent b, String pinB)
+	public ModelWire connect(String name, Pin a, ModelComponent b, String pinB)
 	{
 		return connect(name, a, b.getPin(pinB));
 	}
 
-	public GUIWire connect(String name, GUIComponent a, WireCrossPoint b, String pinA)
+	public ModelWire connect(String name, ModelComponent a, ModelWireCrossPoint b, String pinA)
 	{
 		return connect(name, a.getPin(pinA), b.getPin());
 	}
 
-	public GUIWire connect(String name, WireCrossPoint a, WireCrossPoint b)
+	public ModelWire connect(String name, ModelWireCrossPoint a, ModelWireCrossPoint b)
 	{
 		return connect(name, a.getPin(), b.getPin());
 	}
 
-	public GUIWire connect(String name, Pin a, WireCrossPoint b)
+	public ModelWire connect(String name, Pin a, ModelWireCrossPoint b)
 	{
 		return connect(name, a, b.getPin());
 	}
 
-	public GUIWire connect(String name, GUIComponent a, Pin b, String pinA)
+	public ModelWire connect(String name, ModelComponent a, Pin b, String pinA)
 	{
 		return connect(name, a.getPin(pinA), b);
 	}
 
-	public GUIWire connect(String name, WireCrossPoint a, Pin b)
+	public ModelWire connect(String name, ModelWireCrossPoint a, Pin b)
 	{
 		return connect(name, a.getPin(), b);
 	}
 
-	public GUIWire connect(String name, Pin a, Pin b)
+	public ModelWire connect(String name, Pin a, Pin b)
 	{
-		return new GUIWire(model, name, a, b);
+		return new ModelWire(model, name, a, b);
 	}
 
-	public static ModellingTool createFor(ViewModelModifiable model)
+	public static ModellingTool createFor(LogicModelModifiable model)
 	{
 		return new ModellingTool(model);
 	}

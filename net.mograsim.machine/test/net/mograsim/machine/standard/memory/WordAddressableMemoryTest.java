@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.core.wires.Wire.ReadWriteEnd;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.machine.MainMemoryDefinition;
 
 class WordAddressableMemoryTest {
@@ -21,9 +21,9 @@ class WordAddressableMemoryTest {
 	@Test
 	public void wordAddressableMemoryLargeTest()
 	{
-		Wire rW = new Wire(t, 1, 2);
-		Wire data = new Wire(t, 16, 2);
-		Wire address = new Wire(t, 64, 2);
+		CoreWire rW = new CoreWire(t, 1, 2);
+		CoreWire data = new CoreWire(t, 16, 2);
+		CoreWire address = new CoreWire(t, 64, 2);
 		ReadWriteEnd rWI = rW.createReadWriteEnd();
 		ReadWriteEnd dataI = data.createReadWriteEnd();
 		ReadWriteEnd addressI = address.createReadWriteEnd();

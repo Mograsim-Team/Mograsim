@@ -3,46 +3,46 @@ package net.mograsim.logic.model;
 import java.util.function.Consumer;
 
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.modeladapter.LogicModelParameters;
-import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 
 public class SimpleLogicUIStandalone
 {
-	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel)
+	public static void executeVisualisation(Consumer<LogicModelModifiable> setupLogicModel)
 	{
-		executeVisualisation(setupViewModel, (Consumer<VisualisationObjects>) null);
+		executeVisualisation(setupLogicModel, (Consumer<VisualisationObjects>) null);
 	}
 
-	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, Consumer<VisualisationObjects> beforeRun)
+	public static void executeVisualisation(Consumer<LogicModelModifiable> setupLogicModel, Consumer<VisualisationObjects> beforeRun)
 	{
-		LogicModelParameters params = new LogicModelParameters();
+		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
-		executeVisualisation(setupViewModel, params, beforeRun);
+		executeVisualisation(setupLogicModel, params, beforeRun);
 	}
 
-	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, LogicModelParameters params)
+	public static void executeVisualisation(Consumer<LogicModelModifiable> setupLogicModel, CoreModelParameters params)
 	{
-		executeVisualisation(setupViewModel, params, null);
+		executeVisualisation(setupLogicModel, params, null);
 	}
 
-	public static void executeVisualisation(Consumer<ViewModelModifiable> setupViewModel, LogicModelParameters params,
+	public static void executeVisualisation(Consumer<LogicModelModifiable> setupLogicModel, CoreModelParameters params,
 			Consumer<VisualisationObjects> beforeRun)
 	{
-		// setup view model
-		ViewModelModifiable viewModel = new ViewModelModifiable();
-		setupViewModel.accept(viewModel);
+		// setup logic model
+		LogicModelModifiable logicModel = new LogicModelModifiable();
+		setupLogicModel.accept(logicModel);
 
-		// convert to logic model
-		Timeline timeline = ViewLogicModelAdapter.convert(viewModel, params);
+		// convert to core model
+		Timeline timeline = LogicCoreAdapter.convert(logicModel, params);
 
 		// initialize UI and executer
-		LogicUIStandaloneGUI ui = new LogicUIStandaloneGUI(viewModel);
+		LogicUIStandaloneGUI ui = new LogicUIStandaloneGUI(logicModel);
 		LogicExecuter exec = new LogicExecuter(timeline);
 
 		if (beforeRun != null)
-			beforeRun.accept(new VisualisationObjects(viewModel, timeline, ui, exec));
+			beforeRun.accept(new VisualisationObjects(logicModel, timeline, ui, exec));
 
 		// run it
 		exec.startLiveExecution();
@@ -52,12 +52,12 @@ public class SimpleLogicUIStandalone
 
 	public static class VisualisationObjects
 	{
-		public final ViewModelModifiable model;
+		public final LogicModelModifiable model;
 		public final Timeline timeline;
 		public final LogicUIStandaloneGUI gui;
 		public final LogicExecuter executer;
 
-		public VisualisationObjects(ViewModelModifiable model, Timeline timeline, LogicUIStandaloneGUI gui, LogicExecuter executer)
+		public VisualisationObjects(LogicModelModifiable model, Timeline timeline, LogicUIStandaloneGUI gui, LogicExecuter executer)
 		{
 			this.model = model;
 			this.timeline = timeline;

@@ -11,14 +11,14 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.gcs.TranslatedGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.LogicUIRenderer;
-import net.mograsim.logic.model.model.ViewModel;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.LogicModel;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IdentifyParams;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.snippets.Renderer;
@@ -26,20 +26,20 @@ import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.preferences.Preferences;
 
 /**
- * A {@link GUIComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
+ * A {@link ModelComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
  * inner and outer models.
  */
-public abstract class SubmodelComponent extends GUIComponent
+public abstract class SubmodelComponent extends ModelComponent
 {
 	public static final String SUBMODEL_INTERFACE_NAME = "_submodelinterface";
 	/**
 	 * A modifiable view of {@link #submodel}.
 	 */
-	protected final ViewModelModifiable submodelModifiable;
+	protected final LogicModelModifiable submodelModifiable;
 	/**
 	 * The model this {@link SubmodelComponent} consists of.
 	 */
-	public final ViewModel submodel;
+	public final LogicModel submodel;
 	/**
 	 * The list of all submodel interface pins of this {@link SubmodelComponent} on the submodel side.
 	 */
@@ -99,10 +99,15 @@ public abstract class SubmodelComponent extends GUIComponent
 
 	// creation and destruction
 
-	public SubmodelComponent(ViewModelModifiable model, String name)
+	public SubmodelComponent(LogicModelModifiable model, String name)
 	{
-		super(model, name);
-		this.submodelModifiable = new ViewModelModifiable();
+		this(model, name, true);
+	}
+
+	protected SubmodelComponent(LogicModelModifiable model, String name, boolean callInit)
+	{
+		super(model, name, false);
+		this.submodelModifiable = new LogicModelModifiable();
 		this.submodel = submodelModifiable;
 		this.submodelPins = new HashMap<>();
 		this.submodelMovablePinsUnmodifiable = Collections.unmodifiableMap(submodelPins);
@@ -110,7 +115,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		this.supermodelPins = new HashMap<>();
 		this.supermodelMovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
 		this.supermodelUnmovablePinsUnmodifiable = Collections.unmodifiableMap(supermodelPins);
-		this.submodelInterface = new SubmodelInterface(submodelModifiable, SUBMODEL_INTERFACE_NAME);
+		this.submodelInterface = new SubmodelInterface(submodelModifiable);
 
 		this.submodelScale = 1;
 		this.maxVisibleRegionFillRatioForAlpha0 = 0.8;
@@ -125,6 +130,9 @@ public abstract class SubmodelComponent extends GUIComponent
 				model.removeRedrawHandlerChangedListener(redrawHandlerChangedListener);
 		});
 		submodelModifiable.setRedrawHandler(model.getRedrawHandler());
+
+		if (callInit)
+			init();
 	}
 
 	// pins
@@ -159,7 +167,7 @@ public abstract class SubmodelComponent extends GUIComponent
 		default:
 			throw new IllegalArgumentException("Unknown enum constant: " + supermodelPin.usage);
 		}
-		MovablePin submodelPin = new MovablePin(submodelInterface, name, supermodelPin.logicWidth, submodelPinUsage,
+		MovablePin submodelPin = new MovablePin(model, submodelInterface, name, supermodelPin.logicWidth, submodelPinUsage,
 				supermodelPin.getRelX() / submodelScale, supermodelPin.getRelY() / submodelScale);
 
 		submodelPin.addPinMovedListener(p ->
@@ -356,7 +364,7 @@ public abstract class SubmodelComponent extends GUIComponent
 	{
 		double scaledX = (x - getPosX()) / submodelScale;
 		double scaledY = (y - getPosY()) / submodelScale;
-		for (GUIComponent component : submodel.getComponentsByName().values())
+		for (ModelComponent component : submodel.getComponentsByName().values())
 			if (component.getBounds().contains(scaledX, scaledY) && component.clicked(scaledX, scaledY))
 				return true;
 		return false;
@@ -421,10 +429,30 @@ public abstract class SubmodelComponent extends GUIComponent
 
 	// serializing
 
+	/**
+	 * {@link SubmodelComponent}'s implementation of {@link ModelComponent#getIDForSerializing(IdentifyParams)} returns "submodel". It is
+	 * recommended to override this behaviour.
+	 * 
+	 * @see ModelComponent#getIDForSerializing(IdentifyParams)
+	 * @see ModelComponent#getParamsForSerializing(IdentifyParams)
+	 */
 	@Override
-	public SubmodelComponentParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
 	{
-		return SubmodelComponentSerializer.serialize(this, idGetter);
+		return "submodel";// TODO what ID?
+	}
+
+	/**
+	 * {@link SubmodelComponent}'s implementation of {@link ModelComponent#getParamsForSerializing(IdentifyParams)} returns an instance of
+	 * {@link SubmodelComponentParams}. It is recommended to override this behaviour.
+	 * 
+	 * @see ModelComponent#getIDForSerializing(IdentifyParams)
+	 * @see ModelComponent#getParamsForSerializing(IdentifyParams)
+	 */
+	@Override
+	public Object getParamsForSerializing(IdentifyParams idParams)
+	{
+		return SubmodelComponentSerializer.serialize(this, idParams);
 	}
 
 	// operations no longer supported
@@ -443,7 +471,7 @@ public abstract class SubmodelComponent extends GUIComponent
 
 	static
 	{
-		IndirectGUIComponentCreator.setComponentSupplier(SubmodelComponent.class.getCanonicalName(),
+		IndirectModelComponentCreator.setComponentSupplier(SubmodelComponent.class.getCanonicalName(),
 				(m, p, n) -> SubmodelComponentSerializer.deserialize(m, JsonHandler.fromJsonTree(p, SubmodelComponentParams.class), n));
 	}
 }

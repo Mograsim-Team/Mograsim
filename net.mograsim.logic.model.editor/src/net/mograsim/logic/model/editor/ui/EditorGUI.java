@@ -24,7 +24,7 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasOverlay;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.SaveLoadManager;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 
 public class EditorGUI
 {
@@ -95,8 +95,7 @@ public class EditorGUI
 		ToolItem file = new ToolItem(toolBar, SWT.DROP_DOWN);
 
 		// TODO
-//		DropDownEntry newEntry = new DropDownEntry("New", e -> {
-//		});
+		DropDownEntry newEntry = new DropDownEntry("New", e -> Editor.openNewEditor());
 		DropDownEntry loadEntry = new DropDownEntry("Load", e ->
 		{
 			try
@@ -111,7 +110,7 @@ public class EditorGUI
 		DropDownEntry saveEntry = new DropDownEntry("Save", e -> editor.save());
 		DropDownEntry saveAsEntry = new DropDownEntry("Save as...", e -> editor.saveAs());
 
-		DropDownEntry[] entries = new DropDownEntry[] { loadEntry, saveEntry, saveAsEntry };
+		DropDownEntry[] entries = new DropDownEntry[] { newEntry, loadEntry, saveEntry, saveAsEntry };
 
 		setupDrowpDownMenu(file, entries);
 
@@ -211,7 +210,7 @@ public class EditorGUI
 
 	public void refreshAddList()
 	{
-		addList.setItems(IndirectGUIComponentCreator.getStandardComponentIDs().keySet().stream().sorted().toArray(String[]::new));
+		addList.setItems(IndirectModelComponentCreator.getStandardComponentIDs().keySet().stream().sorted().toArray(String[]::new));
 		addList.select(0);
 	}
 
@@ -230,5 +229,4 @@ public class EditorGUI
 			if (!display.readAndDispatch())
 				display.sleep();
 	}
-
 }

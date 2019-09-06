@@ -8,9 +8,9 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -26,14 +26,14 @@ import net.mograsim.preferences.Preferences;
  */
 public class SimpleRectangularLikeSymbolRenderer implements Renderer
 {
-	private final GUIComponent component;
+	private final ModelComponent component;
 	private final String centerText;
 	private final double centerTextHeight;
 	private final double horizontalComponentCenter;
 	private final double pinLabelHeight;
 	private final double pinLabelMargin;
 
-	public SimpleRectangularLikeSymbolRenderer(GUIComponent component, SimpleRectangularLikeParams params)
+	public SimpleRectangularLikeSymbolRenderer(ModelComponent component, SimpleRectangularLikeParams params)
 	{
 		this.component = component;
 		this.centerText = params.centerText;
@@ -73,7 +73,13 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 	}
 
 	@Override
-	public SimpleRectangularLikeParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "simpleRectangularLike";
+	}
+
+	@Override
+	public SimpleRectangularLikeParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		SimpleRectangularLikeParams params = new SimpleRectangularLikeParams();
 		params.centerText = centerText;

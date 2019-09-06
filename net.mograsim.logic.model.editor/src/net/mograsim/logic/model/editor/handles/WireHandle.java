@@ -9,18 +9,18 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.editor.states.EditorState;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.wires.ModelWire;
 
 public class WireHandle extends Handle
 {
 	private boolean selected = false;
 	private final static double WIDTH = 2.0;
 	private final static double WIDTH_SQUARED = WIDTH * WIDTH;
-	private final ViewModelModifiable model;
-	public final GUIWire parent;
+	private final LogicModelModifiable model;
+	public final ModelWire parent;
 
-	public WireHandle(ViewModelModifiable model, GUIWire parent)
+	public WireHandle(LogicModelModifiable model, ModelWire parent)
 	{
 		super(5);
 		this.model = model;
@@ -104,7 +104,7 @@ public class WireHandle extends Handle
 
 	}
 
-	private static Optional<WireClickData> click(GUIWire w, double x, double y)
+	private static Optional<WireClickData> click(ModelWire w, double x, double y)
 	{
 		Rectangle modifiedBounds = w.getBounds();
 		modifiedBounds.x -= WIDTH;

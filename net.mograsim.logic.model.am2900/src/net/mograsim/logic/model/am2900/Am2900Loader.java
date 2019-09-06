@@ -6,7 +6,7 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 import net.mograsim.logic.model.serializing.ClassLoaderBasedResourceLoader;
-import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 
 public class Am2900Loader implements BundleActivator
 {
@@ -29,8 +29,8 @@ public class Am2900Loader implements BundleActivator
 		if (activated.getAndSet(true))
 			return;
 		ClassLoaderBasedResourceLoader resourceLoader = ClassLoaderBasedResourceLoader.create(Am2900Loader.class.getClassLoader());
-		IndirectGUIComponentCreator.registerResourceLoader(resourceLoader, "Am2900Loader");
-		IndirectGUIComponentCreator.loadStandardComponentIDs(Am2900Loader.class.getResourceAsStream("standardComponentIDMapping.json"));
+		IndirectModelComponentCreator.registerResourceLoader(resourceLoader, "Am2900Loader");
+		IndirectModelComponentCreator.loadStandardComponentIDs(Am2900Loader.class.getResourceAsStream("standardComponentIDMapping.json"));
 //		System.out.println("SETUP DONE"); // TODO: Debug
 	}
 }
