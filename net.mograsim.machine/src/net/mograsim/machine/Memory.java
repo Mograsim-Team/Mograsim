@@ -19,7 +19,7 @@ public interface Memory<T>
 	public default long size()
 	{
 		MemoryDefinition def = getDefinition();
-		return Long.max(0, def.getMaximalAddress() - def.getMinimalAddress());
+		return Long.max(0, def.getMaximalAddress() - def.getMinimalAddress() + 1);
 	}
 	
 	/**

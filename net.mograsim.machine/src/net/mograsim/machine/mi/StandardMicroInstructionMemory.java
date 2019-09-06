@@ -2,17 +2,16 @@ package net.mograsim.machine.mi;
 
 import java.util.HashSet;
 
-import net.mograsim.machine.MemoryDefinition;
 import net.mograsim.machine.MemoryObserver;
 import net.mograsim.machine.standard.memory.MemoryException;
 
-class StandardMicroInstructionMemory implements MicroInstructionMemory
+public class StandardMicroInstructionMemory implements MicroInstructionMemory
 {
 	private MicroInstruction[] data;
-	private MemoryDefinition definition;
+	private MicroInstructionMemoryDefinition definition;
 	private HashSet<MemoryObserver> observers = new HashSet<>();
 	
-	StandardMicroInstructionMemory(MemoryDefinition definition)
+	public StandardMicroInstructionMemory(MicroInstructionMemoryDefinition definition)
 	{
 		if(definition.size() > Integer.MAX_VALUE)
 			throw new MemoryException("Size of MicroInstructionMemory must be an int, not a long");
@@ -28,7 +27,11 @@ class StandardMicroInstructionMemory implements MicroInstructionMemory
 	@Override
 	public MicroInstruction getCell(long address)
 	{
-		return data[translate(address)];
+		int translatedAddress = translate(address);
+		MicroInstruction actual = data[translatedAddress];
+		if(actual == null)
+			actual = data[translatedAddress] = definition.getMicroInstructionDefinition().createDefaultInstruction();
+		return actual;
 	}
 
 	@Override
@@ -56,7 +59,7 @@ class StandardMicroInstructionMemory implements MicroInstructionMemory
 	}
 
 	@Override
-	public MemoryDefinition getDefinition()
+	public MicroInstructionMemoryDefinition getDefinition()
 	{
 		return definition;
 	}

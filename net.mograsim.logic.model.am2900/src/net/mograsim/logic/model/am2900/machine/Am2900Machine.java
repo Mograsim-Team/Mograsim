@@ -10,7 +10,11 @@ import net.mograsim.logic.model.modeladapter.ViewLogicModelAdapter;
 import net.mograsim.logic.model.serializing.IndirectGUIComponentCreator;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.Register;
+import net.mograsim.machine.mi.MicroInstructionMemory;
+import net.mograsim.machine.mi.StandardMicroInstructionMemory;
+import net.mograsim.machine.standard.memory.WordAddressableMemory;
 
 public class Am2900Machine implements Machine
 {
@@ -18,6 +22,8 @@ public class Am2900Machine implements Machine
 	private ViewModelModifiable viewModel;
 	private Timeline timeline;
 	private Clock clock;
+	private MainMemory mainMemory;
+	private MicroInstructionMemory instMemory;
 
 	public Am2900Machine(Am2900MachineDefinition am2900MachineDefinition)
 	{
@@ -29,6 +35,9 @@ public class Am2900Machine implements Machine
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
 		timeline = ViewLogicModelAdapter.convert(viewModel, params);
+
+		mainMemory = new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition());
+		instMemory = new StandardMicroInstructionMemory(am2900MachineDefinition.getMicroInstructionMemoryDefinition());
 	}
 
 	@Override
@@ -74,6 +83,18 @@ public class Am2900Machine implements Machine
 	{
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public MainMemory getMainMemory()
+	{
+		return mainMemory;
+	}
+
+	@Override
+	public MicroInstructionMemory getMicroInstructionMemory()
+	{
+		return instMemory;
 	}
 
 }

@@ -2,6 +2,7 @@ package net.mograsim.plugin.tables.mi;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
@@ -16,18 +17,21 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.part.ViewPart;
 
+import net.mograsim.machine.Machine;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
+import net.mograsim.plugin.MachineContext;
+import net.mograsim.plugin.MachineContext.ContextObserver;
 import net.mograsim.plugin.asm.AsmNumberUtil.NumberType;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.RadixSelector;
 import net.mograsim.plugin.util.DropDownMenu;
 import net.mograsim.plugin.util.DropDownMenu.DropDownEntry;
 
-public class InstructionView extends ViewPart
+public class InstructionView extends ViewPart implements ContextObserver
 {
 	private String saveLoc = null;
 	private TableViewer viewer;
@@ -60,6 +64,7 @@ public class InstructionView extends ViewPart
 		viewer.getTable().setLayoutData(viewerData);
 
 		displaySettings.addObserver(() -> viewer.refresh());
+		MachineContext.getInstance().registerObserver(this);
 	}
 
 	@SuppressWarnings("unused")
@@ -97,22 +102,23 @@ public class InstructionView extends ViewPart
 			saveLoc = d.getFilterPath() + File.separator + filename;
 	}
 
-	public void bindMicroprogramMemory(MicroInstructionMemory memory)
+	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
 	{
+		deleteColumns();
 		this.memory = memory;
 		viewer.setInput(memory);
+		this.miDef = memory.getDefinition().getMicroInstructionDefinition();
+		createColumns();
 	}
 
-	public void bindMicroInstructionDef(MicroInstructionDefinition miDef)
+	private void deleteColumns()
 	{
-		this.miDef = miDef;
-		createColumns();
+		for (TableViewerColumn col : columns)
+			col.getColumn().dispose();
 	}
 
 	private void createColumns()
 	{
-		for (TableViewerColumn col : columns)
-			col.getColumn().dispose();
 		int size = miDef.size();
 		int bit = 0;
 		columns = new TableViewerColumn[size];
@@ -178,8 +184,8 @@ public class InstructionView extends ViewPart
 		}
 		try
 		{
-			MicroInstructionMemory newMemory = MicroInstructionMemoryParser.parseMemory(miDef, file);
-			bindMicroprogramMemory(newMemory);
+			MicroInstructionMemoryParser.parseMemory(memory, file);
+			viewer.refresh();
 			saveLoc = file;
 		}
 		catch (IOException | MicroInstructionMemoryParseException e)
@@ -211,5 +217,15 @@ public class InstructionView extends ViewPart
 	public void setFocus()
 	{
 		viewer.getControl().setFocus();
+	}
+
+	@Override
+	public void setMachine(Optional<Machine> machine)
+	{
+		if (machine.isPresent())
+		{
+			Machine actualMachine = machine.get();
+			bindMicroInstructionMemory(actualMachine.getMicroInstructionMemory());
+		}
 	}
 }
