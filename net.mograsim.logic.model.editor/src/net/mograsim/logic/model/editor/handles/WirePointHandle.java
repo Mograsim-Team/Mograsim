@@ -5,19 +5,19 @@ import org.eclipse.swt.widgets.Display;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.core.wires.Wire;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.core.wires.CoreWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 
 public class WirePointHandle extends Handle
 {
 	private final static int END_OFFSET = 4;
 	private final HandleManager manager;
 	private boolean selected = false;
-	public final GUIWire parent;
+	public final ModelWire parent;
 
 	private int pointIndex;
 
-	public WirePointHandle(HandleManager manager, GUIWire parent, int pointIndex)
+	public WirePointHandle(HandleManager manager, ModelWire parent, int pointIndex)
 	{
 		super(3);
 		this.manager = manager;
@@ -76,7 +76,7 @@ public class WirePointHandle extends Handle
 	}
 
 	/**
-	 * Sets the index of the {@link Point} within the parent {@link Wire}s path that is controlled by this handle
+	 * Sets the index of the {@link Point} within the parent {@link CoreWire}s path that is controlled by this handle
 	 * 
 	 * @param index Index of the Point in the Wires path.
 	 * @throws IndexOutOfBoundsException

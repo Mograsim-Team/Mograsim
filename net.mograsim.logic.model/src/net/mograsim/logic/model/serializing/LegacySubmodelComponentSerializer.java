@@ -9,10 +9,10 @@ import java.util.function.Function;
 import com.google.gson.JsonElement;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -37,23 +37,23 @@ public final class LegacySubmodelComponentSerializer
 	// convenience methods
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams)}, but first reading the
 	 * {@link LegacySubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath) throws IOException
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, LegacySubmodelComponentParams.class));
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, JsonElement)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, JsonElement)}, but first reading the
 	 * {@link LegacySubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String idForSerializingOverride,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, LegacySubmodelComponentParams.class), idForSerializingOverride,
@@ -61,23 +61,23 @@ public final class LegacySubmodelComponentSerializer
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String)}, but first reading the
 	 * {@link LegacySubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String name) throws IOException
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String name) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, LegacySubmodelComponentParams.class), name);
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)}, but first reading the
 	 * {@link LegacySubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String name, String idForSerializingOverride,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String name, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, LegacySubmodelComponentParams.class), name, idForSerializingOverride,
@@ -85,34 +85,34 @@ public final class LegacySubmodelComponentSerializer
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} with no
+	 * {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} with no
 	 * <code>idForSerializingOverride</code> set and using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params)
+	public static SubmodelComponent deserialize(LogicModelModifiable model, LegacySubmodelComponentParams params)
 	{
 		return deserialize(model, params, null, null, null);
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} using the default name.
+	 * {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, LegacySubmodelComponentParams params,
 			String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{
 		return deserialize(model, params, null, idForSerializingOverride, paramsForSerializingOverride);
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} with no
+	 * {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement)} with no
 	 * <code>idForSerializingOverride</code> set.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params, String name)
+	public static SubmodelComponent deserialize(LogicModelModifiable model, LegacySubmodelComponentParams params, String name)
 	{
 		return deserialize(model, params, name, null, null);
 	}
@@ -134,20 +134,20 @@ public final class LegacySubmodelComponentSerializer
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static void serialize(SubmodelComponent comp, IdentifierGetter idGetter, String targetPath) throws IOException
+	public static void serialize(SubmodelComponent comp, IdentifyParams idParams, String targetPath) throws IOException
 	{
-		JsonHandler.writeJson(serialize(comp, idGetter), targetPath);
+		JsonHandler.writeJson(serialize(comp, idParams), targetPath);
 	}
 
 	/**
-	 * {@link #serialize(SubmodelComponent, Function)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
-	 * {@link IdentifierGetter#IdentifierGetter() default constructor})
+	 * {@link #serialize(SubmodelComponent, Function)} using the default {@link IdentifyParams} (see <code>IdentifyParams</code>'s
+	 * {@link IdentifyParams#IdentifyParams() default constructor})
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public static LegacySubmodelComponentParams serialize(SubmodelComponent comp)
 	{
-		return serialize(comp, new IdentifierGetter());
+		return serialize(comp, new IdentifyParams());
 	}
 
 	// "core" methods
@@ -163,8 +163,8 @@ public final class LegacySubmodelComponentSerializer
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	@SuppressWarnings("unused") // for GUIWire being created
-	public static SubmodelComponent deserialize(ViewModelModifiable model, LegacySubmodelComponentParams params, String name,
+	@SuppressWarnings("unused") // for ModelWire being created
+	public static SubmodelComponent deserialize(LogicModelModifiable model, LegacySubmodelComponentParams params, String name,
 			String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{
 		DeserializedSubmodelComponent comp = new DeserializedSubmodelComponent(model, name, idForSerializingOverride,
@@ -173,23 +173,23 @@ public final class LegacySubmodelComponentSerializer
 		comp.setSize(params.width, params.height);
 		for (LegacyInterfacePinParams iPinParams : params.interfacePins)
 			// TRISTATE because we don't have a better choice
-			comp.addSubmodelInterface(new MovablePin(comp, iPinParams.name, iPinParams.logicWidth, PinUsage.TRISTATE, iPinParams.location.x,
-					iPinParams.location.y));
+			comp.addSubmodelInterface(new MovablePin(model, comp, iPinParams.name, iPinParams.logicWidth, PinUsage.TRISTATE,
+					iPinParams.location.x, iPinParams.location.y));
 		LegacySubmodelParameters submodelParams = params.submodel;
-		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
-		Map<String, GUIComponent> componentsByName = submodelModifiable.getComponentsByName();
-		GUIComponent[] components = new GUIComponent[submodelParams.subComps.length];
+		LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
+		Map<String, ModelComponent> componentsByName = submodelModifiable.getComponentsByName();
+		ModelComponent[] components = new ModelComponent[submodelParams.subComps.length];
 		for (int i = 0; i < components.length; i++)
 		{
 			LegacyInnerComponentParams cParams = submodelParams.subComps[i];
-			components[i] = IndirectGUIComponentCreator.createComponent(submodelModifiable, cParams.id, cParams.params, cParams.name);
+			components[i] = IndirectModelComponentCreator.createComponent(submodelModifiable, cParams.id, cParams.params, cParams.name);
 			components[i].moveTo(cParams.pos.x, cParams.pos.y);
 		}
 
 		for (int i = 0; i < submodelParams.innerWires.length; i++)
 		{
 			LegacyInnerWireParams innerWire = submodelParams.innerWires[i];
-			new GUIWire(submodelModifiable, innerWire.name, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
+			new ModelWire(submodelModifiable, innerWire.name, componentsByName.get(innerWire.pin1.compName).getPin(innerWire.pin1.pinName),
 					componentsByName.get(innerWire.pin2.compName).getPin(innerWire.pin2.pinName), innerWire.path);
 		}
 		comp.setSymbolRenderer(SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getSnippetSupplier(params.symbolRendererSnippetID)
@@ -206,52 +206,43 @@ public final class LegacySubmodelComponentSerializer
 	 * Subcomponents are serialized in the following way: <br>
 	 * If a subcomponent is a <code>SubmodelComponent</code> which has been deserialized, and it has an
 	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set (e.g. non-null; see
-	 * {@link #deserialize(ViewModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement) deserialize(...)}), this ID and
+	 * {@link #deserialize(LogicModelModifiable, LegacySubmodelComponentParams, String, String, JsonElement) deserialize(...)}), this ID and
 	 * the component's {@link DeserializedSubmodelComponent#paramsForSerializingOverride paramsForSerializingOverride} are written.<br>
 	 * If this case doesn't apply (e.g. if the subcomponent is not a <code>SubmodelComponent</code>; or it is a
 	 * <code>SubmodelComponent</code>, but hasn't been deserialized; or it has no
 	 * {@link DeserializedSubmodelComponent#idForSerializingOverride idForSerializingOverride} set), the ID defined by <code>idGetter</code>
-	 * and the params obtained by {@link GUIComponent#getParamsForSerializing() getParams()} are written.<br>
+	 * and the params obtained by {@link ModelComponent#getParamsForSerializing() getParams()} are written.<br>
 	 * CodeSnippets are serialized using the ID defined by <code>idGetter</code> and the params obtained by the respective
 	 * <coce>getParamsForSerializing</code> methods ({@link Renderer#getParamsForSerializing()}).
 	 * 
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	public static LegacySubmodelComponentParams serialize(SubmodelComponent comp, IdentifierGetter idGetter)
+	public static LegacySubmodelComponentParams serialize(SubmodelComponent comp, IdentifyParams idParams)
 	{
 		LegacySubmodelParameters submodelParams = new LegacySubmodelParameters();
 		submodelParams.innerScale = comp.getSubmodelScale();
 
-		Map<String, GUIComponent> components = new HashMap<>(comp.submodel.getComponentsByName());
+		Map<String, ModelComponent> components = new HashMap<>(comp.submodel.getComponentsByName());
 		components.remove(SubmodelComponent.SUBMODEL_INTERFACE_NAME);
 		LegacyInnerComponentParams[] componentParams = new LegacyInnerComponentParams[components.size()];
 		int i1 = 0;
-		for (GUIComponent innerComponent : components.values())
+		for (ModelComponent innerComponent : components.values())
 		{
 			LegacyInnerComponentParams innerComponentParams = new LegacyInnerComponentParams();
 			componentParams[i1] = innerComponentParams;
 			innerComponentParams.pos = new Point(innerComponent.getPosX(), innerComponent.getPosY());
-			DeserializedSubmodelComponent innerCompCasted;
-			if (innerComponent instanceof DeserializedSubmodelComponent
-					&& (innerCompCasted = (DeserializedSubmodelComponent) innerComponent).idForSerializingOverride != null)
-			{
-				innerComponentParams.id = innerCompCasted.idForSerializingOverride;
-				innerComponentParams.params = innerCompCasted.paramsForSerializingOverride;
-			} else
-			{
-				innerComponentParams.id = idGetter.componentIDs.apply(innerComponent);
-				innerComponentParams.params = innerComponent.getParamsForSerializingJSON(idGetter);
-			}
+			innerComponentParams.id = innerComponent.getIDForSerializing(idParams);
+			innerComponentParams.params = innerComponent.getParamsForSerializingJSON(idParams);
 			innerComponentParams.name = innerComponent.name;
 			i1++;
 		}
 		submodelParams.subComps = componentParams;
 
-		Collection<GUIWire> wires = comp.submodel.getWiresByName().values();
+		Collection<ModelWire> wires = comp.submodel.getWiresByName().values();
 		LegacyInnerWireParams wireParams[] = new LegacyInnerWireParams[wires.size()];
 		i1 = 0;
-		for (GUIWire innerWire : wires)
+		for (ModelWire innerWire : wires)
 		{
 			LegacyInnerWireParams innerWireParams = new LegacyInnerWireParams();
 			wireParams[i1] = innerWireParams;
@@ -291,22 +282,22 @@ public final class LegacySubmodelComponentSerializer
 		Renderer symbolRenderer = comp.getSymbolRenderer();
 		if (symbolRenderer != null)
 		{
-			params.symbolRendererSnippetID = idGetter.symbolRendererIDs.apply(symbolRenderer);
-			params.symbolRendererParams = symbolRenderer.getParamsForSerializingJSON(idGetter);
+			params.symbolRendererSnippetID = symbolRenderer.getIDForSerializing(idParams);
+			params.symbolRendererParams = symbolRenderer.getParamsForSerializingJSON(idParams);
 		}
 
 		Renderer outlineRenderer = comp.getOutlineRenderer();
 		if (outlineRenderer != null)
 		{
-			params.outlineRendererSnippetID = idGetter.outlineRendererIDs.apply(outlineRenderer);
-			params.outlineRendererParams = outlineRenderer.getParamsForSerializingJSON(idGetter);
+			params.outlineRendererSnippetID = outlineRenderer.getIDForSerializing(idParams);
+			params.outlineRendererParams = outlineRenderer.getParamsForSerializingJSON(idParams);
 		}
 
 		HighLevelStateHandler highLevelStateHandler = comp.getHighLevelStateHandler();
 		if (highLevelStateHandler != null)
 		{
-			params.highLevelStateHandlerSnippetID = idGetter.highLevelStateHandlerIDs.apply(highLevelStateHandler);
-			params.highLevelStateHandlerParams = highLevelStateHandler.getParamsForSerializingJSON(idGetter);
+			params.highLevelStateHandlerSnippetID = highLevelStateHandler.getIDForSerializing(idParams);
+			params.highLevelStateHandlerParams = highLevelStateHandler.getParamsForSerializingJSON(idParams);
 		}
 
 		return params;

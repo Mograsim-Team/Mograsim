@@ -1,0 +1,405 @@
+{
+  "width": 35.0,
+  "height": 50.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 45.0
+      },
+      "name": "C",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "D1",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "D2",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "D3",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 35.0
+      },
+      "name": "D4",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 5.0
+      },
+      "name": "Q1",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 15.0
+      },
+      "name": "Q2",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 25.0
+      },
+      "name": "Q3",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 35.0
+      },
+      "name": "Q4",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    }
+  ],
+  "innerScale": 0.4,
+  "submodel": {
+    "components": [
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 14.0,
+          "y": 46.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 14.0,
+          "y": 71.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 14.0,
+          "y": 96.5
+        },
+        "params": 1
+      },
+      {
+        "id": "dlatch",
+        "name": "dlatch#0",
+        "pos": {
+          "x": 30.0,
+          "y": 7.5
+        }
+      },
+      {
+        "id": "dlatch",
+        "name": "dlatch#1",
+        "pos": {
+          "x": 30.0,
+          "y": 32.5
+        }
+      },
+      {
+        "id": "dlatch",
+        "name": "dlatch#2",
+        "pos": {
+          "x": 30.0,
+          "y": 57.5
+        }
+      },
+      {
+        "id": "dlatch",
+        "name": "dlatch#3",
+        "pos": {
+          "x": 30.0,
+          "y": 82.5
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#0",
+        "path": [
+          {
+            "x": 15.0,
+            "y": 112.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dlatch#3",
+          "pinName": "E"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D4"
+        },
+        "pin2": {
+          "compName": "dlatch#3",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#0",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q1"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#1",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q2"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#2",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q3"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#3",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q4"
+        },
+        "name": "unnamedWire#14",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dlatch#2",
+          "pinName": "E"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dlatch#1",
+          "pinName": "E"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dlatch#0",
+          "pinName": "E"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 15.0,
+            "y": 22.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D1"
+        },
+        "pin2": {
+          "compName": "dlatch#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D2"
+        },
+        "pin2": {
+          "compName": "dlatch#1",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D3"
+        },
+        "pin2": {
+          "compName": "dlatch#2",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "dlatch4",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 17.5,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {},
+    "atomicHighLevelStates": {
+      "q1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dlatch#0",
+          "subStateID": "q"
+        }
+      },
+      "q2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dlatch#1",
+          "subStateID": "q"
+        }
+      },
+      "q": {
+        "id": "bitVectorSplitting",
+        "params": {
+          "vectorPartTargets": [
+            "q1",
+            "q2",
+            "q3",
+            "q4"
+          ],
+          "vectorPartLengthes": [
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "q3": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dlatch#2",
+          "subStateID": "q"
+        }
+      },
+      "q4": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dlatch#3",
+          "subStateID": "q"
+        }
+      }
+    }
+  },
+  "version": "0.1.5"
+}

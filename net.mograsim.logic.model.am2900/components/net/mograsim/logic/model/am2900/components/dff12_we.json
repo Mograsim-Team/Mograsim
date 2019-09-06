@@ -1,0 +1,1154 @@
+{
+  "width": 55.0,
+  "height": 40.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "C",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 35.0
+      },
+      "name": "D",
+      "logicWidth": 12,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 55.0,
+        "y": 20.0
+      },
+      "name": "Q",
+      "logicWidth": 12,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 20.0
+      },
+      "name": "WE",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    }
+  ],
+  "innerScale": 0.2,
+  "submodel": {
+    "components": [
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#10",
+        "pos": {
+          "x": 175.0,
+          "y": 170.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#11",
+        "pos": {
+          "x": 130.0,
+          "y": 160.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#12",
+        "pos": {
+          "x": 130.0,
+          "y": 130.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#13",
+        "pos": {
+          "x": 175.0,
+          "y": 80.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#14",
+        "pos": {
+          "x": 175.0,
+          "y": 110.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#15",
+        "pos": {
+          "x": 130.0,
+          "y": 100.0
+        }
+      },
+      {
+        "id": "mux1_12",
+        "name": "DeserializedSubmodelComponent#17",
+        "pos": {
+          "x": 15.0,
+          "y": 90.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#4",
+        "pos": {
+          "x": 175.0,
+          "y": 20.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#5",
+        "pos": {
+          "x": 175.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#6",
+        "pos": {
+          "x": 130.0,
+          "y": 10.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#7",
+        "pos": {
+          "x": 130.0,
+          "y": 40.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#8",
+        "pos": {
+          "x": 130.0,
+          "y": 70.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "DeserializedSubmodelComponent#9",
+        "pos": {
+          "x": 175.0,
+          "y": 140.0
+        }
+      },
+      {
+        "id": "Merger",
+        "name": "Merger#0",
+        "pos": {
+          "x": 250.0,
+          "y": 45.0
+        },
+        "params": 12
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#0",
+        "pos": {
+          "x": 70.0,
+          "y": 65.0
+        },
+        "params": 12
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#0",
+        "pos": {
+          "x": -35.0,
+          "y": -5.0
+        },
+        "params": "a"
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#11",
+        "pos": {
+          "x": 169.0,
+          "y": 54.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#12",
+        "pos": {
+          "x": 169.0,
+          "y": 144.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#13",
+        "pos": {
+          "x": 169.0,
+          "y": 24.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#14",
+        "pos": {
+          "x": 169.0,
+          "y": 84.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#15",
+        "pos": {
+          "x": 169.0,
+          "y": 114.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 124.0,
+          "y": 14.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "pos": {
+          "x": 124.0,
+          "y": 44.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#5",
+        "pos": {
+          "x": 124.0,
+          "y": 104.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#6",
+        "pos": {
+          "x": 124.0,
+          "y": 134.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#7",
+        "pos": {
+          "x": 124.0,
+          "y": 74.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#8",
+        "pos": {
+          "x": 264.0,
+          "y": 99.0
+        },
+        "params": 12
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "name": "unnamedWire#0",
+        "path": [
+          {
+            "x": 125.0,
+            "y": 5.0
+          },
+          {
+            "x": 170.0,
+            "y": 5.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#1",
+        "path": [
+          {
+            "x": 55.0,
+            "y": 15.0
+          },
+          {
+            "x": 55.0,
+            "y": 25.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#15",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O5"
+        },
+        "name": "unnamedWire#10",
+        "path": [
+          {
+            "x": 115.0,
+            "y": 115.0
+          },
+          {
+            "x": 115.0,
+            "y": 125.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#14",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#11",
+        "path": [
+          {
+            "x": 120.0,
+            "y": 135.0
+          },
+          {
+            "x": 120.0,
+            "y": 125.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#12",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#9",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#11",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#14",
+        "path": [
+          {
+            "x": 90.0,
+            "y": 175.0
+          },
+          {
+            "x": 90.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#10",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 85.0,
+            "y": 175.0
+          },
+          {
+            "x": 85.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "WE"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#17",
+          "pinName": "S"
+        },
+        "name": "unnamedWire#16",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 100.0
+          },
+          {
+            "x": 10.0,
+            "y": 95.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#17",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#17",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 175.0
+          },
+          {
+            "x": 5.0,
+            "y": 150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#17",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#21",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#22",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "name": "unnamedWire#24",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#15",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "name": "unnamedWire#28",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#12",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#17",
+          "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 110.0
+          },
+          {
+            "x": 10.0,
+            "y": 195.0
+          },
+          {
+            "x": 265.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#11",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#30",
+        "path": [
+          {
+            "x": 125.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#10",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "name": "unnamedWire#31",
+        "path": [
+          {
+            "x": 170.0,
+            "y": 175.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#9",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#32",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "name": "unnamedWire#33",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#14",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "name": "unnamedWire#34",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#15",
+          "pinName": ""
+        },
+        "name": "unnamedWire#35",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#13",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#36",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "name": "unnamedWire#37",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#38",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "name": "unnamedWire#39",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O11"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 85.0,
+            "y": 65.0
+          },
+          {
+            "x": 85.0,
+            "y": 25.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#13",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#40",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O10"
+        },
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 90.0,
+            "y": 35.0
+          },
+          {
+            "x": 90.0,
+            "y": 75.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I11"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#6",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#53",
+        "path": [
+          {
+            "x": 245.0,
+            "y": 45.0
+          },
+          {
+            "x": 245.0,
+            "y": 15.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#4",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I10"
+        },
+        "name": "unnamedWire#54",
+        "path": [
+          {
+            "x": 235.0,
+            "y": 25.0
+          },
+          {
+            "x": 235.0,
+            "y": 55.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I9"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#55",
+        "path": [
+          {
+            "x": 230.0,
+            "y": 65.0
+          },
+          {
+            "x": 230.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I8"
+        },
+        "name": "unnamedWire#56",
+        "path": [
+          {
+            "x": 225.0,
+            "y": 55.0
+          },
+          {
+            "x": 225.0,
+            "y": 75.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I7"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#57",
+        "path": [
+          {
+            "x": 220.0,
+            "y": 85.0
+          },
+          {
+            "x": 220.0,
+            "y": 75.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#13",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I6"
+        },
+        "name": "unnamedWire#58",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 85.0
+          },
+          {
+            "x": 215.0,
+            "y": 95.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I5"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#15",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#59",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#7",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O9"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 95.0,
+            "y": 55.0
+          },
+          {
+            "x": 95.0,
+            "y": 85.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I4"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#14",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#60",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I3"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#12",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#61",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 125.0
+          },
+          {
+            "x": 215.0,
+            "y": 135.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#9",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I2"
+        },
+        "name": "unnamedWire#62",
+        "path": [
+          {
+            "x": 220.0,
+            "y": 145.0
+          },
+          {
+            "x": 220.0,
+            "y": 135.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I1"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#11",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#63",
+        "path": [
+          {
+            "x": 225.0,
+            "y": 145.0
+          },
+          {
+            "x": 225.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#10",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#64",
+        "path": [
+          {
+            "x": 230.0,
+            "y": 175.0
+          },
+          {
+            "x": 230.0,
+            "y": 155.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "O"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#65",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#66",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O8"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#5",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 100.0,
+            "y": 95.0
+          },
+          {
+            "x": 100.0,
+            "y": 65.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "DeserializedSubmodelComponent#8",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O7"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 105.0,
+            "y": 85.0
+          },
+          {
+            "x": 105.0,
+            "y": 105.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O6"
+        },
+        "pin2": {
+          "compName": "DeserializedSubmodelComponent#13",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 110.0,
+            "y": 115.0
+          },
+          {
+            "x": 110.0,
+            "y": 95.0
+          }
+        ]
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "D flip flop\n12 bit",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 30.0,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}

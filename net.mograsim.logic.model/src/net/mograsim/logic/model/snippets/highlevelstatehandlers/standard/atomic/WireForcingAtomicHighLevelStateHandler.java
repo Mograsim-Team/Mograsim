@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.model.wires.ModelWire;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
@@ -19,8 +19,8 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 {
 	private SubmodelComponent component;
 	private int logicWidth;
-	private final List<GUIWire> wiresToForce;
-	private final List<GUIWire> wiresToForceInverted;
+	private final List<ModelWire> wiresToForce;
+	private final List<ModelWire> wiresToForceInverted;
 
 	public WireForcingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
 	{
@@ -34,27 +34,27 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 		this.wiresToForceInverted = new ArrayList<>();
 		if (params != null)
 		{
-			Map<String, GUIWire> wiresByName = component.submodel.getWiresByName();
-			setWiresToForce(params.wiresToForce.stream().map((Function<String, GUIWire>) wiresByName::get).collect(Collectors.toList()),
-					params.wiresToForceInverted.stream().map((Function<String, GUIWire>) wiresByName::get).collect(Collectors.toList()));
+			Map<String, ModelWire> wiresByName = component.submodel.getWiresByName();
+			setWiresToForce(params.wiresToForce.stream().map((Function<String, ModelWire>) wiresByName::get).collect(Collectors.toList()),
+					params.wiresToForceInverted.stream().map((Function<String, ModelWire>) wiresByName::get).collect(Collectors.toList()));
 		}
 	}
 
-	public void set(List<GUIWire> wiresToForce, List<GUIWire> wiresToForceInverted)
+	public void set(List<ModelWire> wiresToForce, List<ModelWire> wiresToForceInverted)
 	{
 		setWiresToForce(wiresToForce, wiresToForceInverted);
 	}
 
-	public void setWiresToForce(List<GUIWire> wiresToForce, List<GUIWire> wiresToForceInverted)
+	public void setWiresToForce(List<ModelWire> wiresToForce, List<ModelWire> wiresToForceInverted)
 	{
 		clearWiresToForce();
-		for (GUIWire wire : wiresToForce)
+		for (ModelWire wire : wiresToForce)
 			addWireToForce(wire, false);
-		for (GUIWire wire : wiresToForceInverted)
+		for (ModelWire wire : wiresToForceInverted)
 			addWireToForce(wire, true);
 	}
 
-	public void addWireToForce(GUIWire wire, boolean inverted)
+	public void addWireToForce(ModelWire wire, boolean inverted)
 	{
 		if (component.submodel.getWiresByName().get(wire.name) != wire)
 			throw new IllegalArgumentException("Can only force wires belonging to the parent component of this handler");
@@ -79,12 +79,12 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 	public Object getHighLevelState()
 	{
 		BitVector result = BitVector.of(Bit.ZERO, logicWidth);
-		for (GUIWire wire : wiresToForceInverted)
-			if (wire.hasLogicModelBinding())
+		for (ModelWire wire : wiresToForceInverted)
+			if (wire.hasCoreModelBinding())
 				result = result.or(wire.getWireValues());
 		result = result.not();
-		for (GUIWire wire : wiresToForce)
-			if (wire.hasLogicModelBinding())
+		for (ModelWire wire : wiresToForce)
+			if (wire.hasCoreModelBinding())
 				result = result.and(wire.getWireValues());
 		return result;
 	}
@@ -97,17 +97,23 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 			vector = BitVector.of((Bit) newState);
 		else
 			vector = (BitVector) newState;
-		for (GUIWire wire : wiresToForce)
-			if (wire.hasLogicModelBinding())
+		for (ModelWire wire : wiresToForce)
+			if (wire.hasCoreModelBinding())
 				wire.forceWireValues(vector);
 		vector = vector.not();
-		for (GUIWire wire : wiresToForceInverted)
-			if (wire.hasLogicModelBinding())
+		for (ModelWire wire : wiresToForceInverted)
+			if (wire.hasCoreModelBinding())
 				wire.forceWireValues(vector);
 	}
 
 	@Override
-	public WireForcingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "wireForcing";
+	}
+
+	@Override
+	public WireForcingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		WireForcingAtomicHighLevelStateHandlerParams params = new WireForcingAtomicHighLevelStateHandlerParams();
 		params.wiresToForce = wiresToForce.stream().map(w -> w.name).collect(Collectors.toList());

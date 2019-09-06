@@ -1,0 +1,503 @@
+{
+  "width": 35.0,
+  "height": 90.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "I0_1",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "I0_2",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 35.0
+      },
+      "name": "I0_3",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 45.0
+      },
+      "name": "I0_4",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 55.0
+      },
+      "name": "I1_1",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 65.0
+      },
+      "name": "I1_2",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 75.0
+      },
+      "name": "I1_3",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 85.0
+      },
+      "name": "I1_4",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "S0",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 5.0
+      },
+      "name": "Y1",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 15.0
+      },
+      "name": "Y2",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 25.0
+      },
+      "name": "Y3",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 35.0,
+        "y": 35.0
+      },
+      "name": "Y4",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    }
+  ],
+  "innerScale": 0.4,
+  "submodel": {
+    "components": [
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 24.0,
+          "y": 11.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 24.0,
+          "y": 46.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 24.0,
+          "y": 81.5
+        },
+        "params": 1
+      },
+      {
+        "id": "mux1",
+        "name": "mux1#0",
+        "pos": {
+          "x": 30.0,
+          "y": 7.5
+        }
+      },
+      {
+        "id": "mux1",
+        "name": "mux1#1",
+        "pos": {
+          "x": 30.0,
+          "y": 42.5
+        }
+      },
+      {
+        "id": "mux1",
+        "name": "mux1#2",
+        "pos": {
+          "x": 30.0,
+          "y": 77.5
+        }
+      },
+      {
+        "id": "mux1",
+        "name": "mux1#3",
+        "pos": {
+          "x": 30.0,
+          "y": 112.5
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "S0"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "mux1#0",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "mux1#2",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I0_3"
+        },
+        "pin2": {
+          "compName": "mux1#2",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#12",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 87.5
+          },
+          {
+            "x": 5.0,
+            "y": 92.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I1_3"
+        },
+        "pin2": {
+          "compName": "mux1#2",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#13",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 187.5
+          },
+          {
+            "x": 20.0,
+            "y": 102.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "mux1#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y3"
+        },
+        "name": "unnamedWire#14"
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "mux1#3",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 117.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I0_4"
+        },
+        "pin2": {
+          "compName": "mux1#3",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#16",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 112.5
+          },
+          {
+            "x": 5.0,
+            "y": 127.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I1_4"
+        },
+        "pin2": {
+          "compName": "mux1#3",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#17",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 212.5
+          },
+          {
+            "x": 25.0,
+            "y": 137.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "mux1#3",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y4"
+        },
+        "name": "unnamedWire#18"
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I0_1"
+        },
+        "pin2": {
+          "compName": "mux1#0",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 37.5
+          },
+          {
+            "x": 5.0,
+            "y": 22.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I1_1"
+        },
+        "pin2": {
+          "compName": "mux1#0",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 137.5
+          },
+          {
+            "x": 10.0,
+            "y": 32.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "mux1#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y1"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "mux1#1",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I0_2"
+        },
+        "pin2": {
+          "compName": "mux1#1",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 62.5
+          },
+          {
+            "x": 5.0,
+            "y": 57.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I1_2"
+        },
+        "pin2": {
+          "compName": "mux1#1",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 15.0,
+            "y": 162.5
+          },
+          {
+            "x": 15.0,
+            "y": 67.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "mux1#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y2"
+        },
+        "name": "unnamedWire#9"
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "mux1_4",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 17.5,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}

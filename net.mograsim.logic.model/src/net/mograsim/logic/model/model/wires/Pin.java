@@ -1,29 +1,36 @@
 package net.mograsim.logic.model.model.wires;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.ModelComponent;
 
 /**
- * A connection interface between a GUIComponent and the rest of a ViewModel. Pins usually are created by {@link GUIComponent}s themselves.
- * <br>
- * A pin has a name identifying it. Pin names are unique for a {@link GUIComponent}: Every pin of a {@link GUIComponent} has a different
- * name, but different {@link GUIComponent}s can have pins with the same name.
+ * A connection interface between a ModelComponent and the rest of a LogicModel. Pins usually are created by {@link ModelComponent}s
+ * themselves. <br>
+ * A pin has a name identifying it. Pin names are unique for a {@link ModelComponent}: Every pin of a {@link ModelComponent} has a different
+ * name, but different {@link ModelComponent}s can have pins with the same name.
  * 
  * @author Daniel Kirschten
  */
 public class Pin
 {
 	/**
-	 * The {@link GUIComponent} this pin belongs to.
+	 * The {@link LogicModel} the component this pin belongs to is a part of.
 	 */
-	public final GUIComponent component;
+	private final LogicModelModifiable model;
 	/**
-	 * The name identifying this pin. Is unique for a {@link GUIComponent}.
+	 * The {@link ModelComponent} this pin belongs to.
+	 */
+	public final ModelComponent component;
+	/**
+	 * The name identifying this pin. Is unique for a {@link ModelComponent}.
 	 */
 	public final String name;
 	/**
@@ -51,12 +58,14 @@ public class Pin
 	// creation and destruction
 
 	/**
-	 * Creates a new pin. Usually it is not needed to call this constructor manually, as {@link GUIComponent}s create their pins themselves.
+	 * Creates a new pin. Usually it is not needed to call this constructor manually, as {@link ModelComponent}s create their pins
+	 * themselves.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public Pin(GUIComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
+	public Pin(LogicModelModifiable model, ModelComponent component, String name, int logicWidth, PinUsage usage, double relX, double relY)
 	{
+		this.model = model;
 		this.component = component;
 		this.name = name;
 		this.logicWidth = logicWidth;
@@ -68,6 +77,19 @@ public class Pin
 		this.redrawListeners = new ArrayList<>();
 
 		component.addComponentMovedListener(c -> callPinMovedListeners());
+	}
+
+	/**
+	 * Destroys this pin by removing all wires connected to it from the model the component is a part of.<br>
+	 * Don't call this method from application code as it is automatically called in {@link ModelComponent#removePin(String)}.
+	 */
+	public void destroyed()
+	{
+		Set<ModelWire> connectedWires = new HashSet<>();
+		for (ModelWire w : model.getWiresByName().values())
+			if (w.getPin1() == this || w.getPin2() == this)
+				connectedWires.add(w);
+		connectedWires.forEach(model::destroyWire);
 	}
 
 	// "graphical" operations

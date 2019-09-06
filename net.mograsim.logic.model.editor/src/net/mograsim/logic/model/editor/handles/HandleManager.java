@@ -16,10 +16,10 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.states.EditorState;
 import net.mograsim.logic.model.editor.util.PrioritySet;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 
@@ -27,11 +27,11 @@ public class HandleManager
 {
 	private final Map<Pin, StaticPinHandle> handlePerPin;
 	private final Map<Pin, InterfacePinHandle> handlePerInterfacePin;
-	private final Map<GUIWire, List<WirePointHandle>> pointHandlesPerWire;
-	private final Map<GUIWire, WireHandle> handlePerWire;
+	private final Map<ModelWire, List<WirePointHandle>> pointHandlesPerWire;
+	private final Map<ModelWire, WireHandle> handlePerWire;
 	private final Set<Handle> handles;
 	private final Set<WirePointHandle> wirePointHandles;
-	private final Map<GUIComponent, ComponentHandle> handlePerComp;
+	private final Map<ModelComponent, ComponentHandle> handlePerComp;
 
 	private final Collection<Consumer<Handle>> handleAddedListeners;
 	private final Collection<Consumer<Handle>> handleRemovedListeners;
@@ -52,7 +52,7 @@ public class HandleManager
 		handleAddedListeners = new ArrayList<>();
 		handleRemovedListeners = new ArrayList<>();
 
-		ViewModelModifiable model = editor.getSubmodel();
+		LogicModelModifiable model = editor.getSubmodel();
 
 		model.addComponentAddedListener(c -> registerComponent(c));
 
@@ -83,10 +83,10 @@ public class HandleManager
 			System.err.println("Warning! HandleManager was already initialized.");
 		else
 		{
-			ViewModelModifiable model = editor.getSubmodel();
-			Map<String, GUIComponent> compsByName = model.getComponentsByName();
-			Set<GUIComponent> comps = new HashSet<>(compsByName.values());
-			GUIComponent interfaceComp = compsByName.get(SubmodelComponent.SUBMODEL_INTERFACE_NAME);
+			LogicModelModifiable model = editor.getSubmodel();
+			Map<String, ModelComponent> compsByName = model.getComponentsByName();
+			Set<ModelComponent> comps = new HashSet<>(compsByName.values());
+			ModelComponent interfaceComp = compsByName.get(SubmodelComponent.SUBMODEL_INTERFACE_NAME);
 			comps.remove(interfaceComp);
 			registerInterfaceComponent(interfaceComp);
 			comps.forEach(c -> registerComponent(c));
@@ -96,14 +96,14 @@ public class HandleManager
 		}
 	}
 
-	private void registerInterfaceComponent(GUIComponent c)
+	private void registerInterfaceComponent(ModelComponent c)
 	{
 		c.getPins().values().forEach(p -> addInterfacePinHandle(p));
 		c.addPinAddedListener(p -> addInterfacePinHandle(p));
 		c.addPinRemovedListener(p -> removeInterfacePinHandle(p));
 	}
 
-	private void registerComponent(GUIComponent c)
+	private void registerComponent(ModelComponent c)
 	{
 		addComponentHandle(c);
 
@@ -113,7 +113,7 @@ public class HandleManager
 		c.addPinRemovedListener(p -> removePinHandle(p));
 	}
 
-	private void registerWire(GUIWire wire)
+	private void registerWire(ModelWire wire)
 	{
 		Point[] path = wire.getPath();
 		AtomicInteger oldLength = new AtomicInteger(path == null ? 0 : path.length);
@@ -152,14 +152,14 @@ public class HandleManager
 	// -- Adding/Removing handles -- ///
 	///////////////////////////////////
 
-	private void addComponentHandle(GUIComponent c)
+	private void addComponentHandle(ModelComponent c)
 	{
 		ComponentHandle h = new ComponentHandle(editor.getSubmodel(), c);
 		handlePerComp.put(c, h);
 		addHandle(h);
 	}
 
-	private void removeComponentHandle(GUIComponent c)
+	private void removeComponentHandle(ModelComponent c)
 	{
 		ComponentHandle h = handlePerComp.get(c);
 		handlePerComp.remove(c);
@@ -197,7 +197,7 @@ public class HandleManager
 		removeHandle(h);
 	}
 
-	private void addWirePointHandle(GUIWire w)
+	private void addWirePointHandle(ModelWire w)
 	{
 		List<WirePointHandle> wireHandles = pointHandlesPerWire.get(w);
 		WirePointHandle h;
@@ -214,7 +214,7 @@ public class HandleManager
 		addHandle(h);
 	}
 
-	void destroyWirePointHandle(GUIWire owner, WirePointHandle h)
+	void destroyWirePointHandle(ModelWire owner, WirePointHandle h)
 	{
 		if (pointHandlesPerWire.containsKey(owner))
 		{
@@ -226,7 +226,7 @@ public class HandleManager
 		}
 	}
 
-	private void removeWirePointHandles(GUIWire owner)
+	private void removeWirePointHandles(ModelWire owner)
 	{
 		if (!pointHandlesPerWire.containsKey(owner))
 			return;
@@ -238,14 +238,14 @@ public class HandleManager
 		pointHandlesPerWire.remove(owner);
 	}
 
-	private void addWireHandle(GUIWire w)
+	private void addWireHandle(ModelWire w)
 	{
 		WireHandle h = new WireHandle(editor.getSubmodel(), w);
 		handlePerWire.put(w, h);
 		addHandle(h);
 	}
 
-	private void removeWireHandle(GUIWire w)
+	private void removeWireHandle(ModelWire w)
 	{
 		WireHandle h = handlePerWire.get(w);
 		handlePerWire.remove(w);
@@ -270,12 +270,12 @@ public class HandleManager
 		return handlePerPin.get(parent);
 	}
 
-	public ComponentHandle getHandle(GUIComponent parent)
+	public ComponentHandle getHandle(ModelComponent parent)
 	{
 		return handlePerComp.get(parent);
 	}
 
-	public WireHandle getHandle(GUIWire parent)
+	public WireHandle getHandle(ModelWire parent)
 	{
 		return handlePerWire.get(parent);
 	}
@@ -288,7 +288,7 @@ public class HandleManager
 	/**
 	 * @return A Collection of the registered {@link WirePointHandle}s of the specified wire
 	 */
-	public Collection<WirePointHandle> getWirePointHandles(GUIWire parent)
+	public Collection<WirePointHandle> getWirePointHandles(ModelWire parent)
 	{
 		return pointHandlesPerWire.get(parent).stream().collect(Collectors.toSet());
 	}

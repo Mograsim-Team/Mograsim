@@ -5,8 +5,8 @@ import org.eclipse.swt.SWT;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.model.ViewModel;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.LogicModel;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.preferences.Preferences;
 
@@ -14,9 +14,9 @@ public class LogicUIRenderer
 {
 	private static final boolean DRAW_PINS = false;
 
-	private final ViewModel model;
+	private final LogicModel model;
 
-	public LogicUIRenderer(ViewModel model)
+	public LogicUIRenderer(LogicModel model)
 	{
 		this.model = model;
 	}
@@ -36,7 +36,7 @@ public class LogicUIRenderer
 		model.getComponentsByName().values().forEach(c -> renderComponent(gc, c, visibleRegion));
 	}
 
-	private static void renderComponent(GeneralGC gc, GUIComponent component, Rectangle visibleRegion)
+	private static void renderComponent(GeneralGC gc, ModelComponent component, Rectangle visibleRegion)
 	{
 		Rectangle bounds = component.getBounds();
 		double lw = gc.getLineWidth();

@@ -7,7 +7,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
@@ -142,7 +142,13 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 	}
 
 	@Override
-	public StandardHighLevelStateHandlerParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "standard";
+	}
+
+	@Override
+	public StandardHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		StandardHighLevelStateHandlerParams params = new StandardHighLevelStateHandlerParams();
 		params.subcomponentHighLevelStates = new HashMap<>();
@@ -152,8 +158,8 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 			String stateID = e.getKey();
 			SubcomponentHighLevelStateHandler handler = e.getValue();
 			SubcomponentHighLevelStateHandlerParams handlerParams = new SubcomponentHighLevelStateHandlerParams();
-			handlerParams.id = idGetter.subcomponentHighLevelStateHandlerIDs.apply(handler);
-			handlerParams.params = handler.getParamsForSerializingJSON(idGetter);
+			handlerParams.id = handler.getIDForSerializing(idParams);
+			handlerParams.params = handler.getParamsForSerializingJSON(idParams);
 			params.subcomponentHighLevelStates.put(stateID, handlerParams);
 		}
 		for (Entry<String, AtomicHighLevelStateHandler> e : atomicHighLevelStateHandlers.entrySet())
@@ -161,8 +167,8 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 			String stateID = e.getKey();
 			AtomicHighLevelStateHandler handler = e.getValue();
 			AtomicHighLevelStateHandlerParams handlerParams = new AtomicHighLevelStateHandlerParams();
-			handlerParams.id = idGetter.atomicHighLevelStateHandlerIDs.apply(handler);
-			handlerParams.params = handler.getParamsForSerializingJSON(idGetter);
+			handlerParams.id = handler.getIDForSerializing(idParams);
+			handlerParams.params = handler.getParamsForSerializingJSON(idParams);
 			params.atomicHighLevelStates.put(stateID, handlerParams);
 		}
 		return params;

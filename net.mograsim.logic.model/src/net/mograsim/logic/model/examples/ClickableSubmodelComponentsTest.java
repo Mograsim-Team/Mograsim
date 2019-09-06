@@ -1,11 +1,11 @@
 package net.mograsim.logic.model.examples;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
-import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
+import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SimpleRectangularSubmodelComponent;
-import net.mograsim.logic.model.model.wires.GUIWire;
+import net.mograsim.logic.model.model.wires.ModelWire;
 
 public class ClickableSubmodelComponentsTest
 {
@@ -14,22 +14,22 @@ public class ClickableSubmodelComponentsTest
 		SimpleLogicUIStandalone.executeVisualisation(ClickableSubmodelComponentsTest::createExample);
 	}
 
-	public static void createExample(ViewModelModifiable model)
+	public static void createExample(LogicModelModifiable model)
 	{
-		@SuppressWarnings("unused") // GUIWire
+		@SuppressWarnings("unused") // Wire
 		SimpleRectangularSubmodelComponent comp = new SimpleRectangularSubmodelComponent(model, 1, "")
 		{
 			{
 				setSubmodelScale(.4);
 				setOutputPins("O0");
 
-				GUIManualSwitch sw = new GUIManualSwitch(submodelModifiable, 1);
-				GUIBitDisplay bd = new GUIBitDisplay(submodelModifiable, 1);
+				ModelManualSwitch sw = new ModelManualSwitch(submodelModifiable, 1);
+				ModelBitDisplay bd = new ModelBitDisplay(submodelModifiable, 1);
 
 				sw.moveTo(10, 5);
 				bd.moveTo(50, 5);
 
-				new GUIWire(submodelModifiable, sw.getOutputPin(), bd.getInputPin());
+				new ModelWire(submodelModifiable, sw.getOutputPin(), bd.getInputPin());
 
 			}
 		};

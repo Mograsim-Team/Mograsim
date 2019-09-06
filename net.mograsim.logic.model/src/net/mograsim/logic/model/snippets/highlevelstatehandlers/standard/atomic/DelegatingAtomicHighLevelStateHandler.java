@@ -1,8 +1,8 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic;
 
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifierGetter;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
@@ -10,7 +10,7 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.Standar
 public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelStateHandler
 {
 	private final SubmodelComponent parentComponent;
-	private GUIComponent delegateTarget;
+	private ModelComponent delegateTarget;
 	private String subStateID;
 
 	public DelegatingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
@@ -32,13 +32,13 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 		}
 	}
 
-	public void set(GUIComponent delegateTarget, String subStateID)
+	public void set(ModelComponent delegateTarget, String subStateID)
 	{
 		setDelegateTarget(delegateTarget);
 		setSubStateID(subStateID);
 	}
 
-	public void setDelegateTarget(GUIComponent delegateTarget)
+	public void setDelegateTarget(ModelComponent delegateTarget)
 	{
 		if (delegateTarget == null)
 			this.delegateTarget = parentComponent;
@@ -66,7 +66,13 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 	}
 
 	@Override
-	public DelegatingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifierGetter idGetter)
+	public String getIDForSerializing(IdentifyParams idParams)
+	{
+		return "delegating";
+	}
+
+	@Override
+	public DelegatingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		DelegatingAtomicHighLevelStateHandlerParams params = new DelegatingAtomicHighLevelStateHandlerParams();
 		params.delegateTarget = delegateTarget.name;

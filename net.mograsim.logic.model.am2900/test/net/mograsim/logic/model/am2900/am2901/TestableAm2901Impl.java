@@ -1,29 +1,29 @@
 package net.mograsim.logic.model.am2900.am2901;
 
-import net.mograsim.logic.core.components.BitDisplay;
-import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.components.CoreBitDisplay;
+import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.logic.model.am2900.util.SwitchWithDisplay;
 import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper;
-import net.mograsim.logic.model.am2900.util.TestUtil;
 import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper.DebugState;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.am2900.util.TestUtil;
+import net.mograsim.logic.model.model.components.ModelComponent;
 
 public class TestableAm2901Impl implements TestableAm2901
 {
-	private GUIComponent am2901;
-	private ManualSwitch I8, I7, I6, I5, I4, I3, I2, I1, I0;
-	private ManualSwitch C;
-	private ManualSwitch Cn;
-	private ManualSwitch D1, D2, D3, D4;
-	private ManualSwitch A0, A1, A2, A3;
-	private ManualSwitch B0, B1, B2, B3;
-	private ManualSwitch IRAMn, IRAMn_3, IQn, IQn_3;
-	private BitDisplay Y1, Y2, Y3, Y4;
-	private BitDisplay F_0, Cn_4, OVR, F3;
-	private BitDisplay ORAMn, ORAMn_3, OQn, OQn_3;
+	private ModelComponent am2901;
+	private CoreManualSwitch I8, I7, I6, I5, I4, I3, I2, I1, I0;
+	private CoreManualSwitch C;
+	private CoreManualSwitch Cn;
+	private CoreManualSwitch D1, D2, D3, D4;
+	private CoreManualSwitch A0, A1, A2, A3;
+	private CoreManualSwitch B0, B1, B2, B3;
+	private CoreBitDisplay Y1, Y2, Y3, Y4;
+	private CoreBitDisplay F_0, Cn_4, OVR, F3;
+	private SwitchWithDisplay RAMn, RAMn_3, Qn, Qn_3;
 
-	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "GUIAm2901");
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "Am2901");
 
 	@Override
 	public Result run()
@@ -109,25 +109,25 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setQ_0(String val_1_bit)
 	{
-		IQn.setState(Bit.parse(val_1_bit));
+		Qn.setState(Bit.parse(val_1_bit).toVector());
 	}
 
 	@Override
 	public void setQ_3(String val_1_bit)
 	{
-		IQn_3.setState(Bit.parse(val_1_bit));
+		Qn_3.setState(Bit.parse(val_1_bit).toVector());
 	}
 
 	@Override
 	public void setRAM_0(String val_1_bit)
 	{
-		IRAMn.setState(Bit.parse(val_1_bit));
+		RAMn.setState(Bit.parse(val_1_bit).toVector());
 	}
 
 	@Override
 	public void setRAM_3(String val_1_bit)
 	{
-		IRAMn_3.setState(Bit.parse(val_1_bit));
+		RAMn_3.setState(Bit.parse(val_1_bit).toVector());
 	}
 
 	@Override
@@ -139,25 +139,25 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public String getQ_0()
 	{
-		return OQn.getDisplayedValue().toString();
+		return Qn.getDisplayedValue().toString();
 	}
 
 	@Override
 	public String getQ_3()
 	{
-		return OQn_3.getDisplayedValue().toString();
+		return Qn_3.getDisplayedValue().toString();
 	}
 
 	@Override
 	public String getRAM_0()
 	{
-		return ORAMn.getDisplayedValue().toString();
+		return RAMn.getDisplayedValue().toString();
 	}
 
 	@Override
 	public String getRAM_3()
 	{
-		return ORAMn_3.getDisplayedValue().toString();
+		return RAMn_3.getDisplayedValue().toString();
 	}
 
 	@Override

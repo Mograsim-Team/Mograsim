@@ -1,32 +1,32 @@
 package net.mograsim.logic.model.am2900.am2904;
 
-import net.mograsim.logic.core.components.BitDisplay;
-import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.components.CoreBitDisplay;
+import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.am2900.util.SwitchWithDisplay;
 import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper;
 import net.mograsim.logic.model.am2900.util.TestEnvironmentHelper.DebugState;
-import net.mograsim.logic.model.model.components.GUIComponent;
+import net.mograsim.logic.model.model.components.ModelComponent;
 
 public class TestableAm2904Impl implements TestableAm2904
 {
 
-	private GUIComponent am2904;
-	private ManualSwitch I;
-	private ManualSwitch C;
-	private ManualSwitch Cx;
-	private ManualSwitch IC, IN, IOVR, IZ;
-	private ManualSwitch _CEM, _CEmu;
-	private ManualSwitch _EC, _EN, _EOVR, _EZ;
-	private ManualSwitch _OECT, _OEY;
-	private ManualSwitch _SE;
-	private BitDisplay C0;
-	private BitDisplay CT;
+	private ModelComponent am2904;
+	private CoreManualSwitch I;
+	private CoreManualSwitch C;
+	private CoreManualSwitch Cx;
+	private CoreManualSwitch IC, IN, IOVR, IZ;
+	private CoreManualSwitch _CEM, _CEmu;
+	private CoreManualSwitch _EC, _EN, _EOVR, _EZ;
+	private CoreManualSwitch _OECT, _OEY;
+	private CoreManualSwitch _SE;
+	private CoreBitDisplay C0;
+	private CoreBitDisplay CT;
 	private SwitchWithDisplay SIO0, SIOn, QIO0, QIOn;
 	private SwitchWithDisplay YC, YN, YOVR, YZ;
 
-	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "GUIAm2904");
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "Am2904");
 
 	@Override
 	public void setup()

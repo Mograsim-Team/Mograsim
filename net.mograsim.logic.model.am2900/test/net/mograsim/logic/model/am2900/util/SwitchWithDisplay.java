@@ -1,41 +1,41 @@
 package net.mograsim.logic.model.am2900.util;
 
-import net.mograsim.logic.core.components.BitDisplay;
-import net.mograsim.logic.core.components.ManualSwitch;
+import net.mograsim.logic.core.components.CoreBitDisplay;
+import net.mograsim.logic.core.components.CoreManualSwitch;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.model.model.ViewModelModifiable;
-import net.mograsim.logic.model.model.components.atomic.GUIBitDisplay;
-import net.mograsim.logic.model.model.components.atomic.GUIManualSwitch;
+import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
+import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.wires.Pin;
-import net.mograsim.logic.model.model.wires.WireCrossPoint;
+import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.util.ModellingTool;
 
 public class SwitchWithDisplay
 {
 	private final Pin pin;
-	private final GUIBitDisplay guiBitDisplay;
-	private final GUIManualSwitch guiManualSwitch;
+	private final ModelBitDisplay modelBitDisplay;
+	private final ModelManualSwitch modelManualSwitch;
 
-	public SwitchWithDisplay(ViewModelModifiable model, Pin target)
+	public SwitchWithDisplay(LogicModelModifiable model, Pin target)
 	{
 		pin = target;
-		guiBitDisplay = new GUIBitDisplay(model, pin.logicWidth);
-		guiManualSwitch = new GUIManualSwitch(model, pin.logicWidth);
+		modelBitDisplay = new ModelBitDisplay(model, pin.logicWidth);
+		modelManualSwitch = new ModelManualSwitch(model, pin.logicWidth);
 
 		ModellingTool tool = ModellingTool.createFor(model);
-		WireCrossPoint crossPoint = new WireCrossPoint(model, pin.logicWidth);
-		tool.connect(guiBitDisplay.getInputPin(), crossPoint);
-		tool.connect(guiManualSwitch.getOutputPin(), crossPoint);
+		ModelWireCrossPoint crossPoint = new ModelWireCrossPoint(model, pin.logicWidth);
+		tool.connect(modelBitDisplay.getInputPin(), crossPoint);
+		tool.connect(modelManualSwitch.getOutputPin(), crossPoint);
 	}
 
 	public final BitVector getDisplayedValue()
 	{
-		return guiBitDisplay.getBitDisplay().getDisplayedValue();
+		return modelBitDisplay.getBitDisplay().getDisplayedValue();
 	}
 
 	public final void setState(BitVector bits)
 	{
-		guiManualSwitch.getManualSwitch().setState(bits);
+		modelManualSwitch.getManualSwitch().setState(bits);
 	}
 
 	public final Pin getPin()
@@ -43,23 +43,23 @@ public class SwitchWithDisplay
 		return pin;
 	}
 
-	public final BitDisplay getBitDisplay()
+	public final CoreBitDisplay getBitDisplay()
 	{
-		return guiBitDisplay.getBitDisplay();
+		return modelBitDisplay.getBitDisplay();
 	}
 
-	public final ManualSwitch getManualSwitch()
+	public final CoreManualSwitch getManualSwitch()
 	{
-		return guiManualSwitch.getManualSwitch();
+		return modelManualSwitch.getManualSwitch();
 	}
 
-	final GUIBitDisplay getGuiBitDisplay()
+	final ModelBitDisplay getModelBitDisplay()
 	{
-		return guiBitDisplay;
+		return modelBitDisplay;
 	}
 
-	final GUIManualSwitch getGuiManualSwitch()
+	final ModelManualSwitch getModelManualSwitch()
 	{
-		return guiManualSwitch;
+		return modelManualSwitch;
 	}
 }

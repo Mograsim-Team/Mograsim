@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 import com.google.gson.JsonElement;
 
-import net.mograsim.logic.model.model.ViewModelModifiable;
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
@@ -32,23 +32,23 @@ public final class SubmodelComponentSerializer
 	// convenience methods
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, SubmodelComponentParams)}, but first reading the {@link SubmodelComponentParams} from
+	 * Like {@link #deserialize(LogicModelModifiable, SubmodelComponentParams)}, but first reading the {@link SubmodelComponentParams} from
 	 * the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath) throws IOException
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, SubmodelComponentParams.class));
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, SubmodelComponentParams, String, JsonElement)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, SubmodelComponentParams, String, JsonElement)}, but first reading the
 	 * {@link SubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String idForSerializingOverride,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, SubmodelComponentParams.class), idForSerializingOverride,
@@ -56,23 +56,23 @@ public final class SubmodelComponentSerializer
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, SubmodelComponentParams, String)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, SubmodelComponentParams, String)}, but first reading the
 	 * {@link SubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String name) throws IOException
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String name) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, SubmodelComponentParams.class), name);
 	}
 
 	/**
-	 * Like {@link #deserialize(ViewModelModifiable, SubmodelComponentParams, String, String, JsonElement)}, but first reading the
+	 * Like {@link #deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)}, but first reading the
 	 * {@link SubmodelComponentParams} from the given file path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, String sourcePath, String name, String idForSerializingOverride,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, String sourcePath, String name, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride) throws IOException
 	{
 		return deserialize(model, JsonHandler.readJson(sourcePath, SubmodelComponentParams.class), name, idForSerializingOverride,
@@ -80,34 +80,34 @@ public final class SubmodelComponentSerializer
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, SubmodelComponentParams, String, String, JsonElement)} with no
+	 * {@link #deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)} with no
 	 * <code>idForSerializingOverride</code> set and using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, SubmodelComponentParams params)
+	public static SubmodelComponent deserialize(LogicModelModifiable model, SubmodelComponentParams params)
 	{
 		return deserialize(model, params, null, null, null);
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, SubmodelComponentParams, String, String, JsonElement)} using the default name.
+	 * {@link #deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)} using the default name.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, SubmodelComponentParams params, String idForSerializingOverride,
+	public static SubmodelComponent deserialize(LogicModelModifiable model, SubmodelComponentParams params, String idForSerializingOverride,
 			JsonElement paramsForSerializingOverride)
 	{
 		return deserialize(model, params, null, idForSerializingOverride, paramsForSerializingOverride);
 	}
 
 	/**
-	 * {@link #deserialize(ViewModelModifiable, SubmodelComponentParams, String, String, JsonElement)} with no
+	 * {@link #deserialize(LogicModelModifiable, SubmodelComponentParams, String, String, JsonElement)} with no
 	 * <code>idForSerializingOverride</code> set.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponent deserialize(ViewModelModifiable model, SubmodelComponentParams params, String name)
+	public static SubmodelComponent deserialize(LogicModelModifiable model, SubmodelComponentParams params, String name)
 	{
 		return deserialize(model, params, name, null, null);
 	}
@@ -124,25 +124,25 @@ public final class SubmodelComponentSerializer
 	}
 
 	/**
-	 * Like {@link #serialize(SubmodelComponent, IdentifierGetter)}, but instead of returning the generated {@link SubmodelComponentParams}
+	 * Like {@link #serialize(SubmodelComponent, IdentifyParams)}, but instead of returning the generated {@link SubmodelComponentParams}
 	 * they are written to a file at the given path.
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public static void serialize(SubmodelComponent comp, IdentifierGetter idGetter, String targetPath) throws IOException
+	public static void serialize(SubmodelComponent comp, IdentifyParams idParams, String targetPath) throws IOException
 	{
-		JsonHandler.writeJson(serialize(comp, idGetter), targetPath);
+		JsonHandler.writeJson(serialize(comp, idParams), targetPath);
 	}
 
 	/**
-	 * {@link #serialize(SubmodelComponent, IdentifierGetter)} using a default {@link IdentifierGetter} (see <code>IdentifierGetter</code>'s
-	 * {@link IdentifierGetter#IdentifierGetter() default constructor})
+	 * {@link #serialize(SubmodelComponent, IdentifyParams)} using the default {@link IdentifyParams} (see <code>IdentifyParams</code>'s
+	 * {@link IdentifyParams#IdentifyParams() default constructor})
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public static SubmodelComponentParams serialize(SubmodelComponent comp)
 	{
-		return serialize(comp, new IdentifierGetter());
+		return serialize(comp, new IdentifyParams());
 	}
 
 	// "core" methods
@@ -152,14 +152,14 @@ public final class SubmodelComponentSerializer
 	 * When serializing a <code>SubmodelComponent</code>, it is undesired for every subcomponent to be serialized with its complete inner
 	 * structure. Instead, these sub-<code>SubmodelComponent</code>s should be serialized with the ID and params which were used to
 	 * determine the <code>SubmodelComponentParams</code> defining the sub-<code>SubmodelComponent</code>. Because of this, it is possible
-	 * to override the ID and params used in {@link #serialize(SubmodelComponent, IdentifierGetter) serialize(...)} to describe this
+	 * to override the ID and params used in {@link #serialize(SubmodelComponent, IdentifyParams) serialize(...)} to describe this
 	 * subcomponent. See there for details.
 	 * 
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	@SuppressWarnings("unused") // for GUIWire being created
-	public static SubmodelComponent deserialize(ViewModelModifiable model, SubmodelComponentParams params, String name,
+	@SuppressWarnings("unused") // for ModelWire being created
+	public static SubmodelComponent deserialize(LogicModelModifiable model, SubmodelComponentParams params, String name,
 			String idForSerializingOverride, JsonElement paramsForSerializingOverride)
 	{
 		Version version = params.version;
@@ -172,10 +172,10 @@ public final class SubmodelComponentSerializer
 		comp.setSize(params.width, params.height);
 		for (InterfacePinParams iPinParams : params.interfacePins)
 			// TRISTATE because we don't have a better choice
-			comp.addSubmodelInterface(new MovablePin(comp, iPinParams.name, iPinParams.logicWidth,
+			comp.addSubmodelInterface(new MovablePin(model, comp, iPinParams.name, iPinParams.logicWidth,
 					hasUsageSerialized ? iPinParams.usage : PinUsage.TRISTATE, iPinParams.location.x, iPinParams.location.y));
-		ViewModelModifiable submodelModifiable = comp.getSubmodelModifiable();
-		ViewModelSerializer.deserialize(comp.getSubmodelModifiable(), params.submodel);
+		LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
+		LogicModelSerializer.deserialize(comp.getSubmodelModifiable(), params.submodel);
 		comp.setSymbolRenderer(SubmodelComponentSnippetSuppliers.symbolRendererSupplier.getSnippetSupplier(params.symbolRendererSnippetID)
 				.create(comp, params.symbolRendererParams));
 		comp.setOutlineRenderer(SubmodelComponentSnippetSuppliers.outlineRendererSupplier
@@ -187,19 +187,19 @@ public final class SubmodelComponentSerializer
 
 	/**
 	 * Returns {@link SubmodelComponentParams}, which describe this {@link SubmodelComponent}. <br>
-	 * See {@link ViewModelSerializer#serialize(net.mograsim.logic.model.model.ViewModel, IdentifierGetter)
-	 * ViewModelSerializer.serialize(...)} for how subcomponents are serialized.<br>
+	 * See {@link LogicModelSerializer#serialize(net.mograsim.logic.model.model.LogicModel, IdentifierGetter)
+	 * LogicModelSerializer.serialize(...)} for how subcomponents are serialized.<br>
 	 * CodeSnippets are serialized using the ID defined by <code>idGetter</code> and the params obtained by the respective
 	 * <coce>getParamsForSerializing</code> methods ({@link Renderer#getParamsForSerializing()}).
 	 * 
 	 * @author Fabian Stemmler
 	 * @author Daniel Kirschten
 	 */
-	public static SubmodelComponentParams serialize(SubmodelComponent comp, IdentifierGetter idGetter)
+	public static SubmodelComponentParams serialize(SubmodelComponent comp, IdentifyParams idParams)
 	{
 		SubmodelComponentParams params = new SubmodelComponentParams(JSON_VERSION_CURRENT_SERIALIZING);
 		params.innerScale = comp.getSubmodelScale();
-		params.submodel = ViewModelSerializer.serialize(comp.submodel, idGetter);
+		params.submodel = LogicModelSerializer.serialize(comp.submodel, idParams);
 
 		params.width = comp.getWidth();
 		params.height = comp.getHeight();
@@ -222,22 +222,22 @@ public final class SubmodelComponentSerializer
 		Renderer symbolRenderer = comp.getSymbolRenderer();
 		if (symbolRenderer != null)
 		{
-			params.symbolRendererSnippetID = idGetter.symbolRendererIDs.apply(symbolRenderer);
-			params.symbolRendererParams = symbolRenderer.getParamsForSerializingJSON(idGetter);
+			params.symbolRendererSnippetID = symbolRenderer.getIDForSerializing(idParams);
+			params.symbolRendererParams = symbolRenderer.getParamsForSerializingJSON(idParams);
 		}
 
 		Renderer outlineRenderer = comp.getOutlineRenderer();
 		if (outlineRenderer != null)
 		{
-			params.outlineRendererSnippetID = idGetter.outlineRendererIDs.apply(outlineRenderer);
-			params.outlineRendererParams = outlineRenderer.getParamsForSerializingJSON(idGetter);
+			params.outlineRendererSnippetID = outlineRenderer.getIDForSerializing(idParams);
+			params.outlineRendererParams = outlineRenderer.getParamsForSerializingJSON(idParams);
 		}
 
 		HighLevelStateHandler highLevelStateHandler = comp.getHighLevelStateHandler();
 		if (highLevelStateHandler != null)
 		{
-			params.highLevelStateHandlerSnippetID = idGetter.highLevelStateHandlerIDs.apply(highLevelStateHandler);
-			params.highLevelStateHandlerParams = highLevelStateHandler.getParamsForSerializingJSON(idGetter);
+			params.highLevelStateHandlerSnippetID = highLevelStateHandler.getIDForSerializing(idParams);
+			params.highLevelStateHandlerParams = highLevelStateHandler.getParamsForSerializingJSON(idParams);
 		}
 
 		return params;
