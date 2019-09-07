@@ -26,6 +26,7 @@ import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.plugin.MachineContext;
 import net.mograsim.plugin.MachineContext.ContextObserver;
 import net.mograsim.plugin.asm.AsmNumberUtil.NumberType;
+import net.mograsim.plugin.tables.AddressLabelProvider;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.RadixSelector;
 import net.mograsim.plugin.util.DropDownMenu;
@@ -119,6 +120,9 @@ public class InstructionView extends ViewPart implements ContextObserver
 
 	private void createColumns()
 	{
+		TableViewerColumn col = createTableViewerColumn("Address", 200);
+		col.setLabelProvider(new AddressLabelProvider());
+
 		int size = miDef.size();
 		int bit = 0;
 		columns = new TableViewerColumn[size];
@@ -131,8 +135,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 			String name = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
 			int bounds = 20 + 20 * classes[i].getExpectedBits();
 
-			TableViewerColumn col = createTableViewerColumn(name, bounds);
-			createEditingAndLabel(col, miDef, i);
+			createEditingAndLabel(createTableViewerColumn(name, bounds), miDef, i);
 		}
 
 	}

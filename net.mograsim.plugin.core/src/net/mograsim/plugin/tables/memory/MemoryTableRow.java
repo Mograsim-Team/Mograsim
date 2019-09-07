@@ -1,20 +1,17 @@
 package net.mograsim.plugin.tables.memory;
 
 import net.mograsim.machine.MainMemory;
+import net.mograsim.plugin.tables.TableRow;
 
-public class MemoryTableRow
+public class MemoryTableRow extends TableRow<MainMemory>
 {
-	public final long address;
-	private final MainMemory memory;
-
 	public MemoryTableRow(long address, MainMemory memory)
 	{
-		this.address = address;
-		this.memory = memory;
+		super(address, memory);
 	}
 
 	public MainMemory getMemory()
 	{
-		return memory;
+		return getData();
 	}
 }
