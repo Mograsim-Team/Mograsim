@@ -6,7 +6,6 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 
-import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.parameters.Mnemonic;
 import net.mograsim.machine.mi.parameters.MnemonicFamily;
@@ -43,13 +42,13 @@ public class MnemonicEditingSupport extends EditingSupport
 	@Override
 	protected Object getValue(Object element)
 	{
-		return ((Mnemonic) ((MicroInstruction) element).getParameter(index)).ordinal();
+		return ((Mnemonic) ((InstructionTableRow) element).data.getParameter(index)).ordinal();
 	}
 
 	@Override
 	protected void setValue(Object element, Object value)
 	{
-		((MicroInstruction) element).setParameter(index, family.get((Integer) value));
+		((InstructionTableRow) element).data.setParameter(index, family.get((Integer) value));
 		viewer.update(element, null);
 	}
 

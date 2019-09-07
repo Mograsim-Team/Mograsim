@@ -3,7 +3,6 @@ package net.mograsim.plugin.tables.memory;
 import java.math.BigInteger;
 import java.util.Optional;
 
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
@@ -24,6 +23,7 @@ import net.mograsim.machine.standard.memory.WordAddressableMemory;
 import net.mograsim.plugin.MachineContext;
 import net.mograsim.plugin.MachineContext.ContextObserver;
 import net.mograsim.plugin.asm.AsmNumberUtil;
+import net.mograsim.plugin.tables.AddressLabelProvider;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.NumberColumnLabelProvider;
 import net.mograsim.plugin.tables.RadixSelector;
@@ -33,7 +33,6 @@ public class MemoryView extends ViewPart implements ContextObserver
 	private TableViewer viewer;
 	private MemoryTableContentProvider provider;
 	private DisplaySettings displaySettings;
-	private String addressFormat;
 
 	@Override
 	public void createPartControl(Composite parent)
@@ -123,15 +122,7 @@ public class MemoryView extends ViewPart implements ContextObserver
 		int[] bounds = { 100, 100 };
 
 		TableViewerColumn col = createTableViewerColumn(titles[0], bounds[0]);
-		col.setLabelProvider(new ColumnLabelProvider()
-		{
-			@Override
-			public String getText(Object element)
-			{
-				MemoryTableRow row = (MemoryTableRow) element;
-				return String.format(addressFormat, row.address);
-			}
-		});
+		col.setLabelProvider(new AddressLabelProvider());
 
 		col = createTableViewerColumn(titles[1], bounds[1]);
 		col.setLabelProvider(new NumberColumnLabelProvider(displaySettings)
@@ -166,8 +157,6 @@ public class MemoryView extends ViewPart implements ContextObserver
 
 	private void bindMainMemory(MainMemory m)
 	{
-		int hexAddressLength = Long.toUnsignedString(m.getDefinition().getMaximalAddress(), 16).length();
-		addressFormat = "0x%0" + hexAddressLength + "X";
 		viewer.setInput(m);
 	}
 
