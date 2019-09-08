@@ -12,6 +12,7 @@ mograsim version: 0.1.3
   "ram5_12": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.Modelram5_12",
   "sel4_12": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.Modelsel4_12",
   
+  "Am2900": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json",
   "Am2901": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901.json",
   "Am2901ALUFuncDecode": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901ALUFuncDecode.json",
   "Am2901ALUInclDecode": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901ALUInclDecode.json",
