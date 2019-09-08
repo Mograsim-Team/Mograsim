@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.mograsim.logic.core.components.BasicCoreComponent;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
 import net.mograsim.logic.core.types.BitVector.BitVectorMutator;
 import net.mograsim.logic.core.types.MutationOperation;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
@@ -53,11 +54,11 @@ public abstract class MultiInputCoreGate extends BasicCoreComponent
 	}
 
 	@Override
-	protected void compute()
+	public TimelineEventHandler compute()
 	{
 		BitVectorMutator mutator = BitVectorMutator.empty();
 		for (ReadEnd w : in)
 			op.apply(mutator, w.getValues());
-		out.feedSignals(invert ? mutator.toBitVector().not() : mutator.toBitVector());
+		return e -> out.feedSignals(invert ? mutator.toBitVector().not() : mutator.toBitVector());
 	}
 }
