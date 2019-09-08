@@ -28,6 +28,7 @@ import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
 
 public class ReserializeJSONsSettingUsages
 {
@@ -58,13 +59,13 @@ public class ReserializeJSONsSettingUsages
 		}
 	}
 
-	public static void reserializeJSON(Path json, Scanner sysin)
+	public static void reserializeJSON(Path componentPath, Scanner sysin)
 	{
 		try
 		{
 			DeserializedSubmodelComponent comp = (DeserializedSubmodelComponent) IndirectModelComponentCreator
-					.createComponent(new LogicModelModifiable(), "jsonfile:" + json.toString());
-			System.out.println("Reserializing " + json);
+					.createComponent(new LogicModelModifiable(), "jsonfile:" + componentPath.toString());
+			System.out.println("Reserializing " + componentPath);
 			if (changePinUsages)
 				comp.getSupermodelPins().entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).map(Entry::getValue).forEach(pin ->
 				{
@@ -86,9 +87,9 @@ public class ReserializeJSONsSettingUsages
 					setInterfacePinUsage(comp, pin, usage);
 				});
 			LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
+			Map<String, String> componentNameRemapping = new HashMap<>();
 			if (changeComponentNames)
 			{
-				Map<String, String> componentNameRemapping = new HashMap<>();
 				componentNameRemapping.put(SubmodelComponent.SUBMODEL_INTERFACE_NAME, SubmodelComponent.SUBMODEL_INTERFACE_NAME);
 				LogicModelModifiable tempModel = new LogicModelModifiable();
 				IdentifyParams iP = new IdentifyParams();
@@ -104,7 +105,9 @@ public class ReserializeJSONsSettingUsages
 							{
 								System.out.print("  New name for component " + oldName + " of type " + subcomp.getIDForSerializing(iP)
 										+ " (empty: " + defaultName + ") >");
-								newName = sysin.nextLine();
+//								newName = sysin.nextLine();
+								newName = "";
+								System.out.println();
 								if (newName.equals(""))
 									newName = defaultName;
 								if (tempModel.getComponentsByName().containsKey(newName))
@@ -136,11 +139,19 @@ public class ReserializeJSONsSettingUsages
 				for (ModelWire w : tempModel.getWiresByName().values())
 					createWire(Function.identity(), submodelModifiable, w);
 			}
-			SubmodelComponentSerializer.serialize(comp, json.toString());
+			SubmodelComponentSerializer.serialize(comp, componentPath.toString());
+			if (changeComponentNames && (comp.getHighLevelStateHandler() == null
+					|| !(comp.getHighLevelStateHandler() instanceof DefaultHighLevelStateHandler)))
+			{
+				System.out.println("A non-default HighLevelStateHandler was detected. Check for changes there manually.");
+				System.out.print("Empty line to continue to next component, old component name to get new component name >");
+				for (String line = sysin.nextLine(); !line.equals(""); line = sysin.nextLine())
+					System.out.println(line + "->" + componentNameRemapping.get(line) + " >");
+			}
 		}
 		catch (Exception e)
 		{
-			System.err.println("An error occurred visiting " + json + ":");
+			System.err.println("An error occurred visiting " + componentPath + ":");
 			e.printStackTrace();
 		}
 	}
