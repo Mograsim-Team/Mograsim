@@ -42,7 +42,7 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 	{
 		if (delegateTarget == null)
 			this.delegateTarget = parentComponent;
-		else if (parentComponent.submodel.getComponentsByName().get(delegateTarget.name) != delegateTarget)
+		else if (parentComponent.submodel.getComponentsByName().get(delegateTarget.getName()) != delegateTarget)
 			throw new IllegalArgumentException(
 					"Can only set components belonging to the submodel of the parent component of this handler as the delegate target");
 		this.delegateTarget = delegateTarget;
@@ -75,7 +75,7 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 	public DelegatingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		DelegatingAtomicHighLevelStateHandlerParams params = new DelegatingAtomicHighLevelStateHandlerParams();
-		params.delegateTarget = delegateTarget.name;
+		params.delegateTarget = delegateTarget.getName();
 		params.subStateID = subStateID;
 		return params;
 	}

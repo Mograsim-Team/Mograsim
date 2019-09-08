@@ -224,11 +224,11 @@ public class LogicUICanvas extends ZoomableCanvas
 	private void addComponentSelectorItems(List<ModelComponent> componentsByItemIndex, String base, Combo componentSelector,
 			LogicModel model)
 	{
-		model.getComponentsByName().values().stream().sorted((c1, c2) -> c1.name.compareTo(c2.name)).forEach(c ->
+		model.getComponentsByName().values().stream().sorted((c1, c2) -> c1.getName().compareTo(c2.getName())).forEach(c ->
 		{
 			if (!(c instanceof ModelWireCrossPoint || c instanceof SubmodelInterface))
 			{
-				String item = base + c.name;
+				String item = base + c.getName();
 				componentsByItemIndex.add(c);
 				componentSelector.add(item);
 				if (c instanceof SubmodelComponent)
