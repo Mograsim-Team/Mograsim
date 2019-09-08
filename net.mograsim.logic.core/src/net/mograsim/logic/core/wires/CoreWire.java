@@ -445,6 +445,7 @@ public class CoreWire
 			feedSignals(BitVector.of(newValues));
 		}
 
+		// TODO what if this is called multiple times at the same simulation time? (happens in component unit tests)
 		public void feedSignals(BitVector newValues)
 		{
 			if (newValues.length() != width)
