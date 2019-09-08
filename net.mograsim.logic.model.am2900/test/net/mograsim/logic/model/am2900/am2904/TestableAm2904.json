@@ -1,0 +1,846 @@
+{
+  "width": 0.0,
+  "height": 0.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 10.0,
+        "y": 20.0
+      },
+      "name": "C",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 125.0
+      },
+      "name": "C0",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 75.0
+      },
+      "name": "CT",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 125.0
+      },
+      "name": "Cx",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 30.0
+      },
+      "name": "IC",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 35.0
+      },
+      "name": "IN",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 40.0
+      },
+      "name": "IOVR",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 25.0
+      },
+      "name": "IZ",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": -87.66482568016058,
+        "y": 58.834004835619645
+      },
+      "name": "I_10",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": -80.0,
+        "y": 40.0
+      },
+      "name": "I_11_12",
+      "logicWidth": 2,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": -85.0,
+        "y": 100.0
+      },
+      "name": "I_5_0",
+      "logicWidth": 6,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": -84.26853373181032,
+        "y": 78.72500503091884
+      },
+      "name": "I_6_9",
+      "logicWidth": 4,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 145.0
+      },
+      "name": "QIO0",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 145.0
+      },
+      "name": "QIOn",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 135.0
+      },
+      "name": "SIO0",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 135.0
+      },
+      "name": "SIOn",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 30.0
+      },
+      "name": "YC",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 35.0
+      },
+      "name": "YN",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 40.0
+      },
+      "name": "YOVR",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 25.0
+      },
+      "name": "YZ",
+      "logicWidth": 1,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 45.0
+      },
+      "name": "_CEM",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 50.0
+      },
+      "name": "_CEmu",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 60.0
+      },
+      "name": "_EC",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 65.0
+      },
+      "name": "_EN",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 70.0
+      },
+      "name": "_EOVR",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 55.0
+      },
+      "name": "_EZ",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 145.0,
+        "y": 65.0
+      },
+      "name": "_OECT",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 80.0,
+        "y": 10.0
+      },
+      "name": "_OEY",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 10.0,
+        "y": 100.0
+      },
+      "name": "_SE",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    }
+  ],
+  "innerScale": 1.0,
+  "submodel": {
+    "components": [
+      {
+        "id": "Merger",
+        "name": "Merger#0",
+        "pos": {
+          "x": -30.0,
+          "y": 70.0
+        },
+        "params": 13
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#0",
+        "pos": {
+          "x": -45.0,
+          "y": 140.0
+        },
+        "params": 6
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#1",
+        "pos": {
+          "x": -45.0,
+          "y": 100.0
+        },
+        "params": 4
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#2",
+        "pos": {
+          "x": -45.0,
+          "y": 70.0
+        },
+        "params": 2
+      },
+      {
+        "id": "Am2904",
+        "name": "Am2904#0",
+        "pos": {
+          "x": 20.0,
+          "y": 15.0
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "IZ"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "IZ"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_EZ"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_EZ"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I_5_0"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I2"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#14",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I3"
+        },
+        "name": "unnamedWire#15",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I4"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O4"
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O5"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I5"
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I6"
+        },
+        "name": "unnamedWire#18",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I7"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "IC"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "IC"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I8"
+        },
+        "name": "unnamedWire#20",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I9"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#21",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#2",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I11"
+        },
+        "name": "unnamedWire#22",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "I12"
+        },
+        "pin2": {
+          "compName": "Splitter#2",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I_6_9"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#24",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Merger#0",
+          "pinName": "O"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I_10"
+        },
+        "pin2": {
+          "compName": "Merger#0",
+          "pinName": "I10"
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I_11_12"
+        },
+        "pin2": {
+          "compName": "Splitter#2",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_SE"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_SE"
+        },
+        "name": "unnamedWire#28",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "Cx"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "Cx"
+        },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "SIOn"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "SIOn"
+        },
+        "name": "unnamedWire#30",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "QIOn"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "QIOn"
+        },
+        "name": "unnamedWire#31",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "QIO0"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "QIO0"
+        },
+        "name": "unnamedWire#32",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "SIO0"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "SIO0"
+        },
+        "name": "unnamedWire#33",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C0"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "C0"
+        },
+        "name": "unnamedWire#34",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "CT"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "CT"
+        },
+        "name": "unnamedWire#35",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_OECT"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_OECT"
+        },
+        "name": "unnamedWire#36",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "YOVR"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "YOVR"
+        },
+        "name": "unnamedWire#37",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "YN"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "YN"
+        },
+        "name": "unnamedWire#38",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "YC"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "YC"
+        },
+        "name": "unnamedWire#39",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "IOVR"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "IOVR"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "YZ"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "YZ"
+        },
+        "name": "unnamedWire#40",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_OEY"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_OEY"
+        },
+        "name": "unnamedWire#41",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_CEM"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_CEM"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_CEmu"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_CEmu"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_EC"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_EC"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_EN"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_EN"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_EOVR"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_EOVR"
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "default",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {
+      "musr": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2904#0",
+          "prefix": "musr"
+        }
+      },
+      "msr": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2904#0",
+          "prefix": "msr"
+        }
+      }
+    },
+    "atomicHighLevelStates": {}
+  },
+  "version": "0.1.5"
+}
