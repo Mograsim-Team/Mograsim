@@ -26,8 +26,7 @@ public class ModelComponentTestbench
 	public static void createTestbench(LogicModelModifiable model)
 	{
 		Am2900Loader.setup();
-		ModelComponent comp = IndirectModelComponentCreator.createComponent(model,
-				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff16_invwe.json");
+		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "Am2900");
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
