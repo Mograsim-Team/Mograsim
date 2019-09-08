@@ -3,6 +3,7 @@ package net.mograsim.logic.core.components;
 import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
 
 /**
  * A basic component that recomputes all outputs (with a delay), when it is updated.
@@ -26,10 +27,12 @@ public abstract class BasicCoreComponent extends CoreComponent implements LogicO
 	}
 
 	@Override
-	public void update(LogicObservable initiator)
+	public final void update(LogicObservable initiator)
 	{
-		timeline.addEvent(e -> compute(), processTime);
+		TimelineEventHandler delayedUpdates = compute();
+		if (delayedUpdates != null)
+			timeline.addEvent(delayedUpdates, processTime);
 	}
 
-	protected abstract void compute();
+	protected abstract TimelineEventHandler compute();
 }

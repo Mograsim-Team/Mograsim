@@ -7,6 +7,7 @@ import java.util.List;
 import net.mograsim.logic.core.LogicObservable;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
@@ -28,10 +29,14 @@ public class CoreBitDisplay extends BasicCoreComponent implements LogicObservabl
 	}
 
 	@Override
-	protected void compute()
+	protected TimelineEventHandler compute()
 	{
-		displayedValue = in.getValues();
-		notifyObservers();
+		BitVector newValues = in.getValues();
+		return e ->
+		{
+			displayedValue = newValues;
+			notifyObservers();
+		};
 	}
 
 	public BitVector getDisplayedValue()

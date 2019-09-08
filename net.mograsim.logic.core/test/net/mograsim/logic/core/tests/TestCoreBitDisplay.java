@@ -6,6 +6,7 @@ import java.util.function.LongConsumer;
 
 import net.mograsim.logic.core.components.CoreBitDisplay;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 
@@ -39,9 +40,13 @@ public final class TestCoreBitDisplay extends CoreBitDisplay
 	}
 
 	@Override
-	protected void compute()
+	protected TimelineEventHandler compute()
 	{
-		super.compute();
-		System.out.println("update: value is " + getDisplayedValue());
+		TimelineEventHandler handler = super.compute();
+		return e ->
+		{
+			handler.handle(e);
+			System.out.println("update: value is " + getDisplayedValue());
+		};
 	}
 }
