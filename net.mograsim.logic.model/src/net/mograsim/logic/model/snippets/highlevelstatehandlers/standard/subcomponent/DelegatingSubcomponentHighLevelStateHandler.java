@@ -43,7 +43,7 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 	{
 		if (delegateTarget == null)
 			this.delegateTarget = parentComponent;
-		else if (parentComponent.submodel.getComponentsByName().get(delegateTarget.name) != delegateTarget)
+		else if (parentComponent.submodel.getComponentsByName().get(delegateTarget.getName()) != delegateTarget)
 			throw new IllegalArgumentException(
 					"Can only set components belonging to the submodel of the parent component of this handler as the delegate target");
 		this.delegateTarget = delegateTarget;
@@ -81,7 +81,7 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 	public DelegatingSubcomponentHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		DelegatingSubcomponentHighLevelStateHandlerParams params = new DelegatingSubcomponentHighLevelStateHandlerParams();
-		params.delegateTarget = delegateTarget.name;
+		params.delegateTarget = delegateTarget.getName();
 		params.prefix = prefix;
 		return params;
 	}

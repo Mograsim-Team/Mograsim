@@ -129,12 +129,12 @@ public class ReserializeJSONsSettingUsages
 
 				Optional<ModelComponent> o;
 				while ((o = submodelModifiable.getComponentsByName().values().stream()
-						.filter(c -> !c.name.equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME)).findAny()).isPresent())
+						.filter(c -> !c.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME)).findAny()).isPresent())
 					submodelModifiable.destroyComponent(o.get());
 
-				tempModel.getComponentsByName().values().stream().filter(c -> !c.name.equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
+				tempModel.getComponentsByName().values().stream().filter(c -> !c.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
 						.forEach(c -> IndirectModelComponentCreator
-								.createComponent(submodelModifiable, c.getIDForSerializing(iP), c.getParamsForSerializingJSON(iP), c.name)
+								.createComponent(submodelModifiable, c.getIDForSerializing(iP), c.getParamsForSerializingJSON(iP), c.getName())
 								.moveTo(c.getPosX(), c.getPosY()));
 				for (ModelWire w : tempModel.getWiresByName().values())
 					createWire(Function.identity(), submodelModifiable, w);
@@ -167,7 +167,7 @@ public class ReserializeJSONsSettingUsages
 	private static Pin getRemappedPin(Function<String, String> componentNameRemapping, LogicModelModifiable tempModelForDefaultNames,
 			Pin pin)
 	{
-		return tempModelForDefaultNames.getComponentsByName().get(componentNameRemapping.apply(pin.component.name)).getPin(pin.name);
+		return tempModelForDefaultNames.getComponentsByName().get(componentNameRemapping.apply(pin.component.getName())).getPin(pin.name);
 	}
 
 	private static int compareStringsWithIntegers(String a, String b)
