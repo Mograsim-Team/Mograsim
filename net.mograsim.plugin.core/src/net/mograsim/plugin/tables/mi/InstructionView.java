@@ -25,7 +25,6 @@ import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.plugin.MachineContext;
 import net.mograsim.plugin.MachineContext.ContextObserver;
-import net.mograsim.plugin.asm.AsmNumberUtil.NumberType;
 import net.mograsim.plugin.tables.AddressLabelProvider;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.RadixSelector;
@@ -40,12 +39,13 @@ public class InstructionView extends ViewPart implements ContextObserver
 	private MicroInstructionDefinition miDef;
 	private MicroInstructionMemory memory;
 	private DisplaySettings displaySettings;
+	private InstructionTableContentProvider provider;
 
 	@SuppressWarnings("unused")
 	@Override
 	public void createPartControl(Composite parent)
 	{
-		InstructionTableContentProvider provider = new InstructionTableContentProvider();
+		provider = new InstructionTableContentProvider();
 		GridLayout layout = new GridLayout(3, false);
 		setupMenuButtons(parent);
 
@@ -54,11 +54,13 @@ public class InstructionView extends ViewPart implements ContextObserver
 
 		parent.setLayout(layout);
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
+
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 		viewer.setUseHashlookup(true);
 		viewer.setContentProvider(provider);
+		getSite().setSelectionProvider(viewer);
 
 		GridData viewerData = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
 		viewerData.horizontalSpan = 3;
@@ -152,7 +154,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 			provider = new ParameterLabelProvider(index);
 			break;
 		case INTEGER_IMMEDIATE:
-			support = new IntegerEditingSupport(viewer, miDef, index, new DisplaySettings(NumberType.DECIMAL));
+			support = new IntegerEditingSupport(viewer, miDef, index, displaySettings, this.provider);
 			provider = new IntegerColumnLabelProvider(displaySettings, index);
 			break;
 		case MNEMONIC:
