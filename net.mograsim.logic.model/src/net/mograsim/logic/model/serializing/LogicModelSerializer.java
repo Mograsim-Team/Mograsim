@@ -142,7 +142,7 @@ public class LogicModelSerializer
 			compParams.pos = new Point(component.getPosX(), component.getPosY());
 			compParams.id = component.getIDForSerializing(idParams);
 			compParams.params = component.getParamsForSerializingJSON(idParams);
-			compParams.name = component.name;
+			compParams.name = component.getName();
 		}
 		modelParams.components = componentsParams.toArray(ComponentParams[]::new);
 		Arrays.sort(modelParams.components, Comparator.comparing(c -> c.name));
@@ -156,9 +156,9 @@ public class LogicModelSerializer
 			PinParams pin1Params = new PinParams(), pin2Params = new PinParams();
 
 			pin1Params.pinName = innerWire.getPin1().name;
-			pin1Params.compName = innerWire.getPin1().component.name;
+			pin1Params.compName = innerWire.getPin1().component.getName();
 			pin2Params.pinName = innerWire.getPin2().name;
-			pin2Params.compName = innerWire.getPin2().component.name;
+			pin2Params.compName = innerWire.getPin2().component.getName();
 			innerWireParams.name = innerWire.name;
 			innerWireParams.pin1 = pin1Params;
 			innerWireParams.pin2 = pin2Params;

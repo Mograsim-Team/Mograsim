@@ -70,30 +70,6 @@
   "submodel": {
     "components": [
       {
-        "id": "sel1",
-        "name": "DeserializedSubmodelComponent#0",
-        "pos": {
-          "x": 60.0,
-          "y": 35.0
-        }
-      },
-      {
-        "id": "sel1",
-        "name": "DeserializedSubmodelComponent#1",
-        "pos": {
-          "x": 60.0,
-          "y": 100.0
-        }
-      },
-      {
-        "id": "mux1",
-        "name": "DeserializedSubmodelComponent#2",
-        "pos": {
-          "x": 115.0,
-          "y": 20.0
-        }
-      },
-      {
         "id": "NandGate",
         "name": "NandGate#0",
         "pos": {
@@ -104,7 +80,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#1",
+        "name": "WireCrossPoint#0",
         "pos": {
           "x": 24.0,
           "y": 29.0
@@ -113,7 +89,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#2",
+        "name": "WireCrossPoint#1",
         "pos": {
           "x": 24.0,
           "y": 49.0
@@ -122,22 +98,46 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#3",
+        "name": "WireCrossPoint#2",
         "pos": {
           "x": 54.0,
           "y": 39.0
         },
         "params": 1
+      },
+      {
+        "id": "mux1",
+        "name": "mux1#0",
+        "pos": {
+          "x": 115.0,
+          "y": 20.0
+        }
+      },
+      {
+        "id": "sel1",
+        "name": "sel1#0",
+        "pos": {
+          "x": 60.0,
+          "y": 35.0
+        }
+      },
+      {
+        "id": "sel1",
+        "name": "sel1#1",
+        "pos": {
+          "x": 60.0,
+          "y": 100.0
+        }
       }
     ],
     "wires": [
       {
         "pin1": {
-          "compName": "WireCrossPoint#1",
+          "compName": "WireCrossPoint#0",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#2",
+          "compName": "WireCrossPoint#1",
           "pinName": ""
         },
         "name": "unnamedWire#0",
@@ -145,7 +145,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#1",
+          "compName": "WireCrossPoint#0",
           "pinName": ""
         },
         "pin2": {
@@ -157,7 +157,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#2",
+          "compName": "WireCrossPoint#1",
           "pinName": ""
         },
         "pin2": {
@@ -169,11 +169,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#2",
+          "compName": "WireCrossPoint#1",
           "pinName": ""
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#0",
+          "compName": "sel1#0",
           "pinName": "S2"
         },
         "name": "unnamedWire#11",
@@ -181,11 +181,11 @@
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#0",
+          "compName": "sel1#0",
           "pinName": "S1"
         },
         "pin2": {
-          "compName": "WireCrossPoint#3",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "name": "unnamedWire#14",
@@ -193,7 +193,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#3",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "pin2": {
@@ -210,11 +210,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#2",
+          "compName": "WireCrossPoint#1",
           "pinName": ""
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#1",
+          "compName": "sel1#1",
           "pinName": "S2"
         },
         "name": "unnamedWire#16",
@@ -227,11 +227,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#3",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#1",
+          "compName": "sel1#1",
           "pinName": "S1"
         },
         "name": "unnamedWire#17",
@@ -244,7 +244,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#1",
+          "compName": "WireCrossPoint#0",
           "pinName": ""
         },
         "pin2": {
@@ -265,7 +265,7 @@
           "pinName": "I00"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#0",
+          "compName": "sel1#0",
           "pinName": "I1"
         },
         "name": "unnamedWire#2",
@@ -286,7 +286,7 @@
           "pinName": "I01"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#0",
+          "compName": "sel1#0",
           "pinName": "I2"
         },
         "name": "unnamedWire#3",
@@ -307,7 +307,7 @@
           "pinName": "I10"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#1",
+          "compName": "sel1#1",
           "pinName": "I1"
         },
         "name": "unnamedWire#4",
@@ -319,7 +319,7 @@
           "pinName": "I11"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#1",
+          "compName": "sel1#1",
           "pinName": "I2"
         },
         "name": "unnamedWire#5",
@@ -336,7 +336,7 @@
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#2",
+          "compName": "mux1#0",
           "pinName": "Y"
         },
         "pin2": {
@@ -348,11 +348,11 @@
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#0",
+          "compName": "sel1#0",
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#2",
+          "compName": "mux1#0",
           "pinName": "I0"
         },
         "name": "unnamedWire#7",
@@ -369,11 +369,11 @@
       },
       {
         "pin1": {
-          "compName": "DeserializedSubmodelComponent#1",
+          "compName": "sel1#1",
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#2",
+          "compName": "mux1#0",
           "pinName": "I1"
         },
         "name": "unnamedWire#8",
@@ -394,7 +394,7 @@
           "pinName": "S1"
         },
         "pin2": {
-          "compName": "DeserializedSubmodelComponent#2",
+          "compName": "mux1#0",
           "pinName": "S0"
         },
         "name": "unnamedWire#9",
