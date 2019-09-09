@@ -13,7 +13,10 @@ public class TestableAm2904Impl implements TestableAm2904
 {
 
 	private ModelComponent am2904;
-	private CoreManualSwitch I;
+	private CoreManualSwitch I_5_0;
+	private CoreManualSwitch I_6_9;
+	private CoreManualSwitch I_10;
+	private CoreManualSwitch I_11_12;
 	private CoreManualSwitch C;
 	private CoreManualSwitch Cx;
 	private CoreManualSwitch IC, IN, IOVR, IZ;
@@ -26,7 +29,8 @@ public class TestableAm2904Impl implements TestableAm2904
 	private SwitchWithDisplay SIO0, SIOn, QIO0, QIOn;
 	private SwitchWithDisplay YC, YN, YOVR, YZ;
 
-	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this, "Am2904");
+	private final TestEnvironmentHelper testHelper = new TestEnvironmentHelper(this,
+			"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/am2904/TestableAm2904.json");
 
 	@Override
 	public void setup()
@@ -52,33 +56,25 @@ public class TestableAm2904Impl implements TestableAm2904
 	@Override
 	public void setInstruction(Am2904_Inst inst)
 	{
-		var old = I.getValues();
-		var newPart = BitVector.from(inst.ordinal(), 6);
-		I.setState(old.subVector(0, 7).concat(newPart));
+		I_5_0.setState(BitVector.from(inst.ordinal(), 6));
 	}
 
 	@Override
 	public void setShiftCode(String val_4_bit)
 	{
-		var old = I.getValues();
-		var newPart = BitVector.parse(val_4_bit);
-		I.setState(old.subVector(0, 3).concat(newPart).concat(old.subVector(7)));
+		I_6_9.setState(BitVector.parse(val_4_bit));
 	}
 
 	@Override
 	public void setI10(Am2904_ShiftDir dir)
 	{
-		var old = I.getValues();
-		var newPart = BitVector.from(dir.ordinal(), 1);
-		I.setState(old.subVector(0, 2).concat(newPart).concat(old.subVector(3)));
+		I_10.setState(BitVector.from(dir.ordinal(), 1));
 	}
 
 	@Override
 	public void setCarry(Am2904_Carry carry)
 	{
-		var old = I.getValues();
-		var newPart = BitVector.from(carry.ordinal(), 2);
-		I.setState(newPart.concat(old.subVector(2)));
+		I_11_12.setState(BitVector.from(carry.ordinal(), 2));
 	}
 
 	@Override

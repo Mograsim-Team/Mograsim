@@ -53,7 +53,7 @@
     "components": [
       {
         "id": "NandGate",
-        "name": "NandGate#1",
+        "name": "NandGate#0",
         "pos": {
           "x": 35.0,
           "y": 30.0
@@ -62,7 +62,7 @@
       },
       {
         "id": "NandGate",
-        "name": "NandGate#2",
+        "name": "NandGate#1",
         "pos": {
           "x": 35.0,
           "y": 55.0
@@ -71,7 +71,7 @@
       },
       {
         "id": "NandGate",
-        "name": "NandGate#3",
+        "name": "NandGate#2",
         "pos": {
           "x": 60.0,
           "y": 40.0
@@ -86,7 +86,7 @@
           "pinName": "S1"
         },
         "pin2": {
-          "compName": "NandGate#1",
+          "compName": "NandGate#0",
           "pinName": "A"
         },
         "name": "unnamedWire#0",
@@ -107,7 +107,7 @@
           "pinName": "S2"
         },
         "pin2": {
-          "compName": "NandGate#2",
+          "compName": "NandGate#1",
           "pinName": "A"
         },
         "name": "unnamedWire#1",
@@ -124,7 +124,7 @@
       },
       {
         "pin1": {
-          "compName": "NandGate#3",
+          "compName": "NandGate#2",
           "pinName": "Y"
         },
         "pin2": {
@@ -139,7 +139,7 @@
           "pinName": "I1"
         },
         "pin2": {
-          "compName": "NandGate#1",
+          "compName": "NandGate#0",
           "pinName": "B"
         },
         "name": "unnamedWire#5",
@@ -160,7 +160,7 @@
           "pinName": "I2"
         },
         "pin2": {
-          "compName": "NandGate#2",
+          "compName": "NandGate#1",
           "pinName": "B"
         },
         "name": "unnamedWire#7",
@@ -177,22 +177,22 @@
       },
       {
         "pin1": {
-          "compName": "NandGate#1",
+          "compName": "NandGate#0",
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "NandGate#3",
+          "compName": "NandGate#2",
           "pinName": "A"
         },
         "name": "unnamedWire#8"
       },
       {
         "pin1": {
-          "compName": "NandGate#2",
+          "compName": "NandGate#1",
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "NandGate#3",
+          "compName": "NandGate#2",
           "pinName": "B"
         },
         "name": "unnamedWire#9"

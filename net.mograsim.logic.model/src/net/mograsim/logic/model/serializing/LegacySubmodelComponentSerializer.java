@@ -234,7 +234,7 @@ public final class LegacySubmodelComponentSerializer
 			innerComponentParams.pos = new Point(innerComponent.getPosX(), innerComponent.getPosY());
 			innerComponentParams.id = innerComponent.getIDForSerializing(idParams);
 			innerComponentParams.params = innerComponent.getParamsForSerializingJSON(idParams);
-			innerComponentParams.name = innerComponent.name;
+			innerComponentParams.name = innerComponent.getName();
 			i1++;
 		}
 		submodelParams.subComps = componentParams;
@@ -249,9 +249,9 @@ public final class LegacySubmodelComponentSerializer
 			LegacyInnerPinParams pin1Params = new LegacyInnerPinParams(), pin2Params = new LegacyInnerPinParams();
 
 			pin1Params.pinName = innerWire.getPin1().name;
-			pin1Params.compName = innerWire.getPin1().component.name;
+			pin1Params.compName = innerWire.getPin1().component.getName();
 			pin2Params.pinName = innerWire.getPin2().name;
-			pin2Params.compName = innerWire.getPin2().component.name;
+			pin2Params.compName = innerWire.getPin2().component.getName();
 			innerWireParams.name = innerWire.name;
 			innerWireParams.pin1 = pin1Params;
 			innerWireParams.pin2 = pin2Params;

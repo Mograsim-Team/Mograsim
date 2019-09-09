@@ -51,10 +51,10 @@ public class LogicModel
 	 */
 	protected void componentCreated(ModelComponent component, Runnable destroyed)
 	{
-		if (components.containsKey(component.name))
+		if (components.containsKey(component.getName()))
 			throw new IllegalStateException("Don't add the same component twice!");
-		components.put(component.name, component);
-		componentDestroyFunctions.put(component.name, destroyed);
+		components.put(component.getName(), component);
+		componentDestroyFunctions.put(component.getName(), destroyed);
 		callComponentAddedListeners(component);
 		requestRedraw();
 	}
@@ -66,10 +66,10 @@ public class LogicModel
 	 */
 	protected void destroyComponent(ModelComponent component)
 	{
-		componentDestroyFunctions.get(component.name).run();
-		if (!components.containsKey(component.name))
+		componentDestroyFunctions.get(component.getName()).run();
+		if (!components.containsKey(component.getName()))
 			throw new IllegalStateException("Don't remove the same component twice!");
-		components.remove(component.name);
+		components.remove(component.getName());
 		callComponentRemovedListeners(component);
 		requestRedraw();
 	}

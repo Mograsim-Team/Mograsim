@@ -30,9 +30,10 @@ public abstract class ModelComponent implements JSONSerializable
 	 */
 	protected final LogicModelModifiable model;
 	/**
-	 * The name of this component. Is unique for all components in its model.
+	 * The name of this component. Is unique for all components in its model.<br>
+	 * Does never change, but can't be final since it is set in {@link #init()}.
 	 */
-	public final String name;
+	private String name;
 	private final Rectangle bounds;
 	/**
 	 * The list of all pins of this component by name.
@@ -66,7 +67,7 @@ public abstract class ModelComponent implements JSONSerializable
 	protected ModelComponent(LogicModelModifiable model, String name, boolean callInit)
 	{
 		this.model = model;
-		this.name = name == null ? model.getDefaultComponentName(this) : name;
+		this.name = name;
 		this.bounds = new Rectangle(0, 0, 0, 0);
 		this.pinsByName = new HashMap<>();
 		this.pinsUnmodifiable = Collections.unmodifiableMap(pinsByName);
@@ -82,11 +83,23 @@ public abstract class ModelComponent implements JSONSerializable
 
 	/**
 	 * Initializes this component. This method should be called exactly once in this component's constructor.<br>
-	 * Currently, this method only registers this component in the model.
+	 * <ul>
+	 * <li>If <code>{@link #name}==null</code>, sets {@link #name} to {@link LogicModelModifiable#getDefaultComponentName(ModelComponent)}.
+	 * <li>Registers this component in the model.
+	 * </ul>
 	 */
 	protected void init()
 	{
+		if (name == null)
+			name = model.getDefaultComponentName(this);
 		model.componentCreated(this, this::destroyed);
+	}
+
+	// basic getters
+
+	public String getName()
+	{
+		return name;
 	}
 
 	/**
