@@ -3,7 +3,6 @@ package net.mograsim.plugin.tables.memory;
 import java.math.BigInteger;
 import java.util.Optional;
 
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.VerifyListener;
@@ -25,12 +24,13 @@ import net.mograsim.plugin.MachineContext.ContextObserver;
 import net.mograsim.plugin.asm.AsmNumberUtil;
 import net.mograsim.plugin.tables.AddressLabelProvider;
 import net.mograsim.plugin.tables.DisplaySettings;
+import net.mograsim.plugin.tables.LazyTableViewer;
 import net.mograsim.plugin.tables.NumberColumnLabelProvider;
 import net.mograsim.plugin.tables.RadixSelector;
 
 public class MemoryView extends ViewPart implements ContextObserver
 {
-	private TableViewer viewer;
+	private LazyTableViewer viewer;
 	private MemoryTableContentProvider provider;
 	private DisplaySettings displaySettings;
 
@@ -46,7 +46,7 @@ public class MemoryView extends ViewPart implements ContextObserver
 		createHeader(parent);
 		createViewer(parent);
 
-		displaySettings.addObserver(() -> viewer.refresh());
+		displaySettings.addObserver(() -> viewer.refreshLazy());
 
 		setupContextBinding();
 	}
@@ -97,7 +97,7 @@ public class MemoryView extends ViewPart implements ContextObserver
 
 	private void createViewer(Composite parent)
 	{
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
+		viewer = new LazyTableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 		createColumns();
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);

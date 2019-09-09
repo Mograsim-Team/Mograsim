@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -27,6 +26,7 @@ import net.mograsim.plugin.MachineContext;
 import net.mograsim.plugin.MachineContext.ContextObserver;
 import net.mograsim.plugin.tables.AddressLabelProvider;
 import net.mograsim.plugin.tables.DisplaySettings;
+import net.mograsim.plugin.tables.LazyTableViewer;
 import net.mograsim.plugin.tables.RadixSelector;
 import net.mograsim.plugin.util.DropDownMenu;
 import net.mograsim.plugin.util.DropDownMenu.DropDownEntry;
@@ -34,7 +34,7 @@ import net.mograsim.plugin.util.DropDownMenu.DropDownEntry;
 public class InstructionView extends ViewPart implements ContextObserver
 {
 	private String saveLoc = null;
-	private TableViewer viewer;
+	private LazyTableViewer viewer;
 	private TableViewerColumn[] columns = new TableViewerColumn[0];
 	private MicroInstructionDefinition miDef;
 	private MicroInstructionMemory memory;
@@ -53,7 +53,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 		new RadixSelector(parent, displaySettings);
 
 		parent.setLayout(layout);
-		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
+		viewer = new LazyTableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
@@ -66,7 +66,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 		viewerData.horizontalSpan = 3;
 		viewer.getTable().setLayoutData(viewerData);
 
-		displaySettings.addObserver(() -> viewer.refresh());
+		displaySettings.addObserver(() -> viewer.refreshLazy());
 		MachineContext.getInstance().registerObserver(this);
 	}
 
@@ -158,7 +158,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 			provider = new IntegerColumnLabelProvider(displaySettings, index);
 			break;
 		case MNEMONIC:
-			support = new MnemonicEditingSupport(viewer, miDef, index);
+			support = new MnemonicEditingSupport(viewer, miDef, index, this.provider);
 			provider = new ParameterLabelProvider(index);
 			break;
 		default:
