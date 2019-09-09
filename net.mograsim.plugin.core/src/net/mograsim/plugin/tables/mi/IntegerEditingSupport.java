@@ -14,7 +14,6 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 {
 	private IntegerClassification classification;
 	private int index;
-	private TableViewer viewer;
 	private InstructionTableContentProvider provider;
 
 	public IntegerEditingSupport(TableViewer viewer, MicroInstructionDefinition miDef, int index, DisplaySettings displaySettings,
@@ -23,7 +22,6 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 		super(viewer, displaySettings);
 		classification = (IntegerClassification) miDef.getParameterClassifications()[index];
 		this.index = index;
-		this.viewer = viewer;
 		this.provider = provider;
 	}
 

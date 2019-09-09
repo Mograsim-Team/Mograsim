@@ -11,14 +11,67 @@ public class MnemonicFamily implements ParameterClassification
 {
 	private final Mnemonic[] values;
 	private final String[] stringValues;
-	private final Map<String, Mnemonic> byText;
-	private final int vectorLength;
+	private Map<String, Mnemonic> byText;
+	private int vectorLength;
+	
+	public MnemonicFamily(String... names)
+	{
+		this.values = new Mnemonic[names.length];
+		this.stringValues = new String[names.length];
+		BitVector[] values = new BitVector[names.length];
+		int bits = (int) Math.ceil(Math.log(names.length));
+		for(int i = 0; i < names.length; i++)
+		{
+			values[i] = BitVector.from(i, bits);
+		}
+		
+		setup(names, values);
+	}
+	
+	public MnemonicFamily(String[] names, long[] values, int bits)
+	{
+		if(names.length != values.length)
+			throw new IllegalArgumentException();
+		this.values = new Mnemonic[values.length];
+		this.stringValues = new String[values.length];
+		BitVector[] vectors = new BitVector[values.length];
+		
+		for(int i = 0; i < vectors.length; i++)
+		{
+			vectors[i] = BitVector.from(values[i], bits);
+		}
+		
+		setup(names, vectors);
+	}
+	
+	public MnemonicFamily(String[] names, BitVector[] values)
+	{
+		if(names.length != values.length)
+			throw new IllegalArgumentException();
+		this.values = new Mnemonic[values.length];
+		this.stringValues = new String[values.length];
+		
+		setup(names, values);
+	}
 	
 	public MnemonicFamily(MnemonicPair... values)
 	{
 		this.values = new Mnemonic[values.length];
 		this.stringValues = new String[values.length];
 		
+		setup(values);
+	}
+	
+	private void setup(String[] names, BitVector[] values)
+	{
+		MnemonicPair[] mnemonics = new MnemonicPair[values.length];
+		for(int i = 0; i < values.length; i++)
+			mnemonics[i] = new MnemonicPair(names[i], values[i]);
+		setup(mnemonics);
+	}
+	
+	private void setup(MnemonicPair[] values)
+	{
 		for(int i = 0; i < values.length; i++)
 		{
 			this.values[i] = createMnemonic(values[i], i);
@@ -37,7 +90,7 @@ public class MnemonicFamily implements ParameterClassification
 		if(values.length != byText.keySet().size())
 			throw new IllegalArgumentException("MnemonicFamily contains multiple Mnemonics with the same name!");
 	}
-	
+
 	private Mnemonic createMnemonic(MnemonicPair mnemonicPair, int ordinal)
 	{
 		return new Mnemonic(mnemonicPair.name, mnemonicPair.value, this, ordinal);

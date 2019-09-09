@@ -14,17 +14,18 @@ public class MnemonicEditingSupport extends EditingSupport
 {
 	private final ComboBoxCellEditor editor;
 	private final MnemonicFamily family;
-	private final TableViewer viewer;
 	private final int index;
+	private InstructionTableContentProvider provider;
 
-	public MnemonicEditingSupport(TableViewer viewer, MicroInstructionDefinition definition, int index)
+	public MnemonicEditingSupport(TableViewer viewer, MicroInstructionDefinition definition, int index,
+			InstructionTableContentProvider provider)
 	{
 		super(viewer);
-		this.viewer = viewer;
 		family = (MnemonicFamily) definition.getParameterClassifications()[index];
 		editor = new ComboBoxCellEditor(viewer.getTable(), family.getStringValues(), SWT.READ_ONLY);
 		this.index = index;
 		editor.setValidator(new MnemonicCellEditorValidator(family));
+		this.provider = provider;
 	}
 
 	@Override
@@ -48,8 +49,9 @@ public class MnemonicEditingSupport extends EditingSupport
 	@Override
 	protected void setValue(Object element, Object value)
 	{
-		((InstructionTableRow) element).data.setParameter(index, family.get((Integer) value));
-		viewer.update(element, null);
+		InstructionTableRow row = ((InstructionTableRow) element);
+		row.data.setParameter(index, family.get((Integer) value));
+		provider.update(row.address);
 	}
 
 }
