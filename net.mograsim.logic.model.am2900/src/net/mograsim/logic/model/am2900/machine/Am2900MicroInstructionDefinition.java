@@ -11,13 +11,15 @@ import net.mograsim.machine.mi.parameters.ParameterClassification;
 
 public class Am2900MicroInstructionDefinition implements MicroInstructionDefinition
 {
-	private final static MnemonicFamily am2910Instructions = new MnemonicFamily(new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
+	private final static MnemonicFamily am2910Instructions = new MnemonicFamily("JZ", "CJS", "JMAP", "PUSH", "JSRP", "CJV", "JRP", "RFCT",
+			"RPCT", "CRTN", "CJPP", "LDCT", "LOOP", "CONT", "TWB");
 	private final static MnemonicFamily am2904StatusInstructions = new MnemonicFamily(
-			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
-	private final static MnemonicFamily am2904ShiftInstructions = new MnemonicFamily(
-			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
-	private final static MnemonicFamily am2904CarryInstructions = new MnemonicFamily(
-			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
+			new String[] { "Zero", "NotZero", "UGTEQ", "ULT", "UGT", "ULTEQ", "SGTEQ", "SLT", "SGT", "SLTEQ" },
+			new long[] { 0x5, 0x4, 0xB, 0xA, 0xC, 0xD, 0x2, 0x3, 0x0, 0x1 }, 4);
+	private final static MnemonicFamily am2904ShiftInstructions = new MnemonicFamily("SL", "SH", "SCONI", "SDH", "SDC", "SDN", "SDL",
+			"SDCO", "SRCO", "SRCIO", "SR", "SDIC", "SDRCI", "SDRCO", "SDXOR", "SDR");
+	private final static MnemonicFamily am2904CarryInstructions = new MnemonicFamily(new String[] { "0", "1", "Cx", "µ", "!µ", "M", "!M" },
+			new long[] { 0b000000, 0b010000, 0b100000, 0b110000, 0b110100, 0b111000, 0b111100 }, 6);
 	private final static MnemonicFamily am2901DestInstructions = new MnemonicFamily(
 			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
 	private final static MnemonicFamily am2901FuncInstructions = new MnemonicFamily(
