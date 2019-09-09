@@ -10,6 +10,7 @@ public class InstructionTableContentProvider implements ILazyContentProvider
 {
 	private TableViewer viewer;
 	private MicroInstructionMemory memory;
+	private long minAddr = 0;
 
 	@Override
 	public void updateElement(int index)
@@ -24,6 +25,14 @@ public class InstructionTableContentProvider implements ILazyContentProvider
 		this.viewer = (TableViewer) viewer;
 		this.memory = (MicroInstructionMemory) newInput;
 		if (this.memory != null)
+		{
 			this.viewer.setItemCount((int) memory.size());
+			this.minAddr = memory.getDefinition().getMinimalAddress();
+		}
+	}
+
+	public void update(long address)
+	{
+		updateElement((int) (address - minAddr));
 	}
 }

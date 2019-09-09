@@ -14,18 +14,26 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 {
 	private IntegerClassification classification;
 	private int index;
+	private TableViewer viewer;
+	private InstructionTableContentProvider provider;
 
-	public IntegerEditingSupport(TableViewer viewer, MicroInstructionDefinition miDef, int index, DisplaySettings displaySettings)
+	public IntegerEditingSupport(TableViewer viewer, MicroInstructionDefinition miDef, int index, DisplaySettings displaySettings,
+			InstructionTableContentProvider provider)
 	{
 		super(viewer, displaySettings);
 		classification = (IntegerClassification) miDef.getParameterClassifications()[index];
 		this.index = index;
+		this.viewer = viewer;
+		this.provider = provider;
 	}
 
 	@Override
 	protected void setAsBigInteger(Object element, BigInteger value)
 	{
-		((InstructionTableRow) element).data.setParameter(index, new IntegerImmediate(value, classification.getExpectedBits()));
+		InstructionTableRow row = ((InstructionTableRow) element);
+		row.data.setParameter(index, new IntegerImmediate(value, classification.getExpectedBits()));
+		provider.update(row.address);
+//		viewer.update(element, null); Does not do anything for some reason
 	}
 
 	@Override

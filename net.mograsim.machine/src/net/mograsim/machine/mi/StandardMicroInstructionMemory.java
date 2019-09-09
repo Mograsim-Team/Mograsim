@@ -38,6 +38,7 @@ public class StandardMicroInstructionMemory implements MicroInstructionMemory
 	public void setCell(long address, MicroInstruction data)
 	{
 		this.data[translate(address)] = data;
+		notifyObservers(address);
 	}
 
 	@Override
