@@ -20,12 +20,11 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 			"SDCO", "SRCO", "SRCIO", "SR", "SDIC", "SDRCI", "SDRCO", "SDXOR", "SDR");
 	private final static MnemonicFamily am2904CarryInstructions = new MnemonicFamily(new String[] { "0", "1", "Cx", "µ", "!µ", "M", "!M" },
 			new long[] { 0b000000, 0b010000, 0b100000, 0b110000, 0b110100, 0b111000, 0b111100 }, 6);
-	private final static MnemonicFamily am2901DestInstructions = new MnemonicFamily(
-			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
-	private final static MnemonicFamily am2901FuncInstructions = new MnemonicFamily(
-			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
-	private final static MnemonicFamily am2901SrcInstructions = new MnemonicFamily(
-			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
+	private final static MnemonicFamily am2901DestInstructions = new MnemonicFamily("QREG", "NOP", "RAMA", "RAMF", "RAMQD", "RAMD", "RAMQU",
+			"RAMU");
+	private final static MnemonicFamily am2901FuncInstructions = new MnemonicFamily("ADD", "SUBR", "SUBS", "OR", "AND", "NOTRS", "EXOR",
+			"EXNOR");
+	private final static MnemonicFamily am2901SrcInstructions = new MnemonicFamily("AQ", "AB", "ZQ", "ZB", "ZA", "DA", "DQ", "DZ");
 	private final static MnemonicFamily interruptInstructions = new MnemonicFamily(
 			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
 	private final static BooleanClassification hL = new BooleanClassification("H", "L");
