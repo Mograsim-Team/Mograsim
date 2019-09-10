@@ -193,7 +193,7 @@
     },
     {
       "location": {
-        "x": 65.0,
+        "x": 55.0,
         "y": 0.0
       },
       "name": "I3",
@@ -202,7 +202,7 @@
     },
     {
       "location": {
-        "x": 55.0,
+        "x": 65.0,
         "y": 0.0
       },
       "name": "I4",
@@ -287,8 +287,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
-          "x": 215.0,
-          "y": 225.0
+          "x": 214.0,
+          "y": 224.0
         },
         "params": 1
       },
@@ -296,8 +296,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
-          "x": 220.0,
-          "y": 235.0
+          "x": 219.0,
+          "y": 234.0
         },
         "params": 1
       },
@@ -305,8 +305,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
-          "x": 225.0,
-          "y": 245.0
+          "x": 224.0,
+          "y": 244.0
         },
         "params": 1
       },
@@ -314,8 +314,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
-          "x": 230.0,
-          "y": 255.0
+          "x": 229.0,
+          "y": 254.0
         },
         "params": 1
       },
@@ -576,7 +576,7 @@
         "name": "unnamedWire#2",
         "path": [
           {
-            "x": 260.0,
+            "x": 220.0,
             "y": 40.0
           }
         ]
@@ -1216,7 +1216,7 @@
         "name": "unnamedWire#50",
         "path": [
           {
-            "x": 220.0,
+            "x": 260.0,
             "y": 30.0
           }
         ]
