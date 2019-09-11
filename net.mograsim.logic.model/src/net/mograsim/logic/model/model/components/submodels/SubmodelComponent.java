@@ -167,7 +167,7 @@ public abstract class SubmodelComponent extends ModelComponent
 		default:
 			throw new IllegalArgumentException("Unknown enum constant: " + supermodelPin.usage);
 		}
-		MovablePin submodelPin = new MovablePin(model, submodelInterface, name, supermodelPin.logicWidth, submodelPinUsage,
+		MovablePin submodelPin = new MovablePin(submodelModifiable, submodelInterface, name, supermodelPin.logicWidth, submodelPinUsage,
 				supermodelPin.getRelX() / submodelScale, supermodelPin.getRelY() / submodelScale);
 
 		submodelPin.addPinMovedListener(p ->
