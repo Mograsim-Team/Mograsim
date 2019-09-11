@@ -27,9 +27,19 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 			if (params.delegateTarget == null)
 				setDelegateTarget(parentComponent);
 			else
-				setDelegateTarget(parentComponent.submodel.getComponentsByName().get(params.delegateTarget));
+			{
+				ModelComponent delegateTarget = parentComponent.submodel.getComponentsByName().get(params.delegateTarget);
+				if (delegateTarget == null)
+					throw new NullPointerException("No subcomponent with name " + params.delegateTarget);
+				setDelegateTarget(delegateTarget);
+			}
 			setSubStateID(params.subStateID);
 		}
+		parentComponent.submodel.addComponentRemovedListener(c ->
+		{
+			if (delegateTarget == c)
+				delegateTarget = null;
+		});
 	}
 
 	public void set(ModelComponent delegateTarget, String subStateID)
@@ -48,20 +58,34 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 		this.delegateTarget = delegateTarget;
 	}
 
+	public ModelComponent getDelegateTarget()
+	{
+		return delegateTarget;
+	}
+
 	public void setSubStateID(String subStateID)
 	{
 		this.subStateID = subStateID;
 	}
 
+	public String getSubStateID()
+	{
+		return subStateID;
+	}
+
 	@Override
 	public Object getHighLevelState()
 	{
+		if (delegateTarget == null)
+			throw new IllegalStateException("Delegating to a component that was destroyed");
 		return delegateTarget.getHighLevelState(subStateID);
 	}
 
 	@Override
 	public void setHighLevelState(Object newState)
 	{
+		if (delegateTarget == null)
+			throw new IllegalStateException("Delegating to a component that was destroyed");
 		delegateTarget.setHighLevelState(subStateID, newState);
 	}
 

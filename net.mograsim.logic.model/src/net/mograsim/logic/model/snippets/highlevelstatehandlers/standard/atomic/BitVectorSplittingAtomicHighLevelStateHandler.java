@@ -1,6 +1,7 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.mograsim.logic.core.types.Bit;
@@ -13,9 +14,11 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.Standar
 
 public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHighLevelStateHandler
 {
-	private SubmodelComponent component;
+	private final SubmodelComponent component;
 	private final List<String> vectorPartTargets;
+	private final List<String> vectorPartTargetsUnmodifiable;
 	private final List<Integer> vectorPartLengthes;
+	private final List<Integer> vectorPartLengthesUnmodifiable;
 	private int length;
 
 	public BitVectorSplittingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
@@ -28,7 +31,9 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	{
 		this.component = context.component;
 		this.vectorPartTargets = new ArrayList<>();
+		this.vectorPartTargetsUnmodifiable = Collections.unmodifiableList(vectorPartTargets);
 		this.vectorPartLengthes = new ArrayList<>();
+		this.vectorPartLengthesUnmodifiable = Collections.unmodifiableList(vectorPartLengthes);
 		if (params != null)
 			setVectorParts(params.vectorPartTargets, params.vectorPartLengthes);
 	}
@@ -60,6 +65,16 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 		vectorPartTargets.addAll(targets);
 		vectorPartLengthes.addAll(lengthes);
 		length += lengthes.stream().mapToInt(Integer::intValue).sum();
+	}
+
+	public List<String> getVectorPartTargets()
+	{
+		return vectorPartTargetsUnmodifiable;
+	}
+
+	public List<Integer> getVectorPartLenghtes()
+	{
+		return vectorPartLengthesUnmodifiable;
 	}
 
 	@Override

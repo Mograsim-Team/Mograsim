@@ -1,6 +1,7 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -17,10 +18,12 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.Standar
 
 public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelStateHandler
 {
-	private SubmodelComponent component;
+	private final SubmodelComponent component;
 	private int logicWidth;
 	private final List<ModelWire> wiresToForce;
+	private final List<ModelWire> wiresToForceUnmodifiable;
 	private final List<ModelWire> wiresToForceInverted;
+	private final List<ModelWire> wiresToForceInvertedUnmodifiable;
 
 	public WireForcingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
 	{
@@ -31,13 +34,20 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 	{
 		this.component = context.component;
 		this.wiresToForce = new ArrayList<>();
+		this.wiresToForceUnmodifiable = Collections.unmodifiableList(wiresToForce);
 		this.wiresToForceInverted = new ArrayList<>();
+		this.wiresToForceInvertedUnmodifiable = Collections.unmodifiableList(wiresToForceInverted);
 		if (params != null)
 		{
 			Map<String, ModelWire> wiresByName = component.submodel.getWiresByName();
 			setWiresToForce(params.wiresToForce.stream().map((Function<String, ModelWire>) wiresByName::get).collect(Collectors.toList()),
 					params.wiresToForceInverted.stream().map((Function<String, ModelWire>) wiresByName::get).collect(Collectors.toList()));
 		}
+		component.submodel.addWireRemovedListener(w ->
+		{
+			wiresToForce.removeIf(w::equals);
+			wiresToForceInverted.removeIf(w::equals);
+		});
 	}
 
 	public void set(List<ModelWire> wiresToForce, List<ModelWire> wiresToForceInverted)
@@ -62,6 +72,8 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 			logicWidth = wire.logicWidth;
 		else if (wire.logicWidth != logicWidth)
 			throw new IllegalArgumentException("Can only force wires of the same logic width");
+		// this can add the same wire multiple times, but maybe there is a weird configuration where it is neccessary, due to race
+		// conditions, to force the same wire twice.
 		if (inverted)
 			wiresToForceInverted.add(wire);
 		else
@@ -73,6 +85,16 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 		wiresToForce.clear();
 		wiresToForceInverted.clear();
 		logicWidth = 0;
+	}
+
+	public List<ModelWire> getWiresToForce()
+	{
+		return wiresToForceUnmodifiable;
+	}
+
+	public List<ModelWire> getWiresToForceInverted()
+	{
+		return wiresToForceInvertedUnmodifiable;
 	}
 
 	@Override
