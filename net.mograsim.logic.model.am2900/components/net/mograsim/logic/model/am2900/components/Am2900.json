@@ -494,12 +494,13 @@
         }
       },
       {
-        "id": "inc12",
-        "name": "inc12#0",
+        "id": "inc",
+        "name": "inc#0",
         "pos": {
           "x": 245.0,
           "y": 525.0
-        }
+        },
+        "params": 12
       },
       {
         "id": "mux1_12",
@@ -925,7 +926,7 @@
       },
       {
         "pin1": {
-          "compName": "inc12#0",
+          "compName": "inc#0",
           "pinName": "Y"
         },
         "pin2": {
@@ -937,7 +938,7 @@
       },
       {
         "pin1": {
-          "compName": "inc12#0",
+          "compName": "inc#0",
           "pinName": "A"
         },
         "pin2": {
@@ -961,7 +962,7 @@
       },
       {
         "pin1": {
-          "compName": "inc12#0",
+          "compName": "inc#0",
           "pinName": "CI"
         },
         "pin2": {

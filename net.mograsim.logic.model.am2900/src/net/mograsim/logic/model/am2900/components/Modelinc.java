@@ -15,18 +15,22 @@ import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcodedModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
+import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
 
-public class Modelinc12 extends SimpleRectangularHardcodedModelComponent
+public class Modelinc extends SimpleRectangularHardcodedModelComponent
 {
-	public Modelinc12(LogicModelModifiable model, String name)
+	private final int logicWidth;
+
+	public Modelinc(LogicModelModifiable model, String name, int logicWidth)
 	{
-		super(model, "inc12", name, "Incrementer", false);
+		super(model, "inc", name, "Incrementer", false);
+		this.logicWidth = logicWidth;
 		setSize(40, 20);
-		addPin(new Pin(model, this, "A", 12, PinUsage.INPUT, 20, 20), Position.TOP);
+		addPin(new Pin(model, this, "A", logicWidth, PinUsage.INPUT, 20, 20), Position.TOP);
 		addPin(new Pin(model, this, "CI", 1, PinUsage.INPUT, 40, 10), Position.LEFT);
-		addPin(new Pin(model, this, "Y", 12, PinUsage.OUTPUT, 20, 0), Position.BOTTOM);
+		addPin(new Pin(model, this, "Y", logicWidth, PinUsage.OUTPUT, 20, 0), Position.BOTTOM);
 
 		init();
 	}
@@ -36,7 +40,7 @@ public class Modelinc12 extends SimpleRectangularHardcodedModelComponent
 	{
 		Bit[] ABits = readEnds.get("A").getValues().getBits();
 		Bit CIVal = readEnds.get("CI").getValue();
-		Bit[] YBits = new Bit[12];
+		Bit[] YBits = new Bit[logicWidth];
 		if (CIVal == X)
 			Arrays.fill(YBits, X);
 		else if (CIVal == U)
@@ -49,7 +53,7 @@ public class Modelinc12 extends SimpleRectangularHardcodedModelComponent
 		{
 			Bit carry = Bit.ONE;
 			// TODO extract to helper. This code almost also exists in ModelAm2910RegCntr.
-			for (int i = 11; i >= 0; i--)
+			for (int i = logicWidth - 1; i >= 0; i--)
 			{
 				Bit a = ABits[i];
 				YBits[i] = a.xor(carry);
@@ -60,8 +64,15 @@ public class Modelinc12 extends SimpleRectangularHardcodedModelComponent
 		return null;
 	}
 
+	@Override
+	public Integer getParamsForSerializing(IdentifyParams idParams)
+	{
+		return logicWidth;
+	}
+
 	static
 	{
-		IndirectModelComponentCreator.setComponentSupplier(Modelinc12.class.getCanonicalName(), (m, p, n) -> new Modelinc12(m, n));
+		IndirectModelComponentCreator.setComponentSupplier(Modelinc.class.getCanonicalName(),
+				(m, p, n) -> new Modelinc(m, n, p.getAsInt()));
 	}
 }
