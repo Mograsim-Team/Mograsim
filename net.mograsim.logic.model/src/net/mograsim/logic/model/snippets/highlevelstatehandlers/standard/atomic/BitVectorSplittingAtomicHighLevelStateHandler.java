@@ -92,7 +92,7 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 			if (vectorPart.length() != vectorPartLengthes.get(partIndex))
 				throw new IllegalArgumentException(
 						"Incorrect vector part length: " + vectorPart.length() + "; expected " + vectorPartLengthes.get(partIndex));
-			result = vectorPart.concat(result);
+			result = result.concat(vectorPart);
 		}
 		return result;
 	}
@@ -103,7 +103,7 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 		BitVector newStateCasted = (BitVector) newState;
 		if (newStateCasted.length() != length)
 			throw new IllegalArgumentException("Incorrect vector length: " + newStateCasted.length() + "; expected " + length);
-		for (int partIndex = vectorPartTargets.size() - 1, bitIndex = 0; partIndex >= 0; partIndex--)
+		for (int partIndex = 0, bitIndex = 0; partIndex < vectorPartTargets.size(); partIndex++)
 		{
 			int vectorPartLength = vectorPartLengthes.get(partIndex);
 			BitVector vectorPart = newStateCasted.subVector(bitIndex, bitIndex + vectorPartLength);
