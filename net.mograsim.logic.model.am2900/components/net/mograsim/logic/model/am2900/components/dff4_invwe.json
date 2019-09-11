@@ -685,20 +685,6 @@
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {},
     "atomicHighLevelStates": {
-      "q1": {
-        "id": "delegating",
-        "params": {
-          "delegateTarget": "dff#0",
-          "subStateID": "q"
-        }
-      },
-      "q2": {
-        "id": "delegating",
-        "params": {
-          "delegateTarget": "dff#1",
-          "subStateID": "q"
-        }
-      },
       "q": {
         "id": "bitVectorSplitting",
         "params": {
@@ -714,6 +700,20 @@
             1,
             1
           ]
+        }
+      },
+      "q1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#0",
+          "subStateID": "q"
+        }
+      },
+      "q2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#1",
+          "subStateID": "q"
         }
       },
       "q3": {

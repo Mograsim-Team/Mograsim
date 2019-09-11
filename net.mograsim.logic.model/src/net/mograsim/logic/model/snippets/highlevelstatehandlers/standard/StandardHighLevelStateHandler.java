@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -178,8 +179,8 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 	public StandardHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		StandardHighLevelStateHandlerParams params = new StandardHighLevelStateHandlerParams();
-		params.subcomponentHighLevelStates = new HashMap<>();
-		params.atomicHighLevelStates = new HashMap<>();
+		params.subcomponentHighLevelStates = new TreeMap<>();
+		params.atomicHighLevelStates = new TreeMap<>();
 		for (Entry<String, SubcomponentHighLevelStateHandler> e : subcomponentHighLevelStateHandlers.entrySet())
 		{
 			String stateID = e.getKey();

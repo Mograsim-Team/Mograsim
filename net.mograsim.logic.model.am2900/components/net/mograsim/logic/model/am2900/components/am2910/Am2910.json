@@ -1119,28 +1119,28 @@
   "highLevelStateHandlerSnippetID": "standard",
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {
-      "r": {
-        "id": "delegating",
-        "params": {
-          "delegateTarget": "Am2910RegCntr#0"
-        }
-      },
-      "stack": {
-        "id": "delegating",
-        "params": {
-          "delegateTarget": "ram5_12#0"
-        }
-      },
       "mupc": {
         "id": "delegating",
         "params": {
           "delegateTarget": "dff12#0"
         }
       },
+      "r": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2910RegCntr#0"
+        }
+      },
       "sp": {
         "id": "delegating",
         "params": {
           "delegateTarget": "Am2910SP#0"
+        }
+      },
+      "stack": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "ram5_12#0"
         }
       }
     },
