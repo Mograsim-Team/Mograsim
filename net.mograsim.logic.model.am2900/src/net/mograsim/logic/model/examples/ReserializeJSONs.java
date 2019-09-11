@@ -32,7 +32,7 @@ import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
 
-public class ReserializeJSONsSettingUsages
+public class ReserializeJSONs
 {
 	public static double GRIDSIZE = 2.5;
 	public static boolean changePinUsages = false;
@@ -100,7 +100,7 @@ public class ReserializeJSONsSettingUsages
 				IdentifyParams iP = new IdentifyParams();
 				submodelModifiable.getComponentsByName().entrySet().stream()
 						.filter(e -> !e.getKey().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
-						.sorted(Comparator.comparing(Entry::getKey, ReserializeJSONsSettingUsages::compareStringsWithIntegers)).forEach(e ->
+						.sorted(Comparator.comparing(Entry::getKey, ReserializeJSONs::compareStringsWithIntegers)).forEach(e ->
 						{
 							String oldName = e.getKey();
 							ModelComponent subcomp = e.getValue();
