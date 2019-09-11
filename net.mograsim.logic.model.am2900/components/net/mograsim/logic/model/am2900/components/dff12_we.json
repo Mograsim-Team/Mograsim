@@ -67,15 +67,6 @@
         }
       },
       {
-        "id": "TextComponent",
-        "name": "TextComponent#0",
-        "pos": {
-          "x": -35.0,
-          "y": -5.0
-        },
-        "params": "a"
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -1155,6 +1146,128 @@
     "pinLabelMargin": 0.5
   },
   "outlineRendererSnippetID": "default",
-  "highLevelStateHandlerSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {},
+    "atomicHighLevelStates": {
+      "q1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#6",
+          "subStateID": "q"
+        }
+      },
+      "q2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#7",
+          "subStateID": "q"
+        }
+      },
+      "q3": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#5",
+          "subStateID": "q"
+        }
+      },
+      "q4": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#8",
+          "subStateID": "q"
+        }
+      },
+      "q5": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#10",
+          "subStateID": "q"
+        }
+      },
+      "q6": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#11",
+          "subStateID": "q"
+        }
+      },
+      "q7": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#9",
+          "subStateID": "q"
+        }
+      },
+      "q8": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#4",
+          "subStateID": "q"
+        }
+      },
+      "q9": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#1",
+          "subStateID": "q"
+        }
+      },
+      "q10": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#3",
+          "subStateID": "q"
+        }
+      },
+      "q11": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#0",
+          "subStateID": "q"
+        }
+      },
+      "q12": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#2",
+          "subStateID": "q"
+        }
+      },
+      "q": {
+        "id": "bitVectorSplitting",
+        "params": {
+          "vectorPartTargets": [
+            "q12",
+            "q11",
+            "q10",
+            "q9",
+            "q8",
+            "q7",
+            "q6",
+            "q5",
+            "q4",
+            "q3",
+            "q2",
+            "q1"
+          ],
+          "vectorPartLengthes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      }
+    }
+  },
   "version": "0.1.5"
 }

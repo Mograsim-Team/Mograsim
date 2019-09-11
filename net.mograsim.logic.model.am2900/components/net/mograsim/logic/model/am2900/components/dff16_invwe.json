@@ -1469,6 +1469,164 @@
     "pinLabelMargin": 0.5
   },
   "outlineRendererSnippetID": "default",
-  "highLevelStateHandlerSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {},
+    "atomicHighLevelStates": {
+      "q": {
+        "id": "bitVectorSplitting",
+        "params": {
+          "vectorPartTargets": [
+            "q16",
+            "q15",
+            "q14",
+            "q13",
+            "q12",
+            "q11",
+            "q10",
+            "q9",
+            "q8",
+            "q7",
+            "q6",
+            "q5",
+            "q4",
+            "q3",
+            "q2",
+            "q1"
+          ],
+          "vectorPartLengthes": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        }
+      },
+      "q1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#10",
+          "subStateID": "q"
+        }
+      },
+      "q10": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#7",
+          "subStateID": "q"
+        }
+      },
+      "q11": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#4",
+          "subStateID": "q"
+        }
+      },
+      "q12": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#6",
+          "subStateID": "q"
+        }
+      },
+      "q13": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#2",
+          "subStateID": "q"
+        }
+      },
+      "q14": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#3",
+          "subStateID": "q"
+        }
+      },
+      "q15": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#1",
+          "subStateID": "q"
+        }
+      },
+      "q16": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#0",
+          "subStateID": "q"
+        }
+      },
+      "q2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#11",
+          "subStateID": "q"
+        }
+      },
+      "q3": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#9",
+          "subStateID": "q"
+        }
+      },
+      "q4": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#12",
+          "subStateID": "q"
+        }
+      },
+      "q5": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#14",
+          "subStateID": "q"
+        }
+      },
+      "q6": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#15",
+          "subStateID": "q"
+        }
+      },
+      "q7": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#13",
+          "subStateID": "q"
+        }
+      },
+      "q8": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#8",
+          "subStateID": "q"
+        }
+      },
+      "q9": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#5",
+          "subStateID": "q"
+        }
+      }
+    }
+  },
   "version": "0.1.5"
 }
