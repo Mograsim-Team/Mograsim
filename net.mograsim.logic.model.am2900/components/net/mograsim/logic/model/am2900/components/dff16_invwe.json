@@ -43,22 +43,28 @@
   "submodel": {
     "components": [
       {
-        "id": "Merger",
-        "name": "Merger#0",
-        "pos": {
-          "x": 275.0,
-          "y": 50.0
-        },
-        "params": 16
-      },
-      {
         "id": "Splitter",
         "name": "Splitter#0",
         "pos": {
           "x": 75.0,
           "y": 70.0
         },
-        "params": 16
+        "params": {
+          "logicWidth": 16,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#1",
+        "pos": {
+          "x": 275.0,
+          "y": 50.0
+        },
+        "params": {
+          "logicWidth": 16,
+          "orientation": "LEFT"
+        }
       },
       {
         "id": "WireCrossPoint",
@@ -978,8 +984,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I15"
+          "compName": "Splitter#1",
+          "pinName": "O15"
         },
         "pin2": {
           "compName": "dff#0",
@@ -1024,8 +1030,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I14"
+          "compName": "Splitter#1",
+          "pinName": "O14"
         },
         "name": "unnamedWire#50",
         "path": [
@@ -1041,8 +1047,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I13"
+          "compName": "Splitter#1",
+          "pinName": "O13"
         },
         "pin2": {
           "compName": "dff#3",
@@ -1062,8 +1068,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I12"
+          "compName": "Splitter#1",
+          "pinName": "O12"
         },
         "pin2": {
           "compName": "dff#2",
@@ -1083,8 +1089,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I11"
+          "compName": "Splitter#1",
+          "pinName": "O11"
         },
         "pin2": {
           "compName": "dff#6",
@@ -1108,8 +1114,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I10"
+          "compName": "Splitter#1",
+          "pinName": "O10"
         },
         "name": "unnamedWire#54",
         "path": [
@@ -1125,8 +1131,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I9"
+          "compName": "Splitter#1",
+          "pinName": "O9"
         },
         "pin2": {
           "compName": "dff#7",
@@ -1141,16 +1147,16 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I8"
+          "compName": "Splitter#1",
+          "pinName": "O8"
         },
         "name": "unnamedWire#56",
         "path": []
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I7"
+          "compName": "Splitter#1",
+          "pinName": "O7"
         },
         "pin2": {
           "compName": "dff#8",
@@ -1174,8 +1180,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I6"
+          "compName": "Splitter#1",
+          "pinName": "O6"
         },
         "name": "unnamedWire#58",
         "path": [
@@ -1191,8 +1197,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I5"
+          "compName": "Splitter#1",
+          "pinName": "O5"
         },
         "pin2": {
           "compName": "dff#15",
@@ -1233,8 +1239,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I4"
+          "compName": "Splitter#1",
+          "pinName": "O4"
         },
         "pin2": {
           "compName": "dff#14",
@@ -1254,8 +1260,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I3"
+          "compName": "Splitter#1",
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "dff#12",
@@ -1279,8 +1285,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I2"
+          "compName": "Splitter#1",
+          "pinName": "O2"
         },
         "name": "unnamedWire#62",
         "path": [
@@ -1296,8 +1302,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I1"
+          "compName": "Splitter#1",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "dff#11",
@@ -1321,8 +1327,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I0"
+          "compName": "Splitter#1",
+          "pinName": "O0"
         },
         "name": "unnamedWire#64",
         "path": [
@@ -1338,8 +1344,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "O"
+          "compName": "Splitter#1",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "WireCrossPoint#7",

@@ -115,15 +115,6 @@
   "submodel": {
     "components": [
       {
-        "id": "Merger",
-        "name": "Merger#0",
-        "pos": {
-          "x": 385.0,
-          "y": 85.0
-        },
-        "params": 4
-      },
-      {
         "id": "NandGate",
         "name": "NandGate#0",
         "pos": {
@@ -139,7 +130,10 @@
           "x": 5.0,
           "y": 35.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -148,7 +142,10 @@
           "x": 5.0,
           "y": 135.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -157,7 +154,10 @@
           "x": 45.0,
           "y": 340.0
         },
-        "params": 3
+        "params": {
+          "logicWidth": 3,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -166,7 +166,22 @@
           "x": 5.0,
           "y": 235.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#4",
+        "pos": {
+          "x": 385.0,
+          "y": 85.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
       },
       {
         "id": "WireCrossPoint",
@@ -738,16 +753,16 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I2"
+          "compName": "Splitter#4",
+          "pinName": "O2"
         },
         "name": "unnamedWire#27",
         "path": []
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I3"
+          "compName": "Splitter#4",
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "WireCrossPoint#1",
@@ -1128,8 +1143,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "O"
+          "compName": "Splitter#4",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "_submodelinterface",
@@ -1434,8 +1449,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I0"
+          "compName": "Splitter#4",
+          "pinName": "O0"
         },
         "name": "unnamedWire#7",
         "path": []
@@ -1624,8 +1639,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I1"
+          "compName": "Splitter#4",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "WireCrossPoint#3",

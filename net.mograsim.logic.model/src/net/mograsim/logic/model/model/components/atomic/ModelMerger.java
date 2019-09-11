@@ -8,6 +8,8 @@ import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.components.Orientation;
+import net.mograsim.logic.model.model.components.atomic.ModelSplitter.SplitterParams;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
@@ -18,6 +20,7 @@ import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
 import net.mograsim.preferences.Preferences;
 
+//TODO delete this legacy class
 public class ModelMerger extends ModelComponent
 {
 	private static final double width = 10;
@@ -41,8 +44,8 @@ public class ModelMerger extends ModelComponent
 		setSize(width, (logicWidth - 1) * heightPerPin);
 		double inputHeight = (logicWidth - 1) * heightPerPin;
 		for (int i = 0; i < logicWidth; i++, inputHeight -= 10)
-			addPin(new Pin(model, this, "I" + i, 1, PinUsage.TRISTATE, 0, inputHeight));
-		addPin(this.outputPin = new Pin(model, this, "O", logicWidth, PinUsage.TRISTATE, width, (logicWidth - 1) * heightPerPin / 2));
+			addPin(new Pin(model, this, "O" + i, 1, PinUsage.TRISTATE, 0, inputHeight));
+		addPin(this.outputPin = new Pin(model, this, "I", logicWidth, PinUsage.TRISTATE, width, (logicWidth - 1) * heightPerPin / 2));
 		inputEnds = new ReadEnd[logicWidth];
 
 		init();
@@ -82,15 +85,25 @@ public class ModelMerger extends ModelComponent
 	}
 
 	@Override
-	public String getIDForSerializing(IdentifyParams idParams)
+	public Pin getPin(String name)
 	{
-		return "Merger";
+		Pin pin = getPinOrNull(name);
+		return pin == null ? getPin(name.replace('O', 'i').replace('I', 'O').replace('i', 'I')) : pin;
 	}
 
 	@Override
-	public Integer getParamsForSerializing(IdentifyParams idParams)
+	public String getIDForSerializing(IdentifyParams idParams)
 	{
-		return logicWidth;
+		return "Splitter";
+	}
+
+	@Override
+	public SplitterParams getParamsForSerializing(IdentifyParams idParams)
+	{
+		SplitterParams splitterParams = new SplitterParams();
+		splitterParams.logicWidth = logicWidth;
+		splitterParams.orientation = Orientation.LEFT;
+		return splitterParams;
 	}
 
 	public void setCoreModelBinding(ReadEnd[] inputEnds, ReadEnd outputEnd)
