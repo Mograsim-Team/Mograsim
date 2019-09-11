@@ -680,10 +680,10 @@
         "id": "bitVectorSplitting",
         "params": {
           "vectorPartTargets": [
-            "q1",
-            "q2",
+            "q4",
             "q3",
-            "q4"
+            "q2",
+            "q1"
           ],
           "vectorPartLengthes": [
             1,
