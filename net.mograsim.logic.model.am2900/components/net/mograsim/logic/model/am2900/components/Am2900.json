@@ -376,10 +376,10 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#14",
         "pos": {
-          "x": 354.0,
-          "y": 504.0
+          "x": 355.0,
+          "y": 510.0
         },
-        "params": 12
+        "params": 16
       },
       {
         "id": "WireCrossPoint",
@@ -478,19 +478,19 @@
         }
       },
       {
-        "id": "dff12_we",
-        "name": "dff12_we#0",
-        "pos": {
-          "x": 290.0,
-          "y": 485.0
-        }
-      },
-      {
         "id": "dff16_invwe",
         "name": "dff16_invwe#0",
         "pos": {
           "x": 135.0,
           "y": 106.0
+        }
+      },
+      {
+        "id": "dff16_we",
+        "name": "dff16_we#1",
+        "pos": {
+          "x": 290.0,
+          "y": 485.0
         }
       },
       {
@@ -500,11 +500,11 @@
           "x": 245.0,
           "y": 525.0
         },
-        "params": 12
+        "params": 16
       },
       {
-        "id": "mux1_12",
-        "name": "mux1_12#0",
+        "id": "mux1_16",
+        "name": "mux1_16#0",
         "pos": {
           "x": 170.0,
           "y": 495.0
@@ -918,7 +918,7 @@
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "dff12_we#0",
+          "compName": "dff16_we#1",
           "pinName": "WE"
         },
         "name": "unnamedWire#127",
@@ -930,7 +930,7 @@
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "dff12_we#0",
+          "compName": "dff16_we#1",
           "pinName": "D"
         },
         "name": "unnamedWire#128",
@@ -942,7 +942,7 @@
           "pinName": "A"
         },
         "pin2": {
-          "compName": "mux1_12#0",
+          "compName": "mux1_16#0",
           "pinName": "Y"
         },
         "name": "unnamedWire#129",
@@ -1010,7 +1010,7 @@
       },
       {
         "pin1": {
-          "compName": "mux1_12#0",
+          "compName": "mux1_16#0",
           "pinName": "I1"
         },
         "pin2": {
@@ -1022,7 +1022,7 @@
       },
       {
         "pin1": {
-          "compName": "mux1_12#0",
+          "compName": "mux1_16#0",
           "pinName": "S"
         },
         "pin2": {
@@ -1046,26 +1046,14 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#14",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#14",
-          "pinName": ""
-        },
-        "name": "unnamedWire#137",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "dff12_we#0",
+          "compName": "dff16_we#1",
           "pinName": "Q"
         },
         "pin2": {
           "compName": "WireCrossPoint#14",
           "pinName": ""
         },
-        "name": "unnamedWire#138",
+        "name": "unnamedWire#137",
         "path": []
       },
       {
