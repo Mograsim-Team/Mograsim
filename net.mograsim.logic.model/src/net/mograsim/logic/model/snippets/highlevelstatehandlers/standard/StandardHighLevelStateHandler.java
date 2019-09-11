@@ -1,5 +1,6 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -20,7 +21,9 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 {
 	private final SubmodelComponent component;
 	private final Map<String, SubcomponentHighLevelStateHandler> subcomponentHighLevelStateHandlers;
+	private final Map<String, SubcomponentHighLevelStateHandler> subcomponentHighLevelStateHandlersUnmodifiable;
 	private final Map<String, AtomicHighLevelStateHandler> atomicHighLevelStateHandlers;
+	private final Map<String, AtomicHighLevelStateHandler> atomicHighLevelStateHandlersUnmodifiable;
 
 	public StandardHighLevelStateHandler(SubmodelComponent component)
 	{
@@ -31,7 +34,9 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 	{
 		this.component = component;
 		this.subcomponentHighLevelStateHandlers = new HashMap<>();
+		this.subcomponentHighLevelStateHandlersUnmodifiable = Collections.unmodifiableMap(subcomponentHighLevelStateHandlers);
 		this.atomicHighLevelStateHandlers = new HashMap<>();
+		this.atomicHighLevelStateHandlersUnmodifiable = Collections.unmodifiableMap(atomicHighLevelStateHandlers);
 		if (params != null)
 		{
 			params.subcomponentHighLevelStates.forEach(this::addSubcomponentHighLevelState);
@@ -68,6 +73,17 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 		subcomponentHighLevelStateHandlers.put(subcomponentStateID, handler);
 	}
 
+	public void removeSubcomponentHighLevelState(String subcomponentStateID)
+	{
+		checkHighLevelStateIDPart(subcomponentStateID);
+		subcomponentHighLevelStateHandlers.remove(subcomponentStateID);
+	}
+
+	public Map<String, SubcomponentHighLevelStateHandler> getSubcomponentHighLevelStates()
+	{
+		return subcomponentHighLevelStateHandlersUnmodifiable;
+	}
+
 	public AtomicHighLevelStateHandler addAtomicHighLevelState(String atomicStateID, AtomicHighLevelStateHandlerParams handlerParams)
 	{
 		return addAtomicHighLevelState(atomicStateID,
@@ -94,6 +110,17 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 	{
 		checkHighLevelStateIDPart(atomicStateID);
 		atomicHighLevelStateHandlers.put(atomicStateID, handler);
+	}
+
+	public void removeAtomicHighLevelState(String atomicStateID)
+	{
+		checkHighLevelStateIDPart(atomicStateID);
+		atomicHighLevelStateHandlers.remove(atomicStateID);
+	}
+
+	public Map<String, AtomicHighLevelStateHandler> getAtomicHighLevelStates()
+	{
+		return atomicHighLevelStateHandlersUnmodifiable;
 	}
 
 	private static void checkHighLevelStateIDPart(String stateIDPart)

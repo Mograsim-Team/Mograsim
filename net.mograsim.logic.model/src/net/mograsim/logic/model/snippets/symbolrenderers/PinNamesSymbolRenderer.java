@@ -30,6 +30,7 @@ public class PinNamesSymbolRenderer implements Renderer
 		this.pinLabelMargin = params.pinLabelMargin;
 		if (params.pinNamePositions != null)
 			params.pinNamePositions.forEach(this::setPinPosition);
+		component.addPinRemovedListener(p -> setPinPosition(p, null));
 	}
 
 	public void setPinPosition(String pinName, Position position)

@@ -28,9 +28,19 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 			if (params.delegateTarget == null)
 				setDelegateTarget(parentComponent);
 			else
-				this.delegateTarget = parentComponent.submodel.getComponentsByName().get(params.delegateTarget);
+			{
+				ModelComponent delegateTarget = parentComponent.submodel.getComponentsByName().get(params.delegateTarget);
+				if (delegateTarget == null)
+					throw new NullPointerException("No subcomponent with name " + params.delegateTarget);
+				setDelegateTarget(delegateTarget);
+			}
 			setPrefix(params.prefix);
 		}
+		parentComponent.submodel.addComponentRemovedListener(c ->
+		{
+			if (delegateTarget == c)
+				delegateTarget = null;
+		});
 	}
 
 	public void set(ModelComponent delegateTarget, String prefix)
@@ -49,20 +59,34 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 		this.delegateTarget = delegateTarget;
 	}
 
+	public ModelComponent getDelegateTarget()
+	{
+		return delegateTarget;
+	}
+
 	public void setPrefix(String prefix)
 	{
 		this.prefix = prefix;
 	}
 
+	public String getPrefix()
+	{
+		return prefix;
+	}
+
 	@Override
 	public Object getHighLevelState(String subStateID)
 	{
+		if (delegateTarget == null)
+			throw new IllegalStateException("Delegating to a component that was destroyed");
 		return delegateTarget.getHighLevelState(getDelegateTargetHighLevelStateID(subStateID));
 	}
 
 	@Override
 	public void setHighLevelState(String subStateID, Object newState)
 	{
+		if (delegateTarget == null)
+			throw new IllegalStateException("Delegating to a component that was destroyed");
 		delegateTarget.setHighLevelState(getDelegateTargetHighLevelStateID(subStateID), newState);
 	}
 
