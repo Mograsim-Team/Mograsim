@@ -62,7 +62,7 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 			else if (WE.getValue() == ONE)
 			{
 				Bit carry = Bit.ZERO;
-				// TODO extract to helper. This code almost also exists in Modelinc12.
+				// TODO extract to helper. This code almost also exists in Modelinc.
 				for (int i = 11; i >= 0; i--)
 				{
 					Bit a = QC[i];

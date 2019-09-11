@@ -281,51 +281,6 @@
         }
       },
       {
-        "id": "Merger",
-        "name": "Merger#0",
-        "pos": {
-          "x": 20.0,
-          "y": 235.0
-        },
-        "params": 6
-      },
-      {
-        "id": "Merger",
-        "name": "Merger#1",
-        "pos": {
-          "x": 20.0,
-          "y": 185.0
-        },
-        "params": 5
-      },
-      {
-        "id": "Merger",
-        "name": "Merger#2",
-        "pos": {
-          "x": 15.0,
-          "y": 65.0
-        },
-        "params": 4
-      },
-      {
-        "id": "Merger",
-        "name": "Merger#3",
-        "pos": {
-          "x": 520.0,
-          "y": 90.0
-        },
-        "params": 4
-      },
-      {
-        "id": "Merger",
-        "name": "Merger#4",
-        "pos": {
-          "x": 20.0,
-          "y": 165.0
-        },
-        "params": 2
-      },
-      {
         "id": "NandGate",
         "name": "NandGate#0",
         "pos": {
@@ -440,7 +395,10 @@
           "x": 5.0,
           "y": 165.0
         },
-        "params": 13
+        "params": {
+          "logicWidth": 13,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -449,7 +407,10 @@
           "x": 575.0,
           "y": 40.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -458,7 +419,10 @@
           "x": 445.0,
           "y": 300.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -467,7 +431,10 @@
           "x": 455.0,
           "y": 635.0
         },
-        "params": 3
+        "params": {
+          "logicWidth": 3,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -476,7 +443,10 @@
           "x": 455.0,
           "y": 710.0
         },
-        "params": 3
+        "params": {
+          "logicWidth": 3,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -485,7 +455,10 @@
           "x": 135.0,
           "y": 645.0
         },
-        "params": 3
+        "params": {
+          "logicWidth": 3,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -494,7 +467,10 @@
           "x": 310.0,
           "y": 645.0
         },
-        "params": 3
+        "params": {
+          "logicWidth": 3,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -503,7 +479,58 @@
           "x": 430.0,
           "y": 535.0
         },
-        "params": 2
+        "params": {
+          "logicWidth": 2,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#16",
+        "pos": {
+          "x": 20.0,
+          "y": 235.0
+        },
+        "params": {
+          "logicWidth": 6,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#17",
+        "pos": {
+          "x": 20.0,
+          "y": 185.0
+        },
+        "params": {
+          "logicWidth": 5,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#18",
+        "pos": {
+          "x": 15.0,
+          "y": 65.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#19",
+        "pos": {
+          "x": 520.0,
+          "y": 90.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
       },
       {
         "id": "Splitter",
@@ -512,7 +539,22 @@
           "x": 440.0,
           "y": 90.0
         },
-        "params": 2
+        "params": {
+          "logicWidth": 2,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#20",
+        "pos": {
+          "x": 20.0,
+          "y": 165.0
+        },
+        "params": {
+          "logicWidth": 2,
+          "orientation": "LEFT"
+        }
       },
       {
         "id": "Splitter",
@@ -521,7 +563,10 @@
           "x": 465.0,
           "y": 100.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -530,7 +575,10 @@
           "x": 425.0,
           "y": 150.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -539,7 +587,10 @@
           "x": 425.0,
           "y": 190.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -548,7 +599,10 @@
           "x": 320.0,
           "y": 310.0
         },
-        "params": 3
+        "params": {
+          "logicWidth": 3,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -557,7 +611,10 @@
           "x": 445.0,
           "y": 340.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -566,7 +623,10 @@
           "x": 445.0,
           "y": 380.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -575,7 +635,10 @@
           "x": 255.0,
           "y": 430.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "TriStateBuffer",
@@ -1220,8 +1283,8 @@
           "pinName": "O6"
         },
         "pin2": {
-          "compName": "Merger#1",
-          "pinName": "I0"
+          "compName": "Splitter#17",
+          "pinName": "O0"
         },
         "name": "unnamedWire#10",
         "path": []
@@ -1353,8 +1416,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#1",
-          "pinName": "I1"
+          "compName": "Splitter#17",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -1528,8 +1591,8 @@
           "pinName": "O8"
         },
         "pin2": {
-          "compName": "Merger#1",
-          "pinName": "I2"
+          "compName": "Splitter#17",
+          "pinName": "O2"
         },
         "name": "unnamedWire#12",
         "path": []
@@ -1680,8 +1743,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#1",
-          "pinName": "I3"
+          "compName": "Splitter#17",
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -1878,8 +1941,8 @@
           "pinName": "O11"
         },
         "pin2": {
-          "compName": "Merger#4",
-          "pinName": "I0"
+          "compName": "Splitter#20",
+          "pinName": "O0"
         },
         "name": "unnamedWire#139",
         "path": []
@@ -1890,16 +1953,16 @@
           "pinName": "O10"
         },
         "pin2": {
-          "compName": "Merger#1",
-          "pinName": "I4"
+          "compName": "Splitter#17",
+          "pinName": "O4"
         },
         "name": "unnamedWire#14",
         "path": []
       },
       {
         "pin1": {
-          "compName": "Merger#4",
-          "pinName": "I1"
+          "compName": "Splitter#20",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -1910,8 +1973,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#4",
-          "pinName": "O"
+          "compName": "Splitter#20",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "Am2904RegCTInstrDecode#0",
@@ -2093,8 +2156,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "O"
+          "compName": "Splitter#16",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "Am2904RegCTInstrDecode#0",
@@ -2292,8 +2355,8 @@
           "pinName": "I"
         },
         "pin2": {
-          "compName": "Merger#1",
-          "pinName": "O"
+          "compName": "Splitter#17",
+          "pinName": "I"
         },
         "name": "unnamedWire#16",
         "path": [
@@ -2465,8 +2528,8 @@
           "pinName": "IOVR"
         },
         "pin2": {
-          "compName": "Merger#2",
-          "pinName": "I0"
+          "compName": "Splitter#18",
+          "pinName": "O0"
         },
         "name": "unnamedWire#17",
         "path": [
@@ -2641,8 +2704,8 @@
           "pinName": "IN"
         },
         "pin2": {
-          "compName": "Merger#2",
-          "pinName": "I1"
+          "compName": "Splitter#18",
+          "pinName": "O1"
         },
         "name": "unnamedWire#18",
         "path": [
@@ -2810,8 +2873,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#2",
-          "pinName": "I2"
+          "compName": "Splitter#18",
+          "pinName": "O2"
         },
         "pin2": {
           "compName": "_submodelinterface",
@@ -3051,8 +3114,8 @@
           "pinName": "IZ"
         },
         "pin2": {
-          "compName": "Merger#2",
-          "pinName": "I3"
+          "compName": "Splitter#18",
+          "pinName": "O3"
         },
         "name": "unnamedWire#20",
         "path": [
@@ -3448,8 +3511,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#2",
-          "pinName": "O"
+          "compName": "Splitter#18",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "WireCrossPoint#1",
@@ -4095,8 +4158,8 @@
           "pinName": "O0"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I0"
+          "compName": "Splitter#16",
+          "pinName": "O0"
         },
         "name": "unnamedWire#4",
         "path": []
@@ -4275,8 +4338,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I1"
+          "compName": "Splitter#16",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -4478,8 +4541,8 @@
           "pinName": "O2"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I2"
+          "compName": "Splitter#16",
+          "pinName": "O2"
         },
         "name": "unnamedWire#6",
         "path": []
@@ -4631,8 +4694,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I3"
+          "compName": "Splitter#16",
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -4819,8 +4882,8 @@
           "pinName": "O4"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I4"
+          "compName": "Splitter#16",
+          "pinName": "O4"
         },
         "name": "unnamedWire#8",
         "path": []
@@ -4945,8 +5008,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#3",
-          "pinName": "I0"
+          "compName": "Splitter#19",
+          "pinName": "O0"
         },
         "pin2": {
           "compName": "mux1_4#0",
@@ -4957,8 +5020,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I5"
+          "compName": "Splitter#16",
+          "pinName": "O5"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -4973,16 +5036,16 @@
           "pinName": "Y3"
         },
         "pin2": {
-          "compName": "Merger#3",
-          "pinName": "I1"
+          "compName": "Splitter#19",
+          "pinName": "O1"
         },
         "name": "unnamedWire#90",
         "path": []
       },
       {
         "pin1": {
-          "compName": "Merger#3",
-          "pinName": "I2"
+          "compName": "Splitter#19",
+          "pinName": "O2"
         },
         "pin2": {
           "compName": "mux1_4#0",
@@ -4997,8 +5060,8 @@
           "pinName": "Y1"
         },
         "pin2": {
-          "compName": "Merger#3",
-          "pinName": "I3"
+          "compName": "Splitter#19",
+          "pinName": "O3"
         },
         "name": "unnamedWire#92",
         "path": []
@@ -5009,8 +5072,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#3",
-          "pinName": "O"
+          "compName": "Splitter#19",
+          "pinName": "I"
         },
         "name": "unnamedWire#93",
         "path": []
