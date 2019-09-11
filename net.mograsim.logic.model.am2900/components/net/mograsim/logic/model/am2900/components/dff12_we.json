@@ -43,22 +43,28 @@
   "submodel": {
     "components": [
       {
-        "id": "Merger",
-        "name": "Merger#0",
-        "pos": {
-          "x": 250.0,
-          "y": 45.0
-        },
-        "params": 12
-      },
-      {
         "id": "Splitter",
         "name": "Splitter#0",
         "pos": {
           "x": 70.0,
           "y": 65.0
         },
-        "params": 12
+        "params": {
+          "logicWidth": 12,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#1",
+        "pos": {
+          "x": 250.0,
+          "y": 45.0
+        },
+        "params": {
+          "logicWidth": 12,
+          "orientation": "LEFT"
+        }
       },
       {
         "id": "TextComponent",
@@ -797,8 +803,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I11"
+          "compName": "Splitter#1",
+          "pinName": "O11"
         },
         "pin2": {
           "compName": "dff#2",
@@ -822,8 +828,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I10"
+          "compName": "Splitter#1",
+          "pinName": "O10"
         },
         "name": "unnamedWire#54",
         "path": [
@@ -839,8 +845,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I9"
+          "compName": "Splitter#1",
+          "pinName": "O9"
         },
         "pin2": {
           "compName": "dff#3",
@@ -864,8 +870,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I8"
+          "compName": "Splitter#1",
+          "pinName": "O8"
         },
         "name": "unnamedWire#56",
         "path": [
@@ -881,8 +887,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I7"
+          "compName": "Splitter#1",
+          "pinName": "O7"
         },
         "pin2": {
           "compName": "dff#4",
@@ -906,8 +912,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I6"
+          "compName": "Splitter#1",
+          "pinName": "O6"
         },
         "name": "unnamedWire#58",
         "path": [
@@ -923,8 +929,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I5"
+          "compName": "Splitter#1",
+          "pinName": "O5"
         },
         "pin2": {
           "compName": "dff#11",
@@ -956,8 +962,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I4"
+          "compName": "Splitter#1",
+          "pinName": "O4"
         },
         "pin2": {
           "compName": "dff#10",
@@ -968,8 +974,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I3"
+          "compName": "Splitter#1",
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "dff#8",
@@ -993,8 +999,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I2"
+          "compName": "Splitter#1",
+          "pinName": "O2"
         },
         "name": "unnamedWire#62",
         "path": [
@@ -1010,8 +1016,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I1"
+          "compName": "Splitter#1",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "dff#7",
@@ -1035,8 +1041,8 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I0"
+          "compName": "Splitter#1",
+          "pinName": "O0"
         },
         "name": "unnamedWire#64",
         "path": [
@@ -1052,8 +1058,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "O"
+          "compName": "Splitter#1",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "WireCrossPoint#5",

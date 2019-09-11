@@ -106,15 +106,6 @@
   "submodel": {
     "components": [
       {
-        "id": "Merger",
-        "name": "Merger#0",
-        "pos": {
-          "x": 230.0,
-          "y": 30.0
-        },
-        "params": 4
-      },
-      {
         "id": "NandGate",
         "name": "NandGate#0",
         "pos": {
@@ -148,7 +139,10 @@
           "x": 5.0,
           "y": 135.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -157,7 +151,10 @@
           "x": 5.0,
           "y": 185.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -166,7 +163,22 @@
           "x": 5.0,
           "y": 95.0
         },
-        "params": 2
+        "params": {
+          "logicWidth": 2,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#3",
+        "pos": {
+          "x": 230.0,
+          "y": 30.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
       },
       {
         "id": "WireCrossPoint",
@@ -262,16 +274,16 @@
           "pinName": "Q1"
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I3"
+          "compName": "Splitter#3",
+          "pinName": "O3"
         },
         "name": "unnamedWire#0",
         "path": []
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I2"
+          "compName": "Splitter#3",
+          "pinName": "O2"
         },
         "pin2": {
           "compName": "dff4_finewe#0",
@@ -307,8 +319,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
-          "pinName": "I0"
+          "compName": "Splitter#3",
+          "pinName": "O0"
         },
         "name": "unnamedWire#11",
         "path": []
@@ -443,8 +455,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "I1"
+          "compName": "Splitter#3",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "dff4_finewe#0",
@@ -810,8 +822,8 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
-          "pinName": "O"
+          "compName": "Splitter#3",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "_submodelinterface",
