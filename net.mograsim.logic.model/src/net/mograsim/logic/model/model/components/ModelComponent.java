@@ -168,15 +168,28 @@ public abstract class ModelComponent implements JSONSerializable
 	 * Returns the pin with the given name of this component.
 	 * 
 	 * @throws IllegalArgumentException if there is no pin with the given name
+	 * @see #getPinOrNull(String)
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public Pin getPin(String name)
 	{
-		Pin pin = pinsByName.get(name);
+		Pin pin = getPinOrNull(name);
 		if (pin == null)
 			throw new IllegalArgumentException("No pin with the name " + name);
 		return pin;
+	}
+
+	/**
+	 * Returns the pin with the given name of this component, or <code>null</code> if there is no such pin.
+	 * 
+	 * @see #getPin(String)
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public Pin getPinOrNull(String name)
+	{
+		return pinsByName.get(name);
 	}
 
 	// high-level access

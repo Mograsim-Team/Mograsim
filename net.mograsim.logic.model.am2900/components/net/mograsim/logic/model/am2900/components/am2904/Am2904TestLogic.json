@@ -148,7 +148,10 @@
           "x": 5.0,
           "y": 110.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "WireCrossPoint",

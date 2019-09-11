@@ -206,15 +206,6 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#10",
-        "pos": {
-          "x": 199.0,
-          "y": 209.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 174.0,
@@ -269,10 +260,19 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#9",
+        "name": "WireCrossPoint#8",
         "pos": {
           "x": 234.0,
           "y": 69.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#9",
+        "pos": {
+          "x": 199.0,
+          "y": 209.0
         },
         "params": 1
       },
@@ -285,12 +285,13 @@
         }
       },
       {
-        "id": "inc12",
-        "name": "inc12#0",
+        "id": "inc",
+        "name": "inc#0",
         "pos": {
           "x": 240.0,
           "y": 140.0
-        }
+        },
+        "params": 12
       },
       {
         "id": "nor12",
@@ -494,7 +495,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "inc12#0",
+          "compName": "inc#0",
           "pinName": "A"
         },
         "name": "unnamedWire#18",
@@ -769,7 +770,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#9",
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "pin2": {
@@ -790,7 +791,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#9",
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "name": "unnamedWire#36",
@@ -834,7 +835,7 @@
       },
       {
         "pin1": {
-          "compName": "inc12#0",
+          "compName": "inc#0",
           "pinName": "Y"
         },
         "pin2": {
@@ -858,7 +859,7 @@
       },
       {
         "pin1": {
-          "compName": "inc12#0",
+          "compName": "inc#0",
           "pinName": "CI"
         },
         "pin2": {
@@ -966,7 +967,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#9",
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "pin2": {
@@ -994,7 +995,7 @@
           "pinName": "_OE"
         },
         "pin2": {
-          "compName": "WireCrossPoint#10",
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "name": "unnamedWire#53",
@@ -1002,7 +1003,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#10",
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "pin2": {
@@ -1018,7 +1019,7 @@
           "pinName": "A"
         },
         "pin2": {
-          "compName": "WireCrossPoint#10",
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "name": "unnamedWire#57",
