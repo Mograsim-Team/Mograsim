@@ -6,6 +6,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
+import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.editor.Editor;
@@ -57,6 +58,11 @@ public class ComponentHandle extends Handle
 			bounds.width += LENGTH_OFFSET;
 			bounds.height += LENGTH_OFFSET;
 			gc.drawRectangle(bounds);
+			Font oldFont = gc.getFont();
+			gc.setFont(new Font(oldFont.getName(), 5, oldFont.getStyle()));
+			gc.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
+			gc.drawText(parent.getName(), bounds.x, bounds.y, true);
+			gc.setFont(oldFont);
 		}
 	}
 
