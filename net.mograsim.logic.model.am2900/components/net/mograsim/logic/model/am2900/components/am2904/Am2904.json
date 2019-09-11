@@ -5203,16 +5203,16 @@
   "highLevelStateHandlerSnippetID": "standard",
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {
-      "musr": {
-        "id": "delegating",
-        "params": {
-          "delegateTarget": "Am2904muSR#0"
-        }
-      },
       "msr": {
         "id": "delegating",
         "params": {
           "delegateTarget": "Am2904MSR#0"
+        }
+      },
+      "musr": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2904muSR#0"
         }
       }
     },
