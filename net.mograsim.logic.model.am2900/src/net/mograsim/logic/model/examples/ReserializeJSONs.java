@@ -151,6 +151,8 @@ public class ReserializeJSONs
 				});
 			if (warnNonSnappedPoints)
 			{
+				if (comp.getWidth() % GRIDSIZE != 0 || comp.getHeight() % GRIDSIZE != 0)
+					System.out.println("  Size is not snapped to grid: " + comp.getWidth() + "," + comp.getHeight());
 				submodelModifiable.getComponentsByName().values().forEach(c ->
 				{
 					double x = c.getPosX();
