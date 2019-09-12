@@ -9,7 +9,6 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.Editor.ComponentInfo;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
@@ -95,8 +94,9 @@ public class ComponentHandle extends Handle
 	@Override
 	public Optional<ComponentInfo> reqCopy(Point refPoint)
 	{
-		return Optional.of(new ComponentInfo(parent.getPosX() - refPoint.x, parent.getPosY() - refPoint.y, Editor.getIdentifier(parent),
-				parent.getParamsForSerializingJSON(new IdentifyParams())));
+		IdentifyParams idParams = new IdentifyParams();
+		return Optional.of(new ComponentInfo(parent.getPosX() - refPoint.x, parent.getPosY() - refPoint.y,
+				parent.getIDForSerializing(idParams), parent.getParamsForSerializingJSON(idParams)));
 	}
 
 	@Override

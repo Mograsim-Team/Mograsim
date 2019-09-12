@@ -1,6 +1,5 @@
 package net.mograsim.logic.model.editor;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
@@ -24,7 +23,6 @@ import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
-import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
@@ -36,7 +34,6 @@ public final class Editor
 	final Set<ComponentInfo> copyBuffer = new HashSet<>();
 	public final DeserializedSubmodelComponent toBeEdited;
 	public final HandleManager handleManager;
-	final static Map<ModelComponent, String> identifierPerComponent = new HashMap<>();
 	public final EditorGUI gui;
 	public final StateManager stateManager;
 	private final SaveLoadManager saveManager;
@@ -55,8 +52,6 @@ public final class Editor
 		handleManager.init();
 		saveManager = new SaveLoadManager(this);
 		dialogManager = new DialogManager(gui.shell);
-
-		toBeEdited.submodel.addComponentRemovedListener(c -> identifierPerComponent.remove(c));
 
 		gui.open();
 	}
@@ -173,16 +168,7 @@ public final class Editor
 
 	private ModelComponent addComponent(String identifier, JsonElement params)
 	{
-		ModelComponent comp = IndirectModelComponentCreator.createComponent(toBeEdited.getSubmodelModifiable(), identifier, params);
-		identifierPerComponent.put(comp, identifier);
-		return comp;
-	}
-
-	public static String getIdentifier(ModelComponent c)
-	{
-		if (identifierPerComponent.containsKey(c))
-			return identifierPerComponent.get(c);
-		return c.getIDForSerializing(new IdentifyParams());
+		return IndirectModelComponentCreator.createComponent(toBeEdited.getSubmodelModifiable(), identifier, params);
 	}
 
 	public void duplicate()
