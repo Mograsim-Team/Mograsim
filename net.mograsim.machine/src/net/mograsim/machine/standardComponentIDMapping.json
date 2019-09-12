@@ -1,0 +1,4 @@
+mograsim version: 0.1.3
+{
+  "MemoryWA": "resloader:MachineLoader:class:net.mograsim.machine.standard.memory.ModelMemoryWA"
+}
