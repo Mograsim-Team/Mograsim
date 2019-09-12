@@ -13,7 +13,6 @@ import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
-import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
 
 public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelStateHandler
@@ -25,14 +24,14 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 	private final List<ModelWire> wiresToForceInverted;
 	private final List<ModelWire> wiresToForceInvertedUnmodifiable;
 
-	public WireForcingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
+	public WireForcingAtomicHighLevelStateHandler(SubmodelComponent component)
 	{
-		this(context, null);
+		this(component, null);
 	}
 
-	public WireForcingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context, WireForcingAtomicHighLevelStateHandlerParams params)
+	public WireForcingAtomicHighLevelStateHandler(SubmodelComponent component, WireForcingAtomicHighLevelStateHandlerParams params)
 	{
-		this.component = context.component;
+		this.component = component;
 		this.wiresToForce = new ArrayList<>();
 		this.wiresToForceUnmodifiable = Collections.unmodifiableList(wiresToForce);
 		this.wiresToForceInverted = new ArrayList<>();

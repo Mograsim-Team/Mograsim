@@ -4,7 +4,6 @@ import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
-import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
 
 public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelStateHandler
@@ -13,14 +12,14 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 	private ModelComponent delegateTarget;
 	private String subStateID;
 
-	public DelegatingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
+	public DelegatingAtomicHighLevelStateHandler(SubmodelComponent component)
 	{
-		this(context, null);
+		this(component, null);
 	}
 
-	public DelegatingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context, DelegatingAtomicHighLevelStateHandlerParams params)
+	public DelegatingAtomicHighLevelStateHandler(SubmodelComponent component, DelegatingAtomicHighLevelStateHandlerParams params)
 	{
-		this.parentComponent = context.component;
+		this.parentComponent = component;
 		if (params != null)
 		{
 			// TODO document this
