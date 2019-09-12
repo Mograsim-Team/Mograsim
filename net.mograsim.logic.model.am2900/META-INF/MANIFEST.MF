@@ -5,6 +5,7 @@ Bundle-SymbolicName: net.mograsim.logic.model.am2900;singleton:=true
 Bundle-Version: 0.1.0.qualifier
 Export-Package: net.mograsim.logic.model.am2900,
  net.mograsim.logic.model.am2900.components,
+ net.mograsim.logic.model.am2900.components.am2901,
  net.mograsim.logic.model.am2900.components.am2904,
  net.mograsim.logic.model.am2900.components.am2910,
  net.mograsim.logic.model.am2900.machine,

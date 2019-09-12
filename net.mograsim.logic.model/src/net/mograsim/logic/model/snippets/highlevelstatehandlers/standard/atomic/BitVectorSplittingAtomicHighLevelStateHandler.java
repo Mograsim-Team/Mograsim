@@ -9,7 +9,6 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
-import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.HighLevelStateHandlerContext;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandlerSnippetSuppliers;
 
 public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHighLevelStateHandler
@@ -21,15 +20,15 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	private final List<Integer> vectorPartLengthesUnmodifiable;
 	private int length;
 
-	public BitVectorSplittingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context)
+	public BitVectorSplittingAtomicHighLevelStateHandler(SubmodelComponent component)
 	{
-		this(context, null);
+		this(component, null);
 	}
 
-	public BitVectorSplittingAtomicHighLevelStateHandler(HighLevelStateHandlerContext context,
+	public BitVectorSplittingAtomicHighLevelStateHandler(SubmodelComponent component,
 			BitVectorSplittingAtomicHighLevelStateHandlerParams params)
 	{
-		this.component = context.component;
+		this.component = component;
 		this.vectorPartTargets = new ArrayList<>();
 		this.vectorPartTargetsUnmodifiable = Collections.unmodifiableList(vectorPartTargets);
 		this.vectorPartLengthes = new ArrayList<>();
