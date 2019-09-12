@@ -98,6 +98,8 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 	@Override
 	public DelegatingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
+		if (delegateTarget == null)
+			throw new IllegalStateException("Delegating to a component that was destroyed");
 		DelegatingAtomicHighLevelStateHandlerParams params = new DelegatingAtomicHighLevelStateHandlerParams();
 		params.delegateTarget = delegateTarget.getName();
 		params.subStateID = subStateID;
