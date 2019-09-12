@@ -54,16 +54,15 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 	}
 
 	public <P, H extends SubcomponentHighLevelStateHandler> H addSubcomponentHighLevelState(String subcomponentStateID,
-			BiFunction<HighLevelStateHandlerContext, P, H> handlerConstructor, P handlerParams)
+			BiFunction<SubmodelComponent, P, H> handlerConstructor, P handlerParams)
 	{
 		return addSubcomponentHighLevelState(subcomponentStateID, c -> handlerConstructor.apply(c, handlerParams));
 	}
 
 	public <H extends SubcomponentHighLevelStateHandler> H addSubcomponentHighLevelState(String subcomponentStateID,
-			Function<HighLevelStateHandlerContext, H> handlerConstructor)
+			Function<SubmodelComponent, H> handlerConstructor)
 	{
-		HighLevelStateHandlerContext context = new HighLevelStateHandlerContext(component, subcomponentStateID);
-		H handler = handlerConstructor.apply(context);
+		H handler = handlerConstructor.apply(component);
 		addSubcomponentHighLevelState(subcomponentStateID, handler);
 		return handler;
 	}
@@ -93,16 +92,15 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 	}
 
 	public <P, H extends AtomicHighLevelStateHandler> H addAtomicHighLevelState(String subcomponentStateID,
-			BiFunction<HighLevelStateHandlerContext, P, H> handlerConstructor, P handlerParams)
+			BiFunction<SubmodelComponent, P, H> handlerConstructor, P handlerParams)
 	{
 		return addAtomicHighLevelState(subcomponentStateID, c -> handlerConstructor.apply(c, handlerParams));
 	}
 
 	public <H extends AtomicHighLevelStateHandler> H addAtomicHighLevelState(String subcomponentStateID,
-			Function<HighLevelStateHandlerContext, H> handlerConstructor)
+			Function<SubmodelComponent, H> handlerConstructor)
 	{
-		HighLevelStateHandlerContext context = new HighLevelStateHandlerContext(component, subcomponentStateID);
-		H handler = handlerConstructor.apply(context);
+		H handler = handlerConstructor.apply(component);
 		addAtomicHighLevelState(subcomponentStateID, handler);
 		return handler;
 	}
