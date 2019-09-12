@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
+import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.snippets.CodeSnippetSupplier;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.AtomicHighLevelStateHandler;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.SubcomponentHighLevelStateHandler;
@@ -11,8 +12,8 @@ import net.mograsim.logic.model.util.JsonHandler;
 
 public class StandardHighLevelStateHandlerSnippetSuppliers
 {
-	public static final CodeSnippetSupplier<HighLevelStateHandlerContext, AtomicHighLevelStateHandler> atomicHandlerSupplier;
-	public static final CodeSnippetSupplier<HighLevelStateHandlerContext, SubcomponentHighLevelStateHandler> subcomponentHandlerSupplier;
+	public static final CodeSnippetSupplier<SubmodelComponent, AtomicHighLevelStateHandler> atomicHandlerSupplier;
+	public static final CodeSnippetSupplier<SubmodelComponent, SubcomponentHighLevelStateHandler> subcomponentHandlerSupplier;
 
 	static
 	{
