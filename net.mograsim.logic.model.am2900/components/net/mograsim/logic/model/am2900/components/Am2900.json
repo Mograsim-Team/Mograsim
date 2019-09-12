@@ -81,6 +81,15 @@
         "params": 16
       },
       {
+        "id": "BitDisplay",
+        "name": "BitDisplay#3",
+        "pos": {
+          "x": 10.0,
+          "y": 190.0
+        },
+        "params": 12
+      },
+      {
         "id": "Clock",
         "name": "Clock#0",
         "pos": {
@@ -188,7 +197,7 @@
         "name": "ManualSwitch#0",
         "pos": {
           "x": 10.0,
-          "y": 290.0
+          "y": 315.0
         },
         "params": 1
       },
@@ -197,7 +206,7 @@
         "name": "ManualSwitch#1",
         "pos": {
           "x": 10.0,
-          "y": 265.0
+          "y": 290.0
         },
         "params": 80
       },
@@ -206,7 +215,7 @@
         "name": "ManualSwitch#2",
         "pos": {
           "x": 10.0,
-          "y": 240.0
+          "y": 265.0
         },
         "params": 12
       },
@@ -215,7 +224,7 @@
         "name": "ManualSwitch#3",
         "pos": {
           "x": 10.0,
-          "y": 315.0
+          "y": 340.0
         },
         "params": 1
       },
@@ -224,7 +233,7 @@
         "name": "ManualSwitch#4",
         "pos": {
           "x": 10.0,
-          "y": 340.0
+          "y": 365.0
         },
         "params": 1
       },
@@ -233,7 +242,7 @@
         "name": "ManualSwitch#5",
         "pos": {
           "x": 10.0,
-          "y": 190.0
+          "y": 215.0
         },
         "params": 1
       },
@@ -242,7 +251,7 @@
         "name": "ManualSwitch#6",
         "pos": {
           "x": 10.0,
-          "y": 215.0
+          "y": 240.0
         },
         "params": 16
       },
@@ -893,6 +902,15 @@
       },
       {
         "id": "TextComponent",
+        "name": "TextComponent#12",
+        "pos": {
+          "x": -50.0,
+          "y": 190.0
+        },
+        "params": "mi addr"
+      },
+      {
+        "id": "TextComponent",
         "name": "TextComponent#2",
         "pos": {
           "x": -50.0,
@@ -905,7 +923,7 @@
         "name": "TextComponent#3",
         "pos": {
           "x": -50.0,
-          "y": 265.0
+          "y": 290.0
         },
         "params": "micro instr"
       },
@@ -914,7 +932,7 @@
         "name": "TextComponent#4",
         "pos": {
           "x": -50.0,
-          "y": 290.0
+          "y": 315.0
         },
         "params": "mireg c"
       },
@@ -923,7 +941,7 @@
         "name": "TextComponent#5",
         "pos": {
           "x": -50.0,
-          "y": 240.0
+          "y": 265.0
         },
         "params": "mprom y"
       },
@@ -932,7 +950,7 @@
         "name": "TextComponent#6",
         "pos": {
           "x": -50.0,
-          "y": 315.0
+          "y": 340.0
         },
         "params": "ireg c"
       },
@@ -941,7 +959,7 @@
         "name": "TextComponent#7",
         "pos": {
           "x": -50.0,
-          "y": 340.0
+          "y": 365.0
         },
         "params": "bz/pc c"
       },
@@ -950,7 +968,7 @@
         "name": "TextComponent#8",
         "pos": {
           "x": -50.0,
-          "y": 190.0
+          "y": 215.0
         },
         "params": "d in enable"
       },
@@ -959,7 +977,7 @@
         "name": "TextComponent#9",
         "pos": {
           "x": -50.0,
-          "y": 215.0
+          "y": 240.0
         },
         "params": "d in"
       },
@@ -1016,7 +1034,7 @@
         "name": "TriStateBuffer#4",
         "pos": {
           "x": 45.0,
-          "y": 185.0
+          "y": 210.0
         },
         "params": {
           "logicWidth": 16,
@@ -4561,6 +4579,18 @@
           "pinName": "OUT"
         },
         "name": "unnamedWire#336",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "BitDisplay#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2910#0",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#337",
         "path": []
       },
       {
