@@ -13,13 +13,13 @@ import net.mograsim.logic.model.model.components.ModelComponent;
 public class TestableAm2901Impl implements TestableAm2901
 {
 	private ModelComponent am2901;
-	private CoreManualSwitch I8, I7, I6, I5, I4, I3, I2, I1, I0;
+	private CoreManualSwitch I;
 	private CoreManualSwitch C;
 	private CoreManualSwitch Cn;
-	private CoreManualSwitch D1, D2, D3, D4;
-	private CoreManualSwitch A0, A1, A2, A3;
-	private CoreManualSwitch B0, B1, B2, B3;
-	private CoreBitDisplay Y1, Y2, Y3, Y4;
+	private CoreManualSwitch D;
+	private CoreManualSwitch A;
+	private CoreManualSwitch B;
+	private CoreBitDisplay Y;
 	private CoreBitDisplay F_0, Cn_4, OVR, F3;
 	private SwitchWithDisplay RAMn, RAMn_3, Qn, Qn_3;
 
@@ -40,48 +40,34 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setDest(Am2901_Dest dest)
 	{
-		var bits = TestUtil.of(dest.ordinal(), 3);
-		I8.setState(bits.getLSBit(2));
-		I7.setState(bits.getLSBit(1));
-		I6.setState(bits.getLSBit(0));
+		BitVector oldI = I.getValues();
+		I.setState(TestUtil.of(dest.ordinal(), 3).concat(oldI.subVector(3)));
 	}
 
 	@Override
 	public void setFunc(Am2901_Func func)
 	{
-		var bits = TestUtil.of(func.ordinal(), 3);
-		I5.setState(bits.getLSBit(2));
-		I4.setState(bits.getLSBit(1));
-		I3.setState(bits.getLSBit(0));
+		BitVector oldI = I.getValues();
+		I.setState(oldI.subVector(0, 3).concat(TestUtil.of(func.ordinal(), 3)).concat(oldI.subVector(6)));
 	}
 
 	@Override
 	public void setSrc(Am2901_Src src)
 	{
-		var bits = TestUtil.of(src.ordinal(), 3);
-		I2.setState(bits.getLSBit(2));
-		I1.setState(bits.getLSBit(1));
-		I0.setState(bits.getLSBit(0));
+		BitVector oldI = I.getValues();
+		I.setState(oldI.subVector(0, 6).concat(TestUtil.of(src.ordinal(), 3)));
 	}
 
 	@Override
 	public void setReg_A(String val_4_bit)
 	{
-		var bits = BitVector.parse(val_4_bit);
-		A3.setState(bits.getLSBit(3));
-		A2.setState(bits.getLSBit(2));
-		A1.setState(bits.getLSBit(1));
-		A0.setState(bits.getLSBit(0));
+		A.setState(BitVector.parse(val_4_bit));
 	}
 
 	@Override
 	public void setReg_B(String val_4_bit)
 	{
-		var bits = BitVector.parse(val_4_bit);
-		B3.setState(bits.getLSBit(3));
-		B2.setState(bits.getLSBit(2));
-		B1.setState(bits.getLSBit(1));
-		B0.setState(bits.getLSBit(0));
+		B.setState(BitVector.parse(val_4_bit));
 	}
 
 	@Override
@@ -99,11 +85,7 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setD(String val_4_bit)
 	{
-		var bits = BitVector.parse(val_4_bit);
-		D4.setState(bits.getLSBit(3));
-		D3.setState(bits.getLSBit(2));
-		D2.setState(bits.getLSBit(1));
-		D1.setState(bits.getLSBit(0));
+		D.setState(BitVector.parse(val_4_bit));
 	}
 
 	@Override
@@ -199,11 +181,7 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public String getY()
 	{
-		var y3 = Y4.getDisplayedValue();
-		var y2 = Y3.getDisplayedValue();
-		var y1 = Y2.getDisplayedValue();
-		var y0 = Y1.getDisplayedValue();
-		return y3.concat(y2).concat(y1).concat(y0).toString();
+		return Y.getDisplayedValue().toString();
 	}
 
 	@Override
