@@ -4,7 +4,9 @@ import java.util.List;
 
 import net.mograsim.logic.core.components.BasicCoreComponent;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
 import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.machine.MainMemoryDefinition;
@@ -47,23 +49,28 @@ public class WordAddressableMemoryComponent extends BasicCoreComponent
 	}
 
 	@Override
-	protected void compute()
+	protected TimelineEventHandler compute()
 	{
 		if (!address.hasNumericValue())
 		{
 			if (read.equals(rWBit.getValue()))
-				data.feedSignals(Bit.U.toVector(data.width()));
-			else
-				data.clearSignals();
-			return;
+				return e -> data.feedSignals(Bit.U.toVector(data.width()));
+			return e -> data.clearSignals();
 		}
 		long addressed = address.getUnsignedValue();
 		if (read.equals(rWBit.getValue()))
-			data.feedSignals(memory.getCell(addressed));
+		{
+			BitVector storedData = memory.getCell(addressed);
+			return e -> data.feedSignals(storedData);
+		}
 		else
 		{
-			data.clearSignals();
-			memory.setCell(addressed, data.getValues());
+			BitVector transData = data.getValues();
+			return e ->
+			{
+				data.clearSignals();
+				memory.setCell(addressed, transData);
+			};
 		}
 	}
 
