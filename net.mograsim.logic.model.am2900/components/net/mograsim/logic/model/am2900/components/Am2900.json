@@ -1,6 +1,6 @@
 {
-  "width": 344.0,
-  "height": 242.0,
+  "width": 364.0,
+  "height": 350.0,
   "interfacePins": [],
   "innerScale": 0.4,
   "submodel": {
@@ -272,6 +272,18 @@
       },
       {
         "id": "Splitter",
+        "name": "Splitter#16",
+        "pos": {
+          "x": 40.0,
+          "y": 670.0
+        },
+        "params": {
+          "logicWidth": 80,
+          "orientation": "UP"
+        }
+      },
+      {
+        "id": "Splitter",
         "name": "Splitter#2",
         "pos": {
           "x": 305.0,
@@ -539,6 +551,14 @@
         "pos": {
           "x": 290.0,
           "y": 485.0
+        }
+      },
+      {
+        "id": "dff80",
+        "name": "dff80#0",
+        "pos": {
+          "x": 310.0,
+          "y": 695.0
         }
       },
       {
@@ -1102,6 +1122,18 @@
           "pinName": ""
         },
         "name": "unnamedWire#137",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dff80#0",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "Splitter#16",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#138",
         "path": []
       },
       {
