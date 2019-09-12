@@ -38,6 +38,11 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 
 	// creation and destruction
 
+	public SimpleRectangularHardcodedModelComponent(LogicModelModifiable model, String id, String name, String centerText)
+	{
+		this(model, id, name, centerText, true);
+	}
+
 	public SimpleRectangularHardcodedModelComponent(LogicModelModifiable model, String id, String name, String centerText, boolean callInit)
 	{
 		super(model, name, false);
