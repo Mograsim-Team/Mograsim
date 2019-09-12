@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.mograsim.logic.core.components.BasicCoreComponent;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
@@ -21,9 +23,10 @@ public class CoreNotGate extends BasicCoreComponent
 	}
 
 	@Override
-	protected void compute()
+	protected TimelineEventHandler compute()
 	{
-		out.feedSignals(in.getValues().not());
+		BitVector values = in.getValues().not();
+		return e -> out.feedSignals(values);
 	}
 
 	public ReadEnd getIn()

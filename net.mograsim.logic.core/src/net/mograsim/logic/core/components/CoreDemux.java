@@ -3,6 +3,8 @@ package net.mograsim.logic.core.components;
 import java.util.List;
 
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
@@ -53,19 +55,27 @@ public class CoreDemux extends BasicCoreComponent
 	}
 
 	@Override
-	public void compute()
+	public TimelineEventHandler compute()
 	{
 		int selectValue = select.hasNumericValue() ? (int) select.getUnsignedValue() : -1;
 		if (selectValue >= outputs.length)
 			selectValue = -1;
 
-		if (selected != selectValue && selected != -1)
-			outputs[selected].clearSignals();
+		boolean hasOldSelection = selected != selectValue && selected != -1;
+		int oldSelection = selected;
+		boolean hasNewSelection = selectValue != -1;
+		int newSelection = selectValue;
+		BitVector inputValues = in.getValues();
 
 		selected = selectValue;
 
-		if (selectValue != -1)
-			outputs[selectValue].feedSignals(in.getValues());
+		return e ->
+		{
+			if (hasOldSelection)
+				outputs[oldSelection].clearSignals();
+			if (hasNewSelection)
+				outputs[newSelection].feedSignals(inputValues);
+		};
 	}
 
 	@Override

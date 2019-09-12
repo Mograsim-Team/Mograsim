@@ -18,6 +18,7 @@ public class Timeline
 	private PriorityQueue<InnerEvent> events;
 	private LongSupplier time;
 	private long lastTimeUpdated = 0;
+	private long eventCounter = 0;
 
 	private final List<Consumer<TimelineEvent>> eventAddedListener;
 
@@ -176,7 +177,7 @@ public class Timeline
 	{
 		long timing = getSimulationTime() + relativeTiming;
 		TimelineEvent event = new TimelineEvent(timing);
-		events.add(new InnerEvent(function, event));
+		events.add(new InnerEvent(function, event, eventCounter++));
 		eventAddedListener.forEach(l -> l.accept(event));
 	}
 
@@ -184,6 +185,7 @@ public class Timeline
 	{
 		private final TimelineEventHandler function;
 		private final TimelineEvent event;
+		private final long id;
 
 		/**
 		 * Creates an {@link InnerEvent}
@@ -191,10 +193,11 @@ public class Timeline
 		 * @param function {@link TimelineEventHandler} to be executed when the {@link InnerEvent} occurs
 		 * @param timing   Point in the MI simulation {@link Timeline}, at which the {@link InnerEvent} is executed;
 		 */
-		InnerEvent(TimelineEventHandler function, TimelineEvent event)
+		InnerEvent(TimelineEventHandler function, TimelineEvent event, long id)
 		{
 			this.function = function;
 			this.event = event;
+			this.id = id;
 		}
 
 		public long getTiming()
@@ -217,7 +220,8 @@ public class Timeline
 		@Override
 		public int compareTo(InnerEvent o)
 		{
-			return timeCmp(getTiming(), o.getTiming());
+			int c1;
+			return (c1 = timeCmp(getTiming(), o.getTiming())) == 0 ? timeCmp(id, o.id) : c1;
 		}
 	}
 
