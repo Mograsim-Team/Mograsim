@@ -35,6 +35,7 @@ mograsim version: 0.1.3
   "dff4_invwe": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff4_invwe.json",
   "dff8": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff8.json",
   "dff12_we": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff12_we.json",
+  "dff16": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff16.json",
   "dff16_we": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff16_we.json",
   "dff16_invwe": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff16_invwe.json",
   "dff80": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff80.json",
