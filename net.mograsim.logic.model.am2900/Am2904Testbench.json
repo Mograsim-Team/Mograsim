@@ -455,13 +455,16 @@
         "params": 1
       },
       {
-        "id": "Merger",
+        "id": "Splitter",
         "name": "Merger#0",
         "pos": {
           "x": 85.0,
           "y": 130.0
         },
-        "params": 13
+        "params": {
+          "logicWidth": 13,
+          "orientation": "LEFT"
+        }
       },
       {
         "id": "TextComponent",
@@ -1004,8 +1007,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
-          "x": 185.0,
-          "y": 365.0
+          "x": 184.0,
+          "y": 364.0
         },
         "params": 1
       },
@@ -1013,8 +1016,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
-          "x": 185.0,
-          "y": 310.0
+          "x": 184.0,
+          "y": 309.0
         },
         "params": 1
       },
@@ -1022,8 +1025,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#10",
         "pos": {
-          "x": 370.0,
-          "y": 175.0
+          "x": 369.0,
+          "y": 174.0
         },
         "params": 1
       },
@@ -1031,8 +1034,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#11",
         "pos": {
-          "x": 375.0,
-          "y": 190.0
+          "x": 374.0,
+          "y": 189.0
         },
         "params": 1
       },
@@ -1040,8 +1043,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#12",
         "pos": {
-          "x": 380.0,
-          "y": 200.0
+          "x": 379.0,
+          "y": 199.0
         },
         "params": 1
       },
@@ -1049,8 +1052,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
-          "x": 210.0,
-          "y": 325.0
+          "x": 209.0,
+          "y": 324.0
         },
         "params": 1
       },
@@ -1058,8 +1061,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
-          "x": 215.0,
-          "y": 340.0
+          "x": 214.0,
+          "y": 339.0
         },
         "params": 1
       },
@@ -1067,8 +1070,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#4",
         "pos": {
-          "x": 355.0,
-          "y": 380.0
+          "x": 354.0,
+          "y": 379.0
         },
         "params": 1
       },
@@ -1076,8 +1079,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#5",
         "pos": {
-          "x": 360.0,
-          "y": 390.0
+          "x": 359.0,
+          "y": 389.0
         },
         "params": 1
       },
@@ -1085,8 +1088,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#6",
         "pos": {
-          "x": 345.0,
-          "y": 85.0
+          "x": 344.0,
+          "y": 84.0
         },
         "params": 1
       },
@@ -1094,8 +1097,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#7",
         "pos": {
-          "x": 360.0,
-          "y": 110.0
+          "x": 359.0,
+          "y": 109.0
         },
         "params": 1
       },
@@ -1103,8 +1106,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#8",
         "pos": {
-          "x": 360.0,
-          "y": 125.0
+          "x": 359.0,
+          "y": 124.0
         },
         "params": 1
       },
@@ -1112,8 +1115,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#9",
         "pos": {
-          "x": 365.0,
-          "y": 160.0
+          "x": 364.0,
+          "y": 159.0
         },
         "params": 1
       }
@@ -1202,7 +1205,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "O"
+          "pinName": "I"
         },
         "pin2": {
           "compName": "Am2904#0",
@@ -1765,7 +1768,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I12"
+          "pinName": "O12"
         },
         "name": "unnamedWire#42",
         "path": []
@@ -1773,7 +1776,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I11"
+          "pinName": "O11"
         },
         "pin2": {
           "compName": "ManualSwitch#13",
@@ -1789,7 +1792,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I10"
+          "pinName": "O10"
         },
         "name": "unnamedWire#44",
         "path": []
@@ -1797,7 +1800,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I9"
+          "pinName": "O9"
         },
         "pin2": {
           "compName": "ManualSwitch#22",
@@ -1813,7 +1816,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I8"
+          "pinName": "O8"
         },
         "name": "unnamedWire#46",
         "path": []
@@ -1821,7 +1824,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I7"
+          "pinName": "O7"
         },
         "pin2": {
           "compName": "ManualSwitch#23",
@@ -1837,7 +1840,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I6"
+          "pinName": "O6"
         },
         "name": "unnamedWire#48",
         "path": []
@@ -1845,7 +1848,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I5"
+          "pinName": "O5"
         },
         "pin2": {
           "compName": "ManualSwitch#26",
@@ -1882,7 +1885,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I4"
+          "pinName": "O4"
         },
         "name": "unnamedWire#50",
         "path": []
@@ -1890,7 +1893,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I3"
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "ManualSwitch#30",
@@ -1906,7 +1909,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I2"
+          "pinName": "O2"
         },
         "name": "unnamedWire#52",
         "path": []
@@ -1914,7 +1917,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I1"
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "ManualSwitch#27",
@@ -1930,7 +1933,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I0"
+          "pinName": "O0"
         },
         "name": "unnamedWire#54",
         "path": []
