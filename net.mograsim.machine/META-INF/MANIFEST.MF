@@ -17,3 +17,5 @@ Export-Package: net.mograsim.machine,
  net.mograsim.machine.mi,
  net.mograsim.machine.mi.parameters,
  net.mograsim.machine.standard.memory
+Bundle-Activator: net.mograsim.machine.MachineLoader
+Bundle-ActivationPolicy: lazy

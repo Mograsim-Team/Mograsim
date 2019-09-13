@@ -3,7 +3,9 @@ package net.mograsim.logic.core.components;
 import java.util.List;
 
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
 import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 
@@ -28,12 +30,14 @@ public class CoreTriStateBuffer extends BasicCoreComponent
 	}
 
 	@Override
-	protected void compute()
+	protected TimelineEventHandler compute()
 	{
 		if (enable.getValue() == Bit.ONE)
-			out.feedSignals(in.getValues());
-		else
-			out.clearSignals();
+		{
+			BitVector inValues = in.getValues();
+			return e -> out.feedSignals(inValues);
+		}
+		return e -> out.clearSignals();
 	}
 
 	@Override
