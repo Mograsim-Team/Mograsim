@@ -24,14 +24,18 @@ class WordAddressableMemoryTest {
 		CoreWire rW = new CoreWire(t, 1, 2);
 		CoreWire data = new CoreWire(t, 16, 2);
 		CoreWire address = new CoreWire(t, 64, 2);
+		CoreWire clock = new CoreWire(t, 1, 2);
 		ReadWriteEnd rWI = rW.createReadWriteEnd();
 		ReadWriteEnd dataI = data.createReadWriteEnd();
 		ReadWriteEnd addressI = address.createReadWriteEnd();
+		ReadWriteEnd clockI = clock.createReadWriteEnd();
 
 		@SuppressWarnings("unused")
-		WordAddressableMemoryComponent memory = new WordAddressableMemoryComponent(t, 4, MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE), data.createReadWriteEnd(),
-				rW.createReadOnlyEnd(), address.createReadOnlyEnd());
+		CoreWordAddressableMemory memory = new CoreWordAddressableMemory(t, 4, MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE), data.createReadWriteEnd(),
+				rW.createReadOnlyEnd(), address.createReadOnlyEnd(), clock.createReadOnlyEnd());
 
+		clockI.feedSignals(Bit.ONE);
+		
 		Random r = new Random();
 		for (long j = 1; j > 0; j *= 2)
 		{
