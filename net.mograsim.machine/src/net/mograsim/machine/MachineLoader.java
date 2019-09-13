@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.am2900;
+package net.mograsim.machine;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -7,11 +7,9 @@ import org.osgi.framework.BundleContext;
 
 import net.mograsim.logic.model.serializing.ClassLoaderBasedResourceLoader;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
-import net.mograsim.machine.MachineLoader;
 
-public class Am2900Loader implements BundleActivator
+public class MachineLoader implements BundleActivator
 {
-	// TODO use dff16 in dff16_we & dff16_invwe
 	private static AtomicBoolean activated = new AtomicBoolean(false);
 
 	@Override
@@ -30,10 +28,9 @@ public class Am2900Loader implements BundleActivator
 	{
 		if (activated.getAndSet(true))
 			return;
-		ClassLoaderBasedResourceLoader resourceLoader = ClassLoaderBasedResourceLoader.create(Am2900Loader.class.getClassLoader());
-		IndirectModelComponentCreator.registerResourceLoader(resourceLoader, "Am2900Loader");
-		IndirectModelComponentCreator.loadStandardComponentIDs(Am2900Loader.class.getResourceAsStream("standardComponentIDMapping.json"));
-		MachineLoader.setup();
+		ClassLoaderBasedResourceLoader resourceLoader = ClassLoaderBasedResourceLoader.create(MachineLoader.class.getClassLoader());
+		IndirectModelComponentCreator.registerResourceLoader(resourceLoader, "MachineLoader");
+		IndirectModelComponentCreator.loadStandardComponentIDs(MachineLoader.class.getResourceAsStream("standardComponentIDMapping.json"));
 //		System.out.println("SETUP DONE"); // TODO: Debug
 	}
 }

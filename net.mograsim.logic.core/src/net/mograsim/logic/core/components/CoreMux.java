@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.TimelineEventHandler;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
@@ -66,17 +68,16 @@ public class CoreMux extends BasicCoreComponent
 	}
 
 	@Override
-	public void compute()
+	public TimelineEventHandler compute()
 	{
 		int selectValue;
 		if (!select.hasNumericValue() || (selectValue = (int) select.getUnsignedValue()) >= inputs.length)
 		{
-			out.clearSignals();
-			return;
+			return e -> out.clearSignals();
 		}
 
-		ReadEnd active = inputs[selectValue];
-		out.feedSignals(active.getValues());
+		BitVector activeValues = inputs[selectValue].getValues();
+		return e -> out.feedSignals(activeValues);
 	}
 
 	@Override

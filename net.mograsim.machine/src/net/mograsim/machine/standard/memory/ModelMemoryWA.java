@@ -4,7 +4,6 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
-import net.mograsim.logic.model.model.components.atomic.ModelAndGate;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
@@ -12,8 +11,8 @@ import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
-import net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer;
-import net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRenderer.CenteredTextParams;
+import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
+import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
 import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.machine.MainMemoryDefinition;
 
@@ -21,20 +20,23 @@ public class ModelMemoryWA extends ModelComponent
 {
 	private final MainMemoryDefinition		definition;
 	private final Pin						addrPin, dataPin, rWPin, clock;
-	private CoreWordAddressableMemory	memory;
+	private CoreWordAddressableMemory		memory;
 	private final static int				width	= 100, height = 300;
 	private Renderer						symbolRenderer;
 	private Renderer						outlineRenderer;
 
 	public ModelMemoryWA(LogicModelModifiable model, MainMemoryDefinition definition, String name)
 	{
-		super(model, name,false);
+		super(model, name, false);
 		this.definition = definition;
 
-		CenteredTextParams renderer1Params = new CenteredTextParams();
-		renderer1Params.text = "RAM";
-		renderer1Params.fontHeight = 24;
-		this.symbolRenderer = new CenteredTextSymbolRenderer(this, renderer1Params);
+		SimpleRectangularLikeParams rendererParams = new SimpleRectangularLikeParams();
+		rendererParams.centerText = "RAM";
+		rendererParams.centerTextHeight = 24;
+		rendererParams.horizontalComponentCenter = width / 100;
+		rendererParams.pinLabelHeight = 17.5;
+		rendererParams.pinLabelMargin = 2.5;
+		this.symbolRenderer = new SimpleRectangularLikeSymbolRenderer(this, rendererParams);
 		this.outlineRenderer = new DefaultOutlineRenderer(this);
 
 		setSize(width, height);
@@ -109,7 +111,7 @@ public class ModelMemoryWA extends ModelComponent
 	static
 	{
 		LogicCoreAdapter.addComponentAdapter(new WordAddressableMemoryAdapter());
-		IndirectModelComponentCreator.setComponentSupplier(ModelAndGate.class.getCanonicalName(), (m, p, n) ->
+		IndirectModelComponentCreator.setComponentSupplier(ModelMemoryWA.class.getCanonicalName(), (m, p, n) ->
 		{
 			ModelMemoryWAParams params = JsonHandler.fromJsonTree(p, ModelMemoryWAParams.class);
 			return new ModelMemoryWA(m, MainMemoryDefinition.create(params.addrBits, params.cellWidth, params.minAddr, params.maxAddr), n);

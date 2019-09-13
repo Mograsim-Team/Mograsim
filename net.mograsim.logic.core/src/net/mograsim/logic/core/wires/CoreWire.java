@@ -124,7 +124,9 @@ public class CoreWire
 	 */
 	public void forceValues(BitVector values)
 	{
-		setNewValues(values);
+		bitsWithoutFusions = values.getBits();
+		invalidateCachedValuesForAllFusedWires();
+		notifyObservers();
 	}
 
 	/**
