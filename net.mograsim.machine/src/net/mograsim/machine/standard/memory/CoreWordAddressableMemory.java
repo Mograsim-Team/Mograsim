@@ -12,13 +12,13 @@ import net.mograsim.machine.MainMemoryDefinition;
 /**
  * A memory component that only allows access to words of a specific width
  */
-public class WordAddressableMemoryComponent extends BasicCoreComponent
+public class CoreWordAddressableMemory extends BasicCoreComponent
 {
 	private final WordAddressableMemory memory;
 	private final static Bit read = Bit.ONE;
 
 	private ReadWriteEnd data;
-	private ReadEnd rWBit, address;
+	private ReadEnd rWBit, address, clock;
 
 	/**
 	 * @param data    The bits of this ReadEnd are the value that is written to/read from memory; The bit width of this wire is the width of
@@ -26,8 +26,8 @@ public class WordAddressableMemoryComponent extends BasicCoreComponent
 	 * @param rWBit   The value of the 0th bit dictates the mode: 0: Write, 1: Read
 	 * @param address The bits of this ReadEnd address the memory cell to read/write
 	 */
-	public WordAddressableMemoryComponent(Timeline timeline, int processTime, MainMemoryDefinition definition, ReadWriteEnd data,
-			ReadEnd rWBit, ReadEnd address)
+	public CoreWordAddressableMemory(Timeline timeline, int processTime, MainMemoryDefinition definition, ReadWriteEnd data,
+			ReadEnd rWBit, ReadEnd address, ReadEnd clock)
 	{
 		super(timeline, processTime);
 		if(data.width() != definition.getCellWidth())
@@ -39,16 +39,20 @@ public class WordAddressableMemoryComponent extends BasicCoreComponent
 		this.data = data;
 		this.rWBit = rWBit;
 		this.address = address;
+		this.clock = clock;
 		data.registerObserver(this);
 		rWBit.registerObserver(this);
 		address.registerObserver(this);
-
+		clock.registerObserver(this);
+		
 		memory = new WordAddressableMemory(definition);
 	}
 
 	@Override
 	protected void compute()
 	{
+		if(clock.getValue() != Bit.ONE)
+			return;
 		if (!address.hasNumericValue())
 		{
 			if (read.equals(rWBit.getValue()))

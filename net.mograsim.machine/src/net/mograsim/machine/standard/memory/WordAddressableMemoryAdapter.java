@@ -19,7 +19,6 @@ public class WordAddressableMemoryAdapter implements ComponentAdapter<ModelMemor
 		return ModelMemoryWA.class;
 	}
 
-	@SuppressWarnings("unused")
 	@Override
 	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, ModelMemoryWA modelComponent,
 			Map<Pin, CoreWire> logicWiresPerPin)
@@ -27,7 +26,8 @@ public class WordAddressableMemoryAdapter implements ComponentAdapter<ModelMemor
 		ReadWriteEnd data = logicWiresPerPin.get(modelComponent.getDataPin()).createReadWriteEnd();
 		ReadEnd address = logicWiresPerPin.get(modelComponent.getAddressPin()).createReadOnlyEnd();
 		ReadEnd mode = logicWiresPerPin.get(modelComponent.getReadWritePin()).createReadOnlyEnd();
-		WordAddressableMemoryComponent mem = new WordAddressableMemoryComponent(timeline, 2, modelComponent.getDefinition(), data, mode, address);
+		ReadEnd clock = logicWiresPerPin.get(modelComponent.getClockPin()).createReadOnlyEnd();
+		CoreWordAddressableMemory mem = new CoreWordAddressableMemory(timeline, 2, modelComponent.getDefinition(), data, mode, address, clock);
 		modelComponent.setCoreModelBinding(mem);
 	}
 
