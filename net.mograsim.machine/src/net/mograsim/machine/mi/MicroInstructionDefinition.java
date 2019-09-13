@@ -1,6 +1,7 @@
 package net.mograsim.machine.mi;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 import net.mograsim.machine.mi.parameters.IntegerClassification;
 import net.mograsim.machine.mi.parameters.IntegerImmediate;
@@ -56,9 +57,6 @@ public interface MicroInstructionDefinition
 		}
 		return new StandardMicroInstruction(params);
 	}
-	
-	public static MicroInstructionDefinition create(ParameterClassification... classes)
-	{
-		return new StandardMicroInstructionDefinition(classes);
-	}
+
+	public Optional<String> getParameterDescription(int index);
 }
