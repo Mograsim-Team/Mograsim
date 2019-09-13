@@ -491,4 +491,15 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 			}
 		};
 	}
+
+	public BitVector reverse()
+	{
+		int length = length();
+		Bit[] other = new Bit[length];
+		for (int i = 0, j = length - 1; i < length; i++, j--)
+		{
+			other[i] = bits[j];
+		}
+		return new BitVector(other);
+	}
 }

@@ -16,19 +16,38 @@ public class MnemonicFamily implements ParameterClassification
 	
 	public MnemonicFamily(String... names)
 	{
+		this(false, (int) Math.round(Math.ceil(Math.log(names.length) / Math.log(2))), names);
+	}
+	
+	public MnemonicFamily(boolean reverse, String... names)
+	{
+		this(reverse, (int) Math.round(Math.ceil(Math.log(names.length) / Math.log(2))), names);
+	}
+	
+	public MnemonicFamily(int bits, String... names)
+	{
+		this(false, bits, names);
+	}
+	
+	public MnemonicFamily(boolean reverse, int bits, String... names)
+	{
 		this.values = new Mnemonic[names.length];
 		this.stringValues = new String[names.length];
 		BitVector[] values = new BitVector[names.length];
-		int bits = (int) Math.ceil(Math.log(names.length));
 		for(int i = 0; i < names.length; i++)
 		{
 			values[i] = BitVector.from(i, bits);
 		}
 		
-		setup(names, values);
+		setup(names, values, reverse);
 	}
 	
 	public MnemonicFamily(String[] names, long[] values, int bits)
+	{
+		this(false, names, values, bits);
+	}
+	
+	public MnemonicFamily(boolean reverse, String[] names, long[] values, int bits)
 	{
 		if(names.length != values.length)
 			throw new IllegalArgumentException();
@@ -41,20 +60,30 @@ public class MnemonicFamily implements ParameterClassification
 			vectors[i] = BitVector.from(values[i], bits);
 		}
 		
-		setup(names, vectors);
+		setup(names, vectors, reverse);
 	}
 	
 	public MnemonicFamily(String[] names, BitVector[] values)
+	{
+		this(false, names, values);
+	}
+	
+	public MnemonicFamily(boolean reverse, String[] names, BitVector[] values)
 	{
 		if(names.length != values.length)
 			throw new IllegalArgumentException();
 		this.values = new Mnemonic[values.length];
 		this.stringValues = new String[values.length];
 		
-		setup(names, values);
+		setup(names, values, reverse);
 	}
 	
 	public MnemonicFamily(MnemonicPair... values)
+	{
+		this(false, values);
+	}
+	
+	public MnemonicFamily(boolean reverse, MnemonicPair... values)
 	{
 		this.values = new Mnemonic[values.length];
 		this.stringValues = new String[values.length];
@@ -62,11 +91,11 @@ public class MnemonicFamily implements ParameterClassification
 		setup(values);
 	}
 	
-	private void setup(String[] names, BitVector[] values)
+	private void setup(String[] names, BitVector[] values, boolean reverse)
 	{
 		MnemonicPair[] mnemonics = new MnemonicPair[values.length];
 		for(int i = 0; i < values.length; i++)
-			mnemonics[i] = new MnemonicPair(names[i], values[i]);
+			mnemonics[i] = new MnemonicPair(names[i], reverse ? values[i].reverse() : values[i]);
 		setup(mnemonics);
 	}
 	
