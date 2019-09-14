@@ -40,6 +40,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 	private MicroInstructionMemory memory;
 	private DisplaySettings displaySettings;
 	private InstructionTableContentProvider provider;
+	private int highlighted = 0;
 
 	@SuppressWarnings("unused")
 	@Override
@@ -66,8 +67,15 @@ public class InstructionView extends ViewPart implements ContextObserver
 		viewerData.horizontalSpan = 3;
 		viewer.getTable().setLayoutData(viewerData);
 
-		displaySettings.addObserver(() -> viewer.refreshLazy());
+		displaySettings.addObserver(() -> viewer.refresh());
 		MachineContext.getInstance().registerObserver(this);
+	}
+
+	public void highlight(int index)
+	{
+		viewer.highlightRow(highlighted, false);
+		viewer.highlightRow(index, true);
+		viewer.getTable().setTopIndex(index);
 	}
 
 	@SuppressWarnings("unused")
@@ -167,6 +175,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 		}
 		col.setEditingSupport(support);
 		col.setLabelProvider(provider);
+		col.getColumn().setToolTipText(miDef.getParameterDescription(index).orElse(""));
 	}
 
 	private TableViewerColumn createTableViewerColumn(String title, int bound)

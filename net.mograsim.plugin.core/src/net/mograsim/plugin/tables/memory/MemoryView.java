@@ -46,7 +46,7 @@ public class MemoryView extends ViewPart implements ContextObserver
 		createHeader(parent);
 		createViewer(parent);
 
-		displaySettings.addObserver(() -> viewer.refreshLazy());
+		displaySettings.addObserver(() -> viewer.refresh());
 
 		setupContextBinding();
 	}
