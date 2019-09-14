@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -40,6 +43,7 @@ public class ReserializeAndVerifyJSONs
 	public static boolean snapWCPs = true;
 	public static boolean warnNonSnappedPoints = true;
 	public static boolean warnNonVertHorizLines = true;
+	public static boolean warnRedundantWires = true;
 
 	public static void main(String[] args) throws IOException
 	{
@@ -72,28 +76,11 @@ public class ReserializeAndVerifyJSONs
 			DeserializedSubmodelComponent comp = (DeserializedSubmodelComponent) IndirectModelComponentCreator
 					.createComponent(new LogicModelModifiable(), "jsonfile:" + componentPath.toString());
 			System.out.println("Reserializing " + componentPath);
-			if (changePinUsages)
-				comp.getSupermodelPins().entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).map(Entry::getValue).forEach(pin ->
-				{
-					PinUsage usage = null;
-					while (usage == null)
-						try
-						{
-							System.out.print("  Usage for interface pin " + pin.name + " (empty: " + pin.usage + ") >");
-							String usageStr = sysin.nextLine().toUpperCase();
-							usage = usageStr.equals("") ? pin.usage
-									: usageStr.equals("I") ? PinUsage.INPUT
-											: usageStr.equals("O") ? PinUsage.OUTPUT
-													: usageStr.equals("T") ? PinUsage.TRISTATE : PinUsage.valueOf(usageStr);
-						}
-						catch (@SuppressWarnings("unused") IllegalArgumentException e)
-						{
-							System.err.println("  Illegal usage");
-						}
-					setInterfacePinUsage(comp, pin, usage);
-				});
 			LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
 			Map<String, String> componentNameRemapping = new HashMap<>();
+
+			if (changePinUsages)
+				changePinUsages(sysin, comp);
 			if (changeComponentNames)
 				changeComponentNames(sysin, submodelModifiable, componentNameRemapping);
 			if (snapWCPs)
@@ -102,7 +89,11 @@ public class ReserializeAndVerifyJSONs
 				warnNonSnappedPoints(comp, submodelModifiable);
 			if (warnNonVertHorizLines)
 				warnNonVertHorizLines(submodelModifiable);
+			if (warnRedundantWires)
+				warnRedundantWires(submodelModifiable);
+
 			SubmodelComponentSerializer.serialize(comp, componentPath.toString());
+
 			if (changeComponentNames)
 				changeComponentNames_AfterSerialization(sysin, comp, componentNameRemapping);
 		}
@@ -113,16 +104,48 @@ public class ReserializeAndVerifyJSONs
 		}
 	}
 
-	private static void changeComponentNames_AfterSerialization(Scanner sysin, DeserializedSubmodelComponent comp,
-			Map<String, String> componentNameRemapping)
+	private static void warnRedundantWires(LogicModelModifiable submodelModifiable)
 	{
-		if (comp.getHighLevelStateHandler() == null || !(comp.getHighLevelStateHandler() instanceof DefaultHighLevelStateHandler))
+		Map<Pin, Set<Pin>> connectedPinGroups = new HashMap<>();
+		submodelModifiable.getComponentsByName().values().stream().map(ModelComponent::getPins).map(Map::values).flatMap(Collection::stream)
+				.forEach(p -> connectedPinGroups.put(p, new HashSet<>(Arrays.asList(p))));
+		submodelModifiable.getWiresByName().values().forEach(w ->
 		{
-			System.out.println("  A non-default HighLevelStateHandler was detected. Check for changes there manually.");
-			System.out.print("  Empty line to continue to next component, old component name to get new component name >");
-			for (String line = sysin.nextLine(); !line.equals(""); line = sysin.nextLine())
-				System.out.println("  " + line + "->" + componentNameRemapping.get(line) + " >");
-		}
+			Pin pin1 = w.getPin1();
+			Pin pin2 = w.getPin2();
+			Set<Pin> pin1Group = connectedPinGroups.get(pin1);
+			Set<Pin> pin2Group = connectedPinGroups.get(pin2);
+			if (pin1Group == pin2Group)
+				System.out.println("  Wire " + w.name + " connecting " + pin1 + " and " + pin2 + " is redundant");
+			else
+			{
+				pin1Group.addAll(pin2Group);
+				pin2Group.forEach(p -> connectedPinGroups.put(p, pin1Group));
+			}
+		});
+	}
+
+	private static void changePinUsages(Scanner sysin, DeserializedSubmodelComponent comp)
+	{
+		comp.getSupermodelPins().entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).map(Entry::getValue).forEach(pin ->
+		{
+			PinUsage usage = null;
+			while (usage == null)
+				try
+				{
+					System.out.print("  Usage for interface pin " + pin.name + " (empty: " + pin.usage + ") >");
+					String usageStr = sysin.nextLine().toUpperCase();
+					usage = usageStr.equals("") ? pin.usage
+							: usageStr.equals("I") ? PinUsage.INPUT
+									: usageStr.equals("O") ? PinUsage.OUTPUT
+											: usageStr.equals("T") ? PinUsage.TRISTATE : PinUsage.valueOf(usageStr);
+				}
+				catch (@SuppressWarnings("unused") IllegalArgumentException e)
+				{
+					System.err.println("  Illegal usage");
+				}
+			setInterfacePinUsage(comp, pin, usage);
+		});
 	}
 
 	private static void changeComponentNames(Scanner sysin, LogicModelModifiable submodelModifiable,
@@ -175,6 +198,18 @@ public class ReserializeAndVerifyJSONs
 						.moveTo(c.getPosX(), c.getPosY()));
 		for (ModelWire w : tempModel.getWiresByName().values())
 			createWire(Function.identity(), submodelModifiable, w);
+	}
+
+	private static void changeComponentNames_AfterSerialization(Scanner sysin, DeserializedSubmodelComponent comp,
+			Map<String, String> componentNameRemapping)
+	{
+		if (comp.getHighLevelStateHandler() == null || !(comp.getHighLevelStateHandler() instanceof DefaultHighLevelStateHandler))
+		{
+			System.out.println("  A non-default HighLevelStateHandler was detected. Check for changes there manually.");
+			System.out.print("  Empty line to continue to next component, old component name to get new component name >");
+			for (String line = sysin.nextLine(); !line.equals(""); line = sysin.nextLine())
+				System.out.println("  " + line + "->" + componentNameRemapping.get(line) + " >");
+		}
 	}
 
 	private static void snapWCPs(LogicModelModifiable submodelModifiable)
