@@ -1,8 +1,10 @@
 package net.mograsim.machine.mi;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Optional;
 
+import net.mograsim.logic.core.types.Bit;
 import net.mograsim.machine.mi.parameters.IntegerClassification;
 import net.mograsim.machine.mi.parameters.IntegerImmediate;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
@@ -29,6 +31,14 @@ public interface MicroInstructionDefinition
 	public default int size()
 	{
 		return getParameterClassifications().length;
+	}
+	
+	/**
+	 * @return The amount of {@link Bit}s in a {@link MicroInstruction} that follows this definition.
+	 */
+	public default int sizeInBits()
+	{
+		return Arrays.stream(getParameterClassifications()).mapToInt(e -> e.getExpectedBits()).reduce(0, (a, b) -> a + b);
 	}
 	
 	public default MicroInstruction createDefaultInstruction()
