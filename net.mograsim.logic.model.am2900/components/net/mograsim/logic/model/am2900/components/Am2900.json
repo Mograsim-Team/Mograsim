@@ -6,6 +6,78 @@
   "submodel": {
     "components": [
       {
+        "id": "ManualSwitch",
+        "name": "@bz_pc_cpol",
+        "pos": {
+          "x": 10.0,
+          "y": 405.0
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "@c",
+        "pos": {
+          "x": 10.0,
+          "y": 320.0
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "@d_in",
+        "pos": {
+          "x": 10.0,
+          "y": 240.0
+        },
+        "params": 16
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "@d_in_enable",
+        "pos": {
+          "x": 10.0,
+          "y": 215.0
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "@ireg_cpol",
+        "pos": {
+          "x": 10.0,
+          "y": 380.0
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "@micro_instr",
+        "pos": {
+          "x": 10.0,
+          "y": 290.0
+        },
+        "params": 80
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "@mireg_cpol",
+        "pos": {
+          "x": 10.0,
+          "y": 355.0
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "@mprom_y",
+        "pos": {
+          "x": 10.0,
+          "y": 265.0
+        },
+        "params": 12
+      },
+      {
         "id": "Am2901",
         "name": "Am2901#0",
         "pos": {
@@ -88,18 +160,6 @@
           "y": 190.0
         },
         "params": 12
-      },
-      {
-        "id": "Clock",
-        "name": "Clock#0",
-        "pos": {
-          "x": 325.0,
-          "y": 310.0
-        },
-        "params": {
-          "delta": 1000,
-          "orientation": "DOWN"
-        }
       },
       {
         "id": "FixedOutput",
@@ -193,67 +253,13 @@
         }
       },
       {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#0",
+        "id": "NandGate",
+        "name": "NandGate#0",
         "pos": {
-          "x": 10.0,
-          "y": 315.0
+          "x": 285.0,
+          "y": 165.0
         },
         "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#1",
-        "pos": {
-          "x": 10.0,
-          "y": 290.0
-        },
-        "params": 80
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#2",
-        "pos": {
-          "x": 10.0,
-          "y": 265.0
-        },
-        "params": 12
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#3",
-        "pos": {
-          "x": 10.0,
-          "y": 340.0
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#4",
-        "pos": {
-          "x": 10.0,
-          "y": 365.0
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#5",
-        "pos": {
-          "x": 10.0,
-          "y": 215.0
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#6",
-        "pos": {
-          "x": 10.0,
-          "y": 240.0
-        },
-        "params": 16
       },
       {
         "id": "NandGate",
@@ -261,6 +267,33 @@
         "pos": {
           "x": 225.0,
           "y": 135.0
+        },
+        "params": 1
+      },
+      {
+        "id": "NandGate",
+        "name": "NandGate#2",
+        "pos": {
+          "x": 285.0,
+          "y": 190.0
+        },
+        "params": 1
+      },
+      {
+        "id": "NandGate",
+        "name": "NandGate#3",
+        "pos": {
+          "x": 825.0,
+          "y": 655.0
+        },
+        "params": 1
+      },
+      {
+        "id": "NandGate",
+        "name": "NandGate#4",
+        "pos": {
+          "x": 825.0,
+          "y": 680.0
         },
         "params": 1
       },
@@ -815,6 +848,33 @@
       },
       {
         "id": "TextComponent",
+        "name": "TextComponent#13",
+        "pos": {
+          "x": -55.0,
+          "y": 355.0
+        },
+        "params": "mireg cpol"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#14",
+        "pos": {
+          "x": -50.0,
+          "y": 380.0
+        },
+        "params": "ireg cpol"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#15",
+        "pos": {
+          "x": -50.0,
+          "y": 405.0
+        },
+        "params": "bz/pc cpol"
+      },
+      {
+        "id": "TextComponent",
         "name": "TextComponent#2",
         "pos": {
           "x": -50.0,
@@ -836,9 +896,9 @@
         "name": "TextComponent#4",
         "pos": {
           "x": -50.0,
-          "y": 315.0
+          "y": 320.0
         },
-        "params": "mireg c"
+        "params": "c"
       },
       {
         "id": "TextComponent",
@@ -848,24 +908,6 @@
           "y": 265.0
         },
         "params": "mprom y"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#6",
-        "pos": {
-          "x": -50.0,
-          "y": 340.0
-        },
-        "params": "ireg c"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#7",
-        "pos": {
-          "x": -50.0,
-          "y": 365.0
-        },
-        "params": "bz/pc c"
       },
       {
         "id": "TextComponent",
@@ -926,7 +968,7 @@
         "name": "TriStateBuffer#3",
         "pos": {
           "x": 315.0,
-          "y": 125.0
+          "y": 115.0
         },
         "params": {
           "logicWidth": 16,
@@ -1073,6 +1115,15 @@
       },
       {
         "id": "WireCrossPoint",
+        "name": "WireCrossPoint#21",
+        "pos": {
+          "x": 279.0,
+          "y": 179.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#22",
         "pos": {
           "x": 339.0,
@@ -1088,6 +1139,24 @@
           "y": 29.0
         },
         "params": 16
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#24",
+        "pos": {
+          "x": 279.0,
+          "y": 194.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#25",
+        "pos": {
+          "x": 819.0,
+          "y": 684.0
+        },
+        "params": 1
       },
       {
         "id": "WireCrossPoint",
@@ -1149,6 +1218,15 @@
         "pos": {
           "x": 459.0,
           "y": 369.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#32",
+        "pos": {
+          "x": 819.0,
+          "y": 669.0
         },
         "params": 1
       },
@@ -1302,6 +1380,30 @@
           "x": 515.0,
           "y": 210.0
         }
+      },
+      {
+        "id": "xor",
+        "name": "xor#0",
+        "pos": {
+          "x": 70.0,
+          "y": 350.0
+        }
+      },
+      {
+        "id": "xor",
+        "name": "xor#1",
+        "pos": {
+          "x": 70.0,
+          "y": 375.0
+        }
+      },
+      {
+        "id": "xor",
+        "name": "xor#2",
+        "pos": {
+          "x": 70.0,
+          "y": 400.0
+        }
       }
     ],
     "wires": [
@@ -1394,6 +1496,172 @@
       },
       {
         "pin1": {
+          "compName": "@mireg_cpol",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "xor#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#100",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "xor#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "dff80#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#101",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "xor#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "dff16_invwe#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#102",
+        "path": [
+          {
+            "x": 145.0,
+            "y": 305.0
+          },
+          {
+            "x": 370.0,
+            "y": 305.0
+          },
+          {
+            "x": 370.0,
+            "y": 140.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#103",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#104",
+        "path": [
+          {
+            "x": 280.0,
+            "y": 170.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#46",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#21",
+          "pinName": ""
+        },
+        "name": "unnamedWire#105",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 180.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#2",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#106",
+        "path": [
+          {
+            "x": 340.0,
+            "y": 175.0
+          },
+          {
+            "x": 340.0,
+            "y": 110.0
+          },
+          {
+            "x": 325.0,
+            "y": 110.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#24",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#107",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#24",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#2",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#108",
+        "path": [
+          {
+            "x": 280.0,
+            "y": 205.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#24",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#46",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#109",
+        "path": [
+          {
+            "x": 230.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "Am2904#0",
           "pinName": "IN"
         },
@@ -1418,6 +1686,52 @@
           {
             "x": 995.0,
             "y": 425.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#3",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#110",
+        "path": [
+          {
+            "x": 325.0,
+            "y": 200.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#25",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#4",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#111",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#25",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#4",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#112",
+        "path": [
+          {
+            "x": 820.0,
+            "y": 695.0
           }
         ]
       },
@@ -1513,6 +1827,31 @@
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#25",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#16",
+          "pinName": "O37"
+        },
+        "name": "unnamedWire#119",
+        "path": [
+          {
+            "x": 720.0,
+            "y": 685.0
+          },
+          {
+            "x": 720.0,
+            "y": 780.0
+          },
+          {
+            "x": 605.0,
+            "y": 780.0
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "Am2901#0",
           "pinName": "F\u003d0"
         },
@@ -1537,6 +1876,102 @@
           {
             "x": 730.0,
             "y": 595.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#4",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#0",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#120",
+        "path": [
+          {
+            "x": 905.0,
+            "y": 690.0
+          },
+          {
+            "x": 905.0,
+            "y": 580.0
+          },
+          {
+            "x": 890.0,
+            "y": 580.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#16",
+          "pinName": "O38"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#32",
+          "pinName": ""
+        },
+        "name": "unnamedWire#121",
+        "path": [
+          {
+            "x": 615.0,
+            "y": 775.0
+          },
+          {
+            "x": 715.0,
+            "y": 775.0
+          },
+          {
+            "x": 715.0,
+            "y": 670.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#32",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#3",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#122",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#32",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#3",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#123",
+        "path": [
+          {
+            "x": 820.0,
+            "y": 660.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#1",
+          "pinName": "EN"
+        },
+        "pin2": {
+          "compName": "NandGate#3",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#124",
+        "path": [
+          {
+            "x": 890.0,
+            "y": 665.0
           }
         ]
       },
@@ -1708,13 +2143,13 @@
         "path": [
           {
             "x": 310.0,
-            "y": 135.0
+            "y": 125.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "ManualSwitch#2",
+          "compName": "@mprom_y",
           "pinName": ""
         },
         "pin2": {
@@ -2119,31 +2554,6 @@
       },
       {
         "pin1": {
-          "compName": "ManualSwitch#3",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff16_invwe#0",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#159",
-        "path": [
-          {
-            "x": 145.0,
-            "y": 305.0
-          },
-          {
-            "x": 370.0,
-            "y": 305.0
-          },
-          {
-            "x": 370.0,
-            "y": 140.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "and#0",
           "pinName": "B"
         },
@@ -2213,35 +2623,6 @@
           {
             "x": 270.0,
             "y": 610.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#46",
-          "pinName": "O2"
-        },
-        "pin2": {
-          "compName": "TriStateBuffer#2",
-          "pinName": "EN"
-        },
-        "name": "unnamedWire#163",
-        "path": [
-          {
-            "x": 210.0,
-            "y": 190.0
-          },
-          {
-            "x": 340.0,
-            "y": 190.0
-          },
-          {
-            "x": 340.0,
-            "y": 115.0
-          },
-          {
-            "x": 325.0,
-            "y": 115.0
           }
         ]
       },
@@ -3462,19 +3843,7 @@
       },
       {
         "pin1": {
-          "compName": "ManualSwitch#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff80#0",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#241",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "ManualSwitch#1",
+          "compName": "@micro_instr",
           "pinName": ""
         },
         "pin2": {
@@ -3570,11 +3939,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#20",
+          "compName": "@c",
           "pinName": ""
         },
         "pin2": {
-          "compName": "Clock#0",
+          "compName": "WireCrossPoint#20",
           "pinName": ""
         },
         "name": "unnamedWire#25",
@@ -4150,7 +4519,7 @@
         "path": [
           {
             "x": 345.0,
-            "y": 135.0
+            "y": 125.0
           }
         ]
       },
@@ -4222,93 +4591,6 @@
           {
             "x": 375.0,
             "y": 155.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#46",
-          "pinName": "O0"
-        },
-        "pin2": {
-          "compName": "TriStateBuffer#3",
-          "pinName": "EN"
-        },
-        "name": "unnamedWire#292",
-        "path": [
-          {
-            "x": 230.0,
-            "y": 195.0
-          },
-          {
-            "x": 325.0,
-            "y": 195.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#16",
-          "pinName": "O37"
-        },
-        "pin2": {
-          "compName": "TriStateBuffer#0",
-          "pinName": "EN"
-        },
-        "name": "unnamedWire#293",
-        "path": [
-          {
-            "x": 605.0,
-            "y": 780.0
-          },
-          {
-            "x": 720.0,
-            "y": 780.0
-          },
-          {
-            "x": 720.0,
-            "y": 685.0
-          },
-          {
-            "x": 905.0,
-            "y": 685.0
-          },
-          {
-            "x": 905.0,
-            "y": 580.0
-          },
-          {
-            "x": 890.0,
-            "y": 580.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "TriStateBuffer#1",
-          "pinName": "EN"
-        },
-        "pin2": {
-          "compName": "Splitter#16",
-          "pinName": "O38"
-        },
-        "name": "unnamedWire#294",
-        "path": [
-          {
-            "x": 890.0,
-            "y": 680.0
-          },
-          {
-            "x": 715.0,
-            "y": 680.0
-          },
-          {
-            "x": 715.0,
-            "y": 775.0
-          },
-          {
-            "x": 615.0,
-            "y": 775.0
           }
         ]
       },
@@ -5004,31 +5286,6 @@
       },
       {
         "pin1": {
-          "compName": "dff16#0",
-          "pinName": "C"
-        },
-        "pin2": {
-          "compName": "ManualSwitch#4",
-          "pinName": ""
-        },
-        "name": "unnamedWire#331",
-        "path": [
-          {
-            "x": 255.0,
-            "y": 80.0
-          },
-          {
-            "x": 255.0,
-            "y": 240.0
-          },
-          {
-            "x": 135.0,
-            "y": 240.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#29",
           "pinName": ""
         },
@@ -5053,7 +5310,7 @@
       },
       {
         "pin1": {
-          "compName": "ManualSwitch#5",
+          "compName": "@d_in_enable",
           "pinName": ""
         },
         "pin2": {
@@ -5069,7 +5326,7 @@
           "pinName": "IN"
         },
         "pin2": {
-          "compName": "ManualSwitch#6",
+          "compName": "@d_in",
           "pinName": ""
         },
         "name": "unnamedWire#335",
@@ -5142,7 +5399,12 @@
           "pinName": "C"
         },
         "name": "unnamedWire#34",
-        "path": []
+        "path": [
+          {
+            "x": 335.0,
+            "y": 335.0981951658187
+          }
+        ]
       },
       {
         "pin1": {
@@ -6112,6 +6374,91 @@
           "pinName": ""
         },
         "name": "unnamedWire#93",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "xor#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "dff16#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#94",
+        "path": [
+          {
+            "x": 135.0,
+            "y": 240.0
+          },
+          {
+            "x": 255.0,
+            "y": 240.0
+          },
+          {
+            "x": 255.0,
+            "y": 80.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "@bz_pc_cpol",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "xor#2",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#95",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "@c",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "xor#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#96",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "xor#1",
+          "pinName": "B"
+        },
+        "pin2": {
+          "compName": "@ireg_cpol",
+          "pinName": ""
+        },
+        "name": "unnamedWire#97",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "xor#1",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "@c",
+          "pinName": ""
+        },
+        "name": "unnamedWire#98",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "xor#0",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "@c",
+          "pinName": ""
+        },
+        "name": "unnamedWire#99",
         "path": []
       }
     ],
