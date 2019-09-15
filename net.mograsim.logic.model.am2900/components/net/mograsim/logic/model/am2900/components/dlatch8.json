@@ -5,19 +5,19 @@
     {
       "location": {
         "x": 0.0,
-        "y": 5.0
+        "y": 15.0
       },
-      "name": "C",
-      "logicWidth": 1,
+      "name": "D",
+      "logicWidth": 8,
       "usage": "INPUT"
     },
     {
       "location": {
         "x": 0.0,
-        "y": 15.0
+        "y": 5.0
       },
-      "name": "D",
-      "logicWidth": 8,
+      "name": "E",
+      "logicWidth": 1,
       "usage": "INPUT"
     },
     {
@@ -112,64 +112,64 @@
         "params": 1
       },
       {
-        "id": "dff",
-        "name": "dff#10",
+        "id": "dlatch",
+        "name": "dlatch#10",
         "pos": {
           "x": 95.0,
           "y": 60.0
         }
       },
       {
-        "id": "dff",
-        "name": "dff#11",
+        "id": "dlatch",
+        "name": "dlatch#11",
         "pos": {
           "x": 45.0,
           "y": 40.0
         }
       },
       {
-        "id": "dff",
-        "name": "dff#4",
+        "id": "dlatch",
+        "name": "dlatch#4",
         "pos": {
           "x": 45.0,
           "y": 10.0
         }
       },
       {
-        "id": "dff",
-        "name": "dff#5",
+        "id": "dlatch",
+        "name": "dlatch#5",
         "pos": {
           "x": 95.0,
           "y": 90.0
         }
       },
       {
-        "id": "dff",
-        "name": "dff#6",
+        "id": "dlatch",
+        "name": "dlatch#6",
         "pos": {
           "x": 95.0,
           "y": 120.0
         }
       },
       {
-        "id": "dff",
-        "name": "dff#7",
+        "id": "dlatch",
+        "name": "dlatch#7",
         "pos": {
           "x": 45.0,
           "y": 100.0
         }
       },
       {
-        "id": "dff",
-        "name": "dff#8",
+        "id": "dlatch",
+        "name": "dlatch#8",
         "pos": {
           "x": 45.0,
           "y": 70.0
         }
       },
       {
-        "id": "dff",
-        "name": "dff#9",
+        "id": "dlatch",
+        "name": "dlatch#9",
         "pos": {
           "x": 95.0,
           "y": 30.0
@@ -205,14 +205,14 @@
         },
         "pin2": {
           "compName": "_submodelinterface",
-          "pinName": "C"
+          "pinName": "E"
         },
         "name": "unnamedWire#1",
         "path": []
       },
       {
         "pin1": {
-          "compName": "dff#11",
+          "compName": "dlatch#11",
           "pinName": "D"
         },
         "pin2": {
@@ -237,7 +237,7 @@
           "pinName": "O4"
         },
         "pin2": {
-          "compName": "dff#10",
+          "compName": "dlatch#10",
           "pinName": "D"
         },
         "name": "unnamedWire#11",
@@ -254,7 +254,7 @@
       },
       {
         "pin1": {
-          "compName": "dff#8",
+          "compName": "dlatch#8",
           "pinName": "D"
         },
         "pin2": {
@@ -279,7 +279,7 @@
           "pinName": "O2"
         },
         "pin2": {
-          "compName": "dff#5",
+          "compName": "dlatch#5",
           "pinName": "D"
         },
         "name": "unnamedWire#13",
@@ -296,7 +296,7 @@
       },
       {
         "pin1": {
-          "compName": "dff#7",
+          "compName": "dlatch#7",
           "pinName": "D"
         },
         "pin2": {
@@ -321,7 +321,7 @@
           "pinName": "O0"
         },
         "pin2": {
-          "compName": "dff#6",
+          "compName": "dlatch#6",
           "pinName": "D"
         },
         "name": "unnamedWire#15",
@@ -354,8 +354,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff#11",
-          "pinName": "C"
+          "compName": "dlatch#11",
+          "pinName": "E"
         },
         "name": "unnamedWire#27",
         "path": []
@@ -378,8 +378,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff#8",
-          "pinName": "C"
+          "compName": "dlatch#8",
+          "pinName": "E"
         },
         "name": "unnamedWire#29",
         "path": []
@@ -402,8 +402,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff#7",
-          "pinName": "C"
+          "compName": "dlatch#7",
+          "pinName": "E"
         },
         "name": "unnamedWire#30",
         "path": [
@@ -415,8 +415,8 @@
       },
       {
         "pin1": {
-          "compName": "dff#6",
-          "pinName": "C"
+          "compName": "dlatch#6",
+          "pinName": "E"
         },
         "pin2": {
           "compName": "WireCrossPoint#7",
@@ -436,8 +436,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff#5",
-          "pinName": "C"
+          "compName": "dlatch#5",
+          "pinName": "E"
         },
         "name": "unnamedWire#32",
         "path": []
@@ -456,8 +456,8 @@
       },
       {
         "pin1": {
-          "compName": "dff#10",
-          "pinName": "C"
+          "compName": "dlatch#10",
+          "pinName": "E"
         },
         "pin2": {
           "compName": "WireCrossPoint#10",
@@ -484,8 +484,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff#9",
-          "pinName": "C"
+          "compName": "dlatch#9",
+          "pinName": "E"
         },
         "name": "unnamedWire#36",
         "path": []
@@ -508,8 +508,8 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff#4",
-          "pinName": "C"
+          "compName": "dlatch#4",
+          "pinName": "E"
         },
         "name": "unnamedWire#5",
         "path": []
@@ -520,7 +520,7 @@
           "pinName": "O7"
         },
         "pin2": {
-          "compName": "dff#4",
+          "compName": "dlatch#4",
           "pinName": "Q"
         },
         "name": "unnamedWire#57",
@@ -545,7 +545,7 @@
       },
       {
         "pin1": {
-          "compName": "dff#9",
+          "compName": "dlatch#9",
           "pinName": "Q"
         },
         "pin2": {
@@ -570,7 +570,7 @@
           "pinName": "O5"
         },
         "pin2": {
-          "compName": "dff#11",
+          "compName": "dlatch#11",
           "pinName": "Q"
         },
         "name": "unnamedWire#59",
@@ -599,7 +599,7 @@
           "pinName": "O4"
         },
         "pin2": {
-          "compName": "dff#10",
+          "compName": "dlatch#10",
           "pinName": "Q"
         },
         "name": "unnamedWire#60",
@@ -620,7 +620,7 @@
           "pinName": "O3"
         },
         "pin2": {
-          "compName": "dff#8",
+          "compName": "dlatch#8",
           "pinName": "Q"
         },
         "name": "unnamedWire#61",
@@ -645,7 +645,7 @@
       },
       {
         "pin1": {
-          "compName": "dff#5",
+          "compName": "dlatch#5",
           "pinName": "Q"
         },
         "pin2": {
@@ -670,7 +670,7 @@
           "pinName": "O1"
         },
         "pin2": {
-          "compName": "dff#7",
+          "compName": "dlatch#7",
           "pinName": "Q"
         },
         "name": "unnamedWire#63",
@@ -695,7 +695,7 @@
       },
       {
         "pin1": {
-          "compName": "dff#6",
+          "compName": "dlatch#6",
           "pinName": "Q"
         },
         "pin2": {
@@ -716,7 +716,7 @@
       },
       {
         "pin1": {
-          "compName": "dff#4",
+          "compName": "dlatch#4",
           "pinName": "D"
         },
         "pin2": {
@@ -741,7 +741,7 @@
           "pinName": "O6"
         },
         "pin2": {
-          "compName": "dff#9",
+          "compName": "dlatch#9",
           "pinName": "D"
         },
         "name": "unnamedWire#9",
@@ -761,7 +761,7 @@
   },
   "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
-    "centerText": "D flip flop\n8 bit",
+    "centerText": "D latch\n8 bit",
     "centerTextHeight": 5.0,
     "horizontalComponentCenter": 30.0,
     "pinLabelHeight": 3.5,
@@ -800,56 +800,56 @@
       "q1": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff#6",
+          "delegateTarget": "dlatch#6",
           "subStateID": "q"
         }
       },
       "q2": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff#7",
+          "delegateTarget": "dlatch#7",
           "subStateID": "q"
         }
       },
       "q3": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff#5",
+          "delegateTarget": "dlatch#5",
           "subStateID": "q"
         }
       },
       "q4": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff#8",
+          "delegateTarget": "dlatch#8",
           "subStateID": "q"
         }
       },
       "q5": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff#10",
+          "delegateTarget": "dlatch#10",
           "subStateID": "q"
         }
       },
       "q6": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff#11",
+          "delegateTarget": "dlatch#11",
           "subStateID": "q"
         }
       },
       "q7": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff#9",
+          "delegateTarget": "dlatch#9",
           "subStateID": "q"
         }
       },
       "q8": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff#4",
+          "delegateTarget": "dlatch#4",
           "subStateID": "q"
         }
       }
