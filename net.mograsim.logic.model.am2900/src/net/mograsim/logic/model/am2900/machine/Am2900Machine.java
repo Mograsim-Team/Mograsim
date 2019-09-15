@@ -5,8 +5,6 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
-import net.mograsim.logic.model.model.components.atomic.ModelClock;
-import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -39,7 +37,6 @@ public class Am2900Machine implements Machine
 		mainMemory = new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition());
 		instMemory = new StandardMicroInstructionMemory(am2900MachineDefinition.getMicroInstructionMemoryDefinition());
 		timeline = LogicCoreAdapter.convert(logicModel, params);
-		logicModel.getComponentByPath("Am2900.@c", ModelManualSwitch.class).getManualSwitch();
 	}
 
 	@Override
