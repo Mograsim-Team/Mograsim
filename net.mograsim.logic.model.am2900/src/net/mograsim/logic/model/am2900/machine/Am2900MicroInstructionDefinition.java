@@ -62,13 +62,12 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 	private static final BooleanClassification hE = new BooleanClassification(true, "H", "E");
 	private static final BooleanClassification hI = new BooleanClassification(true, "H", "I");
 	private static final BooleanClassification hL = new BooleanClassification(true, "H", "L");
-	private static final BooleanClassification hLDefaultL = new BooleanClassification(false, "H", "L");
 	private static final BooleanClassification rW = new BooleanClassification(true, "R", "W");
 
 	private static final ParameterClassification[] classes = { interruptEnable, interruptInstructions, kmux, constant_16bit,
 			am2901SrcInstructions, am2901FuncInstructions, am2901DestInstructions, register, registerSelect, register, registerSelect, abus,
-			dbus, am2904CarryInstructions, am2904ShiftInstructions, hLDefaultL, hLDefaultL, am2904StatusInstructions, ccen,
-			am2910Instructions, constant_12bit, hL, hE, hI, hE, hL, rW };
+			dbus, am2904CarryInstructions, am2904ShiftInstructions, hL, hL, am2904StatusInstructions, ccen, am2910Instructions,
+			constant_12bit, hL, hE, hI, hE, hL, rW };
 
 	private static final String[] paramDesc = { "Allow interrupts?", "Interrupt instructions; omitted for simplicity",
 			"Get D-input from data bus/constant value", "Constant value", "Operand sources for ALU operation", "ALU operation",
