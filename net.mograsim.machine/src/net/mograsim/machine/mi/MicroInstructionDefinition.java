@@ -8,9 +8,9 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.machine.mi.parameters.IntegerClassification;
 import net.mograsim.machine.mi.parameters.IntegerImmediate;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
+import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
 import net.mograsim.machine.mi.parameters.MnemonicFamily;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
-import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
 
 public interface MicroInstructionDefinition
 {
@@ -40,7 +40,7 @@ public interface MicroInstructionDefinition
 		return Arrays.stream(getParameterClassifications()).mapToInt(e -> e.getExpectedBits()).reduce(0, (a, b) -> a + b);
 	}
 
-	public default MicroInstruction createDefaultInstruction()
+	public default MicroInstruction createDefaultInstruction(Runnable updateCallback)
 	{
 		int size = size();
 		MicroInstructionParameter[] params = new MicroInstructionParameter[size];
@@ -64,7 +64,7 @@ public interface MicroInstructionDefinition
 			}
 			params[i] = newParam;
 		}
-		return new StandardMicroInstruction(params);
+		return new StandardMicroInstruction(updateCallback, params);
 	}
 
 	public Optional<String> getParameterDescription(int index);

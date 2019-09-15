@@ -16,9 +16,9 @@ public interface MicroInstruction
 	 */
 	public int getSize();
 
-	public static MicroInstruction create(MicroInstructionParameter... parameters)
+	public static MicroInstruction create(Runnable updateCallback, MicroInstructionParameter... parameters)
 	{
-		return new StandardMicroInstruction(parameters);
+		return new StandardMicroInstruction(updateCallback, parameters);
 	}
 
 	default BitVector toBitVector()

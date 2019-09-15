@@ -45,14 +45,14 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 			throw new IllegalArgumentException(
 					String.format("Bit width of address wire does not match main memory definition. Expected: %d Actual: %d",
 							definition.getMemoryAddressBits(), address.width()));
+		this.memory = memory;
 		this.data = data;
 		this.rWBit = rWBit;
 		this.address = address;
+		memory.registerObserver(a -> update());
 		data.registerObserver(this);
 		rWBit.registerObserver(this);
 		address.registerObserver(this);
-
-		this.memory = memory;
 	}
 
 	@Override

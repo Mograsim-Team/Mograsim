@@ -34,7 +34,10 @@ public class MicroInstructionMemoryParser
 		try
 		{
 			for (; i <= maxAddr && input.ready() && !"".equals((line = input.readLine())); i++)
-				memory.setCell(i, parse(miDef, line));
+			{
+				long iFinal = i;
+				memory.setCell(i, parse(() -> memory.notifyObservers(iFinal), miDef, line));
+			}
 		}
 		catch (IOException e)
 		{
@@ -42,10 +45,13 @@ public class MicroInstructionMemoryParser
 		}
 
 		for (; i <= maxAddr; i++)
-			memory.setCell(i, miDef.createDefaultInstruction());
+		{
+			long iFinal = i;
+			memory.setCell(i, miDef.createDefaultInstruction(() -> memory.notifyObservers(iFinal)));
+		}
 	}
 
-	public static MicroInstruction parse(MicroInstructionDefinition definition, String toParse)
+	public static MicroInstruction parse(Runnable updateCallback, MicroInstructionDefinition definition, String toParse)
 	{
 		int size = definition.size();
 		String[] strings = toParse.split(",");
@@ -59,7 +65,7 @@ public class MicroInstructionMemoryParser
 			{
 				params[i] = classes[i].parse(strings[i]);
 			}
-			return new StandardMicroInstruction(params);
+			return new StandardMicroInstruction(updateCallback, params);
 		}
 		catch (Exception e)
 		{

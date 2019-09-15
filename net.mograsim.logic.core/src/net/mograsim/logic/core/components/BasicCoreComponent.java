@@ -29,6 +29,11 @@ public abstract class BasicCoreComponent extends CoreComponent implements LogicO
 	@Override
 	public final void update(LogicObservable initiator)
 	{
+		update();
+	}
+
+	public void update()
+	{
 		TimelineEventHandler delayedUpdates = compute();
 		if (delayedUpdates != null)
 			timeline.addEvent(delayedUpdates, processTime);

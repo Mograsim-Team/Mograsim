@@ -4,10 +4,12 @@ import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 
 class StandardMicroInstruction implements MicroInstruction
 {
+	private final Runnable updateCallback;
 	private MicroInstructionParameter[] parameters;
 
-	StandardMicroInstruction(MicroInstructionParameter... parameters)
+	StandardMicroInstruction(Runnable updateCallback, MicroInstructionParameter... parameters)
 	{
+		this.updateCallback = updateCallback;
 		this.parameters = parameters;
 	}
 
@@ -33,6 +35,7 @@ class StandardMicroInstruction implements MicroInstruction
 	public void setParameter(int index, MicroInstructionParameter param)
 	{
 		parameters[index] = param;
+		updateCallback.run();
 	}
 
 }
