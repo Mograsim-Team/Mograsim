@@ -94,17 +94,19 @@ public class Timeline
 			return ExecutionResult.NOTHING_DONE;
 		}
 		int checkStop = 0;
-		InnerEvent first = events.peek();
 		while (hasNext() && !condition.getAsBoolean())
 		{
-			events.remove();
-			lastTimeUpdated = first.getTiming();
-			first.run();
+			InnerEvent event;
+			synchronized (events)
+			{
+				event = events.remove();
+			}
+			lastTimeUpdated = event.getTiming();
+			event.run();
 			// Don't check after every run
 			checkStop = (checkStop + 1) % 10;
 			if (checkStop == 0 && System.currentTimeMillis() >= stopMillis)
 				return ExecutionResult.EXEC_OUT_OF_TIME;
-			first = events.peek();
 		}
 		lastTimeUpdated = getSimulationTime();
 		return hasNext() ? ExecutionResult.EXEC_UNTIL_EMPTY : ExecutionResult.EXEC_UNTIL_CONDITION;
@@ -147,7 +149,10 @@ public class Timeline
 	 */
 	public void reset()
 	{
-		events.clear();
+		synchronized (events)
+		{
+			events.clear();
+		}
 		lastTimeUpdated = 0;
 	}
 
@@ -177,7 +182,10 @@ public class Timeline
 	{
 		long timing = getSimulationTime() + relativeTiming;
 		TimelineEvent event = new TimelineEvent(timing);
-		events.add(new InnerEvent(function, event, eventCounter++));
+		synchronized (events)
+		{
+			events.add(new InnerEvent(function, event, eventCounter++));
+		}
 		eventAddedListener.forEach(l -> l.accept(event));
 	}
 
@@ -233,7 +241,12 @@ public class Timeline
 	@Override
 	public String toString()
 	{
-		return String.format("Simulation time: %s, Last update: %d, Events: %s", getSimulationTime(), lastTimeUpdated, events.toString());
+		String eventsString;
+		synchronized (events)
+		{
+			eventsString = events.toString();
+		}
+		return String.format("Simulation time: %s, Last update: %d, Events: %s", getSimulationTime(), lastTimeUpdated, eventsString);
 	}
 
 	public enum ExecutionResult
