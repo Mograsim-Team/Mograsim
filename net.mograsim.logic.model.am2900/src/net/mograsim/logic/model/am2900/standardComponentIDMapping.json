@@ -1,5 +1,7 @@
 mograsim version: 0.1.3
 {
+  "Am2900MainMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MainMemory",
+  "Am2900MicroInstructionMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MicroInstructionMemory",
   "Am2904RegCTInstrDecode": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2904.ModelAm2904RegCTInstrDecode",
   "Am2904ShiftInstrDecode": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2904.ModelAm2904ShiftInstrDecode",
   "Am2910InstrPLA": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2910.ModelAm2910InstrPLA",

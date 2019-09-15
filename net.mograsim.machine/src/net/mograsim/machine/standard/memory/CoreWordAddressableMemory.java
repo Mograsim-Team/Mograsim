@@ -9,6 +9,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
+import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
 
 /**
@@ -16,7 +17,7 @@ import net.mograsim.machine.MainMemoryDefinition;
  */
 public class CoreWordAddressableMemory extends BasicCoreComponent
 {
-	private final WordAddressableMemory memory;
+	private final MainMemory memory;
 	private final static Bit read = Bit.ONE;
 
 	private ReadWriteEnd data;
@@ -28,10 +29,11 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 	 * @param rWBit   The value of the 0th bit dictates the mode: 0: Write, 1: Read
 	 * @param address The bits of this ReadEnd address the memory cell to read/write
 	 */
-	public CoreWordAddressableMemory(Timeline timeline, int processTime, MainMemoryDefinition definition, ReadWriteEnd data,
+	public CoreWordAddressableMemory(Timeline timeline, int processTime, MainMemory memory, ReadWriteEnd data,
 			ReadEnd rWBit, ReadEnd address, ReadEnd clock)
 	{
 		super(timeline, processTime);
+		MainMemoryDefinition definition = memory.getDefinition();
 		if(data.width() != definition.getCellWidth())
 			throw new IllegalArgumentException(String.format("Bit width of data wire does not match main memory definition. Expected: %d Actual: %d", definition.getCellWidth(), data.width()));
 		if(rWBit.width() != 1)
@@ -47,7 +49,7 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 		address.registerObserver(this);
 		clock.registerObserver(this);
 		
-		memory = new WordAddressableMemory(definition);
+		this.memory = memory;
 	}
 
 	@Override
