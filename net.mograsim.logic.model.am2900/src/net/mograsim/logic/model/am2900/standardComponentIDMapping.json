@@ -43,6 +43,8 @@
     "dff80": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff80.json",
     "dlatch": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch.json",
     "dlatch4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch4.json",
+    "dlatch8": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch8.json",
+    "dlatch80": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch80.json",
     "fulladder": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/fulladder.json",
     "halfadder": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/halfadder.json",
     "mux1": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/mux1.json",

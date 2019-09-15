@@ -5,7 +5,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 5.0
+        "y": 45.0
       },
       "name": "C",
       "logicWidth": 1,
@@ -14,7 +14,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 25.0
+        "y": 5.0
       },
       "name": "D1",
       "logicWidth": 1,
@@ -23,7 +23,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 35.0
+        "y": 15.0
       },
       "name": "D2",
       "logicWidth": 1,
@@ -32,7 +32,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 45.0
+        "y": 25.0
       },
       "name": "D3",
       "logicWidth": 1,
@@ -41,7 +41,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 55.0
+        "y": 35.0
       },
       "name": "D4",
       "logicWidth": 1,
@@ -86,7 +86,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 15.0
+        "y": 55.0
       },
       "name": "_WE",
       "logicWidth": 1,
@@ -101,7 +101,7 @@
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 104.0,
-          "y": 24.0
+          "y": 184.0
         },
         "params": 1
       },
@@ -110,7 +110,7 @@
         "name": "WireCrossPoint#1",
         "pos": {
           "x": 104.0,
-          "y": 74.0
+          "y": 84.0
         },
         "params": 1
       },
@@ -119,7 +119,7 @@
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 104.0,
-          "y": 124.0
+          "y": 134.0
         },
         "params": 1
       },
@@ -196,22 +196,27 @@
         "name": "mux1_4#0",
         "pos": {
           "x": 55.0,
-          "y": 70.0
+          "y": 60.0
         }
       }
     ],
     "wires": [
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#0",
+          "compName": "WireCrossPoint#1",
           "pinName": ""
         },
+        "pin2": {
+          "compName": "dff#0",
+          "pinName": "C"
+        },
         "name": "unnamedWire#0",
-        "path": []
+        "path": [
+          {
+            "x": 105.0,
+            "y": 35.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -226,11 +231,11 @@
         "path": [
           {
             "x": 100.0,
-            "y": 75.0
+            "y": 65.0
           },
           {
             "x": 100.0,
-            "y": 35.0
+            "y": 25.0
           }
         ]
       },
@@ -246,12 +251,12 @@
         "name": "unnamedWire#10",
         "path": [
           {
-            "x": 10.0,
-            "y": 125.0
+            "x": 25.0,
+            "y": 25.0
           },
           {
-            "x": 10.0,
-            "y": 85.0
+            "x": 25.0,
+            "y": 75.0
           }
         ]
       },
@@ -267,12 +272,12 @@
         "name": "unnamedWire#11",
         "path": [
           {
-            "x": 15.0,
-            "y": 175.0
+            "x": 20.0,
+            "y": 75.0
           },
           {
-            "x": 15.0,
-            "y": 95.0
+            "x": 20.0,
+            "y": 85.0
           }
         ]
       },
@@ -289,11 +294,11 @@
         "path": [
           {
             "x": 20.0,
-            "y": 225.0
+            "y": 125.0
           },
           {
             "x": 20.0,
-            "y": 105.0
+            "y": 95.0
           }
         ]
       },
@@ -358,11 +363,11 @@
         "path": [
           {
             "x": 25.0,
-            "y": 275.0
+            "y": 175.0
           },
           {
             "x": 25.0,
-            "y": 115.0
+            "y": 105.0
           }
         ]
       },
@@ -439,11 +444,11 @@
         "path": [
           {
             "x": 100.0,
-            "y": 95.0
+            "y": 85.0
           },
           {
             "x": 100.0,
-            "y": 135.0
+            "y": 125.0
           }
         ]
       },
@@ -460,11 +465,11 @@
         "path": [
           {
             "x": 95.0,
-            "y": 105.0
+            "y": 95.0
           },
           {
             "x": 95.0,
-            "y": 185.0
+            "y": 175.0
           }
         ]
       },
@@ -489,7 +494,7 @@
           },
           {
             "x": 50.0,
-            "y": 125.0
+            "y": 115.0
           }
         ]
       },
@@ -514,7 +519,7 @@
           },
           {
             "x": 45.0,
-            "y": 135.0
+            "y": 125.0
           }
         ]
       },
@@ -539,7 +544,7 @@
           },
           {
             "x": 40.0,
-            "y": 145.0
+            "y": 135.0
           }
         ]
       },
@@ -564,7 +569,7 @@
           },
           {
             "x": 35.0,
-            "y": 155.0
+            "y": 145.0
           }
         ]
       },
@@ -574,7 +579,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff#0",
+          "compName": "dff#3",
           "pinName": "C"
         },
         "name": "unnamedWire#3",
@@ -586,7 +591,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#1",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "name": "unnamedWire#4",
@@ -630,18 +635,22 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
+          "compName": "_submodelinterface",
+          "pinName": "C"
         },
         "pin2": {
-          "compName": "dff#3",
-          "pinName": "C"
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
         },
         "name": "unnamedWire#8",
         "path": [
           {
-            "x": 105.0,
-            "y": 175.0
+            "x": 20.0,
+            "y": 225.0
+          },
+          {
+            "x": 20.0,
+            "y": 185.0
           }
         ]
       },
@@ -655,7 +664,16 @@
           "pinName": "S0"
         },
         "name": "unnamedWire#9",
-        "path": []
+        "path": [
+          {
+            "x": 10.0,
+            "y": 275.0
+          },
+          {
+            "x": 10.0,
+            "y": 65.0
+          }
+        ]
       }
     ],
     "version": "0.1.1"
