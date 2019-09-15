@@ -257,8 +257,8 @@ public class ModelWire
 	}
 
 	/**
-	 * Destroys this wire. This method is called from {@link LogicModelModifiable#wireDestroyed(ModelWire) wireDestroyed()} of the model this
-	 * wire is a part of.
+	 * Destroys this wire. This method is called from {@link LogicModelModifiable#wireDestroyed(ModelWire) wireDestroyed()} of the model
+	 * this wire is a part of.
 	 * 
 	 * @author Daniel Kirschten
 	 */

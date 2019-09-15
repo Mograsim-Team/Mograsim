@@ -40,9 +40,9 @@ class CoreComponentTest
 	@Test
 	void circuitExampleTest()
 	{
-		CoreWire a = new CoreWire(t, 1, 1), b = new CoreWire(t, 1, 1), c = new CoreWire(t, 1, 10), d = new CoreWire(t, 2, 1), e = new CoreWire(t, 1, 1),
-				f = new CoreWire(t, 1, 1), g = new CoreWire(t, 1, 1), h = new CoreWire(t, 2, 1), i = new CoreWire(t, 2, 1), j = new CoreWire(t, 1, 1),
-				k = new CoreWire(t, 1, 1);
+		CoreWire a = new CoreWire(t, 1, 1), b = new CoreWire(t, 1, 1), c = new CoreWire(t, 1, 10), d = new CoreWire(t, 2, 1),
+				e = new CoreWire(t, 1, 1), f = new CoreWire(t, 1, 1), g = new CoreWire(t, 1, 1), h = new CoreWire(t, 2, 1),
+				i = new CoreWire(t, 2, 1), j = new CoreWire(t, 1, 1), k = new CoreWire(t, 1, 1);
 		new CoreAndGate(t, 1, f.createReadWriteEnd(), a.createReadOnlyEnd(), b.createReadOnlyEnd());
 		new CoreNotGate(t, 1, f.createReadOnlyEnd(), g.createReadWriteEnd());
 		new CoreUnidirectionalMerger(t, h.createReadWriteEnd(), c.createReadOnlyEnd(), g.createReadOnlyEnd());
@@ -205,7 +205,8 @@ class CoreComponentTest
 	@Test
 	void muxTest()
 	{
-		CoreWire a = new CoreWire(t, 4, 3), b = new CoreWire(t, 4, 6), c = new CoreWire(t, 4, 4), select = new CoreWire(t, 2, 5), out = new CoreWire(t, 4, 1);
+		CoreWire a = new CoreWire(t, 4, 3), b = new CoreWire(t, 4, 6), c = new CoreWire(t, 4, 4), select = new CoreWire(t, 2, 5),
+				out = new CoreWire(t, 4, 1);
 		ReadWriteEnd selectIn = select.createReadWriteEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
@@ -232,7 +233,8 @@ class CoreComponentTest
 	@Test
 	void demuxTest()
 	{
-		CoreWire a = new CoreWire(t, 4, 3), b = new CoreWire(t, 4, 6), c = new CoreWire(t, 4, 4), select = new CoreWire(t, 2, 5), in = new CoreWire(t, 4, 1);
+		CoreWire a = new CoreWire(t, 4, 3), b = new CoreWire(t, 4, 6), c = new CoreWire(t, 4, 4), select = new CoreWire(t, 2, 5),
+				in = new CoreWire(t, 4, 1);
 		ReadWriteEnd selectIn = select.createReadWriteEnd();
 
 		selectIn.feedSignals(Bit.ZERO, Bit.ZERO);
@@ -344,8 +346,8 @@ class CoreComponentTest
 	@Test
 	void rsLatchCircuitTest()
 	{
-		CoreWire r = new CoreWire(t, 1, 1), s = new CoreWire(t, 1, 1), t1 = new CoreWire(t, 1, 15), t2 = new CoreWire(t, 1, 1), q = new CoreWire(t, 1, 1),
-				nq = new CoreWire(t, 1, 1);
+		CoreWire r = new CoreWire(t, 1, 1), s = new CoreWire(t, 1, 1), t1 = new CoreWire(t, 1, 15), t2 = new CoreWire(t, 1, 1),
+				q = new CoreWire(t, 1, 1), nq = new CoreWire(t, 1, 1);
 
 		new CoreOrGate(t, 1, t2.createReadWriteEnd(), r.createReadOnlyEnd(), nq.createReadOnlyEnd());
 		new CoreOrGate(t, 1, t1.createReadWriteEnd(), s.createReadOnlyEnd(), q.createReadOnlyEnd());
