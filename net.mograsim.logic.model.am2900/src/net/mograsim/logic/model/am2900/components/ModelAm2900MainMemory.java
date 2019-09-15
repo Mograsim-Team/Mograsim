@@ -14,19 +14,18 @@ public class ModelAm2900MainMemory extends ModelWordAddressableMemory
 		super(model, Am2900MachineDefinition.getInstance().getMainMemoryDefinition(), name);
 	}
 
-	static
-	{
-		LogicCoreAdapter.addComponentAdapter(new ModelAm2900MicroInstructionMemoryAdapter());
-		IndirectModelComponentCreator.setComponentSupplier(ModelAm2900MainMemory.class.getCanonicalName(), (m, p, n) ->
-		{
-			return new ModelAm2900MainMemory(m, n);
-		});
-	}
-
 	@Override
 	public String getIDForSerializing(IdentifyParams idParams)
 	{
 		return "Am2900MainMemory";
 	}
 
+	static
+	{
+		LogicCoreAdapter.addComponentAdapter(new ModelAm2900MainMemoryAdapter());
+		IndirectModelComponentCreator.setComponentSupplier(ModelAm2900MainMemory.class.getCanonicalName(), (m, p, n) ->
+		{
+			return new ModelAm2900MainMemory(m, n);
+		});
+	}
 }
