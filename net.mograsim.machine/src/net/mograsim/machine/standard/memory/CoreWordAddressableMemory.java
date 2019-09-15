@@ -29,24 +29,29 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 	 * @param rWBit   The value of the 0th bit dictates the mode: 0: Write, 1: Read
 	 * @param address The bits of this ReadEnd address the memory cell to read/write
 	 */
-	public CoreWordAddressableMemory(Timeline timeline, int processTime, MainMemory memory, ReadWriteEnd data,
-			ReadEnd rWBit, ReadEnd address)
+	public CoreWordAddressableMemory(Timeline timeline, int processTime, MainMemory memory, ReadWriteEnd data, ReadEnd rWBit,
+			ReadEnd address)
 	{
 		super(timeline, processTime);
 		MainMemoryDefinition definition = memory.getDefinition();
-		if(data.width() != definition.getCellWidth())
-			throw new IllegalArgumentException(String.format("Bit width of data wire does not match main memory definition. Expected: %d Actual: %d", definition.getCellWidth(), data.width()));
-		if(rWBit.width() != 1)
-			throw new IllegalArgumentException(String.format("Bit width of read/write mode select wire is unexpected. Expected: 1 Actual: %d", rWBit.width()));
-		if(address.width() != definition.getMemoryAddressBits())
-			throw new IllegalArgumentException(String.format("Bit width of address wire does not match main memory definition. Expected: %d Actual: %d", definition.getMemoryAddressBits(), address.width()));
+		if (data.width() != definition.getCellWidth())
+			throw new IllegalArgumentException(
+					String.format("Bit width of data wire does not match main memory definition. Expected: %d Actual: %d",
+							definition.getCellWidth(), data.width()));
+		if (rWBit.width() != 1)
+			throw new IllegalArgumentException(
+					String.format("Bit width of read/write mode select wire is unexpected. Expected: 1 Actual: %d", rWBit.width()));
+		if (address.width() != definition.getMemoryAddressBits())
+			throw new IllegalArgumentException(
+					String.format("Bit width of address wire does not match main memory definition. Expected: %d Actual: %d",
+							definition.getMemoryAddressBits(), address.width()));
 		this.data = data;
 		this.rWBit = rWBit;
 		this.address = address;
 		data.registerObserver(this);
 		rWBit.registerObserver(this);
 		address.registerObserver(this);
-		
+
 		this.memory = memory;
 	}
 
@@ -56,7 +61,7 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 		if (!address.hasNumericValue())
 		{
 			if (read.equals(rWBit.getValue()))
-				return e -> data.feedSignals(Bit.U.toVector(data.width()));//TODO don't always feed U, but decide to feed X or U.
+				return e -> data.feedSignals(Bit.U.toVector(data.width()));// TODO don't always feed U, but decide to feed X or U.
 			return e -> data.clearSignals();
 		}
 		long addressed = address.getUnsignedValue();
@@ -64,8 +69,7 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 		{
 			BitVector storedData = memory.getCell(addressed);
 			return e -> data.feedSignals(storedData);
-		}
-		else
+		} else
 		{
 			BitVector transData = data.getValues();
 			return e ->

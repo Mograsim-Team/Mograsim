@@ -1,10 +1,11 @@
 package net.mograsim.machine;
 
-public interface MemoryDefinition {
+public interface MemoryDefinition
+{
 
 	/**
-	 * The number of bits that the main memory uses to address cells. Note that this
-	 * does not need to equal {@link MachineDefinition#getAddressBits()}.
+	 * The number of bits that the main memory uses to address cells. Note that this does not need to equal
+	 * {@link MachineDefinition#getAddressBits()}.
 	 * 
 	 * @return the number of bits used to address a memory cell
 	 * @author Christian Femers
@@ -26,7 +27,7 @@ public interface MemoryDefinition {
 	 * @author Christian Femers
 	 */
 	long getMaximalAddress();
-	
+
 	/**
 	 * The size of the MainMemory as the amount of addressable memory cells.
 	 * 
@@ -36,7 +37,7 @@ public interface MemoryDefinition {
 	{
 		return getMaximalAddress() - getMinimalAddress() + 1;
 	}
-	
+
 	public static MemoryDefinition create(int memoryAddressBits, long minimalAddress, long maximalAddress)
 	{
 		return new StandardMemoryDefinition(memoryAddressBits, minimalAddress, maximalAddress);

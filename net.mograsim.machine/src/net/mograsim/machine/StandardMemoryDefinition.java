@@ -1,9 +1,10 @@
 package net.mograsim.machine;
 
-class StandardMemoryDefinition implements MemoryDefinition {
+class StandardMemoryDefinition implements MemoryDefinition
+{
 	private final int memoryAddressBits;
 	private final long minimalAddress, maximalAddress;
-	
+
 	StandardMemoryDefinition(int memoryAddressBits, long minimalAddress, long maximalAddress)
 	{
 		super();
@@ -34,7 +35,7 @@ class StandardMemoryDefinition implements MemoryDefinition {
 	{
 		return maximalAddress;
 	}
-	
+
 	public static MemoryDefinition create(int memoryAddressBits, long minimalAddress, long maximalAddress)
 	{
 		return new StandardMemoryDefinition(memoryAddressBits, minimalAddress, maximalAddress);

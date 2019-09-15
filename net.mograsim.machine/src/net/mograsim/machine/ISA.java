@@ -1,4 +1,5 @@
 package net.mograsim.machine;
 
-public interface ISA {
+public interface ISA
+{
 }

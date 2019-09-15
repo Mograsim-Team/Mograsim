@@ -7,17 +7,17 @@ import net.mograsim.logic.core.types.BitVector;
 public final class IntegerImmediate implements MicroInstructionParameter
 {
 	private BitVector value;
-	
+
 	public IntegerImmediate(BigInteger value, int bits)
 	{
 		this.value = BitVector.from(value, bits);
 	}
-	
+
 	public IntegerImmediate(BitVector value)
 	{
 		this.value = value;
 	}
-	
+
 	@Override
 	public BitVector getValue()
 	{
@@ -65,7 +65,7 @@ public final class IntegerImmediate implements MicroInstructionParameter
 	{
 		return value.getUnsignedValue();
 	}
-	
+
 	@Override
 	public String toString()
 	{

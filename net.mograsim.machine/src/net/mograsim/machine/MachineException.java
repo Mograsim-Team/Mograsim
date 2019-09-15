@@ -12,12 +12,12 @@ public class MachineException extends RuntimeException
 	{
 		super();
 	}
-	
+
 	public MachineException(String message)
 	{
 		super(message);
 	}
-	
+
 	public MachineException(Throwable cause)
 	{
 		super(cause);

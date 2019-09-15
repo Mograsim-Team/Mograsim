@@ -14,8 +14,9 @@ import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.machine.MainMemoryDefinition;
 
-class WordAddressableMemoryTest {
-	
+class WordAddressableMemoryTest
+{
+
 	private Timeline t = new Timeline(10);
 
 	@Test
@@ -29,9 +30,10 @@ class WordAddressableMemoryTest {
 		ReadWriteEnd addressI = address.createReadWriteEnd();
 
 		@SuppressWarnings("unused")
-		CoreWordAddressableMemory memory = new CoreWordAddressableMemory(t, 4, new WordAddressableMemory(MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE)), data.createReadWriteEnd(),
+		CoreWordAddressableMemory memory = new CoreWordAddressableMemory(t, 4,
+				new WordAddressableMemory(MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE)), data.createReadWriteEnd(),
 				rW.createReadOnlyEnd(), address.createReadOnlyEnd());
-		
+
 		Random r = new Random();
 		for (long j = 1; j > 0; j *= 2)
 		{

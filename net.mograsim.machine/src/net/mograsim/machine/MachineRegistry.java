@@ -29,7 +29,7 @@ public class MachineRegistry
 				System.out.println(Arrays.toString(e.getAttributeNames()));
 				final Object o = e.createExecutableExtension("class");
 				final String id = e.getAttribute("unique_id");
-				if (o instanceof MachineDefinition) 
+				if (o instanceof MachineDefinition)
 				{
 					System.out.println("Found " + id);
 					installedMachines.put(id, (MachineDefinition) o);

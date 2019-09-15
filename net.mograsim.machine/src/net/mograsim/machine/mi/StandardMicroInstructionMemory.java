@@ -10,26 +10,26 @@ public class StandardMicroInstructionMemory implements MicroInstructionMemory
 	private MicroInstruction[] data;
 	private MicroInstructionMemoryDefinition definition;
 	private HashSet<MemoryObserver> observers = new HashSet<>();
-	
+
 	public StandardMicroInstructionMemory(MicroInstructionMemoryDefinition definition)
 	{
-		if(definition.size() > Integer.MAX_VALUE)
+		if (definition.size() > Integer.MAX_VALUE)
 			throw new MemoryException("Size of MicroInstructionMemory must be an int, not a long");
 		this.definition = definition;
 		data = new MicroInstruction[(int) definition.size()];
 	}
-	
+
 	private int translate(long address)
 	{
 		return (int) (address - definition.getMinimalAddress());
 	}
-	
+
 	@Override
 	public MicroInstruction getCell(long address)
 	{
 		int translatedAddress = translate(address);
 		MicroInstruction actual = data[translatedAddress];
-		if(actual == null)
+		if (actual == null)
 			actual = data[translatedAddress] = definition.getMicroInstructionDefinition().createDefaultInstruction();
 		return actual;
 	}

@@ -28,29 +28,29 @@ public class MicroInstructionMemoryParser
 
 		long minAddr = def.getMinimalAddress();
 		long maxAddr = def.getMaximalAddress();
-		
+
 		String line;
 		long i = minAddr;
 		try
 		{
 			for (; i <= maxAddr && input.ready() && !"".equals((line = input.readLine())); i++)
 				memory.setCell(i, parse(miDef, line));
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-		
-		for(; i <= maxAddr; i++)
+
+		for (; i <= maxAddr; i++)
 			memory.setCell(i, miDef.createDefaultInstruction());
 	}
-	
+
 	public static MicroInstruction parse(MicroInstructionDefinition definition, String toParse)
 	{
 		int size = definition.size();
 		String[] strings = toParse.split(",");
 		if (size != strings.length)
-			throw new MicroInstructionMemoryParseException(
-					"String does not match definition! The number of parameters does not match.");
+			throw new MicroInstructionMemoryParseException("String does not match definition! The number of parameters does not match.");
 		MicroInstructionParameter[] params = new MicroInstructionParameter[size];
 		ParameterClassification[] classes = definition.getParameterClassifications();
 		try
@@ -60,7 +60,8 @@ public class MicroInstructionMemoryParser
 				params[i] = classes[i].parse(strings[i]);
 			}
 			return new StandardMicroInstruction(params);
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			throw new MicroInstructionMemoryParseException(e.getCause());
 		}
