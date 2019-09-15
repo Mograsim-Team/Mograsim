@@ -163,6 +163,7 @@ public class MemoryView extends ViewPart implements ContextObserver
 	private void setupContextBinding()
 	{
 		MachineContext.getInstance().registerObserver(this);
+		setMachine(Optional.ofNullable(MachineContext.getInstance().getMachine()));
 	}
 
 	@Override

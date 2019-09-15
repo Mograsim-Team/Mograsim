@@ -23,6 +23,7 @@ public class CoreMicroInstructionMemory extends BasicCoreComponent
 		this.memory = memory;
 		this.data = data;
 		this.address = address;
+		address.registerObserver(this);
 	}
 
 	public MicroInstructionMemory getMemory()
