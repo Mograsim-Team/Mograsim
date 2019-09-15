@@ -47,11 +47,11 @@ public class CoreMicroInstructionMemory extends BasicCoreComponent
 	@Override
 	protected TimelineEventHandler compute()
 	{
-		if (!address.hasNumericValue())
+		if (!address.getValues().isBinary())
 		{
 			return e -> data.feedSignals(Bit.U.toVector(data.width()));// TODO don't always feed U, but decide to feed X or U.
 		}
-		long addressed = address.getUnsignedValue();
+		long addressed = address.getValues().getUnsignedValueLong();
 		BitVector storedData = memory.getCell(addressed).toBitVector();
 		return e -> data.feedSignals(storedData);
 	}

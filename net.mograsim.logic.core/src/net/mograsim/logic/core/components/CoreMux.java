@@ -71,7 +71,7 @@ public class CoreMux extends BasicCoreComponent
 	public TimelineEventHandler compute()
 	{
 		int selectValue;
-		if (!select.hasNumericValue() || (selectValue = (int) select.getUnsignedValue()) >= inputs.length)
+		if (!select.getValues().isBinary() || (selectValue = (int) select.getValues().getUnsignedValueLong()) >= inputs.length)
 		{
 			return e -> out.clearSignals();
 		}
