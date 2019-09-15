@@ -58,13 +58,13 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 	@Override
 	protected TimelineEventHandler compute()
 	{
-		if (!address.hasNumericValue())
+		if (!address.getValues().isBinary())
 		{
 			if (read.equals(rWBit.getValue()))
 				return e -> data.feedSignals(Bit.U.toVector(data.width()));// TODO don't always feed U, but decide to feed X or U.
 			return e -> data.clearSignals();
 		}
-		long addressed = address.getUnsignedValue();
+		long addressed = address.getValues().getUnsignedValueLong();
 		if (read.equals(rWBit.getValue()))
 		{
 			BitVector storedData = memory.getCell(addressed);

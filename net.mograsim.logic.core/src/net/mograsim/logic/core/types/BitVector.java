@@ -437,6 +437,31 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return new BigInteger(bytes);
 	}
 
+	public long getUnsignedValueLong()
+	{
+		return getUnsignedValue().longValue();
+	}
+
+	/**
+	 * Returns the value of the BitVector as BigInteger interpreted as a two's complement number.
+	 * 
+	 * @throws NumberFormatException if the BitVector is not {@link #isBinary() binary}.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	public BigInteger getSignedValue()
+	{
+		BigInteger unsignedValue = getUnsignedValue();
+		if (bits[bits.length - 1] == Bit.ZERO)
+			return unsignedValue;
+		return unsignedValue.subtract(BitVector.of(Bit.ONE, bits.length).getUnsignedValue()).subtract(BigInteger.ONE);// TODO speed this up!
+	}
+
+	public long getSignedValueLong()
+	{
+		return getSignedValue().longValue();
+	}
+
 	/**
 	 * Parses a String containing solely {@link Bit} symbols (MSB first)
 	 * 

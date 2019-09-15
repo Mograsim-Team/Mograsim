@@ -130,67 +130,6 @@ public class CoreWire
 	}
 
 	/**
-	 * The {@link CoreWire} is interpreted as an unsigned integer with n bits.
-	 * 
-	 * @return <code>true</code> if all bits are either <code>Bit.ONE</code> or <code>Bit.ZERO</code> (they do not all have to have the same
-	 *         value), not <code>Bit.U</code>, <code>Bit.X</code> or <code>Bit.Z</code>. <code>false</code> is returned otherwise.
-	 * 
-	 * @author Fabian Stemmler
-	 */
-	public boolean hasNumericValue()
-	{
-		return getValues().isBinary();
-	}
-
-	/**
-	 * The {@link CoreWire} is interpreted as an unsigned integer with n bits.
-	 * 
-	 * @return The unsigned value of the {@link CoreWire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
-	 * 
-	 * @author Fabian Stemmler
-	 */
-	public long getUnsignedValue()
-	{
-		long val = 0;
-		long mask = 1;
-		for (Bit bit : getValues())
-		{
-			switch (bit)
-			{
-			default:
-			case Z:
-			case X:
-				return 0; // TODO: Proper handling for getUnsignedValue(), if not all bits are 1 or 0;
-			case ONE:
-				val |= mask;
-				break;
-			case ZERO:
-			}
-			mask = mask << 1;
-		}
-		return val;
-	}
-
-	/**
-	 * The {@link CoreWire} is interpreted as a signed integer with n bits.
-	 * 
-	 * @return The signed value of the {@link CoreWire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
-	 * 
-	 * @author Fabian Stemmler
-	 */
-	public long getSignedValue()
-	{
-		long val = getUnsignedValue();
-		long mask = 1 << (width - 1);
-		if ((mask & val) != 0)
-		{
-			int shifts = 64 - width;
-			return (val << shifts) >> shifts;
-		}
-		return val;
-	}
-
-	/**
 	 * Returns the least significant bit (LSB)
 	 */
 	public Bit getValue()
@@ -324,43 +263,6 @@ public class CoreWire
 		public BitVector getValues(int start, int end)
 		{
 			return CoreWire.this.getValues(start, end);
-		}
-
-		/**
-		 * The {@link CoreWire} is interpreted as an unsigned integer with n bits.
-		 * 
-		 * @return <code>true</code> if all bits are either <code>Bit.ONE</code> or <code>Bit.ZERO</code> (they do not all have to have the
-		 *         same value), not <code>Bit.X</code> or <code>Bit.Z</code>. <code>false</code> is returned otherwise.
-		 * 
-		 * @author Fabian Stemmler
-		 */
-		public boolean hasNumericValue()
-		{
-			return CoreWire.this.hasNumericValue();
-		}
-
-		/**
-		 * The {@link CoreWire} is interpreted as an unsigned integer with n bits.
-		 * 
-		 * @return The unsigned value of the {@link CoreWire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
-		 * 
-		 * @author Fabian Stemmler
-		 */
-		public long getUnsignedValue()
-		{
-			return CoreWire.this.getUnsignedValue();
-		}
-
-		/**
-		 * The {@link CoreWire} is interpreted as a signed integer with n bits.
-		 * 
-		 * @return The signed value of the {@link CoreWire}'s bits, where value 0 corresponds with 2^0, value 1 is 2^1 and so on.
-		 * 
-		 * @author Fabian Stemmler
-		 */
-		public long getSignedValue()
-		{
-			return CoreWire.this.getSignedValue();
 		}
 
 		@Override

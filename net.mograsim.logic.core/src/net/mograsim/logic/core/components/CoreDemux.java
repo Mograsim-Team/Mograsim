@@ -57,7 +57,7 @@ public class CoreDemux extends BasicCoreComponent
 	@Override
 	public TimelineEventHandler compute()
 	{
-		int selectValue = select.hasNumericValue() ? (int) select.getUnsignedValue() : -1;
+		int selectValue = select.getValues().isBinary() ? (int) select.getValues().getUnsignedValueLong() : -1;
 		if (selectValue >= outputs.length)
 			selectValue = -1;
 

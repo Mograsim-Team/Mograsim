@@ -40,7 +40,6 @@ class WordAddressableMemoryTest
 			for (int i = 0; i < 50; i++)
 			{
 				String sAddress = String.format("%64s", BigInteger.valueOf(4096 + i + j).toString(2)).replace(' ', '0');
-				sAddress = new StringBuilder(sAddress).reverse().toString();
 				BitVector bAddress = BitVector.parse(sAddress);
 				addressI.feedSignals(bAddress);
 				t.executeAll();

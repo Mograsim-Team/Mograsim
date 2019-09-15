@@ -218,7 +218,7 @@ class CoreComponentTest
 		t.executeAll();
 
 		assertBitArrayEquals(out.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
-		selectIn.feedSignals(Bit.ZERO, Bit.ONE);
+		selectIn.feedSignals(Bit.ONE, Bit.ZERO);
 		t.executeAll();
 
 		assertBitArrayEquals(out.getValues(), Bit.ZERO, Bit.ONE, Bit.ZERO, Bit.ONE);
@@ -247,7 +247,7 @@ class CoreComponentTest
 		assertBitArrayEquals(a.getValues(), Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ZERO);
 		assertBitArrayEquals(b.getValues(), Bit.U, Bit.U, Bit.U, Bit.U);
 		assertBitArrayEquals(c.getValues(), Bit.U, Bit.U, Bit.U, Bit.U);
-		selectIn.feedSignals(Bit.ZERO, Bit.ONE);
+		selectIn.feedSignals(Bit.ONE, Bit.ZERO);
 		t.executeAll();
 
 		assertBitArrayEquals(a.getValues(), Bit.Z, Bit.Z, Bit.Z, Bit.Z);
@@ -382,12 +382,12 @@ class CoreComponentTest
 	void numericValueTest()
 	{
 		CoreWire a = new CoreWire(t, 4, 1);
-		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ONE, Bit.ONE, Bit.ONE);
+		a.createReadWriteEnd().feedSignals(Bit.ONE, Bit.ZERO, Bit.ONE, Bit.ONE);
 
 		t.executeAll();
 
-		assertEquals(15, a.getUnsignedValue());
-		assertEquals(-1, a.getSignedValue());
+		assertEquals(11, a.getValues().getUnsignedValueLong());
+		assertEquals(-5, a.getValues().getSignedValueLong());
 	}
 
 	boolean flag = false;
