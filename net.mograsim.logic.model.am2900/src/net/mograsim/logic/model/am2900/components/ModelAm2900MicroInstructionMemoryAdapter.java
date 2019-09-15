@@ -9,7 +9,6 @@ import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.componentadapters.ComponentAdapter;
-import net.mograsim.machine.mi.StandardMicroInstructionMemory;
 import net.mograsim.machine.mi.components.CoreMicroInstructionMemory;
 
 public class ModelAm2900MicroInstructionMemoryAdapter implements ComponentAdapter<ModelAm2900MicroInstructionMemory>
@@ -28,7 +27,7 @@ public class ModelAm2900MicroInstructionMemoryAdapter implements ComponentAdapte
 		ReadWriteEnd data = logicWiresPerPin.get(modelComponent.getDataPin()).createReadWriteEnd();
 		ReadEnd address = logicWiresPerPin.get(modelComponent.getAddressPin()).createReadOnlyEnd();
 		CoreMicroInstructionMemory mem = new CoreMicroInstructionMemory(timeline, 2,
-				new StandardMicroInstructionMemory(modelComponent.getDefinition()), data, address);
+				modelComponent.getMachine().getMicroInstructionMemory(), data, address);
 		modelComponent.setCoreModelBinding(mem);
 	}
 

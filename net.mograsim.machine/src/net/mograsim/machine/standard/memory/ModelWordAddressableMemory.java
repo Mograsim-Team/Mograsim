@@ -3,10 +3,11 @@ package net.mograsim.machine.standard.memory;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
+import net.mograsim.machine.Machine;
 import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.ModelMemory;
 
-public abstract class ModelWordAddressableMemory extends ModelMemory
+public abstract class ModelWordAddressableMemory<M extends Machine> extends ModelMemory<M>
 {
 	private final Pin addrPin, dataPin, rWPin;
 	private CoreWordAddressableMemory memory;

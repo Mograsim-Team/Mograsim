@@ -3,10 +3,11 @@ package net.mograsim.machine.mi.components;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
+import net.mograsim.machine.Machine;
 import net.mograsim.machine.ModelMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 
-public abstract class ModelMicroInstructionMemory extends ModelMemory
+public abstract class ModelMicroInstructionMemory<M extends Machine> extends ModelMemory<M>
 {
 	private final Pin addrPin, dataPin;
 	private CoreMicroInstructionMemory memory;

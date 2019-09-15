@@ -3,6 +3,8 @@ package net.mograsim.logic.model.am2900.machine;
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.logic.model.am2900.components.ModelAm2900MainMemory;
+import net.mograsim.logic.model.am2900.components.ModelAm2900MicroInstructionMemory;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
@@ -36,6 +38,9 @@ public class Am2900Machine implements Machine
 		params.wireTravelTime = 10;
 		mainMemory = new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition());
 		instMemory = new StandardMicroInstructionMemory(am2900MachineDefinition.getMicroInstructionMemoryDefinition());
+		logicModel.getComponentBySubmodelPath("Am2900.Am2900MainMemory#0", ModelAm2900MainMemory.class).setMachine(this);
+		logicModel.getComponentBySubmodelPath("Am2900.Am2900MicroInstructionMemory#0", ModelAm2900MicroInstructionMemory.class)
+				.setMachine(this);
 		timeline = LogicCoreAdapter.convert(logicModel, params);
 	}
 
