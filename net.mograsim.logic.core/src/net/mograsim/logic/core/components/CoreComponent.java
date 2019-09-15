@@ -16,8 +16,8 @@ public abstract class CoreComponent
 	}
 
 	/**
-	 * Returns immutable list of all inputs to the {@link CoreComponent} (including e.g. the select bits to a MUX). Intended for visualization
-	 * in the UI.
+	 * Returns immutable list of all inputs to the {@link CoreComponent} (including e.g. the select bits to a MUX). Intended for
+	 * visualization in the UI.
 	 */
 	public abstract List<ReadEnd> getAllInputs();
 

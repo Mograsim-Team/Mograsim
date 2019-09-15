@@ -29,8 +29,7 @@ public class SimpleGateAdapter<G extends SimpleRectangularModelGate> implements 
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, G modelComponent,
-			Map<Pin, CoreWire> logicWiresPerPin)
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, G modelComponent, Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		ReadWriteEnd out = logicWiresPerPin.get(modelComponent.getPin("Y")).createReadWriteEnd();
 

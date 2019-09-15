@@ -29,8 +29,7 @@ public class NoLogicAdapter<T extends ModelComponent> implements ComponentAdapte
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, T modelComponent,
-			Map<Pin, CoreWire> logicWiresPerPin)
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, T modelComponent, Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		// do nothing
 	}
