@@ -10,26 +10,27 @@ import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterTyp
 public class MnemonicFamily implements ParameterClassification
 {
 	private final Mnemonic[] values;
+	private final Mnemonic defaultValue;
 	private final String[] stringValues;
 	private Map<String, Mnemonic> byText;
 	private int vectorLength;
 
-	public MnemonicFamily(String... names)
+	public MnemonicFamily(String defaultValueName, String... names)
 	{
-		this(false, (int) Math.round(Math.ceil(Math.log(names.length) / Math.log(2))), names);
+		this(false, defaultValueName, (int) Math.round(Math.ceil(Math.log(names.length) / Math.log(2))), names);
 	}
 
-	public MnemonicFamily(boolean reverse, String... names)
+	public MnemonicFamily(boolean reverse, String defaultValueName, String... names)
 	{
-		this(reverse, (int) Math.round(Math.ceil(Math.log(names.length) / Math.log(2))), names);
+		this(reverse, defaultValueName, (int) Math.round(Math.ceil(Math.log(names.length) / Math.log(2))), names);
 	}
 
-	public MnemonicFamily(int bits, String... names)
+	public MnemonicFamily(String defaultValueName, int bits, String... names)
 	{
-		this(false, bits, names);
+		this(false, defaultValueName, bits, names);
 	}
 
-	public MnemonicFamily(boolean reverse, int bits, String... names)
+	public MnemonicFamily(boolean reverse, String defaultValueName, int bits, String... names)
 	{
 		this.values = new Mnemonic[names.length];
 		this.stringValues = new String[names.length];
@@ -40,14 +41,23 @@ public class MnemonicFamily implements ParameterClassification
 		}
 
 		setup(names, values, reverse);
+
+		int defaultValueIndex = -1;
+		for (int i = 0; i < names.length; i++)
+			if (names[i].equals(defaultValueName))
+			{
+				defaultValueIndex = i;
+				break;
+			}
+		this.defaultValue = this.values[defaultValueIndex];
 	}
 
-	public MnemonicFamily(String[] names, long[] values, int bits)
+	public MnemonicFamily(String defaultValueName, String[] names, long[] values, int bits)
 	{
-		this(false, names, values, bits);
+		this(false, defaultValueName, names, values, bits);
 	}
 
-	public MnemonicFamily(boolean reverse, String[] names, long[] values, int bits)
+	public MnemonicFamily(boolean reverse, String defaultValueName, String[] names, long[] values, int bits)
 	{
 		if (names.length != values.length)
 			throw new IllegalArgumentException();
@@ -61,14 +71,23 @@ public class MnemonicFamily implements ParameterClassification
 		}
 
 		setup(names, vectors, reverse);
+
+		int defaultValueIndex = -1;
+		for (int i = 0; i < names.length; i++)
+			if (names[i].equals(defaultValueName))
+			{
+				defaultValueIndex = i;
+				break;
+			}
+		this.defaultValue = this.values[defaultValueIndex];
 	}
 
-	public MnemonicFamily(String[] names, BitVector[] values)
+	public MnemonicFamily(String defaultValueName, String[] names, BitVector[] values)
 	{
-		this(false, names, values);
+		this(false, defaultValueName, names, values);
 	}
 
-	public MnemonicFamily(boolean reverse, String[] names, BitVector[] values)
+	public MnemonicFamily(boolean reverse, String defaultValueName, String[] names, BitVector[] values)
 	{
 		if (names.length != values.length)
 			throw new IllegalArgumentException();
@@ -76,19 +95,32 @@ public class MnemonicFamily implements ParameterClassification
 		this.stringValues = new String[values.length];
 
 		setup(names, values, reverse);
+
+		int defaultValueIndex = -1;
+		for (int i = 0; i < names.length; i++)
+			if (names[i].equals(defaultValueName))
+			{
+				defaultValueIndex = i;
+				break;
+			}
+		this.defaultValue = this.values[defaultValueIndex];
 	}
 
-	public MnemonicFamily(MnemonicPair... values)
-	{
-		this(false, values);
-	}
-
-	public MnemonicFamily(boolean reverse, MnemonicPair... values)
+	public MnemonicFamily(String defaultValueName, MnemonicPair... values)
 	{
 		this.values = new Mnemonic[values.length];
 		this.stringValues = new String[values.length];
 
 		setup(values);
+
+		int defaultValueIndex = -1;
+		for (int i = 0; i < values.length; i++)
+			if (stringValues[i].equals(defaultValueName))
+			{
+				defaultValueIndex = i;
+				break;
+			}
+		this.defaultValue = this.values[defaultValueIndex];
 	}
 
 	private void setup(String[] names, BitVector[] values, boolean reverse)
@@ -138,6 +170,12 @@ public class MnemonicFamily implements ParameterClassification
 	public Mnemonic get(String text)
 	{
 		return byText.get(text);
+	}
+
+	@Override
+	public MicroInstructionParameter getDefault()
+	{
+		return defaultValue;
 	}
 
 	public boolean contains(Mnemonic m)

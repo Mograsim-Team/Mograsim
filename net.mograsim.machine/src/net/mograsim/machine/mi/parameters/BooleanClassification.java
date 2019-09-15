@@ -7,9 +7,10 @@ public class BooleanClassification extends MnemonicFamily
 {
 	String trueName, falseName;
 
-	public BooleanClassification(String trueName, String falseName)
+	public BooleanClassification(boolean defaultValue, String trueName, String falseName)
 	{
-		super(new MnemonicPair(trueName, BitVector.SINGLE_1), new MnemonicPair(falseName, BitVector.SINGLE_0));
+		super(defaultValue ? trueName : falseName, new MnemonicPair(trueName, BitVector.SINGLE_1),
+				new MnemonicPair(falseName, BitVector.SINGLE_0));
 		this.trueName = trueName;
 		this.falseName = falseName;
 	}

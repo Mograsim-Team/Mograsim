@@ -25,4 +25,6 @@ public interface ParameterClassification
 	public int getExpectedBits();
 
 	public MicroInstructionParameter parse(String toParse);
+
+	public MicroInstructionParameter getDefault();
 }
