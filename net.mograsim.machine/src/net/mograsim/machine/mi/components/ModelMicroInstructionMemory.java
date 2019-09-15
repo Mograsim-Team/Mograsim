@@ -11,13 +11,13 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 	private final Pin addrPin, dataPin;
 	private CoreMicroInstructionMemory memory;
 	private final MicroInstructionMemoryDefinition definition;
-	
+
 	public ModelMicroInstructionMemory(LogicModelModifiable model, MicroInstructionMemoryDefinition definition, String name)
 	{
-		super(model, 200, 100, name, "MPM", false);
+		super(model, 120, 150, name, "MPM", false);
 		this.definition = definition;
-		addPin(addrPin = new Pin(model, this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, width / 2, 0));
-		addPin(dataPin = new Pin(model, this, "D", definition.getMicroInstructionDefinition().sizeInBits(), PinUsage.OUTPUT, 0, 30));
+		addPin(addrPin = new Pin(model, this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, getWidth(), 30));
+		addPin(dataPin = new Pin(model, this, "D", definition.getMicroInstructionDefinition().sizeInBits(), PinUsage.OUTPUT, getWidth(), 50));
 
 		init();
 	}
@@ -26,7 +26,7 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 	{
 		return definition;
 	}
-	
+
 	public Pin getAddressPin()
 	{
 		return addrPin;
@@ -41,7 +41,7 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 	{
 		return memory;
 	}
-	
+
 	public void setCoreModelBinding(CoreMicroInstructionMemory memory)
 	{
 		this.memory = memory;
