@@ -13,20 +13,17 @@ public abstract class ModelMemory extends ModelComponent
 {
 	private Renderer symbolRenderer;
 	private Renderer outlineRenderer;
-	protected final int width, height;
 
 	protected ModelMemory(LogicModelModifiable model, int width, int height, String name, String centerText, boolean callInit)
 	{
 		super(model, name, false);
-		this.width = width;
-		this.height = height;
 
 		SimpleRectangularLikeParams rendererParams = new SimpleRectangularLikeParams();
 		rendererParams.centerText = centerText;
-		rendererParams.centerTextHeight = 24;
-		rendererParams.horizontalComponentCenter = width / 100;
-		rendererParams.pinLabelHeight = 17.5;
-		rendererParams.pinLabelMargin = 2.5;
+		rendererParams.centerTextHeight = 5;
+		rendererParams.horizontalComponentCenter = width / 2;
+		rendererParams.pinLabelHeight = 2.5;
+		rendererParams.pinLabelMargin = 0.5;
 		this.symbolRenderer = new SimpleRectangularLikeSymbolRenderer(this, rendererParams);
 		this.outlineRenderer = new DefaultOutlineRenderer(this);
 
