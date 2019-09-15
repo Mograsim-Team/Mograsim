@@ -126,18 +126,19 @@ public class InstructionView extends ViewPart implements ContextObserver
 	private void deleteColumns()
 	{
 		for (TableViewerColumn col : columns)
-			if (col != null)
-				col.getColumn().dispose();
+			col.getColumn().dispose();
 	}
 
 	private void createColumns()
 	{
+		int size = miDef.size();
+		columns = new TableViewerColumn[size + 1];
+
 		TableViewerColumn col = createTableViewerColumn("Address", 200);
+		columns[0] = col;
 		col.setLabelProvider(new AddressLabelProvider());
 
-		int size = miDef.size();
 		int bit = 0;
-		columns = new TableViewerColumn[size];
 		ParameterClassification[] classes = miDef.getParameterClassifications();
 
 		for (int i = 0; i < size; i++)
@@ -147,7 +148,9 @@ public class InstructionView extends ViewPart implements ContextObserver
 			String name = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
 			int bounds = 20 + 20 * classes[i].getExpectedBits();
 
-			createEditingAndLabel(createTableViewerColumn(name, bounds), miDef, i);
+			col = createTableViewerColumn(name, bounds);
+			columns[i + 1] = col;
+			createEditingAndLabel(col, miDef, i);
 		}
 	}
 
