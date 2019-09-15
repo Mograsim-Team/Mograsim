@@ -21,7 +21,7 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 	private final static Bit read = Bit.ONE;
 
 	private ReadWriteEnd data;
-	private ReadEnd rWBit, address, clock;
+	private ReadEnd rWBit, address;
 
 	/**
 	 * @param data    The bits of this ReadEnd are the value that is written to/read from memory; The bit width of this wire is the width of
@@ -30,7 +30,7 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 	 * @param address The bits of this ReadEnd address the memory cell to read/write
 	 */
 	public CoreWordAddressableMemory(Timeline timeline, int processTime, MainMemory memory, ReadWriteEnd data,
-			ReadEnd rWBit, ReadEnd address, ReadEnd clock)
+			ReadEnd rWBit, ReadEnd address)
 	{
 		super(timeline, processTime);
 		MainMemoryDefinition definition = memory.getDefinition();
@@ -43,11 +43,9 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 		this.data = data;
 		this.rWBit = rWBit;
 		this.address = address;
-		this.clock = clock;
 		data.registerObserver(this);
 		rWBit.registerObserver(this);
 		address.registerObserver(this);
-		clock.registerObserver(this);
 		
 		this.memory = memory;
 	}
@@ -55,13 +53,10 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 	@Override
 	protected TimelineEventHandler compute()
 	{
-		if(clock.getValue() != Bit.ONE)
-			return null;
-		
 		if (!address.hasNumericValue())
 		{
 			if (read.equals(rWBit.getValue()))
-				return e -> data.feedSignals(Bit.U.toVector(data.width()));
+				return e -> data.feedSignals(Bit.U.toVector(data.width()));//TODO don't always feed U, but decide to feed X or U.
 			return e -> data.clearSignals();
 		}
 		long addressed = address.getUnsignedValue();

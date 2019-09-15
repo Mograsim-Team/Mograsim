@@ -28,9 +28,8 @@ public class ModelAm2900MainMemoryAdapter implements ComponentAdapter<ModelAm290
 		ReadWriteEnd data = logicWiresPerPin.get(modelComponent.getDataPin()).createReadWriteEnd();
 		ReadEnd address = logicWiresPerPin.get(modelComponent.getAddressPin()).createReadOnlyEnd();
 		ReadEnd mode = logicWiresPerPin.get(modelComponent.getReadWritePin()).createReadOnlyEnd();
-		ReadEnd clock = logicWiresPerPin.get(modelComponent.getClockPin()).createReadOnlyEnd();
 		CoreWordAddressableMemory mem = new CoreWordAddressableMemory(timeline, 2,
-				new WordAddressableMemory(modelComponent.getDefinition()), data, mode, address, clock);
+				new WordAddressableMemory(modelComponent.getDefinition()), data, mode, address);
 		modelComponent.setCoreModelBinding(mem);
 	}
 }

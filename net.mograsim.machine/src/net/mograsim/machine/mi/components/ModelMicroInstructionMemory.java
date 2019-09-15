@@ -8,7 +8,7 @@ import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 
 public abstract class ModelMicroInstructionMemory extends ModelMemory
 {
-	private final Pin addrPin, dataPin, clock;
+	private final Pin addrPin, dataPin;
 	private CoreMicroInstructionMemory memory;
 	private final MicroInstructionMemoryDefinition definition;
 	
@@ -18,7 +18,6 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 		this.definition = definition;
 		addPin(addrPin = new Pin(model, this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, width / 2, 0));
 		addPin(dataPin = new Pin(model, this, "D", definition.getMicroInstructionDefinition().sizeInBits(), PinUsage.OUTPUT, 0, 30));
-		addPin(clock = new Pin(model, this, "C", 1, PinUsage.INPUT, 0, 60));
 
 		init();
 	}
@@ -36,11 +35,6 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 	public Pin getDataPin()
 	{
 		return dataPin;
-	}
-
-	public Pin getClockPin()
-	{
-		return clock;
 	}
 
 	public CoreMicroInstructionMemory getCoreMemory()

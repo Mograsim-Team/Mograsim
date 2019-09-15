@@ -8,7 +8,7 @@ import net.mograsim.machine.ModelMemory;
 
 public abstract class ModelWordAddressableMemory extends ModelMemory
 {
-	private final Pin addrPin, dataPin, rWPin, clock;
+	private final Pin addrPin, dataPin, rWPin;
 	private CoreWordAddressableMemory memory;
 	private MainMemoryDefinition definition;
 
@@ -20,7 +20,6 @@ public abstract class ModelWordAddressableMemory extends ModelMemory
 		addPin(addrPin = new Pin(model, this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, width, 20));
 		addPin(dataPin = new Pin(model, this, "D", definition.getCellWidth(), PinUsage.TRISTATE, width, 50));
 		addPin(rWPin = new Pin(model, this, "RW", 1, PinUsage.INPUT, width, 80));
-		addPin(clock = new Pin(model, this, "C", 1, PinUsage.INPUT, width, 110));
 
 		init();
 	}
@@ -43,11 +42,6 @@ public abstract class ModelWordAddressableMemory extends ModelMemory
 	public Pin getReadWritePin()
 	{
 		return rWPin;
-	}
-
-	public Pin getClockPin()
-	{
-		return clock;
 	}
 
 	public void setCoreModelBinding(CoreWordAddressableMemory memory)
