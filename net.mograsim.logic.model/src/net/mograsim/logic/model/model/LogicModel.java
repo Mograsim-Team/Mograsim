@@ -117,9 +117,9 @@ public class LogicModel
 		return wiresUnmodifiable;
 	}
 
-	public <T extends ModelComponent> T getComponentByName(String name, Class<T> modelClass)
+	public <T extends ModelComponent> T getComponentByName(String name, Class<T> expectedComponentClass)
 	{
-		return getByName(name, modelClass, components);
+		return getByName(name, expectedComponentClass, components);
 	}
 
 	public ModelWire getWireByName(String name)
@@ -128,33 +128,33 @@ public class LogicModel
 	}
 
 	@SuppressWarnings("unchecked")
-	private static <T> T getByName(String name, Class<T> modelClass, Map<String, ? super T> map)
+	private static <T> T getByName(String name, Class<T> expectedClass, Map<String, ? super T> map)
 	{
 		Object comp = map.get(name);
 		Objects.requireNonNull(comp, "Invaild path, component " + name + " not found");
-		if (modelClass.isInstance(comp))
+		if (expectedClass.isInstance(comp))
 			return (T) comp;
-		throw new IllegalArgumentException("The component " + name + " is not an instance of " + modelClass);
+		throw new IllegalArgumentException("The component " + name + " is not an instance of " + expectedClass);
 	}
 
-	public <T extends ModelComponent> T getComponentByPath(String path, Class<T> modelClass)
+	public <T extends ModelComponent> T getComponentBySubmodelPath(String path, Class<T> modelClass)
 	{
 		int firstDot = path.indexOf('.');
 		if (firstDot == -1)
 			return getComponentByName(path, modelClass);
 		String first = path.substring(0, firstDot);
 		String rest = path.substring(firstDot + 1);
-		return getComponentByName(first, SubmodelComponent.class).submodel.getComponentByPath(rest, modelClass);
+		return getComponentByName(first, SubmodelComponent.class).submodel.getComponentBySubmodelPath(rest, modelClass);
 	}
 
-	public ModelWire getWireByPath(String path)
+	public ModelWire getWireBySubmodelPath(String path)
 	{
 		int firstDot = path.indexOf('.');
 		if (firstDot == -1)
 			return getWireByName(path);
 		String first = path.substring(0, firstDot);
 		String rest = path.substring(firstDot + 1);
-		return getComponentByName(first, SubmodelComponent.class).submodel.getWireByPath(rest);
+		return getComponentByName(first, SubmodelComponent.class).submodel.getWireBySubmodelPath(rest);
 	}
 
 	// @formatter:off
@@ -162,19 +162,19 @@ public class LogicModel
 	public void addComponentRemovedListener       (Consumer<? super ModelComponent> listener) {componentRemovedListeners    .add   (listener);}
 	public void addWireAddedListener              (Consumer<? super ModelWire     > listener) {wireAddedListeners           .add   (listener);}
 	public void addWireRemovedListener            (Consumer<? super ModelWire     > listener) {wireRemovedListeners         .add   (listener);}
-	public void addRedrawHandlerChangedListener   (Consumer<? super Runnable    > listener) {redrawHandlerChangedListeners.add   (listener);}
+	public void addRedrawHandlerChangedListener   (Consumer<? super Runnable      > listener) {redrawHandlerChangedListeners.add   (listener);}
 
 	public void removeComponentAddedListener      (Consumer<? super ModelComponent> listener) {componentAddedListeners      .remove(listener);}
 	public void removeComponentRemovedListener    (Consumer<? super ModelComponent> listener) {componentRemovedListeners    .remove(listener);}
 	public void removeWireAddedListener           (Consumer<? super ModelWire     > listener) {wireAddedListeners           .remove(listener);}
 	public void removeWireRemovedListener         (Consumer<? super ModelWire     > listener) {wireRemovedListeners         .remove(listener);}
-	public void removeRedrawHandlerChangedListener(Consumer<? super Runnable    > listener) {redrawHandlerChangedListeners.remove(listener);}
+	public void removeRedrawHandlerChangedListener(Consumer<? super Runnable      > listener) {redrawHandlerChangedListeners.remove(listener);}
 
 	private void callComponentAddedListeners     (ModelComponent c) {componentAddedListeners      .forEach(l -> l.accept(c));}
 	private void callComponentRemovedListeners   (ModelComponent c) {componentRemovedListeners    .forEach(l -> l.accept(c));}
 	private void callWireAddedListeners          (ModelWire      w) {wireAddedListeners           .forEach(l -> l.accept(w));}
 	private void callWireRemovedListeners        (ModelWire      w) {wireRemovedListeners         .forEach(l -> l.accept(w));}
-	private void callRedrawHandlerChangedListener(Runnable     r) {redrawHandlerChangedListeners.forEach(l -> l.accept(r));}
+	private void callRedrawHandlerChangedListener(Runnable       r) {redrawHandlerChangedListeners.forEach(l -> l.accept(r));}
 	// @formatter:on
 
 	public void setRedrawHandler(Runnable handler)
