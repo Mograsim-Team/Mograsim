@@ -31,7 +31,7 @@ class WordAddressableMemoryTest {
 		ReadWriteEnd clockI = clock.createReadWriteEnd();
 
 		@SuppressWarnings("unused")
-		CoreWordAddressableMemory memory = new CoreWordAddressableMemory(t, 4, MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE), data.createReadWriteEnd(),
+		CoreWordAddressableMemory memory = new CoreWordAddressableMemory(t, 4, new WordAddressableMemory(MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE)), data.createReadWriteEnd(),
 				rW.createReadOnlyEnd(), address.createReadOnlyEnd(), clock.createReadOnlyEnd());
 
 		clockI.feedSignals(Bit.ONE);
