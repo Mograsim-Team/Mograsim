@@ -676,22 +676,10 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "name": "unnamedWire#33",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "pin2": {
           "compName": "NandGate#1",
           "pinName": "B"
         },
-        "name": "unnamedWire#34",
+        "name": "unnamedWire#33",
         "path": [
           {
             "x": 225.0,
@@ -716,7 +704,7 @@
           "compName": "xor#0",
           "pinName": "A"
         },
-        "name": "unnamedWire#35",
+        "name": "unnamedWire#34",
         "path": [
           {
             "x": 125.0,
@@ -737,7 +725,7 @@
           "compName": "xor#0",
           "pinName": "B"
         },
-        "name": "unnamedWire#36",
+        "name": "unnamedWire#35",
         "path": [
           {
             "x": 105.0,
@@ -758,7 +746,7 @@
           "compName": "_submodelinterface",
           "pinName": "_EZ"
         },
-        "name": "unnamedWire#37",
+        "name": "unnamedWire#36",
         "path": [
           {
             "x": 180.0,
@@ -783,7 +771,7 @@
           "compName": "dff4_finewe#0",
           "pinName": "C"
         },
-        "name": "unnamedWire#38",
+        "name": "unnamedWire#37",
         "path": [
           {
             "x": 55.0,
@@ -804,7 +792,7 @@
           "compName": "dff4_finewe#0",
           "pinName": "_WE4"
         },
-        "name": "unnamedWire#39",
+        "name": "unnamedWire#38",
         "path": [
           {
             "x": 200.0,
@@ -817,6 +805,31 @@
           {
             "x": 165.0,
             "y": 70.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "dff4_finewe#0",
+          "pinName": "_WE3"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_EN"
+        },
+        "name": "unnamedWire#39",
+        "path": [
+          {
+            "x": 170.0,
+            "y": 60.0
+          },
+          {
+            "x": 170.0,
+            "y": 15.0
+          },
+          {
+            "x": 150.0,
+            "y": 15.0
           }
         ]
       },
@@ -843,31 +856,6 @@
       },
       {
         "pin1": {
-          "compName": "dff4_finewe#0",
-          "pinName": "_WE3"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "_EN"
-        },
-        "name": "unnamedWire#40",
-        "path": [
-          {
-            "x": 170.0,
-            "y": 60.0
-          },
-          {
-            "x": 170.0,
-            "y": 15.0
-          },
-          {
-            "x": 150.0,
-            "y": 15.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "_EC"
         },
@@ -875,7 +863,7 @@
           "compName": "dff4_finewe#0",
           "pinName": "_WE2"
         },
-        "name": "unnamedWire#41",
+        "name": "unnamedWire#40",
         "path": [
           {
             "x": 100.0,
@@ -900,7 +888,7 @@
           "compName": "mux1_4#1",
           "pinName": "Y1"
         },
-        "name": "unnamedWire#42",
+        "name": "unnamedWire#41",
         "path": []
       },
       {
@@ -912,7 +900,7 @@
           "compName": "dff4_finewe#0",
           "pinName": "D2"
         },
-        "name": "unnamedWire#43",
+        "name": "unnamedWire#42",
         "path": [
           {
             "x": 170.0,
@@ -933,7 +921,7 @@
           "compName": "mux1_4#1",
           "pinName": "Y3"
         },
-        "name": "unnamedWire#44",
+        "name": "unnamedWire#43",
         "path": []
       },
       {
@@ -945,7 +933,7 @@
           "compName": "mux1_4#1",
           "pinName": "Y4"
         },
-        "name": "unnamedWire#45",
+        "name": "unnamedWire#44",
         "path": [
           {
             "x": 115.0,
@@ -962,7 +950,7 @@
           "compName": "dff4_finewe#0",
           "pinName": "D4"
         },
-        "name": "unnamedWire#46",
+        "name": "unnamedWire#45",
         "path": [
           {
             "x": 180.0,
@@ -983,7 +971,7 @@
           "compName": "NandGate#2",
           "pinName": "A"
         },
-        "name": "unnamedWire#47",
+        "name": "unnamedWire#46",
         "path": []
       },
       {
@@ -995,7 +983,7 @@
           "compName": "NandGate#2",
           "pinName": "B"
         },
-        "name": "unnamedWire#48",
+        "name": "unnamedWire#47",
         "path": [
           {
             "x": 115.0,
@@ -1012,7 +1000,7 @@
           "compName": "mux1_4#0",
           "pinName": "I0_1"
         },
-        "name": "unnamedWire#49",
+        "name": "unnamedWire#48",
         "path": [
           {
             "x": 20.0,

@@ -549,22 +549,10 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#6",
-          "pinName": ""
-        },
-        "name": "unnamedWire#27",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#6",
-          "pinName": ""
-        },
-        "pin2": {
           "compName": "mux1_4#0",
           "pinName": "I1_4"
         },
-        "name": "unnamedWire#28",
+        "name": "unnamedWire#27",
         "path": [
           {
             "x": 155.0,
