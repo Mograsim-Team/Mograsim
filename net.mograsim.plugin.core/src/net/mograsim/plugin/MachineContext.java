@@ -25,6 +25,7 @@ public class MachineContext
 		if (instance == null)
 		{
 			instance = new MachineContext();
+			// TODO don't hardcode the Am2900
 			instance.setMachine(new Am2900Machine((Am2900MachineDefinition) MachineRegistry.getinstalledMachines().get("Am2900")));
 		}
 		return instance;

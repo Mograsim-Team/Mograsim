@@ -1,7 +1,5 @@
 package net.mograsim.plugin.views;
 
-import java.util.Optional;
-
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
@@ -14,8 +12,7 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
 import net.mograsim.machine.Machine;
-import net.mograsim.machine.MachineDefinition;
-import net.mograsim.machine.MachineRegistry;
+import net.mograsim.plugin.MachineContext;
 import net.mograsim.plugin.ThemePreferences;
 import net.mograsim.preferences.Preferences;
 
@@ -40,10 +37,7 @@ public class LogicUIPart extends ViewPart
 		// set preferences
 		Preferences.setPreferences(new ThemePreferences(PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()));
 
-		Optional<MachineDefinition> mdo = MachineRegistry.getinstalledMachines().values().stream().findFirst();
-
-		MachineDefinition md = mdo.orElseThrow(IllegalStateException::new);
-		Machine m = md.createNew();
+		Machine m = MachineContext.getInstance().getMachine();
 
 		// initialize UI
 		ui = new LogicUICanvas(parent, SWT.NONE, m.getModel());

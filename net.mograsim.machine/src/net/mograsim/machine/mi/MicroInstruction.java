@@ -26,7 +26,7 @@ public interface MicroInstruction
 		BitVector vector = BitVector.of();
 		int size = getSize();
 		for (int i = 0; i < size; i++)
-			vector.concat(getParameter(i).getValue());
+			vector = vector.concat(getParameter(i).getValue());
 		return vector;
 	}
 }

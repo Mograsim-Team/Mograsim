@@ -69,6 +69,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 
 		displaySettings.addObserver(() -> viewer.refresh());
 		MachineContext.getInstance().registerObserver(this);
+		setMachine(Optional.ofNullable(MachineContext.getInstance().getMachine()));
 	}
 
 	public void highlight(int index)
@@ -125,7 +126,8 @@ public class InstructionView extends ViewPart implements ContextObserver
 	private void deleteColumns()
 	{
 		for (TableViewerColumn col : columns)
-			col.getColumn().dispose();
+			if (col != null)
+				col.getColumn().dispose();
 	}
 
 	private void createColumns()
@@ -147,7 +149,6 @@ public class InstructionView extends ViewPart implements ContextObserver
 
 			createEditingAndLabel(createTableViewerColumn(name, bounds), miDef, i);
 		}
-
 	}
 
 	private void createEditingAndLabel(TableViewerColumn col, MicroInstructionDefinition miDef, int index)
