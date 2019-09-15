@@ -16,9 +16,12 @@ import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.util.JsonHandler;
+import net.mograsim.logic.model.util.Version;
 
 public class IndirectModelComponentCreator
 {
+	public static final Version CURRENT_STD_ID_MAPPING_VERSION = Version.parseSemver("0.1.0");
+
 	private static final Map<String, String> standardComponentIDs = new HashMap<>();
 	private static final Map<String, String> standardComponentIDsUnmodifiable = Collections.unmodifiableMap(standardComponentIDs);
 
@@ -39,7 +42,7 @@ public class IndirectModelComponentCreator
 		{
 			if (s == null)
 				throw new IOException("Resource not found");
-			Map<String, String> tmp = JsonHandler.readJson(s, Map.class);
+			Map<String, String> tmp = JsonHandler.readJson(s, StandardComponentIdMappingContainer.class).getMap();
 			// don't use putAll to apply sanity checks
 			tmp.forEach((st, id) ->
 			{
@@ -184,7 +187,8 @@ public class IndirectModelComponentCreator
 		return id.matches("jsonfile:(.+)|(resloader:([^:]+):)?(jsonres|class):[^:]+");
 	}
 
-	private static SubmodelComponent loadComponentFromJsonObject(LogicModelModifiable model, String id, String name, JsonObject jsonContents)
+	private static SubmodelComponent loadComponentFromJsonObject(LogicModelModifiable model, String id, String name,
+			JsonObject jsonContents)
 	{
 		componentCache.putIfAbsent(id, jsonContents);
 		SerializablePojo jsonContentsAsSerializablePojo = JsonHandler.parser.fromJson(jsonContents, SerializablePojo.class);

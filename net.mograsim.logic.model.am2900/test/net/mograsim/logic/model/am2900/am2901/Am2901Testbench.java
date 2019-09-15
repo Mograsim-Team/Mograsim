@@ -22,6 +22,7 @@ import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.ModellingTool;
 
+@Deprecated
 public class Am2901Testbench
 {
 	public static void main(String[] args)

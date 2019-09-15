@@ -5,9 +5,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 
 public class LogicModel
@@ -113,6 +115,46 @@ public class LogicModel
 	public Map<String, ModelWire> getWiresByName()
 	{
 		return wiresUnmodifiable;
+	}
+
+	public <T extends ModelComponent> T getComponentByName(String name, Class<T> modelClass)
+	{
+		return getByName(name, modelClass, components);
+	}
+
+	public ModelWire getWireByName(String name)
+	{
+		return getByName(name, ModelWire.class, wires);
+	}
+
+	@SuppressWarnings("unchecked")
+	private static <T> T getByName(String name, Class<T> modelClass, Map<String, ? super T> map)
+	{
+		Object comp = map.get(name);
+		Objects.requireNonNull(comp, "Invaild path, component " + name + " not found");
+		if (modelClass.isInstance(comp))
+			return (T) comp;
+		throw new IllegalArgumentException("The component " + name + " is not an instance of " + modelClass);
+	}
+
+	public <T extends ModelComponent> T getComponentByPath(String path, Class<T> modelClass)
+	{
+		int firstDot = path.indexOf('.');
+		if (firstDot == -1)
+			return getComponentByName(path, modelClass);
+		String first = path.substring(0, firstDot);
+		String rest = path.substring(firstDot + 1);
+		return getComponentByName(first, SubmodelComponent.class).submodel.getComponentByPath(rest, modelClass);
+	}
+
+	public ModelWire getWireByPath(String path)
+	{
+		int firstDot = path.indexOf('.');
+		if (firstDot == -1)
+			return getWireByName(path);
+		String first = path.substring(0, firstDot);
+		String rest = path.substring(firstDot + 1);
+		return getComponentByName(first, SubmodelComponent.class).submodel.getWireByPath(rest);
 	}
 
 	// @formatter:off

@@ -163,6 +163,6 @@ public class Pin
 	@Override
 	public String toString()
 	{
-		return "Pin [" + name + ", point=" + getPos() + "]";
+		return "Pin " + name + " of " + component.getName();
 	}
 }
