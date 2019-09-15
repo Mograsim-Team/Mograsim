@@ -1,6 +1,6 @@
 {
-  "width": 460.0,
-  "height": 330.0,
+  "width": 504.0,
+  "height": 342.0,
   "interfacePins": [],
   "innerScale": 0.4,
   "submodel": {
@@ -9,8 +9,8 @@
         "id": "ManualSwitch",
         "name": "@bz_pc_cpol",
         "pos": {
-          "x": 10.0,
-          "y": 405.0
+          "x": 120.0,
+          "y": 435.0
         },
         "params": 1
       },
@@ -18,8 +18,8 @@
         "id": "ManualSwitch",
         "name": "@c",
         "pos": {
-          "x": 10.0,
-          "y": 320.0
+          "x": 120.0,
+          "y": 350.0
         },
         "params": 1
       },
@@ -27,8 +27,8 @@
         "id": "ManualSwitch",
         "name": "@d_in",
         "pos": {
-          "x": 10.0,
-          "y": 240.0
+          "x": 120.0,
+          "y": 270.0
         },
         "params": 16
       },
@@ -36,8 +36,8 @@
         "id": "ManualSwitch",
         "name": "@d_in_enable",
         "pos": {
-          "x": 10.0,
-          "y": 215.0
+          "x": 120.0,
+          "y": 245.0
         },
         "params": 1
       },
@@ -45,101 +45,90 @@
         "id": "ManualSwitch",
         "name": "@ireg_cpol",
         "pos": {
-          "x": 10.0,
-          "y": 380.0
+          "x": 120.0,
+          "y": 410.0
         },
         "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "@micro_instr",
-        "pos": {
-          "x": 10.0,
-          "y": 290.0
-        },
-        "params": 80
       },
       {
         "id": "ManualSwitch",
         "name": "@mireg_cpol",
         "pos": {
-          "x": 10.0,
-          "y": 355.0
+          "x": 120.0,
+          "y": 385.0
         },
         "params": 1
       },
       {
-        "id": "ManualSwitch",
-        "name": "@mprom_y",
+        "id": "Am2900MainMemory",
+        "name": "Am2900MainMemory#0",
         "pos": {
-          "x": 10.0,
-          "y": 265.0
-        },
-        "params": 12
+          "x": 35.0,
+          "y": 30.0
+        }
+      },
+      {
+        "id": "Am2900MicroInstructionMemory",
+        "name": "Am2900MicroInstructionMemory#0",
+        "pos": {
+          "x": 65.0,
+          "y": 565.0
+        }
       },
       {
         "id": "Am2901",
         "name": "Am2901#0",
         "pos": {
-          "x": 615.0,
-          "y": 370.0
+          "x": 725.0,
+          "y": 400.0
         }
       },
       {
         "id": "Am2901",
         "name": "Am2901#1",
         "pos": {
-          "x": 740.0,
-          "y": 370.0
+          "x": 850.0,
+          "y": 400.0
         }
       },
       {
         "id": "Am2901",
         "name": "Am2901#2",
         "pos": {
-          "x": 865.0,
-          "y": 370.0
+          "x": 975.0,
+          "y": 400.0
         }
       },
       {
         "id": "Am2901",
         "name": "Am2901#3",
         "pos": {
-          "x": 1000.0,
-          "y": 370.0
+          "x": 1110.0,
+          "y": 400.0
         }
       },
       {
         "id": "Am2904",
         "name": "Am2904#0",
         "pos": {
-          "x": 440.0,
-          "y": 375.0
+          "x": 550.0,
+          "y": 405.0
         }
       },
       {
         "id": "Am2910",
         "name": "Am2910#0",
         "pos": {
-          "x": 295.0,
-          "y": 480.0
+          "x": 405.0,
+          "y": 510.0
         }
-      },
-      {
-        "id": "BitDisplay",
-        "name": "BitDisplay#0",
-        "pos": {
-          "x": 10.0,
-          "y": 165.0
-        },
-        "params": 8
       },
       {
         "id": "BitDisplay",
         "name": "BitDisplay#1",
         "pos": {
-          "x": 10.0,
-          "y": 115.0
+          "x": 210.0,
+          "y": 30.0
         },
         "params": 16
       },
@@ -147,26 +136,17 @@
         "id": "BitDisplay",
         "name": "BitDisplay#2",
         "pos": {
-          "x": 10.0,
-          "y": 140.0
+          "x": 210.0,
+          "y": 45.0
         },
         "params": 16
-      },
-      {
-        "id": "BitDisplay",
-        "name": "BitDisplay#3",
-        "pos": {
-          "x": 10.0,
-          "y": 190.0
-        },
-        "params": 12
       },
       {
         "id": "FixedOutput",
         "name": "FixedOutput#0",
         "pos": {
-          "x": 430.0,
-          "y": 240.0
+          "x": 540.0,
+          "y": 270.0
         },
         "params": {
           "bits": [
@@ -178,8 +158,8 @@
         "id": "FixedOutput",
         "name": "FixedOutput#1",
         "pos": {
-          "x": 525.0,
-          "y": 350.0
+          "x": 635.0,
+          "y": 380.0
         },
         "params": {
           "bits": [
@@ -191,8 +171,8 @@
         "id": "FixedOutput",
         "name": "FixedOutput#2",
         "pos": {
-          "x": 255.0,
-          "y": 475.0
+          "x": 365.0,
+          "y": 505.0
         },
         "params": {
           "bits": [
@@ -204,8 +184,8 @@
         "id": "FixedOutput",
         "name": "FixedOutput#3",
         "pos": {
-          "x": 345.0,
-          "y": 530.0
+          "x": 455.0,
+          "y": 560.0
         },
         "params": {
           "bits": [
@@ -217,8 +197,8 @@
         "id": "FixedOutput",
         "name": "FixedOutput#4",
         "pos": {
-          "x": 310.0,
-          "y": 540.0
+          "x": 420.0,
+          "y": 570.0
         },
         "params": {
           "bits": [
@@ -230,8 +210,8 @@
         "id": "FixedOutput",
         "name": "FixedOutput#5",
         "pos": {
-          "x": 365.0,
-          "y": 475.0
+          "x": 475.0,
+          "y": 505.0
         },
         "params": {
           "bits": [
@@ -243,8 +223,8 @@
         "id": "FixedOutput",
         "name": "FixedOutput#6",
         "pos": {
-          "x": 425.0,
-          "y": 340.0
+          "x": 535.0,
+          "y": 370.0
         },
         "params": {
           "bits": [
@@ -253,11 +233,24 @@
         }
       },
       {
+        "id": "FixedOutput",
+        "name": "FixedOutput#7",
+        "pos": {
+          "x": 260.0,
+          "y": 370.0
+        },
+        "params": {
+          "bits": [
+            null
+          ]
+        }
+      },
+      {
         "id": "NandGate",
         "name": "NandGate#0",
         "pos": {
-          "x": 285.0,
-          "y": 165.0
+          "x": 395.0,
+          "y": 195.0
         },
         "params": 1
       },
@@ -265,8 +258,8 @@
         "id": "NandGate",
         "name": "NandGate#1",
         "pos": {
-          "x": 225.0,
-          "y": 135.0
+          "x": 335.0,
+          "y": 165.0
         },
         "params": 1
       },
@@ -274,8 +267,8 @@
         "id": "NandGate",
         "name": "NandGate#2",
         "pos": {
-          "x": 285.0,
-          "y": 190.0
+          "x": 395.0,
+          "y": 220.0
         },
         "params": 1
       },
@@ -283,8 +276,8 @@
         "id": "NandGate",
         "name": "NandGate#3",
         "pos": {
-          "x": 825.0,
-          "y": 655.0
+          "x": 935.0,
+          "y": 685.0
         },
         "params": 1
       },
@@ -292,8 +285,8 @@
         "id": "NandGate",
         "name": "NandGate#4",
         "pos": {
-          "x": 825.0,
-          "y": 680.0
+          "x": 935.0,
+          "y": 710.0
         },
         "params": 1
       },
@@ -301,8 +294,8 @@
         "id": "Splitter",
         "name": "Splitter#0",
         "pos": {
-          "x": 445.0,
-          "y": 85.0
+          "x": 555.0,
+          "y": 115.0
         },
         "params": {
           "logicWidth": 16,
@@ -313,8 +306,8 @@
         "id": "Splitter",
         "name": "Splitter#1",
         "pos": {
-          "x": 500.0,
-          "y": 130.0
+          "x": 620.0,
+          "y": 160.0
         },
         "params": {
           "logicWidth": 4,
@@ -325,8 +318,8 @@
         "id": "Splitter",
         "name": "Splitter#11",
         "pos": {
-          "x": 465.0,
-          "y": 85.0
+          "x": 575.0,
+          "y": 115.0
         },
         "params": {
           "logicWidth": 8,
@@ -337,8 +330,8 @@
         "id": "Splitter",
         "name": "Splitter#12",
         "pos": {
-          "x": 465.0,
-          "y": 165.0
+          "x": 575.0,
+          "y": 195.0
         },
         "params": {
           "logicWidth": 4,
@@ -349,8 +342,8 @@
         "id": "Splitter",
         "name": "Splitter#13",
         "pos": {
-          "x": 465.0,
-          "y": 205.0
+          "x": 575.0,
+          "y": 235.0
         },
         "params": {
           "logicWidth": 4,
@@ -361,8 +354,8 @@
         "id": "Splitter",
         "name": "Splitter#14",
         "pos": {
-          "x": 555.0,
-          "y": 120.0
+          "x": 675.0,
+          "y": 150.0
         },
         "params": {
           "logicWidth": 4,
@@ -373,8 +366,8 @@
         "id": "Splitter",
         "name": "Splitter#15",
         "pos": {
-          "x": 555.0,
-          "y": 215.0
+          "x": 675.0,
+          "y": 245.0
         },
         "params": {
           "logicWidth": 4,
@@ -385,8 +378,8 @@
         "id": "Splitter",
         "name": "Splitter#16",
         "pos": {
-          "x": 235.0,
-          "y": 800.0
+          "x": 345.0,
+          "y": 830.0
         },
         "params": {
           "logicWidth": 80,
@@ -397,8 +390,8 @@
         "id": "Splitter",
         "name": "Splitter#17",
         "pos": {
-          "x": 295.0,
-          "y": 785.0
+          "x": 405.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 12,
@@ -409,8 +402,8 @@
         "id": "Splitter",
         "name": "Splitter#18",
         "pos": {
-          "x": 415.0,
-          "y": 785.0
+          "x": 525.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 4,
@@ -421,8 +414,8 @@
         "id": "Splitter",
         "name": "Splitter#19",
         "pos": {
-          "x": 550.0,
-          "y": 725.0
+          "x": 660.0,
+          "y": 755.0
         },
         "params": {
           "logicWidth": 13,
@@ -433,8 +426,8 @@
         "id": "Splitter",
         "name": "Splitter#2",
         "pos": {
-          "x": 500.0,
-          "y": 225.0
+          "x": 620.0,
+          "y": 255.0
         },
         "params": {
           "logicWidth": 4,
@@ -445,8 +438,8 @@
         "id": "Splitter",
         "name": "Splitter#20",
         "pos": {
-          "x": 465.0,
-          "y": 785.0
+          "x": 575.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 6,
@@ -457,8 +450,8 @@
         "id": "Splitter",
         "name": "Splitter#21",
         "pos": {
-          "x": 585.0,
-          "y": 785.0
+          "x": 695.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 2,
@@ -469,8 +462,8 @@
         "id": "Splitter",
         "name": "Splitter#22",
         "pos": {
-          "x": 545.0,
-          "y": 785.0
+          "x": 655.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 4,
@@ -481,8 +474,8 @@
         "id": "Splitter",
         "name": "Splitter#23",
         "pos": {
-          "x": 620.0,
-          "y": 740.0
+          "x": 730.0,
+          "y": 770.0
         },
         "params": {
           "logicWidth": 6,
@@ -493,8 +486,8 @@
         "id": "Splitter",
         "name": "Splitter#24",
         "pos": {
-          "x": 580.0,
-          "y": 740.0
+          "x": 690.0,
+          "y": 770.0
         },
         "params": {
           "logicWidth": 4,
@@ -505,8 +498,8 @@
         "id": "Splitter",
         "name": "Splitter#25",
         "pos": {
-          "x": 550.0,
-          "y": 740.0
+          "x": 660.0,
+          "y": 770.0
         },
         "params": {
           "logicWidth": 2,
@@ -517,8 +510,8 @@
         "id": "Splitter",
         "name": "Splitter#26",
         "pos": {
-          "x": 815.0,
-          "y": 785.0
+          "x": 925.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 16,
@@ -529,8 +522,8 @@
         "id": "Splitter",
         "name": "Splitter#27",
         "pos": {
-          "x": 785.0,
-          "y": 785.0
+          "x": 895.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 3,
@@ -541,8 +534,8 @@
         "id": "Splitter",
         "name": "Splitter#28",
         "pos": {
-          "x": 755.0,
-          "y": 785.0
+          "x": 865.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 3,
@@ -553,8 +546,8 @@
         "id": "Splitter",
         "name": "Splitter#29",
         "pos": {
-          "x": 725.0,
-          "y": 785.0
+          "x": 835.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 3,
@@ -563,10 +556,22 @@
       },
       {
         "id": "Splitter",
+        "name": "Splitter#3",
+        "pos": {
+          "x": 205.0,
+          "y": 390.0
+        },
+        "params": {
+          "logicWidth": 8,
+          "orientation": "DOWN"
+        }
+      },
+      {
+        "id": "Splitter",
         "name": "Splitter#30",
         "pos": {
-          "x": 685.0,
-          "y": 785.0
+          "x": 795.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 4,
@@ -577,8 +582,8 @@
         "id": "Splitter",
         "name": "Splitter#31",
         "pos": {
-          "x": 635.0,
-          "y": 785.0
+          "x": 745.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 4,
@@ -589,8 +594,8 @@
         "id": "Splitter",
         "name": "Splitter#32",
         "pos": {
-          "x": 785.0,
-          "y": 770.0
+          "x": 895.0,
+          "y": 800.0
         },
         "params": {
           "logicWidth": 3,
@@ -601,8 +606,8 @@
         "id": "Splitter",
         "name": "Splitter#33",
         "pos": {
-          "x": 725.0,
-          "y": 770.0
+          "x": 835.0,
+          "y": 800.0
         },
         "params": {
           "logicWidth": 3,
@@ -613,8 +618,8 @@
         "id": "Splitter",
         "name": "Splitter#34",
         "pos": {
-          "x": 755.0,
-          "y": 770.0
+          "x": 865.0,
+          "y": 800.0
         },
         "params": {
           "logicWidth": 3,
@@ -625,8 +630,8 @@
         "id": "Splitter",
         "name": "Splitter#35",
         "pos": {
-          "x": 725.0,
-          "y": 750.0
+          "x": 835.0,
+          "y": 780.0
         },
         "params": {
           "logicWidth": 9,
@@ -637,8 +642,8 @@
         "id": "Splitter",
         "name": "Splitter#36",
         "pos": {
-          "x": 785.0,
-          "y": 300.0
+          "x": 895.0,
+          "y": 330.0
         },
         "params": {
           "logicWidth": 16,
@@ -649,8 +654,8 @@
         "id": "Splitter",
         "name": "Splitter#37",
         "pos": {
-          "x": 785.0,
-          "y": 550.0
+          "x": 895.0,
+          "y": 580.0
         },
         "params": {
           "logicWidth": 16,
@@ -661,8 +666,8 @@
         "id": "Splitter",
         "name": "Splitter#38",
         "pos": {
-          "x": 785.0,
-          "y": 535.0
+          "x": 895.0,
+          "y": 565.0
         },
         "params": {
           "logicWidth": 4,
@@ -673,8 +678,8 @@
         "id": "Splitter",
         "name": "Splitter#39",
         "pos": {
-          "x": 825.0,
-          "y": 535.0
+          "x": 935.0,
+          "y": 565.0
         },
         "params": {
           "logicWidth": 4,
@@ -683,10 +688,22 @@
       },
       {
         "id": "Splitter",
+        "name": "Splitter#4",
+        "pos": {
+          "x": 205.0,
+          "y": 405.0
+        },
+        "params": {
+          "logicWidth": 12,
+          "orientation": "UP"
+        }
+      },
+      {
+        "id": "Splitter",
         "name": "Splitter#40",
         "pos": {
-          "x": 865.0,
-          "y": 535.0
+          "x": 975.0,
+          "y": 565.0
         },
         "params": {
           "logicWidth": 4,
@@ -697,8 +714,8 @@
         "id": "Splitter",
         "name": "Splitter#41",
         "pos": {
-          "x": 905.0,
-          "y": 535.0
+          "x": 1015.0,
+          "y": 565.0
         },
         "params": {
           "logicWidth": 4,
@@ -709,8 +726,8 @@
         "id": "Splitter",
         "name": "Splitter#42",
         "pos": {
-          "x": 785.0,
-          "y": 315.0
+          "x": 895.0,
+          "y": 345.0
         },
         "params": {
           "logicWidth": 4,
@@ -721,8 +738,8 @@
         "id": "Splitter",
         "name": "Splitter#43",
         "pos": {
-          "x": 825.0,
-          "y": 315.0
+          "x": 935.0,
+          "y": 345.0
         },
         "params": {
           "logicWidth": 4,
@@ -733,8 +750,8 @@
         "id": "Splitter",
         "name": "Splitter#44",
         "pos": {
-          "x": 865.0,
-          "y": 315.0
+          "x": 975.0,
+          "y": 345.0
         },
         "params": {
           "logicWidth": 4,
@@ -745,8 +762,8 @@
         "id": "Splitter",
         "name": "Splitter#45",
         "pos": {
-          "x": 905.0,
-          "y": 315.0
+          "x": 1015.0,
+          "y": 345.0
         },
         "params": {
           "logicWidth": 4,
@@ -757,8 +774,8 @@
         "id": "Splitter",
         "name": "Splitter#46",
         "pos": {
-          "x": 200.0,
-          "y": 200.0
+          "x": 310.0,
+          "y": 230.0
         },
         "params": {
           "logicWidth": 4,
@@ -769,8 +786,8 @@
         "id": "Splitter",
         "name": "Splitter#47",
         "pos": {
-          "x": 500.0,
-          "y": 170.0
+          "x": 620.0,
+          "y": 200.0
         },
         "params": {
           "logicWidth": 4,
@@ -781,8 +798,8 @@
         "id": "Splitter",
         "name": "Splitter#48",
         "pos": {
-          "x": 255.0,
-          "y": 785.0
+          "x": 365.0,
+          "y": 815.0
         },
         "params": {
           "logicWidth": 4,
@@ -793,8 +810,8 @@
         "id": "Splitter",
         "name": "Splitter#49",
         "pos": {
-          "x": 500.0,
-          "y": 265.0
+          "x": 620.0,
+          "y": 295.0
         },
         "params": {
           "logicWidth": 4,
@@ -805,8 +822,8 @@
         "id": "TextComponent",
         "name": "TextComponent#0",
         "pos": {
-          "x": 65.0,
-          "y": 10.0
+          "x": 175.0,
+          "y": 40.0
         },
         "params": "D bus"
       },
@@ -814,44 +831,17 @@
         "id": "TextComponent",
         "name": "TextComponent#1",
         "pos": {
-          "x": 65.0,
-          "y": 25.0
+          "x": 175.0,
+          "y": 55.0
         },
         "params": "A bus"
       },
       {
         "id": "TextComponent",
-        "name": "TextComponent#10",
-        "pos": {
-          "x": -50.0,
-          "y": 115.0
-        },
-        "params": "d"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#11",
-        "pos": {
-          "x": -50.0,
-          "y": 140.0
-        },
-        "params": "a"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#12",
-        "pos": {
-          "x": -50.0,
-          "y": 190.0
-        },
-        "params": "mi addr"
-      },
-      {
-        "id": "TextComponent",
         "name": "TextComponent#13",
         "pos": {
-          "x": -55.0,
-          "y": 355.0
+          "x": 55.0,
+          "y": 385.0
         },
         "params": "mireg cpol"
       },
@@ -859,8 +849,8 @@
         "id": "TextComponent",
         "name": "TextComponent#14",
         "pos": {
-          "x": -50.0,
-          "y": 380.0
+          "x": 60.0,
+          "y": 410.0
         },
         "params": "ireg cpol"
       },
@@ -868,53 +858,35 @@
         "id": "TextComponent",
         "name": "TextComponent#15",
         "pos": {
-          "x": -50.0,
-          "y": 405.0
+          "x": 60.0,
+          "y": 435.0
         },
         "params": "bz/pc cpol"
       },
       {
         "id": "TextComponent",
-        "name": "TextComponent#2",
-        "pos": {
-          "x": -50.0,
-          "y": 165.0
-        },
-        "params": "instr"
-      },
-      {
-        "id": "TextComponent",
         "name": "TextComponent#3",
         "pos": {
-          "x": -50.0,
-          "y": 290.0
+          "x": 515.0,
+          "y": 110.0
         },
-        "params": "micro instr"
+        "params": "asdf"
       },
       {
         "id": "TextComponent",
         "name": "TextComponent#4",
         "pos": {
-          "x": -50.0,
-          "y": 320.0
+          "x": 60.0,
+          "y": 350.0
         },
         "params": "c"
       },
       {
         "id": "TextComponent",
-        "name": "TextComponent#5",
-        "pos": {
-          "x": -50.0,
-          "y": 265.0
-        },
-        "params": "mprom y"
-      },
-      {
-        "id": "TextComponent",
         "name": "TextComponent#8",
         "pos": {
-          "x": -50.0,
-          "y": 215.0
+          "x": 60.0,
+          "y": 245.0
         },
         "params": "d in enable"
       },
@@ -922,8 +894,8 @@
         "id": "TextComponent",
         "name": "TextComponent#9",
         "pos": {
-          "x": -50.0,
-          "y": 240.0
+          "x": 60.0,
+          "y": 270.0
         },
         "params": "d in"
       },
@@ -931,8 +903,8 @@
         "id": "TriStateBuffer",
         "name": "TriStateBuffer#0",
         "pos": {
-          "x": 880.0,
-          "y": 560.0
+          "x": 990.0,
+          "y": 590.0
         },
         "params": {
           "logicWidth": 16,
@@ -943,8 +915,8 @@
         "id": "TriStateBuffer",
         "name": "TriStateBuffer#1",
         "pos": {
-          "x": 880.0,
-          "y": 585.0
+          "x": 990.0,
+          "y": 615.0
         },
         "params": {
           "logicWidth": 16,
@@ -955,8 +927,8 @@
         "id": "TriStateBuffer",
         "name": "TriStateBuffer#2",
         "pos": {
-          "x": 315.0,
-          "y": 90.0
+          "x": 425.0,
+          "y": 120.0
         },
         "params": {
           "logicWidth": 16,
@@ -967,8 +939,8 @@
         "id": "TriStateBuffer",
         "name": "TriStateBuffer#3",
         "pos": {
-          "x": 315.0,
-          "y": 115.0
+          "x": 425.0,
+          "y": 145.0
         },
         "params": {
           "logicWidth": 16,
@@ -979,8 +951,8 @@
         "id": "TriStateBuffer",
         "name": "TriStateBuffer#4",
         "pos": {
-          "x": 45.0,
-          "y": 210.0
+          "x": 155.0,
+          "y": 240.0
         },
         "params": {
           "logicWidth": 16,
@@ -991,15 +963,6 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
-          "x": 494.0,
-          "y": 334.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#1",
-        "pos": {
           "x": 604.0,
           "y": 364.0
         },
@@ -1007,10 +970,19 @@
       },
       {
         "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 714.0,
+          "y": 394.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
         "name": "WireCrossPoint#10",
         "pos": {
-          "x": 709.0,
-          "y": 354.0
+          "x": 819.0,
+          "y": 384.0
         },
         "params": 4
       },
@@ -1018,8 +990,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#11",
         "pos": {
-          "x": 714.0,
-          "y": 359.0
+          "x": 824.0,
+          "y": 389.0
         },
         "params": 4
       },
@@ -1027,8 +999,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#12",
         "pos": {
-          "x": 219.0,
-          "y": 149.0
+          "x": 329.0,
+          "y": 179.0
         },
         "params": 1
       },
@@ -1036,8 +1008,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#13",
         "pos": {
-          "x": 364.0,
-          "y": 14.0
+          "x": 474.0,
+          "y": 44.0
         },
         "params": 16
       },
@@ -1045,8 +1017,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#14",
         "pos": {
-          "x": 309.0,
-          "y": 99.0
+          "x": 419.0,
+          "y": 129.0
         },
         "params": 16
       },
@@ -1054,8 +1026,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#15",
         "pos": {
-          "x": 784.0,
-          "y": 14.0
+          "x": 894.0,
+          "y": 44.0
         },
         "params": 16
       },
@@ -1063,8 +1035,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#16",
         "pos": {
-          "x": 734.0,
-          "y": 764.0
+          "x": 844.0,
+          "y": 794.0
         },
         "params": 1
       },
@@ -1072,8 +1044,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#17",
         "pos": {
-          "x": 874.0,
-          "y": 569.0
+          "x": 984.0,
+          "y": 599.0
         },
         "params": 16
       },
@@ -1081,8 +1053,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#18",
         "pos": {
-          "x": 139.0,
-          "y": 14.0
+          "x": 249.0,
+          "y": 44.0
         },
         "params": 16
       },
@@ -1090,8 +1062,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#19",
         "pos": {
-          "x": 94.0,
-          "y": 29.0
+          "x": 204.0,
+          "y": 59.0
         },
         "params": 16
       },
@@ -1099,8 +1071,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
-          "x": 729.0,
-          "y": 364.0
+          "x": 839.0,
+          "y": 394.0
         },
         "params": 1
       },
@@ -1108,8 +1080,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#20",
         "pos": {
-          "x": 334.0,
-          "y": 334.0
+          "x": 444.0,
+          "y": 364.0
         },
         "params": 1
       },
@@ -1117,8 +1089,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#21",
         "pos": {
-          "x": 279.0,
-          "y": 179.0
+          "x": 389.0,
+          "y": 209.0
         },
         "params": 1
       },
@@ -1126,8 +1098,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#22",
         "pos": {
-          "x": 339.0,
-          "y": 14.0
+          "x": 449.0,
+          "y": 44.0
         },
         "params": 16
       },
@@ -1135,8 +1107,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#23",
         "pos": {
-          "x": 344.0,
-          "y": 29.0
+          "x": 454.0,
+          "y": 59.0
         },
         "params": 16
       },
@@ -1144,8 +1116,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#24",
         "pos": {
-          "x": 279.0,
-          "y": 194.0
+          "x": 389.0,
+          "y": 224.0
         },
         "params": 1
       },
@@ -1153,8 +1125,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#25",
         "pos": {
-          "x": 819.0,
-          "y": 684.0
+          "x": 929.0,
+          "y": 714.0
         },
         "params": 1
       },
@@ -1162,8 +1134,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#26",
         "pos": {
-          "x": 709.0,
-          "y": 499.0
+          "x": 819.0,
+          "y": 529.0
         },
         "params": 9
       },
@@ -1171,8 +1143,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#27",
         "pos": {
-          "x": 834.0,
-          "y": 499.0
+          "x": 944.0,
+          "y": 529.0
         },
         "params": 9
       },
@@ -1180,8 +1152,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#28",
         "pos": {
-          "x": 959.0,
-          "y": 499.0
+          "x": 1069.0,
+          "y": 529.0
         },
         "params": 9
       },
@@ -1189,8 +1161,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#29",
         "pos": {
-          "x": 94.0,
-          "y": 14.0
+          "x": 204.0,
+          "y": 44.0
         },
         "params": 16
       },
@@ -1198,8 +1170,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
-          "x": 854.0,
-          "y": 364.0
+          "x": 964.0,
+          "y": 394.0
         },
         "params": 1
       },
@@ -1207,8 +1179,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#30",
         "pos": {
-          "x": 454.0,
-          "y": 369.0
+          "x": 564.0,
+          "y": 399.0
         },
         "params": 1
       },
@@ -1216,8 +1188,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#31",
         "pos": {
-          "x": 459.0,
-          "y": 369.0
+          "x": 569.0,
+          "y": 399.0
         },
         "params": 1
       },
@@ -1225,8 +1197,35 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#32",
         "pos": {
-          "x": 819.0,
-          "y": 669.0
+          "x": 929.0,
+          "y": 699.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#33",
+        "pos": {
+          "x": 285.0,
+          "y": 400.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#34",
+        "pos": {
+          "x": 295.0,
+          "y": 400.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#35",
+        "pos": {
+          "x": 305.0,
+          "y": 400.0
         },
         "params": 1
       },
@@ -1234,8 +1233,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#4",
         "pos": {
-          "x": 459.0,
-          "y": 204.0
+          "x": 569.0,
+          "y": 234.0
         },
         "params": 1
       },
@@ -1243,8 +1242,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#5",
         "pos": {
-          "x": 449.0,
-          "y": 369.0
+          "x": 559.0,
+          "y": 399.0
         },
         "params": 1
       },
@@ -1252,8 +1251,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#6",
         "pos": {
-          "x": 964.0,
-          "y": 359.0
+          "x": 1074.0,
+          "y": 389.0
         },
         "params": 4
       },
@@ -1261,8 +1260,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#7",
         "pos": {
-          "x": 959.0,
-          "y": 354.0
+          "x": 1069.0,
+          "y": 384.0
         },
         "params": 4
       },
@@ -1270,8 +1269,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#8",
         "pos": {
-          "x": 834.0,
-          "y": 354.0
+          "x": 944.0,
+          "y": 384.0
         },
         "params": 4
       },
@@ -1279,8 +1278,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#9",
         "pos": {
-          "x": 839.0,
-          "y": 359.0
+          "x": 949.0,
+          "y": 389.0
         },
         "params": 4
       },
@@ -1288,56 +1287,56 @@
         "id": "and",
         "name": "and#0",
         "pos": {
-          "x": 750.0,
-          "y": 560.0
+          "x": 860.0,
+          "y": 590.0
         }
       },
       {
         "id": "and",
         "name": "and#1",
         "pos": {
-          "x": 750.0,
-          "y": 580.0
+          "x": 860.0,
+          "y": 610.0
         }
       },
       {
         "id": "and",
         "name": "and#2",
         "pos": {
-          "x": 795.0,
-          "y": 565.0
+          "x": 905.0,
+          "y": 595.0
         }
       },
       {
         "id": "dff16",
         "name": "dff16#0",
         "pos": {
-          "x": 260.0,
-          "y": 75.0
+          "x": 370.0,
+          "y": 105.0
         }
       },
       {
         "id": "dff16_invwe",
         "name": "dff16_invwe#0",
         "pos": {
-          "x": 380.0,
-          "y": 135.0
+          "x": 490.0,
+          "y": 165.0
         }
       },
       {
         "id": "dff80",
         "name": "dff80#0",
         "pos": {
-          "x": 180.0,
-          "y": 645.0
+          "x": 290.0,
+          "y": 675.0
         }
       },
       {
         "id": "inc",
         "name": "inc#0",
         "pos": {
-          "x": 205.0,
-          "y": 105.0
+          "x": 315.0,
+          "y": 135.0
         },
         "params": 16
       },
@@ -1345,64 +1344,64 @@
         "id": "mux1_12",
         "name": "mux1_12#0",
         "pos": {
-          "x": 255.0,
-          "y": 390.0
+          "x": 365.0,
+          "y": 420.0
         }
       },
       {
         "id": "mux1_16",
         "name": "mux1_16#0",
         "pos": {
-          "x": 145.0,
-          "y": 80.0
+          "x": 255.0,
+          "y": 110.0
         }
       },
       {
         "id": "mux1_16",
         "name": "mux1_16#1",
         "pos": {
-          "x": 800.0,
-          "y": 185.0
+          "x": 910.0,
+          "y": 215.0
         }
       },
       {
         "id": "mux1_4",
         "name": "mux1_4#0",
         "pos": {
-          "x": 515.0,
-          "y": 115.0
+          "x": 635.0,
+          "y": 145.0
         }
       },
       {
         "id": "mux1_4",
         "name": "mux1_4#1",
         "pos": {
-          "x": 515.0,
-          "y": 210.0
+          "x": 635.0,
+          "y": 240.0
         }
       },
       {
         "id": "xor",
         "name": "xor#0",
         "pos": {
-          "x": 70.0,
-          "y": 350.0
+          "x": 145.0,
+          "y": 380.0
         }
       },
       {
         "id": "xor",
         "name": "xor#1",
         "pos": {
-          "x": 70.0,
-          "y": 375.0
+          "x": 145.0,
+          "y": 405.0
         }
       },
       {
         "id": "xor",
         "name": "xor#2",
         "pos": {
-          "x": 70.0,
-          "y": 400.0
+          "x": 145.0,
+          "y": 430.0
         }
       }
     ],
@@ -1419,28 +1418,28 @@
         "name": "unnamedWire#0",
         "path": [
           {
-            "x": 565.0,
-            "y": 430.0
+            "x": 675.0,
+            "y": 460.0
           },
           {
-            "x": 565.0,
-            "y": 325.0
+            "x": 675.0,
+            "y": 355.0
           },
           {
-            "x": 360.0,
-            "y": 325.0
+            "x": 470.0,
+            "y": 355.0
           },
           {
-            "x": 360.0,
-            "y": 475.0
+            "x": 470.0,
+            "y": 505.0
           },
           {
-            "x": 290.0,
-            "y": 475.0
+            "x": 400.0,
+            "y": 505.0
           },
           {
-            "x": 290.0,
-            "y": 490.0
+            "x": 400.0,
+            "y": 520.0
           }
         ]
       },
@@ -1456,12 +1455,12 @@
         "name": "unnamedWire#1",
         "path": [
           {
-            "x": 725.0,
-            "y": 485.0
+            "x": 835.0,
+            "y": 515.0
           },
           {
-            "x": 725.0,
-            "y": 390.0
+            "x": 835.0,
+            "y": 420.0
           }
         ]
       },
@@ -1477,20 +1476,20 @@
         "name": "unnamedWire#10",
         "path": [
           {
-            "x": 430.0,
-            "y": 500.0
+            "x": 540.0,
+            "y": 530.0
           },
           {
-            "x": 430.0,
-            "y": 630.0
+            "x": 540.0,
+            "y": 660.0
           },
           {
-            "x": 1105.0,
-            "y": 630.0
+            "x": 1215.0,
+            "y": 660.0
           },
           {
-            "x": 1105.0,
-            "y": 485.0
+            "x": 1215.0,
+            "y": 515.0
           }
         ]
       },
@@ -1530,16 +1529,16 @@
         "name": "unnamedWire#102",
         "path": [
           {
-            "x": 145.0,
-            "y": 305.0
+            "x": 255.0,
+            "y": 310.0
           },
           {
-            "x": 370.0,
-            "y": 305.0
+            "x": 480.0,
+            "y": 310.0
           },
           {
-            "x": 370.0,
-            "y": 140.0
+            "x": 480.0,
+            "y": 170.0
           }
         ]
       },
@@ -1567,8 +1566,8 @@
         "name": "unnamedWire#104",
         "path": [
           {
-            "x": 280.0,
-            "y": 170.0
+            "x": 390.0,
+            "y": 200.0
           }
         ]
       },
@@ -1584,8 +1583,8 @@
         "name": "unnamedWire#105",
         "path": [
           {
-            "x": 210.0,
-            "y": 180.0
+            "x": 320.0,
+            "y": 210.0
           }
         ]
       },
@@ -1601,16 +1600,16 @@
         "name": "unnamedWire#106",
         "path": [
           {
-            "x": 340.0,
-            "y": 175.0
+            "x": 450.0,
+            "y": 205.0
           },
           {
-            "x": 340.0,
-            "y": 110.0
+            "x": 450.0,
+            "y": 140.0
           },
           {
-            "x": 325.0,
-            "y": 110.0
+            "x": 435.0,
+            "y": 140.0
           }
         ]
       },
@@ -1638,8 +1637,8 @@
         "name": "unnamedWire#108",
         "path": [
           {
-            "x": 280.0,
-            "y": 205.0
+            "x": 390.0,
+            "y": 235.0
           }
         ]
       },
@@ -1655,8 +1654,8 @@
         "name": "unnamedWire#109",
         "path": [
           {
-            "x": 230.0,
-            "y": 195.0
+            "x": 340.0,
+            "y": 225.0
           }
         ]
       },
@@ -1672,20 +1671,20 @@
         "name": "unnamedWire#11",
         "path": [
           {
-            "x": 415.0,
-            "y": 395.0
-          },
-          {
-            "x": 415.0,
-            "y": 615.0
-          },
-          {
-            "x": 995.0,
-            "y": 615.0
-          },
-          {
-            "x": 995.0,
+            "x": 525.0,
             "y": 425.0
+          },
+          {
+            "x": 525.0,
+            "y": 645.0
+          },
+          {
+            "x": 1105.0,
+            "y": 645.0
+          },
+          {
+            "x": 1105.0,
+            "y": 455.0
           }
         ]
       },
@@ -1701,8 +1700,8 @@
         "name": "unnamedWire#110",
         "path": [
           {
-            "x": 325.0,
-            "y": 200.0
+            "x": 435.0,
+            "y": 230.0
           }
         ]
       },
@@ -1730,8 +1729,8 @@
         "name": "unnamedWire#112",
         "path": [
           {
-            "x": 820.0,
-            "y": 695.0
+            "x": 930.0,
+            "y": 725.0
           }
         ]
       },
@@ -1747,12 +1746,12 @@
         "name": "unnamedWire#113",
         "path": [
           {
-            "x": 650.0,
-            "y": 135.0
+            "x": 760.0,
+            "y": 165.0
           },
           {
-            "x": 650.0,
-            "y": 355.0
+            "x": 760.0,
+            "y": 385.0
           }
         ]
       },
@@ -1768,12 +1767,12 @@
         "name": "unnamedWire#114",
         "path": [
           {
-            "x": 645.0,
-            "y": 360.0
+            "x": 755.0,
+            "y": 390.0
           },
           {
-            "x": 645.0,
-            "y": 230.0
+            "x": 755.0,
+            "y": 260.0
           }
         ]
       },
@@ -1837,16 +1836,16 @@
         "name": "unnamedWire#119",
         "path": [
           {
-            "x": 720.0,
-            "y": 685.0
+            "x": 830.0,
+            "y": 715.0
           },
           {
-            "x": 720.0,
-            "y": 780.0
+            "x": 830.0,
+            "y": 810.0
           },
           {
-            "x": 605.0,
-            "y": 780.0
+            "x": 715.0,
+            "y": 810.0
           }
         ]
       },
@@ -1862,20 +1861,20 @@
         "name": "unnamedWire#12",
         "path": [
           {
-            "x": 610.0,
-            "y": 415.0
+            "x": 720.0,
+            "y": 445.0
           },
           {
-            "x": 610.0,
-            "y": 505.0
+            "x": 720.0,
+            "y": 535.0
           },
           {
-            "x": 730.0,
-            "y": 505.0
+            "x": 840.0,
+            "y": 535.0
           },
           {
-            "x": 730.0,
-            "y": 595.0
+            "x": 840.0,
+            "y": 625.0
           }
         ]
       },
@@ -1891,16 +1890,16 @@
         "name": "unnamedWire#120",
         "path": [
           {
-            "x": 905.0,
-            "y": 690.0
+            "x": 1015.0,
+            "y": 720.0
           },
           {
-            "x": 905.0,
-            "y": 580.0
+            "x": 1015.0,
+            "y": 610.0
           },
           {
-            "x": 890.0,
-            "y": 580.0
+            "x": 1000.0,
+            "y": 610.0
           }
         ]
       },
@@ -1916,16 +1915,16 @@
         "name": "unnamedWire#121",
         "path": [
           {
-            "x": 615.0,
-            "y": 775.0
+            "x": 725.0,
+            "y": 805.0
           },
           {
-            "x": 715.0,
-            "y": 775.0
+            "x": 825.0,
+            "y": 805.0
           },
           {
-            "x": 715.0,
-            "y": 670.0
+            "x": 825.0,
+            "y": 700.0
           }
         ]
       },
@@ -1953,8 +1952,8 @@
         "name": "unnamedWire#123",
         "path": [
           {
-            "x": 820.0,
-            "y": 660.0
+            "x": 930.0,
+            "y": 690.0
           }
         ]
       },
@@ -1970,8 +1969,41 @@
         "name": "unnamedWire#124",
         "path": [
           {
-            "x": 890.0,
-            "y": 665.0
+            "x": 1000.0,
+            "y": 695.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2900MainMemory#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#125",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2900MainMemory#0",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#29",
+          "pinName": ""
+        },
+        "name": "unnamedWire#126",
+        "path": [
+          {
+            "x": 165.0,
+            "y": 80.0
+          },
+          {
+            "x": 165.0,
+            "y": 45.0
           }
         ]
       },
@@ -1987,16 +2019,16 @@
         "name": "unnamedWire#127",
         "path": [
           {
-            "x": 200.0,
-            "y": 195.0
+            "x": 310.0,
+            "y": 225.0
           },
           {
-            "x": 130.0,
-            "y": 195.0
+            "x": 240.0,
+            "y": 225.0
           },
           {
-            "x": 130.0,
-            "y": 85.0
+            "x": 240.0,
+            "y": 115.0
           }
         ]
       },
@@ -2012,8 +2044,8 @@
         "name": "unnamedWire#128",
         "path": [
           {
-            "x": 225.0,
-            "y": 100.0
+            "x": 335.0,
+            "y": 130.0
           }
         ]
       },
@@ -2029,8 +2061,8 @@
         "name": "unnamedWire#129",
         "path": [
           {
-            "x": 225.0,
-            "y": 130.0
+            "x": 335.0,
+            "y": 160.0
           }
         ]
       },
@@ -2046,12 +2078,12 @@
         "name": "unnamedWire#13",
         "path": [
           {
-            "x": 735.0,
-            "y": 415.0
+            "x": 845.0,
+            "y": 445.0
           },
           {
-            "x": 735.0,
-            "y": 585.0
+            "x": 845.0,
+            "y": 615.0
           }
         ]
       },
@@ -2067,12 +2099,12 @@
         "name": "unnamedWire#130",
         "path": [
           {
-            "x": 250.0,
-            "y": 115.0
+            "x": 360.0,
+            "y": 145.0
           },
           {
-            "x": 250.0,
-            "y": 145.0
+            "x": 360.0,
+            "y": 175.0
           }
         ]
       },
@@ -2088,8 +2120,8 @@
         "name": "unnamedWire#131",
         "path": [
           {
-            "x": 220.0,
-            "y": 140.0
+            "x": 330.0,
+            "y": 170.0
           }
         ]
       },
@@ -2107,26 +2139,18 @@
       },
       {
         "pin1": {
-          "compName": "BitDisplay#0",
-          "pinName": ""
+          "compName": "FixedOutput#7",
+          "pinName": "out"
         },
         "pin2": {
-          "compName": "Splitter#11",
-          "pinName": "I"
+          "compName": "WireCrossPoint#33",
+          "pinName": ""
         },
         "name": "unnamedWire#133",
         "path": [
           {
-            "x": 105.0,
-            "y": 55.0
-          },
-          {
-            "x": 480.0,
-            "y": 55.0
-          },
-          {
-            "x": 480.0,
-            "y": 120.0
+            "x": 285.0,
+            "y": 380.0
           }
         ]
       },
@@ -2142,25 +2166,8 @@
         "name": "unnamedWire#134",
         "path": [
           {
-            "x": 310.0,
-            "y": 125.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "@mprom_y",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "mux1_12#0",
-          "pinName": "I0"
-        },
-        "name": "unnamedWire#135",
-        "path": [
-          {
-            "x": 130.0,
-            "y": 410.0
+            "x": 420.0,
+            "y": 155.0
           }
         ]
       },
@@ -2176,16 +2183,16 @@
         "name": "unnamedWire#136",
         "path": [
           {
-            "x": 310.0,
-            "y": 530.0
+            "x": 420.0,
+            "y": 560.0
           },
           {
-            "x": 250.0,
-            "y": 530.0
+            "x": 360.0,
+            "y": 560.0
           },
           {
-            "x": 250.0,
-            "y": 395.0
+            "x": 360.0,
+            "y": 425.0
           }
         ]
       },
@@ -2213,16 +2220,16 @@
         "name": "unnamedWire#138",
         "path": [
           {
-            "x": 225.0,
-            "y": 730.0
+            "x": 335.0,
+            "y": 760.0
           },
           {
-            "x": 225.0,
-            "y": 815.0
+            "x": 335.0,
+            "y": 845.0
           },
           {
-            "x": 630.0,
-            "y": 815.0
+            "x": 740.0,
+            "y": 845.0
           }
         ]
       },
@@ -2238,16 +2245,16 @@
         "name": "unnamedWire#139",
         "path": [
           {
-            "x": 455.0,
-            "y": 705.0
+            "x": 565.0,
+            "y": 735.0
           },
           {
-            "x": 285.0,
-            "y": 705.0
+            "x": 395.0,
+            "y": 735.0
           },
           {
-            "x": 285.0,
-            "y": 495.0
+            "x": 395.0,
+            "y": 525.0
           }
         ]
       },
@@ -2263,12 +2270,12 @@
         "name": "unnamedWire#14",
         "path": [
           {
-            "x": 790.0,
-            "y": 585.0
+            "x": 900.0,
+            "y": 615.0
           },
           {
-            "x": 790.0,
-            "y": 580.0
+            "x": 900.0,
+            "y": 610.0
           }
         ]
       },
@@ -2332,16 +2339,16 @@
         "name": "unnamedWire#144",
         "path": [
           {
-            "x": 430.0,
-            "y": 700.0
+            "x": 540.0,
+            "y": 730.0
           },
           {
-            "x": 290.0,
-            "y": 700.0
+            "x": 400.0,
+            "y": 730.0
           },
           {
-            "x": 290.0,
-            "y": 505.0
+            "x": 400.0,
+            "y": 535.0
           }
         ]
       },
@@ -2417,12 +2424,12 @@
         "name": "unnamedWire#15",
         "path": [
           {
-            "x": 790.0,
-            "y": 570.0
+            "x": 900.0,
+            "y": 600.0
           },
           {
-            "x": 790.0,
-            "y": 565.0
+            "x": 900.0,
+            "y": 595.0
           }
         ]
       },
@@ -2522,8 +2529,8 @@
         "name": "unnamedWire#157",
         "path": [
           {
-            "x": 325.0,
-            "y": 420.0
+            "x": 435.0,
+            "y": 450.0
           }
         ]
       },
@@ -2539,16 +2546,37 @@
         "name": "unnamedWire#158",
         "path": [
           {
-            "x": 240.0,
-            "y": 450.0
-          },
-          {
-            "x": 240.0,
-            "y": 730.0
+            "x": 350.0,
+            "y": 480.0
           },
           {
             "x": 350.0,
-            "y": 730.0
+            "y": 760.0
+          },
+          {
+            "x": 460.0,
+            "y": 760.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2900MicroInstructionMemory#0",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "dff80#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#159",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 615.0
+          },
+          {
+            "x": 205.0,
+            "y": 760.0
           }
         ]
       },
@@ -2564,20 +2592,20 @@
         "name": "unnamedWire#16",
         "path": [
           {
-            "x": 740.0,
-            "y": 575.0
+            "x": 850.0,
+            "y": 605.0
           },
           {
-            "x": 740.0,
-            "y": 505.0
+            "x": 850.0,
+            "y": 535.0
           },
           {
-            "x": 860.0,
-            "y": 505.0
+            "x": 970.0,
+            "y": 535.0
           },
           {
-            "x": 860.0,
-            "y": 415.0
+            "x": 970.0,
+            "y": 445.0
           }
         ]
       },
@@ -2617,12 +2645,37 @@
         "name": "unnamedWire#162",
         "path": [
           {
-            "x": 215.0,
-            "y": 610.0
+            "x": 325.0,
+            "y": 640.0
           },
           {
-            "x": 270.0,
-            "y": 610.0
+            "x": 380.0,
+            "y": 640.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2910#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Am2900MicroInstructionMemory#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#163",
+        "path": [
+          {
+            "x": 440.0,
+            "y": 565.0
+          },
+          {
+            "x": 205.0,
+            "y": 565.0
+          },
+          {
+            "x": 205.0,
+            "y": 595.0
           }
         ]
       },
@@ -2638,20 +2691,20 @@
         "name": "unnamedWire#164",
         "path": [
           {
-            "x": 525.0,
-            "y": 750.0
+            "x": 635.0,
+            "y": 780.0
           },
           {
-            "x": 395.0,
-            "y": 750.0
+            "x": 505.0,
+            "y": 780.0
           },
           {
-            "x": 395.0,
-            "y": 370.0
+            "x": 505.0,
+            "y": 400.0
           },
           {
-            "x": 445.0,
-            "y": 370.0
+            "x": 555.0,
+            "y": 400.0
           }
         ]
       },
@@ -2667,20 +2720,20 @@
         "name": "unnamedWire#165",
         "path": [
           {
-            "x": 535.0,
-            "y": 745.0
+            "x": 645.0,
+            "y": 775.0
           },
           {
-            "x": 390.0,
-            "y": 745.0
+            "x": 500.0,
+            "y": 775.0
           },
           {
-            "x": 390.0,
-            "y": 365.0
+            "x": 500.0,
+            "y": 395.0
           },
           {
-            "x": 485.0,
-            "y": 365.0
+            "x": 595.0,
+            "y": 395.0
           }
         ]
       },
@@ -2744,20 +2797,20 @@
         "name": "unnamedWire#17",
         "path": [
           {
-            "x": 985.0,
-            "y": 415.0
+            "x": 1095.0,
+            "y": 445.0
           },
           {
-            "x": 985.0,
-            "y": 510.0
+            "x": 1095.0,
+            "y": 540.0
           },
           {
-            "x": 745.0,
-            "y": 510.0
+            "x": 855.0,
+            "y": 540.0
           },
           {
-            "x": 745.0,
-            "y": 565.0
+            "x": 855.0,
+            "y": 595.0
           }
         ]
       },
@@ -2869,12 +2922,12 @@
         "name": "unnamedWire#178",
         "path": [
           {
-            "x": 645.0,
-            "y": 755.0
+            "x": 755.0,
+            "y": 785.0
           },
           {
-            "x": 490.0,
-            "y": 755.0
+            "x": 600.0,
+            "y": 785.0
           }
         ]
       },
@@ -2890,12 +2943,12 @@
         "name": "unnamedWire#179",
         "path": [
           {
-            "x": 560.0,
-            "y": 760.0
+            "x": 670.0,
+            "y": 790.0
           },
           {
-            "x": 595.0,
-            "y": 760.0
+            "x": 705.0,
+            "y": 790.0
           }
         ]
       },
@@ -2911,20 +2964,20 @@
         "name": "unnamedWire#18",
         "path": [
           {
-            "x": 835.0,
-            "y": 570.0
+            "x": 945.0,
+            "y": 600.0
           },
           {
-            "x": 835.0,
-            "y": 605.0
+            "x": 945.0,
+            "y": 635.0
           },
           {
-            "x": 405.0,
-            "y": 605.0
+            "x": 515.0,
+            "y": 635.0
           },
           {
-            "x": 405.0,
-            "y": 385.0
+            "x": 515.0,
+            "y": 415.0
           }
         ]
       },
@@ -2940,12 +2993,12 @@
         "name": "unnamedWire#180",
         "path": [
           {
-            "x": 555.0,
-            "y": 770.0
+            "x": 665.0,
+            "y": 800.0
           },
           {
-            "x": 590.0,
-            "y": 770.0
+            "x": 700.0,
+            "y": 800.0
           }
         ]
       },
@@ -3069,20 +3122,20 @@
         "name": "unnamedWire#19",
         "path": [
           {
-            "x": 990.0,
-            "y": 420.0
+            "x": 1100.0,
+            "y": 450.0
           },
           {
-            "x": 990.0,
-            "y": 620.0
+            "x": 1100.0,
+            "y": 650.0
           },
           {
-            "x": 420.0,
-            "y": 620.0
+            "x": 530.0,
+            "y": 650.0
           },
           {
-            "x": 420.0,
-            "y": 400.0
+            "x": 530.0,
+            "y": 430.0
           }
         ]
       },
@@ -3218,12 +3271,12 @@
         "name": "unnamedWire#2",
         "path": [
           {
-            "x": 720.0,
-            "y": 480.0
+            "x": 830.0,
+            "y": 510.0
           },
           {
-            "x": 720.0,
-            "y": 380.0
+            "x": 830.0,
+            "y": 410.0
           }
         ]
       },
@@ -3239,20 +3292,20 @@
         "name": "unnamedWire#20",
         "path": [
           {
-            "x": 1110.0,
-            "y": 490.0
+            "x": 1220.0,
+            "y": 520.0
           },
           {
-            "x": 1110.0,
-            "y": 610.0
+            "x": 1220.0,
+            "y": 640.0
           },
           {
-            "x": 410.0,
-            "y": 610.0
+            "x": 520.0,
+            "y": 640.0
           },
           {
-            "x": 410.0,
-            "y": 390.0
+            "x": 520.0,
+            "y": 420.0
           }
         ]
       },
@@ -3388,12 +3441,12 @@
         "name": "unnamedWire#21",
         "path": [
           {
-            "x": 730.0,
-            "y": 490.0
+            "x": 840.0,
+            "y": 520.0
           },
           {
-            "x": 730.0,
-            "y": 475.0
+            "x": 840.0,
+            "y": 505.0
           }
         ]
       },
@@ -3529,12 +3582,12 @@
         "name": "unnamedWire#22",
         "path": [
           {
-            "x": 855.0,
-            "y": 490.0
+            "x": 965.0,
+            "y": 520.0
           },
           {
-            "x": 855.0,
-            "y": 475.0
+            "x": 965.0,
+            "y": 505.0
           }
         ]
       },
@@ -3622,8 +3675,8 @@
         "name": "unnamedWire#226",
         "path": [
           {
-            "x": 570.0,
-            "y": 765.0
+            "x": 680.0,
+            "y": 795.0
           }
         ]
       },
@@ -3675,12 +3728,12 @@
         "name": "unnamedWire#23",
         "path": [
           {
-            "x": 980.0,
-            "y": 490.0
+            "x": 1090.0,
+            "y": 520.0
           },
           {
-            "x": 980.0,
-            "y": 475.0
+            "x": 1090.0,
+            "y": 505.0
           }
         ]
       },
@@ -3828,30 +3881,68 @@
         "name": "unnamedWire#240",
         "path": [
           {
-            "x": 610.0,
-            "y": 700.0
+            "x": 720.0,
+            "y": 730.0
           },
           {
-            "x": 435.0,
-            "y": 700.0
+            "x": 545.0,
+            "y": 730.0
           },
           {
-            "x": 435.0,
-            "y": 420.0
+            "x": 545.0,
+            "y": 450.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "@micro_instr",
-          "pinName": ""
+          "compName": "Am2900MainMemory#0",
+          "pinName": "RW"
         },
         "pin2": {
-          "compName": "dff80#0",
-          "pinName": "D"
+          "compName": "Splitter#16",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#241",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 100.0
+          },
+          {
+            "x": 215.0,
+            "y": 285.0
+          },
+          {
+            "x": 345.0,
+            "y": 285.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#11",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "Splitter#3",
+          "pinName": "I"
         },
         "name": "unnamedWire#242",
-        "path": []
+        "path": [
+          {
+            "x": 590.0,
+            "y": 150.0
+          },
+          {
+            "x": 590.0,
+            "y": 340.0
+          },
+          {
+            "x": 240.0,
+            "y": 335.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -4081,12 +4172,12 @@
         "name": "unnamedWire#26",
         "path": [
           {
-            "x": 980.0,
-            "y": 365.0
+            "x": 1090.0,
+            "y": 395.0
           },
           {
-            "x": 980.0,
-            "y": 465.0
+            "x": 1090.0,
+            "y": 495.0
           }
         ]
       },
@@ -4222,8 +4313,8 @@
         "name": "unnamedWire#27",
         "path": [
           {
-            "x": 855.0,
-            "y": 465.0
+            "x": 965.0,
+            "y": 495.0
           }
         ]
       },
@@ -4299,8 +4390,8 @@
         "name": "unnamedWire#275",
         "path": [
           {
-            "x": 860.0,
-            "y": 235.0
+            "x": 970.0,
+            "y": 265.0
           }
         ]
       },
@@ -4316,24 +4407,24 @@
         "name": "unnamedWire#276",
         "path": [
           {
-            "x": 795.0,
-            "y": 190.0
+            "x": 905.0,
+            "y": 220.0
           },
           {
-            "x": 795.0,
-            "y": 180.0
+            "x": 905.0,
+            "y": 210.0
           },
           {
-            "x": 1120.0,
-            "y": 180.0
+            "x": 1230.0,
+            "y": 210.0
           },
           {
-            "x": 1120.0,
-            "y": 730.0
+            "x": 1230.0,
+            "y": 760.0
           },
           {
-            "x": 975.0,
-            "y": 730.0
+            "x": 1085.0,
+            "y": 760.0
           }
         ]
       },
@@ -4349,24 +4440,24 @@
         "name": "unnamedWire#277",
         "path": [
           {
-            "x": 890.0,
-            "y": 710.0
+            "x": 1000.0,
+            "y": 740.0
           },
           {
-            "x": 1125.0,
-            "y": 710.0
+            "x": 1235.0,
+            "y": 740.0
           },
           {
-            "x": 1125.0,
-            "y": 175.0
+            "x": 1235.0,
+            "y": 205.0
           },
           {
-            "x": 790.0,
-            "y": 175.0
+            "x": 900.0,
+            "y": 205.0
           },
           {
-            "x": 790.0,
-            "y": 210.0
+            "x": 900.0,
+            "y": 240.0
           }
         ]
       },
@@ -4382,8 +4473,8 @@
         "name": "unnamedWire#278",
         "path": [
           {
-            "x": 860.0,
-            "y": 570.0
+            "x": 970.0,
+            "y": 600.0
           }
         ]
       },
@@ -4423,8 +4514,8 @@
         "name": "unnamedWire#280",
         "path": [
           {
-            "x": 875.0,
-            "y": 595.0
+            "x": 985.0,
+            "y": 625.0
           }
         ]
       },
@@ -4452,16 +4543,16 @@
         "name": "unnamedWire#282",
         "path": [
           {
-            "x": 310.0,
-            "y": 65.0
+            "x": 420.0,
+            "y": 95.0
           },
           {
-            "x": 135.0,
-            "y": 65.0
+            "x": 245.0,
+            "y": 95.0
           },
           {
-            "x": 135.0,
-            "y": 170.0
+            "x": 245.0,
+            "y": 200.0
           }
         ]
       },
@@ -4479,6 +4570,18 @@
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#33",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#34",
+          "pinName": ""
+        },
+        "name": "unnamedWire#284",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "WireCrossPoint#19",
           "pinName": ""
         },
@@ -4487,6 +4590,18 @@
           "pinName": ""
         },
         "name": "unnamedWire#285",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#34",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#35",
+          "pinName": ""
+        },
+        "name": "unnamedWire#286",
         "path": []
       },
       {
@@ -4501,8 +4616,8 @@
         "name": "unnamedWire#287",
         "path": [
           {
-            "x": 340.0,
-            "y": 100.0
+            "x": 450.0,
+            "y": 130.0
           }
         ]
       },
@@ -4518,8 +4633,8 @@
         "name": "unnamedWire#288",
         "path": [
           {
-            "x": 345.0,
-            "y": 125.0
+            "x": 455.0,
+            "y": 155.0
           }
         ]
       },
@@ -4535,8 +4650,8 @@
         "name": "unnamedWire#289",
         "path": [
           {
-            "x": 365.0,
-            "y": 170.0
+            "x": 475.0,
+            "y": 200.0
           }
         ]
       },
@@ -4552,8 +4667,8 @@
         "name": "unnamedWire#29",
         "path": [
           {
-            "x": 730.0,
-            "y": 465.0
+            "x": 840.0,
+            "y": 495.0
           }
         ]
       },
@@ -4581,18 +4696,71 @@
         "name": "unnamedWire#291",
         "path": [
           {
-            "x": 245.0,
-            "y": 255.0
+            "x": 355.0,
+            "y": 285.0
           },
           {
-            "x": 375.0,
-            "y": 255.0
+            "x": 485.0,
+            "y": 285.0
           },
           {
-            "x": 375.0,
-            "y": 155.0
+            "x": 485.0,
+            "y": 185.0
           }
         ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#35",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#292",
+        "path": [
+          {
+            "x": 315.0,
+            "y": 400.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#35",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#293",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#34",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#294",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#33",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#295",
+        "path": []
       },
       {
         "pin1": {
@@ -4632,6 +4800,18 @@
       },
       {
         "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O7"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O11"
+        },
+        "name": "unnamedWire#299",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "Am2901#1",
           "pinName": "Qn+3"
         },
@@ -4642,12 +4822,12 @@
         "name": "unnamedWire#3",
         "path": [
           {
-            "x": 850.0,
-            "y": 485.0
+            "x": 960.0,
+            "y": 515.0
           },
           {
-            "x": 850.0,
-            "y": 390.0
+            "x": 960.0,
+            "y": 420.0
           }
         ]
       },
@@ -4661,6 +4841,30 @@
           "pinName": ""
         },
         "name": "unnamedWire#30",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O6"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O10"
+        },
+        "name": "unnamedWire#300",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O5"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O9"
+        },
+        "name": "unnamedWire#301",
         "path": []
       },
       {
@@ -4771,8 +4975,8 @@
         "name": "unnamedWire#31",
         "path": [
           {
-            "x": 605.0,
-            "y": 465.0
+            "x": 715.0,
+            "y": 495.0
           }
         ]
       },
@@ -4788,24 +4992,24 @@
         "name": "unnamedWire#310",
         "path": [
           {
-            "x": 480.0,
-            "y": 185.0
+            "x": 600.0,
+            "y": 215.0
           },
           {
-            "x": 480.0,
-            "y": 305.0
+            "x": 600.0,
+            "y": 335.0
           },
           {
-            "x": 580.0,
-            "y": 305.0
+            "x": 690.0,
+            "y": 335.0
           },
           {
-            "x": 580.0,
-            "y": 645.0
+            "x": 690.0,
+            "y": 675.0
           },
           {
-            "x": 700.0,
-            "y": 645.0
+            "x": 810.0,
+            "y": 675.0
           }
         ]
       },
@@ -4821,32 +5025,32 @@
         "name": "unnamedWire#311",
         "path": [
           {
-            "x": 650.0,
-            "y": 755.0
+            "x": 760.0,
+            "y": 785.0
           },
           {
-            "x": 690.0,
-            "y": 755.0
+            "x": 800.0,
+            "y": 785.0
           },
           {
-            "x": 690.0,
-            "y": 655.0
+            "x": 800.0,
+            "y": 685.0
           },
           {
-            "x": 590.0,
-            "y": 655.0
+            "x": 700.0,
+            "y": 685.0
           },
           {
-            "x": 590.0,
-            "y": 315.0
+            "x": 700.0,
+            "y": 345.0
           },
           {
-            "x": 490.0,
-            "y": 315.0
+            "x": 610.0,
+            "y": 345.0
           },
           {
-            "x": 490.0,
-            "y": 280.0
+            "x": 610.0,
+            "y": 310.0
           }
         ]
       },
@@ -4862,32 +5066,32 @@
         "name": "unnamedWire#312",
         "path": [
           {
-            "x": 485.0,
-            "y": 120.0
+            "x": 605.0,
+            "y": 150.0
           },
           {
-            "x": 485.0,
-            "y": 310.0
-          },
-          {
-            "x": 585.0,
-            "y": 310.0
-          },
-          {
-            "x": 585.0,
-            "y": 650.0
+            "x": 605.0,
+            "y": 340.0
           },
           {
             "x": 695.0,
-            "y": 650.0
+            "y": 340.0
           },
           {
             "x": 695.0,
-            "y": 770.0
+            "y": 680.0
           },
           {
-            "x": 675.0,
-            "y": 770.0
+            "x": 805.0,
+            "y": 680.0
+          },
+          {
+            "x": 805.0,
+            "y": 800.0
+          },
+          {
+            "x": 785.0,
+            "y": 800.0
           }
         ]
       },
@@ -4903,32 +5107,32 @@
         "name": "unnamedWire#313",
         "path": [
           {
-            "x": 495.0,
-            "y": 215.0
+            "x": 615.0,
+            "y": 245.0
           },
           {
-            "x": 495.0,
-            "y": 320.0
+            "x": 615.0,
+            "y": 350.0
           },
           {
-            "x": 595.0,
-            "y": 320.0
+            "x": 705.0,
+            "y": 350.0
           },
           {
-            "x": 595.0,
-            "y": 660.0
+            "x": 705.0,
+            "y": 690.0
           },
           {
-            "x": 685.0,
-            "y": 660.0
+            "x": 795.0,
+            "y": 690.0
           },
           {
-            "x": 685.0,
-            "y": 760.0
+            "x": 795.0,
+            "y": 790.0
           },
           {
-            "x": 625.0,
-            "y": 760.0
+            "x": 735.0,
+            "y": 790.0
           }
         ]
       },
@@ -4944,12 +5148,12 @@
         "name": "unnamedWire#314",
         "path": [
           {
-            "x": 710.0,
-            "y": 705.0
+            "x": 820.0,
+            "y": 735.0
           },
           {
-            "x": 765.0,
-            "y": 705.0
+            "x": 875.0,
+            "y": 735.0
           }
         ]
       },
@@ -4989,8 +5193,8 @@
         "name": "unnamedWire#317",
         "path": [
           {
-            "x": 710.0,
-            "y": 450.0
+            "x": 820.0,
+            "y": 480.0
           }
         ]
       },
@@ -5006,8 +5210,8 @@
         "name": "unnamedWire#318",
         "path": [
           {
-            "x": 835.0,
-            "y": 450.0
+            "x": 945.0,
+            "y": 480.0
           }
         ]
       },
@@ -5023,8 +5227,8 @@
         "name": "unnamedWire#319",
         "path": [
           {
-            "x": 960.0,
-            "y": 450.0
+            "x": 1070.0,
+            "y": 480.0
           }
         ]
       },
@@ -5040,8 +5244,8 @@
         "name": "unnamedWire#32",
         "path": [
           {
-            "x": 605.0,
-            "y": 335.0
+            "x": 715.0,
+            "y": 365.0
           }
         ]
       },
@@ -5057,12 +5261,12 @@
         "name": "unnamedWire#320",
         "path": [
           {
-            "x": 1095.0,
-            "y": 500.0
+            "x": 1205.0,
+            "y": 530.0
           },
           {
-            "x": 1095.0,
-            "y": 450.0
+            "x": 1205.0,
+            "y": 480.0
           }
         ]
       },
@@ -5078,12 +5282,12 @@
         "name": "unnamedWire#321",
         "path": [
           {
-            "x": 800.0,
-            "y": 515.0
+            "x": 910.0,
+            "y": 545.0
           },
           {
-            "x": 1075.0,
-            "y": 515.0
+            "x": 1185.0,
+            "y": 545.0
           }
         ]
       },
@@ -5099,12 +5303,12 @@
         "name": "unnamedWire#322",
         "path": [
           {
-            "x": 840.0,
-            "y": 520.0
+            "x": 950.0,
+            "y": 550.0
           },
           {
-            "x": 940.0,
-            "y": 520.0
+            "x": 1050.0,
+            "y": 550.0
           }
         ]
       },
@@ -5120,12 +5324,12 @@
         "name": "unnamedWire#323",
         "path": [
           {
-            "x": 880.0,
-            "y": 525.0
+            "x": 990.0,
+            "y": 555.0
           },
           {
-            "x": 815.0,
-            "y": 525.0
+            "x": 925.0,
+            "y": 555.0
           }
         ]
       },
@@ -5141,12 +5345,12 @@
         "name": "unnamedWire#324",
         "path": [
           {
-            "x": 690.0,
-            "y": 530.0
+            "x": 800.0,
+            "y": 560.0
           },
           {
-            "x": 920.0,
-            "y": 530.0
+            "x": 1030.0,
+            "y": 560.0
           }
         ]
       },
@@ -5162,12 +5366,12 @@
         "name": "unnamedWire#325",
         "path": [
           {
-            "x": 675.0,
-            "y": 345.0
+            "x": 785.0,
+            "y": 375.0
           },
           {
-            "x": 920.0,
-            "y": 345.0
+            "x": 1030.0,
+            "y": 375.0
           }
         ]
       },
@@ -5183,12 +5387,12 @@
         "name": "unnamedWire#326",
         "path": [
           {
-            "x": 880.0,
-            "y": 340.0
+            "x": 990.0,
+            "y": 370.0
           },
           {
-            "x": 800.0,
-            "y": 340.0
+            "x": 910.0,
+            "y": 370.0
           }
         ]
       },
@@ -5204,12 +5408,12 @@
         "name": "unnamedWire#327",
         "path": [
           {
-            "x": 840.0,
-            "y": 335.0
+            "x": 950.0,
+            "y": 365.0
           },
           {
-            "x": 925.0,
-            "y": 335.0
+            "x": 1035.0,
+            "y": 365.0
           }
         ]
       },
@@ -5225,12 +5429,12 @@
         "name": "unnamedWire#328",
         "path": [
           {
-            "x": 800.0,
-            "y": 330.0
+            "x": 910.0,
+            "y": 360.0
           },
           {
-            "x": 1060.0,
-            "y": 330.0
+            "x": 1170.0,
+            "y": 360.0
           }
         ]
       },
@@ -5258,12 +5462,12 @@
         "name": "unnamedWire#33",
         "path": [
           {
-            "x": 565.0,
-            "y": 475.0
+            "x": 675.0,
+            "y": 505.0
           },
           {
-            "x": 565.0,
-            "y": 460.0
+            "x": 675.0,
+            "y": 490.0
           }
         ]
       },
@@ -5279,10 +5483,22 @@
         "name": "unnamedWire#330",
         "path": [
           {
-            "x": 140.0,
-            "y": 105.0
+            "x": 250.0,
+            "y": 135.0
           }
         ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O4"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O8"
+        },
+        "name": "unnamedWire#331",
+        "path": []
       },
       {
         "pin1": {
@@ -5346,24 +5562,15 @@
       },
       {
         "pin1": {
-          "compName": "BitDisplay#3",
-          "pinName": ""
+          "compName": "Splitter#3",
+          "pinName": "O3"
         },
         "pin2": {
-          "compName": "Am2910#0",
-          "pinName": "Y"
+          "compName": "Splitter#4",
+          "pinName": "O7"
         },
         "name": "unnamedWire#337",
-        "path": [
-          {
-            "x": 175.0,
-            "y": 535.0
-          },
-          {
-            "x": 330.0,
-            "y": 535.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -5401,8 +5608,61 @@
         "name": "unnamedWire#34",
         "path": [
           {
-            "x": 335.0,
-            "y": 335.0981951658187
+            "x": 445.0,
+            "y": 365.0981951658187
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O6"
+        },
+        "name": "unnamedWire#340",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O5"
+        },
+        "name": "unnamedWire#341",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O4"
+        },
+        "name": "unnamedWire#342",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#4",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "mux1_12#0",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#343",
+        "path": [
+          {
+            "x": 260.0,
+            "y": 440.0
           }
         ]
       },
@@ -5418,8 +5678,8 @@
         "name": "unnamedWire#35",
         "path": [
           {
-            "x": 550.0,
-            "y": 360.0
+            "x": 660.0,
+            "y": 390.0
           }
         ]
       },
@@ -5447,12 +5707,12 @@
         "name": "unnamedWire#37",
         "path": [
           {
-            "x": 370.0,
-            "y": 510.0
+            "x": 480.0,
+            "y": 540.0
           },
           {
-            "x": 370.0,
-            "y": 540.0
+            "x": 480.0,
+            "y": 570.0
           }
         ]
       },
@@ -5468,8 +5728,8 @@
         "name": "unnamedWire#38",
         "path": [
           {
-            "x": 335.0,
-            "y": 550.0
+            "x": 445.0,
+            "y": 580.0
           }
         ]
       },
@@ -5497,12 +5757,12 @@
         "name": "unnamedWire#4",
         "path": [
           {
-            "x": 845.0,
-            "y": 380.0
+            "x": 955.0,
+            "y": 410.0
           },
           {
-            "x": 845.0,
-            "y": 480.0
+            "x": 955.0,
+            "y": 510.0
           }
         ]
       },
@@ -5518,8 +5778,8 @@
         "name": "unnamedWire#40",
         "path": [
           {
-            "x": 450.0,
-            "y": 350.0
+            "x": 560.0,
+            "y": 380.0
           }
         ]
       },
@@ -5547,8 +5807,8 @@
         "name": "unnamedWire#42",
         "path": [
           {
-            "x": 465.0,
-            "y": 370.0
+            "x": 575.0,
+            "y": 400.0
           }
         ]
       },
@@ -5648,12 +5908,12 @@
         "name": "unnamedWire#5",
         "path": [
           {
-            "x": 970.0,
-            "y": 380.0
+            "x": 1080.0,
+            "y": 410.0
           },
           {
-            "x": 970.0,
-            "y": 480.0
+            "x": 1080.0,
+            "y": 510.0
           }
         ]
       },
@@ -5717,8 +5977,8 @@
         "name": "unnamedWire#54",
         "path": [
           {
-            "x": 460.0,
-            "y": 250.0
+            "x": 570.0,
+            "y": 280.0
           }
         ]
       },
@@ -5734,8 +5994,8 @@
         "name": "unnamedWire#55",
         "path": [
           {
-            "x": 460.0,
-            "y": 165.0
+            "x": 570.0,
+            "y": 195.0
           }
         ]
       },
@@ -5799,12 +6059,12 @@
         "name": "unnamedWire#6",
         "path": [
           {
-            "x": 975.0,
-            "y": 485.0
+            "x": 1085.0,
+            "y": 515.0
           },
           {
-            "x": 975.0,
-            "y": 390.0
+            "x": 1085.0,
+            "y": 420.0
           }
         ]
       },
@@ -5940,12 +6200,12 @@
         "name": "unnamedWire#7",
         "path": [
           {
-            "x": 575.0,
-            "y": 390.0
+            "x": 685.0,
+            "y": 420.0
           },
           {
-            "x": 575.0,
-            "y": 500.0
+            "x": 685.0,
+            "y": 530.0
           }
         ]
       },
@@ -5973,12 +6233,12 @@
         "name": "unnamedWire#71",
         "path": [
           {
-            "x": 490.0,
-            "y": 220.0
+            "x": 610.0,
+            "y": 250.0
           },
           {
-            "x": 490.0,
-            "y": 240.0
+            "x": 610.0,
+            "y": 270.0
           }
         ]
       },
@@ -5994,12 +6254,12 @@
         "name": "unnamedWire#72",
         "path": [
           {
-            "x": 480.0,
-            "y": 180.0
+            "x": 610.0,
+            "y": 210.0
           },
           {
-            "x": 480.0,
-            "y": 145.0
+            "x": 610.0,
+            "y": 175.0
           }
         ]
       },
@@ -6099,12 +6359,12 @@
         "name": "unnamedWire#8",
         "path": [
           {
-            "x": 570.0,
-            "y": 495.0
+            "x": 680.0,
+            "y": 525.0
           },
           {
-            "x": 570.0,
-            "y": 380.0
+            "x": 680.0,
+            "y": 410.0
           }
         ]
       },
@@ -6132,8 +6392,8 @@
         "name": "unnamedWire#81",
         "path": [
           {
-            "x": 710.0,
-            "y": 385.0
+            "x": 820.0,
+            "y": 415.0
           }
         ]
       },
@@ -6149,8 +6409,8 @@
         "name": "unnamedWire#82",
         "path": [
           {
-            "x": 715.0,
-            "y": 405.0
+            "x": 825.0,
+            "y": 435.0
           }
         ]
       },
@@ -6166,8 +6426,8 @@
         "name": "unnamedWire#83",
         "path": [
           {
-            "x": 835.0,
-            "y": 385.0
+            "x": 945.0,
+            "y": 415.0
           }
         ]
       },
@@ -6183,8 +6443,8 @@
         "name": "unnamedWire#84",
         "path": [
           {
-            "x": 840.0,
-            "y": 405.0
+            "x": 950.0,
+            "y": 435.0
           }
         ]
       },
@@ -6200,8 +6460,8 @@
         "name": "unnamedWire#85",
         "path": [
           {
-            "x": 960.0,
-            "y": 385.0
+            "x": 1070.0,
+            "y": 415.0
           }
         ]
       },
@@ -6217,8 +6477,8 @@
         "name": "unnamedWire#86",
         "path": [
           {
-            "x": 965.0,
-            "y": 405.0
+            "x": 1075.0,
+            "y": 435.0
           }
         ]
       },
@@ -6234,12 +6494,12 @@
         "name": "unnamedWire#87",
         "path": [
           {
-            "x": 1095.0,
-            "y": 355.0
+            "x": 1205.0,
+            "y": 385.0
           },
           {
-            "x": 1095.0,
-            "y": 385.0
+            "x": 1205.0,
+            "y": 415.0
           }
         ]
       },
@@ -6255,12 +6515,12 @@
         "name": "unnamedWire#88",
         "path": [
           {
-            "x": 1100.0,
-            "y": 405.0
+            "x": 1210.0,
+            "y": 435.0
           },
           {
-            "x": 1100.0,
-            "y": 360.0
+            "x": 1210.0,
+            "y": 390.0
           }
         ]
       },
@@ -6288,20 +6548,20 @@
         "name": "unnamedWire#9",
         "path": [
           {
-            "x": 425.0,
-            "y": 495.0
+            "x": 535.0,
+            "y": 525.0
           },
           {
-            "x": 425.0,
-            "y": 625.0
+            "x": 535.0,
+            "y": 655.0
           },
           {
-            "x": 1100.0,
-            "y": 625.0
+            "x": 1210.0,
+            "y": 655.0
           },
           {
-            "x": 1100.0,
-            "y": 480.0
+            "x": 1210.0,
+            "y": 510.0
           }
         ]
       },
@@ -6317,12 +6577,12 @@
         "name": "unnamedWire#90",
         "path": [
           {
-            "x": 1135.0,
-            "y": 30.0
+            "x": 1245.0,
+            "y": 60.0
           },
           {
-            "x": 1135.0,
-            "y": 595.0
+            "x": 1245.0,
+            "y": 625.0
           }
         ]
       },
@@ -6338,8 +6598,8 @@
         "name": "unnamedWire#91",
         "path": [
           {
-            "x": 785.0,
-            "y": 275.0
+            "x": 895.0,
+            "y": 305.0
           }
         ]
       },
@@ -6355,12 +6615,12 @@
         "name": "unnamedWire#92",
         "path": [
           {
-            "x": 1130.0,
-            "y": 15.0
+            "x": 1240.0,
+            "y": 45.0
           },
           {
-            "x": 1130.0,
-            "y": 570.0
+            "x": 1240.0,
+            "y": 600.0
           }
         ]
       },
@@ -6388,16 +6648,16 @@
         "name": "unnamedWire#94",
         "path": [
           {
-            "x": 135.0,
-            "y": 240.0
+            "x": 245.0,
+            "y": 270.0
           },
           {
-            "x": 255.0,
-            "y": 240.0
+            "x": 365.0,
+            "y": 270.0
           },
           {
-            "x": 255.0,
-            "y": 80.0
+            "x": 365.0,
+            "y": 110.0
           }
         ]
       },
