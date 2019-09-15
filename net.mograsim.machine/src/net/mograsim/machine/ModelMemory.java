@@ -9,10 +9,11 @@ import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer
 import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer.SimpleRectangularLikeParams;
 
-public abstract class ModelMemory extends ModelComponent
+public abstract class ModelMemory<M extends Machine> extends ModelComponent
 {
 	private Renderer symbolRenderer;
 	private Renderer outlineRenderer;
+	private M machine;
 
 	protected ModelMemory(LogicModelModifiable model, int width, int height, String name, String centerText, boolean callInit)
 	{
@@ -38,5 +39,15 @@ public abstract class ModelMemory extends ModelComponent
 	{
 		symbolRenderer.render(gc, visibleRegion);
 		outlineRenderer.render(gc, visibleRegion);
+	}
+
+	public void setMachine(M machine)
+	{
+		this.machine = machine;
+	}
+
+	public M getMachine()
+	{
+		return machine;
 	}
 }

@@ -1,5 +1,6 @@
 package net.mograsim.logic.model.am2900.components;
 
+import net.mograsim.logic.model.am2900.machine.Am2900Machine;
 import net.mograsim.logic.model.am2900.machine.Am2900MachineDefinition;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
@@ -7,7 +8,7 @@ import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.mi.components.ModelMicroInstructionMemory;
 
-public class ModelAm2900MicroInstructionMemory extends ModelMicroInstructionMemory
+public class ModelAm2900MicroInstructionMemory extends ModelMicroInstructionMemory<Am2900Machine>
 {
 	public ModelAm2900MicroInstructionMemory(LogicModelModifiable model, String name)
 	{

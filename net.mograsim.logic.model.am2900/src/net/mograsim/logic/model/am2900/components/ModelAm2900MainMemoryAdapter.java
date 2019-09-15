@@ -10,7 +10,6 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.componentadapters.ComponentAdapter;
 import net.mograsim.machine.standard.memory.CoreWordAddressableMemory;
-import net.mograsim.machine.standard.memory.WordAddressableMemory;
 
 public class ModelAm2900MainMemoryAdapter implements ComponentAdapter<ModelAm2900MainMemory>
 {
@@ -28,8 +27,8 @@ public class ModelAm2900MainMemoryAdapter implements ComponentAdapter<ModelAm290
 		ReadWriteEnd data = logicWiresPerPin.get(modelComponent.getDataPin()).createReadWriteEnd();
 		ReadEnd address = logicWiresPerPin.get(modelComponent.getAddressPin()).createReadOnlyEnd();
 		ReadEnd mode = logicWiresPerPin.get(modelComponent.getReadWritePin()).createReadOnlyEnd();
-		CoreWordAddressableMemory mem = new CoreWordAddressableMemory(timeline, 2,
-				new WordAddressableMemory(modelComponent.getDefinition()), data, mode, address);
+		CoreWordAddressableMemory mem = new CoreWordAddressableMemory(timeline, 2, modelComponent.getMachine().getMainMemory(), data, mode,
+				address);
 		modelComponent.setCoreModelBinding(mem);
 	}
 }
