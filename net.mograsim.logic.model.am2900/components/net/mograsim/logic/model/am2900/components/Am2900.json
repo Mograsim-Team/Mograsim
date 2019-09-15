@@ -1325,7 +1325,7 @@
       },
       {
         "id": "dff80",
-        "name": "dff80#0",
+        "name": "@dff80#0",
         "pos": {
           "x": 290.0,
           "y": 675.0
@@ -1511,7 +1511,7 @@
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "dff80#0",
+          "compName": "@dff80#0",
           "pinName": "C"
         },
         "name": "unnamedWire#101",
@@ -2210,7 +2210,7 @@
       },
       {
         "pin1": {
-          "compName": "dff80#0",
+          "compName": "@dff80#0",
           "pinName": "Q"
         },
         "pin2": {
@@ -2565,7 +2565,7 @@
           "pinName": "D"
         },
         "pin2": {
-          "compName": "dff80#0",
+          "compName": "@dff80#0",
           "pinName": "D"
         },
         "name": "unnamedWire#159",
