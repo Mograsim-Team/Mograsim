@@ -14,40 +14,63 @@ import net.mograsim.machine.mi.parameters.ParameterClassification;
 
 public class Am2900MicroInstructionDefinition implements MicroInstructionDefinition
 {
-	private final static MnemonicFamily am2910Instructions = new MnemonicFamily(true, "JZ", "JZ", "CJS", "JMAP", "PUSH", "JSRP", "CJV",
+	private static final BooleanClassification interruptEnable = new BooleanClassification(false, "IE", "Dis");
+	// not implemented, because not documented.
+	private static final MnemonicFamily interruptInstructions = new MnemonicFamily("X", new MnemonicPair("X", BitVector.of(Bit.ZERO, 4)));
+	private static final BooleanClassification kmux = new BooleanClassification(false, "D", "K");
+	private static final MnemonicFamily am2901SrcInstructions = new MnemonicFamily("AB", "AQ", "AB", "ZQ", "ZB", "ZA", "DA", "DQ", "DZ");
+	private static final MnemonicFamily am2901FuncInstructions = new MnemonicFamily("ADD", "ADD", "SUBR", "SUBS", "OR", "AND", "NOTRS",
+			"EXOR", "EXNOR");
+	private static final MnemonicFamily am2901DestInstructions = new MnemonicFamily("NOP", "QREG", "NOP", "RAMA", "RAMF", "RAMQD", "RAMD",
+			"RAMQU", "RAMU");
+	private static final IntegerClassification register = new IntegerClassification(0, 4);
+	private static final BooleanClassification registerSelect = new BooleanClassification(false, "MR", "IR");
+	private static final BooleanClassification abus = new BooleanClassification(true, "H", "AB");
+	private static final BooleanClassification dbus = new BooleanClassification(true, "H", "DB");
+	private static final MnemonicFamily am2904CarryInstructions = new MnemonicFamily("CI0", "CI0", "CI1", "CIX", "CIC");
+	private static final MnemonicFamily am2904ShiftInstructions = new MnemonicFamily("RSL / LSLCO", "RSL / LSLCO", "RSH / LSHCO",
+			"RSCONI / LSL", "RSDH / LSH", "RSDC / LSDLCO", "RSDN / LSDHCO", "RSDL / LSDL", "RSDCO / LSDH", "RSRCO / LSCRO",
+			"RSRCIO / LSCRIO", "RSR / LSR", "RSDIC / LSLICI", "RSDRCI / LSDCIO", "RSDRCO / LSDRCO", "RSDXOR / LSDCI", "RSDR / LDSR");
+//	private static final MnemonicFamily am2904StatusInstructions = new MnemonicFamily(
+//			new String[] { "MI_Zero", "MI_NotZero", "MI_UGTEQ", "MI_ULT", "MI_UGT", "MI_ULTEQ", "MI_SGTEQ", "MI_SLT", "MI_SGT", "MI_SLTEQ",
+//					"MA_Zero", "MA_NotZero", "MA_UGTEQ", "MA_ULT", "MA_UGT", "MA_ULTEQ", "MA_SGTEQ", "MA_SLT", "MA_SGT", "MA_SLTEQ" },
+//			new long[] { 0b01_0101, 0b01_0100, 0b01_1101, 0b01_1100, 0b01_1110, 0b01_1111, 0b01_0010, 0b01_0011, 0b01_0000, 0b01_0001,
+//					0b10_0101, 0b10_0100, 0b10_1101, 0b10_1100, 0b10_1110, 0b10_1111, 0b10_0010, 0b10_0011, 0b10_0000, 0b10_0001 },
+//			6);
+	// TODO: Maybe "X" and "notX" are swapped.
+	private static final MnemonicFamily am2904StatusInstructions = new MnemonicFamily("Load_Load_I_Z", "LoadM_LoadY_µ_NxorOVRorZ",
+			"Set_Set_µ_NxnorOVRornotZ", "Swap_Swap_µ_NxorOVR", "Reset_Reset_µ_NxnorOVR", "Load_LoadForShiftThroughOvr_µ_Z",
+			"Load_Invert_µ_notZ", "LoadOvrRetain_Load_µ_OVR", "LoadOvrRetain_Load_µ_notOVR", "ResetZ_LoadCarryInvert_µ_CorZ",
+			"SetZ_LoadCarryInvert_µ_notCandnotZ", "ResetC_Load_µ_C", "SetC_Load_µ_notC", "ResetN_Load_µ_notCorZ", "SetN_Load_µ_CandnotZ",
+			"ResetOvr_Load_IM_NxorN", "SetOvr_Load_IM_NxnorN", "Load_Load_µ_NxorOVRorZ", "Load_Load_µ_NxnorOVRornotZ",
+			"Load_Load_µ_NxorOVR", "Load_Load_µ_NxnorOVR", "Load_Load_µ_Z", "Load_Load_µ_notZ", "Load_Load_µ_OVR", "Load_Load_µ_notOVR",
+			"LoadCarryInvert_LoadCarryInvert_µ_CorZ", "LoadCarryInvert_LoadCarryInvert_µ_notCandnotZ", "Load_Load_µ_C", "Load_Load_µ_notC",
+			"Load_Load_µ_notCorZ", "Load_Load_µ_CandnotZ", "Load_Load_µ_N", "Load_Load_µ_notN", "Load_Load_M_NxorOVRorZ",
+			"Load_Load_M_NxnorOVRornotZ", "Load_Load_M_NxorOVR", "Load_Load_M_NxnorOVR", "Load_Load_M_Z", "Load_Load_M_notZ",
+			"Load_Load_M_OVR", "Load_Load_M_notOVR", "LoadCarryInvert_LoadCarryInvert_M_CorZ",
+			"LoadCarryInvert_LoadCarryInvert_M_notCandnotZ", "Load_Load_M_C", "Load_Load_M_notC", "Load_Load_M_notCorZ",
+			"Load_Load_M_CandnotZ", "Load_Load_M_N", "Load_Load_M_notN", "Load_Load_I_NxorOVRorZ", "Load_Load_I_NxnorOVRornotZ",
+			"Load_Load_I_NxorOVR", "Load_Load_I_NxnorOVR", "Load_Load_I_Z", "Load_Load_I_notZ", "Load_Load_I_OVR", "Load_Load_I_notOVR",
+			"LoadCarryInvert_LoadCarryInvert_I_notCorZ", "LoadCarryInvert_LoadCarryInvert_I_CandnotZ", "Load_Load_I_C", "Load_Load_I_notC",
+			"Load_Load_I_notCorZ", "Load_Load_I_CandnotZ", "Load_Load_I_N", "Load_Load_I_notN");
+	private static final BooleanClassification ccen = new BooleanClassification(true, "PS", "C");
+	private static final MnemonicFamily am2910Instructions = new MnemonicFamily("CONT", "JZ", "CJS", "JMAP", "CJP", "PUSH", "JSRP", "CJV",
 			"JRP", "RFCT", "RPCT", "CRTN", "CJPP", "LDCT", "LOOP", "CONT", "TWB");
-	private final static MnemonicFamily am2904StatusInstructions = new MnemonicFamily(true, "MI_Zero",
-			new String[] { "MI_Zero", "MI_NotZero", "MI_UGTEQ", "MI_ULT", "MI_UGT", "MI_ULTEQ", "MI_SGTEQ", "MI_SLT", "MI_SGT", "MI_SLTEQ",
-					"MA_Zero", "MA_NotZero", "MA_UGTEQ", "MA_ULT", "MA_UGT", "MA_ULTEQ", "MA_SGTEQ", "MA_SLT", "MA_SGT", "MA_SLTEQ" },
-			new long[] { 0b01_0101, 0b01_0100, 0b01_1101, 0b01_1100, 0b01_1110, 0b01_1111, 0b01_0010, 0b01_0011, 0b01_0000, 0b01_0001,
-					0b10_0101, 0b10_0100, 0b10_1101, 0b10_1100, 0b10_1110, 0b10_1111, 0b10_0010, 0b10_0011, 0b10_0000, 0b10_0001 },
-			6);
-	private final static MnemonicFamily am2904ShiftInstructions = new MnemonicFamily(true, "SL", "SL", "SH", "SCONI", "SDH", "SDC", "SDN",
-			"SDL", "SDCO", "SRCO", "SRCIO", "SR", "SDIC", "SDRCI", "SDRCO", "SDXOR", "SDR");
-	private final static MnemonicFamily am2904CarryInstructions = new MnemonicFamily(true, "CI0",
-			new String[] { "CI0", "CI1", "CIX", "CIC" }, new long[] { 0b00, 0b01, 0b10, 0b11 }, 2);
-	private final static MnemonicFamily am2901DestInstructions = new MnemonicFamily(true, "NOP", "QREG", "NOP", "RAMA", "RAMF", "RAMQD",
-			"RAMD", "RAMQU", "RAMU");
-	private final static MnemonicFamily am2901FuncInstructions = new MnemonicFamily(true, "ADD", "ADD", "SUBR", "SUBS", "OR", "AND",
-			"NOTRS", "EXOR", "EXNOR");
-	private final static MnemonicFamily am2901SrcInstructions = new MnemonicFamily(true, "AB", "AQ", "AB", "ZQ", "ZB", "ZA", "DA", "DQ",
-			"DZ");
-	private final static MnemonicFamily interruptInstructions = new MnemonicFamily("X",
-			new MnemonicPair("X", BitVector.of(Bit.ZERO, 4))/* TODO */);
-	private final static BooleanClassification hL = new BooleanClassification(true, "H", "L");
-	private final static BooleanClassification registerSelect = new BooleanClassification(false, "MR", "IR");
-	private final static IntegerClassification register = new IntegerClassification(0, 4);
 
-	private final static ParameterClassification[] classes = { new BooleanClassification(true, "Dis", "IE"),
-			new IntegerClassification(0, 16), new BooleanClassification(false, "D", "K"), interruptInstructions,
-			new BooleanClassification(true, "H", "AB"), registerSelect, register, registerSelect, register, am2901DestInstructions,
-			am2901FuncInstructions, am2901SrcInstructions, new IntegerClassification(0, 12), am2910Instructions,
-			new BooleanClassification(true, "PS", "C"), am2904StatusInstructions, hL, hL, am2904ShiftInstructions, am2904CarryInstructions,
-			new BooleanClassification(true, "H", "DB"), new BooleanClassification(true, "H", "E"), hL,
-			new BooleanClassification(true, "H", "E"), new BooleanClassification(true, "H", "I"), new BooleanClassification(true, "R", "W"),
-			hL };
+	private static final IntegerClassification constant_12bit = new IntegerClassification(0, 12);
+	private static final IntegerClassification constant_16bit = new IntegerClassification(0, 16);
+	private static final BooleanClassification hE = new BooleanClassification(true, "H", "E");
+	private static final BooleanClassification hI = new BooleanClassification(true, "H", "I");
+	private static final BooleanClassification hL = new BooleanClassification(true, "H", "L");
+	private static final BooleanClassification hLDefaultL = new BooleanClassification(false, "H", "L");
+	private static final BooleanClassification rW = new BooleanClassification(true, "R", "W");
 
-	private final static String[] paramDesc = { "Allow interrupts?", "Interrupt instructions; omitted for simplicity",
+	private static final ParameterClassification[] classes = { interruptEnable, interruptInstructions, kmux, constant_16bit,
+			am2901SrcInstructions, am2901FuncInstructions, am2901DestInstructions, register, registerSelect, register, registerSelect, abus,
+			dbus, am2904CarryInstructions, am2904ShiftInstructions, hLDefaultL, hLDefaultL, am2904StatusInstructions, ccen,
+			am2910Instructions, constant_12bit, hL, hE, hI, hE, hL, rW };
+
+	private static final String[] paramDesc = { "Allow interrupts?", "Interrupt instructions; omitted for simplicity",
 			"Get D-input from data bus/constant value", "Constant value", "Operand sources for ALU operation", "ALU operation",
 			"Destination of ALU calculation", "Register for A-operand", "Get A-operand from instruction register/micro instruction?",
 			"Register for B-operand", "Get B-operand from instruction register/micro instruction?",
