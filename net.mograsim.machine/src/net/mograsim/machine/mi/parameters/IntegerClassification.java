@@ -7,7 +7,7 @@ import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterTyp
 public class IntegerClassification implements ParameterClassification
 {
 	private final int bits;
-	
+
 	public IntegerClassification(int bits)
 	{
 		this.bits = bits;
@@ -24,7 +24,7 @@ public class IntegerClassification implements ParameterClassification
 	{
 		return bits;
 	}
-	
+
 	@Override
 	public IntegerImmediate parse(String toParse)
 	{

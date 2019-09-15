@@ -13,12 +13,12 @@ public class UnknownMnemonicException extends MachineException
 	{
 		super();
 	}
-	
+
 	public UnknownMnemonicException(String message)
 	{
 		super(message);
 	}
-	
+
 	public UnknownMnemonicException(Throwable cause)
 	{
 		super(cause);

@@ -8,7 +8,7 @@ public final class Mnemonic implements MicroInstructionParameter
 	private final BitVector vector;
 	final MnemonicFamily owner;
 	private final int ordinal;
-	
+
 	Mnemonic(String text, BitVector vector, MnemonicFamily owner, int ordinal)
 	{
 		super();
@@ -50,12 +50,12 @@ public final class Mnemonic implements MicroInstructionParameter
 	{
 		return owner.getExpectedType();
 	}
-	
+
 	public int ordinal()
 	{
 		return ordinal;
 	}
-	
+
 	@Override
 	public String toString()
 	{

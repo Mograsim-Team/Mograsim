@@ -16,14 +16,14 @@ public abstract class ModelWordAddressableMemory extends ModelMemory
 	{
 		super(model, 120, 150, name, "RAM", false);
 		this.definition = definition;
-		
+
 		addPin(addrPin = new Pin(model, this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, getWidth(), 30));
 		addPin(dataPin = new Pin(model, this, "D", definition.getCellWidth(), PinUsage.TRISTATE, getWidth(), 50));
 		addPin(rWPin = new Pin(model, this, "RW", 1, PinUsage.INPUT, getWidth(), 70));
 
 		init();
 	}
-	
+
 	public MainMemoryDefinition getDefinition()
 	{
 		return definition;

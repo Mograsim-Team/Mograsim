@@ -10,7 +10,7 @@ class StandardMicroInstruction implements MicroInstruction
 	{
 		this.parameters = parameters;
 	}
-	
+
 	/**
 	 * @throws IndexOutOfBoundsException
 	 */

@@ -17,7 +17,8 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 		super(model, 120, 150, name, "MPM", false);
 		this.definition = definition;
 		addPin(addrPin = new Pin(model, this, "A", definition.getMemoryAddressBits(), PinUsage.INPUT, getWidth(), 30));
-		addPin(dataPin = new Pin(model, this, "D", definition.getMicroInstructionDefinition().sizeInBits(), PinUsage.OUTPUT, getWidth(), 50));
+		addPin(dataPin = new Pin(model, this, "D", definition.getMicroInstructionDefinition().sizeInBits(), PinUsage.OUTPUT, getWidth(),
+				50));
 
 		init();
 	}

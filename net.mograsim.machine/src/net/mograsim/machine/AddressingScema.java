@@ -1,5 +1,6 @@
 package net.mograsim.machine;
 
-public interface AddressingScema {
-	
+public interface AddressingScema
+{
+
 }

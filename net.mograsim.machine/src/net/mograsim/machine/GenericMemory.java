@@ -22,7 +22,7 @@ public abstract class GenericMemory<T> implements Memory<T>
 		this.maximalAddress = definition.getMaximalAddress();
 		this.pages = new HashMap<>();
 	}
-	
+
 	private void inBoundsCheck(long address)
 	{
 		if (address < minimalAddress || address > maximalAddress)
@@ -34,12 +34,12 @@ public abstract class GenericMemory<T> implements Memory<T>
 	{
 		return address / pageSize;
 	}
-	
+
 	private int offset(long address)
 	{
 		return (int) (address % pageSize);
 	}
-	
+
 	@Override
 	public void setCell(long address, T data)
 	{
@@ -110,7 +110,7 @@ public abstract class GenericMemory<T> implements Memory<T>
 	{
 		observers.forEach(ob -> ob.update(address));
 	}
-	
+
 	@Override
 	public MemoryDefinition getDefinition()
 	{

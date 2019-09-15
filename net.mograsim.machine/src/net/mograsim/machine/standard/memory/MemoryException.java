@@ -14,12 +14,12 @@ public class MemoryException extends MachineException
 	{
 		super();
 	}
-	
+
 	public MemoryException(String message)
 	{
 		super(message);
 	}
-	
+
 	public MemoryException(Throwable cause)
 	{
 		super(cause);

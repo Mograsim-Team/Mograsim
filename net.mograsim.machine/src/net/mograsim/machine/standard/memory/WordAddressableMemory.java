@@ -26,7 +26,7 @@ public class WordAddressableMemory extends GenericMemory<BitVector> implements M
 		BitVector data = super.getCell(address);
 		return data == null ? BitVector.of(Bit.ZERO, cellWidth) : data;
 	}
-	
+
 	@Override
 	public BigInteger getCellAsBigInteger(long address)
 	{

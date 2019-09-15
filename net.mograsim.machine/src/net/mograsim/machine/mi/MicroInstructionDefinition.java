@@ -18,13 +18,12 @@ public interface MicroInstructionDefinition
 	 * @return The {@link ParameterClassification}s of which a MicroInstruction is composed.
 	 */
 	public ParameterClassification[] getParameterClassifications();
-	
+
 	/**
 	 * @throws IndexOutOfBoundsException
 	 */
 	public ParameterClassification getParameterClassification(int index);
-	
-	
+
 	/**
 	 * @return The amount of {@link MicroInstructionParameter}s in a {@link MicroInstruction} that follows this definition.
 	 */
@@ -32,7 +31,7 @@ public interface MicroInstructionDefinition
 	{
 		return getParameterClassifications().length;
 	}
-	
+
 	/**
 	 * @return The amount of {@link Bit}s in a {@link MicroInstruction} that follows this definition.
 	 */
@@ -40,18 +39,18 @@ public interface MicroInstructionDefinition
 	{
 		return Arrays.stream(getParameterClassifications()).mapToInt(e -> e.getExpectedBits()).reduce(0, (a, b) -> a + b);
 	}
-	
+
 	public default MicroInstruction createDefaultInstruction()
 	{
 		int size = size();
 		MicroInstructionParameter[] params = new MicroInstructionParameter[size];
 		ParameterClassification[] classes = getParameterClassifications();
-		for(int i = 0; i < size; i++)
+		for (int i = 0; i < size; i++)
 		{
 			MicroInstructionParameter newParam;
 			ParameterClassification classification = classes[i];
 			ParameterType type = classification.getExpectedType();
-			switch(type)
+			switch (type)
 			{
 			case BOOLEAN_IMMEDIATE:
 			case MNEMONIC:
