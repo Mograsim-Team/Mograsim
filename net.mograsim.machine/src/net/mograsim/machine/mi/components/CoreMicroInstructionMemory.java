@@ -13,29 +13,28 @@ import net.mograsim.machine.mi.MicroInstructionMemory;
 
 public class CoreMicroInstructionMemory extends BasicCoreComponent
 {
-	private final ReadWriteEnd data;
-	private final ReadEnd address, clock;
-	private final MicroInstructionMemory memory;
-	
-	
-	public CoreMicroInstructionMemory(Timeline timeline, int processTime, MicroInstructionMemory memory, ReadWriteEnd data, ReadEnd address, ReadEnd clock)
+	private final ReadWriteEnd				data;
+	private final ReadEnd					address;
+	private final MicroInstructionMemory	memory;
+
+
+	public CoreMicroInstructionMemory(Timeline timeline, int processTime, MicroInstructionMemory memory, ReadWriteEnd data, ReadEnd address)
 	{
 		super(timeline, processTime);
 		this.memory = memory;
 		this.data = data;
 		this.address = address;
-		this.clock = clock;
 	}
 
 	public MicroInstructionMemory getMemory()
 	{
 		return memory;
 	}
-	
+
 	@Override
 	public List<ReadEnd> getAllInputs()
 	{
-		return List.of(address, clock);
+		return List.of(address);
 	}
 
 	@Override
@@ -47,12 +46,9 @@ public class CoreMicroInstructionMemory extends BasicCoreComponent
 	@Override
 	protected TimelineEventHandler compute()
 	{
-		if(clock.getValue() != Bit.ONE)
-			return null;
-		
-		if (!address.hasNumericValue())
+		if(!address.hasNumericValue())
 		{
-			return e -> data.feedSignals(Bit.U.toVector(data.width()));
+			return e -> data.feedSignals(Bit.U.toVector(data.width()));//TODO don't always feed U, but decide to feed X or U.
 		}
 		long addressed = address.getUnsignedValue();
 		BitVector storedData = memory.getCell(addressed).toBitVector();

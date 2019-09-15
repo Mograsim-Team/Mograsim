@@ -27,9 +27,8 @@ public class ModelAm2900MicroInstructionMemoryAdapter implements ComponentAdapte
 	{
 		ReadWriteEnd data = logicWiresPerPin.get(modelComponent.getDataPin()).createReadWriteEnd();
 		ReadEnd address = logicWiresPerPin.get(modelComponent.getAddressPin()).createReadOnlyEnd();
-		ReadEnd clock = logicWiresPerPin.get(modelComponent.getClockPin()).createReadOnlyEnd();
 		CoreMicroInstructionMemory mem = new CoreMicroInstructionMemory(timeline, 2,
-				new StandardMicroInstructionMemory(modelComponent.getDefinition()), data, address, clock);
+				new StandardMicroInstructionMemory(modelComponent.getDefinition()), data, address);
 		modelComponent.setCoreModelBinding(mem);
 	}
 
