@@ -69,15 +69,15 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 		{
 			BitVector storedData = memory.getCell(addressed);
 			return e -> data.feedSignals(storedData);
-		} else
-		{
-			BitVector transData = data.getValues();
-			return e ->
-			{
-				data.clearSignals();
-				memory.setCell(addressed, transData);
-			};
 		}
+		BitVector transData = data.getValues();
+		if (transData.equals(memory.getCell(addressed)))
+			return null;
+		return e ->
+		{
+			data.clearSignals();
+			memory.setCell(addressed, transData);
+		};
 	}
 
 	@Override
