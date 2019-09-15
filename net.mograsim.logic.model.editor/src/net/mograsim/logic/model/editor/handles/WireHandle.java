@@ -71,7 +71,9 @@ public class WireHandle extends Handle
 	@Override
 	public void reqDelete()
 	{
-		model.destroyWire(parent);
+		// this wire could already be removed implicitly when removing a selection containing both wires and components
+		if (model.getWireByName(parent.name) != null)
+			model.destroyWire(parent);
 	}
 
 	@Override

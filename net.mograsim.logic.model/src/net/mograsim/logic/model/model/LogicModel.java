@@ -117,24 +117,24 @@ public class LogicModel
 		return wiresUnmodifiable;
 	}
 
+	public ModelComponent getComponentByName(String name)
+	{
+		return components.get(name);
+	}
+
+	@SuppressWarnings("unchecked")
 	public <T extends ModelComponent> T getComponentByName(String name, Class<T> expectedComponentClass)
 	{
-		return getByName(name, expectedComponentClass, components);
+		ModelComponent comp = components.get(name);
+		Objects.requireNonNull(comp, "Invaild path, component " + name + " not found");
+		if (expectedComponentClass.isInstance(comp))
+			return (T) comp;
+		throw new IllegalArgumentException("The component " + name + " is not an instance of " + expectedComponentClass);
 	}
 
 	public ModelWire getWireByName(String name)
 	{
-		return getByName(name, ModelWire.class, wires);
-	}
-
-	@SuppressWarnings("unchecked")
-	private static <T> T getByName(String name, Class<T> expectedClass, Map<String, ? super T> map)
-	{
-		Object comp = map.get(name);
-		Objects.requireNonNull(comp, "Invaild path, component " + name + " not found");
-		if (expectedClass.isInstance(comp))
-			return (T) comp;
-		throw new IllegalArgumentException("The component " + name + " is not an instance of " + expectedClass);
+		return wires.get(name);
 	}
 
 	public <T extends ModelComponent> T getComponentBySubmodelPath(String path, Class<T> modelClass)
