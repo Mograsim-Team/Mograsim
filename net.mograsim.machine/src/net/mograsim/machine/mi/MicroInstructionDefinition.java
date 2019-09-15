@@ -1,15 +1,10 @@
 package net.mograsim.machine.mi;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Optional;
 
 import net.mograsim.logic.core.types.Bit;
-import net.mograsim.machine.mi.parameters.IntegerClassification;
-import net.mograsim.machine.mi.parameters.IntegerImmediate;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
-import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
-import net.mograsim.machine.mi.parameters.MnemonicFamily;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 
 public interface MicroInstructionDefinition
@@ -47,22 +42,8 @@ public interface MicroInstructionDefinition
 		ParameterClassification[] classes = getParameterClassifications();
 		for (int i = 0; i < size; i++)
 		{
-			MicroInstructionParameter newParam;
 			ParameterClassification classification = classes[i];
-			ParameterType type = classification.getExpectedType();
-			switch (type)
-			{
-			case BOOLEAN_IMMEDIATE:
-			case MNEMONIC:
-				newParam = ((MnemonicFamily) classification).get(0);
-				break;
-			case INTEGER_IMMEDIATE:
-				newParam = new IntegerImmediate(BigInteger.valueOf(0), ((IntegerClassification) classification).getExpectedBits());
-				break;
-			default:
-				throw new IllegalStateException("Unknown ParameterType " + type);
-			}
-			params[i] = newParam;
+			params[i] = classification.getDefault();
 		}
 		return new StandardMicroInstruction(updateCallback, params);
 	}
