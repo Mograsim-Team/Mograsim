@@ -15,14 +15,6 @@
         "params": 1
       },
       {
-        "id": "dlatch80",
-        "name": "@dlatch80#1",
-        "pos": {
-          "x": 295.0,
-          "y": 675.0
-        }
-      },
-      {
         "id": "Am2900MainMemory",
         "name": "Am2900MainMemory#0",
         "pos": {
@@ -1349,6 +1341,14 @@
         }
       },
       {
+        "id": "dlatch80",
+        "name": "dlatch80#1",
+        "pos": {
+          "x": 295.0,
+          "y": 675.0
+        }
+      },
+      {
         "id": "inc",
         "name": "inc#0",
         "pos": {
@@ -1525,7 +1525,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "@dlatch80#1",
+          "compName": "dlatch80#1",
           "pinName": "E"
         },
         "name": "unnamedWire#102",
@@ -2231,7 +2231,7 @@
       },
       {
         "pin1": {
-          "compName": "@dlatch80#1",
+          "compName": "dlatch80#1",
           "pinName": "Q"
         },
         "pin2": {
@@ -2582,7 +2582,7 @@
       },
       {
         "pin1": {
-          "compName": "@dlatch80#1",
+          "compName": "dlatch80#1",
           "pinName": "D"
         },
         "pin2": {
@@ -6877,6 +6877,83 @@
     "pinLabelMargin": 0.5
   },
   "outlineRendererSnippetID": "default",
-  "highLevelStateHandlerSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {
+      "am2901_11-8": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2901#1"
+        }
+      },
+      "am2901_15-12": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2901#0"
+        }
+      },
+      "am2901_3-0": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2901#3"
+        }
+      },
+      "am2901_7-4": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2901#2"
+        }
+      },
+      "am2904": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2904#0"
+        }
+      },
+      "am2910": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2910#0"
+        }
+      },
+      "ir": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff16_invwe#0"
+        }
+      },
+      "mpm": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2900MicroInstructionMemory#0"
+        }
+      },
+      "muir_1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dlatch80#0"
+        }
+      },
+      "muir_2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dlatch80#1"
+        }
+      },
+      "pc": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff16#0"
+        }
+      },
+      "ram": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2900MainMemory#0"
+        }
+      }
+    },
+    "atomicHighLevelStates": {}
+  },
   "version": "0.1.5"
 }
