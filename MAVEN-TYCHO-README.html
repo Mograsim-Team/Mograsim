@@ -1,0 +1,251 @@
+<html><head>
+		<meta charset='utf-8'>
+		<meta http-equiv='x-ua-compatible' content='IE=edge'/>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+<style media="screen" type="text/css">
+h1,h2,h3,h4,h5,h6{margin:20px 0 10px;padding:0;font-weight:700}code,tt{margin:0;padding:0;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}body{font-family:Helvetica,arial,freesans,clean,sans-serif;font-size:14px;line-height:1.6;color:#333;background-color:#fff;padding:20px;max-width:960px;margin:0 auto}body>:first-child{margin-top:0!important}body>:last-child{margin-bottom:0!important}body>h2:first-child{margin-top:0;padding-top:0}body>h1:first-child{margin-top:0;padding-top:0}body>h1:first-child+h2{margin-top:0;padding-top:0}body>h3:first-child{margin-top:0;padding-top:0}body>h4:first-child{margin-top:0;padding-top:0}body>h5:first-child{margin-top:0;padding-top:0}body>h6:first-child{margin-top:0;padding-top:0}p{margin:15px 0}blockquote{margin:15px 0;border-left:4px solid #ddd;padding:0 15px;color:#777}blockquote>:first-child{margin-top:0}blockquote>:last-child{margin-bottom:0}ul{margin:15px 0;padding-left:30px}ul li>:first-child{margin-top:0}ul li ul:first-of-type{margin-top:0}ul li ol:first-of-type{margin-top:0}ul ul{margin-bottom:0}ul ol{margin-bottom:0}ol{margin:15px 0;padding-left:30px}ol li>:first-child{margin-top:0}ol li ol:first-of-type{margin-top:0}ol li ul:first-of-type{margin-top:0}ol ol{margin-bottom:0}ol ul{margin-bottom:0}dl{margin:15px 0;padding:0}dl dt{font-size:14px;font-weight:700;font-style:italic;padding:0;margin:15px 0 5px}dl dt:first-child{padding:0}dl dt>:first-child{margin-top:0}dl dt>:last-child{margin-bottom:0}dl dd{margin:0 0 15px;padding:0 15px}dl dd>:first-child{margin-top:0}dl dd>:last-child{margin-bottom:0}table{margin:15px 0}table th{font-weight:700;border:1px solid #ccc;padding:6px 13px}table td{border:1px solid #ccc;padding:6px 13px}table tr{border-top:1px solid #ccc;background-color:#fff}table tr:nth-child(2n){background-color:#f8f8f8}pre{margin:15px 0;font-size:12px;font-family:Consolas,Liberation Mono,Courier,monospace;background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}pre>code{margin:0;padding:0;white-space:pre;border:none;background:0 0}pre code{background-color:transparent;border:none}pre tt{background-color:transparent;border:none}h1{font-size:28px;color:#000}h1 tt{font-size:inherit}h1 code{font-size:inherit}h1+p{margin-top:10px}h2{font-size:24px;border-bottom:1px solid #ccc;color:#000}h2 tt{font-size:inherit}h2 code{font-size:inherit}h2+p{margin-top:10px}h3{font-size:18px}h3 tt{font-size:inherit}h3 code{font-size:inherit}h3+p{margin-top:10px}h4{font-size:16px}h4 tt{font-size:inherit}h4 code{font-size:inherit}h4+p{margin-top:10px}h5{font-size:14px}h5 tt{font-size:inherit}h5 code{font-size:inherit}h5+p{margin-top:10px}h6{color:#777;font-size:14px}h6 tt{font-size:inherit}h6 code{font-size:inherit}h6+p{margin-top:10px}a{color:#4183c4;text-decoration:none}a:first-child h1{margin-top:0;padding-top:0}a:first-child h2{margin-top:0;padding-top:0}a:first-child h3{margin-top:0;padding-top:0}a:first-child h4{margin-top:0;padding-top:0}a:first-child h5{margin-top:0;padding-top:0}a:first-child h6{margin-top:0;padding-top:0}a:hover{text-decoration:underline}code{font-size:12px;font-family:Consolas,Liberation Mono,Courier,monospace}tt{font-size:12px;font-family:Consolas,Liberation Mono,Courier,monospace}kbd{background-color:#ddd;background-image:-webkit-gradient(linear,left top,left bottom,from(#f1f1f1),to(#ddd));background-image:linear-gradient(#f1f1f1,#ddd);background-repeat:repeat-x;border-color:#ddd #ccc #ccc #ddd;-o-border-image:none;border-image:none;border-radius:2px 2px 2px 2px;border-style:solid;border-width:1px;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;line-height:10px;padding:1px 4px}hr{clear:both;margin:15px 0;height:0;overflow:hidden;border:none;background:0 0;border-bottom:4px solid #ddd;padding:0}img{max-width:100%}
+</style>
+</head><body>
+<h1>Mograsim Development Environment</h1>
+<p><span style="color:grey"><em>Mograsim Development Documentation Version 0.1 &mdash; 2019-09-13</em></span></p>
+<p>A short guide to the Mograsim Maven Tycho configuration and Maven Tycho in general,
+as well as some information on Eclipse Plugin Development and OSGi.</p>
+<h2>Maven Tycho</h2>
+<p><a href="https://www.eclipse.org/tycho/sitedocs/index.html">Maven Tycho</a> is a plugin for
+<a href="http://maven.apache.org">Maven</a> that allows building Eclipse and OSGi Projects comfortably
+and automatically using Maven.</p>
+<p>Useful links:</p>
+<ul>
+<li><a href="https://www.eclipse.org/tycho/">eclipse.org/tycho</a></li>
+<li><a href="https://wiki.eclipse.org/Category:Tycho">wiki.eclipse.org/Category:Tycho</a></li>
+<li><a href="https://www.vogella.com/tutorials/EclipseTycho/article.html">vogella.com/tutorials/EclipseTycho</a></li>
+<li><a href="https://www.eclipse.org/tycho/sitedocs/index.html">eclipse.org/tycho/sitedocs</a></li>
+<li><a href="https://git.eclipse.org/c/tycho/org.eclipse.tycho.extras.git/tree/tycho-pomless/src/main/java/org/eclipse/tycho/pomless">Tycho pomless sources</a>
+(see *Mapping for naming and other conventions, TychoAggregatorMapping for folders)</li>
+</ul>
+<h2>OSGi</h2>
+<p>OSGi is a module system for Java (completely unrelated to the Java 9 Jigsaw module
+system) that allows detailed control over modules, dependencies, versions and more.
+The file associated with OSGi here is a specific MANIFEST.MF in the META-INF directory
+of each project.</p>
+<p>Roughly, an OSGi bundle has:</p>
+<ul>
+<li>a <strong>symbolic name</strong> that acts as an identifier, therefore it should be unique and
+must not be changed, otherwise it a large portion of the configuration would break.
+Never change that field after distribution.</li>
+<li>a <strong>bundle name</strong> and <strong>bundle vendor</strong>; this is only for the users and developers
+and is not constrained in any way. You can change that, but it should be consistent
+across all Mograsim modules. Both can be externalized to</li>
+<li>a <strong>bundle version</strong> that denotes current the version of the bundle. The <code>qualifier</code>
+is replaced during the build process with a timestamp of the format <code>YYYYMMDDhhmmss</code>.
+The version itself can be set using the maven tycho version plugin, which replaces
+not only the maven versions, but all (equivalent) versions in the MANIFEST as well.</li>
+<li>a <strong>bundle required execution environment</strong> (abbr. BREE) where the bundle's <em>minimal</em>
+JDK version is set. This is also the one eclipse uses and displays as JRE System
+Library in the Eclipse projects.<br> This should be the same as the one the target
+definition used for the build and the same that maven is run with ( -> check the
+Run Configuration)</li>
+</ul>
+<h2>Eclipse Plugins</h2>
+<ul>
+<li>Short explanation of the different names and terms used in Eclipse Plugin Dev,
+and short introduction to the different mechanisms used.</li>
+</ul>
+<h2>Mograsim Structure</h2>
+<p>The tree of Mograsim projects:</p>
+<ul>
+<li><code>bundles</code> - <em>This contains all bundles/plugins that provide functionality to Mograsim</em><ul>
+<li><code>extenal/swthelper</code> - <em>This contains the <a href="https://github.com/Haspamelodica/SWTHelper">SWTHelper</a>
+git submodule.</em><ul>
+<li><code>bundles</code> - <em>This submodule folder needs to be named like that for Tycho
+pom-less build to work.</em><ul>
+<li><span style="color:grey"><em>SWTInput</em></span> - <em>unused</em></li>
+<li><strong>SWTObjectWrappers</strong> - SWT object abstractions to enable zooming and
+optimizations.</li>
+<li><span style="color:grey"><em>SWTSystemInOutApplication</em></span> - <em>unused</em></li>
+<li><span style="color:grey"><em>SWTTiledZoomableCanvas</em></span> - <em>unused</em></li>
+<li><strong>SWTZoomableCanvas</strong> - The SWT canvas we draw the simulation in.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>net.mograsim.logic.core</strong> <br> The core logic for pure simulation. This contains
+the most important low-level logic circuits and gates and defines how that
+logic gets simulated. The underlying system for simulation in Mograsim is an
+event based approach (see <code>Timeline</code>), using VHDL-like logic defined in <code>Bit</code>
+and <code>BitVector</code>. More complex ciruits are build out of <code>Wire</code>s connecting <code>Component</code>s.</li>
+<li><strong>net.mograsim.logic.model</strong> <br>The model describes how that core logic is
+displayed and arranged, and allows (de-)serialization to JSON. The core logic
+model gets generated based on this. Every basic net.mograsim.logic.core Component
+has a model equivalent here that represents it in the GUI and persisted state
+(JSON).</li>
+<li><strong>net.mograsim.logic.model.editor</strong> <br> This bundle contains a standalone
+SWT-based editor to edit Mograsim JSON-models in a comfortable way. It can
+be used to create a new <code>SubmodelComponent</code> by arranging existing ones to a
+new component. Note that editing and simulation are entirely different processes
+in Mograsim, the editor cannot simulate and a running simulation cannot be
+edited. (At least in the current state)</li>
+<li><strong>net.mograsim.logic.model.am2900</strong> <br> This plugin contains a model for the
+AMD Am2900 Family Microprocessors arranged into a microprogrammable model.
+This can be used in the microprogram editor of the Mograsim plugin and in the
+Mograsim assembler editor (by using a properly set up instruction set). We
+took care that the plugin is independent, meaning that it only provides an
+implementation for an extension point of the net.mograsim.machine plugin and
+no other Mograsim depends on it.<br> This is also the way to go if you want
+to add your own machine definitions to Mograsim and use them there.</li>
+<li><strong>net.mograsim.machine</strong> <br> The machine plugin defines an extension point
+that can be extended and implemented in other (your own) plugins to provide
+new machines to Mograsim. In addition to the extension point and the most important
+interfaces, it contains some commonly required or useful components to build/define
+another machine. net.mograsim.logic.model.am2900 for example is such an extension.
+The machine plugin itself scans for all available implementations of the interface
+given by the extension point, and other parts of the Mograsim plugin get access
+to them that way.</li>
+<li><strong>net.mograsim.plugin.core</strong> <br> This is - as the name says - the core plugin
+of mograsim. Here lie all the Eclipse Platform specific parts that make Mograsim
+as an Eclipse plugin work. This includes the different editors, view, settings
+and other functional extension to the Eclipse IDE.</li>
+<li><strong>net.mograsim.plugin.core.nl_de</strong> <br> This optional plugin provides a German
+localization for Mograsim.</li>
+<li><strong>net.mograsim.plugin.branding</strong> <br> This contains elements for branding the
+feature plugin, and additional resources and raw files (original logo and icon
+in SVG and Adobe Illustrator and similar).</li>
+<li><strong>net.mograsim.plugin.docs</strong> <br> The Plugin providing the user documentation.</li>
+<li><strong>net.mograsim.preferences</strong> <br> A plugin for managing and accessing preferences.</li>
+</ul>
+</li>
+<li><code>features</code> - <em>This contains all Mograsim feature plugins</em><ul>
+<li><strong>net.mograsim.feature</strong> <br> The Mograsim feature plugin, containing all the
+plugins above and combining them into a feature. A feature is a plugin collection
+with additional properties that allows for easy installation by the end user.
+For this purpose, it also contains license information, authors, updatesite
+location (allows eclipse to automatically check if updates are available) and
+more.</li>
+</ul>
+</li>
+<li><code>products</code> - <em>This contains standalone Mograsim product(s)</em><ul>
+<li><strong>net.mograsim.product</strong> <br> A product can be pretty much anything (see Eclipse
+RCP), in our case, this is simply a pre-configured Eclipse package, comparable
+to the packages located at <a href="https://www.eclipse.org/downloads/packages/">www.eclipse.org/downloads/packages</a>.</li>
+</ul>
+</li>
+<li><code>releng</code> - <em>Abbreviation for <strong>Rel</strong>ease <strong>Eng</strong>ineering, contains important configuration</em><ul>
+<li><strong>net.mograsim.configuration</strong> <br> This contains the configuration for the
+Mograsim project and the build in particular. The central Maven configuration
+is located here in a single <code>pom.xml</code>, that is the super-parent of all others,
+including the generated ones.</li>
+<li><strong>net.mograsim.updatesite</strong> <br> This updatesite project collects features
+in form of an update site that can be accessed by Eclipse to install new features
+or update features. The features are grouped into categories which can come
+with further descriptions. The <code>target/repository/</code> is the part of the whole
+Mograsim project that actually gets deployed. By using Help -> Install New
+Software -> Add -> Local, the <code>repository</code>-folder can be selected and features
+can be installed offline, e.g. to test them.</li>
+<li><strong>net.mograsim.target</strong> <br> The target definition for the build. This is a
+well-defined environment that we expect the plugins to work in/with. That includes
+all plugin dependencies (like all plugins the Eclipse Platform is comprised
+of) and the (minimum) JRE that is expected. Some plugins exclusively for testing
+are included here, too.</li>
+</ul>
+</li>
+<li><code>tests</code> - <em>This contains (integration-like) tests in form of plugin fragments</em><ul>
+<li><strong>net.mograsim.logic.tests</strong></li>
+<li><strong>net.mograsim.logic.model.am2900.tests</strong></li>
+<li><strong>net.mograsim.machine.tests</strong></li>
+</ul>
+</li>
+</ul>
+<h2>Build Mograsim</h2>
+<p>Use the main aggregator <code>pom.xml</code> next to this markdown file to build mograsim, take
+care to use the correct JDK to run it (see Run Configuration).</p>
+<p>A short guide to the <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html">Maven goals (Maven Lifecycle)</a>:</p>
+<ul>
+<li>The <code>clean</code> goal will remove all <code>target</code>-folders and other generated files like
+flattened poms and polyglot build artifacts (all are listed in <code>.gitignore</code>).</li>
+<li>The <code>validate</code> goal is useful to simply check if the setup itself (Maven Tycho)
+is ok and everything needed is available.</li>
+<li>The <code>integration-test</code> goal will run the test plugins, the <code>test</code> goal beforehand
+<strong>will not.</strong></li>
+<li>I recommend running <code>clean verify</code> or <code>verify</code>, this will do everything up to and
+including the testing.</li>
+</ul>
+<p>Please note that Tycho 1.5.0 is not released yet, and thus requires a workaround.
+More information can be found under <a href="#mceps">Maven Core Extension Problems</a>.</p>
+<h2>Challenges</h2>
+<p>Not everything is as simple as it seems at first glance.</p>
+<h3>Maven Core Extension Problems <a name="mceps"></a></h3>
+<p>The Tycho extra <code>tycho-pomless</code> is a Maven core extension allows for simpler structure
+and less redundancy. Maven core extensions must be available at <a href="http://repo.maven.apache.org/maven2/">the central maven repository</a>
+(or already in the local repository), you cannot specify an alternative remote repository
+in <code>.mvn/extensions.xml</code>. If a core extension cannot be resolved, you will get currently
+(Maven 3.6.2) only a warning like</p>
+<blockquote><p>[WARNING] The POM for org.eclipse.tycho.extras:tycho-pomless:jar:1.5.0-SNAPSHOT is missing, no dependency information available</p>
+</blockquote>
+<p>This means that the extension was not found, and it cannot be used, which leads to
+a failure later on. To get around that, create a dummy pom that only serves the purpose
+to &ldquo;request&rdquo; and resolve the extension:</p>
+<pre><code>&lt;project .. bla .. bla ..&gt;
+    &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+    &lt;groupId&gt;net.mograsim&lt;/groupId&gt;
+    &lt;artifactId&gt;net.mograsim.tycho-download&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+    &lt;packaging&gt;pom&lt;/packaging&gt;
+
+    &lt;pluginRepositories&gt;
+        &lt;!-- currently necessary because we are using a SNAPSHOT build of tycho --&gt;
+        &lt;pluginRepository&gt;
+            &lt;id&gt;tycho-snapshots&lt;/id&gt;
+            &lt;url&gt;https://repo.eclipse.org/content/repositories/tycho-snapshots/&lt;/url&gt;
+            &lt;releases&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;/releases&gt;
+            &lt;snapshots&gt;
+                &lt;enabled&gt;true&lt;/enabled&gt;
+                &lt;updatePolicy&gt;always&lt;/updatePolicy&gt;
+            &lt;/snapshots&gt;
+        &lt;/pluginRepository&gt;
+    &lt;/pluginRepositories&gt;
+
+    &lt;build&gt;
+        &lt;extensions&gt;
+            &lt;extension&gt;
+                &lt;groupId&gt;org.eclipse.tycho.extras&lt;/groupId&gt;
+                &lt;artifactId&gt;tycho-pomless&lt;/artifactId&gt;
+                &lt;version&gt;1.5.0-SNAPSHOT&lt;/version&gt;
+            &lt;/extension&gt;
+        &lt;/extensions&gt;
+    &lt;/build&gt;
+&lt;/project&gt;
+</code></pre>
+<p>While that this is not the most compact way, it can be run by the developer and build
+server equally easy and does not require special CLI knowledge. As developer, you
+need to run that only once (in Eclipse: right click on pom.xml -> Run As -> Maven
+clean). For continuous integration, you can insert one more line in the YAML (or
+equivalent), like in our case <code>- mvn  $MAVEN_CLI_OPTS clean</code>.</p>
+<h3>Git Submodules</h3>
+<p>Git submodules are a challenge with a tycho build, because the projects that reside
+in it need to be build, too. But not only that, they need to use the same configuration
+for the build, which is problematic if you do not have control over them. The solution
+only exists with Tycho 1.5.0 (currently only as snapshot), where deep folder structures
+are automatically scanned and poms get gnereated; not every folder requires an aggregator
+pom. This however requires (at the moment) certain naming conventions (see section
+on Tycho itself).</p>
+<p>In our case, <a href="https://github.com/Haspamelodica/SWTHelper">SWTHelper</a> is a git submodule
+containing several plain Java Eclipse projects with OSGi configuration (MANIFEST.MF),
+which is the reason this works at all. Due to the naming conventions, the submodule
+folder is named <code>bundles</code>.</p>
+<h3>Maven incompatibility</h3>
+<p>Maven 3.6.2 is currently incompatible with Tycho &lt;= 1.5.0.</p>
+<p>If you encounter</p>
+<blockquote><p>[FATAL] Non-readable POM &ldquo;somepath&rdquo;\tests.polyglot.pom.tycho: input contained no data @</p>
+</blockquote>
+<p>or</p>
+<blockquote><p>[FATAL] Non-readable POM &ldquo;somepath&rdquo;\bundles\net.mograsim.logic.core.polyglot..META-INF_MANIFEST.MF: input contained no data @</p>
+</blockquote>
+<p>make sure to use Maven 3.6.1 to fix that (this is the default Eclipse embedded Maven
+at the moment).</p>
+
+</body></html>
