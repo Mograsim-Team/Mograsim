@@ -11,6 +11,8 @@ public class DefaultPreferences extends Preferences
 		{
 		case "net.mograsim.logic.model.improvetext":
 			return true;
+		case "net.mograsim.logic.model.debug.openhlsshell":
+			return false;
 		default:
 			throw new IllegalArgumentException("Unknown boolean preference name: " + name);
 		}
@@ -37,6 +39,10 @@ public class DefaultPreferences extends Preferences
 			return 0.5;
 		case "net.mograsim.logic.model.linewidth.wire.multibit":
 			return 0.85;
+		case "net.mograsim.logic.model.submodel.zoomalpha0":
+			return 0.8;
+		case "net.mograsim.logic.model.submodel.zoomalpha1":
+			return 0.9;
 		default:
 			throw new IllegalArgumentException("Unknown double preference name: " + name);
 		}

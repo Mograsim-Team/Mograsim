@@ -32,7 +32,7 @@ public class SimulationPreview implements IThemePreview
 	{
 		oldPreferences = Preferences.current();
 
-		currentThemePreferences = new ThemePreferences(currentTheme);
+		currentThemePreferences = new EclipsePreferences(currentTheme, MograsimActivator.instance().getPreferenceStore());
 		// TODO this will change the global preferences; so if another LogicUICanvas redraws, it will use the "new" colors too.
 		Preferences.setPreferences(currentThemePreferences);
 

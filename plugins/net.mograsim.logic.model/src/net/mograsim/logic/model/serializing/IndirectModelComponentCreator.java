@@ -10,24 +10,20 @@ import java.util.Objects;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
 
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.util.JsonHandler;
-import net.mograsim.logic.model.util.Version;
 
 public class IndirectModelComponentCreator
 {
-	public static final Version CURRENT_STD_ID_MAPPING_VERSION = Version.parseSemver("0.1.0");
-
 	private static final Map<String, String> standardComponentIDs = new HashMap<>();
 	private static final Map<String, String> standardComponentIDsUnmodifiable = Collections.unmodifiableMap(standardComponentIDs);
 
 	private static final Map<String, ComponentSupplier> componentSuppliers = new HashMap<>();
 	private static final Map<String, ResourceLoader> resourceLoaders = new HashMap<>();
-	private static final Map<String, JsonObject> componentCache = new HashMap<>();
+	private static final Map<String, SubmodelComponentParams> componentCache = new HashMap<>();
 
 	private static final ResourceLoader defaultResourceLoader;
 	static
@@ -42,7 +38,7 @@ public class IndirectModelComponentCreator
 		{
 			if (s == null)
 				throw new IOException("Resource not found");
-			Map<String, String> tmp = JsonHandler.readJson(s, StandardComponentIdMappingContainer.class).getMap();
+			Map<String, String> tmp = JsonHandler.readJson(s, Map.class);
 			// don't use putAll to apply sanity checks
 			tmp.forEach((st, id) ->
 			{
@@ -107,11 +103,11 @@ public class IndirectModelComponentCreator
 		String firstPart = parts[0];
 		if (firstPart.equals("jsonfile"))
 		{
-			JsonObject jsonContents;
+			SubmodelComponentParams jsonContents;
 			try
 			{
 				// don't use parts[1], because the path could contain ':'
-				jsonContents = JsonHandler.readJson(resolvedID.substring("jsonfile:".length()), JsonObject.class);
+				jsonContents = JsonHandler.readJson(resolvedID.substring("jsonfile:".length()), SubmodelComponentParams.class);
 			}
 			catch (IOException e)
 			{
@@ -142,12 +138,12 @@ public class IndirectModelComponentCreator
 		}
 		if (resTypeID.equals("jsonres"))
 		{
-			JsonObject jsonContents;
+			SubmodelComponentParams jsonContents;
 			try
 			{
 				@SuppressWarnings("resource") // jsonStream is closed in JsonHandler
 				InputStream jsonStream = Objects.requireNonNull(loader.loadResource(resID), "Error loading JSON resource: Not found");
-				jsonContents = JsonHandler.readJson(jsonStream, JsonObject.class);
+				jsonContents = JsonHandler.readJson(jsonStream, SubmodelComponentParams.class);
 			}
 			catch (IOException e)
 			{
@@ -188,15 +184,10 @@ public class IndirectModelComponentCreator
 	}
 
 	private static SubmodelComponent loadComponentFromJsonObject(LogicModelModifiable model, String id, String name,
-			JsonObject jsonContents)
+			SubmodelComponentParams jsonContents)
 	{
 		componentCache.putIfAbsent(id, jsonContents);
-		SerializablePojo jsonContentsAsSerializablePojo = JsonHandler.parser.fromJson(jsonContents, SerializablePojo.class);
-		if (jsonContentsAsSerializablePojo.version == null)
-			return LegacySubmodelComponentSerializer.deserialize(model,
-					JsonHandler.parser.fromJson(jsonContents, LegacySubmodelComponentParams.class), name, id, null);
-		return SubmodelComponentSerializer.deserialize(model, JsonHandler.parser.fromJson(jsonContents, SubmodelComponentParams.class),
-				name, id, null);
+		return SubmodelComponentSerializer.deserialize(model, jsonContents, name, id, null);
 	}
 
 	public static void registerResourceLoader(ResourceLoader resourceLoader)

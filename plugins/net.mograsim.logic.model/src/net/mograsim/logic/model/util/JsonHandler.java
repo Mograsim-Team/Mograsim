@@ -39,9 +39,7 @@ public class JsonHandler
 
 	public static <T> T fromJson(String src, Class<T> type)
 	{
-		// throw away legacy version line
-		String rawJson = src.lines().dropWhile(s -> s.length() == 0 || s.charAt(0) != '{').collect(Collectors.joining());
-		return parser.fromJson(rawJson, type);
+		return parser.fromJson(src, type);
 	}
 
 	public static <T> T fromJsonTree(JsonElement src, Class<T> type)

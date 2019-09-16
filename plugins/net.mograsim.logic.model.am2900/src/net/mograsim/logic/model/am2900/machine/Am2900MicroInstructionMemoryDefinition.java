@@ -21,7 +21,7 @@ public class Am2900MicroInstructionMemoryDefinition implements MicroInstructionM
 	@Override
 	public long getMaximalAddress()
 	{
-		return 4096;
+		return 0xFFF;
 	}
 
 	@Override
