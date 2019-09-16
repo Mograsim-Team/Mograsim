@@ -7,45 +7,10 @@
     "components": [
       {
         "id": "ManualSwitch",
-        "name": "@bz_pc_cpol",
-        "pos": {
-          "x": 120.0,
-          "y": 435.0
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
         "name": "@c",
         "pos": {
           "x": 120.0,
-          "y": 350.0
-        },
-        "params": 1
-      },
-      {
-        "id": "dlatch80",
-        "name": "@dlatch80#1",
-        "pos": {
-          "x": 295.0,
-          "y": 675.0
-        }
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "@ireg_cpol",
-        "pos": {
-          "x": 120.0,
-          "y": 410.0
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "@mireg_cpol",
-        "pos": {
-          "x": 120.0,
-          "y": 385.0
+          "y": 355.0
         },
         "params": 1
       },
@@ -115,9 +80,18 @@
       },
       {
         "id": "BitDisplay",
+        "name": "BitDisplay#0",
+        "pos": {
+          "x": 245.0,
+          "y": 550.0
+        },
+        "params": 12
+      },
+      {
+        "id": "BitDisplay",
         "name": "BitDisplay#1",
         "pos": {
-          "x": 255.0,
+          "x": 280.0,
           "y": 30.0
         },
         "params": 16
@@ -126,8 +100,8 @@
         "id": "BitDisplay",
         "name": "BitDisplay#2",
         "pos": {
-          "x": 255.0,
-          "y": 45.0
+          "x": 280.0,
+          "y": 60.0
         },
         "params": 16
       },
@@ -231,7 +205,7 @@
         },
         "params": {
           "bits": [
-            null
+            "ZERO"
           ]
         }
       },
@@ -291,10 +265,10 @@
       },
       {
         "id": "NandGate",
-        "name": "NandGate#6",
+        "name": "NandGate#7",
         "pos": {
-          "x": 240.0,
-          "y": 525.0
+          "x": 150.0,
+          "y": 375.0
         },
         "params": 1
       },
@@ -846,46 +820,19 @@
       },
       {
         "id": "TextComponent",
-        "name": "TextComponent#13",
+        "name": "TextComponent#2",
         "pos": {
-          "x": 60.0,
-          "y": 385.0
+          "x": 265.0,
+          "y": 545.0
         },
-        "params": "mireg cpol"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#14",
-        "pos": {
-          "x": 60.0,
-          "y": 415.0
-        },
-        "params": "ireg cpol"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#15",
-        "pos": {
-          "x": 60.0,
-          "y": 435.0
-        },
-        "params": "bz/pc cpol"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#3",
-        "pos": {
-          "x": 515.0,
-          "y": 110.0
-        },
-        "params": "asdf"
+        "params": "MPM addr"
       },
       {
         "id": "TextComponent",
         "name": "TextComponent#4",
         "pos": {
-          "x": 60.0,
-          "y": 350.0
+          "x": 110.0,
+          "y": 355.0
         },
         "params": "c"
       },
@@ -1043,7 +990,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#18",
         "pos": {
-          "x": 249.0,
+          "x": 274.0,
           "y": 44.0
         },
         "params": 16
@@ -1052,7 +999,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#19",
         "pos": {
-          "x": 244.0,
+          "x": 274.0,
           "y": 59.0
         },
         "params": 16
@@ -1151,7 +1098,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#29",
         "pos": {
-          "x": 244.0,
+          "x": 249.0,
           "y": 44.0
         },
         "params": 16
@@ -1241,8 +1188,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#38",
         "pos": {
-          "x": 234.0,
-          "y": 529.0
+          "x": 174.0,
+          "y": 384.0
         },
         "params": 1
       },
@@ -1250,8 +1197,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#39",
         "pos": {
-          "x": 234.0,
-          "y": 539.0
+          "x": 179.0,
+          "y": 364.0
         },
         "params": 1
       },
@@ -1263,6 +1210,42 @@
           "y": 234.0
         },
         "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#40",
+        "pos": {
+          "x": 144.0,
+          "y": 364.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#41",
+        "pos": {
+          "x": 144.0,
+          "y": 379.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#42",
+        "pos": {
+          "x": 364.0,
+          "y": 289.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#43",
+        "pos": {
+          "x": 239.0,
+          "y": 564.0
+        },
+        "params": 12
       },
       {
         "id": "WireCrossPoint",
@@ -1358,6 +1341,14 @@
         }
       },
       {
+        "id": "dlatch80",
+        "name": "dlatch80#1",
+        "pos": {
+          "x": 295.0,
+          "y": 675.0
+        }
+      },
+      {
         "id": "inc",
         "name": "inc#0",
         "pos": {
@@ -1404,30 +1395,6 @@
         "pos": {
           "x": 635.0,
           "y": 240.0
-        }
-      },
-      {
-        "id": "xor",
-        "name": "xor#0",
-        "pos": {
-          "x": 145.0,
-          "y": 380.0
-        }
-      },
-      {
-        "id": "xor",
-        "name": "xor#1",
-        "pos": {
-          "x": 145.0,
-          "y": 405.0
-        }
-      },
-      {
-        "id": "xor",
-        "name": "xor#2",
-        "pos": {
-          "x": 145.0,
-          "y": 430.0
         }
       }
     ],
@@ -1521,12 +1488,12 @@
       },
       {
         "pin1": {
-          "compName": "@mireg_cpol",
+          "compName": "WireCrossPoint#39",
           "pinName": ""
         },
         "pin2": {
-          "compName": "xor#0",
-          "pinName": "B"
+          "compName": "WireCrossPoint#20",
+          "pinName": ""
         },
         "name": "unnamedWire#100",
         "path": []
@@ -1554,26 +1521,34 @@
       },
       {
         "pin1": {
-          "compName": "xor#1",
-          "pinName": "Y"
+          "compName": "WireCrossPoint#39",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "dff16_invwe#0",
-          "pinName": "C"
+          "compName": "dlatch80#1",
+          "pinName": "E"
         },
         "name": "unnamedWire#102",
         "path": [
           {
-            "x": 255.0,
-            "y": 310.0
+            "x": 180.0,
+            "y": 480.0
           },
           {
-            "x": 480.0,
-            "y": 310.0
+            "x": 235.0,
+            "y": 480.0
           },
           {
-            "x": 480.0,
-            "y": 170.0
+            "x": 235.0,
+            "y": 670.0
+          },
+          {
+            "x": 285.0,
+            "y": 670.0
+          },
+          {
+            "x": 285.0,
+            "y": 680.0
           }
         ]
       },
@@ -1950,11 +1925,11 @@
           },
           {
             "x": 340.0,
-            "y": 285.0
+            "y": 260.0
           },
           {
             "x": 180.0,
-            "y": 285.0
+            "y": 260.0
           },
           {
             "x": 180.0,
@@ -2256,7 +2231,7 @@
       },
       {
         "pin1": {
-          "compName": "@dlatch80#1",
+          "compName": "dlatch80#1",
           "pinName": "Q"
         },
         "pin2": {
@@ -2607,7 +2582,7 @@
       },
       {
         "pin1": {
-          "compName": "@dlatch80#1",
+          "compName": "dlatch80#1",
           "pinName": "D"
         },
         "pin2": {
@@ -2693,26 +2668,22 @@
       },
       {
         "pin1": {
-          "compName": "Am2910#0",
-          "pinName": "Y"
-        },
-        "pin2": {
           "compName": "Am2900MicroInstructionMemory#0",
           "pinName": "A"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#43",
+          "pinName": ""
         },
         "name": "unnamedWire#163",
         "path": [
           {
-            "x": 440.0,
-            "y": 565.0
-          },
-          {
-            "x": 205.0,
-            "y": 565.0
-          },
-          {
             "x": 205.0,
             "y": 595.0
+          },
+          {
+            "x": 205.0,
+            "y": 565.0
           }
         ]
       },
@@ -3948,11 +3919,11 @@
           },
           {
             "x": 175.0,
-            "y": 290.0
+            "y": 265.0
           },
           {
             "x": 345.0,
-            "y": 290.0
+            "y": 265.0
           }
         ]
       },
@@ -4067,12 +4038,12 @@
       },
       {
         "pin1": {
-          "compName": "@c",
+          "compName": "WireCrossPoint#41",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#20",
-          "pinName": ""
+          "compName": "NandGate#7",
+          "pinName": "A"
         },
         "name": "unnamedWire#25",
         "path": []
@@ -4734,14 +4705,14 @@
         "path": [
           {
             "x": 355.0,
-            "y": 285.0
+            "y": 265.0
           },
           {
-            "x": 485.0,
-            "y": 285.0
+            "x": 480.0,
+            "y": 265.0
           },
           {
-            "x": 485.0,
+            "x": 480.0,
             "y": 185.0
           }
         ]
@@ -5514,16 +5485,11 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "mux1_16#0",
-          "pinName": "I0"
+          "compName": "BitDisplay#1",
+          "pinName": ""
         },
         "name": "unnamedWire#330",
-        "path": [
-          {
-            "x": 250.0,
-            "y": 135.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -5543,11 +5509,16 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "BitDisplay#1",
-          "pinName": ""
+          "compName": "mux1_16#0",
+          "pinName": "I0"
         },
         "name": "unnamedWire#332",
-        "path": []
+        "path": [
+          {
+            "x": 250.0,
+            "y": 135.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -5657,12 +5628,7 @@
           "pinName": "C"
         },
         "name": "unnamedWire#34",
-        "path": [
-          {
-            "x": 445.0,
-            "y": 365.0981951658187
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -5757,56 +5723,75 @@
       },
       {
         "pin1": {
-          "compName": "xor#0",
-          "pinName": "Y"
+          "compName": "WireCrossPoint#38",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#38",
+          "compName": "WireCrossPoint#42",
           "pinName": ""
         },
         "name": "unnamedWire#346",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#38",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#39",
-          "pinName": ""
-        },
-        "name": "unnamedWire#347",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#39",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dlatch80#0",
-          "pinName": "E"
-        },
-        "name": "unnamedWire#348",
         "path": [
           {
-            "x": 235.0,
-            "y": 680.0
+            "x": 175.0,
+            "y": 290.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#38",
+          "compName": "WireCrossPoint#42",
           "pinName": ""
         },
         "pin2": {
-          "compName": "NandGate#6",
-          "pinName": "A"
+          "compName": "dff16#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#347",
+        "path": [
+          {
+            "x": 365.0,
+            "y": 110.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#42",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff16_invwe#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#348",
+        "path": [
+          {
+            "x": 485.0,
+            "y": 290.0
+          },
+          {
+            "x": 485.0,
+            "y": 170.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#43",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2910#0",
+          "pinName": "Y"
         },
         "name": "unnamedWire#349",
-        "path": []
+        "path": [
+          {
+            "x": 440.0,
+            "y": 565.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -5827,36 +5812,15 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#39",
+          "compName": "WireCrossPoint#43",
           "pinName": ""
         },
         "pin2": {
-          "compName": "NandGate#6",
-          "pinName": "B"
+          "compName": "BitDisplay#0",
+          "pinName": ""
         },
         "name": "unnamedWire#350",
         "path": []
-      },
-      {
-        "pin1": {
-          "compName": "NandGate#6",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "@dlatch80#1",
-          "pinName": "E"
-        },
-        "name": "unnamedWire#351",
-        "path": [
-          {
-            "x": 290.0,
-            "y": 535.0
-          },
-          {
-            "x": 290.0,
-            "y": 680.0
-          }
-        ]
       },
       {
         "pin1": {
@@ -6813,60 +6777,52 @@
       },
       {
         "pin1": {
-          "compName": "xor#2",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "dff16#0",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#94",
-        "path": [
-          {
-            "x": 245.0,
-            "y": 270.0
-          },
-          {
-            "x": 365.0,
-            "y": 270.0
-          },
-          {
-            "x": 365.0,
-            "y": 110.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "@bz_pc_cpol",
+          "compName": "@c",
           "pinName": ""
         },
         "pin2": {
-          "compName": "xor#2",
-          "pinName": "B"
+          "compName": "WireCrossPoint#40",
+          "pinName": ""
+        },
+        "name": "unnamedWire#94",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#40",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#39",
+          "pinName": ""
         },
         "name": "unnamedWire#95",
         "path": []
       },
       {
         "pin1": {
-          "compName": "@c",
+          "compName": "WireCrossPoint#41",
           "pinName": ""
         },
         "pin2": {
-          "compName": "xor#2",
-          "pinName": "A"
+          "compName": "NandGate#7",
+          "pinName": "B"
         },
         "name": "unnamedWire#96",
-        "path": []
+        "path": [
+          {
+            "x": 145.0,
+            "y": 390.0
+          }
+        ]
       },
       {
         "pin1": {
-          "compName": "xor#1",
-          "pinName": "B"
+          "compName": "WireCrossPoint#40",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "@ireg_cpol",
+          "compName": "WireCrossPoint#41",
           "pinName": ""
         },
         "name": "unnamedWire#97",
@@ -6874,11 +6830,11 @@
       },
       {
         "pin1": {
-          "compName": "xor#1",
-          "pinName": "A"
+          "compName": "NandGate#7",
+          "pinName": "Y"
         },
         "pin2": {
-          "compName": "@c",
+          "compName": "WireCrossPoint#38",
           "pinName": ""
         },
         "name": "unnamedWire#98",
@@ -6886,15 +6842,28 @@
       },
       {
         "pin1": {
-          "compName": "xor#0",
-          "pinName": "A"
-        },
-        "pin2": {
-          "compName": "@c",
+          "compName": "WireCrossPoint#38",
           "pinName": ""
         },
+        "pin2": {
+          "compName": "dlatch80#0",
+          "pinName": "E"
+        },
         "name": "unnamedWire#99",
-        "path": []
+        "path": [
+          {
+            "x": 175.0,
+            "y": 485.0
+          },
+          {
+            "x": 230.0,
+            "y": 485.0
+          },
+          {
+            "x": 230.0,
+            "y": 680.0
+          }
+        ]
       }
     ],
     "version": "0.1.1"
@@ -6908,6 +6877,83 @@
     "pinLabelMargin": 0.5
   },
   "outlineRendererSnippetID": "default",
-  "highLevelStateHandlerSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {
+      "am2901_11-8": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2901#1"
+        }
+      },
+      "am2901_15-12": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2901#0"
+        }
+      },
+      "am2901_3-0": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2901#3"
+        }
+      },
+      "am2901_7-4": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2901#2"
+        }
+      },
+      "am2904": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2904#0"
+        }
+      },
+      "am2910": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2910#0"
+        }
+      },
+      "ir": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff16_invwe#0"
+        }
+      },
+      "mpm": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2900MicroInstructionMemory#0"
+        }
+      },
+      "muir_1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dlatch80#0"
+        }
+      },
+      "muir_2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dlatch80#1"
+        }
+      },
+      "pc": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff16#0"
+        }
+      },
+      "ram": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2900MainMemory#0"
+        }
+      }
+    },
+    "atomicHighLevelStates": {}
+  },
   "version": "0.1.5"
 }

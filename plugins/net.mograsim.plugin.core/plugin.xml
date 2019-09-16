@@ -356,5 +356,13 @@
             label="%fontDefinition.label">
       </fontDefinition>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="net.mograsim.plugin.MainPreferencePage"
+            id="net.mograsim.plugin.core.mainprefpage"
+            name="Mograsim preferences">
+      </page>
+   </extension>
 
 </plugin>

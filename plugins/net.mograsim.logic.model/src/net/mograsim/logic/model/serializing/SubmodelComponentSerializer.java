@@ -187,7 +187,7 @@ public final class SubmodelComponentSerializer
 
 	/**
 	 * Returns {@link SubmodelComponentParams}, which describe this {@link SubmodelComponent}. <br>
-	 * See {@link LogicModelSerializer#serialize(net.mograsim.logic.model.model.LogicModel, IdentifierGetter)
+	 * See {@link LogicModelSerializer#serialize(net.mograsim.logic.model.model.LogicModel, IdentifyParams)
 	 * LogicModelSerializer.serialize(...)} for how subcomponents are serialized.<br>
 	 * CodeSnippets are serialized using the ID defined by <code>idGetter</code> and the params obtained by the respective
 	 * <coce>getParamsForSerializing</code> methods ({@link Renderer#getParamsForSerializing()}).
