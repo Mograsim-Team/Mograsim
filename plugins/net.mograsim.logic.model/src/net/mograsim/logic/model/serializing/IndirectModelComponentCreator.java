@@ -188,10 +188,6 @@ public class IndirectModelComponentCreator
 			JsonObject jsonContents)
 	{
 		componentCache.putIfAbsent(id, jsonContents);
-		SerializablePojo jsonContentsAsSerializablePojo = JsonHandler.parser.fromJson(jsonContents, SerializablePojo.class);
-		if (jsonContentsAsSerializablePojo.version == null)
-			return LegacySubmodelComponentSerializer.deserialize(model,
-					JsonHandler.parser.fromJson(jsonContents, LegacySubmodelComponentParams.class), name, id, null);
 		return SubmodelComponentSerializer.deserialize(model, JsonHandler.parser.fromJson(jsonContents, SubmodelComponentParams.class),
 				name, id, null);
 	}
