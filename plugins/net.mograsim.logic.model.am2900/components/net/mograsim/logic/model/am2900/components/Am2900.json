@@ -231,7 +231,7 @@
         },
         "params": {
           "bits": [
-            null
+            "ZERO"
           ]
         }
       },
