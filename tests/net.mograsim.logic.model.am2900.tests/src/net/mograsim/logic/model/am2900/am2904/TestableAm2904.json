@@ -268,13 +268,24 @@
   "submodel": {
     "components": [
       {
-        "id": "Merger",
+        "id": "Am2904",
+        "name": "Am2904#0",
+        "pos": {
+          "x": 20.0,
+          "y": 15.0
+        }
+      },
+      {
+        "id": "Splitter",
         "name": "Merger#0",
         "pos": {
           "x": -30.0,
           "y": 70.0
         },
-        "params": 13
+        "params": {
+          "logicWidth": 13,
+          "orientation": "LEFT"
+        }
       },
       {
         "id": "Splitter",
@@ -283,7 +294,10 @@
           "x": -45.0,
           "y": 140.0
         },
-        "params": 6
+        "params": {
+          "logicWidth": 6,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -292,7 +306,10 @@
           "x": -45.0,
           "y": 100.0
         },
-        "params": 4
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
       },
       {
         "id": "Splitter",
@@ -301,14 +318,9 @@
           "x": -45.0,
           "y": 70.0
         },
-        "params": 2
-      },
-      {
-        "id": "Am2904",
-        "name": "Am2904#0",
-        "pos": {
-          "x": 20.0,
-          "y": 15.0
+        "params": {
+          "logicWidth": 2,
+          "orientation": "RIGHT"
         }
       }
     ],
@@ -364,7 +376,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I0"
+          "pinName": "O0"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -380,7 +392,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I1"
+          "pinName": "O1"
         },
         "name": "unnamedWire#13",
         "path": []
@@ -388,7 +400,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I2"
+          "pinName": "O2"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -404,7 +416,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I3"
+          "pinName": "O3"
         },
         "name": "unnamedWire#15",
         "path": []
@@ -412,7 +424,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I4"
+          "pinName": "O4"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -428,7 +440,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I5"
+          "pinName": "O5"
         },
         "name": "unnamedWire#17",
         "path": []
@@ -440,7 +452,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I6"
+          "pinName": "O6"
         },
         "name": "unnamedWire#18",
         "path": []
@@ -448,7 +460,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I7"
+          "pinName": "O7"
         },
         "pin2": {
           "compName": "Splitter#1",
@@ -476,7 +488,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I8"
+          "pinName": "O8"
         },
         "name": "unnamedWire#20",
         "path": []
@@ -484,7 +496,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I9"
+          "pinName": "O9"
         },
         "pin2": {
           "compName": "Splitter#1",
@@ -500,7 +512,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I11"
+          "pinName": "O11"
         },
         "name": "unnamedWire#22",
         "path": []
@@ -508,7 +520,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "I12"
+          "pinName": "O12"
         },
         "pin2": {
           "compName": "Splitter#2",
@@ -532,7 +544,7 @@
       {
         "pin1": {
           "compName": "Merger#0",
-          "pinName": "O"
+          "pinName": "I"
         },
         "pin2": {
           "compName": "Am2904#0",
@@ -548,7 +560,7 @@
         },
         "pin2": {
           "compName": "Merger#0",
-          "pinName": "I10"
+          "pinName": "O10"
         },
         "name": "unnamedWire#26",
         "path": []
@@ -825,18 +837,18 @@
   "highLevelStateHandlerSnippetID": "standard",
   "highLevelStateHandlerParams": {
     "subcomponentHighLevelStates": {
-      "musr": {
-        "id": "delegating",
-        "params": {
-          "delegateTarget": "Am2904#0",
-          "prefix": "musr"
-        }
-      },
       "msr": {
         "id": "delegating",
         "params": {
           "delegateTarget": "Am2904#0",
           "prefix": "msr"
+        }
+      },
+      "musr": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "Am2904#0",
+          "prefix": "musr"
         }
       }
     },
