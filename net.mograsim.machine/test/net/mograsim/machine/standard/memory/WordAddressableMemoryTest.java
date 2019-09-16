@@ -58,13 +58,13 @@ class WordAddressableMemoryTest
 				dataI.clearSignals();
 				t.executeAll();
 
-				assertEquals(dataI.getValues(), vector, "seed=" + seed + ", j=" + j + ", i=" + i);
+				assertEquals(vector, dataI.getValues(), "seed=" + seed + ", j=" + j + ", i=" + i);
 			}
 		}
 	}
 
 	public static LongStream seedsForRandom()
 	{
-		return LongStream.range(0, 100);
+		return LongStream.range(0, 20);
 	}
 }
