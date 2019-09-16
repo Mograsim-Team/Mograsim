@@ -16,7 +16,7 @@ public class InstructionTableContentProvider implements ILazyContentProvider
 	public void updateElement(int index)
 	{
 		long address = memory.getDefinition().getMinimalAddress() + index;
-		viewer.replace(new InstructionTableRow(address, memory.getCell(address)), index);
+		viewer.replace(new InstructionTableRow(address, memory), index);
 	}
 
 	@Override

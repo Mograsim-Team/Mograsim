@@ -30,8 +30,7 @@ public class StandardMicroInstructionMemory implements MicroInstructionMemory
 		int translatedAddress = translate(address);
 		MicroInstruction actual = data[translatedAddress];
 		if (actual == null)
-			actual = data[translatedAddress] = definition.getMicroInstructionDefinition()
-					.createDefaultInstruction(() -> notifyObservers(address));
+			actual = data[translatedAddress] = definition.getMicroInstructionDefinition().createDefaultInstruction();
 		return actual;
 	}
 

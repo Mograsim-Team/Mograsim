@@ -15,6 +15,7 @@ public class ParameterLabelProvider extends ColumnLabelProvider
 	@Override
 	public String getText(Object element)
 	{
-		return ((InstructionTableRow) element).data.getParameter(index).toString();
+		InstructionTableRow row = (InstructionTableRow) element;
+		return row.data.getCell(row.address).getParameter(index).toString();
 	}
 }

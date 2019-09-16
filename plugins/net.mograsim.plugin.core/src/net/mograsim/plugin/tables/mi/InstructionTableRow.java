@@ -1,11 +1,11 @@
 package net.mograsim.plugin.tables.mi;
 
-import net.mograsim.machine.mi.MicroInstruction;
+import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.plugin.tables.TableRow;
 
-public class InstructionTableRow extends TableRow<MicroInstruction>
+public class InstructionTableRow extends TableRow<MicroInstructionMemory>
 {
-	public InstructionTableRow(long address, MicroInstruction data)
+	public InstructionTableRow(long address, MicroInstructionMemory data)
 	{
 		super(address, data);
 	}

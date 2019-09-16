@@ -9,16 +9,16 @@ public interface MicroInstruction
 
 	public MicroInstructionParameter getParameter(int index);
 
-	public void setParameter(int index, MicroInstructionParameter param);
+	public MicroInstructionParameter[] getParameters();
 
 	/**
 	 * @return The amount of {@link Mnemonic}s, the instruction is composed of
 	 */
 	public int getSize();
 
-	public static MicroInstruction create(Runnable updateCallback, MicroInstructionParameter... parameters)
+	public static MicroInstruction create(MicroInstructionParameter... parameters)
 	{
-		return new StandardMicroInstruction(updateCallback, parameters);
+		return new StandardMicroInstruction(parameters);
 	}
 
 	default BitVector toBitVector()

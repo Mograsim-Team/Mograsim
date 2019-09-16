@@ -4,9 +4,11 @@ import java.math.BigInteger;
 
 import org.eclipse.jface.viewers.TableViewer;
 
+import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.parameters.IntegerClassification;
 import net.mograsim.machine.mi.parameters.IntegerImmediate;
+import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.NumberCellEditingSupport;
 
@@ -29,7 +31,9 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 	protected void setAsBigInteger(Object element, BigInteger value)
 	{
 		InstructionTableRow row = ((InstructionTableRow) element);
-		row.data.setParameter(index, new IntegerImmediate(value, classification.getExpectedBits()));
+		MicroInstructionParameter[] params = row.data.getCell(row.address).getParameters();
+		params[index] = new IntegerImmediate(value, classification.getExpectedBits());
+		row.data.setCell(row.address, MicroInstruction.create(params));
 		provider.update(row.address);
 //		viewer.update(element, null); Does not do anything for some reason
 	}
@@ -37,7 +41,8 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 	@Override
 	protected BigInteger getAsBigInteger(Object element)
 	{
-		return ((IntegerImmediate) ((InstructionTableRow) element).data.getParameter(index)).getValueAsBigInteger();
+		InstructionTableRow row = ((InstructionTableRow) element);
+		return ((IntegerImmediate) row.data.getCell(row.address).getParameter(index)).getValueAsBigInteger();
 	}
 
 }
