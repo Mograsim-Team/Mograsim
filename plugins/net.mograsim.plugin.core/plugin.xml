@@ -32,7 +32,7 @@
             editorId="net.mograsim.plugin.tables.mi.InstructionView">
       </editorContentTypeBinding>
       <editor
-      		name="%view.name.2"
+      		name="%editor.name.0"
       		icon="icons/mograsim/blue-orange/icon_blue-orange_7x8.png"
       		class="net.mograsim.plugin.tables.mi.InstructionView"
       		id="net.mograsim.plugin.tables.mi.InstructionView">
@@ -112,13 +112,6 @@
       		class="net.mograsim.plugin.tables.memory.MemoryView"
             icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
       		name="%view.name.1">
-      </view>
-            <view
-            category="net.mograsim.plugin"
-      		id="net.mograsim.plugin.tables.mi.InstructionView"
-      		class="net.mograsim.plugin.tables.mi.InstructionView"
-            icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
-      		name="%view.name.2">
       </view>
    </extension>
    <extension
