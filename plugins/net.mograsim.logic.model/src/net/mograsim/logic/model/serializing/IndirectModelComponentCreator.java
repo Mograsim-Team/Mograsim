@@ -10,7 +10,6 @@ import java.util.Objects;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
-import com.google.gson.JsonObject;
 
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
@@ -24,7 +23,7 @@ public class IndirectModelComponentCreator
 
 	private static final Map<String, ComponentSupplier> componentSuppliers = new HashMap<>();
 	private static final Map<String, ResourceLoader> resourceLoaders = new HashMap<>();
-	private static final Map<String, JsonObject> componentCache = new HashMap<>();
+	private static final Map<String, SubmodelComponentParams> componentCache = new HashMap<>();
 
 	private static final ResourceLoader defaultResourceLoader;
 	static
@@ -104,11 +103,11 @@ public class IndirectModelComponentCreator
 		String firstPart = parts[0];
 		if (firstPart.equals("jsonfile"))
 		{
-			JsonObject jsonContents;
+			SubmodelComponentParams jsonContents;
 			try
 			{
 				// don't use parts[1], because the path could contain ':'
-				jsonContents = JsonHandler.readJson(resolvedID.substring("jsonfile:".length()), JsonObject.class);
+				jsonContents = JsonHandler.readJson(resolvedID.substring("jsonfile:".length()), SubmodelComponentParams.class);
 			}
 			catch (IOException e)
 			{
@@ -139,12 +138,12 @@ public class IndirectModelComponentCreator
 		}
 		if (resTypeID.equals("jsonres"))
 		{
-			JsonObject jsonContents;
+			SubmodelComponentParams jsonContents;
 			try
 			{
 				@SuppressWarnings("resource") // jsonStream is closed in JsonHandler
 				InputStream jsonStream = Objects.requireNonNull(loader.loadResource(resID), "Error loading JSON resource: Not found");
-				jsonContents = JsonHandler.readJson(jsonStream, JsonObject.class);
+				jsonContents = JsonHandler.readJson(jsonStream, SubmodelComponentParams.class);
 			}
 			catch (IOException e)
 			{
@@ -185,11 +184,10 @@ public class IndirectModelComponentCreator
 	}
 
 	private static SubmodelComponent loadComponentFromJsonObject(LogicModelModifiable model, String id, String name,
-			JsonObject jsonContents)
+			SubmodelComponentParams jsonContents)
 	{
 		componentCache.putIfAbsent(id, jsonContents);
-		return SubmodelComponentSerializer.deserialize(model, JsonHandler.parser.fromJson(jsonContents, SubmodelComponentParams.class),
-				name, id, null);
+		return SubmodelComponentSerializer.deserialize(model, jsonContents, name, id, null);
 	}
 
 	public static void registerResourceLoader(ResourceLoader resourceLoader)
