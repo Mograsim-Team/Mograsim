@@ -2,8 +2,10 @@ package net.mograsim.plugin.tables.mi;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Optional;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewerColumn;
@@ -14,13 +16,19 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.ui.part.ViewPart;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IPathEditorInput;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.part.EditorPart;
 
 import net.mograsim.machine.Machine;
+import net.mograsim.machine.MemoryObserver;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
+import net.mograsim.machine.mi.parameters.MnemonicFamily;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.plugin.MachineContext;
 import net.mograsim.plugin.MachineContext.ContextObserver;
@@ -31,7 +39,7 @@ import net.mograsim.plugin.tables.RadixSelector;
 import net.mograsim.plugin.util.DropDownMenu;
 import net.mograsim.plugin.util.DropDownMenu.DropDownEntry;
 
-public class InstructionView extends ViewPart implements ContextObserver
+public class InstructionView extends EditorPart implements ContextObserver, MemoryObserver
 {
 	private String saveLoc = null;
 	private LazyTableViewer viewer;
@@ -41,6 +49,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 	private DisplaySettings displaySettings;
 	private InstructionTableContentProvider provider;
 	private int highlighted = 0;
+	private boolean dirty = false;
 
 	@SuppressWarnings("unused")
 	@Override
@@ -120,6 +129,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 		this.memory = memory;
 		viewer.setInput(memory);
 		this.miDef = memory.getDefinition().getMicroInstructionDefinition();
+		this.memory.registerObserver(this);
 		createColumns();
 	}
 
@@ -134,24 +144,45 @@ public class InstructionView extends ViewPart implements ContextObserver
 		int size = miDef.size();
 		columns = new TableViewerColumn[size + 1];
 
-		TableViewerColumn col = createTableViewerColumn("Address", 200);
+		TableViewerColumn col = createTableViewerColumn("Address", generateLongestHexStrings(12));
 		columns[0] = col;
 		col.setLabelProvider(new AddressLabelProvider());
 
-		int bit = 0;
+		int bit = miDef.sizeInBits();
 		ParameterClassification[] classes = miDef.getParameterClassifications();
 
 		for (int i = 0; i < size; i++)
 		{
-			int startBit = bit;
-			int endBit = (bit = bit + classes[i].getExpectedBits()) - 1;
+			int startBit = bit - 1;
+			int endBit = bit = bit - classes[i].getExpectedBits();
 			String name = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
-			int bounds = 20 + 20 * classes[i].getExpectedBits();
 
-			col = createTableViewerColumn(name, bounds);
+			String[] longestPossibleContents;
+			switch (classes[i].getExpectedType())
+			{
+			case INTEGER_IMMEDIATE:
+				longestPossibleContents = generateLongestHexStrings(classes[i].getExpectedBits());
+				break;
+			case BOOLEAN_IMMEDIATE:
+			case MNEMONIC:
+				longestPossibleContents = ((MnemonicFamily) classes[i]).getStringValues();
+				break;
+			default:
+				longestPossibleContents = new String[0];
+				break;
+			}
+
+			col = createTableViewerColumn(name, longestPossibleContents);
 			columns[i + 1] = col;
 			createEditingAndLabel(col, miDef, i);
 		}
+	}
+
+	private static final String[] HEX_DIGITS = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
+
+	private static String[] generateLongestHexStrings(int bitWidth)
+	{
+		return Arrays.stream(HEX_DIGITS).map(s -> "0x" + s.repeat((bitWidth + 3) / 4)).toArray(String[]::new);
 	}
 
 	private void createEditingAndLabel(TableViewerColumn col, MicroInstructionDefinition miDef, int index)
@@ -182,12 +213,22 @@ public class InstructionView extends ViewPart implements ContextObserver
 		col.getColumn().setToolTipText(miDef.getParameterDescription(index).orElse(""));
 	}
 
-	private TableViewerColumn createTableViewerColumn(String title, int bound)
+	private TableViewerColumn createTableViewerColumn(String title, String... longestPossibleContents)
 	{
 		TableViewerColumn viewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 		TableColumn column = viewerColumn.getColumn();
+		int maxWidth = 0;
+		for (String s : longestPossibleContents)
+		{
+			column.setText(s);
+			column.pack();
+			if (column.getWidth() > maxWidth)
+				maxWidth = column.getWidth();
+		}
 		column.setText(title);
-		column.setWidth(bound);
+		column.pack();
+		if (column.getWidth() < maxWidth)
+			column.setWidth(maxWidth);
 		column.setResizable(true);
 		column.setMoveable(false);
 		return viewerColumn;
@@ -217,17 +258,15 @@ public class InstructionView extends ViewPart implements ContextObserver
 		if (memory == null)
 		{
 			System.err.println("Failed to write MicroprogrammingMemory to File. No MicroprogrammingMemory assigned.");
+			return;
 		}
-		if (saveLoc != null)
+		try
 		{
-			try
-			{
-				MicroInstructionMemoryParser.write(memory, file);
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+			MicroInstructionMemoryParser.write(memory, file);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 	}
 
@@ -245,5 +284,55 @@ public class InstructionView extends ViewPart implements ContextObserver
 			Machine actualMachine = machine.get();
 			bindMicroInstructionMemory(actualMachine.getMicroInstructionMemory());
 		}
+	}
+
+	@Override
+	public void doSave(IProgressMonitor progressMonitor)
+	{
+		IEditorInput input = getEditorInput();
+		if (input instanceof IPathEditorInput)
+		{
+			IPathEditorInput pathInput = (IPathEditorInput) input;
+			save(pathInput.getPath().toOSString());
+			dirty = false;
+			firePropertyChange(PROP_DIRTY);
+		}
+	}
+
+	@Override
+	public void doSaveAs()
+	{
+		// not allowed
+	}
+
+	@Override
+	public void init(IEditorSite site, IEditorInput input) throws PartInitException
+	{
+		setSite(site);
+		setInput(input);
+		if (input instanceof IPathEditorInput)
+		{
+			IPathEditorInput pathInput = (IPathEditorInput) input;
+			open(pathInput.getPath().toOSString());
+		}
+	}
+
+	@Override
+	public boolean isDirty()
+	{
+		return dirty;
+	}
+
+	@Override
+	public boolean isSaveAsAllowed()
+	{
+		return false;
+	}
+
+	@Override
+	public void update(long address)
+	{
+		dirty = true;
+		firePropertyChange(PROP_DIRTY);
 	}
 }
