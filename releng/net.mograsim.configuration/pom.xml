@@ -1,0 +1,170 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.mograsim</groupId>
+	<artifactId>net.mograsim.configuration</artifactId>
+	<version>${revision}${changelist}</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<!-- Mograsim variables, see https://maven.apache.org/maven-ci-friendly.html -->
+		<revision>0.1.0</revision>
+		<changelist>-SNAPSHOT</changelist>
+		<!-- Environment -->
+		<java.version>11</java.version> <!-- currently unused -->
+		<tycho.version>1.5.0-SNAPSHOT</tycho.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<pluginRepositories>
+		<!-- currently necessary because we are using a SNAPSHOT build of tycho -->
+		<pluginRepository>
+			<id>tycho-snapshots</id>
+			<url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- Not needed, as an explicit target definition is provided by releng/net.mograsim.target/ 
+		This provides a uniform configuration, and we don't get weird errors. -->
+	<!-- <repositories> <repository> <id>eclipse-release</id> <url>http://download.eclipse.org/releases/2019-06</url> 
+		<layout>p2</layout> </repository> </repositories> -->
+
+	<build>
+		<plugins>
+			<!-- Maven Tycho is our main build plugin for the Eclipse/OSGi environment -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<!-- We might use this in future to change versions comfortably -->
+			<!-- <plugin> <groupId>org.eclipse.tycho</groupId> <artifactId>tycho-versions-plugin</artifactId> 
+				<version>${tycho.version}</version> <executions> <execution> <id>set-all-versions</id> 
+				<phase>post-clean</phase> <goals> <goal>set-version</goal> <goal>update-eclipse-metadata</goal> 
+				</goals> <configuration> <newVersion>0.2.0</newVersion> <properties>revision</properties> 
+				</configuration> </execution> </executions> </plugin> -->
+
+			<!--Enable the replacement of the SNAPSHOT version in the final feature/product 
+				configuration -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<target>
+						<artifact>
+							<groupId>net.mograsim</groupId>
+							<artifactId>net.mograsim.target</artifactId>
+							<version>${revision}${changelist}</version>
+						</artifact>
+					</target>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+			<!-- This makes maven generate proper POMs without the revision placeholder, 
+				this is related to the ".flattened-pom.xml" mentioned in .gitignore -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.1.0</version>
+				<configuration>
+					<updatePomFile>true</updatePomFile>
+					<flattenMode>resolveCiFriendliesOnly</flattenMode>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Generate sources for plugins and features automatically -->
+			<!-- (this includes all three following plugins) -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<phase>package</phase>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<!-- IMPORTANT: List of plugins without any sources to avoid errors -->
+						<plugin id="net.mograsim.plugin.branding" />
+						<plugin id="net.mograsim.plugin.docs" />
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>attach-p2-metadata</id>
+						<phase>package</phase>
+						<goals>
+							<goal>p2-metadata</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
