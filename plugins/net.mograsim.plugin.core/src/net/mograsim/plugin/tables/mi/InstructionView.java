@@ -138,13 +138,13 @@ public class InstructionView extends ViewPart implements ContextObserver
 		columns[0] = col;
 		col.setLabelProvider(new AddressLabelProvider());
 
-		int bit = 0;
+		int bit = miDef.sizeInBits();
 		ParameterClassification[] classes = miDef.getParameterClassifications();
 
 		for (int i = 0; i < size; i++)
 		{
-			int startBit = bit;
-			int endBit = (bit = bit + classes[i].getExpectedBits()) - 1;
+			int startBit = bit - 1;
+			int endBit = bit = bit - classes[i].getExpectedBits();
 			String name = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
 			int bounds = 20 + 20 * classes[i].getExpectedBits();
 
