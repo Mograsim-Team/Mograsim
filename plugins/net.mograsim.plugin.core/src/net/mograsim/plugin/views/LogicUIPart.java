@@ -12,8 +12,9 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
 import net.mograsim.machine.Machine;
+import net.mograsim.plugin.EclipsePreferences;
 import net.mograsim.plugin.MachineContext;
-import net.mograsim.plugin.ThemePreferences;
+import net.mograsim.plugin.MograsimActivator;
 import net.mograsim.preferences.Preferences;
 
 public class LogicUIPart extends ViewPart
@@ -35,7 +36,8 @@ public class LogicUIPart extends ViewPart
 	public void createPartControl(Composite parent)
 	{
 		// set preferences
-		Preferences.setPreferences(new ThemePreferences(PlatformUI.getWorkbench().getThemeManager().getCurrentTheme()));
+		Preferences.setPreferences(new EclipsePreferences(PlatformUI.getWorkbench().getThemeManager().getCurrentTheme(),
+				MograsimActivator.instance().getPreferenceStore()));
 
 		Machine m = MachineContext.getInstance().getMachine();
 
