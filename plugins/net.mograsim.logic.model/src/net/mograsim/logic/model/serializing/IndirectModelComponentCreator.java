@@ -16,12 +16,9 @@ import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.util.JsonHandler;
-import net.mograsim.logic.model.util.Version;
 
 public class IndirectModelComponentCreator
 {
-	public static final Version CURRENT_STD_ID_MAPPING_VERSION = Version.parseSemver("0.1.0");
-
 	private static final Map<String, String> standardComponentIDs = new HashMap<>();
 	private static final Map<String, String> standardComponentIDsUnmodifiable = Collections.unmodifiableMap(standardComponentIDs);
 
@@ -42,7 +39,7 @@ public class IndirectModelComponentCreator
 		{
 			if (s == null)
 				throw new IOException("Resource not found");
-			Map<String, String> tmp = JsonHandler.readJson(s, StandardComponentIdMappingContainer.class).getMap();
+			Map<String, String> tmp = JsonHandler.readJson(s, Map.class);
 			// don't use putAll to apply sanity checks
 			tmp.forEach((st, id) ->
 			{
