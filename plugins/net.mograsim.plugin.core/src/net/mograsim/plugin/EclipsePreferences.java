@@ -2,6 +2,7 @@ package net.mograsim.plugin;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ColorRegistry;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
@@ -12,32 +13,38 @@ import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.DefaultPreferences;
 import net.mograsim.preferences.Preferences;
 
-// TODO proper getInt/getDouble implementation, maybe via own preferences page?
-public class ThemePreferences extends Preferences
+public class EclipsePreferences extends Preferences
 {
 	private final ITheme theme;
+	private final IPreferenceStore prefs;
+	private final Preferences defaultPrefs;
 
-	public ThemePreferences(ITheme theme)
+	public EclipsePreferences(ITheme theme, IPreferenceStore prefs)
 	{
 		this.theme = theme;
+		this.prefs = prefs;
+		this.defaultPrefs = new DefaultPreferences();
 	}
 
 	@Override
 	public boolean getBoolean(String name)
 	{
-		return new DefaultPreferences().getBoolean(name);
+		prefs.setDefault(name, defaultPrefs.getBoolean(name));
+		return prefs.getBoolean(name);
 	}
 
 	@Override
 	public int getInt(String name)
 	{
-		return new DefaultPreferences().getInt(name);
+		prefs.setDefault(name, defaultPrefs.getInt(name));
+		return prefs.getInt(name);
 	}
 
 	@Override
 	public double getDouble(String name)
 	{
-		return new DefaultPreferences().getDouble(name);
+		prefs.setDefault(name, defaultPrefs.getDouble(name));
+		return prefs.getDouble(name);
 	}
 
 	@Override
