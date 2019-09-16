@@ -38,8 +38,6 @@ import net.mograsim.preferences.Preferences;
  */
 public class LogicUICanvas extends ZoomableCanvas
 {
-	private static final boolean OPEN_DEBUG_SETHIGHLEVELSTATE_SHELL = false;
-
 	private final LogicModel model;
 
 	public LogicUICanvas(Composite parent, int style, LogicModel model)
@@ -60,7 +58,7 @@ public class LogicUICanvas extends ZoomableCanvas
 
 		addListener(SWT.MouseDown, this::mouseDown);
 
-		if (OPEN_DEBUG_SETHIGHLEVELSTATE_SHELL)
+		if (Preferences.current().getBoolean("net.mograsim.logic.model.debug.openhlsshell"))
 			openDebugSetHighLevelStateShell(model);
 	}
 
