@@ -148,18 +148,7 @@ public class ModelSplitter extends ModelComponent
 	static
 	{
 		LogicCoreAdapter.addComponentAdapter(new SplitterAdapter());
-		IndirectModelComponentCreator.setComponentSupplier(ModelSplitter.class.getCanonicalName(), (m, p, n) ->
-		{
-			// TODO remove legacy params parsing
-			SplitterParams params;
-			if (p.isJsonPrimitive())
-			{
-				params = new SplitterParams();
-				params.logicWidth = p.getAsInt();
-				params.orientation = Orientation.RIGHT;
-			} else
-				params = JsonHandler.fromJsonTree(p, SplitterParams.class);
-			return new ModelSplitter(m, params, n);
-		});
+		IndirectModelComponentCreator.setComponentSupplier(ModelSplitter.class.getCanonicalName(),
+				(m, p, n) -> new ModelSplitter(m, JsonHandler.fromJsonTree(p, SplitterParams.class), n));
 	}
 }
