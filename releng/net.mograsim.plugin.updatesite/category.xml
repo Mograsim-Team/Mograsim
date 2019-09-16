@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Mograsim update site">
+      Provides updates for the modular graphical simulator (Mograsim)
+   </description>
+   <feature id="net.mograsim.feature">
+      <category name="mograsim.basic"/>
+   </feature>
+   <category-def name="mograsim.basic" label="Mograsim">
+      <description>
+         Mograsim - Modular Graphical Simulator
+      </description>
+   </category-def>
+   <feature id="net.mograsim.feature.source">
+      <category name="mograsim.basic.dev"/>
+   </feature>
+   <category-def name="mograsim.basic.dev" label="Mograsim Developer Resources">
+      <description>
+         Mograsim Sources for development of Machine Extensions and Plugins
+      </description>
+   </category-def>
+</site>

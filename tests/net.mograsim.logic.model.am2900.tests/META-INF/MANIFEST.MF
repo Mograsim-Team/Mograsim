@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Am2900 Tests
+Bundle-SymbolicName: net.mograsim.logic.model.am2900.tests;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: Mograsim Team
+Fragment-Host: net.mograsim.logic.model.am2900;bundle-version="0.1.0"
+Automatic-Module-Name: net.mograsim.logic.model.am2900.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.junit;bundle-version="4.12.0",
+ org.junit.jupiter.api;bundle-version="5.4.0";visibility:=reexport,
+ org.junit.jupiter.params;bundle-version="5.4.0";visibility:=reexport,
+ org.opentest4j;bundle-version="1.1.1";visibility:=reexport
