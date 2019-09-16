@@ -39,8 +39,13 @@ public class JsonHandler
 
 	public static <T> T fromJson(String src, Class<T> type)
 	{
-		// throw away legacy version line
-		String rawJson = src.lines().dropWhile(s -> s.length() == 0 || s.charAt(0) != '{').collect(Collectors.joining());
+		// throw away legacy version line, but keep line numbers
+		int linesBeforeJsonStart = (int) src.lines().takeWhile(s -> s.length() == 0 || s.charAt(0) != '{').count();
+		String rawJson;
+		if (linesBeforeJsonStart == 0)
+			rawJson = src;
+		else
+			rawJson = "\n".repeat(linesBeforeJsonStart) + src.lines().skip(linesBeforeJsonStart).collect(Collectors.joining("\n"));
 		return parser.fromJson(rawJson, type);
 	}
 
