@@ -35,7 +35,7 @@ public interface MicroInstructionDefinition
 		return Arrays.stream(getParameterClassifications()).mapToInt(e -> e.getExpectedBits()).reduce(0, (a, b) -> a + b);
 	}
 
-	public default MicroInstruction createDefaultInstruction(Runnable updateCallback)
+	public default MicroInstruction createDefaultInstruction()
 	{
 		int size = size();
 		MicroInstructionParameter[] params = new MicroInstructionParameter[size];
@@ -45,7 +45,7 @@ public interface MicroInstructionDefinition
 			ParameterClassification classification = classes[i];
 			params[i] = classification.getDefault();
 		}
-		return new StandardMicroInstruction(updateCallback, params);
+		return new StandardMicroInstruction(params);
 	}
 
 	public Optional<String> getParameterDescription(int index);

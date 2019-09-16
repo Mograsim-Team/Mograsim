@@ -6,8 +6,10 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 
 import net.mograsim.logic.core.types.Bit;
+import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.parameters.BooleanClassification;
+import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 
 public class BooleanEditingSupport extends EditingSupport
 {
@@ -40,13 +42,17 @@ public class BooleanEditingSupport extends EditingSupport
 	@Override
 	protected Object getValue(Object element)
 	{
-		return ((InstructionTableRow) element).data.getParameter(index).getValue().getMSBit(0).equals(Bit.ONE);
+		InstructionTableRow row = (InstructionTableRow) element;
+		return row.data.getCell(row.address).getParameter(index).getValue().getMSBit(0).equals(Bit.ONE);
 	}
 
 	@Override
 	protected void setValue(Object element, Object value)
 	{
-		((InstructionTableRow) element).data.setParameter(index, boolClass.get((Boolean) value));
+		InstructionTableRow row = (InstructionTableRow) element;
+		MicroInstructionParameter[] params = row.data.getCell(row.address).getParameters();
+		params[index] = boolClass.get((Boolean) value);
+		row.data.setCell(row.address, MicroInstruction.create(params));
 		viewer.update(element, null);
 	}
 

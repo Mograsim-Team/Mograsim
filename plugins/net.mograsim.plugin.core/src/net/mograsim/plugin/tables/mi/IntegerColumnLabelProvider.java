@@ -19,7 +19,8 @@ public class IntegerColumnLabelProvider extends NumberColumnLabelProvider
 	@Override
 	public BigInteger getAsBigInteger(Object element)
 	{
-		return ((IntegerImmediate) ((InstructionTableRow) element).data.getParameter(index)).getValueAsBigInteger();
+		InstructionTableRow row = (InstructionTableRow) element;
+		return ((IntegerImmediate) row.data.getCell(row.address).getParameter(index)).getValueAsBigInteger();
 	}
 
 }
