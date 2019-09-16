@@ -4,7 +4,6 @@
   "Clock": "class:net.mograsim.logic.model.model.components.atomic.ModelClock",
   "FixedOutput": "class:net.mograsim.logic.model.model.components.atomic.ModelFixedOutput",
   "ManualSwitch": "class:net.mograsim.logic.model.model.components.atomic.ModelManualSwitch",
-  "Merger": "class:net.mograsim.logic.model.model.components.atomic.ModelMerger",
   "NandGate": "class:net.mograsim.logic.model.model.components.atomic.ModelNandGate",
   "OrGate": "class:net.mograsim.logic.model.model.components.atomic.ModelOrGate",
   "Splitter": "class:net.mograsim.logic.model.model.components.atomic.ModelSplitter",
