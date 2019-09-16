@@ -68,26 +68,14 @@ public abstract class SubmodelComponent extends ModelComponent
 	 * A pseudo-component containing all submodel interface pins on the submodel side.
 	 */
 	private final SubmodelInterface submodelInterface;
-
 	/**
 	 * The factor by which the submodel is scaled when rendering.
 	 */
 	private double submodelScale;
 	/**
-	 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel starts to
-	 * be visible.
-	 */
-	private double maxVisibleRegionFillRatioForAlpha0;
-	/**
-	 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel is fully
-	 * visible.
-	 */
-	private double minVisibleRegionFillRatioForAlpha1;
-	/**
 	 * The renderer used for rendering the submodel.
 	 */
 	private final LogicUIRenderer renderer;
-
 	/**
 	 * The {@link Renderer} used to render the symbol of this SubmodelCoponent.
 	 */
@@ -118,8 +106,6 @@ public abstract class SubmodelComponent extends ModelComponent
 		this.submodelInterface = new SubmodelInterface(submodelModifiable);
 
 		this.submodelScale = 1;
-		this.maxVisibleRegionFillRatioForAlpha0 = 0.8;
-		this.minVisibleRegionFillRatioForAlpha1 = 0.9;
 		this.renderer = new LogicUIRenderer(submodelModifiable);
 
 		Consumer<Runnable> redrawHandlerChangedListener = submodelModifiable::setRedrawHandler;
@@ -377,6 +363,16 @@ public abstract class SubmodelComponent extends ModelComponent
 		GeneralGC tgc = new TranslatedGC(gc, getPosX(), getPosY(), submodelScale, true);
 		conf.reset(tgc);
 		double visibleRegionFillRatio = Math.max(getWidth() / visibleRegion.width, getHeight() / visibleRegion.height);
+		/**
+		 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel
+		 * starts to be visible.
+		 */
+		double maxVisibleRegionFillRatioForAlpha0 = Preferences.current().getDouble("net.mograsim.logic.model.submodel.zoomalpha0");
+		/**
+		 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel is
+		 * fully visible.
+		 */
+		double minVisibleRegionFillRatioForAlpha1 = Preferences.current().getDouble("net.mograsim.logic.model.submodel.zoomalpha1");
 		double alphaFactor = map(visibleRegionFillRatio, maxVisibleRegionFillRatioForAlpha0, minVisibleRegionFillRatioForAlpha1, 0, 1);
 		alphaFactor = Math.max(0, Math.min(1, alphaFactor));
 		// we need to take the old alpha into account to support nested submodules better.
