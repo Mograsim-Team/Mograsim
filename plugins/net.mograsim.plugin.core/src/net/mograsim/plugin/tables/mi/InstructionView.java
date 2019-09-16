@@ -2,6 +2,7 @@ package net.mograsim.plugin.tables.mi;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -21,6 +22,7 @@ import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
+import net.mograsim.machine.mi.parameters.MnemonicFamily;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.plugin.MachineContext;
 import net.mograsim.plugin.MachineContext.ContextObserver;
@@ -134,7 +136,7 @@ public class InstructionView extends ViewPart implements ContextObserver
 		int size = miDef.size();
 		columns = new TableViewerColumn[size + 1];
 
-		TableViewerColumn col = createTableViewerColumn("Address", 200);
+		TableViewerColumn col = createTableViewerColumn("Address", generateLongestHexStrings(12));
 		columns[0] = col;
 		col.setLabelProvider(new AddressLabelProvider());
 
@@ -146,12 +148,33 @@ public class InstructionView extends ViewPart implements ContextObserver
 			int startBit = bit - 1;
 			int endBit = bit = bit - classes[i].getExpectedBits();
 			String name = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
-			int bounds = 20 + 20 * classes[i].getExpectedBits();
 
-			col = createTableViewerColumn(name, bounds);
+			String[] longestPossibleContents;
+			switch (classes[i].getExpectedType())
+			{
+			case INTEGER_IMMEDIATE:
+				longestPossibleContents = generateLongestHexStrings(classes[i].getExpectedBits());
+				break;
+			case BOOLEAN_IMMEDIATE:
+			case MNEMONIC:
+				longestPossibleContents = ((MnemonicFamily) classes[i]).getStringValues();
+				break;
+			default:
+				longestPossibleContents = new String[0];
+				break;
+			}
+
+			col = createTableViewerColumn(name, longestPossibleContents);
 			columns[i + 1] = col;
 			createEditingAndLabel(col, miDef, i);
 		}
+	}
+
+	private static final String[] HEX_DIGITS = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" };
+
+	private static String[] generateLongestHexStrings(int bitWidth)
+	{
+		return Arrays.stream(HEX_DIGITS).map(s -> "0x" + s.repeat((bitWidth + 3) / 4)).toArray(String[]::new);
 	}
 
 	private void createEditingAndLabel(TableViewerColumn col, MicroInstructionDefinition miDef, int index)
@@ -182,12 +205,22 @@ public class InstructionView extends ViewPart implements ContextObserver
 		col.getColumn().setToolTipText(miDef.getParameterDescription(index).orElse(""));
 	}
 
-	private TableViewerColumn createTableViewerColumn(String title, int bound)
+	private TableViewerColumn createTableViewerColumn(String title, String... longestPossibleContents)
 	{
 		TableViewerColumn viewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 		TableColumn column = viewerColumn.getColumn();
+		int maxWidth = 0;
+		for (String s : longestPossibleContents)
+		{
+			column.setText(s);
+			column.pack();
+			if (column.getWidth() > maxWidth)
+				maxWidth = column.getWidth();
+		}
 		column.setText(title);
-		column.setWidth(bound);
+		column.pack();
+		if (column.getWidth() < maxWidth)
+			column.setWidth(maxWidth);
 		column.setResizable(true);
 		column.setMoveable(false);
 		return viewerColumn;
