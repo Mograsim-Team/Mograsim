@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>net.mograsim.feature</name>
+	<comment></comment>
+	<projects>
+		<project>net.mograsim.logic.model.am2900</project>
+		<project>net.mograsim.plugin.branding</project>
+		<project>net.mograsim.plugin.core</project>
+		<project>net.mograsim.plugin.docs</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.pde.FeatureBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.pde.FeatureNature</nature>
+	</natures>
+</projectDescription>

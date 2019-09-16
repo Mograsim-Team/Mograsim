@@ -1,4 +1,3 @@
 [submodule "SWTHelper"]
-	path = SWTHelper
-	url = https://github.com/Haspamelodica/SWTHelper
-	branch = master
+	path = SWTHelper/bundles
+	url = https://github.com/Haspamelodica/SWTHelper.git

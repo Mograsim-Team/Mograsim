@@ -1,0 +1,8 @@
+target/
+bin/
+*.class
+.flattened-pom.xml
+pom.tycho
+**.polyglot*
+**.takari*
+**.META-INF_MANIFEST.MF

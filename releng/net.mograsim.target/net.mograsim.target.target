@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target includeMode="feature" name="Mograsim Eclipse Plugin Target (Maven Tycho)">
+	<targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11"/>
+	<locations>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/eclipse/updates/4.11"/>
+			<unit id="org.eclipse.equinox.sdk.feature.group" version="3.17.0.v20190305-2225"/>
+			<unit id="org.eclipse.platform.ide" version="4.11.0.I20190307-0500"/>
+		</location>
+		<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+			<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
+			<unit id="org.junit.jupiter.api" version="5.4.0.v20190212-2109"/>
+			<unit id="org.junit.jupiter.api.source" version="5.4.0.v20190212-2109"/>
+			<unit id="org.junit.jupiter.engine" version="5.4.0.v20190212-2109"/>
+			<unit id="org.junit.jupiter.engine.source" version="5.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.commons" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.commons.source" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.engine" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.engine.source" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.launcher" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.launcher.source" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.runner" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.runner.source" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.suite.api" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.platform.suite.api.source" version="1.4.0.v20190212-2109"/>
+			<unit id="org.junit.jupiter.params" version="5.4.0.v20190212-2109"/>
+			<unit id="org.junit.jupiter.params.source" version="5.4.0.v20190212-2109"/>
+			<unit id="com.google.gson" version="2.8.2.v20180104-1110"/>
+			<unit id="com.google.gson.source" version="2.8.2.v20180104-1110"/>
+			<unit id="org.opentest4j" version="1.1.1.v20190212-2109"/>
+		</location>
+	</locations>
+</target>
