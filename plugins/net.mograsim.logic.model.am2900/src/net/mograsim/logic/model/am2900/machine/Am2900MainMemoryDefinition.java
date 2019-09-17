@@ -4,6 +4,7 @@ import net.mograsim.machine.MainMemoryDefinition;
 
 public class Am2900MainMemoryDefinition implements MainMemoryDefinition
 {
+	public static final Am2900MainMemoryDefinition instance = new Am2900MainMemoryDefinition();
 
 	@Override
 	public int getMemoryAddressBits()
@@ -29,4 +30,7 @@ public class Am2900MainMemoryDefinition implements MainMemoryDefinition
 		return 16;
 	}
 
+	private Am2900MainMemoryDefinition()
+	{
+	}
 }

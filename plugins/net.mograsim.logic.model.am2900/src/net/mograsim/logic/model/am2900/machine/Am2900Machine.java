@@ -4,8 +4,6 @@ import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.model.am2900.components.ModelAm2900MainMemory;
-import net.mograsim.logic.model.am2900.components.ModelAm2900MicroInstructionMemory;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
@@ -46,10 +44,9 @@ public class Am2900Machine implements Machine
 		mainMemory = new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition());
 		instMemory = new AssignableMicroInstructionMemory(
 				new StandardMicroInstructionMemory(am2900MachineDefinition.getMicroInstructionMemoryDefinition()));
-		logicModel.getComponentBySubmodelPath("Am2900.Am2900MainMemory#0", ModelAm2900MainMemory.class).setMachine(this);
-		logicModel.getComponentBySubmodelPath("Am2900.Am2900MicroInstructionMemory#0", ModelAm2900MicroInstructionMemory.class)
-				.setMachine(this);
 		timeline = LogicCoreAdapter.convert(logicModel, params);
+		am2900.setHighLevelState("ram.memory_binding", mainMemory);
+		am2900.setHighLevelState("mpm.memory_binding", instMemory);
 	}
 
 	@Override
