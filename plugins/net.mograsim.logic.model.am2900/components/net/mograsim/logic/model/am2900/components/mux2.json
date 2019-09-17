@@ -157,110 +157,6 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "S0"
-        },
-        "name": "unnamedWire#10",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "sel1#0",
-          "pinName": "S2"
-        },
-        "name": "unnamedWire#11",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "sel1#0",
-          "pinName": "S1"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "name": "unnamedWire#14",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "NandGate#0",
-          "pinName": "Y"
-        },
-        "name": "unnamedWire#15",
-        "path": [
-          {
-            "x": 55.0,
-            "y": 25.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "sel1#1",
-          "pinName": "S2"
-        },
-        "name": "unnamedWire#16",
-        "path": [
-          {
-            "x": 25.0,
-            "y": 115.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "sel1#1",
-          "pinName": "S1"
-        },
-        "name": "unnamedWire#17",
-        "path": [
-          {
-            "x": 55.0,
-            "y": 105.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "NandGate#0",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#18",
-        "path": [
-          {
-            "x": 25.0,
-            "y": 20.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "I00"
         },
@@ -414,6 +310,110 @@
           {
             "x": 85.0,
             "y": 25.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "sel1#0",
+          "pinName": "S2"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "sel1#0",
+          "pinName": "S1"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#0",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#13",
+        "path": [
+          {
+            "x": 55.0,
+            "y": 25.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "sel1#1",
+          "pinName": "S2"
+        },
+        "name": "unnamedWire#14",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 115.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "sel1#1",
+          "pinName": "S1"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 55.0,
+            "y": 105.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#16",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 20.0
           }
         ]
       }

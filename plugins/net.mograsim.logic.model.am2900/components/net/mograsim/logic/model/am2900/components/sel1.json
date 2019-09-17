@@ -124,17 +124,6 @@
       },
       {
         "pin1": {
-          "compName": "NandGate#2",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Y"
-        },
-        "name": "unnamedWire#10"
-      },
-      {
-        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "I1"
         },
@@ -142,7 +131,7 @@
           "compName": "NandGate#0",
           "pinName": "B"
         },
-        "name": "unnamedWire#5",
+        "name": "unnamedWire#2",
         "path": [
           {
             "x": 25.0,
@@ -163,7 +152,7 @@
           "compName": "NandGate#1",
           "pinName": "B"
         },
-        "name": "unnamedWire#7",
+        "name": "unnamedWire#3",
         "path": [
           {
             "x": 15.0,
@@ -184,7 +173,7 @@
           "compName": "NandGate#2",
           "pinName": "A"
         },
-        "name": "unnamedWire#8"
+        "name": "unnamedWire#4"
       },
       {
         "pin1": {
@@ -195,7 +184,18 @@
           "compName": "NandGate#2",
           "pinName": "B"
         },
-        "name": "unnamedWire#9"
+        "name": "unnamedWire#5"
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#6"
       }
     ],
     "version": "0.1.1"

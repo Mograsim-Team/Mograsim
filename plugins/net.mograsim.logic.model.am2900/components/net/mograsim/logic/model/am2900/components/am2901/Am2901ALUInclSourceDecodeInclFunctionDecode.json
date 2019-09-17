@@ -373,6 +373,190 @@
       },
       {
         "pin1": {
+          "compName": "Am2901ALUInclDecode#0",
+          "pinName": "I3"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "I3"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 220.0,
+            "y": 40.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I2"
+        },
+        "pin2": {
+          "compName": "Am2901SourceDecode#0",
+          "pinName": "I2"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 180.0,
+            "y": 5.0
+          },
+          {
+            "x": 150.0,
+            "y": 5.0
+          },
+          {
+            "x": 150.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I1"
+        },
+        "pin2": {
+          "compName": "Am2901SourceDecode#0",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 175.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I0"
+        },
+        "pin2": {
+          "compName": "Am2901SourceDecode#0",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 100.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2901SourceDecode#0",
+          "pinName": "RA"
+        },
+        "pin2": {
+          "compName": "sel2_4#0",
+          "pinName": "SB"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 175.0
+          },
+          {
+            "x": 205.0,
+            "y": 100.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D1"
+        },
+        "pin2": {
+          "compName": "sel2_4#0",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 40.0
+          },
+          {
+            "x": 10.0,
+            "y": 55.0
+          },
+          {
+            "x": 185.0,
+            "y": 55.0
+          },
+          {
+            "x": 185.0,
+            "y": 110.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D2"
+        },
+        "pin2": {
+          "compName": "sel2_4#0",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 60.0
+          },
+          {
+            "x": 10.0,
+            "y": 65.0
+          },
+          {
+            "x": 180.0,
+            "y": 65.0
+          },
+          {
+            "x": 180.0,
+            "y": 120.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D3"
+        },
+        "pin2": {
+          "compName": "sel2_4#0",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 80.0
+          },
+          {
+            "x": 10.0,
+            "y": 75.0
+          },
+          {
+            "x": 175.0,
+            "y": 75.0
+          },
+          {
+            "x": 175.0,
+            "y": 130.0
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "D4"
         },
@@ -566,23 +750,6 @@
       },
       {
         "pin1": {
-          "compName": "Am2901ALUInclDecode#0",
-          "pinName": "I3"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "I3"
-        },
-        "name": "unnamedWire#2",
-        "path": [
-          {
-            "x": 220.0,
-            "y": 40.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#1",
           "pinName": ""
         },
@@ -767,31 +934,6 @@
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "I2"
-        },
-        "pin2": {
-          "compName": "Am2901SourceDecode#0",
-          "pinName": "I2"
-        },
-        "name": "unnamedWire#3",
-        "path": [
-          {
-            "x": 180.0,
-            "y": 5.0
-          },
-          {
-            "x": 150.0,
-            "y": 5.0
-          },
-          {
-            "x": 150.0,
-            "y": 165.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
           "pinName": "Q4"
         },
         "pin2": {
@@ -894,7 +1036,7 @@
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "R1"
         },
-        "name": "unnamedWire#36",
+        "name": "unnamedWire#35",
         "path": [
           {
             "x": 275.0,
@@ -915,7 +1057,7 @@
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "R2"
         },
-        "name": "unnamedWire#37",
+        "name": "unnamedWire#36",
         "path": [
           {
             "x": 280.0,
@@ -936,7 +1078,7 @@
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "R3"
         },
-        "name": "unnamedWire#38",
+        "name": "unnamedWire#37",
         "path": [
           {
             "x": 285.0,
@@ -957,7 +1099,7 @@
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "R4"
         },
-        "name": "unnamedWire#39",
+        "name": "unnamedWire#38",
         "path": [
           {
             "x": 290.0,
@@ -971,23 +1113,6 @@
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "I1"
-        },
-        "pin2": {
-          "compName": "Am2901SourceDecode#0",
-          "pinName": "I1"
-        },
-        "name": "unnamedWire#4",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 175.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "sel3_4#0",
           "pinName": "Y1"
         },
@@ -995,7 +1120,7 @@
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "S1"
         },
-        "name": "unnamedWire#40",
+        "name": "unnamedWire#39",
         "path": [
           {
             "x": 295.0,
@@ -1016,7 +1141,7 @@
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "S2"
         },
-        "name": "unnamedWire#41",
+        "name": "unnamedWire#40",
         "path": [
           {
             "x": 300.0,
@@ -1037,7 +1162,7 @@
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "S3"
         },
-        "name": "unnamedWire#42",
+        "name": "unnamedWire#41",
         "path": [
           {
             "x": 305.0,
@@ -1058,7 +1183,7 @@
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "S4"
         },
-        "name": "unnamedWire#43",
+        "name": "unnamedWire#42",
         "path": [
           {
             "x": 310.0,
@@ -1079,7 +1204,7 @@
           "compName": "_submodelinterface",
           "pinName": "F1"
         },
-        "name": "unnamedWire#44",
+        "name": "unnamedWire#43",
         "path": []
       },
       {
@@ -1091,7 +1216,7 @@
           "compName": "_submodelinterface",
           "pinName": "F2"
         },
-        "name": "unnamedWire#45",
+        "name": "unnamedWire#44",
         "path": [
           {
             "x": 375.0,
@@ -1112,7 +1237,7 @@
           "compName": "_submodelinterface",
           "pinName": "F3"
         },
-        "name": "unnamedWire#46",
+        "name": "unnamedWire#45",
         "path": [
           {
             "x": 370.0,
@@ -1133,7 +1258,7 @@
           "compName": "_submodelinterface",
           "pinName": "F4"
         },
-        "name": "unnamedWire#47",
+        "name": "unnamedWire#46",
         "path": [
           {
             "x": 365.0,
@@ -1154,7 +1279,7 @@
           "compName": "_submodelinterface",
           "pinName": "Cn+4"
         },
-        "name": "unnamedWire#48",
+        "name": "unnamedWire#47",
         "path": [
           {
             "x": 360.0,
@@ -1175,7 +1300,7 @@
           "compName": "_submodelinterface",
           "pinName": "OVR"
         },
-        "name": "unnamedWire#49",
+        "name": "unnamedWire#48",
         "path": [
           {
             "x": 355.0,
@@ -1190,142 +1315,17 @@
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "I0"
-        },
-        "pin2": {
-          "compName": "Am2901SourceDecode#0",
-          "pinName": "I0"
-        },
-        "name": "unnamedWire#5",
-        "path": [
-          {
-            "x": 100.0,
-            "y": 185.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
           "pinName": "I4"
         },
         "pin2": {
           "compName": "Am2901ALUInclDecode#0",
           "pinName": "I4"
         },
-        "name": "unnamedWire#50",
+        "name": "unnamedWire#49",
         "path": [
           {
             "x": 260.0,
             "y": 30.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Am2901SourceDecode#0",
-          "pinName": "RA"
-        },
-        "pin2": {
-          "compName": "sel2_4#0",
-          "pinName": "SB"
-        },
-        "name": "unnamedWire#6",
-        "path": [
-          {
-            "x": 205.0,
-            "y": 175.0
-          },
-          {
-            "x": 205.0,
-            "y": 100.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D1"
-        },
-        "pin2": {
-          "compName": "sel2_4#0",
-          "pinName": "A1"
-        },
-        "name": "unnamedWire#7",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 40.0
-          },
-          {
-            "x": 10.0,
-            "y": 55.0
-          },
-          {
-            "x": 185.0,
-            "y": 55.0
-          },
-          {
-            "x": 185.0,
-            "y": 110.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D2"
-        },
-        "pin2": {
-          "compName": "sel2_4#0",
-          "pinName": "A2"
-        },
-        "name": "unnamedWire#8",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 60.0
-          },
-          {
-            "x": 10.0,
-            "y": 65.0
-          },
-          {
-            "x": 180.0,
-            "y": 65.0
-          },
-          {
-            "x": 180.0,
-            "y": 120.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D3"
-        },
-        "pin2": {
-          "compName": "sel2_4#0",
-          "pinName": "A3"
-        },
-        "name": "unnamedWire#9",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 80.0
-          },
-          {
-            "x": 10.0,
-            "y": 75.0
-          },
-          {
-            "x": 175.0,
-            "y": 75.0
-          },
-          {
-            "x": 175.0,
-            "y": 130.0
           }
         ]
       }
