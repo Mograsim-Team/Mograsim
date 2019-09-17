@@ -241,6 +241,120 @@
       },
       {
         "pin1": {
+          "compName": "mux1_4#0",
+          "pinName": "Y2"
+        },
+        "pin2": {
+          "compName": "dff#1",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff#3",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff#1",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff#2",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 225.0
+          },
+          {
+            "x": 20.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "WE"
+        },
+        "pin2": {
+          "compName": "mux1_4#0",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 275.0
+          },
+          {
+            "x": 10.0,
+            "y": 65.0
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "D1"
         },
@@ -393,18 +507,6 @@
           "pinName": "Q3"
         },
         "name": "unnamedWire#19",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "mux1_4#0",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "dff#1",
-          "pinName": "D"
-        },
-        "name": "unnamedWire#2",
         "path": []
       },
       {
@@ -570,108 +672,6 @@
           {
             "x": 35.0,
             "y": 105.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff#3",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#3",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "name": "unnamedWire#4",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff#1",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#5",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "name": "unnamedWire#6",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff#2",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#7",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "name": "unnamedWire#8",
-        "path": [
-          {
-            "x": 20.0,
-            "y": 225.0
-          },
-          {
-            "x": 20.0,
-            "y": 185.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "WE"
-        },
-        "pin2": {
-          "compName": "mux1_4#0",
-          "pinName": "S0"
-        },
-        "name": "unnamedWire#9",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 275.0
-          },
-          {
-            "x": 10.0,
-            "y": 65.0
           }
         ]
       }

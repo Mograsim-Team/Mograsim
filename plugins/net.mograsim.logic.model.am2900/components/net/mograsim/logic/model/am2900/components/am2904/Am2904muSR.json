@@ -294,6 +294,138 @@
       },
       {
         "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "dff4_finewe#0",
+          "pinName": "Q3"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dff4_finewe#0",
+          "pinName": "Q4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 245.0,
+            "y": 45.0
+          },
+          {
+            "x": 245.0,
+            "y": 50.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "M"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "mux1_4#0",
+          "pinName": "I1_1"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 185.0
+          },
+          {
+            "x": 20.0,
+            "y": 180.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "mux1_4#0",
+          "pinName": "I1_2"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 190.0
+          },
+          {
+            "x": 20.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "mux1_4#0",
+          "pinName": "I1_3"
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 205.0
+          },
+          {
+            "x": 20.0,
+            "y": 200.0
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "mux1_4#0",
           "pinName": "I1_4"
         },
@@ -455,18 +587,6 @@
       },
       {
         "pin1": {
-          "compName": "Splitter#3",
-          "pinName": "O1"
-        },
-        "pin2": {
-          "compName": "dff4_finewe#0",
-          "pinName": "Q3"
-        },
-        "name": "unnamedWire#2",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "mux1_4#0",
           "pinName": "Y1"
         },
@@ -602,18 +722,6 @@
           "pinName": ""
         },
         "name": "unnamedWire#29",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "dff4_finewe#0",
-          "pinName": "Q4"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "name": "unnamedWire#3",
         "path": []
       },
       {
@@ -835,27 +943,6 @@
       },
       {
         "pin1": {
-          "compName": "Splitter#3",
-          "pinName": "I"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q"
-        },
-        "name": "unnamedWire#4",
-        "path": [
-          {
-            "x": 245.0,
-            "y": 45.0
-          },
-          {
-            "x": 245.0,
-            "y": 50.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "_EC"
         },
@@ -1009,93 +1096,6 @@
           {
             "x": 20.0,
             "y": 140.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "M"
-        },
-        "pin2": {
-          "compName": "Splitter#0",
-          "pinName": "I"
-        },
-        "name": "unnamedWire#5",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "I"
-        },
-        "pin2": {
-          "compName": "Splitter#1",
-          "pinName": "I"
-        },
-        "name": "unnamedWire#6",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#1",
-          "pinName": "O3"
-        },
-        "pin2": {
-          "compName": "mux1_4#0",
-          "pinName": "I1_1"
-        },
-        "name": "unnamedWire#7",
-        "path": [
-          {
-            "x": 20.0,
-            "y": 185.0
-          },
-          {
-            "x": 20.0,
-            "y": 180.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "mux1_4#0",
-          "pinName": "I1_2"
-        },
-        "pin2": {
-          "compName": "Splitter#1",
-          "pinName": "O2"
-        },
-        "name": "unnamedWire#8",
-        "path": [
-          {
-            "x": 20.0,
-            "y": 190.0
-          },
-          {
-            "x": 20.0,
-            "y": 195.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#1",
-          "pinName": "O1"
-        },
-        "pin2": {
-          "compName": "mux1_4#0",
-          "pinName": "I1_3"
-        },
-        "name": "unnamedWire#9",
-        "path": [
-          {
-            "x": 20.0,
-            "y": 205.0
-          },
-          {
-            "x": 20.0,
-            "y": 200.0
           }
         ]
       }

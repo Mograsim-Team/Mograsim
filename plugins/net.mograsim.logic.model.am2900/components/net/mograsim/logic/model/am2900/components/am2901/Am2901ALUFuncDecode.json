@@ -152,15 +152,6 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#10",
-        "pos": {
-          "x": 39.0,
-          "y": 34.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 4.0,
@@ -232,6 +223,15 @@
         "params": 1
       },
       {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
+        "pos": {
+          "x": 39.0,
+          "y": 34.0
+        },
+        "params": 1
+      },
+      {
         "id": "and",
         "name": "and#0",
         "pos": {
@@ -274,6 +274,129 @@
         "path": [
           {
             "x": 5.0,
+            "y": 15.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 45.0,
+            "y": 45.0
+          },
+          {
+            "x": 45.0,
+            "y": 50.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "FN"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 180.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "I4"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "nand3#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 40.0
+          },
+          {
+            "x": 45.0,
+            "y": 40.0
+          },
+          {
+            "x": 45.0,
             "y": 15.0
           }
         ]
@@ -428,18 +551,6 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "name": "unnamedWire#2",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#8",
           "pinName": ""
         },
@@ -575,18 +686,6 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "NandGate#0",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#3",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "NandGate#4",
           "pinName": "Y"
         },
@@ -608,105 +707,6 @@
         },
         "name": "unnamedWire#31",
         "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "name": "unnamedWire#4",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "NandGate#2",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#5",
-        "path": [
-          {
-            "x": 45.0,
-            "y": 45.0
-          },
-          {
-            "x": 45.0,
-            "y": 50.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#2",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "FN"
-        },
-        "name": "unnamedWire#6",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 180.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "I4"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "name": "unnamedWire#7",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#4",
-          "pinName": ""
-        },
-        "name": "unnamedWire#8",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#4",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "nand3#0",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#9",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 40.0
-          },
-          {
-            "x": 45.0,
-            "y": 40.0
-          },
-          {
-            "x": 45.0,
-            "y": 15.0
-          }
-        ]
       }
     ],
     "version": "0.1.1"
