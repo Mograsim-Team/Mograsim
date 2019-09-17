@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.am2900.components;
+package net.mograsim.machine.standard.memory;
 
 import java.util.Map;
 
@@ -9,26 +9,23 @@ import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.componentadapters.ComponentAdapter;
-import net.mograsim.machine.standard.memory.CoreWordAddressableMemory;
 
-public class ModelAm2900MainMemoryAdapter implements ComponentAdapter<ModelAm2900MainMemory>
+public class WordAddressableMemoryAdapter implements ComponentAdapter<ModelWordAddressableMemory>
 {
-
 	@Override
-	public Class<ModelAm2900MainMemory> getSupportedClass()
+	public Class<ModelWordAddressableMemory> getSupportedClass()
 	{
-		return ModelAm2900MainMemory.class;
+		return ModelWordAddressableMemory.class;
 	}
 
 	@Override
-	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, ModelAm2900MainMemory modelComponent,
+	public void createAndLinkComponent(Timeline timeline, CoreModelParameters params, ModelWordAddressableMemory modelComponent,
 			Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		ReadWriteEnd data = logicWiresPerPin.get(modelComponent.getDataPin()).createReadWriteEnd();
 		ReadEnd address = logicWiresPerPin.get(modelComponent.getAddressPin()).createReadOnlyEnd();
 		ReadEnd mode = logicWiresPerPin.get(modelComponent.getReadWritePin()).createReadOnlyEnd();
-		CoreWordAddressableMemory mem = new CoreWordAddressableMemory(timeline, 2, modelComponent.getMachine().getMainMemory(), data, mode,
-				address);
+		CoreWordAddressableMemory mem = new CoreWordAddressableMemory(timeline, 2, modelComponent.getDefinition(), data, mode, address);
 		modelComponent.setCoreModelBinding(mem);
 	}
 }

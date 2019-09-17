@@ -9,22 +9,48 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
+import net.mograsim.machine.MemoryObserver;
 import net.mograsim.machine.mi.MicroInstructionMemory;
+import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 
 public class CoreMicroInstructionMemory extends BasicCoreComponent
 {
 	private final ReadWriteEnd data;
 	private final ReadEnd address;
-	private final MicroInstructionMemory memory;
+	private final MicroInstructionMemoryDefinition definition;
+	private final MemoryObserver memObs;
+	private MicroInstructionMemory memory;
 
-	public CoreMicroInstructionMemory(Timeline timeline, int processTime, MicroInstructionMemory memory, ReadWriteEnd data, ReadEnd address)
+	public CoreMicroInstructionMemory(Timeline timeline, int processTime, MicroInstructionMemoryDefinition definition, ReadWriteEnd data,
+			ReadEnd address)
 	{
 		super(timeline, processTime);
-		this.memory = memory;
+		if (data.width() != definition.getMicroInstructionDefinition().sizeInBits())
+			throw new IllegalArgumentException(
+					String.format("Bit width of data wire does not match microinstruction memory definition. Expected: %d Actual: %d",
+							definition.getMicroInstructionDefinition().sizeInBits(), data.width()));
+		if (address.width() != definition.getMemoryAddressBits())
+			throw new IllegalArgumentException(
+					String.format("Bit width of address wire does not match microinstruction memory definition. Expected: %d Actual: %d",
+							definition.getMemoryAddressBits(), address.width()));
+
 		this.data = data;
 		this.address = address;
-		memory.registerObserver(a -> update());
+		this.definition = definition;
+		this.memObs = a -> update();
 		address.registerObserver(this);
+	}
+
+	public void setMemory(MicroInstructionMemory memory)
+	{
+		if (memory != null && !memory.getDefinition().equals(definition))
+			throw new IllegalArgumentException("Memory of incorrect memory definition given");
+		if (this.memory != null)
+			this.memory.registerObserver(memObs);
+		this.memory = memory;
+		if (memory != null)
+			memory.registerObserver(memObs);
+		update();
 	}
 
 	public MicroInstructionMemory getMemory()
@@ -47,10 +73,8 @@ public class CoreMicroInstructionMemory extends BasicCoreComponent
 	@Override
 	protected TimelineEventHandler compute()
 	{
-		if (!address.getValues().isBinary())
-		{
+		if (memory == null || !address.getValues().isBinary())
 			return e -> data.feedSignals(Bit.U.toVector(data.width()));// TODO don't always feed U, but decide to feed X or U.
-		}
 		long addressed = address.getValues().getUnsignedValueLong();
 		BitVector storedData = memory.getCell(addressed).toBitVector();
 		return e -> data.feedSignals(storedData);

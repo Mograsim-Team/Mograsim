@@ -11,8 +11,6 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -84,23 +82,8 @@ public class InstructionView extends EditorPart implements MemoryObserver
 	{
 		Button activationButton = new Button(parent, SWT.PUSH);
 		activationButton.setText("Set Active");
-		activationButton.addSelectionListener(new SelectionListener()
-		{
-
-			@Override
-			public void widgetSelected(SelectionEvent e)
-			{
-				if (e.detail == SWT.PUSH)
-					MachineContext.getInstance().getMachine().getMicroInstructionMemory().bind(memory);
-				// TODO register this in project context
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e)
-			{
-				widgetSelected(e);
-			}
-		});
+		activationButton.addListener(SWT.Selection,
+				e -> MachineContext.getInstance().getMachine().getMicroInstructionMemory().bind(memory));
 	}
 
 	public void highlight(int index)
