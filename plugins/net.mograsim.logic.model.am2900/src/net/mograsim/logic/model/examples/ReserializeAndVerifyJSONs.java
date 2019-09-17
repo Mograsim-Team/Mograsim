@@ -11,10 +11,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.function.Function;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -22,8 +21,8 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.components.atomic.ModelTextComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.components.submodels.SubmodelInterface;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.model.wires.MovablePin;
@@ -31,15 +30,26 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
-import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
+import net.mograsim.logic.model.serializing.LogicModelParams.ComponentParams;
+import net.mograsim.logic.model.serializing.LogicModelParams.WireParams;
+import net.mograsim.logic.model.serializing.SubmodelComponentParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
-import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.StandardHighLevelStateHandler.StandardHighLevelStateHandlerParams;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.AtomicHighLevelStateHandler.AtomicHighLevelStateHandlerParams;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.DelegatingAtomicHighLevelStateHandler.DelegatingAtomicHighLevelStateHandlerParams;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic.WireForcingAtomicHighLevelStateHandler.WireForcingAtomicHighLevelStateHandlerParams;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.DelegatingSubcomponentHighLevelStateHandler.DelegatingSubcomponentHighLevelStateHandlerParams;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent.SubcomponentHighLevelStateHandler.SubcomponentHighLevelStateHandlerParams;
+import net.mograsim.logic.model.util.JsonHandler;
 
 public class ReserializeAndVerifyJSONs
 {
 	public static double GRIDSIZE = 2.5;
 	public static boolean changePinUsages = false;
 	public static boolean changeComponentNames = false;
+	public static boolean forceDefaultComponentNames = false;
+	public static boolean changeWireNames = true;
+	public static boolean forceDefaultWireNames = true;
 	public static boolean snapWCPs = true;
 	public static boolean warnNonSnappedPoints = true;
 	public static boolean warnNonVertHorizLines = true;
@@ -73,16 +83,20 @@ public class ReserializeAndVerifyJSONs
 	{
 		try
 		{
-			DeserializedSubmodelComponent comp = (DeserializedSubmodelComponent) IndirectModelComponentCreator
-					.createComponent(new LogicModelModifiable(), "jsonfile:" + componentPath.toString());
+			SubmodelComponentParams oldComponentJSON = JsonHandler.readJson(componentPath.toString(), SubmodelComponentParams.class);
+			DeserializedSubmodelComponent comp = (DeserializedSubmodelComponent) SubmodelComponentSerializer
+					.deserialize(new LogicModelModifiable(), oldComponentJSON);
 			System.out.println("Reserializing " + componentPath);
 			LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
 			Map<String, String> componentNameRemapping = new HashMap<>();
+			Map<String, String> wireNameRemapping = new HashMap<>();
 
 			if (changePinUsages)
 				changePinUsages(sysin, comp);
 			if (changeComponentNames)
 				changeComponentNames(sysin, submodelModifiable, componentNameRemapping);
+			if (changeWireNames)
+				changeWireNames(sysin, submodelModifiable, wireNameRemapping);
 			if (snapWCPs)
 				snapWCPs(submodelModifiable);
 			if (warnNonSnappedPoints)
@@ -92,10 +106,15 @@ public class ReserializeAndVerifyJSONs
 			if (warnRedundantWires)
 				warnRedundantWires(submodelModifiable);
 
-			SubmodelComponentSerializer.serialize(comp, componentPath.toString());
+			SubmodelComponentParams newComponentJSON = SubmodelComponentSerializer.serialize(comp);
 
 			if (changeComponentNames)
-				changeComponentNames_AfterSerialization(sysin, comp, componentNameRemapping);
+				changeComponentNames_AfterSerialization(newComponentJSON, componentNameRemapping);
+			if (changeWireNames)
+				changeWireNames_AfterSerialization(newComponentJSON, wireNameRemapping);
+			sortAllJSONArrays(newComponentJSON);
+
+			JsonHandler.writeJson(newComponentJSON, componentPath.toString());
 		}
 		catch (Exception e)
 		{
@@ -148,6 +167,7 @@ public class ReserializeAndVerifyJSONs
 		});
 	}
 
+	@SuppressWarnings("unused") // TextComponent
 	private static void changeComponentNames(Scanner sysin, LogicModelModifiable submodelModifiable,
 			Map<String, String> componentNameRemapping)
 	{
@@ -161,7 +181,7 @@ public class ReserializeAndVerifyJSONs
 					String oldName = e.getKey();
 					ModelComponent subcomp = e.getValue();
 					String defaultName = tempModel.getDefaultComponentName(subcomp);
-					String newName = null;
+					String newName = forceDefaultComponentNames ? defaultName : null;
 					while (newName == null)
 					{
 						System.out.print("  New name for component " + oldName + " of type " + subcomp.getIDForSerializing(iP) + " (empty: "
@@ -176,39 +196,92 @@ public class ReserializeAndVerifyJSONs
 						}
 					}
 					componentNameRemapping.put(oldName, newName);
-					IndirectModelComponentCreator
-							.createComponent(tempModel, subcomp.getIDForSerializing(iP), subcomp.getParamsForSerializingJSON(iP), newName)
-							.moveTo(subcomp.getPosX(), subcomp.getPosY());
+					new ModelTextComponent(tempModel, "", newName);
 				});
-		SubmodelInterface tempSubmodelInterface = new SubmodelInterface(tempModel);
-		for (Pin p : submodelModifiable.getComponentsByName().get(SubmodelComponent.SUBMODEL_INTERFACE_NAME).getPins().values())
-			tempSubmodelInterface
-					.addPin(new Pin(tempModel, tempSubmodelInterface, p.name, p.logicWidth, p.usage, p.getRelX(), p.getRelY()));
-		for (ModelWire w : submodelModifiable.getWiresByName().values())
-			createWire(componentNameRemapping::get, tempModel, w);
-
-		Optional<ModelComponent> o;
-		while ((o = submodelModifiable.getComponentsByName().values().stream()
-				.filter(c -> !c.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME)).findAny()).isPresent())
-			submodelModifiable.destroyComponent(o.get());
-
-		tempModel.getComponentsByName().values().stream().filter(c -> !c.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
-				.forEach(c -> IndirectModelComponentCreator
-						.createComponent(submodelModifiable, c.getIDForSerializing(iP), c.getParamsForSerializingJSON(iP), c.getName())
-						.moveTo(c.getPosX(), c.getPosY()));
-		for (ModelWire w : tempModel.getWiresByName().values())
-			createWire(Function.identity(), submodelModifiable, w);
 	}
 
-	private static void changeComponentNames_AfterSerialization(Scanner sysin, DeserializedSubmodelComponent comp,
+	private static void changeComponentNames_AfterSerialization(SubmodelComponentParams newComponentJSON,
 			Map<String, String> componentNameRemapping)
 	{
-		if (comp.getHighLevelStateHandler() == null || !(comp.getHighLevelStateHandler() instanceof DefaultHighLevelStateHandler))
+		for (ComponentParams cParams : newComponentJSON.submodel.components)
+			cParams.name = componentNameRemapping.get(cParams.name);
+		for (WireParams wParams : newComponentJSON.submodel.wires)
 		{
-			System.out.println("  A non-default HighLevelStateHandler was detected. Check for changes there manually.");
-			System.out.print("  Empty line to continue to next component, old component name to get new component name >");
-			for (String line = sysin.nextLine(); !line.equals(""); line = sysin.nextLine())
-				System.out.println("  " + line + "->" + componentNameRemapping.get(line) + " >");
+			wParams.pin1.compName = componentNameRemapping.get(wParams.pin1.compName);
+			wParams.pin2.compName = componentNameRemapping.get(wParams.pin2.compName);
+		}
+		if ("standard".equals(newComponentJSON.highLevelStateHandlerSnippetID))
+		{
+			StandardHighLevelStateHandlerParams hlshParams = JsonHandler.fromJsonTree(newComponentJSON.highLevelStateHandlerParams,
+					StandardHighLevelStateHandlerParams.class);
+			for (AtomicHighLevelStateHandlerParams ahlshParams : hlshParams.atomicHighLevelStates.values())
+				if ("delegating".equals(ahlshParams.id))
+				{
+					DelegatingAtomicHighLevelStateHandlerParams dhlshParams = JsonHandler.fromJsonTree(ahlshParams.params,
+							DelegatingAtomicHighLevelStateHandlerParams.class);
+					dhlshParams.delegateTarget = componentNameRemapping.get(dhlshParams.delegateTarget);
+					ahlshParams.params = JsonHandler.toJsonTree(dhlshParams);
+				}
+			for (SubcomponentHighLevelStateHandlerParams shlshParams : hlshParams.subcomponentHighLevelStates.values())
+				if ("delegating".equals(shlshParams.id))
+				{
+					DelegatingSubcomponentHighLevelStateHandlerParams dhlshParams = JsonHandler.fromJsonTree(shlshParams.params,
+							DelegatingSubcomponentHighLevelStateHandlerParams.class);
+					dhlshParams.delegateTarget = componentNameRemapping.get(dhlshParams.delegateTarget);
+					shlshParams.params = JsonHandler.toJsonTree(dhlshParams);
+				}
+			newComponentJSON.highLevelStateHandlerParams = JsonHandler.toJsonTree(hlshParams);
+		}
+	}
+
+	@SuppressWarnings("unused") // Wire
+	private static void changeWireNames(Scanner sysin, LogicModelModifiable submodelModifiable, Map<String, String> wireNameRemapping)
+	{
+		LogicModelModifiable tempModel = new LogicModelModifiable();
+		Pin p = new ModelWireCrossPoint(tempModel, 1).getPin();
+		IdentifyParams iP = new IdentifyParams();
+		submodelModifiable.getWiresByName().entrySet().stream()
+				.sorted(Comparator.comparing(Entry::getKey, ReserializeAndVerifyJSONs::compareStringsWithIntegers)).forEach(e ->
+				{
+					String oldName = e.getKey();
+					String defaultName = tempModel.getDefaultWireName();
+					String newName = forceDefaultWireNames ? defaultName : null;
+					while (newName == null)
+					{
+						System.out.print("  New name for wire " + oldName + " (empty: " + defaultName + ") >");
+						newName = sysin.nextLine();
+						if (newName.equals(""))
+							newName = defaultName;
+						if (tempModel.getComponentsByName().containsKey(newName))
+						{
+							System.err.println("  There already is a component with that name");
+							newName = null;
+						}
+					}
+					wireNameRemapping.put(oldName, newName);
+					new ModelWire(tempModel, newName, p, p);
+				});
+	}
+
+	private static void changeWireNames_AfterSerialization(SubmodelComponentParams newComponentJSON, Map<String, String> wireNameRemapping)
+	{
+		for (WireParams wParams : newComponentJSON.submodel.wires)
+			wParams.name = wireNameRemapping.get(wParams.name);
+		if ("standard".equals(newComponentJSON.highLevelStateHandlerSnippetID))
+		{
+			StandardHighLevelStateHandlerParams hlshParams = JsonHandler.fromJsonTree(newComponentJSON.highLevelStateHandlerParams,
+					StandardHighLevelStateHandlerParams.class);
+			for (AtomicHighLevelStateHandlerParams ahlshParams : hlshParams.atomicHighLevelStates.values())
+				if ("wireForcing".equals(ahlshParams.id))
+				{
+					WireForcingAtomicHighLevelStateHandlerParams whlshParams = JsonHandler.fromJsonTree(ahlshParams.params,
+							WireForcingAtomicHighLevelStateHandlerParams.class);
+					whlshParams.wiresToForce = whlshParams.wiresToForce.stream().map(wireNameRemapping::get).collect(Collectors.toList());
+					whlshParams.wiresToForceInverted = whlshParams.wiresToForceInverted.stream().map(wireNameRemapping::get)
+							.collect(Collectors.toList());
+					ahlshParams.params = JsonHandler.toJsonTree(whlshParams);
+				}
+			newComponentJSON.highLevelStateHandlerParams = JsonHandler.toJsonTree(hlshParams);
 		}
 	}
 
@@ -277,18 +350,24 @@ public class ReserializeAndVerifyJSONs
 		});
 	}
 
-	private static ModelWire createWire(Function<String, String> componentNameRemapping, LogicModelModifiable tempModelForDefaultNames,
-			ModelWire w)
+	private static void sortAllJSONArrays(SubmodelComponentParams newComponentJSON)
 	{
-		return new ModelWire(tempModelForDefaultNames, w.name,
-				getRemappedPin(componentNameRemapping, tempModelForDefaultNames, w.getPin1()),
-				getRemappedPin(componentNameRemapping, tempModelForDefaultNames, w.getPin2()), w.getPath());
-	}
-
-	private static Pin getRemappedPin(Function<String, String> componentNameRemapping, LogicModelModifiable tempModelForDefaultNames,
-			Pin pin)
-	{
-		return tempModelForDefaultNames.getComponentsByName().get(componentNameRemapping.apply(pin.component.getName())).getPin(pin.name);
+		Comparator<String> c = ReserializeAndVerifyJSONs::compareStringsWithIntegers;
+		Arrays.sort(newComponentJSON.interfacePins, Comparator.comparing(p -> p.name, c));
+		Arrays.sort(newComponentJSON.submodel.components, Comparator.comparing(p -> p.name, c));
+		Arrays.sort(newComponentJSON.submodel.wires, Comparator.comparing(p -> p.name, c));
+		if ("standard".equals(newComponentJSON.highLevelStateHandlerSnippetID))
+		{
+			StandardHighLevelStateHandlerParams hlshP = JsonHandler.fromJsonTree(newComponentJSON.highLevelStateHandlerParams,
+					StandardHighLevelStateHandlerParams.class);
+			TreeMap<String, AtomicHighLevelStateHandlerParams> tmp1 = new TreeMap<>(c);
+			tmp1.putAll(hlshP.atomicHighLevelStates);
+			hlshP.atomicHighLevelStates = tmp1;
+			TreeMap<String, SubcomponentHighLevelStateHandlerParams> tmp2 = new TreeMap<>(c);
+			tmp2.putAll(hlshP.subcomponentHighLevelStates);
+			hlshP.subcomponentHighLevelStates = tmp2;
+			newComponentJSON.highLevelStateHandlerParams = JsonHandler.toJsonTree(hlshP);
+		}
 	}
 
 	private static int compareStringsWithIntegers(String a, String b)
@@ -305,42 +384,39 @@ public class ReserializeAndVerifyJSONs
 			}
 			if (bLoc == b.length())
 				return 1;
-			int aInt = 0;
-			int aIntLen = 0;
-			char nextCharA;
+			int aInt = 1, bInt = 1;// 1 so a longer number is always greater (makes a difference for leading zeroes)
+			boolean aHasNumber = false, bHasNumber = false;
+			char nextCharA, nextCharB;
 			for (;;)
 			{
 				nextCharA = a.charAt(aLoc++);
 				if (nextCharA < '0' || nextCharA > '9')
 					break;
-				aIntLen++;
+				aHasNumber = true;
 				aInt = aInt * 10 + nextCharA - '0';
 				if (aLoc == a.length())
 					break;
 			}
-			int bInt = 0;
-			int bIntLen = 0;
-			char nextCharB;
 			for (;;)
 			{
 				nextCharB = b.charAt(bLoc++);
 				if (nextCharB < '0' || nextCharB > '9')
 					break;
-				bIntLen++;
+				bHasNumber = true;
 				bInt = bInt * 10 + nextCharB - '0';
 				if (bLoc == b.length())
 					break;
 			}
-			if (aIntLen != 0)
+			if (aHasNumber)
 			{
-				if (bIntLen == 0)
+				if (!bHasNumber)
 					return -1;
 				int comp = Integer.compare(aInt, bInt);
 				if (comp != 0)
 					return comp;
 			} else
 			{
-				if (bIntLen != 0)
+				if (bHasNumber)
 					return 1;
 				int comp = Character.compare(nextCharA, nextCharB);
 				if (comp != 0)

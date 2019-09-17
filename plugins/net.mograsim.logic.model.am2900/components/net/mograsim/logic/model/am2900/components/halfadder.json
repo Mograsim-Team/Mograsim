@@ -138,60 +138,6 @@
       },
       {
         "pin1": {
-          "compName": "NandGate#1",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "NandGate#3",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#10",
-        "path": [
-          {
-            "x": 62.5,
-            "y": 12.5
-          },
-          {
-            "x": 62.5,
-            "y": 7.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "NandGate#2",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "NandGate#3",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#11",
-        "path": [
-          {
-            "x": 62.5,
-            "y": 37.5
-          },
-          {
-            "x": 62.5,
-            "y": 17.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "NandGate#3",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Y"
-        },
-        "name": "unnamedWire#12",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#0",
           "pinName": ""
         },
@@ -319,6 +265,60 @@
             "y": 32.5
           }
         ]
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "NandGate#3",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#10",
+        "path": [
+          {
+            "x": 62.5,
+            "y": 12.5
+          },
+          {
+            "x": 62.5,
+            "y": 7.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "NandGate#3",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#11",
+        "path": [
+          {
+            "x": 62.5,
+            "y": 37.5
+          },
+          {
+            "x": 62.5,
+            "y": 17.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#3",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#12",
+        "path": []
       }
     ],
     "version": "0.1.1"

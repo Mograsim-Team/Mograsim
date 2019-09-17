@@ -123,6 +123,78 @@
       },
       {
         "id": "ManualSwitch",
+        "name": "ManualSwitch#2",
+        "pos": {
+          "x": 170.0,
+          "y": 112.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#3",
+        "pos": {
+          "x": 55.0,
+          "y": 122.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#4",
+        "pos": {
+          "x": 170.0,
+          "y": 127.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#5",
+        "pos": {
+          "x": 170.0,
+          "y": 142.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#6",
+        "pos": {
+          "x": 170.0,
+          "y": 157.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#7",
+        "pos": {
+          "x": 155.0,
+          "y": 172.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#8",
+        "pos": {
+          "x": 155.0,
+          "y": 187.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#9",
+        "pos": {
+          "x": 160.0,
+          "y": 232.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
         "name": "ManualSwitch#10",
         "pos": {
           "x": 160.0,
@@ -208,15 +280,6 @@
         "pos": {
           "x": 140.0,
           "y": 357.5
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#2",
-        "pos": {
-          "x": 170.0,
-          "y": 112.5
         },
         "params": 1
       },
@@ -312,15 +375,6 @@
       },
       {
         "id": "ManualSwitch",
-        "name": "ManualSwitch#3",
-        "pos": {
-          "x": 55.0,
-          "y": 122.5
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
         "name": "ManualSwitch#30",
         "pos": {
           "x": 60.0,
@@ -401,62 +455,8 @@
         "params": 1
       },
       {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#4",
-        "pos": {
-          "x": 170.0,
-          "y": 127.5
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#5",
-        "pos": {
-          "x": 170.0,
-          "y": 142.5
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#6",
-        "pos": {
-          "x": 170.0,
-          "y": 157.5
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#7",
-        "pos": {
-          "x": 155.0,
-          "y": 172.5
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#8",
-        "pos": {
-          "x": 155.0,
-          "y": 187.5
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#9",
-        "pos": {
-          "x": 160.0,
-          "y": 232.5
-        },
-        "params": 1
-      },
-      {
         "id": "Splitter",
-        "name": "Merger#0",
+        "name": "Splitter#0",
         "pos": {
           "x": 85.0,
           "y": 130.0
@@ -483,6 +483,78 @@
           "y": 125.0
         },
         "params": "IC"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#2",
+        "pos": {
+          "x": 140.0,
+          "y": 140.0
+        },
+        "params": "IN"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#3",
+        "pos": {
+          "x": 140.0,
+          "y": 155.0
+        },
+        "params": "IOVR"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#4",
+        "pos": {
+          "x": 115.0,
+          "y": 170.0
+        },
+        "params": "_CEM"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#5",
+        "pos": {
+          "x": 115.0,
+          "y": 185.0
+        },
+        "params": "_CEmu"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#6",
+        "pos": {
+          "x": 125.0,
+          "y": 200.0
+        },
+        "params": "_EZ"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#7",
+        "pos": {
+          "x": 125.0,
+          "y": 215.0
+        },
+        "params": "_EC"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#8",
+        "pos": {
+          "x": 125.0,
+          "y": 230.0
+        },
+        "params": "_EN"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#9",
+        "pos": {
+          "x": 125.0,
+          "y": 245.0
+        },
+        "params": "_EOVR"
       },
       {
         "id": "TextComponent",
@@ -576,15 +648,6 @@
       },
       {
         "id": "TextComponent",
-        "name": "TextComponent#2",
-        "pos": {
-          "x": 140.0,
-          "y": 140.0
-        },
-        "params": "IN"
-      },
-      {
-        "id": "TextComponent",
         "name": "TextComponent#20",
         "pos": {
           "x": 40.0,
@@ -672,15 +735,6 @@
           "y": 195.0
         },
         "params": "YOVR"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#3",
-        "pos": {
-          "x": 140.0,
-          "y": 155.0
-        },
-        "params": "IOVR"
       },
       {
         "id": "TextComponent",
@@ -774,15 +828,6 @@
       },
       {
         "id": "TextComponent",
-        "name": "TextComponent#4",
-        "pos": {
-          "x": 115.0,
-          "y": 170.0
-        },
-        "params": "_CEM"
-      },
-      {
-        "id": "TextComponent",
         "name": "TextComponent#40",
         "pos": {
           "x": 110.0,
@@ -861,51 +906,6 @@
           "y": 220.0
         },
         "params": "_OECT"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#5",
-        "pos": {
-          "x": 115.0,
-          "y": 185.0
-        },
-        "params": "_CEmu"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#6",
-        "pos": {
-          "x": 125.0,
-          "y": 200.0
-        },
-        "params": "_EZ"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#7",
-        "pos": {
-          "x": 125.0,
-          "y": 215.0
-        },
-        "params": "_EC"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#8",
-        "pos": {
-          "x": 125.0,
-          "y": 230.0
-        },
-        "params": "_EN"
-      },
-      {
-        "id": "TextComponent",
-        "name": "TextComponent#9",
-        "pos": {
-          "x": 125.0,
-          "y": 245.0
-        },
-        "params": "_EOVR"
       },
       {
         "id": "TriStateBuffer",
@@ -1023,33 +1023,6 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#10",
-        "pos": {
-          "x": 369.0,
-          "y": 174.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#11",
-        "pos": {
-          "x": 374.0,
-          "y": 189.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#12",
-        "pos": {
-          "x": 379.0,
-          "y": 199.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 209.0,
@@ -1119,6 +1092,33 @@
           "y": 159.0
         },
         "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
+        "pos": {
+          "x": 369.0,
+          "y": 174.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#11",
+        "pos": {
+          "x": 374.0,
+          "y": 189.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#12",
+        "pos": {
+          "x": 379.0,
+          "y": 199.0
+        },
+        "params": 1
       }
     ],
     "wires": [
@@ -1157,6 +1157,165 @@
           {
             "x": 215.0,
             "y": 180.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "IZ"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 120.0
+          },
+          {
+            "x": 210.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "IC"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 190.0
+          },
+          {
+            "x": 205.0,
+            "y": 135.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 150.0
+          },
+          {
+            "x": 200.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "IOVR"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#6",
+          "pinName": ""
+        },
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 200.0
+          },
+          {
+            "x": 195.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_CEM"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 190.0,
+            "y": 180.0
+          },
+          {
+            "x": 190.0,
+            "y": 205.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_CEmu"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 185.0,
+            "y": 205.0
+          },
+          {
+            "x": 185.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_EZ"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#12",
+          "pinName": ""
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_EC"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#11",
+          "pinName": ""
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 215.0
+          },
+          {
+            "x": 195.0,
+            "y": 225.0
           }
         ]
       },
@@ -1204,7 +1363,7 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "I"
         },
         "pin2": {
@@ -1345,27 +1504,6 @@
       },
       {
         "pin1": {
-          "compName": "ManualSwitch#2",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "Am2904#0",
-          "pinName": "IZ"
-        },
-        "name": "unnamedWire#2",
-        "path": [
-          {
-            "x": 210.0,
-            "y": 120.0
-          },
-          {
-            "x": 210.0,
-            "y": 185.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "Am2904#0",
           "pinName": "SIOn"
         },
@@ -1493,27 +1631,6 @@
         },
         "name": "unnamedWire#29",
         "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Am2904#0",
-          "pinName": "IC"
-        },
-        "pin2": {
-          "compName": "ManualSwitch#4",
-          "pinName": ""
-        },
-        "name": "unnamedWire#3",
-        "path": [
-          {
-            "x": 205.0,
-            "y": 190.0
-          },
-          {
-            "x": 205.0,
-            "y": 135.0
-          }
-        ]
       },
       {
         "pin1": {
@@ -1708,27 +1825,6 @@
       },
       {
         "pin1": {
-          "compName": "ManualSwitch#5",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "Am2904#0",
-          "pinName": "IN"
-        },
-        "name": "unnamedWire#4",
-        "path": [
-          {
-            "x": 200.0,
-            "y": 150.0
-          },
-          {
-            "x": 200.0,
-            "y": 195.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#4",
           "pinName": ""
         },
@@ -1767,7 +1863,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O12"
         },
         "name": "unnamedWire#42",
@@ -1775,7 +1871,7 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O11"
         },
         "pin2": {
@@ -1791,7 +1887,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O10"
         },
         "name": "unnamedWire#44",
@@ -1799,7 +1895,7 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O9"
         },
         "pin2": {
@@ -1815,7 +1911,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O8"
         },
         "name": "unnamedWire#46",
@@ -1823,7 +1919,7 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O7"
         },
         "pin2": {
@@ -1839,7 +1935,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O6"
         },
         "name": "unnamedWire#48",
@@ -1847,7 +1943,7 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O5"
         },
         "pin2": {
@@ -1859,32 +1955,11 @@
       },
       {
         "pin1": {
-          "compName": "Am2904#0",
-          "pinName": "IOVR"
-        },
-        "pin2": {
-          "compName": "ManualSwitch#6",
-          "pinName": ""
-        },
-        "name": "unnamedWire#5",
-        "path": [
-          {
-            "x": 195.0,
-            "y": 200.0
-          },
-          {
-            "x": 195.0,
-            "y": 165.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "ManualSwitch#28",
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O4"
         },
         "name": "unnamedWire#50",
@@ -1892,7 +1967,7 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O3"
         },
         "pin2": {
@@ -1908,7 +1983,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O2"
         },
         "name": "unnamedWire#52",
@@ -1916,7 +1991,7 @@
       },
       {
         "pin1": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O1"
         },
         "pin2": {
@@ -1932,7 +2007,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "Merger#0",
+          "compName": "Splitter#0",
           "pinName": "O0"
         },
         "name": "unnamedWire#54",
@@ -1997,27 +2072,6 @@
         },
         "name": "unnamedWire#59",
         "path": []
-      },
-      {
-        "pin1": {
-          "compName": "ManualSwitch#7",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "Am2904#0",
-          "pinName": "_CEM"
-        },
-        "name": "unnamedWire#6",
-        "path": [
-          {
-            "x": 190.0,
-            "y": 180.0
-          },
-          {
-            "x": 190.0,
-            "y": 205.0
-          }
-        ]
       },
       {
         "pin1": {
@@ -2166,27 +2220,6 @@
       },
       {
         "pin1": {
-          "compName": "Am2904#0",
-          "pinName": "_CEmu"
-        },
-        "pin2": {
-          "compName": "ManualSwitch#8",
-          "pinName": ""
-        },
-        "name": "unnamedWire#7",
-        "path": [
-          {
-            "x": 185.0,
-            "y": 205.0
-          },
-          {
-            "x": 185.0,
-            "y": 195.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#11",
           "pinName": ""
         },
@@ -2294,39 +2327,6 @@
           },
           {
             "x": 345.0,
-            "y": 225.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Am2904#0",
-          "pinName": "_EZ"
-        },
-        "pin2": {
-          "compName": "ManualSwitch#12",
-          "pinName": ""
-        },
-        "name": "unnamedWire#8",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Am2904#0",
-          "pinName": "_EC"
-        },
-        "pin2": {
-          "compName": "ManualSwitch#11",
-          "pinName": ""
-        },
-        "name": "unnamedWire#9",
-        "path": [
-          {
-            "x": 195.0,
-            "y": 215.0
-          },
-          {
-            "x": 195.0,
             "y": 225.0
           }
         ]

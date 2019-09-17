@@ -124,11 +124,11 @@
   "submodel": {
     "components": [
       {
-        "id": "Am2910InstrPLA",
-        "name": "Am2910InstrPLA#0",
+        "id": "Am2910SP",
+        "name": "Am2910SP#0",
         "pos": {
-          "x": 70.0,
-          "y": 90.0
+          "x": 240.0,
+          "y": 10.0
         }
       },
       {
@@ -140,11 +140,11 @@
         }
       },
       {
-        "id": "Am2910SP",
-        "name": "Am2910SP#0",
+        "id": "Am2910InstrPLA",
+        "name": "Am2910InstrPLA#0",
         "pos": {
-          "x": 240.0,
-          "y": 10.0
+          "x": 70.0,
+          "y": 90.0
         }
       },
       {
@@ -345,6 +345,107 @@
       },
       {
         "pin1": {
+          "compName": "Am2910InstrPLA#0",
+          "pinName": "YF"
+        },
+        "pin2": {
+          "compName": "sel4_12#0",
+          "pinName": "SC"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2910InstrPLA#0",
+          "pinName": "YmuPC"
+        },
+        "pin2": {
+          "compName": "sel4_12#0",
+          "pinName": "SD"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inc#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "dff12#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dff12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "ram5_12#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2910SP#0",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "ram5_12#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2910SP#0",
+          "pinName": "B"
+        },
+        "pin2": {
+          "compName": "ram5_12#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2910RegCntr#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 150.0,
+            "y": 60.0
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "nor12#0",
           "pinName": "Y"
         },
@@ -525,18 +626,6 @@
       },
       {
         "pin1": {
-          "compName": "Am2910InstrPLA#0",
-          "pinName": "YF"
-        },
-        "pin2": {
-          "compName": "sel4_12#0",
-          "pinName": "SC"
-        },
-        "name": "unnamedWire#2",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#0",
           "pinName": ""
         },
@@ -693,18 +782,6 @@
       },
       {
         "pin1": {
-          "compName": "Am2910InstrPLA#0",
-          "pinName": "YmuPC"
-        },
-        "pin2": {
-          "compName": "sel4_12#0",
-          "pinName": "SD"
-        },
-        "name": "unnamedWire#3",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "_CCEN"
         },
@@ -844,18 +921,6 @@
       },
       {
         "pin1": {
-          "compName": "inc#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "dff12#0",
-          "pinName": "D"
-        },
-        "name": "unnamedWire#4",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "_submodelinterface",
           "pinName": "C"
         },
@@ -964,18 +1029,6 @@
       },
       {
         "pin1": {
-          "compName": "dff12#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "name": "unnamedWire#5",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#8",
           "pinName": ""
         },
@@ -983,7 +1036,7 @@
           "compName": "ram5_12#0",
           "pinName": "C"
         },
-        "name": "unnamedWire#50",
+        "name": "unnamedWire#46",
         "path": []
       },
       {
@@ -995,7 +1048,7 @@
           "compName": "_submodelinterface",
           "pinName": "Y"
         },
-        "name": "unnamedWire#52",
+        "name": "unnamedWire#47",
         "path": []
       },
       {
@@ -1007,7 +1060,7 @@
           "compName": "WireCrossPoint#9",
           "pinName": ""
         },
-        "name": "unnamedWire#53",
+        "name": "unnamedWire#48",
         "path": []
       },
       {
@@ -1019,7 +1072,7 @@
           "compName": "NandGate#2",
           "pinName": "B"
         },
-        "name": "unnamedWire#56",
+        "name": "unnamedWire#49",
         "path": []
       },
       {
@@ -1031,7 +1084,7 @@
           "compName": "WireCrossPoint#9",
           "pinName": ""
         },
-        "name": "unnamedWire#57",
+        "name": "unnamedWire#50",
         "path": [
           {
             "x": 200.0,
@@ -1048,7 +1101,7 @@
           "compName": "NandGate#2",
           "pinName": "Y"
         },
-        "name": "unnamedWire#58",
+        "name": "unnamedWire#51",
         "path": [
           {
             "x": 230.0,
@@ -1057,59 +1110,6 @@
           {
             "x": 230.0,
             "y": 205.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "ram5_12#0",
-          "pinName": "D"
-        },
-        "name": "unnamedWire#6",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Am2910SP#0",
-          "pinName": "A"
-        },
-        "pin2": {
-          "compName": "ram5_12#0",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#7",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Am2910SP#0",
-          "pinName": "B"
-        },
-        "pin2": {
-          "compName": "ram5_12#0",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#8",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Am2910RegCntr#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "name": "unnamedWire#9",
-        "path": [
-          {
-            "x": 150.0,
-            "y": 60.0
           }
         ]
       }
