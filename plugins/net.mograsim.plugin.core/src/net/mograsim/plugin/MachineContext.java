@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import net.mograsim.logic.model.am2900.machine.Am2900Machine;
-import net.mograsim.logic.model.am2900.machine.Am2900MachineDefinition;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineRegistry;
 
@@ -26,7 +24,7 @@ public class MachineContext
 		{
 			instance = new MachineContext();
 			// TODO don't hardcode the Am2900
-			instance.setMachine(new Am2900Machine((Am2900MachineDefinition) MachineRegistry.getinstalledMachines().get("Am2900")));
+			instance.setMachine(MachineRegistry.getinstalledMachines().get("Am2900").createNew());
 		}
 		return instance;
 	}
