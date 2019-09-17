@@ -3,18 +3,16 @@ package net.mograsim.logic.model.am2900.machine;
 import java.util.Objects;
 import java.util.Set;
 
+import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.machine.ISASchema;
-import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.MachineRegistry;
-import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.Register;
-import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 
 public class Am2900MachineDefinition implements MachineDefinition
 {
-	private MainMemoryDefinition memoryDefinition = new Am2900MainMemoryDefinition();
-	private MicroInstructionMemoryDefinition microInstMemoryDefinition = new Am2900MicroInstructionMemoryDefinition();
+	private Am2900MainMemoryDefinition memoryDefinition = new Am2900MainMemoryDefinition();
+	private Am2900MicroInstructionMemoryDefinition microInstMemoryDefinition = new Am2900MicroInstructionMemoryDefinition();
 	private final static Am2900MachineDefinition instance = new Am2900MachineDefinition();
 
 	public static Am2900MachineDefinition getInstance()
@@ -24,9 +22,14 @@ public class Am2900MachineDefinition implements MachineDefinition
 	}
 
 	@Override
-	public Machine createNew()
+	public Am2900Machine createNew()
 	{
-		return new Am2900Machine(this);
+		return createNew(new LogicModelModifiable());
+	}
+
+	public Am2900Machine createNew(LogicModelModifiable model)
+	{
+		return new Am2900Machine(model, this);
 	}
 
 	@Override
@@ -50,13 +53,13 @@ public class Am2900MachineDefinition implements MachineDefinition
 	}
 
 	@Override
-	public MainMemoryDefinition getMainMemoryDefinition()
+	public Am2900MainMemoryDefinition getMainMemoryDefinition()
 	{
 		return memoryDefinition;
 	}
 
 	@Override
-	public MicroInstructionMemoryDefinition getMicroInstructionMemoryDefinition()
+	public Am2900MicroInstructionMemoryDefinition getMicroInstructionMemoryDefinition()
 	{
 		return microInstMemoryDefinition;
 	}
