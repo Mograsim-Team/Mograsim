@@ -32,10 +32,10 @@ class WordAddressableMemoryTest
 		ReadWriteEnd dataI = data.createReadWriteEnd();
 		ReadWriteEnd addressI = address.createReadWriteEnd();
 
-		@SuppressWarnings("unused")
-		CoreWordAddressableMemory memory = new CoreWordAddressableMemory(t, 4,
-				new WordAddressableMemory(MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE)), data.createReadWriteEnd(),
+		MainMemoryDefinition definition = MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE);
+		CoreWordAddressableMemory memory = new CoreWordAddressableMemory(t, 4, definition, data.createReadWriteEnd(),
 				rW.createReadOnlyEnd(), address.createReadOnlyEnd());
+		memory.setMemory(new WordAddressableMemory(definition));
 
 		Random r = new Random(seed);
 		for (long j = 1; j > 0; j *= 2)

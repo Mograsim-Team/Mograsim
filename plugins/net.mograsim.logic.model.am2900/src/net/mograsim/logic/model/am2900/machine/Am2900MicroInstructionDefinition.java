@@ -14,6 +14,8 @@ import net.mograsim.machine.mi.parameters.ParameterClassification;
 
 public class Am2900MicroInstructionDefinition implements MicroInstructionDefinition
 {
+	public static final Am2900MicroInstructionDefinition instance = new Am2900MicroInstructionDefinition();
+
 	private static final BooleanClassification interruptEnable = new BooleanClassification(false, "IE", "Dis");
 	// not implemented, because not documented.
 	private static final MnemonicFamily interruptInstructions = new MnemonicFamily("X", new MnemonicPair("X", BitVector.of(Bit.ZERO, 4)));
@@ -108,5 +110,9 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 		s = s.replaceAll("[\r\n\t]", "");
 		System.out.print(Arrays.stream(s.split(", new")).reduce((a, b) -> b + ", new" + a));
 //		System.out.println(Arrays.stream(paramDesc).reduce("", (a, b) -> String.format("\"%s\", %s", b, a)));
+	}
+
+	private Am2900MicroInstructionDefinition()
+	{
 	}
 }

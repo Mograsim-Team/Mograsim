@@ -74,6 +74,7 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryO
 	@Override
 	public void update(long address)
 	{
-		Display.getDefault().asyncExec(() -> updateElement((int) (address - lower)));
+		// TODO check if viewer.refresh() does what we expect
+		Display.getDefault().asyncExec(address == -1 ? viewer::refresh : () -> updateElement((int) (address - lower)));
 	}
 }
