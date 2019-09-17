@@ -45,11 +45,8 @@ class WordAddressableMemoryTest
 				BitVector bAddress = BitVector.from(4096 + i + j, 64);
 				addressI.feedSignals(bAddress);
 				t.executeAll();
-				String random = BigInteger.valueOf(Math.abs(r.nextInt())).toString(5);
-				random = random.substring(Integer.max(0, random.length() - 16));
-				random = String.format("%16s", random).replace(' ', '0');
-				random = random.replace('2', 'X').replace('3', 'Z').replace('4', 'U');
-				BitVector vector = BitVector.parse(random);
+				BigInteger random = BigInteger.valueOf(Math.abs(r.nextInt()));
+				BitVector vector = BitVector.from(random, 16);
 				dataI.feedSignals(vector);
 				rWI.feedSignals(Bit.ZERO);
 				t.executeAll();
