@@ -21,6 +21,13 @@ public class WordAddressableMemory extends GenericMemory<BitVector> implements M
 	}
 
 	@Override
+	public void setCell(long address, BitVector data)
+	{
+		if (data.isBinary())
+			super.setCell(address, data);
+	}
+
+	@Override
 	public BitVector getCell(long address)
 	{
 		BitVector data = super.getCell(address);
