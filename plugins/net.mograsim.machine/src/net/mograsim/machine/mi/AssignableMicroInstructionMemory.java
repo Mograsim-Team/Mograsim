@@ -21,6 +21,7 @@ public class AssignableMicroInstructionMemory implements MicroInstructionMemory,
 		this.real.deregisterObserver(this);
 		this.real = real;
 		real.registerObserver(this);
+		notifyObservers(-1);
 	}
 
 	@Override
