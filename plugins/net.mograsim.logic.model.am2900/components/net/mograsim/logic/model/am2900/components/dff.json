@@ -144,69 +144,6 @@
       },
       {
         "pin1": {
-          "compName": "nand3#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "name": "unnamedWire#10",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "_rsLatch#1",
-          "pinName": "_R"
-        },
-        "name": "unnamedWire#11",
-        "path": [
-          {
-            "x": 105.0,
-            "y": 60.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "NandGate#0",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#12",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_rsLatch#1",
-          "pinName": "Q"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q"
-        },
-        "name": "unnamedWire#13"
-      },
-      {
-        "pin1": {
-          "compName": "_rsLatch#1",
-          "pinName": "_Q"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "_Q"
-        },
-        "name": "unnamedWire#14"
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#0",
           "pinName": ""
         },
@@ -342,6 +279,69 @@
             "y": 50.0
           }
         ]
+      },
+      {
+        "pin1": {
+          "compName": "nand3#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_rsLatch#1",
+          "pinName": "_R"
+        },
+        "name": "unnamedWire#11",
+        "path": [
+          {
+            "x": 105.0,
+            "y": 60.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_rsLatch#1",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q"
+        },
+        "name": "unnamedWire#13"
+      },
+      {
+        "pin1": {
+          "compName": "_rsLatch#1",
+          "pinName": "_Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "_Q"
+        },
+        "name": "unnamedWire#14"
       }
     ],
     "version": "0.1.1"

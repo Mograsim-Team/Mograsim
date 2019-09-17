@@ -179,66 +179,6 @@
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D4"
-        },
-        "pin2": {
-          "compName": "dlatch#3",
-          "pinName": "D"
-        },
-        "name": "unnamedWire#10",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "dlatch#0",
-          "pinName": "Q"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q1"
-        },
-        "name": "unnamedWire#11",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "dlatch#1",
-          "pinName": "Q"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q2"
-        },
-        "name": "unnamedWire#12",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "dlatch#2",
-          "pinName": "Q"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q3"
-        },
-        "name": "unnamedWire#13",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "dlatch#3",
-          "pinName": "Q"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q4"
-        },
-        "name": "unnamedWire#14",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#2",
           "pinName": ""
         },
@@ -336,6 +276,66 @@
           "pinName": "D"
         },
         "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D4"
+        },
+        "pin2": {
+          "compName": "dlatch#3",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#0",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q1"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#1",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q2"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#2",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q3"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#3",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Q4"
+        },
+        "name": "unnamedWire#14",
         "path": []
       }
     ],

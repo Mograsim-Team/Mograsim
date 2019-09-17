@@ -233,6 +233,125 @@
       },
       {
         "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "CinE"
+        },
+        "pin2": {
+          "compName": "and#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 7.5,
+            "y": 125.0
+          },
+          {
+            "x": 7.5,
+            "y": 35.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "R"
+        },
+        "pin2": {
+          "compName": "xor#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#3"
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "RN"
+        },
+        "pin2": {
+          "compName": "xor#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#4"
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "S"
+        },
+        "pin2": {
+          "compName": "xor#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#5"
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "SN"
+        },
+        "pin2": {
+          "compName": "xor#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#6"
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "FN"
+        },
+        "pin2": {
+          "compName": "xor#2",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 130.0,
+            "y": 375.0
+          },
+          {
+            "x": 130.0,
+            "y": 85.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "L"
+        },
+        "pin2": {
+          "compName": "mux1#0",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 87.5,
+            "y": 425.0
+          },
+          {
+            "x": 87.5,
+            "y": 75.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "and#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "fulladder#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "xor#0",
           "pinName": "Y"
         },
@@ -399,27 +518,6 @@
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "CinE"
-        },
-        "pin2": {
-          "compName": "and#0",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#2",
-        "path": [
-          {
-            "x": 7.5,
-            "y": 125.0
-          },
-          {
-            "x": 7.5,
-            "y": 35.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "and#1",
           "pinName": "Y"
         },
@@ -440,104 +538,6 @@
           "pinName": "F"
         },
         "name": "unnamedWire#21",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "R"
-        },
-        "pin2": {
-          "compName": "xor#0",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#3"
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "RN"
-        },
-        "pin2": {
-          "compName": "xor#0",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#4"
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "S"
-        },
-        "pin2": {
-          "compName": "xor#1",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#5"
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "SN"
-        },
-        "pin2": {
-          "compName": "xor#1",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#6"
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "FN"
-        },
-        "pin2": {
-          "compName": "xor#2",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#7",
-        "path": [
-          {
-            "x": 130.0,
-            "y": 375.0
-          },
-          {
-            "x": 130.0,
-            "y": 85.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "L"
-        },
-        "pin2": {
-          "compName": "mux1#0",
-          "pinName": "S0"
-        },
-        "name": "unnamedWire#8",
-        "path": [
-          {
-            "x": 87.5,
-            "y": 425.0
-          },
-          {
-            "x": 87.5,
-            "y": 75.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "and#0",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "fulladder#0",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#9",
         "path": []
       }
     ],

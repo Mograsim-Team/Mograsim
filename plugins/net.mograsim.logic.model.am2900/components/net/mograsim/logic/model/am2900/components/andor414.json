@@ -185,6 +185,164 @@
       },
       {
         "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A3"
+        },
+        "pin2": {
+          "compName": "and41#0",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A4"
+        },
+        "pin2": {
+          "compName": "and41#0",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 187.5
+          },
+          {
+            "x": 5.0,
+            "y": 172.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "B"
+        },
+        "pin2": {
+          "compName": "and41#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 212.5
+          },
+          {
+            "x": 10.0,
+            "y": 182.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C1"
+        },
+        "pin2": {
+          "compName": "or_4#0",
+          "pinName": "A1"
+        },
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 12.5
+          },
+          {
+            "x": 10.0,
+            "y": 42.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C2"
+        },
+        "pin2": {
+          "compName": "or_4#0",
+          "pinName": "A2"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 37.5
+          },
+          {
+            "x": 5.0,
+            "y": 52.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C3"
+        },
+        "pin2": {
+          "compName": "or_4#0",
+          "pinName": "A3"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C4"
+        },
+        "pin2": {
+          "compName": "or_4#0",
+          "pinName": "A4"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 87.5
+          },
+          {
+            "x": 5.0,
+            "y": 72.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "and41#0",
+          "pinName": "Y1"
+        },
+        "pin2": {
+          "compName": "or_4#0",
+          "pinName": "B1"
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 70.0,
+            "y": 142.5
+          },
+          {
+            "x": 70.0,
+            "y": 120.0
+          },
+          {
+            "x": 30.0,
+            "y": 120.0
+          },
+          {
+            "x": 30.0,
+            "y": 82.5
+          }
+        ]
+      },
+      {
+        "pin1": {
           "compName": "and41#0",
           "pinName": "Y2"
         },
@@ -342,164 +500,6 @@
           {
             "x": 80.0,
             "y": 87.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A3"
-        },
-        "pin2": {
-          "compName": "and41#0",
-          "pinName": "A3"
-        },
-        "name": "unnamedWire#2",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A4"
-        },
-        "pin2": {
-          "compName": "and41#0",
-          "pinName": "A4"
-        },
-        "name": "unnamedWire#3",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 187.5
-          },
-          {
-            "x": 5.0,
-            "y": 172.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "B"
-        },
-        "pin2": {
-          "compName": "and41#0",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#4",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 212.5
-          },
-          {
-            "x": 10.0,
-            "y": 182.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C1"
-        },
-        "pin2": {
-          "compName": "or_4#0",
-          "pinName": "A1"
-        },
-        "name": "unnamedWire#5",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 12.5
-          },
-          {
-            "x": 10.0,
-            "y": 42.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C2"
-        },
-        "pin2": {
-          "compName": "or_4#0",
-          "pinName": "A2"
-        },
-        "name": "unnamedWire#6",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 37.5
-          },
-          {
-            "x": 5.0,
-            "y": 52.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C3"
-        },
-        "pin2": {
-          "compName": "or_4#0",
-          "pinName": "A3"
-        },
-        "name": "unnamedWire#7",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C4"
-        },
-        "pin2": {
-          "compName": "or_4#0",
-          "pinName": "A4"
-        },
-        "name": "unnamedWire#8",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 87.5
-          },
-          {
-            "x": 5.0,
-            "y": 72.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "and41#0",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "or_4#0",
-          "pinName": "B1"
-        },
-        "name": "unnamedWire#9",
-        "path": [
-          {
-            "x": 70.0,
-            "y": 142.5
-          },
-          {
-            "x": 70.0,
-            "y": 120.0
-          },
-          {
-            "x": 30.0,
-            "y": 120.0
-          },
-          {
-            "x": 30.0,
-            "y": 82.5
           }
         ]
       }
