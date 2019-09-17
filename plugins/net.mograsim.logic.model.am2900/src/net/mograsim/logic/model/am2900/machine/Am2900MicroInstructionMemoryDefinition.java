@@ -5,6 +5,7 @@ import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 
 public class Am2900MicroInstructionMemoryDefinition implements MicroInstructionMemoryDefinition
 {
+	public static final Am2900MicroInstructionMemoryDefinition instance = new Am2900MicroInstructionMemoryDefinition();
 
 	@Override
 	public int getMemoryAddressBits()
@@ -27,6 +28,10 @@ public class Am2900MicroInstructionMemoryDefinition implements MicroInstructionM
 	@Override
 	public MicroInstructionDefinition getMicroInstructionDefinition()
 	{
-		return new Am2900MicroInstructionDefinition();
+		return Am2900MicroInstructionDefinition.instance;
+	}
+
+	private Am2900MicroInstructionMemoryDefinition()
+	{
 	}
 }

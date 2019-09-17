@@ -1,26 +1,16 @@
 package net.mograsim.logic.model.am2900.machine;
 
-import java.util.Objects;
 import java.util.Set;
 
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.machine.ISASchema;
 import net.mograsim.machine.MachineDefinition;
-import net.mograsim.machine.MachineRegistry;
 import net.mograsim.machine.Register;
 
+//we can't use the Singleton pattern here because a MachineDefinition needs a public parameterless constructor
+//(used for detecting installed machines in plugin.core)
 public class Am2900MachineDefinition implements MachineDefinition
 {
-	private Am2900MainMemoryDefinition memoryDefinition = new Am2900MainMemoryDefinition();
-	private Am2900MicroInstructionMemoryDefinition microInstMemoryDefinition = new Am2900MicroInstructionMemoryDefinition();
-	private final static Am2900MachineDefinition instance = new Am2900MachineDefinition();
-
-	public static Am2900MachineDefinition getInstance()
-	{
-		return Objects.requireNonNullElseGet((Am2900MachineDefinition) MachineRegistry.getinstalledMachines().get("Am2900"),
-				() -> instance);
-	}
-
 	@Override
 	public Am2900Machine createNew()
 	{
@@ -55,12 +45,24 @@ public class Am2900MachineDefinition implements MachineDefinition
 	@Override
 	public Am2900MainMemoryDefinition getMainMemoryDefinition()
 	{
-		return memoryDefinition;
+		return Am2900MainMemoryDefinition.instance;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return 12345;
+	}
+
+	@Override
+	public boolean equals(Object obj)
+	{
+		return obj != null && obj instanceof Am2900MachineDefinition;
 	}
 
 	@Override
 	public Am2900MicroInstructionMemoryDefinition getMicroInstructionMemoryDefinition()
 	{
-		return microInstMemoryDefinition;
+		return Am2900MicroInstructionMemoryDefinition.instance;
 	}
 }

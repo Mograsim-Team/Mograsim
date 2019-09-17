@@ -3,11 +3,12 @@ package net.mograsim.machine.standard.memory;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.machine.Machine;
+import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
+import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.ModelMemory;
 
-public abstract class ModelWordAddressableMemory<M extends Machine> extends ModelMemory<M>
+public abstract class ModelWordAddressableMemory extends ModelMemory
 {
 	private final Pin addrPin, dataPin, rWPin;
 	private CoreWordAddressableMemory memory;
@@ -53,5 +54,27 @@ public abstract class ModelWordAddressableMemory<M extends Machine> extends Mode
 	public CoreWordAddressableMemory getCoreMemory()
 	{
 		return memory;
+	}
+
+	@Override
+	public void setHighLevelState(String stateID, Object newState)
+	{
+		if (stateID.equals("memory_binding"))
+			memory.setMemory((MainMemory) newState);
+		else
+			super.setHighLevelState(stateID, newState);
+	}
+
+	@Override
+	public Object getHighLevelState(String stateID)
+	{
+		if (stateID.equals("memory_binding"))
+			return memory.getMemory();
+		return super.getHighLevelState(stateID);
+	}
+
+	static
+	{
+		LogicCoreAdapter.addComponentAdapter(new WordAddressableMemoryAdapter());
 	}
 }
