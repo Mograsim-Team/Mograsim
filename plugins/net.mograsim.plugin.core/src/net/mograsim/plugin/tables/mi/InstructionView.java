@@ -1,17 +1,21 @@
 package net.mograsim.plugin.tables.mi;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Optional;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Table;
@@ -22,7 +26,6 @@ import org.eclipse.ui.IPathEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
-import net.mograsim.machine.Machine;
 import net.mograsim.machine.MemoryObserver;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemory;
@@ -31,17 +34,13 @@ import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.machine.mi.parameters.MnemonicFamily;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.plugin.MachineContext;
-import net.mograsim.plugin.MachineContext.ContextObserver;
 import net.mograsim.plugin.tables.AddressLabelProvider;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.LazyTableViewer;
 import net.mograsim.plugin.tables.RadixSelector;
-import net.mograsim.plugin.util.DropDownMenu;
-import net.mograsim.plugin.util.DropDownMenu.DropDownEntry;
 
-public class InstructionView extends EditorPart implements ContextObserver, MemoryObserver
+public class InstructionView extends EditorPart implements MemoryObserver
 {
-	private String saveLoc = null;
 	private LazyTableViewer viewer;
 	private TableViewerColumn[] columns = new TableViewerColumn[0];
 	private MicroInstructionDefinition miDef;
@@ -50,6 +49,7 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 	private InstructionTableContentProvider provider;
 	private int highlighted = 0;
 	private boolean dirty = false;
+	private String machineName;
 
 	@SuppressWarnings("unused")
 	@Override
@@ -57,12 +57,12 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 	{
 		provider = new InstructionTableContentProvider();
 		GridLayout layout = new GridLayout(3, false);
-		setupMenuButtons(parent);
+		parent.setLayout(layout);
 
 		displaySettings = new DisplaySettings();
 		new RadixSelector(parent, displaySettings);
 
-		parent.setLayout(layout);
+		addActivationButton(parent);
 		viewer = new LazyTableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 
 		Table table = viewer.getTable();
@@ -70,6 +70,7 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 		table.setLinesVisible(true);
 		viewer.setUseHashlookup(true);
 		viewer.setContentProvider(provider);
+		setViewerInput(memory);
 		getSite().setSelectionProvider(viewer);
 
 		GridData viewerData = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
@@ -77,8 +78,29 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 		viewer.getTable().setLayoutData(viewerData);
 
 		displaySettings.addObserver(() -> viewer.refresh());
-		MachineContext.getInstance().registerObserver(this);
-		setMachine(Optional.ofNullable(MachineContext.getInstance().getMachine()));
+	}
+
+	private void addActivationButton(Composite parent)
+	{
+		Button activationButton = new Button(parent, SWT.PUSH);
+		activationButton.setText("Set Active");
+		activationButton.addSelectionListener(new SelectionListener()
+		{
+
+			@Override
+			public void widgetSelected(SelectionEvent e)
+			{
+				if (e.detail == SWT.PUSH)
+					MachineContext.getInstance().getMachine().getMicroInstructionMemory().bind(memory);
+				// TODO register this in project context
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e)
+			{
+				widgetSelected(e);
+			}
+		});
 	}
 
 	public void highlight(int index)
@@ -88,49 +110,22 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 		viewer.getTable().setTopIndex(index);
 	}
 
-	@SuppressWarnings("unused")
-	private void setupMenuButtons(Composite parent)
-	{
-		DropDownEntry open = new DropDownEntry("Open", (e) ->
-		{
-			FileDialog d = new FileDialog(parent.getShell(), SWT.NONE);
-			d.open();
-			String filename = d.getFileName();
-			if (!filename.equals(""))
-				open(d.getFilterPath() + File.separator + filename);
-		});
-
-		DropDownEntry save = new DropDownEntry("Save", (e) ->
-		{
-			if (saveLoc == null)
-				openSaveAsDialog(parent);
-			save(saveLoc);
-		});
-		DropDownEntry saveAs = new DropDownEntry("SaveAs", (e) ->
-		{
-			openSaveAsDialog(parent);
-			save(saveLoc);
-		});
-		new DropDownMenu(parent, "File", open, save, saveAs);
-	}
-
-	private void openSaveAsDialog(Composite parent)
-	{
-		FileDialog d = new FileDialog(parent.getShell(), SWT.SAVE);
-		d.open();
-		String filename = d.getFileName();
-		if (!filename.equals(""))
-			saveLoc = d.getFilterPath() + File.separator + filename;
-	}
-
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
 	{
-		deleteColumns();
 		this.memory = memory;
-		viewer.setInput(memory);
 		this.miDef = memory.getDefinition().getMicroInstructionDefinition();
 		this.memory.registerObserver(this);
-		createColumns();
+		setViewerInput(memory);
+	}
+
+	private void setViewerInput(MicroInstructionMemory memory)
+	{
+		if (viewer != null)
+		{
+			deleteColumns();
+			viewer.setInput(memory);
+			createColumns();
+		}
 	}
 
 	private void deleteColumns()
@@ -236,16 +231,10 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 
 	private void open(String file)
 	{
-		if (miDef == null)
+		try (BufferedReader bf = new BufferedReader(new FileReader(file)))
 		{
-			System.err.println("Failed to parse MicroprogrammingMemory from File. No MicroInstructionDefinition assigned.");
-			return;
-		}
-		try
-		{
-			MicroInstructionMemoryParser.parseMemory(memory, file);
-			viewer.refresh();
-			saveLoc = file;
+			machineName = bf.readLine();
+			bindMicroInstructionMemory(MicroInstructionMemoryParser.parseMemory(machineName, bf));
 		}
 		catch (IOException | MicroInstructionMemoryParseException e)
 		{
@@ -262,7 +251,7 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 		}
 		try
 		{
-			MicroInstructionMemoryParser.write(memory, file);
+			MicroInstructionMemoryParser.write(memory, machineName, file);
 		}
 		catch (IOException e)
 		{
@@ -277,16 +266,6 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 	}
 
 	@Override
-	public void setMachine(Optional<Machine> machine)
-	{
-		if (machine.isPresent())
-		{
-			Machine actualMachine = machine.get();
-			bindMicroInstructionMemory(actualMachine.getMicroInstructionMemory());
-		}
-	}
-
-	@Override
 	public void doSave(IProgressMonitor progressMonitor)
 	{
 		IEditorInput input = getEditorInput();
@@ -294,15 +273,26 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 		{
 			IPathEditorInput pathInput = (IPathEditorInput) input;
 			save(pathInput.getPath().toOSString());
-			dirty = false;
-			firePropertyChange(PROP_DIRTY);
+			setDirty(false);
 		}
 	}
 
 	@Override
 	public void doSaveAs()
 	{
-		// not allowed
+		openSaveAsDialog();
+	}
+
+	private void openSaveAsDialog()
+	{
+		FileDialog d = new FileDialog(viewer.getTable().getShell(), SWT.SAVE);
+		d.open();
+		String filename = d.getFileName();
+		if (!filename.equals(""))
+		{
+			save(d.getFilterPath() + File.separator + filename);
+			setDirty(false);
+		}
 	}
 
 	@Override
@@ -313,6 +303,7 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 		if (input instanceof IPathEditorInput)
 		{
 			IPathEditorInput pathInput = (IPathEditorInput) input;
+			setPartName(pathInput.getName());
 			open(pathInput.getPath().toOSString());
 		}
 	}
@@ -326,13 +317,18 @@ public class InstructionView extends EditorPart implements ContextObserver, Memo
 	@Override
 	public boolean isSaveAsAllowed()
 	{
-		return false;
+		return true;
 	}
 
 	@Override
 	public void update(long address)
 	{
-		dirty = true;
+		setDirty(true);
+	}
+
+	private void setDirty(boolean value)
+	{
+		dirty = value;
 		firePropertyChange(PROP_DIRTY);
 	}
 }
