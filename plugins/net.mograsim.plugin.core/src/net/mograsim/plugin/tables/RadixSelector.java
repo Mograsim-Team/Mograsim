@@ -1,8 +1,6 @@
 package net.mograsim.plugin.tables;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -33,25 +31,13 @@ public class RadixSelector
 		NumberType corTypes[] = new NumberType[] { NumberType.BINARY, NumberType.OCTAL, NumberType.DECIMAL, NumberType.HEXADECIMAL };
 		combo.setItems(entries);
 		combo.select(3);
-		combo.addSelectionListener(new SelectionListener()
+		combo.addListener(SWT.Selection, e ->
 		{
-			@Override
-			public void widgetSelected(SelectionEvent e)
-			{
-				int index = combo.getSelectionIndex();
-				if (index == -1)
-					target.setDataNumberType(NumberType.HEXADECIMAL);
-				else
-				{
-					target.setDataNumberType(corTypes[index]);
-				}
-			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e)
-			{
-				widgetSelected(e);
-			}
+			int index = combo.getSelectionIndex();
+			if (index == -1)
+				target.setDataNumberType(NumberType.HEXADECIMAL);
+			else
+				target.setDataNumberType(corTypes[index]);
 		});
 	}
 

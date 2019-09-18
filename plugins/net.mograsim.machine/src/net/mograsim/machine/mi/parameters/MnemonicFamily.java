@@ -182,8 +182,7 @@ public class MnemonicFamily implements ParameterClassification
 	{
 		if (m != null)
 			return m.owner == this;
-		else
-			return false;
+		return false;
 	}
 
 	public boolean contains(String value)

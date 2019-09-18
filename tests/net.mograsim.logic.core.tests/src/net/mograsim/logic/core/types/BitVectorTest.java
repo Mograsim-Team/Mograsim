@@ -9,6 +9,7 @@ import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
+@SuppressWarnings("static-method") // JUnit requires non-static methods
 class BitVectorTest
 {
 
