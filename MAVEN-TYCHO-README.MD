@@ -1,6 +1,6 @@
 # Mograsim Development Environment
 
-<span style="color:grey">_Mograsim Development Documentation Version 0.1 --- 2019-09-13_</span>
+<span style="color:grey">_Mograsim Development Documentation Version 0.2 --- 2019-09-18_</span>
 
 A short guide to the Mograsim Maven Tycho configuration and Maven Tycho in general, 
 as well as some information on Eclipse Plugin Development and OSGi.
@@ -53,17 +53,7 @@ Roughly, an OSGi bundle has:
 
 The tree of Mograsim projects:
 
-- `bundles` - _This contains all bundles/plugins that provide functionality to Mograsim_
-    - `extenal/swthelper` - _This contains the [SWTHelper](https://github.com/Haspamelodica/SWTHelper) 
-      git submodule._
-        - `bundles` - _This submodule folder needs to be named like that for Tycho 
-          pom-less build to work._
-            - <span style="color:grey">_SWTInput_</span> - _unused_
-            - **SWTObjectWrappers** - SWT object abstractions to enable zooming and 
-              optimizations.
-            - <span style="color:grey">_SWTSystemInOutApplication_</span> - _unused_
-            - <span style="color:grey">_SWTTiledZoomableCanvas_</span> - _unused_
-            - **SWTZoomableCanvas** - The SWT canvas we draw the simulation in.
+- `plugins` - _This contains all bundles/plugins that provide functionality to Mograsim_
     - **net.mograsim.logic.core** <br> The core logic for pure simulation. This contains 
       the most important low-level logic circuits and gates and defines how that 
       logic gets simulated. The underlying system for simulation in Mograsim is an 
@@ -136,9 +126,18 @@ The tree of Mograsim projects:
       of) and the (minimum) JRE that is expected. Some plugins exclusively for testing 
       are included here, too.
 - `tests` - _This contains (integration-like) tests in form of plugin fragments_
-    - **net.mograsim.logic.tests**
+    - **net.mograsim.logic.core.tests**
     - **net.mograsim.logic.model.am2900.tests**
     - **net.mograsim.machine.tests**
+- `SWTHelper` - _This contains the [SWTHelper](https://github.com/Haspamelodica/SWTHelper) 
+  git submodule._
+    - `bundles` - _This submodule folder needs to be named like that for Tycho pom-less 
+      build to work._
+        - <span style="color:grey">_SWTInput_</span> - _unused_
+        - **SWTObjectWrappers** - SWT object abstractions to enable zooming and optimizations.
+        - <span style="color:grey">_SWTSystemInOutApplication_</span> - _unused_
+        - <span style="color:grey">_SWTTiledZoomableCanvas_</span> - _unused_
+        - **SWTZoomableCanvas** - The SWT canvas we draw the simulation in.
 
 ## Build Mograsim
 
