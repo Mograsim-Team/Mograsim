@@ -29,7 +29,7 @@ public class ComponentHandle extends Handle
 		this.parent = parent;
 		Rectangle bounds = parent.getBounds();
 		setSize(bounds.width, bounds.height);
-		parent.addComponentResizedListener((c) ->
+		parent.addComponentResizedListener(c ->
 		{
 			Rectangle pBounds = c.getBounds();
 			setSize(pBounds.width, pBounds.height);

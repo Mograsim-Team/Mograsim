@@ -108,11 +108,11 @@ public class SelectionState extends EditorState
 							Integer.parseInt(result[1]), PinUsage.valueOf(result[2]), clicked.x, clicked.y));
 					editor.handleManager.getInterfacePinHandle(p).reqMove(clicked.x, clicked.y);
 				}
-				catch (NumberFormatException e)
+				catch (@SuppressWarnings("unused") NumberFormatException e)
 				{
 					editor.dialogManager.openWarningDialog("Failed to create Pin!", "Bit width must be a number!");
 				}
-				catch (IllegalArgumentException e)
+				catch (@SuppressWarnings("unused") IllegalArgumentException e)
 				{
 					editor.dialogManager.openWarningDialog("Failed to create Pin!", "Usage must be one of INPUT, OUTPUT, TRISTATE!");
 				}
@@ -131,6 +131,7 @@ public class SelectionState extends EditorState
 				manager.setState(new CreateWireState(editor, manager, (PinHandle) handleClickInfo.clicked));
 				break;
 			}
+			//$FALL-THROUGH$
 		case CORNER:
 		case COMPONENT:
 		case WIRE_POINT:

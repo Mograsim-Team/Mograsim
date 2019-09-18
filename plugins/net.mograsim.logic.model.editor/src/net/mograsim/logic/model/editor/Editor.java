@@ -232,6 +232,7 @@ public final class Editor
 //		SaveLoadManager.openLoadDialog();
 	}
 
+	@SuppressWarnings("unused") // Editor
 	public static void openNewEditor()
 	{
 		DeserializedSubmodelComponent toBeEdited = new DeserializedSubmodelComponent(new LogicModelModifiable(), null, null, null);

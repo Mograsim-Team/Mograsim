@@ -3,17 +3,13 @@ package net.mograsim.logic.model.editor.ui;
 import java.io.IOException;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
@@ -95,20 +91,20 @@ public class EditorGUI
 		ToolItem file = new ToolItem(toolBar, SWT.DROP_DOWN);
 
 		// TODO
-		DropDownEntry newEntry = new DropDownEntry("New", e -> Editor.openNewEditor());
-		DropDownEntry loadEntry = new DropDownEntry("Load", e ->
+		DropDownEntry newEntry = new DropDownEntry("New", Editor::openNewEditor);
+		DropDownEntry loadEntry = new DropDownEntry("Load", () ->
 		{
 			try
 			{
 				SaveLoadManager.openLoadDialog();
 			}
-			catch (IOException e1)
+			catch (IOException e)
 			{
-				editor.dialogManager.openWarningDialog("Failed to load Component!", e1.getMessage());
+				editor.dialogManager.openWarningDialog("Failed to load Component!", e.getMessage());
 			}
 		});
-		DropDownEntry saveEntry = new DropDownEntry("Save", e -> editor.save());
-		DropDownEntry saveAsEntry = new DropDownEntry("Save as...", e -> editor.saveAs());
+		DropDownEntry saveEntry = new DropDownEntry("Save", editor::save);
+		DropDownEntry saveAsEntry = new DropDownEntry("Save as...", editor::saveAs);
 
 		DropDownEntry[] entries = new DropDownEntry[] { newEntry, loadEntry, saveEntry, saveAsEntry };
 
@@ -118,6 +114,7 @@ public class EditorGUI
 		return toolBar;
 	}
 
+	@SuppressWarnings("unused") // ToolItem
 	private ToolBar setupBottomToolBar(Composite parent)
 	{
 		GridData d = new GridData();
@@ -135,7 +132,7 @@ public class EditorGUI
 		int index = 0;
 		for (Editor.Snapping sn : Editor.Snapping.values())
 		{
-			entries[index++] = new DropDownEntry(sn.toString(), e ->
+			entries[index++] = new DropDownEntry(sn.toString(), () ->
 			{
 				editor.setSnapping(sn);
 				snappSelect.setText(sn.toString());
@@ -157,55 +154,31 @@ public class EditorGUI
 		for (DropDownEntry entry : entries)
 		{
 			MenuItem item = new MenuItem(menu, SWT.PUSH);
-			item.addSelectionListener(new SelectionListener()
-			{
-				@Override
-				public void widgetSelected(SelectionEvent e)
-				{
-					entry.listener.widgetSelected(e);
-				}
-
-				@Override
-				public void widgetDefaultSelected(SelectionEvent e)
-				{
-					widgetSelected(e);
-				}
-			});
+			item.addListener(SWT.Selection, e -> entry.onSelected.run());
 			item.setText(entry.title);
 		}
 
-		parent.addListener(SWT.Selection, new Listener()
+		parent.addListener(SWT.Selection, e ->
 		{
-			public void handleEvent(Event event)
-			{
-				if (event.detail == SWT.ARROW)
-				{
-					Rectangle rect = parent.getBounds();
-					Point pt = new Point(rect.x, rect.y + rect.height);
-					pt = parent.getParent().toDisplay(pt);
-					menu.setLocation(pt.x, pt.y);
-					menu.setVisible(true);
-				}
-			}
+			Rectangle rect = parent.getBounds();
+			Point pt = new Point(rect.x, rect.y + rect.height);
+			pt = parent.getParent().toDisplay(pt);
+			menu.setLocation(pt.x, pt.y);
+			menu.setVisible(true);
 		});
 	}
 
 	private static class DropDownEntry
 	{
 		public final String title;
-		public final EntrySelectedListener listener;
+		public final Runnable onSelected;
 
-		public DropDownEntry(String title, EntrySelectedListener listener)
+		public DropDownEntry(String title, Runnable onSelected)
 		{
 			super();
 			this.title = title;
-			this.listener = listener;
+			this.onSelected = onSelected;
 		}
-	}
-
-	private static interface EntrySelectedListener
-	{
-		public void widgetSelected(SelectionEvent e);
 	}
 
 	public void refreshAddList()

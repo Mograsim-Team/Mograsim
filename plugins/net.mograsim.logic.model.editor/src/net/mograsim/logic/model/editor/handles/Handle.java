@@ -116,12 +116,13 @@ public abstract class Handle
 		return false;
 	}
 
+	// These methods are intended to be overridden
 	//@formatter:off
-    public void reqMove(double x, double y) {}
-    public void reqDelete() {}
-    public Optional<ComponentInfo> reqCopy(Point refPoint) { return Optional.empty(); }
-    public void onSelect() {}
-    public void onDeselect() {}
+	@SuppressWarnings("unused") public void reqMove(double x, double y) {/**/}
+    public void reqDelete() {/**/}
+    @SuppressWarnings({ "unused", "static-method" }) public Optional<ComponentInfo> reqCopy(Point refPoint) {return Optional.empty();}
+    public void onSelect() {/**/}
+    public void onDeselect() {/**/}
     //@formatter:on
 
 	public final int getPriority()
