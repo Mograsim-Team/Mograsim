@@ -54,17 +54,11 @@ public class HandleManager
 
 		LogicModelModifiable model = editor.getSubmodel();
 
-		model.addComponentAddedListener(c -> registerComponent(c));
+		model.addComponentAddedListener(this::registerComponent);
 
-		model.addComponentRemovedListener(c ->
-		{
-			removeComponentHandle(c);
-		});
+		model.addComponentRemovedListener(this::removeComponentHandle);
 
-		model.addWireAddedListener(w ->
-		{
-			registerWire(w);
-		});
+		model.addWireAddedListener(this::registerWire);
 
 		model.addWireRemovedListener(w ->
 		{
@@ -99,8 +93,8 @@ public class HandleManager
 	private void registerInterfaceComponent(ModelComponent c)
 	{
 		c.getPins().values().forEach(p -> addInterfacePinHandle(p));
-		c.addPinAddedListener(p -> addInterfacePinHandle(p));
-		c.addPinRemovedListener(p -> removeInterfacePinHandle(p));
+		c.addPinAddedListener(this::addInterfacePinHandle);
+		c.addPinRemovedListener(this::removeInterfacePinHandle);
 	}
 
 	private void registerComponent(ModelComponent c)
@@ -109,8 +103,8 @@ public class HandleManager
 
 		c.getPins().values().forEach(p -> addPinHandle(p));
 
-		c.addPinAddedListener(p -> addPinHandle(p));
-		c.addPinRemovedListener(p -> removePinHandle(p));
+		c.addPinAddedListener(this::addPinHandle);
+		c.addPinRemovedListener(this::removePinHandle);
 	}
 
 	private void registerWire(ModelWire wire)

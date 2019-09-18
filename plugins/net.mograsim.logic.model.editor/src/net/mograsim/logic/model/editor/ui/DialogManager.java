@@ -35,12 +35,12 @@ public class DialogManager
 
 		protected String[] result;
 
-		public FlexibleInputsDialog(String title, String acceptLabel, String cancelLabel, String... inputs)
+		public FlexibleInputsDialog(String title, String acceptLabel, String cancelLabel)
 		{
-			this(false, title, acceptLabel, cancelLabel, inputs);
+			this(false, title, acceptLabel, cancelLabel);
 		}
 
-		public FlexibleInputsDialog(boolean resizable, String title, String acceptLabel, String cancelLabel, String... inputs)
+		public FlexibleInputsDialog(boolean resizable, String title, String acceptLabel, String cancelLabel)
 		{
 			super(new Shell(SWT.CLOSE | (resizable ? SWT.RESIZE | SWT.MAX : 0) | SWT.TITLE | SWT.MIN | SWT.ON_TOP | SWT.APPLICATION_MODAL));
 			this.title = title;
@@ -84,10 +84,7 @@ public class DialogManager
 
 			b1.setText(acceptLabel);
 			Button b2 = new Button(shell, SWT.PUSH);
-			b2.addListener(SWT.Selection, e ->
-			{
-				shell.dispose();
-			});
+			b2.addListener(SWT.Selection, e -> shell.dispose());
 			b2.setText(cancelLabel);
 
 			shell.pack();

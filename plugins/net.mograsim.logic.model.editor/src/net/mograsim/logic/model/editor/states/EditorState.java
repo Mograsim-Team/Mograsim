@@ -16,21 +16,22 @@ public abstract class EditorState
 		this.manager = manager;
 	}
 
+	// These methods are intended to be overridden
 	//@formatter:off
-    public void add() {}
-    public void delete() {}
-    public void copy() {}
-    public void paste() {}
-    public void duplicate() {}
-    public void grab() {}
-    public void mouseMoved(double x, double y) {}    
-    public void select(Point pos, boolean additive) {}
-    public void boxSelect() {}
-    public void onEntry() {}
-    public void onExit() {}
-	public void clicked(InterfacePinHandle interfacePinHandle, int stateMask) {}
-	public void clickedEmpty(Point clicked, int stateMask) {}
-	public void clicked(Point clicked, int stateMask) {}
-	public boolean clickedHandle(HandleClickInfo handleClickInfo) { return false; }
+    public void add() {/**/}
+    public void delete() {/**/}
+    public void copy() {/**/}
+    public void paste() {/**/}
+    public void duplicate() {/**/}
+    public void grab() {/**/}
+    @SuppressWarnings("unused") public void mouseMoved(double x, double y) {/**/}    
+    @SuppressWarnings("unused") public void select(Point pos, boolean additive) {/**/}
+    public void boxSelect() {/**/}
+    public void onEntry() {/**/}
+    public void onExit() {/**/}
+    @SuppressWarnings("unused") public void clicked(InterfacePinHandle interfacePinHandle, int stateMask) {/**/}
+    @SuppressWarnings("unused") public void clickedEmpty(Point clicked, int stateMask) {/**/}
+    @SuppressWarnings("unused") public void clicked(Point clicked, int stateMask) {/**/}
+    @SuppressWarnings({ "unused", "static-method" }) public boolean clickedHandle(HandleClickInfo handleClickInfo) {return false;}
 	//@formatter:on
 }

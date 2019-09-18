@@ -58,6 +58,7 @@ public class SaveLoadManager
 		}
 	}
 
+	@SuppressWarnings("unused") // Editor
 	public static void openLoadDialog() throws IOException
 	{
 		Shell fdShell = new Shell();
