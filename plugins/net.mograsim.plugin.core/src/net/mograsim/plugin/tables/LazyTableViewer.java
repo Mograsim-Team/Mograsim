@@ -34,7 +34,6 @@ public class LazyTableViewer extends TableViewer
 		if (index < 0 || index >= table.getItemCount())
 			return;
 		table.getItem(index).setBackground(highlight ? highlightColor : table.getBackground());
-		System.out.println("Infinite loop!!!");
 		((ILazyContentProvider) getContentProvider()).updateElement(index);
 	}
 

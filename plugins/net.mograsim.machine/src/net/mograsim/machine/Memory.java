@@ -26,11 +26,15 @@ public interface Memory<T>
 	/**
 	 * Registers an observer to be notified when a memory cell is modified
 	 */
-	public void registerObserver(MemoryObserver ob);
+	public void registerCellModifiedListener(MemoryCellModifiedListener ob);
 
-	public void deregisterObserver(MemoryObserver ob);
-
-	public void notifyObservers(long address);
+	public void deregisterCellModifiedListener(MemoryCellModifiedListener ob);
 
 	public MemoryDefinition getDefinition();
+
+	public static interface MemoryCellModifiedListener
+	{
+		public void update(long address);
+	}
+
 }

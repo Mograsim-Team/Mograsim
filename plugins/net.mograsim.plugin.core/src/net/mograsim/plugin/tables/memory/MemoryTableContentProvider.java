@@ -6,9 +6,9 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Display;
 
 import net.mograsim.machine.MainMemory;
-import net.mograsim.machine.MemoryObserver;
+import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 
-public class MemoryTableContentProvider implements ILazyContentProvider, MemoryObserver
+public class MemoryTableContentProvider implements ILazyContentProvider, MemoryCellModifiedListener
 {
 	private long lower;
 	private TableViewer viewer;
@@ -65,9 +65,9 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryO
 		this.viewer = (TableViewer) viewer;
 		this.memory = (MainMemory) newInput;
 		if (oldInput != null)
-			((MainMemory) oldInput).deregisterObserver(this);
+			((MainMemory) oldInput).deregisterCellModifiedListener(this);
 		if (memory != null)
-			memory.registerObserver(this);
+			memory.registerCellModifiedListener(this);
 		setLowerBound(0L);
 	}
 
