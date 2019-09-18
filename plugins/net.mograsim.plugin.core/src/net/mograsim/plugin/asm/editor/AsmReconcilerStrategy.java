@@ -153,11 +153,13 @@ public class AsmReconcilerStrategy implements IReconcilingStrategy, IReconciling
 						searchingFor = SearchingFor.START_OF_TAG;
 					}
 					break;
+				default:
+					throw new IllegalStateException("Unknown enum type: " + searchingFor);
 				}
 				currentCharIndex++;
 			}
 		}
-		catch (BadLocationException e)
+		catch (@SuppressWarnings("unused") BadLocationException e)
 		{
 			// skip the remainder of file due to error
 		}

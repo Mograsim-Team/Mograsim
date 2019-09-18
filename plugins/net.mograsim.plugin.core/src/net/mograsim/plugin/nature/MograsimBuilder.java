@@ -50,6 +50,7 @@ public class MograsimBuilder extends IncrementalProjectBuilder
 
 	class SampleResourceVisitor implements IResourceVisitor
 	{
+		@Override
 		public boolean visit(IResource resource)
 		{
 			checkXML(resource);
@@ -73,16 +74,19 @@ public class MograsimBuilder extends IncrementalProjectBuilder
 			MograsimBuilder.this.addMarker(file, e.getMessage(), e.getLineNumber(), severity);
 		}
 
+		@Override
 		public void error(SAXParseException exception) throws SAXException
 		{
 			addMarker(exception, IMarker.SEVERITY_ERROR);
 		}
 
+		@Override
 		public void fatalError(SAXParseException exception) throws SAXException
 		{
 			addMarker(exception, IMarker.SEVERITY_ERROR);
 		}
 
+		@Override
 		public void warning(SAXParseException exception) throws SAXException
 		{
 			addMarker(exception, IMarker.SEVERITY_WARNING);
@@ -133,6 +137,7 @@ public class MograsimBuilder extends IncrementalProjectBuilder
 		return null;
 	}
 
+	@Override
 	protected void clean(IProgressMonitor monitor) throws CoreException
 	{
 		// delete markers set and files created

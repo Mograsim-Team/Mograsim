@@ -29,7 +29,7 @@ public class AsmAutoEditStrategy implements IAutoEditStrategy
 				command.shiftsCaret = false;
 			}
 		}
-		catch (BadLocationException e)
+		catch (@SuppressWarnings("unused") BadLocationException e)
 		{
 			// ignore
 		}

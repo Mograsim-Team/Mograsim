@@ -9,7 +9,6 @@ import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
@@ -19,8 +18,6 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -95,30 +92,18 @@ public class AsmOpsEdit extends ViewPart
 		txtInput = new Text(parent, SWT.BORDER);
 		txtInput.setMessage("Enter new Asm OP");
 		txtInput.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		txtInput.addKeyListener(new KeyListener()
+		txtInput.addListener(SWT.KeyDown, e ->
 		{
-
-			@Override
-			public void keyReleased(KeyEvent e)
+			if (e.keyCode == SWT.CR || e.keyCode == SWT.LF)
 			{
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e)
-			{
-				if (e.keyCode == SWT.CR || e.keyCode == SWT.LF)
-				{
-					String in = txtInput.getText().toLowerCase();
-					if (in.startsWith("-"))
-						viewer.remove(in.substring(1).trim());
-					else
-						viewer.add(in.trim());
-					txtInput.setText("");
-					part.setDirty(true);
-					save();
-				}
+				String in = txtInput.getText().toLowerCase();
+				if (in.startsWith("-"))
+					viewer.remove(in.substring(1).trim());
+				else
+					viewer.add(in.trim());
+				txtInput.setText("");
+				part.setDirty(true);
+				save();
 			}
 		});
 
@@ -159,6 +144,7 @@ public class AsmOpsEdit extends ViewPart
 	{
 		saveAction = new Action()
 		{
+			@Override
 			public void run()
 			{
 				save();
@@ -198,13 +184,7 @@ public class AsmOpsEdit extends ViewPart
 	{
 		MenuManager menuMgr = new MenuManager("#PopupMenu");
 		menuMgr.setRemoveAllWhenShown(true);
-		menuMgr.addMenuListener(new IMenuListener()
-		{
-			public void menuAboutToShow(IMenuManager manager)
-			{
-				AsmOpsEdit.this.fillContextMenu(manager);
-			}
-		});
+		menuMgr.addMenuListener(this::fillContextMenu);
 		Menu menu = menuMgr.createContextMenu(viewer.getControl());
 		viewer.getControl().setMenu(menu);
 		getSite().registerContextMenu(menuMgr, viewer);

@@ -11,3 +11,9 @@ Require-Bundle: org.junit;bundle-version="4.12.0",
  org.junit.jupiter.api;bundle-version="5.4.0";visibility:=reexport,
  org.junit.jupiter.params;bundle-version="5.4.0";visibility:=reexport,
  org.opentest4j;bundle-version="1.1.1";visibility:=reexport
+Export-Package: net.mograsim.logic.model,
+ net.mograsim.logic.model.am2900,
+ net.mograsim.logic.model.am2900.am2901,
+ net.mograsim.logic.model.am2900.am2904,
+ net.mograsim.logic.model.am2900.am2910,
+ net.mograsim.logic.model.am2900.util

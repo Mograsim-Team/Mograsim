@@ -105,7 +105,7 @@ public class AsmContentAssistProcessor implements IContentAssistProcessor
 			{
 				document.replace(offset, 0, asmOp);
 			}
-			catch (BadLocationException e)
+			catch (@SuppressWarnings("unused") BadLocationException e)
 			{
 				// ignore
 			}
