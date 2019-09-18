@@ -11,7 +11,7 @@ import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
-import net.mograsim.machine.MemoryObserver;
+import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 
 /**
  * A memory component that only allows access to words of a specific width
@@ -22,7 +22,7 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 
 	private ReadWriteEnd data;
 	private ReadEnd rWBit, address;
-	private final MemoryObserver memObs;
+	private final MemoryCellModifiedListener memObs;
 	private final MainMemoryDefinition definition;
 	private MainMemory memory;
 
@@ -62,10 +62,10 @@ public class CoreWordAddressableMemory extends BasicCoreComponent
 		if (memory != null && !memory.getDefinition().equals(definition))
 			throw new IllegalArgumentException("Memory of incorrect memory definition given");
 		if (this.memory != null)
-			this.memory.registerObserver(memObs);
+			this.memory.registerCellModifiedListener(memObs);
 		this.memory = memory;
 		if (memory != null)
-			memory.registerObserver(memObs);
+			memory.registerCellModifiedListener(memObs);
 		update();
 	}
 

@@ -10,7 +10,7 @@ public abstract class GenericMemory<T> implements Memory<T>
 	private final long minimalAddress, maximalAddress;
 	private final MemoryDefinition definition;
 	private final int pageSize = 64;
-	private Set<MemoryObserver> observers = new HashSet<>();
+	private Set<MemoryCellModifiedListener> observers = new HashSet<>();
 
 	private HashMap<Long, Page> pages;
 
@@ -94,19 +94,18 @@ public abstract class GenericMemory<T> implements Memory<T>
 	}
 
 	@Override
-	public void registerObserver(MemoryObserver ob)
+	public void registerCellModifiedListener(MemoryCellModifiedListener ob)
 	{
 		observers.add(ob);
 	}
 
 	@Override
-	public void deregisterObserver(MemoryObserver ob)
+	public void deregisterCellModifiedListener(MemoryCellModifiedListener ob)
 	{
 		observers.remove(ob);
 	}
 
-	@Override
-	public void notifyObservers(long address)
+	protected void notifyObservers(long address)
 	{
 		observers.forEach(ob -> ob.update(address));
 	}

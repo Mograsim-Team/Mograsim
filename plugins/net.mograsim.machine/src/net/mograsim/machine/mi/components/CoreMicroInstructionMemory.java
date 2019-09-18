@@ -9,7 +9,7 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
-import net.mograsim.machine.MemoryObserver;
+import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 
@@ -18,7 +18,7 @@ public class CoreMicroInstructionMemory extends BasicCoreComponent
 	private final ReadWriteEnd data;
 	private final ReadEnd address;
 	private final MicroInstructionMemoryDefinition definition;
-	private final MemoryObserver memObs;
+	private final MemoryCellModifiedListener memObs;
 	private MicroInstructionMemory memory;
 
 	public CoreMicroInstructionMemory(Timeline timeline, int processTime, MicroInstructionMemoryDefinition definition, ReadWriteEnd data,
@@ -46,10 +46,10 @@ public class CoreMicroInstructionMemory extends BasicCoreComponent
 		if (memory != null && !memory.getDefinition().equals(definition))
 			throw new IllegalArgumentException("Memory of incorrect memory definition given");
 		if (this.memory != null)
-			this.memory.registerObserver(memObs);
+			this.memory.registerCellModifiedListener(memObs);
 		this.memory = memory;
 		if (memory != null)
-			memory.registerObserver(memObs);
+			memory.registerCellModifiedListener(memObs);
 		update();
 	}
 
@@ -77,6 +77,7 @@ public class CoreMicroInstructionMemory extends BasicCoreComponent
 			return e -> data.feedSignals(Bit.U.toVector(data.width()));// TODO don't always feed U, but decide to feed X or U.
 		long addressed = address.getValues().getUnsignedValueLong();
 		BitVector storedData = memory.getCell(addressed).toBitVector();
+		memory.setActiveInstruction(addressed);
 		return e -> data.feedSignals(storedData);
 	}
 }
