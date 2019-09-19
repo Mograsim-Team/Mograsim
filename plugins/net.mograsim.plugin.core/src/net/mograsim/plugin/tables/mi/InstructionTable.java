@@ -57,9 +57,11 @@ public class InstructionTable
 		int size = miDef.size();
 		columns = new TableViewerColumn[size + 1];
 
-		TableViewerColumn col = createTableViewerColumn("Address", generateLongestHexStrings(12));
+		TableViewerColumn col = createTableViewerColumn("Address");
 		columns[0] = col;
 		col.setLabelProvider(new AddressLabelProvider());
+
+		String[] columnTitles = new String[size];
 
 		int bit = miDef.sizeInBits();
 		ParameterClassification[] classes = miDef.getParameterClassifications();
@@ -68,8 +70,17 @@ public class InstructionTable
 		{
 			int startBit = bit - 1;
 			int endBit = bit = bit - classes[i].getExpectedBits();
-			String name = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
+			String columnTitle = calculateColumnTitle(startBit, endBit);
+			columnTitles[i] = columnTitle;
+			col = createTableViewerColumn(columnTitle);
+			columns[i + 1] = col;
+			createEditingAndLabel(col, miDef, i);
+		}
 
+		calculateOptimalColumnSize(0, "Address", generateLongestHexStrings(12));
+
+		for (int i = 0; i < size; i++)
+		{
 			String[] longestPossibleContents;
 			switch (classes[i].getExpectedType())
 			{
@@ -84,11 +95,13 @@ public class InstructionTable
 				longestPossibleContents = new String[0];
 				break;
 			}
-
-			col = createTableViewerColumn(name, longestPossibleContents);
-			columns[i + 1] = col;
-			createEditingAndLabel(col, miDef, i);
+			calculateOptimalColumnSize(i + 1, columnTitles[i], longestPossibleContents);
 		}
+	}
+
+	private static String calculateColumnTitle(int startBit, int endBit)
+	{
+		return startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
 	}
 
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
@@ -121,6 +134,7 @@ public class InstructionTable
 			provider = new IntegerColumnLabelProvider(displaySettings, index);
 			break;
 		case MNEMONIC:
+//			viewerColumn.setEditingSupport(editingSupport)
 			support = new MnemonicEditingSupport(viewer, miDef, index, this.provider);
 			provider = new ParameterLabelProvider(index);
 			break;
@@ -133,10 +147,19 @@ public class InstructionTable
 		col.getColumn().setToolTipText(miDef.getParameterDescription(index).orElse(""));
 	}
 
-	private TableViewerColumn createTableViewerColumn(String title, String... longestPossibleContents)
+	private TableViewerColumn createTableViewerColumn(String title)
 	{
 		TableViewerColumn viewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 		TableColumn column = viewerColumn.getColumn();
+		column.setText(title);
+		column.setResizable(true);
+		column.setMoveable(false);
+		return viewerColumn;
+	}
+
+	private void calculateOptimalColumnSize(int i, String title, String... longestPossibleContents)
+	{
+		TableColumn column = viewer.getTable().getColumn(i);
 		int maxWidth = 0;
 		for (String s : longestPossibleContents)
 		{
@@ -149,9 +172,6 @@ public class InstructionTable
 		column.pack();
 		if (column.getWidth() < maxWidth)
 			column.setWidth(maxWidth);
-		column.setResizable(true);
-		column.setMoveable(false);
-		return viewerColumn;
 	}
 
 	public LazyTableViewer getTableViewer()
