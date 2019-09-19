@@ -1,8 +1,10 @@
 package net.mograsim.plugin.nature;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -19,6 +21,8 @@ public class MachineContext
 	Optional<String> machineId;
 	Optional<MachineDefinition> machineDefinition;
 	Optional<Machine> activeMachine;
+
+	private final Set<ActiveMachineListener> observers = new HashSet<>();
 
 	public MachineContext(IProject owner)
 	{
@@ -87,6 +91,7 @@ public class MachineContext
 	public final void setActiveMachine(Machine machine)
 	{
 		activeMachine = Optional.ofNullable(machine);
+		notifyObservers();
 	}
 
 	public final Optional<String> getMachineId()
@@ -116,5 +121,27 @@ public class MachineContext
 			machineId = Optional.ofNullable((String) changeEvent.getNewValue());
 			updateDefinition();
 		}
+	}
+
+	public void registerObserver(ActiveMachineListener ob)
+	{
+		observers.add(ob);
+		ob.setMachine(activeMachine);
+	}
+
+	public void deregisterObserver(ActiveMachineListener ob)
+	{
+		observers.remove(ob);
+	}
+
+	private void notifyObservers()
+	{
+		observers.forEach(ob -> ob.setMachine(activeMachine));
+	}
+
+	@FunctionalInterface
+	public static interface ActiveMachineListener
+	{
+		void setMachine(Optional<Machine> machine);
 	}
 }
