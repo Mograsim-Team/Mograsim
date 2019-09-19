@@ -56,7 +56,7 @@ public class MicroInstructionMemoryParser
 		try
 		{
 			MicroInstructionMemoryDefinition def = Objects
-					.requireNonNull(MachineRegistry.getinstalledMachines().get(machineName), "Unknown machine: " + machineName)
+					.requireNonNull(MachineRegistry.getMachine(machineName), "Unknown machine: " + machineName)
 					.getMicroInstructionMemoryDefinition();
 			MicroInstructionMemory memory = new StandardMicroInstructionMemory(def);
 			parseMemory(memory, input);
