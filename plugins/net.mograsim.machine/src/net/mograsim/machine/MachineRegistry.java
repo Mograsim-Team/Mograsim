@@ -4,20 +4,23 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IRegistryEventListener;
 import org.eclipse.core.runtime.Platform;
 
 public class MachineRegistry
 {
 	private static final String MACHINE_EXT_ID = "net.mograsim.machine.machine_definition";
 
-	private static Map<String, MachineDefinition> installedMachines = new HashMap<>();
+	private static final Map<String, MachineDefinition> installedMachines = new HashMap<>();
 
-	public static void reload()
+	private static void reload()
 	{
+		installedMachines.clear();
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
 		System.out.println(Arrays.toString(registry.getExtensionPoints("net.mograsim.machine")));
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(MACHINE_EXT_ID);
@@ -45,8 +48,45 @@ public class MachineRegistry
 		}
 	}
 
-	public static Map<String, MachineDefinition> getinstalledMachines()
+	public static void initialize()
+	{
+		reload();
+		Platform.getExtensionRegistry().addListener(new IRegistryEventListener()
+		{
+
+			@Override
+			public void removed(IExtensionPoint[] extensionPoints)
+			{
+				// nothing?
+			}
+
+			@Override
+			public void removed(IExtension[] extensions)
+			{
+				reload();
+			}
+
+			@Override
+			public void added(IExtensionPoint[] extensionPoints)
+			{
+				// nothing?
+			}
+
+			@Override
+			public void added(IExtension[] extensions)
+			{
+				reload();
+			}
+		}, MACHINE_EXT_ID);
+	}
+
+	public static Map<String, MachineDefinition> getInstalledMachines()
 	{
 		return Collections.unmodifiableMap(installedMachines);
+	}
+
+	public static MachineDefinition getMachine(String id)
+	{
+		return installedMachines.get(id);
 	}
 }
