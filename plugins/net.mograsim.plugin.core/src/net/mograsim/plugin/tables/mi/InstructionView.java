@@ -68,7 +68,7 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 			viewer.highlightRow(highlighted, false);
 			highlighted = index;
 			viewer.highlightRow(index, true);
-			viewer.getTable().showItem(viewer.getTable().getItem(Math.min((int) memory.getDefinition().getMaximalAddress(), index - 4)));
+			viewer.getTable().showItem(viewer.getTable().getItem(Math.min((int) memory.getDefinition().getMaximalAddress(), index + 2)));
 			viewer.getTable().showItem(viewer.getTable().getItem(index));
 		});
 	}
