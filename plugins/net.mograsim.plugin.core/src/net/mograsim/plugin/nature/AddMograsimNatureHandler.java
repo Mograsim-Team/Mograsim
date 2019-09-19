@@ -23,7 +23,6 @@ public class AddMograsimNatureHandler extends AbstractHandler
 	public Object execute(ExecutionEvent event) throws ExecutionException
 	{
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		//
 
 		MultiStatus ms = new MultiStatus("net.mograsim.plugin.core", 42, "MograsimNature Conversion", null);
 
