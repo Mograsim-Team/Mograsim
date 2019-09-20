@@ -13,7 +13,7 @@ public final class MograsimActivator extends AbstractUIPlugin
 		if (instance != null)
 			throw new IllegalStateException("MograsimActivator already created!");
 		instance = this;
-		MachineRegistry.reload();
+		MachineRegistry.initialize();
 	}
 
 	public static MograsimActivator instance()

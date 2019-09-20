@@ -8,6 +8,7 @@ Export-Package: net.mograsim.plugin;uses:="org.eclipse.ui.themes,org.eclipse.swt
  net.mograsim.plugin.asm.editor,
  net.mograsim.plugin.asm.editor.rules,
  net.mograsim.plugin.nature,
+ net.mograsim.plugin.nature.properties,
  net.mograsim.plugin.tables,
  net.mograsim.plugin.tables.memory,
  net.mograsim.plugin.tables.mi,
@@ -26,10 +27,12 @@ Require-Bundle: org.eclipse.core.runtime,
  net.mograsim.logic.model;bundle-version="0.1.0";visibility:=reexport,
  net.mograsim.logic.model.am2900;bundle-version="0.1.0";visibility:=reexport,
  javax.annotation;bundle-version="1.0.0",
+ javax.inject;bundle-version="1.0.0",
+ org.eclipse.ui.ide,
  net.mograsim.preferences;bundle-version="0.1.0",
  net.mograsim.machine,
  net.mograsim.plugin.core,
- org.eclipse.ui.ide;bundle-version="3.15.0"
+ org.eclipse.core.expressions
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: net.mograsim.plugin.core
 Bundle-Vendor: %Bundle-Vendor.0
