@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="net.mograsim.plugin.core.hasNature">
+         <adapt
+               type="org.eclipse.core.resources.IProject">
+            <test
+                  property="org.eclipse.core.resources.projectNature"
+                  value="net.mograsim.plugin.core.mograsimNature">
+            </test>
+         </adapt>
+      </definition>
+   </extension>
 
    <extension
          point="org.eclipse.core.contenttype.contentTypes">
@@ -22,6 +35,38 @@
       </content-type>
    </extension>
    <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.projectConfigure">
+         <command
+               commandId="net.mograsim.plugin.core.addMograsimNature"
+               label="%command.label"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <not>
+                  <reference
+                        definitionId="net.mograsim.plugin.core.hasNature">
+                  </reference>
+               </not>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         id="mograsimNature"
+         name="%extension.name.0"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="net.mograsim.plugin.nature.MograsimNature">
+         </run>
+      </runtime>
+      <builder
+            id="net.mograsim.plugin.nature.mograsimBuilder">
+      </builder>
+   </extension>
+   <extension
          point="org.eclipse.ui.editors">
       <editorContentTypeBinding
             contentTypeId="net.mograsim.plugin.asm"
@@ -33,7 +78,7 @@
       </editorContentTypeBinding>
       <editor
       		name="%editor.name.0"
-      		icon="icons/mograsim/blue-orange/icon_blue-orange_7x8.png"
+      		icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
       		class="net.mograsim.plugin.tables.mi.InstructionView"
       		id="net.mograsim.plugin.tables.mi.InstructionView">
       </editor>
@@ -126,87 +171,7 @@
       </builder>
    </extension>
    <extension
-         id="mograsimNature"
-         name="%extension.name.0"
-         point="org.eclipse.core.resources.natures">
-      <runtime>
-         <run
-               class="net.mograsim.plugin.nature.MograsimNature">
-         </run>
-      </runtime>
-      <builder
-            id="net.mograsim.plugin.nature.mograsimBuilder">
-      </builder>
-   </extension>
-   <extension
-         point="org.eclipse.ui.commands">
-      <category
-            id="net.mograsim.plugin.mograsimNature.category"
-            name="%category.name.0">
-      </category>
-      <command
-            categoryId="net.mograsim.plugin.mograsimNature.category"
-            defaultHandler="net.mograsim.plugin.nature.AddRemoveMograsimNatureHandler"
-            id="net.mograsim.plugin.addRemoveMograsimNature"
-            name="%command.name">
-      </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.menus">
-      <menuContribution
-            locationURI="popup:org.eclipse.ui.projectConfigure?after=additions">
-         <command
-               commandId="net.mograsim.plugin.addRemoveMograsimNature"
-               label="%command.label"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <count
-                        value="1">
-                  </count>
-                  <iterate>
-                     <adapt
-                           type="org.eclipse.core.resources.IProject">
-                        <test
-                              property="org.eclipse.core.resources.projectNature"
-                              value="net.mograsim.plugin.mograsimNature">
-                        </test>
-                     </adapt>
-                  </iterate>
-               </with>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="net.mograsim.plugin.addRemoveMograsimNature"
-               label="%command.label.0"
-               style="push">
-            <visibleWhen
-                  checkEnabled="false">
-               <with
-                     variable="selection">
-                  <count
-                        value="1">
-                  </count>
-                  <iterate>
-                     <adapt
-                           type="org.eclipse.core.resources.IProject">
-                        <not>
-                           <test
-                                 property="org.eclipse.core.resources.projectNature"
-                                 value="net.mograsim.plugin.mograsimNature">
-                           </test>
-                        </not>
-                     </adapt>
-                  </iterate>
-               </with>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-   </extension>
-   <extension
-         id="xmlProblem"
+         id="asmProblem"
          name="%extension.name.1"
          point="org.eclipse.core.resources.markers">
       <super
@@ -215,33 +180,6 @@
       <persistent
             value="true">
       </persistent>
-   </extension>
-   <extension
-         point="org.eclipse.ui.decorators">
-      <decorator
-            adaptable="true"
-            icon="icons/mograsim/blue-orange/icon_blue-orange_7x8.png"
-            id="net.mograsim.plugin.decorator"
-            label="%decorator.label"
-            lightweight="true"
-            location="BOTTOM_RIGHT"
-            state="true">
-         <enablement>
-            <and>
-               <objectClass
-                     name="org.eclipse.core.resources.IResource">
-               </objectClass>
-               <or>
-                  <objectClass
-                        name="org.eclipse.core.resources.IProject">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.core.resources.IFile">
-                  </objectClass>
-               </or>
-            </and>
-         </enablement>
-      </decorator>
    </extension>
    <extension
          point="org.eclipse.ui.themes">
@@ -354,8 +292,42 @@
       <page
             class="net.mograsim.plugin.MainPreferencePage"
             id="net.mograsim.plugin.core.mainprefpage"
-            name="Mograsim preferences">
+            name="Mograsim">
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="net.mograsim.plugin.nature.properties.MograsimNaturePropertyPage"
+            id="net.mograsim.plugin.nature.properties.samplePropertyPage"
+            name="Mograsim">
+         <enabledWhen>
+            <reference
+                  definitionId="net.mograsim.plugin.core.hasNature">
+            </reference>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/mograsim/blue-orange/icon_blue-orange_7x8.png"
+            id="net.mograsim.plugin.core.nature.icon"
+            natureId="net.mograsim.plugin.core.mograsimNature">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="net.mograsim.plugin.mograsimNature.category"
+            name="%category.name.0">
+      </category>
+      <command
+            categoryId="net.mograsim.plugin.mograsimNature.category"
+            defaultHandler="net.mograsim.plugin.nature.AddMograsimNatureHandler"
+            id="net.mograsim.plugin.core.addMograsimNature"
+            name="%command.name">
+      </command>
    </extension>
 
 </plugin>

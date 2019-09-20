@@ -24,7 +24,7 @@ public class MachineContext
 		{
 			instance = new MachineContext();
 			// TODO don't hardcode the Am2900
-			instance.setMachine(MachineRegistry.getinstalledMachines().get("Am2900").createNew());
+			instance.setMachine(MachineRegistry.getMachine("Am2900").createNew());
 		}
 		return instance;
 	}

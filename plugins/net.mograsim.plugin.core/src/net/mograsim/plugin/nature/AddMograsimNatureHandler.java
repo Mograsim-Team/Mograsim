@@ -7,19 +7,25 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-public class AddRemoveMograsimNatureHandler extends AbstractHandler
+public class AddMograsimNatureHandler extends AbstractHandler
 {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException
 	{
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		//
+
+		MultiStatus ms = new MultiStatus("net.mograsim.plugin.core", 42, "MograsimNature Conversion", null);
+
 		if (selection instanceof IStructuredSelection)
 		{
 			for (Iterator<?> it = ((IStructuredSelection) selection).iterator(); it.hasNext();)
@@ -37,7 +43,7 @@ public class AddRemoveMograsimNatureHandler extends AbstractHandler
 				{
 					try
 					{
-						toggleNature(project);
+						ms.add(toggleNature(project));
 					}
 					catch (CoreException e)
 					{
@@ -48,38 +54,35 @@ public class AddRemoveMograsimNatureHandler extends AbstractHandler
 			}
 		}
 
-		return null;
+		return ms.getSeverity();
 	}
 
 	/**
-	 * Toggles sample nature on a project
+	 * Adds Mograsim nature on a project
 	 *
-	 * @param project to have sample nature added or removed
+	 * @param project to have Mograsim nature
+	 * @return
 	 */
-	private void toggleNature(IProject project) throws CoreException
+	private IStatus toggleNature(IProject project) throws CoreException
 	{
 		IProjectDescription description = project.getDescription();
 		String[] natures = description.getNatureIds();
-
-		for (int i = 0; i < natures.length; ++i)
-		{
-			if (MograsimNature.NATURE_ID.equals(natures[i]))
-			{
-				// Remove the nature
-				String[] newNatures = new String[natures.length - 1];
-				System.arraycopy(natures, 0, newNatures, 0, i);
-				System.arraycopy(natures, i + 1, newNatures, i, natures.length - i - 1);
-				description.setNatureIds(newNatures);
-				project.setDescription(description, null);
-				return;
-			}
-		}
 
 		// Add the nature
 		String[] newNatures = new String[natures.length + 1];
 		System.arraycopy(natures, 0, newNatures, 0, natures.length);
 		newNatures[natures.length] = MograsimNature.NATURE_ID;
-		description.setNatureIds(newNatures);
-		project.setDescription(description, null);
+
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IStatus status = workspace.validateNatureSet(newNatures);
+
+		// only apply new nature, if the status is ok
+		if (status.getCode() == IStatus.OK)
+		{
+			description.setNatureIds(newNatures);
+			project.setDescription(description, null);
+		}
+
+		return status;
 	}
 }
