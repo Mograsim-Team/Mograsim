@@ -1,10 +1,10 @@
 package net.mograsim.plugin.tables.mi;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -12,10 +12,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IPathEditorInput;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
@@ -34,7 +33,6 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	private InstructionTableContentProvider provider;
 	private int highlighted = 0;
 	private boolean dirty = false;
-	private String machineName;
 	private MicroInstructionMemory memory;
 	private InstructionTable table;
 
@@ -83,37 +81,40 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
 	{
 		this.memory = memory;
-		this.memory.registerCellModifiedListener(this);
-		this.memory.registerActiveMicroInstructionChangedListener(this);
+		if (memory != null)
+		{
+			this.memory.registerCellModifiedListener(this);
+			this.memory.registerActiveMicroInstructionChangedListener(this);
+		}
 		if (table != null)
 			table.bindMicroInstructionMemory(memory);
 	}
 
-	private void open(String file)
+	private void open(IFile file)
 	{
-		try (BufferedReader bf = new BufferedReader(new FileReader(file)))
+		try
 		{
-			machineName = bf.readLine();
-			bindMicroInstructionMemory(MicroInstructionMemoryParser.parseMemory(machineName, bf));
+			bindMicroInstructionMemory(MicroInstructionMemoryParser.parseMemory(
+					MachineContext.getInstance().getMachine().getDefinition().getMicroInstructionMemoryDefinition(), file.getContents()));
 		}
-		catch (IOException | MicroInstructionMemoryParseException e)
+		catch (IOException | MicroInstructionMemoryParseException | CoreException e)
 		{
 			e.printStackTrace();
 		}
 	}
 
-	private void save(String file)
+	private void save(IFile file, IProgressMonitor progressMonitor)
 	{
 		if (memory == null)
 		{
 			System.err.println("Failed to write MicroprogrammingMemory to File. No MicroprogrammingMemory assigned.");
 			return;
 		}
-		try
+		try (InputStream toWrite = MicroInstructionMemoryParser.write(memory))
 		{
-			MicroInstructionMemoryParser.write(memory, machineName, file);
+			file.setContents(toWrite, 0, progressMonitor);
 		}
-		catch (IOException e)
+		catch (IOException | CoreException e)
 		{
 			e.printStackTrace();
 		}
@@ -129,10 +130,10 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	public void doSave(IProgressMonitor progressMonitor)
 	{
 		IEditorInput input = getEditorInput();
-		if (input instanceof IPathEditorInput)
+		if (input instanceof IFileEditorInput)
 		{
-			IPathEditorInput pathInput = (IPathEditorInput) input;
-			save(pathInput.getPath().toOSString());
+			IFileEditorInput pathInput = (IFileEditorInput) input;
+			save(pathInput.getFile(), progressMonitor);
 			setDirty(false);
 		}
 	}
@@ -140,32 +141,33 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	@Override
 	public void doSaveAs()
 	{
-		openSaveAsDialog();
+//		openSaveAsDialog();
 	}
 
-	private void openSaveAsDialog()
-	{
-		FileDialog d = new FileDialog(table.getTableViewer().getTable().getShell(), SWT.SAVE);
-		d.open();
-		String filename = d.getFileName();
-		if (!filename.equals(""))
-		{
-			save(d.getFilterPath() + File.separator + filename);
-			setDirty(false);
-		}
-	}
+//	private void openSaveAsDialog()
+//	{
+//		FileDialog d = new FileDialog(table.getTableViewer().getTable().getShell(), SWT.SAVE);
+//		d.open();
+//		String filename = d.getFileName();
+//		if (!filename.equals(""))
+//		{
+//			save(d.getFilterPath() + File.separator + filename);
+//			setDirty(false);
+//		}
+//	}
 
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException
 	{
 		setSite(site);
 		setInput(input);
-		if (input instanceof IPathEditorInput)
+		if (input instanceof IFileEditorInput)
 		{
-			IPathEditorInput pathInput = (IPathEditorInput) input;
-			setPartName(pathInput.getName());
-			open(pathInput.getPath().toOSString());
+			IFileEditorInput fileInput = (IFileEditorInput) input;
+			setPartName(fileInput.getName());
+			open(fileInput.getFile());
 		}
+
 	}
 
 	@Override
@@ -177,7 +179,7 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	@Override
 	public boolean isSaveAsAllowed()
 	{
-		return true;
+		return false;
 	}
 
 	@Override
