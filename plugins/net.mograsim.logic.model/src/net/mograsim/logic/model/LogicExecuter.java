@@ -3,6 +3,7 @@ package net.mograsim.logic.model;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
+import net.mograsim.logic.core.timeline.PauseableTimeFunction;
 import net.mograsim.logic.core.timeline.Timeline;
 
 //TODO maybe move to logic core?
@@ -13,16 +14,21 @@ public class LogicExecuter
 
 	private final AtomicBoolean shouldBeRunningLive;
 	private final AtomicBoolean isRunningLive;
+	private final AtomicBoolean isPaused;
 	private final AtomicLong nextExecSimulTime;
 	private final Thread simulationThread;
+
+	PauseableTimeFunction tf;
 
 	public LogicExecuter(Timeline timeline)
 	{
 		this.timeline = timeline;
 
-		timeline.setTimeFunction(System::currentTimeMillis);
+		tf = new PauseableTimeFunction();
+		timeline.setTimeFunction(tf);
 		shouldBeRunningLive = new AtomicBoolean();
 		isRunningLive = new AtomicBoolean();
+		isPaused = new AtomicBoolean();
 		nextExecSimulTime = new AtomicLong();
 		simulationThread = new Thread(() ->
 		{
@@ -36,7 +42,7 @@ public class LogicExecuter
 				while (shouldBeRunningLive.get())
 				{
 					// always execute to keep timeline from "hanging behind" for too long
-					long current = System.currentTimeMillis();
+					long current = tf.getAsLong();
 					timeline.executeUntil(timeline.laterThan(current), current + 10);
 					long sleepTime;
 					if (timeline.hasNext())
@@ -48,6 +54,12 @@ public class LogicExecuter
 						nextExecSimulTime.set(current + sleepTime);
 						if (sleepTime > 0)
 							Thread.sleep(sleepTime);
+
+						synchronized (isPaused)
+						{
+							while (isPaused.get())
+								isPaused.wait();
+						}
 					}
 					catch (@SuppressWarnings("unused") InterruptedException e)
 					{// do nothing; it is normal execution flow to be interrupted
@@ -92,6 +104,35 @@ public class LogicExecuter
 		shouldBeRunningLive.set(false);
 		simulationThread.interrupt();
 		waitForIsRunning(false);
+	}
+
+	public void unpauseLiveExecution()
+	{
+		synchronized (isPaused)
+		{
+			tf.unpause();
+			isPaused.set(false);
+			isPaused.notify();
+		}
+	}
+
+	public void pauseLiveExecution()
+	{
+		synchronized (isPaused)
+		{
+			tf.pause();
+			isPaused.set(true);
+		}
+	}
+
+	public boolean isPaused()
+	{
+		return isPaused.get();
+	}
+
+	public void setSpeedPercentage(int percentage)
+	{
+		tf.setSpeedPercentage(percentage);
 	}
 
 	private void waitForIsRunning(boolean expectedState)
