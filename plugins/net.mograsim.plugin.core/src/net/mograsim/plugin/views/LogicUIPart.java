@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -89,18 +91,38 @@ public class LogicUIPart extends ViewPart
 		Composite c = new Composite(parent, SWT.NONE);
 		c.setLayout(new GridLayout(4, false));
 		Button pauseButton = new Button(c, SWT.TOGGLE);
-		pauseButton.setText("Running");
+		pauseButton.setSelection(true);
+		setPauseText(pauseButton, false);
 
 		pauseButton.addListener(SWT.Selection, e ->
 		{
-			if (!pauseButton.getSelection())
+			setPauseText(pauseButton, false);
+			if (pauseButton.getSelection())
 			{
-				pauseButton.setText("Running");
 				exec.unpauseLiveExecution();
 			} else
 			{
-				pauseButton.setText("Paused");
 				exec.pauseLiveExecution();
+			}
+		});
+		pauseButton.addMouseTrackListener(new MouseTrackListener()
+		{
+			@Override
+			public void mouseHover(MouseEvent e)
+			{
+				// nothing
+			}
+
+			@Override
+			public void mouseExit(MouseEvent e)
+			{
+				setPauseText(pauseButton, false);
+			}
+
+			@Override
+			public void mouseEnter(MouseEvent e)
+			{
+				setPauseText(pauseButton, true);
 			}
 		});
 
@@ -127,6 +149,29 @@ public class LogicUIPart extends ViewPart
 		c.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.FILL_HORIZONTAL));
 		c.pack();
 		c.setVisible(true);
+	}
+
+	private void setPauseText(Button pauseButton, boolean hovered)
+	{
+		if (hovered)
+		{
+			if (pauseButton.getSelection())
+			{
+				pauseButton.setText("Pause?");
+			} else
+			{
+				pauseButton.setText("Resume?");
+			}
+		} else
+		{
+			if (pauseButton.getSelection())
+			{
+				pauseButton.setText("Running");
+			} else
+			{
+				pauseButton.setText("Paused");
+			}
+		}
 	}
 
 	@Override
