@@ -72,15 +72,12 @@
             contentTypeId="net.mograsim.plugin.asm"
             editorId="org.eclipse.ui.genericeditor.GenericEditor">
       </editorContentTypeBinding>
-      <editorContentTypeBinding
-            contentTypeId="net.mograsim.plugin.mpm"
-            editorId="net.mograsim.plugin.tables.mi.InstructionView">
-      </editorContentTypeBinding>
       <editor
       		name="%editor.name.0"
       		icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
       		class="net.mograsim.plugin.tables.mi.InstructionView"
       		id="net.mograsim.plugin.tables.mi.InstructionView">
+      		<contentTypeBinding contentTypeId="net.mograsim.plugin.mpm"/>
       </editor>
    </extension>
    <extension
@@ -329,5 +326,20 @@
             name="%command.name">
       </command>
    </extension>
-
+	<extension
+		point="org.eclipse.ui.newWizards">
+		<category
+			name="%wizards.newWizards.category"
+			id="net.mograsim.plugin.wizards.newWizards.category">
+		</category>
+		<wizard
+			id="net.mograsim.plugin.wizards.newWizards.NewWizardMPM"
+	   		name="%wizards.newWizards.mpm.name"
+			class="net.mograsim.plugin.wizards.newWizards.NewWizardMPM"
+			category="net.mograsim.plugin.wizards.newWizards.category"
+			icon="icons/mograsim/blue-orange/icon_blue-orange_16.png">
+			<description>%wizards.newWizards.mpm.desc</description>
+	   		<selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+	</extension>
 </plugin>
