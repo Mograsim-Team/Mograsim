@@ -23,7 +23,8 @@ import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemory.ActiveMicroInstructionChangedListener;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
-import net.mograsim.plugin.MachineContext;
+import net.mograsim.plugin.nature.MachineContext;
+import net.mograsim.plugin.nature.ProjectMachineContext;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.LazyTableViewer;
 import net.mograsim.plugin.tables.RadixSelector;
@@ -35,6 +36,7 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	private boolean dirty = false;
 	private MicroInstructionMemory memory;
 	private InstructionTable table;
+	private MachineContext context;
 
 	@SuppressWarnings("unused")
 	@Override
@@ -76,7 +78,7 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 		Button activationButton = new Button(parent, SWT.PUSH);
 		activationButton.setText("Set Active");
 		activationButton.addListener(SWT.Selection,
-				e -> MachineContext.getInstance().getMachine().getMicroInstructionMemory().bind(memory));
+				e -> context.getActiveMachine().ifPresent(m -> m.getMicroInstructionMemory().bind(memory)));
 	}
 
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
@@ -95,11 +97,14 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	{
 		try
 		{
-			bindMicroInstructionMemory(MicroInstructionMemoryParser.parseMemory(
-					MachineContext.getInstance().getMachine().getDefinition().getMicroInstructionMemoryDefinition(), file.getContents()));
+			bindMicroInstructionMemory(MicroInstructionMemoryParser.parseMemory(context.getMachineDefinition()
+					.orElseThrow(() -> new MicroInstructionMemoryParseException("No MachineDefinition assigned!"))
+					.getMicroInstructionMemoryDefinition(), file.getContents()));
 		}
 		catch (IOException | MicroInstructionMemoryParseException | CoreException e)
 		{
+
+			// TODO: Proper handling via IProgressMonitor
 			e.printStackTrace();
 		}
 	}
@@ -162,9 +167,11 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	{
 		setSite(site);
 		setInput(input);
+
 		if (input instanceof IFileEditorInput)
 		{
 			IFileEditorInput fileInput = (IFileEditorInput) input;
+			context = ProjectMachineContext.getMachineContextOf(fileInput.getFile());
 			setPartName(fileInput.getName());
 			open(fileInput.getFile());
 		}
