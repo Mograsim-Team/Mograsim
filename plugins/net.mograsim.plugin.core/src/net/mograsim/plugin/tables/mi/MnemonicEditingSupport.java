@@ -25,8 +25,10 @@ public class MnemonicEditingSupport extends EditingSupport
 		super(viewer);
 		family = (MnemonicFamily) definition.getParameterClassifications()[index];
 		editor = new ComboBoxCellEditor(viewer.getTable(), family.getStringValues(), SWT.READ_ONLY);
+		editor.setActivationStyle(
+				ComboBoxCellEditor.DROP_DOWN_ON_TRAVERSE_ACTIVATION | ComboBoxCellEditor.DROP_DOWN_ON_PROGRAMMATIC_ACTIVATION
+						| ComboBoxCellEditor.DROP_DOWN_ON_MOUSE_ACTIVATION | ComboBoxCellEditor.DROP_DOWN_ON_KEY_ACTIVATION);
 		this.index = index;
-		editor.setValidator(new MnemonicCellEditorValidator(family));
 		this.provider = provider;
 	}
 
@@ -54,7 +56,10 @@ public class MnemonicEditingSupport extends EditingSupport
 	{
 		InstructionTableRow row = ((InstructionTableRow) element);
 		MicroInstructionParameter[] params = row.data.getCell(row.address).getParameters();
-		params[index] = family.get((Integer) value);
+		Mnemonic newParam = family.get((Integer) value);
+		if (newParam.equals(params[index]))
+			return;
+		params[index] = newParam;
 		row.data.setCell(row.address, MicroInstruction.create(params));
 		provider.update(row.address);
 	}
