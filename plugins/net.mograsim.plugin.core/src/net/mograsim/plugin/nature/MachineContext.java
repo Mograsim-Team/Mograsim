@@ -112,6 +112,7 @@ public class MachineContext
 	final void updateDefinition()
 	{
 		machineDefinition = machineId.map(MachineRegistry::getMachine);
+		machineDefinition.ifPresent(md -> setActiveMachine(md.createNew()));
 	}
 
 	private void preferenceListener(PropertyChangeEvent changeEvent)
