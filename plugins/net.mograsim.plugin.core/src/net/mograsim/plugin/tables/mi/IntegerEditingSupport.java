@@ -32,7 +32,10 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 	{
 		InstructionTableRow row = ((InstructionTableRow) element);
 		MicroInstructionParameter[] params = row.data.getCell(row.address).getParameters();
-		params[index] = new IntegerImmediate(value, classification.getExpectedBits());
+		IntegerImmediate newParam = new IntegerImmediate(value, classification.getExpectedBits());
+		if (params[index].equals(newParam))
+			return;
+		params[index] = newParam;
 		row.data.setCell(row.address, MicroInstruction.create(params));
 		provider.update(row.address);
 //		viewer.update(element, null); Does not do anything for some reason
