@@ -41,6 +41,7 @@ public class LogicUIPart extends ViewPart
 	{
 		if (exec != null)
 			exec.stopLiveExecution();
+		super.dispose();
 	}
 
 	@Override
