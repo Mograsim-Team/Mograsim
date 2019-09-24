@@ -43,7 +43,7 @@ public class AddMograsimNatureHandler extends AbstractHandler
 				{
 					try
 					{
-						ms.add(toggleNature(project));
+						ms.add(addNature(project));
 					}
 					catch (CoreException e)
 					{
@@ -63,7 +63,7 @@ public class AddMograsimNatureHandler extends AbstractHandler
 	 * @param project to have Mograsim nature
 	 * @return
 	 */
-	private IStatus toggleNature(IProject project) throws CoreException
+	public static IStatus addNature(IProject project) throws CoreException
 	{
 		IProjectDescription description = project.getDescription();
 		String[] natures = description.getNatureIds();
