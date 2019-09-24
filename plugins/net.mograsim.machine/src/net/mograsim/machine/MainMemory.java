@@ -9,4 +9,7 @@ public interface MainMemory extends Memory<BitVector>
 	public BigInteger getCellAsBigInteger(long address);
 
 	public void setCellAsBigInteger(long address, BigInteger word);
+
+	@Override
+	public MainMemoryDefinition getDefinition();
 }
