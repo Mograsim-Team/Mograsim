@@ -6,6 +6,14 @@ import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 
 public interface MachineDefinition
 {
+	/**
+	 * This returns the MachineDefinitions ID. This must be consistent and coherent with the id in the extension point (Eclipse plugin xml)
+	 * providing the definition.
+	 * 
+	 * @return a human readable, unique id representing the specified machine.
+	 * @author Christian Femers
+	 */
+	String getId();
 
 	/**
 	 * Creates a new instance of the machine

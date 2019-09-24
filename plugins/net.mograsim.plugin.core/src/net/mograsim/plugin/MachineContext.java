@@ -6,7 +6,12 @@ import java.util.Set;
 
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineRegistry;
+import net.mograsim.plugin.nature.ProjectMachineContext;
 
+/**
+ * @deprecated use the {@link ProjectMachineContext} instead to make the context project dependent.
+ */
+@Deprecated(forRemoval = true)
 public class MachineContext
 {
 	private Machine machine;
