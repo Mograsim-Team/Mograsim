@@ -216,7 +216,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		componentsByItemIndex.clear();
 		componentSelector.setItems();
 		addComponentSelectorItems(componentsByItemIndex, "", componentSelector, model,
-				Preferences.current().getInt("net.mograsim.logic.model.debug.hlsshelldepth"));
+				Preferences.current().getInt("net.mograsim.logic.model.debug.hlsshelldepth") - 1);
 	}
 
 	private void addComponentSelectorItems(List<ModelComponent> componentsByItemIndex, String base, Combo componentSelector,
