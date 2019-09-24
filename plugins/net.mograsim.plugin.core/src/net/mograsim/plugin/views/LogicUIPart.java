@@ -10,12 +10,15 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
+import net.mograsim.logic.core.LogicObserver;
+import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
 import net.mograsim.machine.Machine;
@@ -35,6 +38,7 @@ public class LogicUIPart extends ViewPart
 
 	private LogicExecuter exec;
 	private LogicUICanvas ui;
+	private Machine m;
 
 	@Override
 	public void dispose()
@@ -50,7 +54,7 @@ public class LogicUIPart extends ViewPart
 		Preferences.setPreferences(new EclipsePreferences(PlatformUI.getWorkbench().getThemeManager().getCurrentTheme(),
 				MograsimActivator.instance().getPreferenceStore()));
 
-		Machine m = MachineContext.getInstance().getMachine();
+		m = MachineContext.getInstance().getMachine();
 
 		// initialize UI
 		GridLayout layout = new GridLayout(1, true);
@@ -89,14 +93,42 @@ public class LogicUIPart extends ViewPart
 	private void addSimulationControlWidgets(Composite parent)
 	{
 		Composite c = new Composite(parent, SWT.NONE);
-		c.setLayout(new GridLayout(4, false));
+		c.setLayout(new GridLayout(5, false));
+		Button sbseButton = new Button(c, SWT.CHECK);
 		Button pauseButton = new Button(c, SWT.TOGGLE);
+
+		LogicObserver clockObserver = o ->
+		{
+			if (((CoreClock) o).isOn())
+			{
+				exec.pauseLiveExecution();
+				Display.getDefault().asyncExec(() ->
+				{
+					pauseButton.setSelection(false);
+					setPauseText(pauseButton, false);
+				});
+			}
+		};
+
+		sbseButton.addListener(SWT.Selection, e ->
+		{
+			String statusString = "disabled";
+			CoreClock cl = m.getClock();
+			if (sbseButton.getSelection())
+			{
+				cl.registerObserver(clockObserver);
+				statusString = "enabled";
+			} else
+				cl.deregisterObserver(clockObserver);
+			sbseButton.setToolTipText(String.format("Step by step execution: %s", statusString));
+		});
+		sbseButton.setSelection(false);
+
 		pauseButton.setSelection(true);
 		setPauseText(pauseButton, false);
 
 		pauseButton.addListener(SWT.Selection, e ->
 		{
-			setPauseText(pauseButton, false);
 			if (pauseButton.getSelection())
 			{
 				exec.unpauseLiveExecution();
@@ -105,6 +137,7 @@ public class LogicUIPart extends ViewPart
 				exec.pauseLiveExecution();
 			}
 		});
+
 		pauseButton.addMouseTrackListener(new MouseTrackListener()
 		{
 			@Override
@@ -151,7 +184,7 @@ public class LogicUIPart extends ViewPart
 		c.setVisible(true);
 	}
 
-	private void setPauseText(Button pauseButton, boolean hovered)
+	private static void setPauseText(Button pauseButton, boolean hovered)
 	{
 		if (hovered)
 		{
