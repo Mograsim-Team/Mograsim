@@ -7,13 +7,15 @@ Export-Package: net.mograsim.plugin;uses:="org.eclipse.ui.themes,org.eclipse.swt
  net.mograsim.plugin.asm,
  net.mograsim.plugin.asm.editor,
  net.mograsim.plugin.asm.editor.rules,
+ net.mograsim.plugin.editors,
  net.mograsim.plugin.nature,
  net.mograsim.plugin.nature.properties,
  net.mograsim.plugin.tables,
  net.mograsim.plugin.tables.memory,
  net.mograsim.plugin.tables.mi,
  net.mograsim.plugin.util,
- net.mograsim.plugin.views
+ net.mograsim.plugin.wizards.newWizards,
+ org.eclipse.jface.snippets.viewers
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.jface.text,
