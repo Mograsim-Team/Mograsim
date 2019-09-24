@@ -35,7 +35,11 @@ public class MachineRegistry
 				if (o instanceof MachineDefinition)
 				{
 					System.out.println("Found " + id);
-					installedMachines.put(id, (MachineDefinition) o);
+					MachineDefinition md = (MachineDefinition) o;
+					if (Objects.equals(id, md.getId()))
+						installedMachines.put(id, md);
+					else
+						System.err.println("Machine definition ids to not match: " + id + " and " + md.getId());
 				} else
 				{
 					System.err.println("Invalid machine definition: " + o + "(id=" + id + "");
