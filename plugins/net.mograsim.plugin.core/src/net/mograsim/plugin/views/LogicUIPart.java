@@ -23,6 +23,9 @@ import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.plugin.EclipsePreferences;
 import net.mograsim.plugin.MachineContext;
 import net.mograsim.plugin.MograsimActivator;
+import net.mograsim.plugin.nature.MachineContextSwtTools;
+import net.mograsim.plugin.nature.MachineContextSwtTools.MachineCombo;
+import net.mograsim.plugin.nature.MachineContextSwtTools.MograsimProjectCombo;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.mi.ActiveInstructionPreviewContentProvider;
 import net.mograsim.plugin.tables.mi.InstructionTable;
@@ -90,7 +93,11 @@ public class LogicUIPart extends ViewPart
 	private void addSimulationControlWidgets(Composite parent)
 	{
 		Composite c = new Composite(parent, SWT.NONE);
-		c.setLayout(new GridLayout(4, false));
+		c.setLayout(new GridLayout(6, false));
+
+		MograsimProjectCombo projectCombo = MachineContextSwtTools.createMograsimProjectSelector(c, SWT.NONE);
+		MachineCombo machineCombo = MachineContextSwtTools.createMachineSelector(c, SWT.NONE);
+
 		Button pauseButton = new Button(c, SWT.TOGGLE);
 		pauseButton.setSelection(true);
 		setPauseText(pauseButton, false);
