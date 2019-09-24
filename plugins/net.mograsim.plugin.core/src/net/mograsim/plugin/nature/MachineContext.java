@@ -13,6 +13,7 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.MachineRegistry;
+import net.mograsim.plugin.nature.ProjectContextEvent.ProjectContextEventType;
 
 public class MachineContext
 {
@@ -113,6 +114,7 @@ public class MachineContext
 	{
 		machineDefinition = machineId.map(MachineRegistry::getMachine);
 		machineDefinition.ifPresent(md -> setActiveMachine(md.createNew()));
+		ProjectMachineContext.notifyListeners(new ProjectContextEvent(this, ProjectContextEventType.MACHINE_DEFINITION_CHANGE));
 	}
 
 	private void preferenceListener(PropertyChangeEvent changeEvent)
