@@ -11,6 +11,14 @@ import net.mograsim.machine.Register;
 //(used for detecting installed machines in plugin.core)
 public class Am2900MachineDefinition implements MachineDefinition
 {
+	public static final String AM2900_MACHINE_ID = "Am2900";
+
+	@Override
+	public String getId()
+	{
+		return AM2900_MACHINE_ID;
+	}
+
 	@Override
 	public Am2900Machine createNew()
 	{
@@ -65,4 +73,5 @@ public class Am2900MachineDefinition implements MachineDefinition
 	{
 		return Am2900MicroInstructionMemoryDefinition.instance;
 	}
+
 }
