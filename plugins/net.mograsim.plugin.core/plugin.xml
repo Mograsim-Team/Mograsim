@@ -143,7 +143,7 @@
             category="net.mograsim.plugin"
             class="net.mograsim.plugin.views.LogicUIPart"
             icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
-            id="net.mograsim.plugin.core.view1"
+            id="net.mograsim.plugin.core.simulationView"
             inject="true"
             name="%view.name.0"
             restorable="true">
