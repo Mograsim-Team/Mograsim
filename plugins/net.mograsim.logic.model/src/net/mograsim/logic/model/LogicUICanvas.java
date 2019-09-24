@@ -27,8 +27,7 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
-import net.mograsim.logic.model.model.components.submodels.SubmodelInterface;
-import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
 import net.mograsim.preferences.Preferences;
 
 /**
@@ -216,21 +215,24 @@ public class LogicUICanvas extends ZoomableCanvas
 		recalculateQueued.set(false);
 		componentsByItemIndex.clear();
 		componentSelector.setItems();
-		addComponentSelectorItems(componentsByItemIndex, "", componentSelector, model);
+		addComponentSelectorItems(componentsByItemIndex, "", componentSelector, model,
+				Preferences.current().getInt("net.mograsim.logic.model.debug.hlsshelldepth"));
 	}
 
 	private void addComponentSelectorItems(List<ModelComponent> componentsByItemIndex, String base, Combo componentSelector,
-			LogicModel model)
+			LogicModel model, int depth)
 	{
 		model.getComponentsByName().values().stream().sorted((c1, c2) -> c1.getName().compareTo(c2.getName())).forEach(c ->
 		{
-			if (!(c instanceof ModelWireCrossPoint || c instanceof SubmodelInterface))
+			if (!(c.getHighLevelStateHandler() instanceof DefaultHighLevelStateHandler))
 			{
 				String item = base + c.getName();
 				componentsByItemIndex.add(c);
 				componentSelector.add(item);
-				if (c instanceof SubmodelComponent)
-					addComponentSelectorItems(componentsByItemIndex, item + " -> ", componentSelector, ((SubmodelComponent) c).submodel);
+				// this causes negative numbers to result in infinite depth
+				if (depth != 0 && c instanceof SubmodelComponent)
+					addComponentSelectorItems(componentsByItemIndex, item + " -> ", componentSelector, ((SubmodelComponent) c).submodel,
+							depth - 1);
 			}
 		});
 	}
