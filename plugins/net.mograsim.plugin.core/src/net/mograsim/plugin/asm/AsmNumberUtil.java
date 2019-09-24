@@ -173,6 +173,14 @@ public final class AsmNumberUtil
 	 */
 	public static String toString(BigInteger number, NumberType type)
 	{
+		return toString(number, type, 0);
+	}
+
+	/**
+	 * Formats a {@link BigInteger} in accordance with the pattern associated with the supplied {@link NumberType}
+	 */
+	public static String toString(BigInteger number, NumberType type, int minBits)
+	{
 		String pattern;
 		switch (type)
 		{
@@ -189,9 +197,36 @@ public final class AsmNumberUtil
 		case HEXADECIMAL:
 			pattern = preferredHexPat;
 		}
+
+		int digits;
+
+		switch (type.radix)
+		{
+		case 2:
+			digits = minBits;
+			break;
+		case 8:
+			digits = minBits / 3;
+			break;
+		case 16:
+			digits = minBits / 4;
+			break;
+		default:
+			digits = 0;
+		}
+
+		String numberString, sign;
 		if (number.signum() < 0)
-			return String.format(pattern, "-", number.abs().toString(type.radix));
-		return String.format(pattern, "", number.toString(type.radix));
+		{
+			sign = "-";
+			numberString = number.abs().toString(type.radix);
+		} else
+		{
+			sign = "";
+			numberString = number.toString(type.radix);
+		}
+		numberString = "0".repeat(Integer.max(0, digits - numberString.length())) + numberString;
+		return String.format(pattern, sign, numberString);
 	}
 
 	public enum NumberType
