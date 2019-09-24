@@ -3,7 +3,11 @@ package net.mograsim.machine;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -14,9 +18,11 @@ import org.eclipse.core.runtime.Platform;
 
 public class MachineRegistry
 {
+
 	private static final String MACHINE_EXT_ID = "net.mograsim.machine.machine_definition";
 
-	private static final Map<String, MachineDefinition> installedMachines = new HashMap<>();
+	private static final Map<String, MachineDefinition> installedMachines = Collections.synchronizedMap(new HashMap<>());
+	private static final Set<MachineRegistryListener> listeners = Collections.synchronizedSet(new HashSet<>());
 
 	private static void reload()
 	{
@@ -50,6 +56,7 @@ public class MachineRegistry
 		{
 			System.out.println(ex.getMessage());
 		}
+		notifyListeners();
 	}
 
 	public static void initialize()
@@ -92,5 +99,27 @@ public class MachineRegistry
 	public static MachineDefinition getMachine(String id)
 	{
 		return installedMachines.get(id);
+	}
+
+	private static void notifyListeners()
+	{
+		Map<String, MachineDefinition> unmodMachines = getInstalledMachines();
+		listeners.forEach(l -> l.onReload(unmodMachines));
+	}
+
+	public static void addMachineRegistryListener(MachineRegistryListener listener)
+	{
+		listeners.add(listener);
+	}
+
+	public static void removeMachineRegistryListener(MachineRegistryListener listener)
+	{
+		listeners.remove(listener);
+	}
+
+	@FunctionalInterface
+	public interface MachineRegistryListener
+	{
+		void onReload(Map<String, MachineDefinition> installedMachines);
 	}
 }
