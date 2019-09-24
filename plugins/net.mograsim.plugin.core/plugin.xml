@@ -33,6 +33,14 @@
             name="%content-type.mpm.name"
             priority="high">
       </content-type>
+      <content-type
+            base-type="org.eclipse.core.runtime.text"
+            default-charset="UTF-8"
+            file-extensions="regs"
+            id="net.mograsim.plugin.regs"
+            name="Registers / Latches state"
+            priority="high">
+      </content-type>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -78,6 +86,13 @@
       		class="net.mograsim.plugin.tables.mi.InstructionView"
       		id="net.mograsim.plugin.tables.mi.InstructionView">
       		<contentTypeBinding contentTypeId="net.mograsim.plugin.mpm"/>
+      </editor>
+      <editor
+            class="net.mograsim.plugin.editors.SimulationViewEditor"
+            icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
+            id="net.mograsim.plugin.editors.simulationvieweditor"
+            name="Simulation View Editor">
+      		<contentTypeBinding contentTypeId="net.mograsim.plugin.regs"/>
       </editor>
    </extension>
    <extension
@@ -137,16 +152,6 @@
             id="net.mograsim.plugin.views.AsmOpsEdit"
             inject="true"
             name="%view.name">
-      </view>
-      <view
-            allowMultiple="true"
-            category="net.mograsim.plugin"
-            class="net.mograsim.plugin.views.LogicUIPart"
-            icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
-            id="net.mograsim.plugin.core.simulationView"
-            inject="true"
-            name="%view.name.0"
-            restorable="true">
       </view>
       <view
             category="net.mograsim.plugin"
