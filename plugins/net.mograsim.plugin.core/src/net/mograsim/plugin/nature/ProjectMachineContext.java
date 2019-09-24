@@ -124,15 +124,16 @@ public class ProjectMachineContext
 
 	private static void resourceChanged(IResourceChangeEvent event)
 	{
+//		System.out.println(((ResourceChangeEvent) event).toDebugString());
 		ProjectContextEventType eventType = ProjectContextEventType.ofResourceChangeEvent(event.getType());
 		if (eventType == null)
 			return;
-		IProject p = event.getResource().getProject();
-		if (p == null)
+		if (event.getResource() == null || event.getResource().getProject() == null)
 			return;
-		MachineContext mc = projectMachineContexts.get(p);
+		MachineContext mc = projectMachineContexts.get(event.getResource().getProject());
 		if (mc == null)
 			return;
+//		System.out.println("  " + eventType + " - " + mc.getProject());
 		notifyListeners(new ProjectContextEvent(mc, eventType));
 	}
 }
