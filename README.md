@@ -24,7 +24,7 @@ It assumes you know nothing about Eclipse Plug-In development, Maven, or Git.
 
 1. [Java 11 JDK](http://jdk.java.net/java-se-ri/11) [(or Oracle Implementation)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 2. [Eclipse 2019-03 or later](https://www.eclipse.org/downloads/)
-3. (optional) [Git](https://git-scm.com/downloads)
+3. _(optional)_ [Git](https://git-scm.com/downloads)
 
 ## Install PDE (Plugin Development Environment)
 
@@ -40,14 +40,14 @@ It assumes you know nothing about Eclipse Plug-In development, Maven, or Git.
 
 Can be done via Git or via EGit (Eclipse Git).
 
-### a) via EGit (Eclipse integration)
+### a) via EGit
 
 1. In Eclipse, click on "Window" -> "Show View" -> "Other..."
-2. Select "Git Repositories" (expand "Git" to see it)
+2. Select "Git Repositories" (expand "Git" to see it); click on "Open"
 3. In the "Git Repositories" view, click on "Clone a Git repository"
 4. Enter the repository URL ("Host", "Repository path", and "Protocol" should fill 
    automatically); click on "Next >"
-5. Select only "development"; click on "Next >"
+5. Select only "master"; click on "Next >"
 6. Enter the directory you want the Mograsim projects to be saved in
 7. Tick "Clone submodules" and "Import all existing Eclipse projects after clone 
    finishes"; click on "Finish"
@@ -55,7 +55,7 @@ Can be done via Git or via EGit (Eclipse Git).
 ### b) via Git (requires Git to be installed)
 
 1. In a command prompt (Terminal on Linux; git-bash on Windows), execute `git clone 
-   --recurse-submodules --single-branch -b development <repository URL> <target directory>`
+   --recurse-submodules --single-branch -b master <repository URL> <target directory>`
 2. _(optional)_ Import the repository in Eclipse:
     1. In Eclipse, open the "Git Repositories" view as described in the first two 
        steps in **a)**
