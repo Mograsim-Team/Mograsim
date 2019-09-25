@@ -10,6 +10,7 @@ import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseTrackListener;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -50,7 +51,9 @@ public class SimulationViewEditor extends EditorPart
 	private Button sbseButton;
 	private Button pauseButton;
 	private Slider simSpeedSlider;
+	private Composite canvasParent;
 	private LogicUICanvas canvas;
+	private InstructionTable instPreview;
 	private Label noMachineLabel;
 
 	private MemoryCellModifiedListener currentRegisteredCellListener;
@@ -66,6 +69,10 @@ public class SimulationViewEditor extends EditorPart
 		noMachineLabel = new Label(parent, SWT.NONE);
 		noMachineLabel.setText("No machine present...");// TODO internationalize?
 		addSimulationControlWidgets(parent);
+		canvasParent = new Composite(parent, SWT.NONE);
+		canvasParent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		canvasParent.setLayout(new FillLayout());
+		addInstructionPreviewControlWidgets(parent);
 		recreateContextDependentControls();
 	}
 
@@ -75,10 +82,29 @@ public class SimulationViewEditor extends EditorPart
 			// createPartControls has not been called yet
 			return;
 
+		double offX;
+		double offY;
+		double zoom;
 		if (canvas != null)
+		{
+			offX = canvas.getOffX();
+			offY = canvas.getOffY();
+			zoom = canvas.getZoom();
 			canvas.dispose();
+		} else
+		{
+			offX = 0;
+			offY = 0;
+			zoom = -1;
+		}
 		if (exec != null)
 			exec.stopLiveExecution();
+
+		if (machine != null)
+		{
+			machine.getMicroInstructionMemory().deregisterCellModifiedListener(currentRegisteredCellListener);
+			machine.getClock().deregisterObserver(currentClockObserver);
+		}
 
 		Optional<Machine> machineOptional;
 		if (context != null && (machineOptional = context.getActiveMachine()).isPresent())
@@ -88,31 +114,24 @@ public class SimulationViewEditor extends EditorPart
 			pauseButton.setEnabled(true);
 			simSpeedSlider.setEnabled(true);
 
-			if (machine != null)
-			{
-				machine.getMicroInstructionMemory().deregisterCellModifiedListener(currentRegisteredCellListener);
-				machine.getClock().deregisterObserver(currentClockObserver);
-			}
-
 			machine = machineOptional.get();
-			canvas = new LogicUICanvas(parent, SWT.NONE, machine.getModel());
-			canvas.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+			canvas = new LogicUICanvas(canvasParent, SWT.NONE, machine.getModel());
 			ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
 			userInput.buttonDrag = 3;
 			userInput.buttonZoom = 2;
 			userInput.enableUserInput();
+			if (zoom > 0)
+			{
+				canvas.moveTo(offX, offY, zoom);
+				canvas.commitTransform();
+			}
 
-			// initialize Instruction preview
-			InstructionTable instPreview = new InstructionTable(parent, new DisplaySettings());
-			instPreview.getTableViewer().getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-			instPreview.setContentProvider(new ActiveInstructionPreviewContentProvider(instPreview.getTableViewer()));
 			AssignableMicroInstructionMemory mIMemory = machine.getMicroInstructionMemory();
 			instPreview.bindMicroInstructionMemory(mIMemory);
 			currentRegisteredCellListener = a -> instPreview.refresh();
 			mIMemory.registerCellModifiedListener(currentRegisteredCellListener);
 
-			GridData uiData = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
-			canvas.setLayoutData(uiData);
+			canvasParent.layout();
 
 			// initialize executer
 			exec = new LogicExecuter(machine.getTimeline());
@@ -218,6 +237,13 @@ public class SimulationViewEditor extends EditorPart
 		c.pack();
 	}
 
+	private void addInstructionPreviewControlWidgets(Composite parent)
+	{
+		instPreview = new InstructionTable(parent, new DisplaySettings());
+		instPreview.getTableViewer().getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		instPreview.setContentProvider(new ActiveInstructionPreviewContentProvider(instPreview.getTableViewer()));
+	}
+
 	private static void setPauseText(Button pauseButton, boolean hovered)
 	{
 		if (hovered)
@@ -238,6 +264,7 @@ public class SimulationViewEditor extends EditorPart
 		{
 			IFileEditorInput fileInput = (IFileEditorInput) input;
 			context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
+			context.registerObserver(m -> recreateContextDependentControls());
 			recreateContextDependentControls();
 
 			setPartName(fileInput.getName());
