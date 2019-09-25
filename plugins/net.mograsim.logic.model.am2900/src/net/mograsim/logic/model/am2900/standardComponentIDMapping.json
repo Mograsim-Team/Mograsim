@@ -1,5 +1,6 @@
 {
   "Am2900MainMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MainMemory",
+  "Am2900MemoryController": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900MemoryController.json",
   "Am2900MicroInstructionMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MicroInstructionMemory",
   "Am2904RegCTInstrDecode": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2904.ModelAm2904RegCTInstrDecode",
   "Am2904ShiftInstrDecode": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2904.ModelAm2904ShiftInstrDecode",
@@ -42,6 +43,7 @@
   "dlatch": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch.json",
   "dlatch4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch4.json",
   "dlatch8": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch8.json",
+  "dlatch16": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch16.json",
   "dlatch80": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch80.json",
   "fulladder": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/fulladder.json",
   "halfadder": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/halfadder.json",

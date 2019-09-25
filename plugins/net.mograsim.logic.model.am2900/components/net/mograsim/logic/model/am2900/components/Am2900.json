@@ -9,8 +9,16 @@
         "id": "Am2900MainMemory",
         "name": "Am2900MainMemory#0",
         "pos": {
-          "x": 35.0,
-          "y": 70.0
+          "x": 80.0,
+          "y": 105.0
+        }
+      },
+      {
+        "id": "Am2900MemoryController",
+        "name": "Am2900MemoryController#0",
+        "pos": {
+          "x": 155.0,
+          "y": 275.0
         }
       },
       {
@@ -138,7 +146,7 @@
         "id": "FixedOutput",
         "name": "FixedOutput#2",
         "pos": {
-          "x": 365.0,
+          "x": 370.0,
           "y": 505.0
         },
         "params": {
@@ -279,8 +287,8 @@
         "id": "NandGate",
         "name": "NandGate#5",
         "pos": {
-          "x": 105.0,
-          "y": 235.0
+          "x": 125.0,
+          "y": 285.0
         },
         "params": 1
       },
@@ -290,15 +298,6 @@
         "pos": {
           "x": 145.0,
           "y": 375.0
-        },
-        "params": 1
-      },
-      {
-        "id": "NandGate",
-        "name": "NandGate#7",
-        "pos": {
-          "x": 110.0,
-          "y": 270.0
         },
         "params": 1
       },
@@ -906,30 +905,6 @@
         }
       },
       {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#4",
-        "pos": {
-          "x": 185.0,
-          "y": 175.0
-        },
-        "params": {
-          "logicWidth": 16,
-          "orientation": "RIGHT_ALT"
-        }
-      },
-      {
-        "id": "TriStateBuffer",
-        "name": "TriStateBuffer#5",
-        "pos": {
-          "x": 185.0,
-          "y": 145.0
-        },
-        "params": {
-          "logicWidth": 16,
-          "orientation": "LEFT"
-        }
-      },
-      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -1284,7 +1259,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#39",
         "pos": {
-          "x": 174.0,
+          "x": 179.0,
           "y": 364.0
         },
         "params": 1
@@ -1312,7 +1287,7 @@
         "name": "WireCrossPoint#42",
         "pos": {
           "x": 364.0,
-          "y": 314.0
+          "y": 359.0
         },
         "params": 1
       },
@@ -1327,82 +1302,10 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#44",
+        "name": "WireCrossPoint#53",
         "pos": {
-          "x": 174.0,
-          "y": 254.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#45",
-        "pos": {
-          "x": 174.0,
-          "y": 304.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#46",
-        "pos": {
-          "x": 174.0,
-          "y": 279.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#47",
-        "pos": {
-          "x": 104.0,
-          "y": 294.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#48",
-        "pos": {
-          "x": 129.0,
-          "y": 244.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#49",
-        "pos": {
-          "x": 104.0,
-          "y": 274.0
-        },
-        "params": 1
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#50",
-        "pos": {
-          "x": 234.0,
-          "y": 154.0
-        },
-        "params": 16
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#51",
-        "pos": {
-          "x": 164.0,
-          "y": 154.0
-        },
-        "params": 16
-      },
-      {
-        "id": "WireCrossPoint",
-        "name": "WireCrossPoint#52",
-        "pos": {
-          "x": 104.0,
-          "y": 284.0
+          "x": 169.0,
+          "y": 359.0
         },
         "params": 1
       },
@@ -1431,22 +1334,6 @@
         }
       },
       {
-        "id": "and",
-        "name": "and#3",
-        "pos": {
-          "x": 135.0,
-          "y": 240.0
-        }
-      },
-      {
-        "id": "and",
-        "name": "and#4",
-        "pos": {
-          "x": 135.0,
-          "y": 265.0
-        }
-      },
-      {
         "id": "dff16",
         "name": "dff16#0",
         "pos": {
@@ -1455,43 +1342,11 @@
         }
       },
       {
-        "id": "dff16",
-        "name": "dff16#1",
-        "pos": {
-          "x": 180.0,
-          "y": 65.0
-        }
-      },
-      {
         "id": "dff16_invwe",
         "name": "dff16_invwe#0",
         "pos": {
           "x": 490.0,
           "y": 165.0
-        }
-      },
-      {
-        "id": "dff",
-        "name": "dff#0",
-        "pos": {
-          "x": 180.0,
-          "y": 265.0
-        }
-      },
-      {
-        "id": "dff",
-        "name": "dff#1",
-        "pos": {
-          "x": 180.0,
-          "y": 240.0
-        }
-      },
-      {
-        "id": "dff",
-        "name": "dff#2",
-        "pos": {
-          "x": 180.0,
-          "y": 290.0
         }
       },
       {
@@ -1548,7 +1403,7 @@
         "name": "mux1_12#0",
         "pos": {
           "x": 365.0,
-          "y": 420.0
+          "y": 415.0
         }
       },
       {
@@ -1589,16 +1444,16 @@
             "y": 355.0
           },
           {
-            "x": 470.0,
+            "x": 490.0,
             "y": 355.0
           },
           {
-            "x": 470.0,
-            "y": 505.0
+            "x": 490.0,
+            "y": 500.0
           },
           {
             "x": 400.0,
-            "y": 505.0
+            "y": 500.0
           },
           {
             "x": 400.0,
@@ -3302,7 +3157,7 @@
         "name": "unnamedWire#102",
         "path": [
           {
-            "x": 175.0,
+            "x": 180.0,
             "y": 480.0
           },
           {
@@ -3641,12 +3496,12 @@
             "y": 325.0
           },
           {
-            "x": 100.0,
+            "x": 120.0,
             "y": 325.0
           },
           {
-            "x": 100.0,
-            "y": 250.0
+            "x": 120.0,
+            "y": 300.0
           }
         ]
       },
@@ -3698,39 +3553,59 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#19",
-          "pinName": ""
+          "compName": "Am2900MemoryController#0",
+          "pinName": "Dmach"
         },
         "pin2": {
-          "compName": "dff16#1",
-          "pinName": "D"
+          "compName": "WireCrossPoint#29",
+          "pinName": ""
         },
         "name": "unnamedWire#125",
         "path": [
           {
-            "x": 170.0,
-            "y": 60.0
+            "x": 145.0,
+            "y": 280.0
           },
           {
-            "x": 170.0,
-            "y": 90.0
+            "x": 145.0,
+            "y": 260.0
+          },
+          {
+            "x": 225.0,
+            "y": 260.0
+          },
+          {
+            "x": 225.0,
+            "y": 45.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "Am2900MainMemory#0",
-          "pinName": "D"
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#51",
-          "pinName": ""
+          "compName": "Am2900MemoryController#0",
+          "pinName": "Amach"
         },
         "name": "unnamedWire#126",
         "path": [
           {
-            "x": 165.0,
-            "y": 120.0
+            "x": 230.0,
+            "y": 60.0
+          },
+          {
+            "x": 230.0,
+            "y": 265.0
+          },
+          {
+            "x": 150.0,
+            "y": 265.0
+          },
+          {
+            "x": 150.0,
+            "y": 285.0
           }
         ]
       },
@@ -3879,18 +3754,22 @@
       },
       {
         "pin1": {
-          "compName": "TriStateBuffer#4",
-          "pinName": "OUT"
+          "compName": "Am2900MemoryController#0",
+          "pinName": "Dmem"
         },
         "pin2": {
-          "compName": "WireCrossPoint#50",
-          "pinName": ""
+          "compName": "Am2900MainMemory#0",
+          "pinName": "D"
         },
         "name": "unnamedWire#135",
         "path": [
           {
-            "x": 235.0,
-            "y": 185.0
+            "x": 205.0,
+            "y": 280.0
+          },
+          {
+            "x": 205.0,
+            "y": 155.0
           }
         ]
       },
@@ -3915,7 +3794,7 @@
           },
           {
             "x": 360.0,
-            "y": 425.0
+            "y": 420.0
           }
         ]
       },
@@ -4211,7 +4090,7 @@
         "path": [
           {
             "x": 435.0,
-            "y": 450.0
+            "y": 445.0
           }
         ]
       },
@@ -4228,7 +4107,7 @@
         "path": [
           {
             "x": 350.0,
-            "y": 480.0
+            "y": 475.0
           },
           {
             "x": 350.0,
@@ -5327,8 +5206,8 @@
           "pinName": "O0"
         },
         "pin2": {
-          "compName": "WireCrossPoint#47",
-          "pinName": ""
+          "compName": "Am2900MemoryController#0",
+          "pinName": "RWmach"
         },
         "name": "unnamedWire#241",
         "path": [
@@ -5337,8 +5216,12 @@
             "y": 320.0
           },
           {
-            "x": 105.0,
+            "x": 150.0,
             "y": 320.0
+          },
+          {
+            "x": 150.0,
+            "y": 300.0
           }
         ]
       },
@@ -6809,12 +6692,20 @@
         "name": "unnamedWire#335",
         "path": [
           {
-            "x": 100.0,
+            "x": 270.0,
             "y": 230.0
           },
           {
-            "x": 100.0,
-            "y": 240.0
+            "x": 270.0,
+            "y": 270.0
+          },
+          {
+            "x": 120.0,
+            "y": 270.0
+          },
+          {
+            "x": 120.0,
+            "y": 290.0
           }
         ]
       },
@@ -6915,21 +6806,30 @@
         "path": [
           {
             "x": 260.0,
-            "y": 440.0
+            "y": 435.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#52",
-          "pinName": ""
+          "compName": "Am2900MemoryController#0",
+          "pinName": "Amem"
         },
         "pin2": {
-          "compName": "NandGate#7",
-          "pinName": "B"
+          "compName": "Am2900MainMemory#0",
+          "pinName": "A"
         },
         "name": "unnamedWire#344",
-        "path": []
+        "path": [
+          {
+            "x": 210.0,
+            "y": 285.0
+          },
+          {
+            "x": 210.0,
+            "y": 135.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -6958,16 +6858,11 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#42",
+          "compName": "WireCrossPoint#53",
           "pinName": ""
         },
         "name": "unnamedWire#346",
-        "path": [
-          {
-            "x": 170.0,
-            "y": 315.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -6999,7 +6894,7 @@
         "path": [
           {
             "x": 480.0,
-            "y": 315.0
+            "y": 360.0
           },
           {
             "x": 480.0,
@@ -7039,40 +6934,32 @@
       {
         "pin1": {
           "compName": "Am2900MainMemory#0",
-          "pinName": "A"
+          "pinName": "RW"
         },
         "pin2": {
-          "compName": "dff16#1",
-          "pinName": "Q"
+          "compName": "Am2900MemoryController#0",
+          "pinName": "RWmem"
         },
         "name": "unnamedWire#351",
         "path": [
           {
-            "x": 170.0,
-            "y": 100.0
+            "x": 215.0,
+            "y": 175.0
           },
           {
-            "x": 170.0,
-            "y": 125.0
-          },
-          {
-            "x": 230.0,
-            "y": 125.0
-          },
-          {
-            "x": 230.0,
-            "y": 90.0
+            "x": 215.0,
+            "y": 300.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#46",
-          "pinName": ""
+          "compName": "NandGate#5",
+          "pinName": "Y"
         },
         "pin2": {
-          "compName": "WireCrossPoint#44",
-          "pinName": ""
+          "compName": "Am2900MemoryController#0",
+          "pinName": "EN"
         },
         "name": "unnamedWire#352",
         "path": []
@@ -7083,363 +6970,23 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#45",
-          "pinName": ""
+          "compName": "Am2900MemoryController#0",
+          "pinName": "C"
         },
         "name": "unnamedWire#353",
         "path": []
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#44",
+          "compName": "WireCrossPoint#53",
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff16#1",
-          "pinName": "C"
+          "compName": "Am2900MemoryController#0",
+          "pinName": "_C"
         },
         "name": "unnamedWire#354",
-        "path": [
-          {
-            "x": 175.0,
-            "y": 70.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#44",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff#1",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#355",
         "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#45",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff#2",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#356",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#45",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#46",
-          "pinName": ""
-        },
-        "name": "unnamedWire#357",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "dff#1",
-          "pinName": "Q"
-        },
-        "pin2": {
-          "compName": "TriStateBuffer#4",
-          "pinName": "EN"
-        },
-        "name": "unnamedWire#358",
-        "path": [
-          {
-            "x": 220.0,
-            "y": 245.0
-          },
-          {
-            "x": 220.0,
-            "y": 200.0
-          },
-          {
-            "x": 195.0,
-            "y": 200.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "dff#0",
-          "pinName": "Q"
-        },
-        "pin2": {
-          "compName": "TriStateBuffer#5",
-          "pinName": "EN"
-        },
-        "name": "unnamedWire#359",
-        "path": [
-          {
-            "x": 225.0,
-            "y": 270.0
-          },
-          {
-            "x": 225.0,
-            "y": 170.0
-          },
-          {
-            "x": 195.0,
-            "y": 170.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#47",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#52",
-          "pinName": ""
-        },
-        "name": "unnamedWire#360",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#49",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "NandGate#7",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#361",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#48",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "and#3",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#362",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "and#4",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "dff#0",
-          "pinName": "D"
-        },
-        "name": "unnamedWire#363",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#49",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "and#3",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#364",
-        "path": [
-          {
-            "x": 105.0,
-            "y": 260.0
-          },
-          {
-            "x": 125.0,
-            "y": 260.0
-          },
-          {
-            "x": 125.0,
-            "y": 255.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#48",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "and#4",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#365",
-        "path": [
-          {
-            "x": 130.0,
-            "y": 270.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "NandGate#5",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#48",
-          "pinName": ""
-        },
-        "name": "unnamedWire#366",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "and#3",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "dff#1",
-          "pinName": "D"
-        },
-        "name": "unnamedWire#367",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "NandGate#7",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "and#4",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#368",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#50",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#29",
-          "pinName": ""
-        },
-        "name": "unnamedWire#369",
-        "path": [
-          {
-            "x": 235.0,
-            "y": 45.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#51",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "TriStateBuffer#5",
-          "pinName": "OUT"
-        },
-        "name": "unnamedWire#370",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#51",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "TriStateBuffer#4",
-          "pinName": "IN"
-        },
-        "name": "unnamedWire#371",
-        "path": [
-          {
-            "x": 165.0,
-            "y": 185.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "TriStateBuffer#5",
-          "pinName": "IN"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#50",
-          "pinName": ""
-        },
-        "name": "unnamedWire#372",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#52",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#49",
-          "pinName": ""
-        },
-        "name": "unnamedWire#373",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#47",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff#2",
-          "pinName": "D"
-        },
-        "name": "unnamedWire#374",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#46",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "dff#0",
-          "pinName": "C"
-        },
-        "name": "unnamedWire#375",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "dff#2",
-          "pinName": "Q"
-        },
-        "pin2": {
-          "compName": "Am2900MainMemory#0",
-          "pinName": "RW"
-        },
-        "name": "unnamedWire#376",
-        "path": [
-          {
-            "x": 230.0,
-            "y": 295.0
-          },
-          {
-            "x": 230.0,
-            "y": 210.0
-          },
-          {
-            "x": 160.0,
-            "y": 210.0
-          },
-          {
-            "x": 160.0,
-            "y": 140.0
-          }
-        ]
       },
       {
         "pin1": {
@@ -7450,7 +6997,7 @@
           "compName": "mux1#0",
           "pinName": "S0"
         },
-        "name": "unnamedWire#377",
+        "name": "unnamedWire#355",
         "path": [
           {
             "x": 95.0,
@@ -7471,7 +7018,7 @@
           "compName": "mux1#0",
           "pinName": "I1"
         },
-        "name": "unnamedWire#378",
+        "name": "unnamedWire#356",
         "path": [
           {
             "x": 95.0,
@@ -7492,7 +7039,19 @@
           "compName": "mux1#0",
           "pinName": "I0"
         },
-        "name": "unnamedWire#379",
+        "name": "unnamedWire#357",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#53",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#42",
+          "pinName": ""
+        },
+        "name": "unnamedWire#358",
         "path": []
       }
     ],
