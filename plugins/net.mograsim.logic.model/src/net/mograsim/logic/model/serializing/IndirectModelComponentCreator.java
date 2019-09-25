@@ -190,6 +190,11 @@ public class IndirectModelComponentCreator
 		return SubmodelComponentSerializer.deserialize(model, jsonContents, name, id, null);
 	}
 
+	public static void clearComponentCache()
+	{
+		componentCache.clear();
+	}
+
 	public static void registerResourceLoader(ResourceLoader resourceLoader)
 	{
 		registerResourceLoader(resourceLoader, resourceLoader.getClass());
