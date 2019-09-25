@@ -54,6 +54,7 @@ public class SimulationViewEditor extends EditorPart
 	private Label noMachineLabel;
 
 	private MemoryCellModifiedListener currentRegisteredCellListener;
+	private LogicObserver currentClockObserver;
 
 	@Override
 	public void createPartControl(Composite parent)
@@ -88,7 +89,10 @@ public class SimulationViewEditor extends EditorPart
 			simSpeedSlider.setEnabled(true);
 
 			if (machine != null)
+			{
 				machine.getMicroInstructionMemory().deregisterCellModifiedListener(currentRegisteredCellListener);
+				machine.getClock().deregisterObserver(currentClockObserver);
+			}
 
 			machine = machineOptional.get();
 			canvas = new LogicUICanvas(parent, SWT.NONE, machine.getModel());
@@ -129,7 +133,7 @@ public class SimulationViewEditor extends EditorPart
 
 		sbseButton = new Button(c, SWT.CHECK);
 		pauseButton = new Button(c, SWT.TOGGLE);
-		LogicObserver clockObserver = o ->
+		currentClockObserver = o ->
 		{
 			if (((CoreClock) o).isOn())
 			{
@@ -149,9 +153,9 @@ public class SimulationViewEditor extends EditorPart
 		{
 			CoreClock cl = machine.getClock();
 			if (sbseButton.getSelection())
-				cl.registerObserver(clockObserver);
+				cl.registerObserver(currentClockObserver);
 			else
-				cl.deregisterObserver(clockObserver);
+				cl.deregisterObserver(currentClockObserver);
 		});
 		sbseButton.setSelection(false);
 
