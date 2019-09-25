@@ -42,6 +42,9 @@ public class SimulationViewEditor extends EditorPart
 	private Machine machine;
 
 	private Composite parent;
+	private Button sbseButton;
+	private Button pauseButton;
+	private Slider simSpeedSlider;
 	private LogicUICanvas canvas;
 	private Label noMachineLabel;
 
@@ -73,6 +76,9 @@ public class SimulationViewEditor extends EditorPart
 		if (context != null && (machineOptional = context.getActiveMachine()).isPresent())
 		{
 			noMachineLabel.setVisible(false);
+			sbseButton.setEnabled(true);
+			pauseButton.setEnabled(true);
+			simSpeedSlider.setEnabled(true);
 			machine = machineOptional.get();
 			canvas = new LogicUICanvas(parent, SWT.NONE, machine.getModel());
 			ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
@@ -87,7 +93,12 @@ public class SimulationViewEditor extends EditorPart
 			exec = new LogicExecuter(machine.getTimeline());
 			exec.startLiveExecution();
 		} else
+		{
 			noMachineLabel.setVisible(true);
+			sbseButton.setEnabled(false);
+			pauseButton.setEnabled(false);
+			simSpeedSlider.setEnabled(false);
+		}
 	}
 
 	private void addSimulationControlWidgets(Composite parent)
@@ -95,8 +106,8 @@ public class SimulationViewEditor extends EditorPart
 		Composite c = new Composite(parent, SWT.NONE);
 		c.setLayout(new GridLayout(7, false));
 
-		Button sbseButton = new Button(c, SWT.CHECK);
-		Button pauseButton = new Button(c, SWT.TOGGLE);
+		sbseButton = new Button(c, SWT.CHECK);
+		pauseButton = new Button(c, SWT.TOGGLE);
 		LogicObserver clockObserver = o ->
 		{
 			if (((CoreClock) o).isOn())
@@ -110,17 +121,14 @@ public class SimulationViewEditor extends EditorPart
 			}
 		};
 
+		sbseButton.setText("Step by step execution");
 		sbseButton.addListener(SWT.Selection, e ->
 		{
-			String statusString = "disabled";
 			CoreClock cl = machine.getClock();
 			if (sbseButton.getSelection())
-			{
 				cl.registerObserver(clockObserver);
-				statusString = "enabled";
-			} else
+			else
 				cl.deregisterObserver(clockObserver);
-			sbseButton.setToolTipText(String.format("Step by step execution: %s", statusString));
 		});
 		sbseButton.setSelection(false);
 
@@ -162,26 +170,25 @@ public class SimulationViewEditor extends EditorPart
 		Label speedLabel = new Label(c, SWT.NONE);
 		speedLabel.setText("Simulation Speed: ");
 
-		Slider slider = new Slider(c, SWT.NONE);
-		slider.setMinimum(1);
-		slider.setMaximum(100 + slider.getThumb());
-		slider.setIncrement(1);
+		simSpeedSlider = new Slider(c, SWT.NONE);
+		simSpeedSlider.setMinimum(1);
+		simSpeedSlider.setMaximum(100 + simSpeedSlider.getThumb());
+		simSpeedSlider.setIncrement(1);
 
 		Label speedPercentageLabel = new Label(c, SWT.NONE);
 		speedPercentageLabel.setText("100%");
 
-		slider.addListener(SWT.Selection, e ->
+		simSpeedSlider.addListener(SWT.Selection, e ->
 		{
-			int selection = slider.getSelection();
+			int selection = simSpeedSlider.getSelection();
 			speedPercentageLabel.setText(selection + "%");
 
-			exec.setSpeedPercentage(slider.getSelection());
+			exec.setSpeedPercentage(simSpeedSlider.getSelection());
 		});
-		slider.setSelection(100);
+		simSpeedSlider.setSelection(100);
 
 		c.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.FILL_HORIZONTAL));
 		c.pack();
-		c.setVisible(true);
 	}
 
 	private static void setPauseText(Button pauseButton, boolean hovered)
