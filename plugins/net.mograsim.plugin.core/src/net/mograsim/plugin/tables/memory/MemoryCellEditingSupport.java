@@ -27,4 +27,10 @@ public class MemoryCellEditingSupport extends NumberCellEditingSupport
 		MemoryTableRow row = (MemoryTableRow) element;
 		return row.getMemory().getCellAsBigInteger(row.address);
 	}
+
+	@Override
+	public int getBitLength(Object element)
+	{
+		return ((MemoryTableRow) element).getMemory().getDefinition().getCellWidth();
+	}
 }

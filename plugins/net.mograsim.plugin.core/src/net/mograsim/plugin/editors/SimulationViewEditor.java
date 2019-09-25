@@ -14,6 +14,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Slider;
 import org.eclipse.ui.IEditorInput;
@@ -23,6 +24,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
+import net.mograsim.logic.core.LogicObserver;
+import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
 import net.mograsim.machine.Machine;
@@ -36,6 +39,7 @@ public class SimulationViewEditor extends EditorPart
 	private MachineContext context;
 
 	private LogicExecuter exec;
+	private Machine machine;
 
 	private Composite parent;
 	private LogicUICanvas canvas;
@@ -69,7 +73,7 @@ public class SimulationViewEditor extends EditorPart
 		if (context != null && (machineOptional = context.getActiveMachine()).isPresent())
 		{
 			noMachineLabel.setVisible(false);
-			Machine machine = machineOptional.get();
+			machine = machineOptional.get();
 			canvas = new LogicUICanvas(parent, SWT.NONE, machine.getModel());
 			ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
 			userInput.buttonDrag = 3;
@@ -89,9 +93,37 @@ public class SimulationViewEditor extends EditorPart
 	private void addSimulationControlWidgets(Composite parent)
 	{
 		Composite c = new Composite(parent, SWT.NONE);
-		c.setLayout(new GridLayout(6, false));
+		c.setLayout(new GridLayout(7, false));
 
+		Button sbseButton = new Button(c, SWT.CHECK);
 		Button pauseButton = new Button(c, SWT.TOGGLE);
+		LogicObserver clockObserver = o ->
+		{
+			if (((CoreClock) o).isOn())
+			{
+				exec.pauseLiveExecution();
+				Display.getDefault().asyncExec(() ->
+				{
+					pauseButton.setSelection(false);
+					setPauseText(pauseButton, false);
+				});
+			}
+		};
+
+		sbseButton.addListener(SWT.Selection, e ->
+		{
+			String statusString = "disabled";
+			CoreClock cl = machine.getClock();
+			if (sbseButton.getSelection())
+			{
+				cl.registerObserver(clockObserver);
+				statusString = "enabled";
+			} else
+				cl.deregisterObserver(clockObserver);
+			sbseButton.setToolTipText(String.format("Step by step execution: %s", statusString));
+		});
+		sbseButton.setSelection(false);
+
 		pauseButton.setSelection(true);
 		setPauseText(pauseButton, false);
 
