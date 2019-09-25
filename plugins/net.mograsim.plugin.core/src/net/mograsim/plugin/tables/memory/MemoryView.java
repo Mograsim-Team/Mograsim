@@ -134,6 +134,12 @@ public class MemoryView extends ViewPart implements ContextObserver
 				return row.getMemory().getCellAsBigInteger(row.address);
 			}
 
+			@Override
+			public int getBitLength(Object element)
+			{
+				return ((MemoryTableRow) element).getMemory().getDefinition().getCellWidth();
+			}
+
 		});
 		col.setEditingSupport(new MemoryCellEditingSupport(viewer, displaySettings));
 	}

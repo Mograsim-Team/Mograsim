@@ -48,4 +48,11 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 		return ((IntegerImmediate) row.data.getCell(row.address).getParameter(index)).getValueAsBigInteger();
 	}
 
+	@Override
+	public int getBitLength(Object element)
+	{
+		return ((InstructionTableRow) element).getData().getDefinition().getMicroInstructionDefinition().getParameterClassification(index)
+				.getExpectedBits();
+	}
+
 }

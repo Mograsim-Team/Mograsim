@@ -39,7 +39,7 @@ public abstract class NumberCellEditingSupport extends EditingSupport
 	@Override
 	final protected Object getValue(Object element)
 	{
-		return AsmNumberUtil.toString(getAsBigInteger(element), displaySettings.getDataNumberType());
+		return AsmNumberUtil.toString(getAsBigInteger(element), displaySettings.getDataNumberType(), getBitLength(element));
 	}
 
 	@Override
@@ -59,4 +59,6 @@ public abstract class NumberCellEditingSupport extends EditingSupport
 	protected abstract void setAsBigInteger(Object element, BigInteger value);
 
 	protected abstract BigInteger getAsBigInteger(Object element);
+
+	protected abstract int getBitLength(Object element);
 }

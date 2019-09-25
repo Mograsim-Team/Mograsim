@@ -83,6 +83,11 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
 	{
+		if (this.memory != null)
+		{
+			this.memory.deregisterCellModifiedListener(this);
+			this.memory.deregisterActiveMicroInstructionChangedListener(this);
+		}
 		this.memory = memory;
 		if (memory != null)
 		{
@@ -93,36 +98,24 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 			table.bindMicroInstructionMemory(memory);
 	}
 
-	private void open(IFile file)
+	private void open(IFile file) throws IOException, MicroInstructionMemoryParseException, CoreException
 	{
-		try
-		{
-			bindMicroInstructionMemory(MicroInstructionMemoryParser.parseMemory(context.getMachineDefinition()
-					.orElseThrow(() -> new MicroInstructionMemoryParseException("No MachineDefinition assigned!"))
-					.getMicroInstructionMemoryDefinition(), file.getContents()));
-		}
-		catch (IOException | MicroInstructionMemoryParseException | CoreException e)
-		{
-
-			// TODO: Proper handling via IProgressMonitor
-			e.printStackTrace();
-		}
+		bindMicroInstructionMemory(MicroInstructionMemoryParser.parseMemory(
+				context.getMachineDefinition().orElseThrow(() -> new MicroInstructionMemoryParseException("No MachineDefinition assigned!"))
+						.getMicroInstructionMemoryDefinition(),
+				file.getContents()));
 	}
 
-	private void save(IFile file, IProgressMonitor progressMonitor)
+	private void save(IFile file, IProgressMonitor progressMonitor) throws IOException, CoreException, MicroInstructionMemoryParseException
 	{
 		if (memory == null)
 		{
-			System.err.println("Failed to write MicroprogrammingMemory to File. No MicroprogrammingMemory assigned.");
-			return;
+			throw new MicroInstructionMemoryParseException(
+					"Failed to write MicroprogrammingMemory to File. No MicroprogrammingMemory assigned.");
 		}
 		try (InputStream toWrite = MicroInstructionMemoryParser.write(memory))
 		{
 			file.setContents(toWrite, 0, progressMonitor);
-		}
-		catch (IOException | CoreException e)
-		{
-			e.printStackTrace();
 		}
 	}
 
@@ -139,9 +132,18 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 		if (input instanceof IFileEditorInput)
 		{
 			IFileEditorInput pathInput = (IFileEditorInput) input;
-			save(pathInput.getFile(), progressMonitor);
-			setDirty(false);
-		}
+			try
+			{
+				save(pathInput.getFile(), progressMonitor);
+				setDirty(false);
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+				progressMonitor.setCanceled(true);
+			}
+		} else
+			progressMonitor.setCanceled(true);
 	}
 
 	@Override
@@ -167,14 +169,19 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	{
 		setSite(site);
 		setInput(input);
-
-		if (input instanceof IFileEditorInput)
+		try
 		{
-			IFileEditorInput fileInput = (IFileEditorInput) input;
-			context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
-
-			setPartName(fileInput.getName());
-			open(fileInput.getFile());
+			if (input instanceof IFileEditorInput)
+			{
+				IFileEditorInput fileInput = (IFileEditorInput) input;
+				context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
+				setPartName(fileInput.getName());
+				open(fileInput.getFile());
+			}
+		}
+		catch (Exception e)
+		{
+			throw new PartInitException("Failed to read input!", e);
 		}
 
 	}
