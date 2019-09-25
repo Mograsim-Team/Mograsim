@@ -24,7 +24,7 @@ public class DefaultPreferences extends Preferences
 		switch (name)
 		{
 		case "net.mograsim.logic.model.debug.hlsshelldepth":
-			return -1;
+			return 0;
 		default:
 			throw new IllegalArgumentException("Unknown int preference name: " + name);
 		}
