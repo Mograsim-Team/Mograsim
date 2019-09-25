@@ -164,6 +164,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		get.addListener(SWT.Selection, getAction);
 		stateIDText.addListener(SWT.DefaultSelection, getAction);
 		debugShell.open();
+		addDisposeListener(e -> debugShell.dispose());
 	}
 
 	private void compsChanged(Consumer<? super ModelComponent> compAdded, Consumer<? super ModelComponent> compRemoved, ModelComponent c,
