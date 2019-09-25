@@ -89,7 +89,7 @@
     "components": [
       {
         "id": "NandGate",
-        "name": "NandGate#7",
+        "name": "NandGate#0",
         "pos": {
           "x": 10.0,
           "y": 125.0
@@ -98,7 +98,7 @@
       },
       {
         "id": "TriStateBuffer",
-        "name": "TriStateBuffer#4",
+        "name": "TriStateBuffer#0",
         "pos": {
           "x": 190.0,
           "y": 35.0
@@ -110,7 +110,7 @@
       },
       {
         "id": "TriStateBuffer",
-        "name": "TriStateBuffer#5",
+        "name": "TriStateBuffer#1",
         "pos": {
           "x": 190.0,
           "y": 5.0
@@ -140,7 +140,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#44",
+        "name": "WireCrossPoint#2",
         "pos": {
           "x": 124.0,
           "y": 159.0
@@ -149,7 +149,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#45",
+        "name": "WireCrossPoint#3",
         "pos": {
           "x": 74.0,
           "y": 159.0
@@ -158,7 +158,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#46",
+        "name": "WireCrossPoint#4",
         "pos": {
           "x": 74.0,
           "y": 134.0
@@ -167,7 +167,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#48",
+        "name": "WireCrossPoint#5",
         "pos": {
           "x": 29.0,
           "y": 99.0
@@ -176,7 +176,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#49",
+        "name": "WireCrossPoint#6",
         "pos": {
           "x": 4.0,
           "y": 129.0
@@ -185,7 +185,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#50",
+        "name": "WireCrossPoint#7",
         "pos": {
           "x": 219.0,
           "y": 24.0
@@ -194,7 +194,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#51",
+        "name": "WireCrossPoint#8",
         "pos": {
           "x": 184.0,
           "y": 14.0
@@ -203,7 +203,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#52",
+        "name": "WireCrossPoint#9",
         "pos": {
           "x": 4.0,
           "y": 139.0
@@ -212,7 +212,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#53",
+        "name": "WireCrossPoint#10",
         "pos": {
           "x": 74.0,
           "y": 109.0
@@ -221,7 +221,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#54",
+        "name": "WireCrossPoint#11",
         "pos": {
           "x": 124.0,
           "y": 134.0
@@ -230,7 +230,7 @@
       },
       {
         "id": "and",
-        "name": "and#3",
+        "name": "and#0",
         "pos": {
           "x": 35.0,
           "y": 95.0
@@ -238,7 +238,7 @@
       },
       {
         "id": "and",
-        "name": "and#4",
+        "name": "and#1",
         "pos": {
           "x": 35.0,
           "y": 120.0
@@ -246,7 +246,7 @@
       },
       {
         "id": "dff16",
-        "name": "dff16#1",
+        "name": "dff16#0",
         "pos": {
           "x": 80.0,
           "y": 35.0
@@ -312,11 +312,11 @@
     "wires": [
       {
         "pin1": {
-          "compName": "WireCrossPoint#46",
+          "compName": "WireCrossPoint#4",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#53",
+          "compName": "WireCrossPoint#10",
           "pinName": ""
         },
         "name": "unnamedWire#0",
@@ -328,7 +328,7 @@
           "pinName": "C"
         },
         "pin2": {
-          "compName": "WireCrossPoint#44",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "name": "unnamedWire#1",
@@ -340,7 +340,7 @@
           "pinName": "Dmach"
         },
         "pin2": {
-          "compName": "WireCrossPoint#51",
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "name": "unnamedWire#2",
@@ -361,7 +361,7 @@
           "pinName": "Amach"
         },
         "pin2": {
-          "compName": "dff16#1",
+          "compName": "dff16#0",
           "pinName": "D"
         },
         "name": "unnamedWire#3",
@@ -378,7 +378,7 @@
       },
       {
         "pin1": {
-          "compName": "dff16#1",
+          "compName": "dff16#0",
           "pinName": "Q"
         },
         "pin2": {
@@ -390,7 +390,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#50",
+          "compName": "WireCrossPoint#7",
           "pinName": ""
         },
         "pin2": {
@@ -402,7 +402,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#52",
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "pin2": {
@@ -423,7 +423,7 @@
           "pinName": "EN"
         },
         "pin2": {
-          "compName": "WireCrossPoint#48",
+          "compName": "WireCrossPoint#5",
           "pinName": ""
         },
         "name": "unnamedWire#7",
@@ -435,7 +435,7 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "TriStateBuffer#5",
+          "compName": "TriStateBuffer#1",
           "pinName": "EN"
         },
         "name": "unnamedWire#8",
@@ -460,7 +460,7 @@
           "pinName": "Q"
         },
         "pin2": {
-          "compName": "TriStateBuffer#4",
+          "compName": "TriStateBuffer#0",
           "pinName": "EN"
         },
         "name": "unnamedWire#9",
@@ -498,7 +498,7 @@
           "pinName": "_C"
         },
         "pin2": {
-          "compName": "WireCrossPoint#45",
+          "compName": "WireCrossPoint#3",
           "pinName": ""
         },
         "name": "unnamedWire#11",
@@ -506,7 +506,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#53",
+          "compName": "WireCrossPoint#10",
           "pinName": ""
         },
         "pin2": {
@@ -518,11 +518,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#53",
+          "compName": "WireCrossPoint#10",
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff16#1",
+          "compName": "dff16#0",
           "pinName": "C"
         },
         "name": "unnamedWire#13",
@@ -568,7 +568,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#54",
+          "compName": "WireCrossPoint#11",
           "pinName": ""
         },
         "pin2": {
@@ -614,7 +614,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#49",
+          "compName": "WireCrossPoint#6",
           "pinName": ""
         },
         "pin2": {
@@ -630,7 +630,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "and#3",
+          "compName": "and#0",
           "pinName": "B"
         },
         "name": "unnamedWire#20",
@@ -643,11 +643,11 @@
       },
       {
         "pin1": {
-          "compName": "TriStateBuffer#4",
+          "compName": "TriStateBuffer#0",
           "pinName": "OUT"
         },
         "pin2": {
-          "compName": "WireCrossPoint#50",
+          "compName": "WireCrossPoint#7",
           "pinName": ""
         },
         "name": "unnamedWire#21",
@@ -660,11 +660,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#52",
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "pin2": {
-          "compName": "NandGate#7",
+          "compName": "NandGate#0",
           "pinName": "B"
         },
         "name": "unnamedWire#22",
@@ -684,7 +684,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#45",
+          "compName": "WireCrossPoint#3",
           "pinName": ""
         },
         "pin2": {
@@ -696,11 +696,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#45",
+          "compName": "WireCrossPoint#3",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#46",
+          "compName": "WireCrossPoint#4",
           "pinName": ""
         },
         "name": "unnamedWire#25",
@@ -720,11 +720,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#49",
+          "compName": "WireCrossPoint#6",
           "pinName": ""
         },
         "pin2": {
-          "compName": "NandGate#7",
+          "compName": "NandGate#0",
           "pinName": "A"
         },
         "name": "unnamedWire#27",
@@ -732,11 +732,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#48",
+          "compName": "WireCrossPoint#5",
           "pinName": ""
         },
         "pin2": {
-          "compName": "and#3",
+          "compName": "and#0",
           "pinName": "A"
         },
         "name": "unnamedWire#28",
@@ -744,7 +744,7 @@
       },
       {
         "pin1": {
-          "compName": "and#4",
+          "compName": "and#1",
           "pinName": "Y"
         },
         "pin2": {
@@ -756,11 +756,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#48",
+          "compName": "WireCrossPoint#5",
           "pinName": ""
         },
         "pin2": {
-          "compName": "and#4",
+          "compName": "and#1",
           "pinName": "A"
         },
         "name": "unnamedWire#30",
@@ -773,7 +773,7 @@
       },
       {
         "pin1": {
-          "compName": "and#3",
+          "compName": "and#0",
           "pinName": "Y"
         },
         "pin2": {
@@ -785,11 +785,11 @@
       },
       {
         "pin1": {
-          "compName": "NandGate#7",
+          "compName": "NandGate#0",
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "and#4",
+          "compName": "and#1",
           "pinName": "B"
         },
         "name": "unnamedWire#32",
@@ -797,11 +797,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#51",
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "pin2": {
-          "compName": "TriStateBuffer#5",
+          "compName": "TriStateBuffer#1",
           "pinName": "OUT"
         },
         "name": "unnamedWire#33",
@@ -809,11 +809,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#51",
+          "compName": "WireCrossPoint#8",
           "pinName": ""
         },
         "pin2": {
-          "compName": "TriStateBuffer#4",
+          "compName": "TriStateBuffer#0",
           "pinName": "IN"
         },
         "name": "unnamedWire#34",
@@ -826,11 +826,11 @@
       },
       {
         "pin1": {
-          "compName": "TriStateBuffer#5",
+          "compName": "TriStateBuffer#1",
           "pinName": "IN"
         },
         "pin2": {
-          "compName": "WireCrossPoint#50",
+          "compName": "WireCrossPoint#7",
           "pinName": ""
         },
         "name": "unnamedWire#35",
@@ -843,11 +843,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#52",
+          "compName": "WireCrossPoint#9",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#49",
+          "compName": "WireCrossPoint#6",
           "pinName": ""
         },
         "name": "unnamedWire#36",
@@ -855,7 +855,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#46",
+          "compName": "WireCrossPoint#4",
           "pinName": ""
         },
         "pin2": {
@@ -879,7 +879,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#44",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "pin2": {
@@ -891,11 +891,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#44",
+          "compName": "WireCrossPoint#2",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#54",
+          "compName": "WireCrossPoint#11",
           "pinName": ""
         },
         "name": "unnamedWire#40",
@@ -903,7 +903,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#54",
+          "compName": "WireCrossPoint#11",
           "pinName": ""
         },
         "pin2": {
