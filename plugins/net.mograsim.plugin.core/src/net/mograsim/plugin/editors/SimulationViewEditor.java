@@ -113,11 +113,13 @@ public class SimulationViewEditor extends EditorPart
 			if (((CoreClock) o).isOn())
 			{
 				exec.pauseLiveExecution();
-				Display.getDefault().asyncExec(() ->
-				{
-					pauseButton.setSelection(false);
-					setPauseText(pauseButton, false);
-				});
+				if (!pauseButton.isDisposed())
+					Display.getDefault().asyncExec(() ->
+					{
+						if (!pauseButton.isDisposed())
+							pauseButton.setSelection(false);
+						setPauseText(pauseButton, false);
+					});
 			}
 		};
 
