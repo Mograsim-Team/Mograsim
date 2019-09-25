@@ -29,8 +29,13 @@ import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
 import net.mograsim.machine.Machine;
+import net.mograsim.machine.Memory.MemoryCellModifiedListener;
+import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.plugin.nature.MachineContext;
 import net.mograsim.plugin.nature.ProjectMachineContext;
+import net.mograsim.plugin.tables.DisplaySettings;
+import net.mograsim.plugin.tables.mi.ActiveInstructionPreviewContentProvider;
+import net.mograsim.plugin.tables.mi.InstructionTable;
 
 //TODO what if we open multiple editors?
 //TODO actually save / load register and latch states
@@ -47,6 +52,8 @@ public class SimulationViewEditor extends EditorPart
 	private Slider simSpeedSlider;
 	private LogicUICanvas canvas;
 	private Label noMachineLabel;
+
+	private MemoryCellModifiedListener currentRegisteredCellListener;
 
 	@Override
 	public void createPartControl(Composite parent)
@@ -79,12 +86,26 @@ public class SimulationViewEditor extends EditorPart
 			sbseButton.setEnabled(true);
 			pauseButton.setEnabled(true);
 			simSpeedSlider.setEnabled(true);
+
+			if (machine != null)
+				machine.getMicroInstructionMemory().deregisterCellModifiedListener(currentRegisteredCellListener);
+
 			machine = machineOptional.get();
 			canvas = new LogicUICanvas(parent, SWT.NONE, machine.getModel());
+			canvas.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 			ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
 			userInput.buttonDrag = 3;
 			userInput.buttonZoom = 2;
 			userInput.enableUserInput();
+
+			// initialize Instruction preview
+			InstructionTable instPreview = new InstructionTable(parent, new DisplaySettings());
+			instPreview.getTableViewer().getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+			instPreview.setContentProvider(new ActiveInstructionPreviewContentProvider(instPreview.getTableViewer()));
+			AssignableMicroInstructionMemory mIMemory = machine.getMicroInstructionMemory();
+			instPreview.bindMicroInstructionMemory(mIMemory);
+			currentRegisteredCellListener = a -> instPreview.refresh();
+			mIMemory.registerCellModifiedListener(currentRegisteredCellListener);
 
 			GridData uiData = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
 			canvas.setLayoutData(uiData);
