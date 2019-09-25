@@ -46,8 +46,8 @@ public class ReserializeAndVerifyJSONs
 {
 	public static double GRIDSIZE = 2.5;
 	public static boolean changePinUsages = false;
-	public static boolean changeComponentNames = false;
-	public static boolean forceDefaultComponentNames = false;
+	public static boolean changeComponentNames = true;
+	public static boolean forceDefaultComponentNames = true;
 	public static boolean changeWireNames = true;
 	public static boolean forceDefaultWireNames = true;
 	public static boolean snapWCPs = true;

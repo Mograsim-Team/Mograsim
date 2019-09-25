@@ -1302,7 +1302,7 @@
       },
       {
         "id": "WireCrossPoint",
-        "name": "WireCrossPoint#53",
+        "name": "WireCrossPoint#44",
         "pos": {
           "x": 169.0,
           "y": 359.0
@@ -6858,7 +6858,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#53",
+          "compName": "WireCrossPoint#44",
           "pinName": ""
         },
         "name": "unnamedWire#346",
@@ -6978,7 +6978,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#53",
+          "compName": "WireCrossPoint#44",
           "pinName": ""
         },
         "pin2": {
@@ -7044,7 +7044,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#53",
+          "compName": "WireCrossPoint#44",
           "pinName": ""
         },
         "pin2": {
