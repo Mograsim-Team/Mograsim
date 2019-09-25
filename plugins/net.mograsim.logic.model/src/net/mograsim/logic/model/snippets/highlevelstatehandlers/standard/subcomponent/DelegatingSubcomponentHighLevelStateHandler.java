@@ -103,8 +103,10 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 	@Override
 	public DelegatingSubcomponentHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
+		if (delegateTarget == null)
+			throw new IllegalStateException("Delegating to a component that was destroyed");
 		DelegatingSubcomponentHighLevelStateHandlerParams params = new DelegatingSubcomponentHighLevelStateHandlerParams();
-		params.delegateTarget = delegateTarget.getName();
+		params.delegateTarget = delegateTarget == parentComponent ? null : delegateTarget.getName();
 		params.prefix = prefix;
 		return params;
 	}

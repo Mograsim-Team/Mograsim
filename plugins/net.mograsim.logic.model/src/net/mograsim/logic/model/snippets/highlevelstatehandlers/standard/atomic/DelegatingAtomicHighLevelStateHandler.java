@@ -100,7 +100,7 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 		if (delegateTarget == null)
 			throw new IllegalStateException("Delegating to a component that was destroyed");
 		DelegatingAtomicHighLevelStateHandlerParams params = new DelegatingAtomicHighLevelStateHandlerParams();
-		params.delegateTarget = delegateTarget.getName();
+		params.delegateTarget = delegateTarget == parentComponent ? null : delegateTarget.getName();
 		params.subStateID = subStateID;
 		return params;
 	}
