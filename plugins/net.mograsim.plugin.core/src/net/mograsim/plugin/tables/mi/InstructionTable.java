@@ -77,6 +77,8 @@ public class InstructionTable
 
 	private void createColumns()
 	{
+		viewer.getTable().setVisible(false);
+
 		int size = miDef.size();
 		columns = new TableViewerColumn[size + 1];
 
@@ -120,6 +122,8 @@ public class InstructionTable
 			}
 			calculateOptimalColumnSize(i + 1, columnTitles[i], longestPossibleContents);
 		}
+
+		viewer.getTable().setVisible(true);
 	}
 
 	private static String calculateColumnTitle(int startBit, int endBit)
