@@ -1286,8 +1286,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#42",
         "pos": {
-          "x": 364.0,
-          "y": 359.0
+          "x": 479.0,
+          "y": 364.0
         },
         "params": 1
       },
@@ -1304,8 +1304,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#44",
         "pos": {
-          "x": 169.0,
-          "y": 359.0
+          "x": 364.0,
+          "y": 364.0
         },
         "params": 1
       },
@@ -3016,7 +3016,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#20",
+          "compName": "WireCrossPoint#42",
           "pinName": ""
         },
         "name": "unnamedWire#93",
@@ -3118,7 +3118,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#20",
+          "compName": "WireCrossPoint#44",
           "pinName": ""
         },
         "name": "unnamedWire#100",
@@ -6854,11 +6854,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#38",
+          "compName": "WireCrossPoint#44",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#44",
+          "compName": "WireCrossPoint#20",
           "pinName": ""
         },
         "name": "unnamedWire#346",
@@ -6866,7 +6866,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#42",
+          "compName": "WireCrossPoint#44",
           "pinName": ""
         },
         "pin2": {
@@ -6892,10 +6892,6 @@
         },
         "name": "unnamedWire#348",
         "path": [
-          {
-            "x": 480.0,
-            "y": 360.0
-          },
           {
             "x": 480.0,
             "y": 170.0
@@ -6978,7 +6974,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#44",
+          "compName": "WireCrossPoint#38",
           "pinName": ""
         },
         "pin2": {
@@ -7044,7 +7040,7 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#44",
+          "compName": "WireCrossPoint#20",
           "pinName": ""
         },
         "pin2": {
