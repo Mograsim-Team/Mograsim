@@ -108,11 +108,11 @@
         "id": "Clock",
         "name": "Clock#0",
         "pos": {
-          "x": 70.0,
-          "y": 365.0
+          "x": 115.0,
+          "y": 355.0
         },
         "params": {
-          "delta": 500,
+          "delta": 2000,
           "orientation": "RIGHT"
         }
       },
@@ -219,24 +219,6 @@
             "ZERO"
           ]
         }
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#0",
-        "pos": {
-          "x": 70.0,
-          "y": 347.5
-        },
-        "params": 1
-      },
-      {
-        "id": "ManualSwitch",
-        "name": "ManualSwitch#1",
-        "pos": {
-          "x": 70.0,
-          "y": 387.5
-        },
-        "params": 1
       },
       {
         "id": "NandGate",
@@ -1373,14 +1355,6 @@
           "y": 135.0
         },
         "params": 16
-      },
-      {
-        "id": "mux1",
-        "name": "mux1#0",
-        "pos": {
-          "x": 100.0,
-          "y": 360.0
-        }
       },
       {
         "id": "mux1_4",
@@ -3024,8 +2998,8 @@
       },
       {
         "pin1": {
-          "compName": "mux1#0",
-          "pinName": "Y"
+          "compName": "Clock#0",
+          "pinName": ""
         },
         "pin2": {
           "compName": "WireCrossPoint#40",
@@ -6986,60 +6960,6 @@
       },
       {
         "pin1": {
-          "compName": "ManualSwitch#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "mux1#0",
-          "pinName": "S0"
-        },
-        "name": "unnamedWire#355",
-        "path": [
-          {
-            "x": 95.0,
-            "y": 355.0
-          },
-          {
-            "x": 95.0,
-            "y": 365.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ManualSwitch#1",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "mux1#0",
-          "pinName": "I1"
-        },
-        "name": "unnamedWire#356",
-        "path": [
-          {
-            "x": 95.0,
-            "y": 395.0
-          },
-          {
-            "x": 95.0,
-            "y": 385.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Clock#0",
-          "pinName": ""
-        },
-        "pin2": {
-          "compName": "mux1#0",
-          "pinName": "I0"
-        },
-        "name": "unnamedWire#357",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "WireCrossPoint#20",
           "pinName": ""
         },
@@ -7047,7 +6967,7 @@
           "compName": "WireCrossPoint#42",
           "pinName": ""
         },
-        "name": "unnamedWire#358",
+        "name": "unnamedWire#355",
         "path": []
       }
     ],
