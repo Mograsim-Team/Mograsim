@@ -1,0 +1,930 @@
+{
+  "width": 45.0,
+  "height": 35.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 10.0
+      },
+      "name": "Amach",
+      "logicWidth": 16,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 45.0,
+        "y": 10.0
+      },
+      "name": "Amem",
+      "logicWidth": 16,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 25.0,
+        "y": 35.0
+      },
+      "name": "C",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "Dmach",
+      "logicWidth": 16,
+      "usage": "TRISTATE"
+    },
+    {
+      "location": {
+        "x": 45.0,
+        "y": 5.0
+      },
+      "name": "Dmem",
+      "logicWidth": 16,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 20.0
+      },
+      "name": "EN",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "RWmach",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 45.0,
+        "y": 25.0
+      },
+      "name": "RWmem",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 15.0,
+        "y": 35.0
+      },
+      "name": "_C",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    }
+  ],
+  "innerScale": 0.2,
+  "submodel": {
+    "components": [
+      {
+        "id": "NandGate",
+        "name": "NandGate#7",
+        "pos": {
+          "x": 10.0,
+          "y": 125.0
+        },
+        "params": 1
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#4",
+        "pos": {
+          "x": 190.0,
+          "y": 35.0
+        },
+        "params": {
+          "logicWidth": 16,
+          "orientation": "RIGHT_ALT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#5",
+        "pos": {
+          "x": 190.0,
+          "y": 5.0
+        },
+        "params": {
+          "logicWidth": 16,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 129.0,
+          "y": 109.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 4.0,
+          "y": 124.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#44",
+        "pos": {
+          "x": 124.0,
+          "y": 159.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#45",
+        "pos": {
+          "x": 74.0,
+          "y": 159.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#46",
+        "pos": {
+          "x": 74.0,
+          "y": 134.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#48",
+        "pos": {
+          "x": 29.0,
+          "y": 99.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#49",
+        "pos": {
+          "x": 4.0,
+          "y": 129.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#50",
+        "pos": {
+          "x": 219.0,
+          "y": 24.0
+        },
+        "params": 16
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#51",
+        "pos": {
+          "x": 184.0,
+          "y": 14.0
+        },
+        "params": 16
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#52",
+        "pos": {
+          "x": 4.0,
+          "y": 139.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#53",
+        "pos": {
+          "x": 74.0,
+          "y": 109.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#54",
+        "pos": {
+          "x": 124.0,
+          "y": 134.0
+        },
+        "params": 1
+      },
+      {
+        "id": "and",
+        "name": "and#3",
+        "pos": {
+          "x": 35.0,
+          "y": 95.0
+        }
+      },
+      {
+        "id": "and",
+        "name": "and#4",
+        "pos": {
+          "x": 35.0,
+          "y": 120.0
+        }
+      },
+      {
+        "id": "dff16",
+        "name": "dff16#1",
+        "pos": {
+          "x": 80.0,
+          "y": 35.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "dff#0",
+        "pos": {
+          "x": 80.0,
+          "y": 120.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "dff#1",
+        "pos": {
+          "x": 80.0,
+          "y": 95.0
+        }
+      },
+      {
+        "id": "dff",
+        "name": "dff#2",
+        "pos": {
+          "x": 80.0,
+          "y": 145.0
+        }
+      },
+      {
+        "id": "dlatch16",
+        "name": "dlatch16#0",
+        "pos": {
+          "x": 135.0,
+          "y": 35.0
+        }
+      },
+      {
+        "id": "dlatch",
+        "name": "dlatch#0",
+        "pos": {
+          "x": 135.0,
+          "y": 95.0
+        }
+      },
+      {
+        "id": "dlatch",
+        "name": "dlatch#1",
+        "pos": {
+          "x": 135.0,
+          "y": 120.0
+        }
+      },
+      {
+        "id": "dlatch",
+        "name": "dlatch#2",
+        "pos": {
+          "x": 135.0,
+          "y": 145.0
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#46",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#53",
+          "pinName": ""
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "Dmach"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#51",
+          "pinName": ""
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 25.0
+          },
+          {
+            "x": 35.0,
+            "y": 15.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "Amach"
+        },
+        "pin2": {
+          "compName": "dff16#1",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 50.0
+          },
+          {
+            "x": 35.0,
+            "y": 60.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "dff16#1",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "dlatch16#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#50",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Dmem"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#52",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff#2",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "EN"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#48",
+          "pinName": ""
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#0",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#5",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 100.0
+          },
+          {
+            "x": 215.0,
+            "y": 30.0
+          },
+          {
+            "x": 200.0,
+            "y": 30.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#1",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#4",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 125.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "dlatch#2",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "RWmem"
+        },
+        "name": "unnamedWire#10",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 150.0
+          },
+          {
+            "x": 215.0,
+            "y": 125.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "_C"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#45",
+          "pinName": ""
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#53",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff#1",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#53",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff16#1",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#13",
+        "path": [
+          {
+            "x": 75.0,
+            "y": 40.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "RWmach"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#14",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dlatch16#0",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Amem"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 220.0,
+            "y": 60.0
+          },
+          {
+            "x": 220.0,
+            "y": 50.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#54",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#16",
+        "path": [
+          {
+            "x": 125.0,
+            "y": 110.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dlatch#0",
+          "pinName": "E"
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dlatch16#0",
+          "pinName": "E"
+        },
+        "name": "unnamedWire#18",
+        "path": [
+          {
+            "x": 130.0,
+            "y": 40.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#49",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#3",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#20",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 110.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#4",
+          "pinName": "OUT"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#50",
+          "pinName": ""
+        },
+        "name": "unnamedWire#21",
+        "path": [
+          {
+            "x": 220.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#52",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#7",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#22",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dff#1",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "dlatch#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#45",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff#2",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#24",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#45",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#46",
+          "pinName": ""
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dff#0",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "dlatch#1",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#49",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#7",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#48",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#3",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#28",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "and#4",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "dff#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#48",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#4",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#30",
+        "path": [
+          {
+            "x": 30.0,
+            "y": 125.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "and#3",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "dff#1",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#31",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#7",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "and#4",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#32",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#51",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#5",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#33",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#51",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#4",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#34",
+        "path": [
+          {
+            "x": 185.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#5",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#50",
+          "pinName": ""
+        },
+        "name": "unnamedWire#35",
+        "path": [
+          {
+            "x": 220.0,
+            "y": 15.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#52",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#49",
+          "pinName": ""
+        },
+        "name": "unnamedWire#36",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#46",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dff#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#37",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "dff#2",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "dlatch#2",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#38",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dlatch#2",
+          "pinName": "E"
+        },
+        "name": "unnamedWire#39",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#54",
+          "pinName": ""
+        },
+        "name": "unnamedWire#40",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#54",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dlatch#1",
+          "pinName": "E"
+        },
+        "name": "unnamedWire#41",
+        "path": []
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "Memory\ncontroller",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 17.5,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}
