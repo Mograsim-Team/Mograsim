@@ -52,6 +52,7 @@ public class SimulationViewEditor extends EditorPart
 	private Button resetButton;
 	private Button sbseButton;
 	private Button pauseButton;
+	private Label speedFactorLabel;
 	private Slider simSpeedSlider;
 	private Composite canvasParent;
 	private LogicUICanvas canvas;
@@ -151,6 +152,8 @@ public class SimulationViewEditor extends EditorPart
 
 			// initialize executer
 			exec = new LogicExecuter(machine.getTimeline());
+			updateSpeedFactor();
+			updatePausedState();
 			exec.startLiveExecution();
 		} else
 		{
@@ -176,6 +179,7 @@ public class SimulationViewEditor extends EditorPart
 	private void addSimulationControlWidgets(Composite parent)
 	{
 		Composite c = new Composite(parent, SWT.NONE);
+		c.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		c.setLayout(new GridLayout(7, false));
 
 		resetButton = new Button(c, SWT.PUSH);
@@ -199,17 +203,7 @@ public class SimulationViewEditor extends EditorPart
 		pauseButton.setSelection(true);
 		setPauseText(pauseButton, false);
 
-		pauseButton.addListener(SWT.Selection, e ->
-		{
-			setPauseText(pauseButton, false);
-			if (pauseButton.getSelection())
-			{
-				exec.unpauseLiveExecution();
-			} else
-			{
-				exec.pauseLiveExecution();
-			}
-		});
+		pauseButton.addListener(SWT.Selection, e -> updatePausedState());
 		pauseButton.addMouseTrackListener(new MouseTrackListener()
 		{
 			@Override
@@ -231,28 +225,39 @@ public class SimulationViewEditor extends EditorPart
 			}
 		});
 
-		Label speedLabel = new Label(c, SWT.NONE);
-		speedLabel.setText("Simulation Speed: ");
+		new Label(c, SWT.NONE).setText("Simulation Speed: ");
 
 		simSpeedSlider = new Slider(c, SWT.NONE);
-		simSpeedSlider.setMinimum(1);
-		simSpeedSlider.setMaximum(100 + simSpeedSlider.getThumb());
+		simSpeedSlider.setMinimum(0);
+		simSpeedSlider.setMaximum(50 + simSpeedSlider.getThumb());
 		simSpeedSlider.setIncrement(1);
+		simSpeedSlider.setSelection(0);
 
-		Label speedPercentageLabel = new Label(c, SWT.NONE);
-		speedPercentageLabel.setText("100%");
+		speedFactorLabel = new Label(c, SWT.NONE);
+		speedFactorLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		simSpeedSlider.addListener(SWT.Selection, e ->
-		{
-			int selection = simSpeedSlider.getSelection();
-			speedPercentageLabel.setText(selection + "%");
+		simSpeedSlider.addListener(SWT.Selection, e -> updateSpeedFactor());
+		updateSpeedFactor();
 
-			exec.setSpeedPercentage(simSpeedSlider.getSelection());
-		});
-		simSpeedSlider.setSelection(100);
+		c.layout();
+	}
 
-		c.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.FILL_HORIZONTAL));
-		c.pack();
+	private void updatePausedState()
+	{
+		setPauseText(pauseButton, false);
+		if (exec != null)
+			if (pauseButton.getSelection())
+				exec.unpauseLiveExecution();
+			else
+				exec.pauseLiveExecution();
+	}
+
+	private void updateSpeedFactor()
+	{
+		double factor = Math.pow(1.32, simSpeedSlider.getSelection() - 50);
+		speedFactorLabel.setText(String.format("%f", factor));
+		if (exec != null)
+			exec.setSpeedFactor(factor);
 	}
 
 	private void addInstructionPreviewControlWidgets(Composite parent)

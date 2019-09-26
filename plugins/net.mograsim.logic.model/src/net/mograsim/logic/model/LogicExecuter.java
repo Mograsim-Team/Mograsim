@@ -43,15 +43,16 @@ public class LogicExecuter
 				{
 					// always execute to keep timeline from "hanging behind" for too long
 					long current = tf.getAsLong();
-					timeline.executeUntil(timeline.laterThan(current), current + 10);
+					timeline.executeUntil(timeline.laterThan(current), System.currentTimeMillis() + 10);
+					long nextEventTime = timeline.nextEventTime();
 					long sleepTime;
 					if (timeline.hasNext())
-						sleepTime = timeline.nextEventTime() - current;
+						sleepTime = tf.simulTimeDeltaToRealTimeMillis(nextEventTime - current);
 					else
 						sleepTime = 10000;
 					try
 					{
-						nextExecSimulTime.set(current + sleepTime);
+						nextExecSimulTime.set(nextEventTime);
 						if (sleepTime > 0)
 							Thread.sleep(sleepTime);
 
@@ -130,9 +131,9 @@ public class LogicExecuter
 		return isPaused.get();
 	}
 
-	public void setSpeedPercentage(int percentage)
+	public void setSpeedFactor(double factor)
 	{
-		tf.setSpeedPercentage(percentage);
+		tf.setSpeedFactor(factor);
 	}
 
 	private void waitForIsRunning(boolean expectedState)
