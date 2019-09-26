@@ -31,6 +31,5 @@ public class MachineLoader implements BundleActivator
 		ClassLoaderBasedResourceLoader resourceLoader = ClassLoaderBasedResourceLoader.create(MachineLoader.class.getClassLoader());
 		IndirectModelComponentCreator.registerResourceLoader(resourceLoader, "MachineLoader");
 		IndirectModelComponentCreator.loadStandardComponentIDs(MachineLoader.class.getResourceAsStream("standardComponentIDMapping.json"));
-//		System.out.println("SETUP DONE"); // TODO: Debug
 	}
 }

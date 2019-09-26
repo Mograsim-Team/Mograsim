@@ -1,6 +1,13 @@
 package net.mograsim.plugin.nature;
 
-import static net.mograsim.plugin.nature.MachineContextStatus.*;
+import static net.mograsim.plugin.nature.MachineContextStatus.ACTIVE;
+import static net.mograsim.plugin.nature.MachineContextStatus.ACTIVE_CHANGED;
+import static net.mograsim.plugin.nature.MachineContextStatus.BROKEN;
+import static net.mograsim.plugin.nature.MachineContextStatus.CLOSED;
+import static net.mograsim.plugin.nature.MachineContextStatus.DEAD;
+import static net.mograsim.plugin.nature.MachineContextStatus.INTACT;
+import static net.mograsim.plugin.nature.MachineContextStatus.READY;
+import static net.mograsim.plugin.nature.MachineContextStatus.UNKOWN;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -147,8 +154,6 @@ public class MachineContext
 		if (status == ACTIVE)
 			return true;
 		machineDefinition.ifPresent(md -> setActiveMachine(md.createNew()));
-		if (activeMachine.isPresent())
-			System.out.format("Created new machine %s for project %s%n", activeMachine.get().getDefinition().getId(), owner.getName());
 		updateStatus();
 		return isActive();
 	}
@@ -172,7 +177,6 @@ public class MachineContext
 		if (oldStatus == newStatus)
 			return;
 		status = newStatus;
-		System.out.format("Project %s context status: %s -> %s%n", owner.getName(), oldStatus, newStatus);
 		doPostStatusChangedAction();
 		notifyMachineContextStatusListeners(oldStatus);
 	}
@@ -204,7 +208,6 @@ public class MachineContext
 	{
 		if ((status == DEAD || status == CLOSED) && activeMachine.isPresent())
 		{
-			System.out.format("Removed machine %s for project %s%n", activeMachine.get().getDefinition().getId(), owner.getName());
 			activeMachine = Optional.empty();
 			notifyActiveMachineListeners();
 		}
