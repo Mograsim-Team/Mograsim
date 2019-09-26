@@ -63,7 +63,7 @@ public class LogicUICanvas extends ZoomableCanvas
 
 	private void mouseDown(Event e)
 	{
-		if (e.button == 1)
+		if (e.button == Preferences.current().getInt("net.mograsim.logic.model.button.action"))
 		{
 			Point click = canvasToWorldCoords(e.x, e.y);
 			for (ModelComponent component : model.getComponentsByName().values())
