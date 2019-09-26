@@ -3,10 +3,15 @@
 	<name>net.mograsim.feature</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.logic.model</project>
 		<project>net.mograsim.logic.model.am2900</project>
+		<project>net.mograsim.machine</project>
 		<project>net.mograsim.plugin.branding</project>
 		<project>net.mograsim.plugin.core</project>
 		<project>net.mograsim.plugin.docs</project>
+		<project>net.mograsim.preferences</project>
+		<project>SWTObjectWrappers</project>
+		<project>SWTZoomableCanvas</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

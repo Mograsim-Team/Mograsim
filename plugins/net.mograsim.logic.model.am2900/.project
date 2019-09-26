@@ -3,8 +3,8 @@
 	<name>net.mograsim.logic.model.am2900</name>
 	<comment></comment>
 	<projects>
-		<project>net.mograsim.logic.model</project>
-		<project>SWTZoomableCanvas</project>
+		<project>net.mograsim.logic.core</project>
+		<project>net.mograsim.machine</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
