@@ -41,13 +41,12 @@ public class LogicExecuter
 			{
 				while (shouldBeRunningLive.get())
 				{
-					// always execute to keep timeline from "hanging behind" for too long
 					long current = tf.getAsLong();
 					timeline.executeUntil(timeline.laterThan(current), System.currentTimeMillis() + 10);
 					long nextEventTime = timeline.nextEventTime();
 					long sleepTime;
 					if (timeline.hasNext())
-						sleepTime = tf.simulTimeDeltaToRealTimeMillis(nextEventTime - current);
+						sleepTime = (long) ((nextEventTime - current) * tf.getSimulTimeToRealTimeFactor());
 					else
 						sleepTime = 10000;
 					try
@@ -82,6 +81,8 @@ public class LogicExecuter
 				if (Timeline.timeCmp(event.getTiming(), nextExecSimulTime.get()) < 0)
 					simulationThread.interrupt();
 		});
+		// not optimal; but we don't expect this to happen very often
+		tf.addSimulTimeToRealTimeFactorChangedListener(d -> simulationThread.interrupt());
 	}
 
 	public void executeNextStep()
