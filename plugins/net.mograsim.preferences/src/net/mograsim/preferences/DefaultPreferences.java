@@ -31,6 +31,8 @@ public class DefaultPreferences extends Preferences
 			return 1;
 		case "net.mograsim.logic.model.button.zoom":
 			return 2;
+		case "net.mograsim.plugin.core.simspeedprecision":
+			return 6;
 		default:
 			throw new IllegalArgumentException("Unknown int preference name: " + name);
 		}
