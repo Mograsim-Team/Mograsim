@@ -1,11 +1,9 @@
 package net.mograsim.plugin.tables.mi;
 
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 
-import net.mograsim.logic.core.types.Bit;
 import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.parameters.BooleanClassification;
@@ -24,7 +22,7 @@ public class BooleanEditingSupport extends EditingSupport
 		super(viewer);
 		this.viewer = viewer;
 		this.boolClass = (BooleanClassification) definition.getParameterClassification(index);
-		editor = new CheckboxCellEditor(viewer.getTable());
+		editor = new CyclingCellEditor(viewer.getTable(), boolClass.size());// new CheckboxCellEditor(viewer.getTable());
 		this.index = index;
 	}
 
@@ -45,7 +43,7 @@ public class BooleanEditingSupport extends EditingSupport
 	{
 		InstructionTableRow row = (InstructionTableRow) element;
 		// true is 0 because the true value comes first in the combo box
-		return row.data.getCell(row.address).getParameter(index).getValue().getMSBit(0).equals(Bit.ONE);
+		return ((Mnemonic) row.data.getCell(row.address).getParameter(index)).ordinal();
 	}
 
 	@Override
@@ -54,7 +52,7 @@ public class BooleanEditingSupport extends EditingSupport
 		InstructionTableRow row = (InstructionTableRow) element;
 		MicroInstructionParameter[] params = row.data.getCell(row.address).getParameters();
 		// true is 0 because the true value comes first in the combo box
-		Mnemonic newParam = boolClass.get((Boolean) value);
+		Mnemonic newParam = boolClass.get((Integer) value);
 
 		params[index] = newParam;
 		row.data.setCell(row.address, MicroInstruction.create(params));
