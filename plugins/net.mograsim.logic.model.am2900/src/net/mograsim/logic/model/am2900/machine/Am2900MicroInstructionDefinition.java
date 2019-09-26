@@ -21,8 +21,8 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 			.add("AQ", "AB", "ZQ", "ZB", "ZA", "DA", "DQ", "DZ").build();
 	private static final MnemonicFamily am2901FuncInstructions = new MnemonicFamilyBuilder(3).addX().setXDefault()
 			.add("ADD", "SUBR", "SUBS", "OR", "AND", "NOTRS", "EXOR", "EXNOR").build();
-	private static final MnemonicFamily am2901DestInstructions = new MnemonicFamilyBuilder(3).addX().setXDefault()
-			.add("QREG", "NOP", "RAMA", "RAMF", "RAMQD", "RAMD", "RAMQU", "RAMU").build();
+	private static final MnemonicFamily am2901DestInstructions = new MnemonicFamilyBuilder(3).addX()
+			.add("QREG", "NOP", "RAMA", "RAMF", "RAMQD", "RAMD", "RAMQU", "RAMU").setDefault("NOP").build();
 	private static final IntegerClassification register = new IntegerClassification(0, 4);
 	private static final BooleanClassification registerSelect = new BooleanClassification("MR", "IR");
 	private static final BooleanClassification abus = new BooleanClassification(true, "H", "AB");
@@ -60,9 +60,9 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 					"Load_Load_I_CandnotZ", "Load_Load_I_N", "Load_Load_I_notN")
 			.build();
 	private static final BooleanClassification ccen = new BooleanClassification(true, "PS", "C");
-	private static final MnemonicFamily am2910Instructions = new MnemonicFamilyBuilder(4).addX().setXDefault()
+	private static final MnemonicFamily am2910Instructions = new MnemonicFamilyBuilder(4).addX()
 			.add("JZ", "CJS", "JMAP", "CJP", "PUSH", "JSRP", "CJV", "JRP", "RFCT", "RPCT", "CRTN", "CJPP", "LDCT", "LOOP", "CONT", "TWB")
-			.build();
+			.setDefault("CONT").build();
 
 	private static final IntegerClassification constant_12bit = new IntegerClassification(0, 12);
 	private static final IntegerClassification constant_16bit = new IntegerClassification(0, 16);
