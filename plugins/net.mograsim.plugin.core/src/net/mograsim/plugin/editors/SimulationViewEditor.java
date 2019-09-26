@@ -33,6 +33,7 @@ import net.mograsim.machine.Machine;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.plugin.nature.MachineContext;
+import net.mograsim.plugin.nature.MachineContext.ActiveMachineListener;
 import net.mograsim.plugin.nature.ProjectMachineContext;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.mi.ActiveInstructionPreviewContentProvider;
@@ -56,8 +57,29 @@ public class SimulationViewEditor extends EditorPart
 	private InstructionTable instPreview;
 	private Label noMachineLabel;
 
-	private MemoryCellModifiedListener currentRegisteredCellListener;
-	private LogicObserver currentClockObserver;
+	private ActiveMachineListener activeMNachineListener;
+	private MemoryCellModifiedListener memCellListener;
+	private LogicObserver clockObserver;
+
+	public SimulationViewEditor()
+	{
+		activeMNachineListener = m -> recreateContextDependentControls();
+		memCellListener = a -> instPreview.refresh();
+		clockObserver = o ->
+		{
+			if (((CoreClock) o).isOn())
+			{
+				exec.pauseLiveExecution();
+				if (!pauseButton.isDisposed())
+					Display.getDefault().asyncExec(() ->
+					{
+						if (!pauseButton.isDisposed())
+							pauseButton.setSelection(false);
+						setPauseText(pauseButton, false);
+					});
+			}
+		};
+	}
 
 	@Override
 	public void createPartControl(Composite parent)
@@ -85,13 +107,7 @@ public class SimulationViewEditor extends EditorPart
 		double offX;
 		double offY;
 		double zoom;
-		if (exec != null)
-			exec.stopLiveExecution();
-		if (machine != null)
-		{
-			machine.getMicroInstructionMemory().deregisterCellModifiedListener(currentRegisteredCellListener);
-			machine.getClock().deregisterObserver(currentClockObserver);
-		}
+		stopExecAndDeregisterContextDependentListeners();
 		if (canvas != null)
 		{
 			offX = canvas.getOffX();
@@ -127,8 +143,7 @@ public class SimulationViewEditor extends EditorPart
 
 			AssignableMicroInstructionMemory mIMemory = machine.getMicroInstructionMemory();
 			instPreview.bindMicroInstructionMemory(mIMemory);
-			currentRegisteredCellListener = a -> instPreview.refresh();
-			mIMemory.registerCellModifiedListener(currentRegisteredCellListener);
+			mIMemory.registerCellModifiedListener(memCellListener);
 
 			canvasParent.layout();
 
@@ -144,6 +159,17 @@ public class SimulationViewEditor extends EditorPart
 		}
 	}
 
+	private void stopExecAndDeregisterContextDependentListeners()
+	{
+		if (exec != null)
+			exec.stopLiveExecution();
+		if (machine != null)
+		{
+			machine.getMicroInstructionMemory().deregisterCellModifiedListener(memCellListener);
+			machine.getClock().deregisterObserver(clockObserver);
+		}
+	}
+
 	private void addSimulationControlWidgets(Composite parent)
 	{
 		Composite c = new Composite(parent, SWT.NONE);
@@ -151,29 +177,15 @@ public class SimulationViewEditor extends EditorPart
 
 		sbseButton = new Button(c, SWT.CHECK);
 		pauseButton = new Button(c, SWT.TOGGLE);
-		currentClockObserver = o ->
-		{
-			if (((CoreClock) o).isOn())
-			{
-				exec.pauseLiveExecution();
-				if (!pauseButton.isDisposed())
-					Display.getDefault().asyncExec(() ->
-					{
-						if (!pauseButton.isDisposed())
-							pauseButton.setSelection(false);
-						setPauseText(pauseButton, false);
-					});
-			}
-		};
 
 		sbseButton.setText("Step by step execution");
 		sbseButton.addListener(SWT.Selection, e ->
 		{
 			CoreClock cl = machine.getClock();
 			if (sbseButton.getSelection())
-				cl.registerObserver(currentClockObserver);
+				cl.registerObserver(clockObserver);
 			else
-				cl.deregisterObserver(currentClockObserver);
+				cl.deregisterObserver(clockObserver);
 		});
 		sbseButton.setSelection(false);
 
@@ -264,7 +276,7 @@ public class SimulationViewEditor extends EditorPart
 			IFileEditorInput fileInput = (IFileEditorInput) input;
 			context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
 			context.activateMachine();
-			context.addActiveMachineListener(m -> recreateContextDependentControls());
+			context.addActiveMachineListener(activeMNachineListener);
 			recreateContextDependentControls();
 
 			setPartName(fileInput.getName());
@@ -323,7 +335,8 @@ public class SimulationViewEditor extends EditorPart
 	@Override
 	public void dispose()
 	{
-		exec.stopLiveExecution();
+		stopExecAndDeregisterContextDependentListeners();
+		context.removeActiveMachineListener(activeMNachineListener);
 		super.dispose();
 	}
 }
