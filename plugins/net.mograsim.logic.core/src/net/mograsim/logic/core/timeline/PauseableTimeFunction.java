@@ -40,7 +40,7 @@ public class PauseableTimeFunction implements LongSupplier
 
 	public double getSimulTimeToRealTimeFactor()
 	{
-		return 1 / 1000 / speedFactor;
+		return 1 / 1000d / speedFactor;
 	}
 
 	public void setSpeedFactor(double factor)
