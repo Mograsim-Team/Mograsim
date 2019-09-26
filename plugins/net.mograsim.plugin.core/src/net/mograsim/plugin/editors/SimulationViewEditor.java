@@ -24,6 +24,7 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
+import net.haspamelodica.swt.helper.input.DoubleInput;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreClock;
@@ -44,6 +45,10 @@ import net.mograsim.preferences.Preferences;
 //TODO actually save / load register and latch states
 public class SimulationViewEditor extends EditorPart
 {
+	private static final int SIM_SPEED_SCALE_STEPS = 50;
+	private static final double SIM_SPEED_SCALE_STEP_FACTOR = 1.32;
+	private static final double SIM_SPEED_SCALE_STEP_FACTOR_LOG = Math.log(SIM_SPEED_SCALE_STEP_FACTOR);
+
 	private MachineContext context;
 
 	private LogicExecuter exec;
@@ -53,8 +58,8 @@ public class SimulationViewEditor extends EditorPart
 	private Button resetButton;
 	private Button sbseButton;
 	private Button pauseButton;
-	private Label speedFactorLabel;
 	private Scale simSpeedScale;
+	private DoubleInput simSpeedInput;
 	private Composite canvasParent;
 	private LogicUICanvas canvas;
 	private InstructionTable instPreview;
@@ -132,9 +137,11 @@ public class SimulationViewEditor extends EditorPart
 			sbseButton.setEnabled(true);
 			pauseButton.setEnabled(true);
 			simSpeedScale.setEnabled(true);
+			simSpeedInput.setEnabled(true);
 
 			machine = machineOptional.get();
 			canvas = new LogicUICanvas(canvasParent, SWT.NONE, machine.getModel());
+			canvas.addListener(SWT.MouseDown, e -> canvas.setFocus());
 			ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
 			userInput.buttonDrag = Preferences.current().getInt("net.mograsim.logic.model.button.drag");
 			userInput.buttonZoom = Preferences.current().getInt("net.mograsim.logic.model.button.zoom");
@@ -153,7 +160,7 @@ public class SimulationViewEditor extends EditorPart
 
 			// initialize executer
 			exec = new LogicExecuter(machine.getTimeline());
-			updateSpeedFactor();
+			updateSpeedFactorFromScale();
 			updatePausedState();
 			exec.startLiveExecution();
 		} else
@@ -163,6 +170,7 @@ public class SimulationViewEditor extends EditorPart
 			sbseButton.setEnabled(false);
 			pauseButton.setEnabled(false);
 			simSpeedScale.setEnabled(false);
+			simSpeedInput.setEnabled(false);
 		}
 	}
 
@@ -181,7 +189,7 @@ public class SimulationViewEditor extends EditorPart
 	{
 		Composite c = new Composite(parent, SWT.NONE);
 		c.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		c.setLayout(new GridLayout(7, false));
+		c.setLayout(new GridLayout(6, false));
 
 		resetButton = new Button(c, SWT.PUSH);
 		resetButton.setText("Reset machine");
@@ -230,15 +238,16 @@ public class SimulationViewEditor extends EditorPart
 
 		simSpeedScale = new Scale(c, SWT.NONE);
 		simSpeedScale.setMinimum(0);
-		simSpeedScale.setMaximum(50);
+		simSpeedScale.setMaximum(SIM_SPEED_SCALE_STEPS);
 		simSpeedScale.setIncrement(1);
 		simSpeedScale.setSelection(0);
+		simSpeedScale.addListener(SWT.Selection, e -> updateSpeedFactorFromScale());
 
-		speedFactorLabel = new Label(c, SWT.NONE);
-		speedFactorLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		simSpeedInput = new DoubleInput(c, SWT.NONE);
+		simSpeedInput.setPrecision(Preferences.current().getInt("net.mograsim.plugin.core.simspeedprecision"));
+		simSpeedInput.addChangeListener(this::updateSpeedFactorFromInput);
 
-		simSpeedScale.addListener(SWT.Selection, e -> updateSpeedFactor());
-		updateSpeedFactor();
+		updateSpeedFactorFromScale();
 
 		c.layout();
 	}
@@ -253,12 +262,28 @@ public class SimulationViewEditor extends EditorPart
 				exec.pauseLiveExecution();
 	}
 
-	private void updateSpeedFactor()
+	private void updateSpeedFactorFromScale()
 	{
-		double factor = Math.pow(1.32, simSpeedScale.getSelection() - 50);
-		speedFactorLabel.setText(String.format("%f", factor));
+		double factor = Math.pow(SIM_SPEED_SCALE_STEP_FACTOR, simSpeedScale.getSelection() - SIM_SPEED_SCALE_STEPS);
+		simSpeedInput.setValue(factor);
 		if (exec != null)
 			exec.setSpeedFactor(factor);
+	}
+
+	private void updateSpeedFactorFromInput(double factor)
+	{
+		double factorCheckedFor0;
+		if (factor != 0)
+			factorCheckedFor0 = factor;
+		else
+		{
+			factorCheckedFor0 = Math.pow(10, -simSpeedInput.getPrecision());
+			simSpeedInput.setValue(factorCheckedFor0);
+		}
+		int closestScalePos = (int) Math.round(Math.log(factorCheckedFor0) / SIM_SPEED_SCALE_STEP_FACTOR_LOG + SIM_SPEED_SCALE_STEPS);
+		simSpeedScale.setSelection(Math.min(Math.max(closestScalePos, 0), SIM_SPEED_SCALE_STEPS));
+		if (exec != null)
+			exec.setSpeedFactor(factorCheckedFor0);
 	}
 
 	private void addInstructionPreviewControlWidgets(Composite parent)
