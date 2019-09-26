@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
-import java.util.function.LongSupplier;
 
 /**
  * Orders Events by the time they are due to be executed. Can execute Events individually.
@@ -16,14 +15,44 @@ import java.util.function.LongSupplier;
 public class Timeline
 {
 	private PriorityQueue<InnerEvent> events;
-	private LongSupplier time;
+	private TimeFunction time;
 	private long lastTimeUpdated = 0;
 	private long eventCounter = 0;
 
 	private final List<Consumer<TimelineEvent>> eventAddedListener;
 
-	public final LongSupplier stepByStepExec = () -> lastTimeUpdated;
-	public final LongSupplier realTimeExec = () -> System.currentTimeMillis();
+	public final TimeFunction stepByStepExec = new TimeFunction()
+	{
+
+		@Override
+		public void setTime(long time)
+		{
+			lastTimeUpdated = time;
+		}
+
+		@Override
+		public long getTime()
+		{
+			return lastTimeUpdated;
+		}
+	};
+	public final TimeFunction realTimeExec = new TimeFunction()
+	{
+		private long offset = 0;
+
+		@Override
+		public void setTime(long time)
+		{
+			offset = time;
+		}
+
+		@Override
+		public long getTime()
+		{
+			return System.currentTimeMillis() - offset;
+		}
+	};
+	private boolean isWorking;
 
 	/**
 	 * Constructs a Timeline object. Per default the time function is set to step by step execution.
@@ -93,6 +122,7 @@ public class Timeline
 			lastTimeUpdated = getSimulationTime();
 			return ExecutionResult.NOTHING_DONE;
 		}
+		working();
 		int checkStop = 0;
 		while (hasNext() && !condition.getAsBoolean())
 		{
@@ -106,8 +136,13 @@ public class Timeline
 			// Don't check after every run
 			checkStop = (checkStop + 1) % 10;
 			if (checkStop == 0 && System.currentTimeMillis() >= stopMillis)
+			{
+				notWorking();
+				lastTimeUpdated = getSimulationTime();
 				return ExecutionResult.EXEC_OUT_OF_TIME;
+			}
 		}
+		notWorking();
 		lastTimeUpdated = getSimulationTime();
 		return hasNext() ? ExecutionResult.EXEC_UNTIL_EMPTY : ExecutionResult.EXEC_UNTIL_CONDITION;
 	}
@@ -117,8 +152,9 @@ public class Timeline
 	 * 
 	 * @param time The return value of calling this function is the current simulation time.
 	 */
-	public void setTimeFunction(LongSupplier time)
+	public void setTimeFunction(TimeFunction time)
 	{
+		time.setTime(this.time.getTime());
 		this.time = time;
 	}
 
@@ -129,7 +165,7 @@ public class Timeline
 	 */
 	public long getSimulationTime()
 	{
-		return time.getAsLong();
+		return isWorking() ? lastTimeUpdated : time.getTime();
 	}
 
 	/**
@@ -153,7 +189,7 @@ public class Timeline
 		{
 			events.clear();
 		}
-		lastTimeUpdated = 0;
+		lastTimeUpdated = time.getTime();
 	}
 
 	/**
@@ -188,6 +224,12 @@ public class Timeline
 		}
 		eventAddedListener.forEach(l -> l.accept(event));
 	}
+
+	//@formatter:off
+	private void working() { isWorking = true; }
+	private void notWorking() { isWorking = false; }
+	private boolean isWorking() { return isWorking; }
+	//@formatter:on
 
 	private class InnerEvent implements Runnable, Comparable<InnerEvent>
 	{
@@ -249,8 +291,15 @@ public class Timeline
 		return String.format("Simulation time: %s, Last update: %d, Events: %s", getSimulationTime(), lastTimeUpdated, eventsString);
 	}
 
-	public enum ExecutionResult
+	public static enum ExecutionResult
 	{
 		NOTHING_DONE, EXEC_UNTIL_EMPTY, EXEC_UNTIL_CONDITION, EXEC_OUT_OF_TIME
+	}
+
+	public static interface TimeFunction
+	{
+		long getTime();
+
+		void setTime(long time);
 	}
 }

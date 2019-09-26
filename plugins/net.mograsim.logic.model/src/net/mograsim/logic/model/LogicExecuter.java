@@ -41,7 +41,7 @@ public class LogicExecuter
 			{
 				while (shouldBeRunningLive.get())
 				{
-					long current = tf.getAsLong();
+					long current = tf.getTime();
 					timeline.executeUntil(timeline.laterThan(current), System.currentTimeMillis() + 10);
 					long nextEventTime = timeline.nextEventTime();
 					long sleepTime;
