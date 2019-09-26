@@ -173,7 +173,6 @@ public class ProjectMachineContext
 
 	private static void resourceChanged(IResourceChangeEvent event)
 	{
-//		System.out.println(((ResourceChangeEvent) event).toDebugString());
 		// We try to do as many cheap tests first as possible, because this listener is not limited to plain project actions.
 		if (event.getResource() == null)
 			return;

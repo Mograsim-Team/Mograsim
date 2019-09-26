@@ -41,6 +41,14 @@
             name="Registers / Latches state"
             priority="high">
       </content-type>
+      <content-type
+            base-type="org.eclipse.core.runtime.text"
+            default-charset="UTF-8"
+            file-extensions="mem"
+            id="net.mograsim.plugin.mem"
+            name="Main Memory"
+            priority="high">
+      </content-type>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -93,6 +101,15 @@
             id="net.mograsim.plugin.editors.simulationvieweditor"
             name="Simulation View Editor">
       		<contentTypeBinding contentTypeId="net.mograsim.plugin.regs"/>
+      </editor>
+      <editor
+            class="net.mograsim.plugin.editors.MemoryEditor"
+            icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
+            id="net.mograsim.plugin.editors.memoryeditor"
+            name="Memory Editor">
+         <contentTypeBinding
+               contentTypeId="net.mograsim.plugin.mem">
+         </contentTypeBinding>
       </editor>
    </extension>
    <extension
@@ -152,13 +169,6 @@
             id="net.mograsim.plugin.views.AsmOpsEdit"
             inject="true"
             name="%view.name">
-      </view>
-      <view
-            category="net.mograsim.plugin"
-      		id="net.mograsim.plugin.tables.memory.MemoryView"
-      		class="net.mograsim.plugin.tables.memory.MemoryView"
-            icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
-      		name="%view.name.1">
       </view>
    </extension>
    <extension

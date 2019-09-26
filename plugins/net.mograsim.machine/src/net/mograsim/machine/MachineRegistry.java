@@ -1,6 +1,5 @@
 package net.mograsim.machine;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -36,19 +35,15 @@ public class MachineRegistry
 	{
 		installedMachines.clear();
 		IExtensionRegistry registry = Platform.getExtensionRegistry();
-		System.out.println(Arrays.toString(registry.getExtensionPoints("net.mograsim.machine")));
 		IConfigurationElement[] config = registry.getConfigurationElementsFor(MACHINE_EXT_ID);
 		try
 		{
 			for (IConfigurationElement e : config)
 			{
-				System.out.println(e.getNamespaceIdentifier());
-				System.out.println(Arrays.toString(e.getAttributeNames()));
 				final Object o = e.createExecutableExtension("class");
 				final String id = e.getAttribute("unique_id");
 				if (o instanceof MachineDefinition)
 				{
-					System.out.println("Found " + id);
 					MachineDefinition md = (MachineDefinition) o;
 					if (Objects.equals(id, md.getId()))
 						installedMachines.put(id, md);
@@ -62,7 +57,8 @@ public class MachineRegistry
 		}
 		catch (CoreException ex)
 		{
-			System.out.println(ex.getMessage());
+			System.err.println("An error occurred reloading the machines:");
+			ex.printStackTrace();
 		}
 		notifyListeners();
 	}

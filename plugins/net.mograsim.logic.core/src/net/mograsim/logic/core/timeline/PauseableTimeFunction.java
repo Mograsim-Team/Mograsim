@@ -48,13 +48,13 @@ public class PauseableTimeFunction implements TimeFunction
 
 	public double getSimulTimeToRealTimeFactor()
 	{
-		return 1 / 1000 / speedFactor;
+		return 1 / 1000d / speedFactor;
 	}
 
 	public void setSpeedFactor(double factor)
 	{
 		if (factor <= 0)
-			throw new IllegalArgumentException("time factor can't be smaller than 1");
+			throw new IllegalArgumentException("time factor can't be less than or equal to 0");
 		if (!paused)
 		{
 			pause();

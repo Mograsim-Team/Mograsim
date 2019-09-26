@@ -4,6 +4,7 @@ import org.eclipse.swt.SWT;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.editor.ui.EditorGUI;
+import net.mograsim.preferences.Preferences;
 
 public class EditorUserInput
 {
@@ -15,15 +16,8 @@ public class EditorUserInput
 		gui.logicCanvas.addListener(SWT.MouseDown, e ->
 		{
 			Point clicked = editor.gui.logicCanvas.canvasToWorldCoords(e.x, e.y);
-			switch (e.button)
-			{
-			case 1:
+			if (e.button == Preferences.current().getInt("net.mograsim.logic.model.button.action"))
 				editor.handleManager.click(clicked, e.stateMask);
-				break;
-			default:
-				// don't react
-			}
-
 		});
 
 		gui.logicCanvas.addMouseMoveListener(e ->

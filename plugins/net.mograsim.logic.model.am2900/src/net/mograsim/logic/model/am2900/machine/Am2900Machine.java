@@ -12,7 +12,6 @@ import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
-import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.Register;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstruction;
@@ -20,6 +19,7 @@ import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.StandardMicroInstructionMemory;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
+import net.mograsim.machine.standard.memory.AssignableMainMemory;
 import net.mograsim.machine.standard.memory.WordAddressableMemory;
 
 public class Am2900Machine implements Machine
@@ -28,7 +28,7 @@ public class Am2900Machine implements Machine
 	private LogicModelModifiable logicModel;
 	private ModelComponent am2900;
 	private Timeline timeline;
-	private MainMemory mainMemory;
+	private AssignableMainMemory mainMemory;
 	private AssignableMicroInstructionMemory instMemory;
 	private CoreClock clock;
 
@@ -41,7 +41,7 @@ public class Am2900Machine implements Machine
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
-		mainMemory = new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition());
+		mainMemory = new AssignableMainMemory(new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition()));
 		instMemory = new AssignableMicroInstructionMemory(
 				new StandardMicroInstructionMemory(am2900MachineDefinition.getMicroInstructionMemoryDefinition()));
 		timeline = LogicCoreAdapter.convert(logicModel, params);
@@ -105,7 +105,7 @@ public class Am2900Machine implements Machine
 	}
 
 	@Override
-	public MainMemory getMainMemory()
+	public AssignableMainMemory getMainMemory()
 	{
 		return mainMemory;
 	}

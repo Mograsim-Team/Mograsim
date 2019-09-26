@@ -17,18 +17,20 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Slider;
+import org.eclipse.swt.widgets.Scale;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
+import net.haspamelodica.swt.helper.input.DoubleInput;
 import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInput;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
@@ -38,11 +40,16 @@ import net.mograsim.plugin.nature.ProjectMachineContext;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.mi.ActiveInstructionPreviewContentProvider;
 import net.mograsim.plugin.tables.mi.InstructionTable;
+import net.mograsim.preferences.Preferences;
 
 //TODO what if we open multiple editors?
 //TODO actually save / load register and latch states
 public class SimulationViewEditor extends EditorPart
 {
+	private static final int SIM_SPEED_SCALE_STEPS = 50;
+	private static final double SIM_SPEED_SCALE_STEP_FACTOR = 1.32;
+	private static final double SIM_SPEED_SCALE_STEP_FACTOR_LOG = Math.log(SIM_SPEED_SCALE_STEP_FACTOR);
+
 	private MachineContext context;
 
 	private LogicExecuter exec;
@@ -52,20 +59,20 @@ public class SimulationViewEditor extends EditorPart
 	private Button resetButton;
 	private Button sbseButton;
 	private Button pauseButton;
-	private Label speedFactorLabel;
-	private Slider simSpeedSlider;
+	private Scale simSpeedScale;
+	private DoubleInput simSpeedInput;
 	private Composite canvasParent;
 	private LogicUICanvas canvas;
 	private InstructionTable instPreview;
 	private Label noMachineLabel;
 
-	private ActiveMachineListener activeMNachineListener;
+	private ActiveMachineListener activeMachineListener;
 	private MemoryCellModifiedListener memCellListener;
 	private LogicObserver clockObserver;
 
 	public SimulationViewEditor()
 	{
-		activeMNachineListener = m -> recreateContextDependentControls();
+		activeMachineListener = m -> recreateContextDependentControls();
 		memCellListener = a -> instPreview.refresh();
 		clockObserver = o ->
 		{
@@ -130,13 +137,15 @@ public class SimulationViewEditor extends EditorPart
 			resetButton.setEnabled(true);
 			sbseButton.setEnabled(true);
 			pauseButton.setEnabled(true);
-			simSpeedSlider.setEnabled(true);
+			simSpeedScale.setEnabled(true);
+			simSpeedInput.setEnabled(true);
 
 			machine = machineOptional.get();
 			canvas = new LogicUICanvas(canvasParent, SWT.NONE, machine.getModel());
+			canvas.addListener(SWT.MouseDown, e -> canvas.setFocus());
 			ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
-			userInput.buttonDrag = 3;
-			userInput.buttonZoom = 2;
+			userInput.buttonDrag = Preferences.current().getInt("net.mograsim.logic.model.button.drag");
+			userInput.buttonZoom = Preferences.current().getInt("net.mograsim.logic.model.button.zoom");
 			userInput.enableUserInput();
 			if (zoom > 0)
 			{
@@ -152,7 +161,7 @@ public class SimulationViewEditor extends EditorPart
 
 			// initialize executer
 			exec = new LogicExecuter(machine.getTimeline());
-			updateSpeedFactor();
+			updateSpeedFactorFromInput(simSpeedInput.getValue());
 			updatePausedState();
 			exec.startLiveExecution();
 		} else
@@ -161,7 +170,8 @@ public class SimulationViewEditor extends EditorPart
 			resetButton.setEnabled(false);
 			sbseButton.setEnabled(false);
 			pauseButton.setEnabled(false);
-			simSpeedSlider.setEnabled(false);
+			simSpeedScale.setEnabled(false);
+			simSpeedInput.setEnabled(false);
 		}
 	}
 
@@ -185,6 +195,15 @@ public class SimulationViewEditor extends EditorPart
 		resetButton = new Button(c, SWT.PUSH);
 		resetButton.setText("Reset machine");
 		resetButton.addListener(SWT.Selection, e -> context.getActiveMachine().get().reset());
+
+		// TODO do we want this button in the final product?
+		Button reloadMachineButton = new Button(c, SWT.PUSH);
+		reloadMachineButton.setText("Reload machine");
+		reloadMachineButton.addListener(SWT.Selection, e ->
+		{
+			IndirectModelComponentCreator.clearComponentCache();
+			context.setActiveMachine(context.getMachineDefinition().get().createNew());
+		});
 
 		sbseButton = new Button(c, SWT.CHECK);
 		pauseButton = new Button(c, SWT.TOGGLE);
@@ -227,17 +246,18 @@ public class SimulationViewEditor extends EditorPart
 
 		new Label(c, SWT.NONE).setText("Simulation Speed: ");
 
-		simSpeedSlider = new Slider(c, SWT.NONE);
-		simSpeedSlider.setMinimum(0);
-		simSpeedSlider.setMaximum(50 + simSpeedSlider.getThumb());
-		simSpeedSlider.setIncrement(1);
-		simSpeedSlider.setSelection(0);
+		simSpeedScale = new Scale(c, SWT.NONE);
+		simSpeedScale.setMinimum(0);
+		simSpeedScale.setMaximum(SIM_SPEED_SCALE_STEPS);
+		simSpeedScale.setIncrement(1);
+		simSpeedScale.setSelection(0);
+		simSpeedScale.addListener(SWT.Selection, e -> updateSpeedFactorFromScale());
 
-		speedFactorLabel = new Label(c, SWT.NONE);
-		speedFactorLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		simSpeedInput = new DoubleInput(c, SWT.NONE);
+		simSpeedInput.setPrecision(Preferences.current().getInt("net.mograsim.plugin.core.simspeedprecision"));
+		simSpeedInput.addChangeListener(this::updateSpeedFactorFromInput);
 
-		simSpeedSlider.addListener(SWT.Selection, e -> updateSpeedFactor());
-		updateSpeedFactor();
+		updateSpeedFactorFromScale();
 
 		c.layout();
 	}
@@ -252,12 +272,28 @@ public class SimulationViewEditor extends EditorPart
 				exec.pauseLiveExecution();
 	}
 
-	private void updateSpeedFactor()
+	private void updateSpeedFactorFromScale()
 	{
-		double factor = Math.pow(1.32, simSpeedSlider.getSelection() - 50);
-		speedFactorLabel.setText(String.format("%f", factor));
+		double factor = Math.pow(SIM_SPEED_SCALE_STEP_FACTOR, simSpeedScale.getSelection() - SIM_SPEED_SCALE_STEPS);
+		simSpeedInput.setValue(factor);
 		if (exec != null)
 			exec.setSpeedFactor(factor);
+	}
+
+	private void updateSpeedFactorFromInput(double factor)
+	{
+		double factorCheckedFor0;
+		if (factor != 0)
+			factorCheckedFor0 = factor;
+		else
+		{
+			factorCheckedFor0 = Math.pow(10, -simSpeedInput.getPrecision());
+			simSpeedInput.setValue(factorCheckedFor0);
+		}
+		int closestScalePos = (int) Math.round(Math.log(factorCheckedFor0) / SIM_SPEED_SCALE_STEP_FACTOR_LOG + SIM_SPEED_SCALE_STEPS);
+		simSpeedScale.setSelection(Math.min(Math.max(closestScalePos, 0), SIM_SPEED_SCALE_STEPS));
+		if (exec != null)
+			exec.setSpeedFactor(factorCheckedFor0);
 	}
 
 	private void addInstructionPreviewControlWidgets(Composite parent)
@@ -288,7 +324,7 @@ public class SimulationViewEditor extends EditorPart
 			IFileEditorInput fileInput = (IFileEditorInput) input;
 			context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
 			context.activateMachine();
-			context.addActiveMachineListener(activeMNachineListener);
+			context.addActiveMachineListener(activeMachineListener);
 			recreateContextDependentControls();
 
 			setPartName(fileInput.getName());
@@ -348,7 +384,7 @@ public class SimulationViewEditor extends EditorPart
 	public void dispose()
 	{
 		stopExecAndDeregisterContextDependentListeners();
-		context.removeActiveMachineListener(activeMNachineListener);
+		context.removeActiveMachineListener(activeMachineListener);
 		super.dispose();
 	}
 }
