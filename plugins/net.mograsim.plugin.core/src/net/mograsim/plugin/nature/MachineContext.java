@@ -70,7 +70,7 @@ public class MachineContext
 	 */
 	public final boolean isCurrentyValid()
 	{
-		return status == READY || status == ACTIVE;
+		return status == READY || isActive();
 	}
 
 	/**
