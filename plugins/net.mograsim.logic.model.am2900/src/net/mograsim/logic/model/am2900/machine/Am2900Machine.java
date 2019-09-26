@@ -2,7 +2,6 @@ package net.mograsim.logic.model.am2900.machine;
 
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
-import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
@@ -60,7 +59,6 @@ public class Am2900Machine implements Machine
 	@Override
 	public void reset()
 	{
-		logicModel.getComponentByName("Am2900").setHighLevelState("c.out", BitVector.of(Bit.ZERO));
 		MicroInstructionDefinition muiDef = getDefinition().getMicroInstructionMemoryDefinition().getMicroInstructionDefinition();
 		ParameterClassification[] paramClassifications = muiDef.getParameterClassifications();
 		MicroInstructionParameter[] defaultParams = muiDef.createDefaultInstruction().getParameters();
