@@ -1,9 +1,12 @@
 package net.mograsim.machine.mi.parameters;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
 
@@ -15,98 +18,7 @@ public class MnemonicFamily implements ParameterClassification
 	private Map<String, Mnemonic> byText;
 	private int vectorLength;
 
-	public MnemonicFamily(String defaultValueName, String... names)
-	{
-		this(false, defaultValueName, (int) Math.round(Math.ceil(Math.log(names.length) / Math.log(2))), names);
-	}
-
-	public MnemonicFamily(boolean reverse, String defaultValueName, String... names)
-	{
-		this(reverse, defaultValueName, (int) Math.round(Math.ceil(Math.log(names.length) / Math.log(2))), names);
-	}
-
-	public MnemonicFamily(String defaultValueName, int bits, String... names)
-	{
-		this(false, defaultValueName, bits, names);
-	}
-
-	public MnemonicFamily(boolean reverse, String defaultValueName, int bits, String... names)
-	{
-		this.values = new Mnemonic[names.length];
-		this.stringValues = new String[names.length];
-		BitVector[] values = new BitVector[names.length];
-		for (int i = 0; i < names.length; i++)
-		{
-			values[i] = BitVector.from(i, bits);
-		}
-
-		setup(names, values, reverse);
-
-		int defaultValueIndex = -1;
-		for (int i = 0; i < names.length; i++)
-			if (names[i].equals(defaultValueName))
-			{
-				defaultValueIndex = i;
-				break;
-			}
-		this.defaultValue = this.values[defaultValueIndex];
-	}
-
-	public MnemonicFamily(String defaultValueName, String[] names, long[] values, int bits)
-	{
-		this(false, defaultValueName, names, values, bits);
-	}
-
-	public MnemonicFamily(boolean reverse, String defaultValueName, String[] names, long[] values, int bits)
-	{
-		if (names.length != values.length)
-			throw new IllegalArgumentException();
-		this.values = new Mnemonic[values.length];
-		this.stringValues = new String[values.length];
-		BitVector[] vectors = new BitVector[values.length];
-
-		for (int i = 0; i < vectors.length; i++)
-		{
-			vectors[i] = BitVector.from(values[i], bits);
-		}
-
-		setup(names, vectors, reverse);
-
-		int defaultValueIndex = -1;
-		for (int i = 0; i < names.length; i++)
-			if (names[i].equals(defaultValueName))
-			{
-				defaultValueIndex = i;
-				break;
-			}
-		this.defaultValue = this.values[defaultValueIndex];
-	}
-
-	public MnemonicFamily(String defaultValueName, String[] names, BitVector[] values)
-	{
-		this(false, defaultValueName, names, values);
-	}
-
-	public MnemonicFamily(boolean reverse, String defaultValueName, String[] names, BitVector[] values)
-	{
-		if (names.length != values.length)
-			throw new IllegalArgumentException();
-		this.values = new Mnemonic[values.length];
-		this.stringValues = new String[values.length];
-
-		setup(names, values, reverse);
-
-		int defaultValueIndex = -1;
-		for (int i = 0; i < names.length; i++)
-			if (names[i].equals(defaultValueName))
-			{
-				defaultValueIndex = i;
-				break;
-			}
-		this.defaultValue = this.values[defaultValueIndex];
-	}
-
-	public MnemonicFamily(String defaultValueName, MnemonicPair... values)
+	MnemonicFamily(String defaultValueName, MnemonicPair... values)
 	{
 		this.values = new Mnemonic[values.length];
 		this.stringValues = new String[values.length];
@@ -121,14 +33,6 @@ public class MnemonicFamily implements ParameterClassification
 				break;
 			}
 		this.defaultValue = this.values[defaultValueIndex];
-	}
-
-	private void setup(String[] names, BitVector[] values, boolean reverse)
-	{
-		MnemonicPair[] mnemonics = new MnemonicPair[values.length];
-		for (int i = 0; i < values.length; i++)
-			mnemonics[i] = new MnemonicPair(names[i], reverse ? values[i].reverse() : values[i]);
-		setup(mnemonics);
 	}
 
 	private void setup(MnemonicPair[] values)
@@ -256,6 +160,123 @@ public class MnemonicFamily implements ParameterClassification
 		{
 			this.name = name;
 			this.value = value;
+		}
+	}
+
+	public static class MnemonicFamilyBuilder
+	{
+		private final List<MnemonicPair> pairs;
+		private final int bits;
+		private String defaultValue;
+
+		public MnemonicFamilyBuilder(int bits)
+		{
+			this.pairs = new LinkedList<>();
+			this.bits = bits;
+		}
+
+		public MnemonicFamilyBuilder addX()
+		{
+			pairs.add(new MnemonicPair("X", BitVector.of(Bit.ZERO, bits)));
+			return this;
+		}
+
+		public MnemonicFamilyBuilder add(MnemonicPair... pairs)
+		{
+			this.pairs.addAll(List.of(pairs));
+			return this;
+		}
+
+		/**
+		 * Adds a name with its corresponding value to the {@link MnemonicFamily}
+		 * 
+		 * @return this {@link MnemonicFamilyBuilder}
+		 */
+		public MnemonicFamilyBuilder add(String name, BitVector value)
+		{
+			add(new MnemonicPair(name, value));
+			return this;
+		}
+
+		/**
+		 * Adds names with their corresponding values to the {@link MnemonicFamily}
+		 * 
+		 * @param names  The names to be added to the {@link MnemonicFamily}
+		 * @param values The values as {@link BitVector}s
+		 * @return this {@link MnemonicFamilyBuilder}
+		 */
+		public MnemonicFamilyBuilder add(String name, long value)
+		{
+			add(new MnemonicPair(name, BitVector.from(value, bits)));
+			return this;
+		}
+
+		/**
+		 * Adds names with their corresponding values to the {@link MnemonicFamily}
+		 * 
+		 * @param names  The names to be added to the {@link MnemonicFamily}
+		 * @param values The values as {@link BitVector}s
+		 * @return this {@link MnemonicFamilyBuilder}
+		 */
+		public MnemonicFamilyBuilder add(String names[], BitVector[] values)
+		{
+			if (names.length != values.length)
+				throw new IllegalArgumentException("Cannot add Mnemonics! Amount of names does not match amount of values!");
+			for (int i = 0; i < names.length; i++)
+				add(new MnemonicPair(names[i], values[i]));
+			return this;
+		}
+
+		/**
+		 * Adds names with their corresponding values (converted to a BitVector) to the {@link MnemonicFamily}
+		 * 
+		 * @param names  The names to be added to the {@link MnemonicFamily}
+		 * @param values The values to be converted to {@link BitVector}s with a given amount of {@link MnemonicFamilyBuilder#bits}
+		 * @return this {@link MnemonicFamilyBuilder}
+		 */
+		public MnemonicFamilyBuilder add(String names[], long values[])
+		{
+			if (names.length != values.length)
+				throw new IllegalArgumentException("Cannot add Mnemonics! Amount of names does not match amount of values!");
+			for (int i = 0; i < names.length; i++)
+				add(new MnemonicPair(names[i], BitVector.from(values[i], bits)));
+			return this;
+		}
+
+		/**
+		 * Adds names to the {@link MnemonicFamily}; The corresponding {@link BitVector} value to a name is the value of its index
+		 * 
+		 * @param names The names to be added to the {@link MnemonicFamily}
+		 * @return this {@link MnemonicFamilyBuilder}
+		 */
+		public MnemonicFamilyBuilder add(String... names)
+		{
+			for (int i = 0; i < names.length; i++)
+				add(names[i], i);
+			return this;
+		}
+
+		/**
+		 * Sets the name of the default {@link Mnemonic} of this {@link MnemonicFamily}
+		 */
+		public MnemonicFamilyBuilder setDefault(String defaultValue)
+		{
+			this.defaultValue = defaultValue;
+			return this;
+		}
+
+		/**
+		 * Sets the name of the default {@link Mnemonic} of this {@link MnemonicFamily} to "X"
+		 */
+		public MnemonicFamilyBuilder setXDefault()
+		{
+			this.defaultValue = "X";
+			return this;
+		}
+
+		public MnemonicFamily build()
+		{
+			return new MnemonicFamily(defaultValue, pairs.toArray(new MnemonicPair[pairs.size()]));
 		}
 	}
 }

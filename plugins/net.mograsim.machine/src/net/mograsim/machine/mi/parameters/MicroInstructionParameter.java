@@ -8,6 +8,8 @@ public interface MicroInstructionParameter
 
 	public ParameterType getType();
 
+	public boolean isDefault();
+
 	public static enum ParameterType
 	{
 		INTEGER_IMMEDIATE, BOOLEAN_IMMEDIATE, MNEMONIC

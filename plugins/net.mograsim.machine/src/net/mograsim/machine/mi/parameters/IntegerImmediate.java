@@ -71,4 +71,10 @@ public final class IntegerImmediate implements MicroInstructionParameter
 	{
 		return getValueAsBigInteger().toString();
 	}
+
+	@Override
+	public boolean isDefault()
+	{
+		return value.getSignedValueLong() == 0;
+	}
 }
