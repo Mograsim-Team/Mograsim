@@ -6,7 +6,7 @@ public class PauseableTimeFunction implements LongSupplier
 {
 	private boolean paused = false;
 	private long unpausedSysTime = 0, lastPausedInternalTime = 0;
-	private int speedPercentage = 100;
+	private double speedFactor = 1;
 
 	public void pause()
 	{
@@ -29,18 +29,25 @@ public class PauseableTimeFunction implements LongSupplier
 	@Override
 	public long getAsLong()
 	{
-		return paused ? lastPausedInternalTime
-				: lastPausedInternalTime + ((System.currentTimeMillis() - unpausedSysTime) * speedPercentage) / 100;
+		return (long) (paused ? lastPausedInternalTime
+				: lastPausedInternalTime + (System.currentTimeMillis() - unpausedSysTime) * speedFactor);
 	}
 
-	public void setSpeedPercentage(int percentage)
+	public long simulTimeDeltaToRealTimeMillis(long simulTime)
 	{
+		return paused ? -1 : (long) (simulTime / speedFactor);
+	}
+
+	public void setSpeedFactor(double factor)
+	{
+		if (factor <= 0)
+			throw new IllegalArgumentException("time factor can't be smaller than 1");
 		if (!paused)
 		{
 			pause();
 			unpause();
 		}
-		this.speedPercentage = Integer.min(100, Integer.max(percentage, 1));
+		this.speedFactor = factor;
 	}
 
 	public boolean isPaused()
