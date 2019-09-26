@@ -3,6 +3,7 @@
 	<name>net.mograsim.machine.tests</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.machine</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

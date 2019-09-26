@@ -3,6 +3,7 @@
 	<name>net.mograsim.logic.core.tests</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.logic.core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

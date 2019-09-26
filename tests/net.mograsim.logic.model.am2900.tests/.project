@@ -3,6 +3,7 @@
 	<name>net.mograsim.logic.model.am2900.tests</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.logic.model.am2900</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

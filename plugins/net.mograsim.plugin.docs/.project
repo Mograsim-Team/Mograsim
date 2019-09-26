@@ -3,6 +3,7 @@
 	<name>net.mograsim.plugin.docs</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.plugin.core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

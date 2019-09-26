@@ -4,7 +4,9 @@
 	<comment></comment>
 	<projects>
 		<project>net.mograsim.logic.model</project>
-		<project>net.mograsim.logic.model.am2900</project>
+		<project>net.mograsim.machine</project>
+		<project>net.mograsim.preferences</project>
+		<project>SWTInput</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

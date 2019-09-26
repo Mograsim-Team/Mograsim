@@ -3,6 +3,9 @@
 	<name>net.mograsim.machine</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.logic.core</project>
+		<project>net.mograsim.logic.model</project>
+		<project>net.mograsim.preferences</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
