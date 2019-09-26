@@ -12,6 +12,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
@@ -20,7 +21,6 @@ import org.eclipse.swt.widgets.Display;
 
 import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.MachineRegistry;
-import net.mograsim.plugin.nature.ProjectContextEvent.ProjectContextEventType;
 
 public final class MachineContextSwtTools
 {
@@ -81,6 +81,15 @@ public final class MachineContextSwtTools
 			return combo;
 		}
 
+		public boolean setSelection(T newSelected)
+		{
+			if (newSelected == null)
+				combo.setSelection(new StructuredSelection(), true);
+			else
+				combo.setSelection(new StructuredSelection(newSelected), true); // TODO: can this cause errors or other problems?
+			return isValidSelection();
+		}
+
 		@SuppressWarnings("unchecked")
 		public T getSelection()
 		{
@@ -107,6 +116,8 @@ public final class MachineContextSwtTools
 		{
 			Display.getDefault().asyncExec(combo::refresh);
 		}
+
+		public abstract boolean isValidSelection();
 	}
 
 	public static class MachineCombo extends AdvancedCombo<MachineDefinition>
@@ -143,19 +154,24 @@ public final class MachineContextSwtTools
 			combo.setInput(this);
 			machineComboListeners.add(this);
 		}
+
+		@Override
+		public boolean isValidSelection()
+		{
+			MachineDefinition md = super.getSelection();
+			if (md == null)
+				return false;
+			return MachineRegistry.getMachine(md.getId()) != null;
+		}
 	}
 
-	public static class MograsimProjectCombo extends AdvancedCombo<IProject>
+	public static class MograsimProjectCombo extends AdvancedCombo<MachineContext>
 	{
 		private static final Set<MograsimProjectCombo> projectComboListeners = Collections.synchronizedSet(new HashSet<>());
 
 		static
 		{
-			ProjectMachineContext.addProjectContextListener(projectEvent ->
-			{
-				if (projectEvent.getEventType() != ProjectContextEventType.OTHER_CHANGE)
-					projectComboListeners.forEach(AdvancedCombo::refreshContent);
-			});
+			ProjectMachineContext.addProjectContextListener(projectEvent -> projectComboListeners.forEach(AdvancedCombo::refreshContent));
 		}
 
 		public MograsimProjectCombo(Composite parent)
@@ -165,7 +181,7 @@ public final class MachineContextSwtTools
 
 		public MograsimProjectCombo(Composite parent, int style)
 		{
-			super(parent, style, IProject::getName);
+			super(parent, style, mc -> mc.getProject().getName());
 			combo.setContentProvider(new IStructuredContentProvider()
 			{
 				@Override
@@ -177,17 +193,25 @@ public final class MachineContextSwtTools
 				@Override
 				public Object[] getElements(Object inputElement)
 				{
-					return PROJECT_MACHINE_CONTEXTS.values().stream().filter(mc -> mc.getProject().isOpen() && mc.isCurrentyValid())
-							.map(MachineContext::getProject).toArray();
+					return PROJECT_MACHINE_CONTEXTS.values().stream().filter(MachineContext::isCurrentyValid).toArray();
 				}
 			});
 			combo.setInput(this);
 			projectComboListeners.add(this);
 		}
+
+		@Override
+		public boolean isValidSelection()
+		{
+			MachineContext mc = super.getSelection();
+			if (mc == null)
+				return false;
+			return mc.isCurrentyValid();
+		}
 	}
 
 	/**
-	 * XXX: of no use?
+	 * XXX: is this now of no use?
 	 */
 	static Optional<String> getSelection(Combo c)
 	{
