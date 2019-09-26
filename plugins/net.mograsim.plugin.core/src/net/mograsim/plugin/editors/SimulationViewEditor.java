@@ -49,6 +49,7 @@ public class SimulationViewEditor extends EditorPart
 	private Machine machine;
 
 	private Composite parent;
+	private Button resetButton;
 	private Button sbseButton;
 	private Button pauseButton;
 	private Slider simSpeedSlider;
@@ -125,6 +126,7 @@ public class SimulationViewEditor extends EditorPart
 		if (context != null && (machineOptional = context.getActiveMachine()).isPresent())
 		{
 			noMachineLabel.setVisible(false);
+			resetButton.setEnabled(true);
 			sbseButton.setEnabled(true);
 			pauseButton.setEnabled(true);
 			simSpeedSlider.setEnabled(true);
@@ -153,6 +155,7 @@ public class SimulationViewEditor extends EditorPart
 		} else
 		{
 			noMachineLabel.setVisible(true);
+			resetButton.setEnabled(false);
 			sbseButton.setEnabled(false);
 			pauseButton.setEnabled(false);
 			simSpeedSlider.setEnabled(false);
@@ -174,6 +177,10 @@ public class SimulationViewEditor extends EditorPart
 	{
 		Composite c = new Composite(parent, SWT.NONE);
 		c.setLayout(new GridLayout(7, false));
+
+		resetButton = new Button(c, SWT.PUSH);
+		resetButton.setText("Reset machine");
+		resetButton.addListener(SWT.Selection, e -> context.getActiveMachine().get().reset());
 
 		sbseButton = new Button(c, SWT.CHECK);
 		pauseButton = new Button(c, SWT.TOGGLE);
