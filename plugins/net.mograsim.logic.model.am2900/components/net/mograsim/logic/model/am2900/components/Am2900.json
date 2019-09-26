@@ -112,7 +112,7 @@
           "y": 355.0
         },
         "params": {
-          "delta": 2000,
+          "delta": 7000,
           "orientation": "RIGHT"
         }
       },
