@@ -85,6 +85,13 @@ public class SimulationViewEditor extends EditorPart
 		double offX;
 		double offY;
 		double zoom;
+		if (exec != null)
+			exec.stopLiveExecution();
+		if (machine != null)
+		{
+			machine.getMicroInstructionMemory().deregisterCellModifiedListener(currentRegisteredCellListener);
+			machine.getClock().deregisterObserver(currentClockObserver);
+		}
 		if (canvas != null)
 		{
 			offX = canvas.getOffX();
@@ -96,14 +103,6 @@ public class SimulationViewEditor extends EditorPart
 			offX = 0;
 			offY = 0;
 			zoom = -1;
-		}
-		if (exec != null)
-			exec.stopLiveExecution();
-
-		if (machine != null)
-		{
-			machine.getMicroInstructionMemory().deregisterCellModifiedListener(currentRegisteredCellListener);
-			machine.getClock().deregisterObserver(currentClockObserver);
 		}
 
 		Optional<Machine> machineOptional;
