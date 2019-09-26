@@ -19,6 +19,15 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
 
 import net.mograsim.plugin.nature.ProjectContextEvent.ProjectContextEventType;
 
+/**
+ * This class is a register for {@link MachineContext} mapped by their {@link IProject}
+ * <p>
+ * It can be used to obtain (and thereby create if necessary) {@link MachineContext}s for projects and {@link IAdaptable}s that are somewhat
+ * associated to Mograsim nature. The register is unique and static context of this class.
+ *
+ * @author Christian Femers
+ *
+ */
 public class ProjectMachineContext
 {
 	private static Map<IProject, MachineContext> projectMachineContexts = Collections.synchronizedMap(new HashMap<>());
@@ -27,6 +36,20 @@ public class ProjectMachineContext
 	public static final String MOGRASIM_PROJECT_PREFS_NODE = "net.mograsim";
 	public static final String MACHINE_PROPERTY = "net.mograsim.projectMachineId";
 
+	private ProjectMachineContext()
+	{
+
+	}
+
+	/**
+	 * This method returns the associated machine context or created a new one if none is associated yet.
+	 * 
+	 * @param project the project to get the {@link MachineContext} for (or create one, if possible). It must have Mograsim nature.
+	 * 
+	 * @throws IllegalArgumentException if the project is not accessible or has no mograsim nature
+	 * @throws NullPointerException     if the project is null
+	 * 
+	 */
 	public static MachineContext getMachineContextOf(IProject project)
 	{
 		MachineContext mc = projectMachineContexts.get(project);
@@ -39,6 +62,17 @@ public class ProjectMachineContext
 		return mc;
 	}
 
+	/**
+	 * This method returns the associated machine context or created a new one if none is associated yet. The given resource must be
+	 * adaptable to {@link IProject}.
+	 * 
+	 * @param mograsimProjectAdapable the {@link IProject}-{@link IAdaptable} to get the {@link MachineContext} for (or create one, if
+	 *                                possible). Must be contained in a Mograsim nature project.
+	 * 
+	 * @throws IllegalArgumentException if the project is not accessible or has no mograsim nature
+	 * @throws NullPointerException     if the {@link IAdaptable} is null or it cannot be adapted to {@link IProject}
+	 * 
+	 */
 	public static MachineContext getMachineContextOf(IAdaptable mograsimProjectAdapable)
 	{
 		IProject project = Adapters.adapt(mograsimProjectAdapable, IProject.class, true);
@@ -46,6 +80,9 @@ public class ProjectMachineContext
 		return getMachineContextOf(project);
 	}
 
+	/**
+	 * Returns all {@link MachineContext} known, in the sense of all that got ever created during this runtime.
+	 */
 	public static Map<IProject, MachineContext> getAllProjectMachineContexts()
 	{
 		return Collections.unmodifiableMap(projectMachineContexts);
@@ -62,6 +99,7 @@ public class ProjectMachineContext
 		if (mograsimProjectAdapable instanceof IProject)
 		{
 			project = (IProject) mograsimProjectAdapable;
+			Objects.requireNonNull(project, "Project was null");
 		} else
 		{
 			project = Adapters.adapt(mograsimProjectAdapable, IProject.class, true);
@@ -80,6 +118,9 @@ public class ProjectMachineContext
 		return project;
 	}
 
+	/**
+	 * Tests for Mograsim nature. This method is null safe and will not throw any exception.
+	 */
 	static boolean hasMograsimNature(IProject project)
 	{
 		if (project == null)
