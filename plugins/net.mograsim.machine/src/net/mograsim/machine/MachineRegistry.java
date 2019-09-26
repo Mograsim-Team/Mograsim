@@ -16,10 +16,18 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IRegistryEventListener;
 import org.eclipse.core.runtime.Platform;
 
+/**
+ * The MachineRegsitry is a static context registry for all {@link MachineDefinition}s known at any point during runtime.
+ * <p>
+ * It is updated automatically as mograsim machine definition extension points ({@link #MACHINE_EXT_ID}) are added or removed.
+ *
+ * @author Christian Femers
+ *
+ */
 public class MachineRegistry
 {
 
-	private static final String MACHINE_EXT_ID = "net.mograsim.machine.machine_definition";
+	public static final String MACHINE_EXT_ID = "net.mograsim.machine.machine_definition";
 
 	private static final Map<String, MachineDefinition> installedMachines = Collections.synchronizedMap(new HashMap<>());
 	private static final Set<MachineRegistryListener> listeners = Collections.synchronizedSet(new HashSet<>());
