@@ -54,9 +54,12 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryC
 	@Override
 	public void updateElement(int index)
 	{
-		long address = lower + index;
-		if (address <= memory.getDefinition().getMaximalAddress())
-			viewer.replace(new MemoryTableRow(address, memory), index);
+		if (index < amount)
+		{
+			long address = lower + index;
+			if (address <= memory.getDefinition().getMaximalAddress())
+				viewer.replace(new MemoryTableRow(address, memory), index);
+		}
 	}
 
 	@Override
