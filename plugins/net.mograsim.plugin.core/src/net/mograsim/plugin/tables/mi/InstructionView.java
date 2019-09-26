@@ -175,6 +175,7 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 			{
 				IFileEditorInput fileInput = (IFileEditorInput) input;
 				context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
+				context.activateMachine();
 				setPartName(fileInput.getName());
 				open(fileInput.getFile());
 			}

@@ -1,5 +1,7 @@
 package net.mograsim.plugin.nature;
 
+import java.util.Optional;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResourceChangeEvent;
 
@@ -47,6 +49,19 @@ public class ProjectContextEvent
 				return REFRESH;
 			default:
 				return null;
+			}
+		}
+
+		Optional<MachineContextStatus> getForcedStatus()
+		{
+			switch (this)
+			{
+			case CLOSE:
+				return Optional.of(MachineContextStatus.CLOSED);
+			case DELETE:
+				return Optional.of(MachineContextStatus.DEAD);
+			default:
+				return Optional.empty();
 			}
 		}
 	}

@@ -263,7 +263,8 @@ public class SimulationViewEditor extends EditorPart
 		{
 			IFileEditorInput fileInput = (IFileEditorInput) input;
 			context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
-			context.registerObserver(m -> recreateContextDependentControls());
+			context.activateMachine();
+			context.addActiveMachineListener(m -> recreateContextDependentControls());
 			recreateContextDependentControls();
 
 			setPartName(fileInput.getName());
