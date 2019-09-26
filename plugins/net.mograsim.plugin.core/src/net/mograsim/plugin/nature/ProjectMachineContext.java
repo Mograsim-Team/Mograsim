@@ -17,13 +17,15 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
 
+import net.mograsim.machine.MachineRegistry;
 import net.mograsim.plugin.nature.ProjectContextEvent.ProjectContextEventType;
 
 /**
  * This class is a register for {@link MachineContext} mapped by their {@link IProject}
  * <p>
  * It can be used to obtain (and thereby create if necessary) {@link MachineContext}s for projects and {@link IAdaptable}s that are somewhat
- * associated to Mograsim nature. The register is unique and static context of this class.
+ * associated to Mograsim nature. The register is unique and static context of this class. Since it also depends on the installed machines,
+ * it listens to changes of the {@link MachineRegistry}.
  *
  * @author Christian Femers
  *
@@ -161,20 +163,30 @@ public class ProjectMachineContext
 	static
 	{
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(ProjectMachineContext::resourceChanged);
+		MachineRegistry.addMachineRegistryListener(newMap -> updateAllStatus());
+	}
+
+	private static void updateAllStatus()
+	{
+		projectMachineContexts.forEach((p, mc) -> mc.updateStatus());
 	}
 
 	private static void resourceChanged(IResourceChangeEvent event)
 	{
 //		System.out.println(((ResourceChangeEvent) event).toDebugString());
-		ProjectContextEventType eventType = ProjectContextEventType.ofResourceChangeEvent(event.getType());
-		if (eventType == null)
+		// We try to do as many cheap tests first as possible, because this listener is not limited to plain project actions.
+		if (event.getResource() == null)
 			return;
-		if (event.getResource() == null || event.getResource().getProject() == null)
+		IProject project = event.getResource().getProject();
+		if (project == null)
 			return;
-		MachineContext mc = projectMachineContexts.get(event.getResource().getProject());
+		MachineContext mc = projectMachineContexts.get(project);
 		if (mc == null)
 			return;
-//		System.out.println("  " + eventType + " - " + mc.getProject());
+		ProjectContextEventType eventType = ProjectContextEventType.ofResourceChangeEvent(event.getType());
+//		if (eventType == ProjectContextEventType.OTHER_CHANGE && project.isOpen())
+//			return; // we don't care about all small changes (TODO: research if this has any drawbacks)
+		eventType.getForcedStatus().ifPresent(mc::forceUpdateStatus);
 		notifyListeners(new ProjectContextEvent(mc, eventType));
 	}
 }
