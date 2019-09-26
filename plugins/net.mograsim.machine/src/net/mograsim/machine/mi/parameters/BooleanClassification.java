@@ -15,6 +15,14 @@ public class BooleanClassification extends MnemonicFamily
 		this.falseName = falseName;
 	}
 
+	public BooleanClassification(String trueName, String falseName)
+	{
+		super("X", new MnemonicPair("X", BitVector.SINGLE_0), new MnemonicPair(trueName, BitVector.SINGLE_1),
+				new MnemonicPair(falseName, BitVector.SINGLE_0));
+		this.trueName = trueName;
+		this.falseName = falseName;
+	}
+
 	public Mnemonic get(boolean value)
 	{
 		return get(value ? trueName : falseName);

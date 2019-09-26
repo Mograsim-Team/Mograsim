@@ -61,4 +61,10 @@ public final class Mnemonic implements MicroInstructionParameter
 	{
 		return text;
 	}
+
+	@Override
+	public boolean isDefault()
+	{
+		return equals(owner.getDefault());
+	}
 }
