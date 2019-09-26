@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Slider;
+import org.eclipse.swt.widgets.Scale;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
@@ -54,7 +54,7 @@ public class SimulationViewEditor extends EditorPart
 	private Button sbseButton;
 	private Button pauseButton;
 	private Label speedFactorLabel;
-	private Slider simSpeedSlider;
+	private Scale simSpeedScale;
 	private Composite canvasParent;
 	private LogicUICanvas canvas;
 	private InstructionTable instPreview;
@@ -131,7 +131,7 @@ public class SimulationViewEditor extends EditorPart
 			resetButton.setEnabled(true);
 			sbseButton.setEnabled(true);
 			pauseButton.setEnabled(true);
-			simSpeedSlider.setEnabled(true);
+			simSpeedScale.setEnabled(true);
 
 			machine = machineOptional.get();
 			canvas = new LogicUICanvas(canvasParent, SWT.NONE, machine.getModel());
@@ -162,7 +162,7 @@ public class SimulationViewEditor extends EditorPart
 			resetButton.setEnabled(false);
 			sbseButton.setEnabled(false);
 			pauseButton.setEnabled(false);
-			simSpeedSlider.setEnabled(false);
+			simSpeedScale.setEnabled(false);
 		}
 	}
 
@@ -228,16 +228,16 @@ public class SimulationViewEditor extends EditorPart
 
 		new Label(c, SWT.NONE).setText("Simulation Speed: ");
 
-		simSpeedSlider = new Slider(c, SWT.NONE);
-		simSpeedSlider.setMinimum(0);
-		simSpeedSlider.setMaximum(50 + simSpeedSlider.getThumb());
-		simSpeedSlider.setIncrement(1);
-		simSpeedSlider.setSelection(0);
+		simSpeedScale = new Scale(c, SWT.NONE);
+		simSpeedScale.setMinimum(0);
+		simSpeedScale.setMaximum(50);
+		simSpeedScale.setIncrement(1);
+		simSpeedScale.setSelection(0);
 
 		speedFactorLabel = new Label(c, SWT.NONE);
 		speedFactorLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		simSpeedSlider.addListener(SWT.Selection, e -> updateSpeedFactor());
+		simSpeedScale.addListener(SWT.Selection, e -> updateSpeedFactor());
 		updateSpeedFactor();
 
 		c.layout();
@@ -255,7 +255,7 @@ public class SimulationViewEditor extends EditorPart
 
 	private void updateSpeedFactor()
 	{
-		double factor = Math.pow(1.32, simSpeedSlider.getSelection() - 50);
+		double factor = Math.pow(1.32, simSpeedScale.getSelection() - 50);
 		speedFactorLabel.setText(String.format("%f", factor));
 		if (exec != null)
 			exec.setSpeedFactor(factor);
