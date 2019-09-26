@@ -34,6 +34,5 @@ public class Am2900Loader implements BundleActivator
 		IndirectModelComponentCreator.registerResourceLoader(resourceLoader, "Am2900Loader");
 		IndirectModelComponentCreator.loadStandardComponentIDs(Am2900Loader.class.getResourceAsStream("standardComponentIDMapping.json"));
 		MachineLoader.setup();
-//		System.out.println("SETUP DONE"); // TODO: Debug
 	}
 }
