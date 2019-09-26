@@ -160,7 +160,7 @@ public class SimulationViewEditor extends EditorPart
 
 			// initialize executer
 			exec = new LogicExecuter(machine.getTimeline());
-			updateSpeedFactorFromScale();
+			updateSpeedFactorFromInput(simSpeedInput.getValue());
 			updatePausedState();
 			exec.startLiveExecution();
 		} else
