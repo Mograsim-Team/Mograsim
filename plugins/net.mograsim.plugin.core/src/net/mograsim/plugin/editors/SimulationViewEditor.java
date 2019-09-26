@@ -30,6 +30,7 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.logic.model.LogicUICanvas;
+import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
@@ -189,11 +190,20 @@ public class SimulationViewEditor extends EditorPart
 	{
 		Composite c = new Composite(parent, SWT.NONE);
 		c.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		c.setLayout(new GridLayout(6, false));
+		c.setLayout(new GridLayout(7, false));
 
 		resetButton = new Button(c, SWT.PUSH);
 		resetButton.setText("Reset machine");
 		resetButton.addListener(SWT.Selection, e -> context.getActiveMachine().get().reset());
+
+		// TODO do we want this button in the final product?
+		Button reloadMachineButton = new Button(c, SWT.PUSH);
+		reloadMachineButton.setText("Reload machine");
+		reloadMachineButton.addListener(SWT.Selection, e ->
+		{
+			IndirectModelComponentCreator.clearComponentCache();
+			context.setActiveMachine(context.getMachineDefinition().get().createNew());
+		});
 
 		sbseButton = new Button(c, SWT.CHECK);
 		pauseButton = new Button(c, SWT.TOGGLE);
