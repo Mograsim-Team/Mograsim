@@ -19,6 +19,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
+import net.mograsim.machine.mi.AssignableMicroInstructionMemory.MIMemoryReassignedListener;
 import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemory.ActiveMicroInstructionChangedListener;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
@@ -67,9 +68,13 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 			LazyTableViewer viewer = table.getTableViewer();
 			viewer.highlightRow(highlighted, false);
 			highlighted = index;
-			viewer.highlightRow(index, true);
-			viewer.getTable().showItem(viewer.getTable().getItem(Math.min((int) memory.getDefinition().getMaximalAddress(), index + 2)));
-			viewer.getTable().showItem(viewer.getTable().getItem(index));
+			if (index != -1)
+			{
+				viewer.highlightRow(index, true);
+				viewer.getTable()
+						.showItem(viewer.getTable().getItem(Math.min((int) memory.getDefinition().getMaximalAddress(), index + 2)));
+				viewer.getTable().showItem(viewer.getTable().getItem(index));
+			}
 		});
 	}
 
@@ -77,8 +82,26 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	{
 		Button activationButton = new Button(parent, SWT.PUSH);
 		activationButton.setText("Set Active");
-		activationButton.addListener(SWT.Selection,
-				e -> context.getActiveMachine().ifPresent(m -> m.getMicroInstructionMemory().bind(memory)));
+		activationButton.addListener(SWT.Selection, e -> context.getActiveMachine().ifPresent(m ->
+		{
+			// clear highlighting if the memory is reassigned
+			MIMemoryReassignedListener memReassignedListener = n ->
+			{
+				if (n != memory)
+					highlight(-1);
+			};
+			m.getMicroInstructionMemory().registerMemoryReassignedListener(memReassignedListener);
+			// clear highlighting if the active machine changes
+			context.addActiveMachineListener(n ->
+			{
+				if (n.isEmpty() || n.get() != m)
+				{
+					highlight(-1);
+					m.getMicroInstructionMemory().deregisterMemoryReassignedListener(memReassignedListener);
+				}
+			});
+			m.getMicroInstructionMemory().bind(memory);
+		}));
 	}
 
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
