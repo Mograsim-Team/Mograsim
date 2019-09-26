@@ -21,6 +21,7 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.SaveLoadManager;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
+import net.mograsim.preferences.Preferences;
 
 public class EditorGUI
 {
@@ -73,8 +74,8 @@ public class EditorGUI
 		setupBottomToolBar(innerComp);
 
 		ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(logicCanvas);
-		userInput.buttonDrag = 3;
-		userInput.buttonZoom = 2;
+		userInput.buttonDrag = Preferences.current().getInt("net.mograsim.logic.model.button.drag");
+		userInput.buttonZoom = Preferences.current().getInt("net.mograsim.logic.model.button.zoom");
 		userInput.enableUserInput();
 		new ZoomableCanvasOverlay(logicCanvas, null).enableScale();
 	}

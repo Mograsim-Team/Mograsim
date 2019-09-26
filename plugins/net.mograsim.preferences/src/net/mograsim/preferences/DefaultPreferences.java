@@ -25,6 +25,12 @@ public class DefaultPreferences extends Preferences
 		{
 		case "net.mograsim.logic.model.debug.hlsshelldepth":
 			return 0;
+		case "net.mograsim.logic.model.button.action":
+			return 1;
+		case "net.mograsim.logic.model.button.drag":
+			return 3;
+		case "net.mograsim.logic.model.button.zoom":
+			return 2;
 		default:
 			throw new IllegalArgumentException("Unknown int preference name: " + name);
 		}

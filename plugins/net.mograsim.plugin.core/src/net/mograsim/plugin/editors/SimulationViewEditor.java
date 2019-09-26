@@ -38,6 +38,7 @@ import net.mograsim.plugin.nature.ProjectMachineContext;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.mi.ActiveInstructionPreviewContentProvider;
 import net.mograsim.plugin.tables.mi.InstructionTable;
+import net.mograsim.preferences.Preferences;
 
 //TODO what if we open multiple editors?
 //TODO actually save / load register and latch states
@@ -135,8 +136,8 @@ public class SimulationViewEditor extends EditorPart
 			machine = machineOptional.get();
 			canvas = new LogicUICanvas(canvasParent, SWT.NONE, machine.getModel());
 			ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
-			userInput.buttonDrag = 3;
-			userInput.buttonZoom = 2;
+			userInput.buttonDrag = Preferences.current().getInt("net.mograsim.logic.model.button.drag");
+			userInput.buttonZoom = Preferences.current().getInt("net.mograsim.logic.model.button.zoom");
 			userInput.enableUserInput();
 			if (zoom > 0)
 			{
