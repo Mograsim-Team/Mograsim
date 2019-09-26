@@ -3,9 +3,10 @@ package net.mograsim.logic.core.timeline;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.LongSupplier;
 
-public class PauseableTimeFunction implements LongSupplier
+import net.mograsim.logic.core.timeline.Timeline.TimeFunction;
+
+public class PauseableTimeFunction implements TimeFunction
 {
 	private boolean paused = false;
 	private long unpausedSysTime = 0, lastPausedInternalTime = 0;
@@ -17,7 +18,7 @@ public class PauseableTimeFunction implements LongSupplier
 	{
 		if (!paused)
 		{
-			lastPausedInternalTime = getAsLong();
+			lastPausedInternalTime = getTime();
 			paused = true;
 		}
 	}
@@ -32,10 +33,17 @@ public class PauseableTimeFunction implements LongSupplier
 	}
 
 	@Override
-	public long getAsLong()
+	public long getTime()
 	{
 		return (long) (paused ? lastPausedInternalTime
 				: lastPausedInternalTime + (System.nanoTime() / 1000 - unpausedSysTime) * speedFactor);
+	}
+
+	@Override
+	public void setTime(long time)
+	{
+		lastPausedInternalTime = time;
+		unpausedSysTime = System.nanoTime() / 1000;
 	}
 
 	public double getSimulTimeToRealTimeFactor()
