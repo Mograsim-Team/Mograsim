@@ -22,7 +22,7 @@ public class PauseableTimeFunction implements LongSupplier
 		if (paused)
 		{
 			paused = false;
-			unpausedSysTime = System.currentTimeMillis();
+			unpausedSysTime = System.nanoTime() / 1000;
 		}
 	}
 
@@ -30,12 +30,12 @@ public class PauseableTimeFunction implements LongSupplier
 	public long getAsLong()
 	{
 		return (long) (paused ? lastPausedInternalTime
-				: lastPausedInternalTime + (System.currentTimeMillis() - unpausedSysTime) * speedFactor);
+				: lastPausedInternalTime + (System.nanoTime() / 1000 - unpausedSysTime) * speedFactor);
 	}
 
 	public long simulTimeDeltaToRealTimeMillis(long simulTime)
 	{
-		return paused ? -1 : (long) (simulTime / speedFactor);
+		return paused ? -1 : (long) (simulTime / speedFactor / 1000);
 	}
 
 	public void setSpeedFactor(double factor)
