@@ -1,5 +1,8 @@
 package net.mograsim.logic.core.timeline;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.LongSupplier;
 
 public class PauseableTimeFunction implements LongSupplier
@@ -7,6 +10,8 @@ public class PauseableTimeFunction implements LongSupplier
 	private boolean paused = false;
 	private long unpausedSysTime = 0, lastPausedInternalTime = 0;
 	private double speedFactor = 1;
+
+	private final List<Consumer<Double>> simulTimeToRealTimeFactorChangedListeners = new ArrayList<>();
 
 	public void pause()
 	{
@@ -33,9 +38,9 @@ public class PauseableTimeFunction implements LongSupplier
 				: lastPausedInternalTime + (System.nanoTime() / 1000 - unpausedSysTime) * speedFactor);
 	}
 
-	public long simulTimeDeltaToRealTimeMillis(long simulTime)
+	public double getSimulTimeToRealTimeFactor()
 	{
-		return paused ? -1 : (long) (simulTime / speedFactor / 1000);
+		return 1 / 1000 / speedFactor;
 	}
 
 	public void setSpeedFactor(double factor)
@@ -48,7 +53,17 @@ public class PauseableTimeFunction implements LongSupplier
 			unpause();
 		}
 		this.speedFactor = factor;
+		callSimulTimeToRealTimeFactorChangedListeners(getSimulTimeToRealTimeFactor());
 	}
+
+	//@formatter:off
+	public void    addSimulTimeToRealTimeFactorChangedListener(Consumer<Double> listener)
+		{simulTimeToRealTimeFactorChangedListeners.add   (listener);}
+	public void removeSimulTimeToRealTimeFactorChangedListener(Consumer<Double> listener)
+		{simulTimeToRealTimeFactorChangedListeners.remove(listener);}
+	private void  callSimulTimeToRealTimeFactorChangedListeners(double f)
+		{simulTimeToRealTimeFactorChangedListeners.forEach(l -> l.accept(f));}
+	//@formatter:on
 
 	public boolean isPaused()
 	{
