@@ -59,13 +59,13 @@ public class SimulationViewEditor extends EditorPart
 	private InstructionTable instPreview;
 	private Label noMachineLabel;
 
-	private ActiveMachineListener activeMNachineListener;
+	private ActiveMachineListener activeMachineListener;
 	private MemoryCellModifiedListener memCellListener;
 	private LogicObserver clockObserver;
 
 	public SimulationViewEditor()
 	{
-		activeMNachineListener = m -> recreateContextDependentControls();
+		activeMachineListener = m -> recreateContextDependentControls();
 		memCellListener = a -> instPreview.refresh();
 		clockObserver = o ->
 		{
@@ -288,7 +288,7 @@ public class SimulationViewEditor extends EditorPart
 			IFileEditorInput fileInput = (IFileEditorInput) input;
 			context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
 			context.activateMachine();
-			context.addActiveMachineListener(activeMNachineListener);
+			context.addActiveMachineListener(activeMachineListener);
 			recreateContextDependentControls();
 
 			setPartName(fileInput.getName());
@@ -348,7 +348,7 @@ public class SimulationViewEditor extends EditorPart
 	public void dispose()
 	{
 		stopExecAndDeregisterContextDependentListeners();
-		context.removeActiveMachineListener(activeMNachineListener);
+		context.removeActiveMachineListener(activeMachineListener);
 		super.dispose();
 	}
 }
