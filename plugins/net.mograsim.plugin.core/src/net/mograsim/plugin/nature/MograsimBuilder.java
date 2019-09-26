@@ -22,6 +22,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class MograsimBuilder extends IncrementalProjectBuilder
 {
+	private MachineContext machineContext;
 
 	class SampleDeltaVisitor implements IResourceDeltaVisitor
 	{
@@ -93,9 +94,9 @@ public class MograsimBuilder extends IncrementalProjectBuilder
 		}
 	}
 
-	public static final String BUILDER_ID = "PluginTest.mograsimBuilder";
+	public static final String BUILDER_ID = "net.mograsim.plugin.core.mograsimBuilder";
 
-	private static final String MARKER_TYPE = "PluginTest.xmlProblem";
+	private static final String MARKER_TYPE = "net.mograsim.plugin.core.asmProblem";
 
 	private SAXParserFactory parserFactory;
 
@@ -115,6 +116,13 @@ public class MograsimBuilder extends IncrementalProjectBuilder
 		catch (CoreException e)
 		{
 		}
+	}
+
+	@Override
+	protected void startupOnInitialize()
+	{
+		super.startupOnInitialize();
+		machineContext = ProjectMachineContext.getMachineContextOf(getProject());
 	}
 
 	@Override
@@ -146,7 +154,7 @@ public class MograsimBuilder extends IncrementalProjectBuilder
 
 	void checkXML(IResource resource)
 	{
-		if (resource instanceof IFile && resource.getName().endsWith(".xml"))
+		if (resource instanceof IFile && resource.getName().endsWith(".asm"))
 		{
 			IFile file = (IFile) resource;
 			deleteMarkers(file);
