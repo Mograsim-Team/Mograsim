@@ -51,8 +51,7 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 		new RadixSelector(parent, displaySettings);
 
 		addActivationButton(parent);
-
-		table = new InstructionTable(parent, displaySettings);
+		table = new InstructionTable(parent, displaySettings, getSite().getWorkbenchWindow().getWorkbench().getThemeManager());
 		table.setContentProvider(provider);
 		table.bindMicroInstructionMemory(memory);
 
@@ -239,5 +238,12 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	public void activeMicroInstructionChanged(long address)
 	{
 		highlight((int) (address - memory.getDefinition().getMinimalAddress()));
+	}
+
+	@Override
+	public void dispose()
+	{
+		table.dispose();
+		super.dispose();
 	}
 }
