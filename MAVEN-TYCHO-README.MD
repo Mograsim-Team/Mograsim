@@ -1,6 +1,6 @@
 # Mograsim Development Environment
 
-<span style="color:grey">_Mograsim Development Documentation Version 0.2 --- 2019-09-18_</span>
+<span style="color:grey">_Mograsim Development Documentation Version 0.3 --- 2019-09-27_</span>
 
 A short guide to the Mograsim Maven Tycho configuration and Maven Tycho in general, 
 as well as some information on Eclipse Plugin Development and OSGi.
@@ -133,7 +133,7 @@ The tree of Mograsim projects:
   git submodule._
     - `bundles` - _This submodule folder needs to be named like that for Tycho pom-less 
       build to work._
-        - <span style="color:grey">_SWTInput_</span> - _unused_
+        - **SWTInput** - Contains type specific input fields for SWT.
         - **SWTObjectWrappers** - SWT object abstractions to enable zooming and optimizations.
         - <span style="color:grey">_SWTSystemInOutApplication_</span> - _unused_
         - <span style="color:grey">_SWTTiledZoomableCanvas_</span> - _unused_
