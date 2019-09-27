@@ -2,17 +2,21 @@ package net.mograsim.plugin.tables.mi;
 
 import java.math.BigInteger;
 
+import org.eclipse.swt.graphics.Color;
+
 import net.mograsim.machine.mi.parameters.IntegerImmediate;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.NumberColumnLabelProvider;
 
 public class IntegerColumnLabelProvider extends NumberColumnLabelProvider
 {
-	private int index;
+	private final int index;
+	private final ColorProvider cProv;
 
-	public IntegerColumnLabelProvider(DisplaySettings displaySettings, int index)
+	public IntegerColumnLabelProvider(DisplaySettings displaySettings, ColorProvider cProv, int index)
 	{
 		super(displaySettings);
+		this.cProv = cProv;
 		this.index = index;
 	}
 
@@ -30,4 +34,15 @@ public class IntegerColumnLabelProvider extends NumberColumnLabelProvider
 				.getExpectedBits();
 	}
 
+	@Override
+	public Color getBackground(Object element)
+	{
+		return cProv.getBackground(element, index);
+	}
+
+	@Override
+	public Color getForeground(Object element)
+	{
+		return cProv.getForeground(element, index);
+	}
 }

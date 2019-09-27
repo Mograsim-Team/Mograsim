@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.ui.themes.IThemeManager;
 
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemory;
@@ -28,17 +29,19 @@ import net.mograsim.plugin.tables.LazyTableViewer;
 
 public class InstructionTable
 {
-	protected DisplaySettings displaySettings;
-	protected LazyTableViewer viewer;
+	protected final DisplaySettings displaySettings;
+	protected final LazyTableViewer viewer;
 	private TableViewerColumn[] columns = new TableViewerColumn[0];
 	private MicroInstructionDefinition miDef;
 	private MicroInstructionMemory memory;
 	private InstructionTableContentProvider provider;
+	private final ColorProvider cProv;
 
-	public InstructionTable(Composite parent, DisplaySettings displaySettings)
+	public InstructionTable(Composite parent, DisplaySettings displaySettings, IThemeManager themeManager)
 	{
 		viewer = new LazyTableViewer(parent, SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 		this.displaySettings = displaySettings;
+		this.cProv = new ColorProvider(viewer, themeManager);
 
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
@@ -157,15 +160,15 @@ public class InstructionTable
 		{
 		case BOOLEAN_IMMEDIATE:
 			support = new BooleanEditingSupport(viewer, miDef, index);
-			provider = new ParameterLabelProvider(index);
+			provider = new ParameterLabelProvider(cProv, index);
 			break;
 		case INTEGER_IMMEDIATE:
 			support = new IntegerEditingSupport(viewer, miDef, index, displaySettings, this.provider);
-			provider = new IntegerColumnLabelProvider(displaySettings, index);
+			provider = new IntegerColumnLabelProvider(displaySettings, cProv, index);
 			break;
 		case MNEMONIC:
 			support = new MnemonicEditingSupport(viewer, miDef, index, this.provider);
-			provider = new ParameterLabelProvider(index);
+			provider = new ParameterLabelProvider(cProv, index);
 			break;
 		default:
 			throw new IllegalStateException(
@@ -229,5 +232,11 @@ public class InstructionTable
 	public void refresh()
 	{
 		Display.getDefault().asyncExec(() -> viewer.refresh());
+	}
+
+	public void dispose()
+	{
+		cProv.dispose();
+		viewer.getTable().dispose();
 	}
 }

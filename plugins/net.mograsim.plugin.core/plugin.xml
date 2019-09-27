@@ -206,6 +206,11 @@
             label="%themeElementCategory.label.0"
             parentId="net.mograsim.plugin.mograsim">
       </themeElementCategory>
+      <themeElementCategory
+            class="net.mograsim.plugin.SimulationPreview"
+            id="net.mograsim.plugin.mi"
+            label="%themeElementCategory.label.1">
+      </themeElementCategory>
       <colorDefinition
             categoryId="net.mograsim.logic.model"
             id="net.mograsim.logic.model.color.background"
@@ -298,6 +303,20 @@
             isEditable="true"
             label="%fontDefinition.label">
       </fontDefinition>
+      <colorDefinition
+            categoryId="net.mograsim.plugin.mi"
+            id="net.mograsim.plugin.modified_cell_bg_color"
+            isEditable="true"
+            label="%colorDefinition.label.11"
+            value="COLOR_BLUE">
+      </colorDefinition>
+      <colorDefinition
+            categoryId="net.mograsim.plugin.mi"
+            id="net.mograsim.plugin.modified_cell_fg_color"
+            isEditable="true"
+            label="%colorDefinition.label.12"
+            value="COLOR_WHITE">
+      </colorDefinition>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
