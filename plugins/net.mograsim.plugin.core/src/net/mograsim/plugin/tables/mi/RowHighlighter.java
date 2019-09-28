@@ -1,5 +1,6 @@
 package net.mograsim.plugin.tables.mi;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.swt.widgets.Display;
@@ -9,13 +10,15 @@ import net.mograsim.plugin.tables.LazyTableViewer;
 
 public class RowHighlighter
 {
-	private int highlighted, toHighlight;
+	private int highlighted = -1, toHighlight;
 	private LazyTableViewer viewer;
 	private AtomicBoolean waiting = new AtomicBoolean();
+	private ColorProvider cProv;
 
-	public RowHighlighter(LazyTableViewer viewer)
+	public RowHighlighter(LazyTableViewer viewer, ColorProvider cProv)
 	{
 		this.viewer = viewer;
+		this.cProv = cProv;
 	}
 
 	public void highlight(int row)
@@ -41,14 +44,16 @@ public class RowHighlighter
 
 	private void innerHighlight(int row)
 	{
-		viewer.highlightRow(highlighted, false);
-		highlighted = row;
+		Table table = viewer.getTable();
+		cProv.highlight(row);
 		if (row != -1)
 		{
-			viewer.highlightRow(row, true);
-			Table table = viewer.getTable();
 			table.showItem(table.getItem(Math.min(table.getItemCount(), row + 2)));
 			table.showItem(table.getItem(row));
+			Optional.of(table.getItem(row).getData()).ifPresent(d -> viewer.update(d, null));
 		}
+		if (highlighted != -1)
+			Optional.of(table.getItem(highlighted).getData()).ifPresent(d -> viewer.update(d, null));
+		highlighted = row;
 	}
 }

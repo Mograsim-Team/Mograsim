@@ -35,7 +35,6 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	private MicroInstructionMemory memory;
 	private InstructionTable table;
 	private MachineContext context;
-	private RowHighlighter highlighter;
 
 	@SuppressWarnings("unused")
 	@Override
@@ -56,12 +55,11 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 		GridData viewerData = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
 		viewerData.horizontalSpan = 3;
 		table.getTableViewer().getTable().setLayoutData(viewerData);
-		highlighter = new RowHighlighter(table.getTableViewer());
 	}
 
-	public void highlight(int index)
+	public void highlight(int row)
 	{
-		highlighter.highlight(index);
+		table.highlight(row);
 	}
 
 	private void addActivationButton(Composite parent)

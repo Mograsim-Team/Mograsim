@@ -12,6 +12,8 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TableViewerEditor;
 import org.eclipse.jface.viewers.TableViewerFocusCellManager;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -35,6 +37,7 @@ public class InstructionTable
 	private MicroInstructionDefinition miDef;
 	private MicroInstructionMemory memory;
 	private InstructionTableContentProvider provider;
+	private final RowHighlighter highlighter;
 	private final ColorProvider cProv;
 
 	public InstructionTable(Composite parent, DisplaySettings displaySettings, IThemeManager themeManager)
@@ -42,6 +45,7 @@ public class InstructionTable
 		viewer = new LazyTableViewer(parent, SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 		this.displaySettings = displaySettings;
 		this.cProv = new ColorProvider(viewer, themeManager);
+		this.highlighter = new RowHighlighter(viewer, cProv);
 
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
@@ -87,7 +91,26 @@ public class InstructionTable
 
 		TableViewerColumn col = createTableViewerColumn("Address");
 		columns[0] = col;
-		col.setLabelProvider(new AddressLabelProvider());
+		col.setLabelProvider(new AddressLabelProvider()
+		{
+			@Override
+			public Color getBackground(Object element)
+			{
+				return cProv.getBackground(element, -1);
+			}
+
+			@Override
+			public Color getForeground(Object element)
+			{
+				return cProv.getForeground(element, -1);
+			}
+
+			@Override
+			public Font getFont(Object element)
+			{
+				return cProv.getFont(element, -1);
+			}
+		});
 
 		String[] columnTitles = new String[size];
 
@@ -238,5 +261,10 @@ public class InstructionTable
 	{
 		cProv.dispose();
 		viewer.getTable().dispose();
+	}
+
+	public void highlight(int row)
+	{
+		highlighter.highlight(row);
 	}
 }

@@ -2,6 +2,7 @@ package net.mograsim.plugin.tables.mi;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 
 public class ParameterLabelProvider extends ColumnLabelProvider
 {
@@ -32,5 +33,11 @@ public class ParameterLabelProvider extends ColumnLabelProvider
 	public Color getForeground(Object element)
 	{
 		return cProv.getForeground(element, index);
+	}
+
+	@Override
+	public Font getFont(Object element)
+	{
+		return cProv.getFont(element, index);
 	}
 }
