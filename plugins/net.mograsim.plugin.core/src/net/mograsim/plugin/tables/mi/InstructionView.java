@@ -11,7 +11,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
@@ -27,17 +26,16 @@ import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.plugin.nature.MachineContext;
 import net.mograsim.plugin.nature.ProjectMachineContext;
 import net.mograsim.plugin.tables.DisplaySettings;
-import net.mograsim.plugin.tables.LazyTableViewer;
 import net.mograsim.plugin.tables.RadixSelector;
 
 public class InstructionView extends EditorPart implements MemoryCellModifiedListener, ActiveMicroInstructionChangedListener
 {
 	private InstructionTableContentProvider provider;
-	private int highlighted = 0;
 	private boolean dirty = false;
 	private MicroInstructionMemory memory;
 	private InstructionTable table;
 	private MachineContext context;
+	private RowHighlighter highlighter;
 
 	@SuppressWarnings("unused")
 	@Override
@@ -58,23 +56,12 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 		GridData viewerData = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
 		viewerData.horizontalSpan = 3;
 		table.getTableViewer().getTable().setLayoutData(viewerData);
+		highlighter = new RowHighlighter(table.getTableViewer());
 	}
 
 	public void highlight(int index)
 	{
-		Display.getDefault().asyncExec(() ->
-		{
-			LazyTableViewer viewer = table.getTableViewer();
-			viewer.highlightRow(highlighted, false);
-			highlighted = index;
-			if (index != -1)
-			{
-				viewer.highlightRow(index, true);
-				viewer.getTable()
-						.showItem(viewer.getTable().getItem(Math.min((int) memory.getDefinition().getMaximalAddress(), index + 2)));
-				viewer.getTable().showItem(viewer.getTable().getItem(index));
-			}
-		});
+		highlighter.highlight(index);
 	}
 
 	private void addActivationButton(Composite parent)
