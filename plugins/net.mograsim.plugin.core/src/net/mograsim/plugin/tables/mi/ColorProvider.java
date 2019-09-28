@@ -4,8 +4,11 @@ import org.eclipse.jface.resource.ColorRegistry;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.themes.ITheme;
 import org.eclipse.ui.themes.IThemeManager;
 
 import net.mograsim.machine.mi.MicroInstructionMemory;
@@ -17,6 +20,7 @@ public class ColorProvider
 	private long highlightedAddress = -1;
 	private ColorRegistry cRegistry;
 	private FontRegistry fRegistry;
+	private Font boldItalic;
 
 	private final static String font = "net.mograsim.plugin.table_font",
 			colorModifBackground = "net.mograsim.plugin.modified_cell_bg_color",
@@ -29,15 +33,13 @@ public class ColorProvider
 	{
 		this.viewer = viewer;
 		this.themeManager = themeManager;
-		this.cRegistry = themeManager.getCurrentTheme().getColorRegistry();
-		this.fRegistry = themeManager.getCurrentTheme().getFontRegistry();
+		themeChanged(themeManager.getCurrentTheme());
 		updateListener = e ->
 		{
 			switch (e.getProperty())
 			{
 			case IThemeManager.CHANGE_CURRENT_THEME:
-				cRegistry = themeManager.getCurrentTheme().getColorRegistry();
-				fRegistry = themeManager.getCurrentTheme().getFontRegistry();
+				themeChanged(themeManager.getCurrentTheme());
 				//$FALL-THROUGH$
 			case font:
 			case colorModifBackground:
@@ -49,6 +51,13 @@ public class ColorProvider
 			}
 		};
 		themeManager.addPropertyChangeListener(updateListener);
+	}
+
+	private void themeChanged(ITheme theme)
+	{
+		cRegistry = theme.getColorRegistry();
+		fRegistry = theme.getFontRegistry();
+		boldItalic = fRegistry.getDescriptor(font).setStyle(SWT.BOLD | SWT.ITALIC).createFont(Display.getDefault());
 	}
 
 	public Color getBackground(Object element, int column)
@@ -78,7 +87,14 @@ public class ColorProvider
 	public Font getFont(Object element, int column)
 	{
 		InstructionTableRow row = (InstructionTableRow) element;
-		return !isDefault(row, column) || isHighlighted(row) ? fRegistry.getBold(font) : fRegistry.get(font);
+		boolean modified = !isDefault(row, column), highlighted = isHighlighted(row);
+		if (modified && highlighted)
+			return boldItalic;
+		if (modified)
+			return fRegistry.getItalic(font);
+		if (highlighted)
+			return fRegistry.getBold(font);
+		return fRegistry.get(font);
 	}
 
 	private static boolean isDefault(InstructionTableRow row, int column)
