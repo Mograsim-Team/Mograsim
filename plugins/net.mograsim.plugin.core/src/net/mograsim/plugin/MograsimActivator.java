@@ -8,6 +8,8 @@ import net.mograsim.preferences.Preferences;
 
 public final class MograsimActivator extends AbstractUIPlugin
 {
+	public static final String PLUGIN_ID = "net.mograsim.plugin.core";
+
 	private static MograsimActivator instance;
 
 	public MograsimActivator()

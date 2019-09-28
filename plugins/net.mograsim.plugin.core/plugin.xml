@@ -357,4 +357,38 @@
 	   		<selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
 	</extension>
+ <extension
+       point="org.eclipse.debug.core.launchConfigurationTypes">
+    <launchConfigurationType
+          delegate="net.mograsim.plugin.launch.MachineLaunchConfigType"
+          id="net.mograsim.plugin.core.launchmachine.type"
+          modes="run, debug"
+          name="Mograsim machine">
+    </launchConfigurationType>
+ </extension>
+ <extension
+       point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+    <launchConfigurationTabGroup
+          class="net.mograsim.plugin.launch.EmptyLaunchConfigTabGroup"
+          id="net.mograsim.plugin.core.launchmachine.tabgroup"
+          type="net.mograsim.plugin.core.launchmachine.type">
+    </launchConfigurationTabGroup>
+ </extension>
+ <extension
+       point="org.eclipse.debug.ui.launchConfigurationTabs">
+    <tab
+          class="net.mograsim.plugin.launch.MainMachineLaunchConfigTab"
+          group="net.mograsim.plugin.core.launchmachine.tabgroup"
+          id="net.mograsim.plugin.core.launchmachine.maintab"
+          name="Common">
+    </tab>
+ </extension>
+ <extension
+       point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+    <launchConfigurationTypeImage
+          configTypeID="net.mograsim.plugin.core.launchmachine.type"
+          icon="icons/mograsim/orange/icon_orange_16.png"
+          id="net.mograsim.plugin.core.launchmachine.image">
+    </launchConfigurationTypeImage>
+ </extension>
 </plugin>
