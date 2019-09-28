@@ -3,6 +3,7 @@ package net.mograsim.plugin.tables.mi;
 import java.math.BigInteger;
 
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
 
 import net.mograsim.machine.mi.parameters.IntegerImmediate;
 import net.mograsim.plugin.tables.DisplaySettings;
@@ -44,5 +45,11 @@ public class IntegerColumnLabelProvider extends NumberColumnLabelProvider
 	public Color getForeground(Object element)
 	{
 		return cProv.getForeground(element, index);
+	}
+
+	@Override
+	public Font getFont(Object element)
+	{
+		return cProv.getFont(element, index);
 	}
 }
