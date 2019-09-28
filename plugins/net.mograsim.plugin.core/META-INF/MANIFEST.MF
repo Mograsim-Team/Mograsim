@@ -8,6 +8,7 @@ Export-Package: net.mograsim.plugin;uses:="org.eclipse.ui.themes,org.eclipse.swt
  net.mograsim.plugin.asm.editor,
  net.mograsim.plugin.asm.editor.rules,
  net.mograsim.plugin.editors,
+ net.mograsim.plugin.launch,
  net.mograsim.plugin.nature,
  net.mograsim.plugin.nature.properties,
  net.mograsim.plugin.tables,
@@ -32,7 +33,9 @@ Require-Bundle: org.eclipse.core.runtime,
  net.mograsim.preferences;bundle-version="0.1.0",
  net.mograsim.machine,
  org.eclipse.core.expressions,
- SWTInput
+ SWTInput,
+ org.eclipse.debug.core;bundle-version="3.14.0",
+ org.eclipse.debug.ui;bundle-version="3.14.200"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: net.mograsim.plugin.core
 Bundle-Vendor: %Bundle-Vendor.0
