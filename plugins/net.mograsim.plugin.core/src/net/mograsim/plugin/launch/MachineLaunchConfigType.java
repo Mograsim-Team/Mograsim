@@ -122,7 +122,8 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 
 		// TODO parse RAM
 
-		MachineDebugTarget debugTarget = new MachineDebugTarget(new MachineProcess(launch, machineDefinition));
+		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, machineDefinition);
+		debugTarget.suspend();
 		debugTarget.setExecutionSpeed(1);
 		Machine machine = debugTarget.getMachine();
 		machine.getMicroInstructionMemory().bind(mpm);
