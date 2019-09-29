@@ -1,7 +1,5 @@
 package net.mograsim.plugin.launch;
 
-import java.util.Arrays;
-
 import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.PlatformObject;
@@ -21,34 +19,27 @@ import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStepFilters;
 import org.eclipse.debug.core.model.IThread;
 
+import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.machine.Machine;
+import net.mograsim.machine.MachineDefinition;
 import net.mograsim.plugin.MograsimActivator;
 
 public class MachineDebugTarget extends PlatformObject implements IDebugTarget, IMemoryBlockRetrievalExtension
 {
-	private final MachineProcess process;
+	private final ILaunch launch;
+	private final Machine machine;
+	private final LogicExecuter exec;
 
-	public MachineDebugTarget(MachineProcess process)
+	private boolean running;
+
+	public MachineDebugTarget(ILaunch launch, MachineDefinition machineDefinition)
 	{
-		this.process = process;
+		this.launch = launch;
+		this.machine = machineDefinition.createNew();
+		this.exec = new LogicExecuter(machine.getTimeline());
 
-		DebugPlugin.getDefault().addDebugEventListener(es -> Arrays.stream(es).filter(e -> e.getSource() == process).forEach(e ->
-		{
-			switch (e.getKind())
-			{
-			case DebugEvent.RESUME:
-				fireResumeEvent(e.getDetail());
-				break;
-			case DebugEvent.SUSPEND:
-				fireSuspendEvent(e.getDetail());
-				break;
-			case DebugEvent.TERMINATE:
-				fireTerminateEvent();
-				break;
-			default:
-				// ignore
-			}
-		}));
+		exec.startLiveExecution();
+		running = true;
 
 		getLaunch().addDebugTarget(this);
 		fireCreationEvent();
@@ -56,13 +47,13 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 
 	public Machine getMachine()
 	{
-		return process.getMachine();
+		return machine;
 	}
 
 	@Override
 	public String getName() throws DebugException
 	{
-		return process.getName();
+		return "Mograsim machine \"" + machine.getDefinition().getId() + '"';
 	}
 
 	@Override
@@ -80,60 +71,77 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	@Override
 	public ILaunch getLaunch()
 	{
-		return process.getLaunch();
+		return launch;
 	}
 
 	public void setExecutionSpeed(double speed)
 	{
-		process.setExecutionSpeed(speed);
+		exec.setSpeedFactor(speed);
 	}
 
 	@Override
 	public boolean isSuspended()
 	{
-		return process.isSuspended();
+		return exec.isPaused();
 	}
 
 	@Override
 	public boolean canSuspend()
 	{
-		return process.canSuspend();
+		return !isTerminated() && !isSuspended();
 	}
 
 	@Override
 	public void suspend() throws DebugException
 	{
-		process.suspend();
+		if (isTerminated())
+			throwDebugException("Can't suspend a terminated MachineProcess");
+		if (isSuspended())
+			throwDebugException("Can't suspend a suspended MachineProcess");
+
+		exec.pauseLiveExecution();
+		fireSuspendEvent(DebugEvent.CLIENT_REQUEST);
 	}
 
 	@Override
 	public boolean canResume()
 	{
-		return process.canResume();
+		return !isTerminated() && isSuspended();
 	}
 
 	@Override
 	public void resume() throws DebugException
 	{
-		process.resume();
+		if (isTerminated())
+			throwDebugException("Can't resume a terminated MachineProcess");
+		if (!isSuspended())
+			throwDebugException("Can't resume a non-suspended MachineProcess");
+
+		exec.unpauseLiveExecution();
+		fireResumeEvent(DebugEvent.CLIENT_REQUEST);
 	}
 
 	@Override
 	public boolean isTerminated()
 	{
-		return process.isTerminated();
+		return !running;
 	}
 
 	@Override
 	public boolean canTerminate()
 	{
-		return process.canTerminate();
+		return !isTerminated();
 	}
 
 	@Override
 	public void terminate() throws DebugException
 	{
-		process.terminate();
+		if (isTerminated())
+			return;
+
+		exec.stopLiveExecution();
+		running = false;
+		fireTerminateEvent();
 	}
 
 	@Override
@@ -199,9 +207,9 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	}
 
 	@Override
-	public MachineProcess getProcess()
+	public IProcess getProcess()
 	{
-		return process;
+		return null;
 	}
 
 	@Override
@@ -233,9 +241,6 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 
 		if (adapter == ILaunch.class)
 			return (T) getLaunch();
-
-		if (adapter == IProcess.class)
-			return (T) getProcess();
 
 		// CONTEXTLAUNCHING
 		if (adapter == ILaunchConfiguration.class)
@@ -288,5 +293,11 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	private static void fireEvent(DebugEvent event)
 	{
 		DebugPlugin.getDefault().fireDebugEventSet(new DebugEvent[] { event });
+	}
+
+	private static void throwDebugException(String message) throws DebugException
+	{
+		throw new DebugException(
+				new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED, message, null));
 	}
 }
