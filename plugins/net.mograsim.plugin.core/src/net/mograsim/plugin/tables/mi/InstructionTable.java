@@ -51,6 +51,7 @@ public class InstructionTable
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 		viewer.setUseHashlookup(true);
+		table.addDisposeListener(e -> dispose());
 
 		TableViewerFocusCellManager focusCellManager = new TableViewerFocusCellManager(viewer, new FocusCellOwnerDrawHighlighter(viewer));
 
@@ -257,7 +258,7 @@ public class InstructionTable
 		Display.getDefault().asyncExec(() -> viewer.refresh());
 	}
 
-	public void dispose()
+	private void dispose()
 	{
 		cProv.dispose();
 		viewer.getTable().dispose();

@@ -24,17 +24,45 @@ import net.mograsim.machine.mi.MicroInstructionMemory.ActiveMicroInstructionChan
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.plugin.nature.MachineContext;
+import net.mograsim.plugin.nature.MachineContext.ActiveMachineListener;
 import net.mograsim.plugin.nature.ProjectMachineContext;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.RadixSelector;
 
-public class InstructionView extends EditorPart implements MemoryCellModifiedListener, ActiveMicroInstructionChangedListener
+public class InstructionView extends EditorPart
 {
 	private InstructionTableContentProvider provider;
 	private boolean dirty = false;
 	private MicroInstructionMemory memory;
 	private InstructionTable table;
 	private MachineContext context;
+
+	// Listeners
+	private MemoryCellModifiedListener cellModifiedListener = address ->
+	{
+		setDirty(true);
+		table.refresh();
+	};
+
+	private ActiveMicroInstructionChangedListener activeInstructionChangedListener = address -> highlight(
+			(int) (address - memory.getDefinition().getMinimalAddress()));
+
+	private MIMemoryReassignedListener reassignedListener = newAssignee ->
+	{
+		// clear highlighting if the memory is reassigned
+		if (newAssignee != memory)
+			highlight(-1);
+	};
+
+	private ActiveMachineListener activeMachineListener = (oldMachine, newMachine) ->
+	{
+		// clear highlighting if the active machine changes
+		if (newMachine.isEmpty() || !newMachine.equals(oldMachine))
+		{
+			highlight(-1);
+			oldMachine.ifPresent(m -> m.getMicroInstructionMemory().deregisterMemoryReassignedListener(reassignedListener));
+		}
+	};
 
 	@SuppressWarnings("unused")
 	@Override
@@ -68,22 +96,8 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 		activationButton.setText("Set Active");
 		activationButton.addListener(SWT.Selection, e -> context.getActiveMachine().ifPresent(m ->
 		{
-			// clear highlighting if the memory is reassigned
-			MIMemoryReassignedListener memReassignedListener = n ->
-			{
-				if (n != memory)
-					highlight(-1);
-			};
-			m.getMicroInstructionMemory().registerMemoryReassignedListener(memReassignedListener);
-			// clear highlighting if the active machine changes
-			context.addActiveMachineListener(n ->
-			{
-				if (n.isEmpty() || n.get() != m)
-				{
-					highlight(-1);
-					m.getMicroInstructionMemory().deregisterMemoryReassignedListener(memReassignedListener);
-				}
-			});
+			m.getMicroInstructionMemory().registerMemoryReassignedListener(reassignedListener);
+			context.addActiveMachineListener(activeMachineListener);
 			m.getMicroInstructionMemory().bind(memory);
 		}));
 	}
@@ -92,14 +106,14 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	{
 		if (this.memory != null)
 		{
-			this.memory.deregisterCellModifiedListener(this);
-			this.memory.deregisterActiveMicroInstructionChangedListener(this);
+			this.memory.deregisterCellModifiedListener(cellModifiedListener);
+			this.memory.deregisterActiveMicroInstructionChangedListener(activeInstructionChangedListener);
 		}
 		this.memory = memory;
 		if (memory != null)
 		{
-			this.memory.registerCellModifiedListener(this);
-			this.memory.registerActiveMicroInstructionChangedListener(this);
+			this.memory.registerCellModifiedListener(cellModifiedListener);
+			this.memory.registerActiveMicroInstructionChangedListener(activeInstructionChangedListener);
 		}
 		if (table != null)
 			table.bindMicroInstructionMemory(memory);
@@ -206,13 +220,6 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 		return false;
 	}
 
-	@Override
-	public void update(long address)
-	{
-		setDirty(true);
-		table.refresh();
-	}
-
 	private void setDirty(boolean value)
 	{
 		dirty = value;
@@ -220,15 +227,12 @@ public class InstructionView extends EditorPart implements MemoryCellModifiedLis
 	}
 
 	@Override
-	public void activeMicroInstructionChanged(long address)
-	{
-		highlight((int) (address - memory.getDefinition().getMinimalAddress()));
-	}
-
-	@Override
 	public void dispose()
 	{
-		table.dispose();
+		memory.deregisterActiveMicroInstructionChangedListener(activeInstructionChangedListener);
+		memory.deregisterCellModifiedListener(cellModifiedListener);
+		context.getActiveMachine().ifPresent(m -> m.getMicroInstructionMemory().deregisterMemoryReassignedListener(reassignedListener));
+		context.removeActiveMachineListener(activeMachineListener);
 		super.dispose();
 	}
 }

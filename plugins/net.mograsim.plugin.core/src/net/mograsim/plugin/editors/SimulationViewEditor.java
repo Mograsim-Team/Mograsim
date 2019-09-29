@@ -72,7 +72,7 @@ public class SimulationViewEditor extends EditorPart
 
 	public SimulationViewEditor()
 	{
-		activeMachineListener = m -> recreateContextDependentControls();
+		activeMachineListener = (oldM, newM) -> recreateContextDependentControls();
 		memCellListener = a -> instPreview.refresh();
 		clockObserver = o ->
 		{

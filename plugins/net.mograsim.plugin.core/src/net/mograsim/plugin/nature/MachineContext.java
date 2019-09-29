@@ -122,9 +122,10 @@ public class MachineContext
 	 */
 	public final void setActiveMachine(Machine machine)
 	{
+		Optional<Machine> oldMachine = activeMachine;
 		activeMachine = Optional.ofNullable(machine);
 		updateStatus();
-		notifyActiveMachineListeners();
+		notifyActiveMachineListeners(oldMachine, activeMachine);
 	}
 
 	public final Optional<String> getMachineId()
@@ -208,8 +209,9 @@ public class MachineContext
 	{
 		if ((status == DEAD || status == CLOSED) && activeMachine.isPresent())
 		{
+			Optional<Machine> oldMachine = activeMachine;
 			activeMachine = Optional.empty();
-			notifyActiveMachineListeners();
+			notifyActiveMachineListeners(oldMachine, activeMachine);
 		}
 	}
 
@@ -247,15 +249,15 @@ public class MachineContext
 		}
 	}
 
-	private void notifyActiveMachineListeners()
+	private void notifyActiveMachineListeners(Optional<Machine> oldMachine, Optional<Machine> newMachine)
 	{
-		machineListeners.forEach(ob -> ob.setMachine(activeMachine));
+		machineListeners.forEach(ob -> ob.setMachine(oldMachine, newMachine));
 	}
 
 	public void addActiveMachineListener(ActiveMachineListener ob)
 	{
 		machineListeners.add(ob);
-		ob.setMachine(activeMachine);
+		ob.setMachine(Optional.empty(), activeMachine);
 	}
 
 	public void removeActiveMachineListener(ActiveMachineListener ob)
@@ -282,7 +284,7 @@ public class MachineContext
 	@FunctionalInterface
 	public static interface ActiveMachineListener
 	{
-		void setMachine(Optional<Machine> machine);
+		void setMachine(Optional<Machine> oldMachine, Optional<Machine> newMachine);
 	}
 
 	@FunctionalInterface
