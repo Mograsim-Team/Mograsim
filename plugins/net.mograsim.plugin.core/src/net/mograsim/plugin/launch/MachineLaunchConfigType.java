@@ -30,8 +30,9 @@ import net.mograsim.plugin.nature.ProjectMachineContext;
 
 public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 {
-	public static final String PROJECT_ATTR = MograsimActivator.PLUGIN_ID + "project";
-	public static final String MPM_FILE_ATTR = MograsimActivator.PLUGIN_ID + "mpm";
+	public static final String PROJECT_ATTR = MograsimActivator.PLUGIN_ID + ".project";
+	public static final String MPM_FILE_ATTR = MograsimActivator.PLUGIN_ID + ".mpm";
+	public static final String INITIAL_RAM_FILE_ATTR = MograsimActivator.PLUGIN_ID + ".initialram";
 
 	private final IResourceChangeListener resChangedListener;
 
@@ -86,6 +87,8 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 			throw new CoreException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading MPM file", e));
 		}
 
+		// TODO parse RAM
+
 		return super.preLaunchCheck(configuration, mode, monitor);
 	}
 
@@ -117,10 +120,13 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 			throw new CoreException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading MPM file", e));
 		}
 
+		// TODO parse RAM
+
 		MachineDebugTarget debugTarget = new MachineDebugTarget(new MachineProcess(launch, machineDefinition));
 		debugTarget.setExecutionSpeed(1);
 		Machine machine = debugTarget.getMachine();
 		machine.getMicroInstructionMemory().bind(mpm);
+		// TODO bind RAM
 		machine.reset();
 	}
 
