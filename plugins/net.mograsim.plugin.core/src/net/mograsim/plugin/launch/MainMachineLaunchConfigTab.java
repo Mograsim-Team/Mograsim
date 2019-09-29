@@ -27,7 +27,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
@@ -52,27 +52,28 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 		Composite innerParent = new Composite(parent, SWT.NONE);
 		setControl(innerParent);
 
-		innerParent.setLayout(new GridLayout());
+		innerParent.setLayout(new GridLayout(3, false));
 
-		this.projSelText = createResourceSelectorGroup(innerParent, "&Project:", this::chooseMograsimProject);
+		this.projSelText = addResourceSelector(innerParent, "&Project:", this::chooseMograsimProject);
 
-		this.mpmFileSelText = createResourceSelectorGroup(innerParent, "&MPM:", this::chooseMPMFile);
+		this.mpmFileSelText = addResourceSelector(innerParent, "&MPM:", this::chooseMPMFile);
 
-		this.initialRAMFileSelText = createResourceSelectorGroup(innerParent, "Initial &RAM (optional):", this::chooseInitialRAMFile);
+		this.initialRAMFileSelText = addResourceSelector(innerParent, "Initial &RAM (optional):", this::chooseInitialRAMFile);
 	}
 
-	private Text createResourceSelectorGroup(Composite innerParent, String groupName, Supplier<String> chooser)
+	private Text addResourceSelector(Composite innerParent, String label, Supplier<String> chooser)
 	{
-		Group group = new Group(innerParent, SWT.NONE);
-		group.setLayout(new GridLayout(2, false));
-		group.setText(groupName);
-		group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		Label swtLabel = new Label(innerParent, SWT.NONE);
+		swtLabel.setText(label);
+		swtLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
 
-		Text text = new Text(group, SWT.BORDER);
+		Text text = new Text(innerParent, SWT.BORDER);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		text.addModifyListener(e -> updateLaunchConfigurationDialog());
 
-		Button browseButton = new Button(group, SWT.PUSH);
+		swtLabel.addListener(SWT.FocusIn, e -> text.setFocus());
+
+		Button browseButton = new Button(innerParent, SWT.PUSH);
 		GridData projSelButtonData = new GridData();
 		projSelButtonData.widthHint = calculateWidthHint(browseButton);
 		projSelButtonData.horizontalAlignment = SWT.FILL;
