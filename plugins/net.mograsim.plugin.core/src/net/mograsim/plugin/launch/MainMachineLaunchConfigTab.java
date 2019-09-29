@@ -37,6 +37,7 @@ import org.eclipse.ui.model.WorkbenchLabelProvider;
 import net.mograsim.plugin.nature.MograsimNature;
 import net.mograsim.plugin.util.FileExtensionViewerFilter;
 import net.mograsim.plugin.util.ImageDescriptorWithMargins;
+import net.mograsim.plugin.util.ProjectViewerFilter;
 
 //a big part of this class is stolen from org.eclipse.jdt.debug.ui
 public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
@@ -101,7 +102,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 			@Override
 			protected ImageDescriptor decorateImage(ImageDescriptor input, Object element)
 			{
-				return new ImageDescriptorWithMargins(input, new Point(22, 16));
+				return new ImageDescriptorWithMargins(input, new Point(20, 16));
 			}
 		};
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), renderer);
@@ -115,19 +116,13 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 
 	private String chooseMPMFile()
 	{
-		WorkbenchLabelProvider renderer = new WorkbenchLabelProvider()
-		{
-			@Override
-			protected ImageDescriptor decorateImage(ImageDescriptor input, Object element)
-			{
-				return new ImageDescriptorWithMargins(input, new Point(22, 16));
-			}
-		};
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), renderer, new WorkbenchContentProvider());
+		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(),
+				new WorkbenchContentProvider());
 		dialog.setTitle("MPM Selection");
 		dialog.setMessage("Select a MPM file");
-		dialog.setInput(getSelectedProject());
+		dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
 		dialog.addFilter(new FileExtensionViewerFilter("mpm"));
+		dialog.addFilter(new ProjectViewerFilter(getSelectedProject()));
 
 		if (dialog.open() == Window.OK)
 			return ((IResource) dialog.getResult()[0]).getProjectRelativePath().toPortableString();
@@ -136,19 +131,13 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 
 	private String chooseInitialRAMFile()
 	{
-		WorkbenchLabelProvider renderer = new WorkbenchLabelProvider()
-		{
-			@Override
-			protected ImageDescriptor decorateImage(ImageDescriptor input, Object element)
-			{
-				return new ImageDescriptorWithMargins(input, new Point(22, 16));
-			}
-		};
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), renderer, new WorkbenchContentProvider());
+		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(),
+				new WorkbenchContentProvider());
 		dialog.setTitle("Initial RAM Selection");
 		dialog.setMessage("Select a RAM file");
-		dialog.setInput(getSelectedProject());
+		dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
 		dialog.addFilter(new FileExtensionViewerFilter("mem"));
+		dialog.addFilter(new ProjectViewerFilter(getSelectedProject()));
 
 		if (dialog.open() == Window.OK)
 			return ((IResource) dialog.getResult()[0]).getProjectRelativePath().toPortableString();
