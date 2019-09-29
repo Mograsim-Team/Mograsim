@@ -53,7 +53,7 @@ public class EclipsePreferences extends Preferences
 		RGB rgb = getColorRegistry().getRGB(name);
 		if (rgb == null)
 		{
-			StatusManager.getManager().handle(new Status(IStatus.ERROR, "net.mograsim.plugin.core", "No color for name " + name));
+			StatusManager.getManager().handle(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "No color for name " + name));
 			return null;
 		}
 		return new ColorDefinition(rgb.red, rgb.green, rgb.blue);
