@@ -362,7 +362,7 @@
     <launchConfigurationType
           delegate="net.mograsim.plugin.launch.MachineLaunchConfigType"
           id="net.mograsim.plugin.core.launchmachine.type"
-          modes="debug"
+          modes="run, debug"
           name="Mograsim machine">
     </launchConfigurationType>
  </extension>
