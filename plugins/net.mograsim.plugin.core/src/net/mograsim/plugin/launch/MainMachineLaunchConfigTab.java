@@ -3,6 +3,7 @@ package net.mograsim.plugin.launch;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -29,15 +30,19 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
+import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 
 import net.mograsim.plugin.nature.MograsimNature;
+import net.mograsim.plugin.util.FileExtensionViewerFilter;
 import net.mograsim.plugin.util.ImageDescriptorWithMargins;
 
 //a big part of this class is stolen from org.eclipse.jdt.debug.ui
 public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 {
 	private Text projSelText;
+	private Text mpmFileSelText;
 
 	@Override
 	public void createControl(Composite parent)
@@ -48,11 +53,20 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 
 		innerParent.setLayout(new GridLayout());
 
+		this.projSelText = createResourceSelectorGroup(innerParent, this::chooseMograsimProject);
+
+		this.mpmFileSelText = createResourceSelectorGroup(innerParent, this::chooseMPMFile);
+
+		// TODO RAM selector
+	}
+
+	private Text createResourceSelectorGroup(Composite innerParent, Supplier<String> chooser)
+	{
 		Group projSelGroup = new Group(innerParent, SWT.NONE);
 		projSelGroup.setLayout(new GridLayout(2, false));
 		projSelGroup.setText("&Project:");
 		projSelGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		projSelText = new Text(projSelGroup, SWT.BORDER);
+		Text projSelText = new Text(projSelGroup, SWT.BORDER);
 		projSelText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		projSelText.addModifyListener(e -> updateLaunchConfigurationDialog());
 		Button projSelButton = new Button(projSelGroup, SWT.PUSH);
@@ -63,12 +77,11 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 		projSelButton.setText("&Browse...");
 		projSelButton.addListener(SWT.Selection, e ->
 		{
-			IProject choosedProject = chooseMograsimProject();
-			if (choosedProject != null)
-				projSelText.setText(choosedProject.getName());
+			String chosen = chooser.get();
+			if (chosen != null)
+				projSelText.setText(chosen);
 		});
-
-		// TODO MPM / RAM selectors
+		return projSelText;
 	}
 
 	private static int calculateWidthHint(Control c)
@@ -77,7 +90,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 		return Math.max(wHint, c.computeSize(SWT.DEFAULT, SWT.DEFAULT, true).x);
 	}
 
-	private IProject chooseMograsimProject()
+	private String chooseMograsimProject()
 	{
 		WorkbenchLabelProvider renderer = new WorkbenchLabelProvider()
 		{
@@ -88,11 +101,39 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 			}
 		};
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), renderer);
-		dialog.setTitle("title");
-		dialog.setMessage("message");
+		dialog.setTitle("Project Selection");
+		dialog.setMessage("Select a Mograsim project");
 		dialog.setElements(filterOpenMograsimProjects(ResourcesPlugin.getWorkspace().getRoot().getProjects()));
 		if (dialog.open() == Window.OK)
-			return (IProject) dialog.getFirstResult();
+			return ((IProject) dialog.getFirstResult()).getName();
+		return null;
+	}
+
+	private String chooseMPMFile()
+	{
+		WorkbenchLabelProvider renderer = new WorkbenchLabelProvider()
+		{
+			@Override
+			protected ImageDescriptor decorateImage(ImageDescriptor input, Object element)
+			{
+				return new ImageDescriptorWithMargins(input, new Point(22, 16));
+			}
+		};
+		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), renderer, new WorkbenchContentProvider());
+		dialog.setInput(getSelectedProject());
+		dialog.addFilter(new FileExtensionViewerFilter("mpm"));
+
+		if (dialog.open() == Window.OK)
+			return ((IResource) dialog.getResult()[0]).getProjectRelativePath().toPortableString();
+		return null;
+	}
+
+	private IProject getSelectedProject()
+	{
+		String projName = projSelText.getText().trim();
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		if (workspace.validateName(projName, IResource.PROJECT).isOK())
+			return workspace.getRoot().getProject(projName);
 		return null;
 	}
 
@@ -135,16 +176,24 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration)
 	{
-		Set<IResource> associatedResources = new HashSet<>();
 		String projName = projSelText.getText().trim();
-		if (projName.length() != 0)
+		String mpmFileName = mpmFileSelText.getText().trim();
+
+		Set<IResource> associatedResources = new HashSet<>();
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		if (workspace.validateName(projName, IResource.PROJECT).isOK())
 		{
-			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			IProject project = workspace.getRoot().getProject(projName);
 			try
 			{
 				if (project != null && project.isAccessible() && project.hasNature(MograsimNature.NATURE_ID))
-					associatedResources.add(project);
+				{
+					IResource mpmFile = project.findMember(mpmFileName);
+					if (mpmFile != null && mpmFile.exists() && mpmFile.getType() == IResource.FILE)
+						associatedResources.add(mpmFile);
+					else
+						associatedResources.add(project);
+				}
 			}
 			catch (CoreException e)
 			{
@@ -153,6 +202,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 		}
 		configuration.setMappedResources(associatedResources.toArray(IResource[]::new));
 		configuration.setAttribute(MachineLaunchConfigType.PROJECT_ATTR, projName);
+		configuration.setAttribute(MachineLaunchConfigType.MPM_FILE_ATTR, mpmFileName);
 	}
 
 	@Override
@@ -162,42 +212,44 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 		setMessage(null);
 		String projName = projSelText.getText().trim();
 		if (projName.length() == 0)
-		{
-			setErrorMessage("No project specified");
-			return false;
-		}
+			return setErrorAndReturnFalse("No project specified");
+
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IStatus status = workspace.validateName(projName, IResource.PROJECT);
 		if (!status.isOK())
-		{
-			setErrorMessage(NLS.bind("Illegal project name: {0}", new String[] { status.getMessage() }));
-			return false;
-		}
+			return setErrorAndReturnFalse("Illegal project name: {0}: {1}", projName, status.getMessage());
+
 		IProject project = workspace.getRoot().getProject(projName);
 		if (!project.exists())
-		{
-			setErrorMessage(NLS.bind("Project {0} does not exist", new String[] { projName }));
-			return false;
-		}
+			return setErrorAndReturnFalse("Project {0} does not exist", projName);
 		if (!project.isOpen())
-		{
-			setErrorMessage(NLS.bind("Project {0} is closed", new String[] { projName }));
-			return false;
-		}
+			return setErrorAndReturnFalse("Project {0} is closed", projName);
 		try
 		{
 			if (!project.hasNature(MograsimNature.NATURE_ID))
-			{
-				setErrorMessage(NLS.bind("Project {0} is not a Mograsim project", new String[] { projName }));
-				return false;
-			}
+				return setErrorAndReturnFalse("Project {0} is not a Mograsim project", projName);
 		}
 		catch (CoreException e)
 		{
-			setErrorMessage(e.getStatus().getMessage());
-			return false;
+			return setErrorAndReturnFalse(e.getStatus().getMessage());
 		}
+
+		String mpmFileName = mpmFileSelText.getText().trim();
+		if (mpmFileName.length() == 0)
+			return setErrorAndReturnFalse("No MPM file specified");
+		IResource mpmResource = project.findMember(mpmFileName);
+		if (mpmResource == null || !mpmResource.exists())
+			return setErrorAndReturnFalse("MPM file {0} does not exist", mpmFileName);
+		if (mpmResource.getType() != IResource.FILE)
+			return setErrorAndReturnFalse("MPM file {0} is not a file", mpmFileName);
+
 		return true;
+	}
+
+	private boolean setErrorAndReturnFalse(String message, String... params)
+	{
+		setErrorMessage(NLS.bind(message, params));
+		return false;
 	}
 
 	@Override
