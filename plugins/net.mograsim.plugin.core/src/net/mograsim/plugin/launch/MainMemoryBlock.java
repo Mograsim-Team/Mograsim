@@ -1,6 +1,11 @@
 package net.mograsim.plugin.launch;
 
+import java.math.BigInteger;
+
+import org.eclipse.core.runtime.PlatformObject;
+import org.eclipse.debug.core.DebugEvent;
 import org.eclipse.debug.core.DebugException;
+import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IMemoryBlock;
@@ -8,7 +13,8 @@ import org.eclipse.debug.core.model.IMemoryBlock;
 import net.mograsim.machine.MainMemory;
 import net.mograsim.plugin.MograsimActivator;
 
-public class MainMemoryBlock implements IMemoryBlock
+@Deprecated
+public class MainMemoryBlock extends PlatformObject implements IMemoryBlock
 {
 	private final MachineDebugTarget debugTarget;
 	private final MainMemory mem;
@@ -17,17 +23,29 @@ public class MainMemoryBlock implements IMemoryBlock
 
 	public MainMemoryBlock(MachineDebugTarget debugTarget, long startAddress, long length)
 	{
+		MainMemory mem = debugTarget.getMachine().getMainMemory();
+
 		if (length < 0)
-			throw new IllegalArgumentException("Can't create a memory block of negative size");
+			throw new IllegalArgumentException("Negative size");
+		if (startAddress < 0)
+			throw new IllegalArgumentException("Negative start address");
+		if ((startAddress + length) / 2 > mem.size())
+			throw new IllegalArgumentException("End address higher than memory size");
 		if (length > Integer.MAX_VALUE)
-			throw new IllegalArgumentException("Can't create a memory block bigger than Integer.MAX_VALUE (" + Integer.MAX_VALUE + "\"");
-		if (startAddress % 2 != 0)
-			throw new IllegalArgumentException("Can't create an unaligned memory block");
+			throw new IllegalArgumentException("Memory block bigger than Integer.MAX_VALUE (" + Integer.MAX_VALUE + "\"");
+		if (startAddress % 2 != 0 || length % 2 != 0)
+			throw new IllegalArgumentException("Unaligned memory block");
 
 		this.debugTarget = debugTarget;
-		this.mem = debugTarget.getMachine().getMainMemory();
+		this.mem = mem;
 		this.startAddress = startAddress;
 		this.length = (int) length;
+
+		mem.registerCellModifiedListener(e ->
+		{
+			if (e >= startAddress / 2 && e < (startAddress + length) / 2)
+				fireContentChangeEvent();
+		});
 	}
 
 	@Override
@@ -49,13 +67,6 @@ public class MainMemoryBlock implements IMemoryBlock
 	}
 
 	@Override
-	public <T> T getAdapter(Class<T> adapter)
-	{
-		// TODO
-		return null;
-	}
-
-	@Override
 	public long getStartAddress()
 	{
 		return startAddress;
@@ -70,13 +81,12 @@ public class MainMemoryBlock implements IMemoryBlock
 	@Override
 	public byte[] getBytes() throws DebugException
 	{
-		// TODO speedup. Maybe make a method for this in MainMemory?
 		byte[] bs = new byte[length];
 		int i;
 		long j;
-		for (i = 0, j = startAddress / 2; i < length; i++)
+		for (i = 0, j = startAddress / 2; i < length; i += 2, j++)
 		{
-			short word = mem.getCellAsBigInteger(j).shortValueExact();
+			short word = mem.getCellAsBigInteger(j).shortValue();
 			bs[i + 0] = (byte) (word & 0xFF);
 			bs[i + 1] = (byte) (word >>> 8);
 		}
@@ -86,13 +96,40 @@ public class MainMemoryBlock implements IMemoryBlock
 	@Override
 	public boolean supportsValueModification()
 	{
-		// TODO
-		return false;
+		return true;
 	}
 
 	@Override
 	public void setValue(long offset, byte[] bytes) throws DebugException
 	{
-		// TODO
+		if (offset % 2 != 0 || bytes.length % 2 != 0)
+			throw new IllegalArgumentException("Can't write unaligned to a memory block");
+		int i;
+		long j;
+		for (i = 0, j = (startAddress + offset) / 2; i < bytes.length; i += 2, j++)
+		{
+			short word = 0;
+			word |= bytes[i + 0] & 0xFF;
+			word |= bytes[i + 1] << 8;
+			mem.setCellAsBigInteger(j, BigInteger.valueOf(word));
+		}
+	}
+
+	/**
+	 * Fires a terminate event for this debug element.
+	 */
+	private void fireContentChangeEvent()
+	{
+		fireEvent(new DebugEvent(this, DebugEvent.TERMINATE));
+	}
+
+	/**
+	 * Fires a debug event.
+	 *
+	 * @param event debug event to fire
+	 */
+	private static void fireEvent(DebugEvent event)
+	{
+		DebugPlugin.getDefault().fireDebugEventSet(new DebugEvent[] { event });
 	}
 }

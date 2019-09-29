@@ -391,4 +391,12 @@
           id="net.mograsim.plugin.core.launchmachine.image">
     </launchConfigurationTypeImage>
  </extension>
+ <extension
+       point="org.eclipse.debug.ui.memoryRenderings">
+    <renderingBindings
+          defaultIds="org.eclipse.debug.ui.rendering.raw_memory"
+          primaryId="org.eclipse.debug.ui.rendering.raw_memory"
+          renderingIds="org.eclipse.debug.ui.rendering.raw_memory">
+    </renderingBindings>
+ </extension>
 </plugin>
