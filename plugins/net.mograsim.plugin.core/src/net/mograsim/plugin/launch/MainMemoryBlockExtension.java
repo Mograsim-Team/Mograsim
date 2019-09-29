@@ -228,10 +228,11 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 			{
 				BigInteger word = mem.getCellAsBigInteger(j.longValue());
 				byte[] wordBytes = word.toByteArray();
+				int l = wordBytes[0] == 0 ? 1 : 0;
 				int k;
-				for (k = 0; k < cellWidthBytes - wordBytes.length; k++)
+				for (k = 0; k < cellWidthBytes - wordBytes.length + l; k++)
 					bytes[i + k] = new MemoryByte();
-				for (int l = 0; k < cellWidthBytes; k++)
+				for (; k < cellWidthBytes; k++, l++)
 					bytes[i + k] = new MemoryByte(wordBytes[l]);
 			} else
 				for (int k = 0; k < cellWidthBytes; k++)
