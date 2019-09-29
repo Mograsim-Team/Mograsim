@@ -53,35 +53,37 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 
 		innerParent.setLayout(new GridLayout());
 
-		this.projSelText = createResourceSelectorGroup(innerParent, this::chooseMograsimProject);
+		this.projSelText = createResourceSelectorGroup(innerParent, "&Project:", this::chooseMograsimProject);
 
-		this.mpmFileSelText = createResourceSelectorGroup(innerParent, this::chooseMPMFile);
+		this.mpmFileSelText = createResourceSelectorGroup(innerParent, "&MPM:", this::chooseMPMFile);
 
 		// TODO RAM selector
 	}
 
-	private Text createResourceSelectorGroup(Composite innerParent, Supplier<String> chooser)
+	private Text createResourceSelectorGroup(Composite innerParent, String groupName, Supplier<String> chooser)
 	{
-		Group projSelGroup = new Group(innerParent, SWT.NONE);
-		projSelGroup.setLayout(new GridLayout(2, false));
-		projSelGroup.setText("&Project:");
-		projSelGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		Text projSelText = new Text(projSelGroup, SWT.BORDER);
-		projSelText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		projSelText.addModifyListener(e -> updateLaunchConfigurationDialog());
-		Button projSelButton = new Button(projSelGroup, SWT.PUSH);
+		Group group = new Group(innerParent, SWT.NONE);
+		group.setLayout(new GridLayout(2, false));
+		group.setText(groupName);
+		group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+		Text text = new Text(group, SWT.BORDER);
+		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		text.addModifyListener(e -> updateLaunchConfigurationDialog());
+
+		Button browseButton = new Button(group, SWT.PUSH);
 		GridData projSelButtonData = new GridData();
-		projSelButtonData.widthHint = calculateWidthHint(projSelButton);
+		projSelButtonData.widthHint = calculateWidthHint(browseButton);
 		projSelButtonData.horizontalAlignment = SWT.FILL;
-		projSelButton.setLayoutData(projSelButtonData);
-		projSelButton.setText("&Browse...");
-		projSelButton.addListener(SWT.Selection, e ->
+		browseButton.setLayoutData(projSelButtonData);
+		browseButton.setText("&Browse...");
+		browseButton.addListener(SWT.Selection, e ->
 		{
 			String chosen = chooser.get();
 			if (chosen != null)
-				projSelText.setText(chosen);
+				text.setText(chosen);
 		});
-		return projSelText;
+		return text;
 	}
 
 	private static int calculateWidthHint(Control c)
@@ -161,16 +163,21 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration)
 	{
-		String projName = "";
+		projSelText.setText(getStringAttribSafe(configuration, MachineLaunchConfigType.PROJECT_ATTR, ""));
+		mpmFileSelText.setText(getStringAttribSafe(configuration, MachineLaunchConfigType.MPM_FILE_ATTR, ""));
+	}
+
+	private String getStringAttribSafe(ILaunchConfiguration configuration, String attrib, String defaultValue)
+	{
 		try
 		{
-			projName = configuration.getAttribute(MachineLaunchConfigType.PROJECT_ATTR, "");
+			return configuration.getAttribute(attrib, defaultValue);
 		}
 		catch (CoreException e)
 		{
 			setErrorMessage(e.getStatus().getMessage());
 		}
-		projSelText.setText(projName);
+		return defaultValue;
 	}
 
 	@Override
