@@ -90,11 +90,9 @@ public class MachineProcess extends PlatformObject implements IProcess, ISuspend
 	public void suspend() throws DebugException
 	{
 		if (isTerminated())
-			throw new DebugException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
-					"Can't suspend a terminated MachineProcess", null));
+			throwDebugException("Can't suspend a terminated MachineProcess");
 		if (isSuspended())
-			throw new DebugException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
-					"Can't suspend a suspended MachineProcess", null));
+			throwDebugException("Can't suspend a suspended MachineProcess");
 
 		exec.pauseLiveExecution();
 		fireSuspendEvent(DebugEvent.CLIENT_REQUEST);
@@ -110,11 +108,9 @@ public class MachineProcess extends PlatformObject implements IProcess, ISuspend
 	public void resume() throws DebugException
 	{
 		if (isTerminated())
-			throw new DebugException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
-					"Can't resume a terminated MachineProcess", null));
+			throwDebugException("Can't resume a terminated MachineProcess");
 		if (!isSuspended())
-			throw new DebugException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
-					"Can't resume a non-suspended MachineProcess", null));
+			throwDebugException("Can't resume a non-suspended MachineProcess");
 
 		exec.unpauseLiveExecution();
 		fireResumeEvent(DebugEvent.CLIENT_REQUEST);
@@ -147,8 +143,7 @@ public class MachineProcess extends PlatformObject implements IProcess, ISuspend
 	public int getExitValue() throws DebugException
 	{
 		if (!isTerminated())
-			throw new DebugException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
-					"Can't get the exit value of a running process", null));
+			throwDebugException("Can't get the exit value of a running process");
 
 		return 0;
 	}
@@ -261,5 +256,11 @@ public class MachineProcess extends PlatformObject implements IProcess, ISuspend
 		DebugPlugin manager = DebugPlugin.getDefault();
 		if (manager != null)
 			manager.fireDebugEventSet(new DebugEvent[] { event });
+	}
+
+	private static void throwDebugException(String message) throws DebugException
+	{
+		throw new DebugException(
+				new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED, message, null));
 	}
 }

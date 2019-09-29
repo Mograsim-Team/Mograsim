@@ -15,6 +15,8 @@ import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.IDebugElement;
 import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IMemoryBlock;
+import org.eclipse.debug.core.model.IMemoryBlockExtension;
+import org.eclipse.debug.core.model.IMemoryBlockRetrievalExtension;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStepFilters;
 import org.eclipse.debug.core.model.IThread;
@@ -22,7 +24,7 @@ import org.eclipse.debug.core.model.IThread;
 import net.mograsim.machine.Machine;
 import net.mograsim.plugin.MograsimActivator;
 
-public class MachineDebugTarget extends PlatformObject implements IDebugTarget
+public class MachineDebugTarget extends PlatformObject implements IDebugTarget, IMemoryBlockRetrievalExtension
 {
 	private final MachineProcess process;
 
@@ -183,10 +185,17 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget
 		return true;
 	}
 
+	@SuppressWarnings("deprecation") // TODO can we throw a DebugException instead?
 	@Override
 	public IMemoryBlock getMemoryBlock(long startAddress, long length) throws DebugException
 	{
 		return new MainMemoryBlock(this, startAddress, length);
+	}
+
+	@Override
+	public IMemoryBlockExtension getExtendedMemoryBlock(String expression, Object context) throws DebugException
+	{
+		return new MainMemoryBlockExtension(this, expression, context);
 	}
 
 	@Override
