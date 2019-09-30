@@ -4,14 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
-import net.mograsim.machine.mi.MicroInstructionMemory.ActiveMicroInstructionChangedListener;
 
-public class AssignableMicroInstructionMemory
-		implements MicroInstructionMemory, MemoryCellModifiedListener, ActiveMicroInstructionChangedListener
+public class AssignableMicroInstructionMemory implements MicroInstructionMemory, MemoryCellModifiedListener
 {
 
 	private Set<MemoryCellModifiedListener> observers = new HashSet<>();
-	private Set<ActiveMicroInstructionChangedListener> activeInstructionListeners = new HashSet<>();
+
 	private Set<MIMemoryReassignedListener> reassignmentListeners = new HashSet<>();
 	private MicroInstructionMemory real = null;
 
@@ -54,26 +52,9 @@ public class AssignableMicroInstructionMemory
 		observers.remove(ob);
 	}
 
-	@Override
-	public void registerActiveMicroInstructionChangedListener(ActiveMicroInstructionChangedListener ob)
-	{
-		activeInstructionListeners.add(ob);
-	}
-
-	@Override
-	public void deregisterActiveMicroInstructionChangedListener(ActiveMicroInstructionChangedListener ob)
-	{
-		activeInstructionListeners.remove(ob);
-	}
-
 	private void notifyMemoryChanged(long address)
 	{
 		observers.forEach(o -> o.update(address));
-	}
-
-	private void notifyActiveInstructionChanged(long address)
-	{
-		activeInstructionListeners.forEach(o -> o.activeMicroInstructionChanged(address));
 	}
 
 	@Override
@@ -86,18 +67,6 @@ public class AssignableMicroInstructionMemory
 	public void update(long address)
 	{
 		notifyMemoryChanged(address);
-	}
-
-	@Override
-	public void setActiveInstruction(long address)
-	{
-		real.setActiveInstruction(address);
-	}
-
-	@Override
-	public void activeMicroInstructionChanged(long address)
-	{
-		notifyActiveInstructionChanged(address);
 	}
 
 	public void registerMemoryReassignedListener(MIMemoryReassignedListener listener)

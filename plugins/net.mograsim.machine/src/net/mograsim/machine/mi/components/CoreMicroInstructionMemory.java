@@ -77,7 +77,6 @@ public class CoreMicroInstructionMemory extends BasicCoreComponent
 			return e -> data.feedSignals(Bit.U.toVector(data.width()));// TODO don't always feed U, but decide to feed X or U.
 		long addressed = address.getValues().getUnsignedValueLong();
 		BitVector storedData = memory.getCell(addressed).toBitVector();
-		memory.setActiveInstruction(addressed);
 		return e -> data.feedSignals(storedData);
 	}
 }
