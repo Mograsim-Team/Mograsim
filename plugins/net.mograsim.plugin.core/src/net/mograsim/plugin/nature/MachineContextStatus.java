@@ -5,14 +5,16 @@ public enum MachineContextStatus
 	/**
 	 * A machine is currently associated and maybe running.
 	 */
+	@Deprecated(forRemoval = true)
 	ACTIVE,
 	/**
 	 * A machine is currently associated and maybe running, but its ID does not match the current definition.
 	 */
+	@Deprecated(forRemoval = true)
 	ACTIVE_CHANGED,
 	/**
-	 * The project can be actively used. The project must exist, be currently valid (uses a machine id that is known to Mograsim at
-	 * runtime) and opened.
+	 * The project can be actively used. The project must exist, be currently valid (uses a machine id that is known to Mograsim at runtime)
+	 * and opened.
 	 */
 	READY,
 	/**

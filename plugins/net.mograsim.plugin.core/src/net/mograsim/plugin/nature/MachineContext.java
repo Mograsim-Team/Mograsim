@@ -40,10 +40,12 @@ public class MachineContext
 	final ScopedPreferenceStore prefs;
 	Optional<String> machineId = Optional.empty();
 	Optional<MachineDefinition> machineDefinition = Optional.empty();
+	@Deprecated(forRemoval = true)
 	Optional<Machine> activeMachine = Optional.empty();
 
 	private MachineContextStatus status = UNKOWN;
 
+	@Deprecated(forRemoval = true)
 	private final Set<ActiveMachineListener> machineListeners = new HashSet<>();
 	private final Set<MachineContextStatusListener> stateListeners = new HashSet<>();
 
@@ -86,6 +88,7 @@ public class MachineContext
 	/**
 	 * Returns true if a machine is instantiated and (possibly) running
 	 */
+	@Deprecated(forRemoval = true)
 	public final boolean isActive()
 	{
 		return status == ACTIVE || status == ACTIVE_CHANGED;
@@ -120,6 +123,7 @@ public class MachineContext
 	/**
 	 * Sets the active machine in the {@link MachineContext}'s project scope.
 	 */
+	@Deprecated(forRemoval = true)
 	public final void setActiveMachine(Machine machine)
 	{
 		Optional<Machine> oldMachine = activeMachine;
@@ -138,6 +142,7 @@ public class MachineContext
 		return machineDefinition;
 	}
 
+	@Deprecated(forRemoval = true)
 	public final Optional<Machine> getActiveMachine()
 	{
 //		activateMachine(); // TODO is this the best way to deal with this?
@@ -150,6 +155,7 @@ public class MachineContext
 	 * 
 	 * @return true if the activation was successful
 	 */
+	@Deprecated(forRemoval = true)
 	public final boolean activateMachine()
 	{
 		if (status == ACTIVE)
@@ -188,6 +194,7 @@ public class MachineContext
 	 * 
 	 * @return the raw status of the project at the time of the call.
 	 */
+	@SuppressWarnings("removal")
 	public final MachineContextStatus reevaluateStatus()
 	{
 		if (!owner.exists())
@@ -205,6 +212,7 @@ public class MachineContext
 		return ACTIVE;
 	}
 
+	@Deprecated(forRemoval = true)
 	private void doPostStatusChangedAction()
 	{
 		if ((status == DEAD || status == CLOSED) && activeMachine.isPresent())
@@ -249,17 +257,20 @@ public class MachineContext
 		}
 	}
 
+	@Deprecated(forRemoval = true)
 	private void notifyActiveMachineListeners(Optional<Machine> oldMachine, Optional<Machine> newMachine)
 	{
 		machineListeners.forEach(ob -> ob.setMachine(oldMachine, newMachine));
 	}
 
+	@Deprecated(forRemoval = true)
 	public void addActiveMachineListener(ActiveMachineListener ob)
 	{
 		machineListeners.add(ob);
 		ob.setMachine(Optional.empty(), activeMachine);
 	}
 
+	@Deprecated(forRemoval = true)
 	public void removeActiveMachineListener(ActiveMachineListener ob)
 	{
 		machineListeners.remove(ob);
@@ -282,6 +293,7 @@ public class MachineContext
 	}
 
 	@FunctionalInterface
+	@Deprecated(forRemoval = true)
 	public static interface ActiveMachineListener
 	{
 		void setMachine(Optional<Machine> oldMachine, Optional<Machine> newMachine);
