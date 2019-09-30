@@ -7,9 +7,9 @@ import org.eclipse.swt.graphics.Font;
 public class ParameterLabelProvider extends ColumnLabelProvider
 {
 	private final int index;
-	private final ColorProvider cProv;
+	private final FontAndColorHelper cProv;
 
-	public ParameterLabelProvider(ColorProvider cProv, int index)
+	public ParameterLabelProvider(FontAndColorHelper cProv, int index)
 	{
 		super();
 		this.index = index;

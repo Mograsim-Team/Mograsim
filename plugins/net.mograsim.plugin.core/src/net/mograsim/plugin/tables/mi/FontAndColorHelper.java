@@ -13,7 +13,7 @@ import org.eclipse.ui.themes.IThemeManager;
 
 import net.mograsim.machine.mi.MicroInstructionMemory;
 
-public class ColorProvider
+public class FontAndColorHelper
 {
 	private final TableViewer viewer;
 	private final IThemeManager themeManager;
@@ -29,7 +29,7 @@ public class ColorProvider
 			colorHighlightedBackground = "net.mograsim.plugin.highlighted_cell_bg_color";
 	private final IPropertyChangeListener updateListener;
 
-	public ColorProvider(TableViewer viewer, IThemeManager themeManager)
+	public FontAndColorHelper(TableViewer viewer, IThemeManager themeManager)
 	{
 		this.viewer = viewer;
 		this.themeManager = themeManager;
@@ -58,6 +58,7 @@ public class ColorProvider
 		cRegistry = theme.getColorRegistry();
 		fRegistry = theme.getFontRegistry();
 		boldItalic = fRegistry.getDescriptor(font).setStyle(SWT.BOLD | SWT.ITALIC).createFont(Display.getDefault());
+		viewer.getTable().setFont(fRegistry.get(font));
 	}
 
 	public Color getBackground(Object element, int column)
