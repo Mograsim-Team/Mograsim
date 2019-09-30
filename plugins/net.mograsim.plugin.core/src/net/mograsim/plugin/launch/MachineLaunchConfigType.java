@@ -20,9 +20,12 @@ import org.eclipse.ui.statushandlers.StatusManager;
 
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.MainMemory;
+import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
+import net.mograsim.machine.standard.memory.MainMemoryParser;
 import net.mograsim.plugin.MograsimActivator;
 import net.mograsim.plugin.nature.MachineContext;
 import net.mograsim.plugin.nature.MograsimNature;
@@ -69,13 +72,14 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 
 		MachineDefinition machineDefinition = machDefOptional.orElseThrow();
 		MicroInstructionMemoryDefinition miMemDef = machineDefinition.getMicroInstructionMemoryDefinition();
+		MainMemoryDefinition mainMemDef = machineDefinition.getMainMemoryDefinition();
 
 		String mpmFileName = configuration.getAttribute(MPM_FILE_ATTR, "");
 		if ("".equals(mpmFileName))
 			return showErrorAndReturnFalse("No MPM file specified");
 
 		IFile mpmFile = project.getFile(mpmFileName);
-		if (!mpmFile.isAccessible())
+		if (mpmFile == null || !mpmFile.isAccessible())
 			return showErrorAndReturnFalse("MPM file not accessible");
 
 		try (InputStream mpmStream = mpmFile.getContents())
@@ -87,7 +91,23 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 			throw new CoreException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading MPM file", e));
 		}
 
-		// TODO parse RAM
+		String initialRAMFileName = configuration.getAttribute(INITIAL_RAM_FILE_ATTR, "");
+		if (!"".equals(initialRAMFileName))
+		{
+			IFile initialRAMFile = project.getFile(initialRAMFileName);
+			if (initialRAMFile == null || !initialRAMFile.isAccessible())
+				return showErrorAndReturnFalse("Initial RAM file not accessible");
+
+			try (InputStream initialRAMStream = initialRAMFile.getContents())
+			{
+				MainMemoryParser.parseMemory(mainMemDef, initialRAMStream);
+			}
+			catch (IOException e)
+			{
+				throw new CoreException(
+						new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading initial RAM file", e));
+			}
+		}
 
 		return super.preLaunchCheck(configuration, mode, monitor);
 	}
@@ -107,6 +127,7 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 		MachineContext machineContext = ProjectMachineContext.getMachineContextOf(project);
 		MachineDefinition machineDefinition = machineContext.getMachineDefinition().orElseThrow();
 		MicroInstructionMemoryDefinition miMemDef = machineDefinition.getMicroInstructionMemoryDefinition();
+		MainMemoryDefinition mainMemDef = machineDefinition.getMainMemoryDefinition();
 
 		IFile mpmFile = project.getFile(configuration.getAttribute(MPM_FILE_ATTR, ""));
 
@@ -120,14 +141,30 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 			throw new CoreException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading MPM file", e));
 		}
 
-		// TODO parse RAM
+		String initialRAMFileName = configuration.getAttribute(INITIAL_RAM_FILE_ATTR, "");
+		MainMemory mem;
+		if (!"".equals(initialRAMFileName))
+		{
+			IFile initialRAMFile = project.getFile(initialRAMFileName);
+			try (InputStream initialRAMStream = initialRAMFile.getContents())
+			{
+				mem = MainMemoryParser.parseMemory(mainMemDef, initialRAMStream);
+			}
+			catch (IOException e)
+			{
+				throw new CoreException(
+						new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading initial RAM file", e));
+			}
+		} else
+			mem = null;
 
 		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, machineDefinition);
 		debugTarget.suspend();
 		debugTarget.setExecutionSpeed(1);
 		Machine machine = debugTarget.getMachine();
 		machine.getMicroInstructionMemory().bind(mpm);
-		// TODO bind RAM
+		if (mem != null)
+			machine.getMainMemory().bind(mem);
 		machine.reset();
 	}
 
