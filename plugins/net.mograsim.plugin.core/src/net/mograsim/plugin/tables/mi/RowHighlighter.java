@@ -11,10 +11,10 @@ public class RowHighlighter
 {
 	private int highlighted = -1;
 	private LazyTableViewer viewer;
-	private ColorProvider cProv;
+	private FontAndColorHelper cProv;
 	private SingleSWTRequest requester = new SingleSWTRequest();
 
-	public RowHighlighter(LazyTableViewer viewer, ColorProvider cProv)
+	public RowHighlighter(LazyTableViewer viewer, FontAndColorHelper cProv)
 	{
 		this.viewer = viewer;
 		this.cProv = cProv;

@@ -38,13 +38,13 @@ public class InstructionTable
 	private MicroInstructionMemory memory;
 	private InstructionTableContentProvider provider;
 	private final RowHighlighter highlighter;
-	private final ColorProvider cProv;
+	private final FontAndColorHelper cProv;
 
 	public InstructionTable(Composite parent, DisplaySettings displaySettings, IThemeManager themeManager)
 	{
 		viewer = new LazyTableViewer(parent, SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 		this.displaySettings = displaySettings;
-		this.cProv = new ColorProvider(viewer, themeManager);
+		this.cProv = new FontAndColorHelper(viewer, themeManager);
 		this.highlighter = new RowHighlighter(viewer, cProv);
 
 		Table table = viewer.getTable();

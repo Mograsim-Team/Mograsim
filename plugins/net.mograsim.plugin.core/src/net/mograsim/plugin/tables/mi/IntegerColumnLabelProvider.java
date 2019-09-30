@@ -12,9 +12,9 @@ import net.mograsim.plugin.tables.NumberColumnLabelProvider;
 public class IntegerColumnLabelProvider extends NumberColumnLabelProvider
 {
 	private final int index;
-	private final ColorProvider cProv;
+	private final FontAndColorHelper cProv;
 
-	public IntegerColumnLabelProvider(DisplaySettings displaySettings, ColorProvider cProv, int index)
+	public IntegerColumnLabelProvider(DisplaySettings displaySettings, FontAndColorHelper cProv, int index)
 	{
 		super(displaySettings);
 		this.cProv = cProv;
