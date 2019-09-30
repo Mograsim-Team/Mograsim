@@ -132,6 +132,11 @@ public class LogicExecuter
 		return isPaused.get();
 	}
 
+	public double getSpeedFactor()
+	{
+		return tf.getSpeedFactor();
+	}
+
 	public void setSpeedFactor(double factor)
 	{
 		tf.setSpeedFactor(factor);

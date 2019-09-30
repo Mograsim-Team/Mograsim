@@ -74,9 +74,15 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 		return launch;
 	}
 
+	public double getExecutionSpeed()
+	{
+		return exec.getSpeedFactor();
+	}
+
 	public void setExecutionSpeed(double speed)
 	{
-		exec.setSpeedFactor(speed);
+		if (getExecutionSpeed() != speed)
+			exec.setSpeedFactor(speed);
 	}
 
 	@Override

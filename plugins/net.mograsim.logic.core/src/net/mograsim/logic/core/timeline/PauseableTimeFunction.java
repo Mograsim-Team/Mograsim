@@ -51,6 +51,11 @@ public class PauseableTimeFunction implements TimeFunction
 		return 1 / 1000d / speedFactor;
 	}
 
+	public double getSpeedFactor()
+	{
+		return speedFactor;
+	}
+
 	public void setSpeedFactor(double factor)
 	{
 		if (factor <= 0)
