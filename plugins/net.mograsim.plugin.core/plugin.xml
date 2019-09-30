@@ -96,13 +96,6 @@
       		<contentTypeBinding contentTypeId="net.mograsim.plugin.mpm"/>
       </editor>
       <editor
-            class="net.mograsim.plugin.editors.SimulationViewEditor"
-            icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
-            id="net.mograsim.plugin.editors.simulationvieweditor"
-            name="Simulation View Editor">
-      		<contentTypeBinding contentTypeId="net.mograsim.plugin.regs"/>
-      </editor>
-      <editor
             class="net.mograsim.plugin.editors.MemoryEditor"
             icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
             id="net.mograsim.plugin.editors.memoryeditor"
@@ -169,6 +162,14 @@
             id="net.mograsim.plugin.views.AsmOpsEdit"
             inject="true"
             name="%view.name">
+      </view>
+      <view
+            category="net.mograsim.plugin"
+            class="net.mograsim.plugin.views.SimulationView"
+            icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
+            id="net.mograsim.plugin.simulationview"
+            name="Simulation View"
+            restorable="true">
       </view>
    </extension>
    <extension

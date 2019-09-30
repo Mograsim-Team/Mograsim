@@ -15,6 +15,7 @@ Export-Package: net.mograsim.plugin;uses:="org.eclipse.ui.themes,org.eclipse.swt
  net.mograsim.plugin.tables.memory,
  net.mograsim.plugin.tables.mi,
  net.mograsim.plugin.util,
+ net.mograsim.plugin.views,
  net.mograsim.plugin.wizards.newWizards
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
