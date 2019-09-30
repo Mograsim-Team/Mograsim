@@ -1,6 +1,7 @@
 package net.mograsim.plugin.editors;
 
-import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigInteger;
 
 import org.eclipse.core.resources.IFile;
@@ -24,8 +25,10 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 import net.mograsim.machine.MainMemory;
+import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
-import net.mograsim.machine.standard.memory.WordAddressableMemory;
+import net.mograsim.machine.standard.memory.MainMemoryParser;
 import net.mograsim.plugin.asm.AsmNumberUtil;
 import net.mograsim.plugin.nature.MachineContext;
 import net.mograsim.plugin.nature.ProjectMachineContext;
@@ -48,6 +51,15 @@ public class MemoryEditor extends EditorPart
 	private LazyTableViewer viewer;
 	private MemoryTableContentProvider provider;
 	private DisplaySettings displaySettings;
+
+	private boolean dirty;
+
+	private final MemoryCellModifiedListener memListener;
+
+	public MemoryEditor()
+	{
+		memListener = this::cellModified;
+	}
 
 	@Override
 	public void createPartControl(Composite parent)
@@ -178,7 +190,14 @@ public class MemoryEditor extends EditorPart
 			context.activateMachine();
 
 			setPartName(fileInput.getName());
-			open(fileInput.getFile());
+			try
+			{
+				open(fileInput.getFile());
+			}
+			catch (Exception e)
+			{
+				throw new PartInitException("Failed to read input!", e);
+			}
 		} else
 			throw new IllegalArgumentException("MemoryEditor can only be used with Files");
 
@@ -194,18 +213,38 @@ public class MemoryEditor extends EditorPart
 			SafeRunnable.getRunner().run(() -> save(((IFileEditorInput) input).getFile(), monitor));
 	}
 
-	private void save(IFile file, IProgressMonitor monitor) throws CoreException
+	private void save(IFile file, IProgressMonitor monitor) throws CoreException, IOException
 	{
-		file.setContents(new ByteArrayInputStream("actual contents will go here".getBytes()), 0, monitor);
+		if (memory == null)
+		{
+			throw new MicroInstructionMemoryParseException("Failed to write MainMemory to File. No MainMemory assigned.");
+		}
+		try (InputStream toWrite = MainMemoryParser.write(memory))
+		{
+			file.setContents(toWrite, 0, monitor);
+			setDirty(false);
+		}
 	}
 
-	private void open(IFile file)
+	private void open(IFile file) throws IOException, CoreException
 	{
-		// TODO actually parse the file
-		memory = new WordAddressableMemory(context.getMachineDefinition()
-				.orElseThrow(() -> new MicroInstructionMemoryParseException("No MachineDefinition assigned!")).getMainMemoryDefinition());
+		MainMemoryDefinition memDef = context.getMachineDefinition()
+				.orElseThrow(() -> new MicroInstructionMemoryParseException("No MachineDefinition assigned!")).getMainMemoryDefinition();
+		memory = MainMemoryParser.parseMemory(memDef, file.getContents());
+		memory.registerCellModifiedListener(memListener);
 		if (viewer != null)
 			viewer.setInput(memory);
+	}
+
+	private void cellModified(@SuppressWarnings("unused") long address)
+	{
+		setDirty(true);
+	}
+
+	private void setDirty(boolean newDirty)
+	{
+		dirty = newDirty;
+		firePropertyChange(PROP_DIRTY);
 	}
 
 	@Override
@@ -217,8 +256,7 @@ public class MemoryEditor extends EditorPart
 	@Override
 	public boolean isDirty()
 	{
-		// TODO
-		return false;
+		return dirty;
 	}
 
 	@Override
@@ -236,7 +274,8 @@ public class MemoryEditor extends EditorPart
 	@Override
 	public void dispose()
 	{
-		// TODO Auto-generated method stub
+		if (memory != null)
+			memory.deregisterCellModifiedListener(memListener);
 		super.dispose();
 	}
 }
