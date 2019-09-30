@@ -1,5 +1,9 @@
 package net.mograsim.plugin.launch;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import org.eclipse.core.resources.IMarkerDelta;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.PlatformObject;
@@ -32,11 +36,15 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 
 	private boolean running;
 
+	private final List<Consumer<Double>> executionSpeedListeners;
+
 	public MachineDebugTarget(ILaunch launch, MachineDefinition machineDefinition)
 	{
 		this.launch = launch;
 		this.machine = machineDefinition.createNew();
 		this.exec = new LogicExecuter(machine.getTimeline());
+
+		this.executionSpeedListeners = new ArrayList<>();
 
 		exec.startLiveExecution();
 		running = true;
@@ -82,7 +90,10 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	public void setExecutionSpeed(double speed)
 	{
 		if (getExecutionSpeed() != speed)
+		{
 			exec.setSpeedFactor(speed);
+			callExecutionSpeedListener(speed);
+		}
 	}
 
 	@Override
@@ -228,6 +239,21 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	public IThread[] getThreads() throws DebugException
 	{
 		return new IThread[0];
+	}
+
+	public void addExecutionSpeedListener(Consumer<Double> executionSpeedListener)
+	{
+		executionSpeedListeners.add(executionSpeedListener);
+	}
+
+	public void removeExecutionSpeedListener(Consumer<Double> executionSpeedListener)
+	{
+		executionSpeedListeners.remove(executionSpeedListener);
+	}
+
+	private void callExecutionSpeedListener(double executionSpeed)
+	{
+		executionSpeedListeners.forEach(l -> l.accept(executionSpeed));
 	}
 
 	@SuppressWarnings("unchecked")
