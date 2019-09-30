@@ -1,5 +1,6 @@
 package net.mograsim.logic.model.am2900.machine;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import net.mograsim.machine.mi.MicroInstructionDefinition;
@@ -89,7 +90,7 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 	@Override
 	public ParameterClassification[] getParameterClassifications()
 	{
-		return classes;
+		return Arrays.copyOf(classes, classes.length);
 	}
 
 	@Override
