@@ -6,6 +6,8 @@ import java.util.Set;
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.logic.model.am2900.machine.registers.NumberedRegister;
+import net.mograsim.logic.model.am2900.machine.registers.QRegister;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
@@ -81,7 +83,7 @@ public class Am2900Machine implements Machine
 		MicroInstructionParameter[] defaultParams = muiDef.createDefaultInstruction().getParameters();
 		defaultParams[19] = paramClassifications[19].parse("JZ");
 		MicroInstruction jzMI = MicroInstruction.create(defaultParams);
-		logicModel.getComponentByName("Am2900").setHighLevelState("muir_2.q", jzMI.toBitVector());
+		am2900.setHighLevelState("muir_2.q", jzMI.toBitVector());
 	}
 
 	@Override
@@ -110,15 +112,37 @@ public class Am2900Machine implements Machine
 	@Override
 	public BitVector getRegister(Register r)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String am2901CellSuffix;
+		if (r instanceof QRegister)
+			am2901CellSuffix = "qreg.q";
+		else if (r instanceof NumberedRegister)
+			am2901CellSuffix = "regs.c" + ((NumberedRegister) r).getIndexAsBitstring() + ".q";
+		else
+			throw new IllegalArgumentException("Not a register of an Am2900Machine: " + r);
+		BitVector result = BitVector.of();
+		for (int i = 0; i < 16; i += 4)
+		{
+			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
+			result = result.concat((BitVector) am2900.getHighLevelState(hlsID));
+		}
+		return result;
 	}
 
 	@Override
 	public void setRegister(Register r, BitVector value)
 	{
-		// TODO Auto-generated method stub
-
+		String am2901CellSuffix;
+		if (r instanceof QRegister)
+			am2901CellSuffix = "qreg.q";
+		else if (r instanceof NumberedRegister)
+			am2901CellSuffix = "regs.c" + ((NumberedRegister) r).getIndexAsBitstring() + ".q";
+		else
+			throw new IllegalArgumentException("Not a register of an Am2900Machine: " + r);
+		for (int i = 0; i < 16; i += 4)
+		{
+			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
+			am2900.setHighLevelState(hlsID, value.subVector(i, i + 4));
+		}
 	}
 
 	@Override

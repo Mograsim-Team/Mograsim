@@ -1,7 +1,11 @@
 package net.mograsim.logic.model.am2900.machine;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
+import net.mograsim.logic.model.am2900.machine.registers.NumberedRegister;
+import net.mograsim.logic.model.am2900.machine.registers.QRegister;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.machine.ISASchema;
 import net.mograsim.machine.MachineDefinition;
@@ -12,6 +16,16 @@ import net.mograsim.machine.Register;
 public class Am2900MachineDefinition implements MachineDefinition
 {
 	public static final String AM2900_MACHINE_ID = "Am2900";
+
+	public static final Set<Register> allRegisters;
+
+	static
+	{
+		Set<Register> allRegistersModifiable = new HashSet<>();
+		allRegistersModifiable.add(QRegister.instance);
+		allRegistersModifiable.addAll(NumberedRegister.instancesCorrectOrder);
+		allRegisters = Collections.unmodifiableSet(allRegistersModifiable);
+	}
 
 	@Override
 	public String getId()
@@ -40,8 +54,7 @@ public class Am2900MachineDefinition implements MachineDefinition
 	@Override
 	public Set<Register> getRegisters()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return allRegisters;
 	}
 
 	@Override
