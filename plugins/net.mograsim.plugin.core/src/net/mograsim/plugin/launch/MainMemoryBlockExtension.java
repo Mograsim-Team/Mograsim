@@ -21,6 +21,7 @@ import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.plugin.MograsimActivator;
+import net.mograsim.preferences.Preferences;
 
 public class MainMemoryBlockExtension extends PlatformObject implements IMemoryBlockExtension
 {
@@ -43,6 +44,12 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 	private final Set<Object> clients;
 	private final MemoryCellModifiedListener memListener;
 	private final AtomicBoolean memListenerRegistered;
+
+	private final int maxContentChangeInterval;
+	private final Object contentChangeLock;
+	private Thread contentChangeThread;
+	private long nextContentChangeAllowedMillis;
+	private boolean contentChangeQueued;
 
 	public MainMemoryBlockExtension(MachineDebugTarget debugTarget, String expression, @SuppressWarnings("unused") Object expressionContext)
 			throws DebugException
@@ -69,8 +76,12 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 
 		this.clients = new HashSet<>();
 		// don't check whether the address is in range, because this memory block could be read outside its "range"
-		this.memListener = a -> fireContentChangeEvent();
+		this.memListener = a -> queueFireContentChangeEvent();
 		this.memListenerRegistered = new AtomicBoolean();
+
+		this.maxContentChangeInterval = Preferences.current().getInt("net.mograsim.plugin.core.maxmemchangeinterval");
+		this.contentChangeLock = new Object();
+		this.nextContentChangeAllowedMillis = System.currentTimeMillis() - maxContentChangeInterval - 1;
 	}
 
 	@Override
@@ -265,7 +276,7 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 
 		if (!clients.isEmpty())
 			registerMemoryListener();
-		fireContentChangeEvent();
+		queueFireContentChangeEvent();
 	}
 
 	@Override
@@ -302,6 +313,24 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 	{
 		if (memListenerRegistered.getAndSet(false))
 			mem.deregisterCellModifiedListener(memListener);
+
+		Thread contentChangeThreadLocal;
+		synchronized (contentChangeLock)
+		{
+			contentChangeThreadLocal = contentChangeThread;
+			// set contentChangeQueued here to prevent the following scenario:
+			// 1. A change event is requested -> it gets fired "directly"
+			// 2. A second change event is requested during the "cooldown time" -> a queue thread gets started
+			// 3. The last client is disconnected -> the queue thread is interrupted
+			// 4. A new client is connected
+			// 5. A third change event is requested; queueFireContentChangeEvent locks contentChangeLock
+			// before the queue thread locks contentChangeLock.
+			// Now queueFireContentChangeEvent would return doing nothing, since contentChangeQueued still is true,
+			// causing a change event to be missed.
+			contentChangeQueued = false;
+		}
+		if (contentChangeThreadLocal != null)
+			contentChangeThreadLocal.interrupt();
 	}
 
 	@Override
@@ -323,10 +352,62 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 		return cellWidthBytes;
 	}
 
+	private void queueFireContentChangeEvent()
+	{
+		long sleepTime;
+		boolean fireInOwnThread = false;
+		synchronized (contentChangeLock)
+		{
+			if (contentChangeQueued)
+				return;
+			long nextContentChangeAllowedMillisLocal = nextContentChangeAllowedMillis;
+			long now = System.currentTimeMillis();
+			sleepTime = nextContentChangeAllowedMillisLocal - now;
+			if (sleepTime >= 0)
+			{
+				fireInOwnThread = true;
+				contentChangeQueued = true;
+				nextContentChangeAllowedMillis = nextContentChangeAllowedMillisLocal + maxContentChangeInterval;
+			} else
+			{
+				fireInOwnThread = false;
+				nextContentChangeAllowedMillis = now + maxContentChangeInterval;
+			}
+		}
+		if (fireInOwnThread)
+		{
+			// the following two statements can't cause racing problems since we set contentChangeQueued to true,
+			// which means no-one will write this field until the thread started:
+			// this method will never get here, and in this moment there is no (other) content change thread running,
+			// since contentChangeQueued was false
+			contentChangeThread = new Thread(() ->
+			{
+				boolean interrupted = false;
+				try
+				{
+					Thread.sleep(sleepTime);
+				}
+				catch (@SuppressWarnings("unused") InterruptedException e)
+				{
+					interrupted = true;
+				}
+				synchronized (contentChangeLock)
+				{
+					contentChangeThread = null;
+					contentChangeQueued = false;
+				}
+				if (!interrupted && !Thread.interrupted())
+					fireContentChangeEventNow();
+			});
+			contentChangeThread.start();
+		} else
+			fireContentChangeEventNow();
+	}
+
 	/**
 	 * Fires a terminate event for this debug element.
 	 */
-	private void fireContentChangeEvent()
+	private void fireContentChangeEventNow()
 	{
 		fireEvent(new DebugEvent(this, DebugEvent.CHANGE, DebugEvent.CONTENT));
 	}

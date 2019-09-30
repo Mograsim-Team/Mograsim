@@ -33,6 +33,8 @@ public class DefaultPreferences extends Preferences
 			return 2;
 		case "net.mograsim.plugin.core.simspeedprecision":
 			return 6;
+		case "net.mograsim.plugin.core.maxmemchangeinterval":
+			return 1000;
 		default:
 			throw new IllegalArgumentException("Unknown int preference name: " + name);
 		}
