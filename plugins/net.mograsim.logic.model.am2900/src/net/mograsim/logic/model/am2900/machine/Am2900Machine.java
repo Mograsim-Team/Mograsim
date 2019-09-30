@@ -1,5 +1,8 @@
 package net.mograsim.logic.model.am2900.machine;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
@@ -31,6 +34,9 @@ public class Am2900Machine implements Machine
 	private AssignableMainMemory mainMemory;
 	private AssignableMicroInstructionMemory instMemory;
 	private CoreClock clock;
+	private long activeInstructionAddress;
+
+	private final Set<ActiveMicroInstructionChangedListener> amicListeners;
 
 	public Am2900Machine(LogicModelModifiable model, Am2900MachineDefinition am2900MachineDefinition)
 	{
@@ -38,6 +44,8 @@ public class Am2900Machine implements Machine
 		this.logicModel = model;
 		this.am2900 = IndirectModelComponentCreator.createComponent(logicModel,
 				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json", "Am2900");
+		this.amicListeners = new HashSet<>();
+
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
 		params.wireTravelTime = 10;
@@ -48,6 +56,15 @@ public class Am2900Machine implements Machine
 		am2900.setHighLevelState("ram.memory_binding", mainMemory);
 		am2900.setHighLevelState("mpm.memory_binding", instMemory);
 		clock = logicModel.getComponentBySubmodelPath("Am2900.Clock#0", ModelClock.class).getClock();
+		clock.registerObserver(c ->
+		{
+			if (clock.isOn())
+			{
+				long oldAddress = activeInstructionAddress;
+				activeInstructionAddress = getCurrentMicroInstructionAddress();
+				notifyActiveMicroInstructionChangedListeners(oldAddress, activeInstructionAddress);
+			}
+		});
 	}
 
 	@Override
@@ -114,5 +131,35 @@ public class Am2900Machine implements Machine
 	public AssignableMicroInstructionMemory getMicroInstructionMemory()
 	{
 		return instMemory;
+	}
+
+	@Override
+	public long getActiveMicroInstructionAddress()
+	{
+		return activeInstructionAddress;
+	}
+
+	private long getCurrentMicroInstructionAddress()
+	{
+		// TODO: replace with highlevelstate
+		BitVector vector = logicModel.getWireBySubmodelPath("Am2900.wire_mpm_address").getWireValues();
+		return vector.isBinary() ? vector.getUnsignedValueLong() : -1;
+	}
+
+	@Override
+	public void addActiveMicroInstructionChangedListener(ActiveMicroInstructionChangedListener listener)
+	{
+		amicListeners.add(listener);
+	}
+
+	@Override
+	public void removeActiveMicroInstructionChangedListener(ActiveMicroInstructionChangedListener listener)
+	{
+		amicListeners.remove(listener);
+	}
+
+	private void notifyActiveMicroInstructionChangedListeners(long oldAddress, long newAddress)
+	{
+		amicListeners.forEach(l -> l.instructionChanged(oldAddress, newAddress));
 	}
 }

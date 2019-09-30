@@ -4159,7 +4159,7 @@
           "compName": "WireCrossPoint#43",
           "pinName": ""
         },
-        "name": "unnamedWire#163",
+        "name": "wire_mpm_address",
         "path": [
           {
             "x": 205.0,

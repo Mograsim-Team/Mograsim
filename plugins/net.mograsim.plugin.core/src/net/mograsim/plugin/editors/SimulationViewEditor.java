@@ -159,6 +159,9 @@ public class SimulationViewEditor extends EditorPart
 
 			canvasParent.layout();
 
+			// update preview
+			((ActiveInstructionPreviewContentProvider) instPreview.getTableViewer().getContentProvider()).setMachine(machine);
+
 			// initialize executer
 			exec = new LogicExecuter(machine.getTimeline());
 			updateSpeedFactorFromInput(simSpeedInput.getValue());
@@ -300,7 +303,9 @@ public class SimulationViewEditor extends EditorPart
 	{
 		instPreview = new InstructionTable(parent, new DisplaySettings(), getSite().getWorkbenchWindow().getWorkbench().getThemeManager());
 		instPreview.getTableViewer().getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		instPreview.setContentProvider(new ActiveInstructionPreviewContentProvider(instPreview.getTableViewer()));
+		ActiveInstructionPreviewContentProvider cProv;
+		instPreview.setContentProvider(cProv = new ActiveInstructionPreviewContentProvider(instPreview.getTableViewer()));
+		cProv.setMachine(machine);
 	}
 
 	private static void setPauseText(Button pauseButton, boolean hovered)

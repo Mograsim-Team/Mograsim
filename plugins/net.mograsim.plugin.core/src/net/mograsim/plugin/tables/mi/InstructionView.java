@@ -17,10 +17,10 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
+import net.mograsim.machine.Machine.ActiveMicroInstructionChangedListener;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory.MIMemoryReassignedListener;
 import net.mograsim.machine.mi.MicroInstructionMemory;
-import net.mograsim.machine.mi.MicroInstructionMemory.ActiveMicroInstructionChangedListener;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.plugin.nature.MachineContext;
@@ -44,8 +44,10 @@ public class InstructionView extends EditorPart
 		table.refresh();
 	};
 
-	private ActiveMicroInstructionChangedListener activeInstructionChangedListener = address -> highlight(
-			(int) (address - memory.getDefinition().getMinimalAddress()));
+	private ActiveMicroInstructionChangedListener instChangeListener = (oldAddress, newAddress) ->
+	{
+		highlight((int) (newAddress - memory.getDefinition().getMinimalAddress()));
+	};
 
 	private MIMemoryReassignedListener reassignedListener = newAssignee ->
 	{
@@ -99,6 +101,7 @@ public class InstructionView extends EditorPart
 			m.getMicroInstructionMemory().registerMemoryReassignedListener(reassignedListener);
 			context.addActiveMachineListener(activeMachineListener);
 			m.getMicroInstructionMemory().bind(memory);
+			m.addActiveMicroInstructionChangedListener(instChangeListener);
 		}));
 	}
 
@@ -107,13 +110,11 @@ public class InstructionView extends EditorPart
 		if (this.memory != null)
 		{
 			this.memory.deregisterCellModifiedListener(cellModifiedListener);
-			this.memory.deregisterActiveMicroInstructionChangedListener(activeInstructionChangedListener);
 		}
 		this.memory = memory;
 		if (memory != null)
 		{
 			this.memory.registerCellModifiedListener(cellModifiedListener);
-			this.memory.registerActiveMicroInstructionChangedListener(activeInstructionChangedListener);
 		}
 		if (table != null)
 			table.bindMicroInstructionMemory(memory);
@@ -229,9 +230,12 @@ public class InstructionView extends EditorPart
 	@Override
 	public void dispose()
 	{
-		memory.deregisterActiveMicroInstructionChangedListener(activeInstructionChangedListener);
 		memory.deregisterCellModifiedListener(cellModifiedListener);
-		context.getActiveMachine().ifPresent(m -> m.getMicroInstructionMemory().deregisterMemoryReassignedListener(reassignedListener));
+		context.getActiveMachine().ifPresent(m ->
+		{
+			m.removeActiveMicroInstructionChangedListener(instChangeListener);
+			m.getMicroInstructionMemory().deregisterMemoryReassignedListener(reassignedListener);
+		});
 		context.removeActiveMachineListener(activeMachineListener);
 		super.dispose();
 	}

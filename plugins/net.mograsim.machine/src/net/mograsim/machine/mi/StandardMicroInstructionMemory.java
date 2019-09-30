@@ -1,7 +1,6 @@
 package net.mograsim.machine.mi;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import net.mograsim.machine.standard.memory.MemoryException;
 
@@ -10,8 +9,6 @@ public class StandardMicroInstructionMemory implements MicroInstructionMemory
 	private MicroInstruction[] data;
 	private MicroInstructionMemoryDefinition definition;
 	private HashSet<MemoryCellModifiedListener> observers = new HashSet<>();
-	private Set<ActiveMicroInstructionChangedListener> activeInstructionListeners = new HashSet<>();
-	private long activeInstruction = -1;
 
 	public StandardMicroInstructionMemory(MicroInstructionMemoryDefinition definition)
 	{
@@ -55,26 +52,9 @@ public class StandardMicroInstructionMemory implements MicroInstructionMemory
 		observers.remove(ob);
 	}
 
-	@Override
-	public void registerActiveMicroInstructionChangedListener(ActiveMicroInstructionChangedListener ob)
-	{
-		activeInstructionListeners.add(ob);
-	}
-
-	@Override
-	public void deregisterActiveMicroInstructionChangedListener(ActiveMicroInstructionChangedListener ob)
-	{
-		activeInstructionListeners.remove(ob);
-	}
-
 	private void notifyMemoryChanged(long address)
 	{
 		observers.forEach(ob -> ob.update(address));
-	}
-
-	private void notifyActiveInstructionChanged(long address)
-	{
-		activeInstructionListeners.forEach(o -> o.activeMicroInstructionChanged(address));
 	}
 
 	@Override
@@ -82,15 +62,4 @@ public class StandardMicroInstructionMemory implements MicroInstructionMemory
 	{
 		return definition;
 	}
-
-	@Override
-	public void setActiveInstruction(long address)
-	{
-		if (address != activeInstruction)
-		{
-			activeInstruction = address;
-			notifyActiveInstructionChanged(address);
-		}
-	}
-
 }

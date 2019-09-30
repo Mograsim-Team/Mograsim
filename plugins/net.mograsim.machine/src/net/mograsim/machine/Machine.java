@@ -26,4 +26,15 @@ public interface Machine
 	AssignableMainMemory getMainMemory();
 
 	AssignableMicroInstructionMemory getMicroInstructionMemory();
+
+	void addActiveMicroInstructionChangedListener(ActiveMicroInstructionChangedListener listener);
+
+	void removeActiveMicroInstructionChangedListener(ActiveMicroInstructionChangedListener listener);
+
+	long getActiveMicroInstructionAddress();
+
+	public interface ActiveMicroInstructionChangedListener
+	{
+		public void instructionChanged(long oldAddress, long newAddress);
+	}
 }
