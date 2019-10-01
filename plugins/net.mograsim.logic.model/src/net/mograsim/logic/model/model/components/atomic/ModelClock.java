@@ -20,6 +20,7 @@ import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.ClockAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
+import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.preferences.Preferences;
 
@@ -52,6 +53,47 @@ public class ModelClock extends ModelComponent
 
 		this.outputPin = new Pin(model, this, "", 1, PinUsage.OUTPUT, oc.newX(width, height / 2), oc.newY(width, height / 2));
 		addPin(outputPin);
+
+		setHighLevelStateHandler(new HighLevelStateHandler()
+		{
+			@Override
+			public Object getHighLevelState(String stateID)
+			{
+				switch (stateID)
+				{
+				case "out":
+					if (clock != null)
+						return clock.getOut().getInputValues();
+					return null;
+				default:
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+				}
+			}
+
+			@Override
+			public void setHighLevelState(String stateID, Object newState)
+			{
+				switch (stateID)
+				{
+				case "out":
+					throw new UnsupportedOperationException("cannot set state of clock");
+				default:
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+				}
+			}
+
+			@Override
+			public String getIDForSerializing(IdentifyParams idParams)
+			{
+				return null;
+			}
+
+			@Override
+			public Object getParamsForSerializing(IdentifyParams idParams)
+			{
+				return null;
+			}
+		});
 
 		init();
 	}
@@ -87,32 +129,6 @@ public class ModelClock extends ModelComponent
 	public boolean hasCoreModelBinding()
 	{
 		return clock != null;
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		switch (stateID)
-		{
-		case "out":
-			if (clock != null)
-				return clock.getOut().getInputValues();
-			return null;
-		default:
-			return super.getHighLevelState(stateID);
-		}
-	}
-
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		switch (stateID)
-		{
-		case "out":
-			throw new UnsupportedOperationException("cannot set state of clock");
-		default:
-			super.setHighLevelState(stateID, newState);
-		}
 	}
 
 	public CoreClock getClock()

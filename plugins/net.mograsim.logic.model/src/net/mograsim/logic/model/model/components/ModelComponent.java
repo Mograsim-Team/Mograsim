@@ -14,6 +14,7 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.JSONSerializable;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
+import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
 
 /**
  * The base class for all model components.<br>
@@ -76,6 +77,8 @@ public abstract class ModelComponent implements JSONSerializable
 		this.componentResizedListeners = new ArrayList<>();
 		this.pinAddedListeners = new ArrayList<>();
 		this.pinRemovedListeners = new ArrayList<>();
+
+		this.highLevelStateHandler = new DefaultHighLevelStateHandler();
 
 		if (callInit)
 			init();
@@ -216,7 +219,7 @@ public abstract class ModelComponent implements JSONSerializable
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public Object getHighLevelState(String stateID)
+	public final Object getHighLevelState(String stateID)
 	{
 		return highLevelStateHandler.getHighLevelState(stateID);
 	}
@@ -230,7 +233,7 @@ public abstract class ModelComponent implements JSONSerializable
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public void setHighLevelState(String stateID, Object newState)
+	public final void setHighLevelState(String stateID, Object newState)
 	{
 		highLevelStateHandler.setHighLevelState(stateID, newState);
 	}

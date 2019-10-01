@@ -19,6 +19,7 @@ import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.ManualSwitchAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
+import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.preferences.Preferences;
 
 public class ModelManualSwitch extends ModelComponent
@@ -47,6 +48,49 @@ public class ModelManualSwitch extends ModelComponent
 
 		setSize(width, height);
 		addPin(this.outputPin = new Pin(model, this, "", logicWidth, PinUsage.OUTPUT, width, height / 2));
+
+		setHighLevelStateHandler(new HighLevelStateHandler()
+		{
+			@Override
+			public Object getHighLevelState(String stateID)
+			{
+				switch (stateID)
+				{
+				case "out":
+					if (manualSwitch != null)
+						return manualSwitch.getValues();
+					return null;
+				default:
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+				}
+			}
+
+			@Override
+			public void setHighLevelState(String stateID, Object newState)
+			{
+				switch (stateID)
+				{
+				case "out":
+					if (manualSwitch != null)
+						manualSwitch.setState((BitVector) newState);
+					break;
+				default:
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+				}
+			}
+
+			@Override
+			public String getIDForSerializing(IdentifyParams idParams)
+			{
+				return null;
+			}
+
+			@Override
+			public Object getParamsForSerializing(IdentifyParams idParams)
+			{
+				return null;
+			}
+		});
 
 		init();
 	}
@@ -106,35 +150,6 @@ public class ModelManualSwitch extends ModelComponent
 	public boolean hasCoreModelBinding()
 	{
 		return manualSwitch != null;
-	}
-
-	@Override
-	public Object getHighLevelState(String stateID)
-	{
-		switch (stateID)
-		{
-		case "out":
-			if (manualSwitch != null)
-				return manualSwitch.getValues();
-			return null;
-		default:
-			return super.getHighLevelState(stateID);
-		}
-	}
-
-	@Override
-	public void setHighLevelState(String stateID, Object newState)
-	{
-		switch (stateID)
-		{
-		case "out":
-			if (manualSwitch != null)
-				manualSwitch.setState((BitVector) newState);
-			break;
-		default:
-			super.setHighLevelState(stateID, newState);
-			break;
-		}
 	}
 
 	@Override
