@@ -165,8 +165,7 @@ public class Am2900Machine implements Machine
 
 	private long getCurrentMicroInstructionAddress()
 	{
-		// TODO: replace with highlevelstate
-		BitVector vector = logicModel.getWireBySubmodelPath("Am2900.wire_mpm_address").getWireValues();
+		BitVector vector = (BitVector) am2900.getHighLevelState("mpm_address");
 		return vector.isBinary() ? vector.getUnsignedValueLong() : -1;
 	}
 

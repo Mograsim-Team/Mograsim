@@ -4159,7 +4159,7 @@
           "compName": "WireCrossPoint#43",
           "pinName": ""
         },
-        "name": "wire_mpm_address",
+        "name": "unnamedWire#163",
         "path": [
           {
             "x": 205.0,
@@ -7058,7 +7058,17 @@
         }
       }
     },
-    "atomicHighLevelStates": {}
+    "atomicHighLevelStates": {
+      "mpm_address": {
+        "id": "wireForcing",
+        "params": {
+          "wiresToForce": [
+            "unnamedWire#163"
+          ],
+          "wiresToForceInverted": []
+        }
+      }
+    }
   },
   "version": "0.1.5"
 }
