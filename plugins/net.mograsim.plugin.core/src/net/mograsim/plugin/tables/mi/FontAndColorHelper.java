@@ -20,13 +20,14 @@ public class FontAndColorHelper
 	private long highlightedAddress = -1;
 	private ColorRegistry cRegistry;
 	private FontRegistry fRegistry;
-	private Font boldItalic;
+	private Font boldItalic, bold, italic, normal;
+	private Color modifBackground, modifForeground, highlightBackground, highlightForeground;
 
 	private final static String font = "net.mograsim.plugin.table_font",
 			colorModifBackground = "net.mograsim.plugin.modified_cell_bg_color",
 			colorModifForeground = "net.mograsim.plugin.modified_cell_fg_color",
-			colorHighlightedForeground = "net.mograsim.plugin.highlighted_cell_fg_color",
-			colorHighlightedBackground = "net.mograsim.plugin.highlighted_cell_bg_color";
+			colorHighlightForeground = "net.mograsim.plugin.highlighted_cell_fg_color",
+			colorHighlightBackground = "net.mograsim.plugin.highlighted_cell_bg_color";
 	private final IPropertyChangeListener updateListener;
 
 	public FontAndColorHelper(TableViewer viewer, IThemeManager themeManager)
@@ -40,15 +41,26 @@ public class FontAndColorHelper
 			{
 			case IThemeManager.CHANGE_CURRENT_THEME:
 				themeChanged(themeManager.getCurrentTheme());
-				//$FALL-THROUGH$
+				break;
 			case font:
+				fontChanged();
+				break;
 			case colorModifBackground:
+				colorModifBackgroundChanged();
+				break;
 			case colorModifForeground:
-				viewer.refresh();
+				colorModifForegroundChanged();
+				break;
+			case colorHighlightBackground:
+				colorHighlightBackgroundChanged();
+				break;
+			case colorHighlightForeground:
+				colorHighlightForegroundChanged();
 				break;
 			default:
-				break;
+				return;
 			}
+			viewer.refresh();
 		};
 		themeManager.addPropertyChangeListener(updateListener);
 	}
@@ -57,8 +69,40 @@ public class FontAndColorHelper
 	{
 		cRegistry = theme.getColorRegistry();
 		fRegistry = theme.getFontRegistry();
+		fontChanged();
+		colorHighlightBackgroundChanged();
+		colorHighlightForegroundChanged();
+		colorModifBackgroundChanged();
+		colorModifForegroundChanged();
+	}
+
+	private void fontChanged()
+	{
 		boldItalic = fRegistry.getDescriptor(font).setStyle(SWT.BOLD | SWT.ITALIC).createFont(Display.getDefault());
-		viewer.getTable().setFont(fRegistry.get(font));
+		bold = fRegistry.getBold(font);
+		italic = fRegistry.getItalic(font);
+		normal = fRegistry.get(font);
+		viewer.getTable().setFont(normal);
+	}
+
+	private void colorModifBackgroundChanged()
+	{
+		modifBackground = cRegistry.get(colorModifBackground);
+	}
+
+	private void colorModifForegroundChanged()
+	{
+		modifForeground = cRegistry.get(colorModifForeground);
+	}
+
+	private void colorHighlightBackgroundChanged()
+	{
+		highlightBackground = cRegistry.get(colorHighlightBackground);
+	}
+
+	private void colorHighlightForegroundChanged()
+	{
+		highlightForeground = cRegistry.get(colorHighlightForeground);
 	}
 
 	public Color getBackground(Object element, int column)
@@ -67,10 +111,10 @@ public class FontAndColorHelper
 		if (isDefault(row, column))
 		{
 			if (isHighlighted(row))
-				return cRegistry.get(colorHighlightedBackground);
+				return highlightBackground;
 			return viewer.getTable().getBackground();
 		}
-		return cRegistry.get(colorModifBackground);
+		return modifBackground;
 	}
 
 	public Color getForeground(Object element, int column)
@@ -79,10 +123,10 @@ public class FontAndColorHelper
 		if (isDefault(row, column))
 		{
 			if (isHighlighted(row))
-				return cRegistry.get(colorHighlightedForeground);
+				return highlightForeground;
 			return viewer.getTable().getForeground();
 		}
-		return cRegistry.get(colorModifForeground);
+		return modifForeground;
 	}
 
 	public Font getFont(Object element, int column)
@@ -92,10 +136,10 @@ public class FontAndColorHelper
 		if (modified && highlighted)
 			return boldItalic;
 		if (modified)
-			return fRegistry.getItalic(font);
+			return italic;
 		if (highlighted)
-			return fRegistry.getBold(font);
-		return fRegistry.get(font);
+			return bold;
+		return normal;
 	}
 
 	private static boolean isDefault(InstructionTableRow row, int column)
