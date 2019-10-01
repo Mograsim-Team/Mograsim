@@ -25,7 +25,8 @@ import net.mograsim.preferences.Preferences;
 
 public class MainMemoryBlockExtension extends PlatformObject implements IMemoryBlockExtension
 {
-	// TODO do we want to make the memory accessible byte-wise?
+	private static final byte MEM_BYTE_FLAGS = (byte) (MemoryByte.READABLE | MemoryByte.WRITABLE | MemoryByte.ENDIANESS_KNOWN
+			| MemoryByte.BIG_ENDIAN);
 
 	private final String expression;
 	private final MachineDebugTarget debugTarget;
@@ -242,9 +243,9 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 				int l = wordBytes[0] == 0 ? 1 : 0;
 				int k;
 				for (k = 0; k < cellWidthBytes - wordBytes.length + l; k++)
-					bytes[i + k] = new MemoryByte();
+					bytes[i + k] = new MemoryByte((byte) 0, MEM_BYTE_FLAGS);
 				for (; k < cellWidthBytes; k++, l++)
-					bytes[i + k] = new MemoryByte(wordBytes[l]);
+					bytes[i + k] = new MemoryByte(wordBytes[l], MEM_BYTE_FLAGS);
 			} else
 				for (int k = 0; k < cellWidthBytes; k++)
 					bytes[i + k] = new MemoryByte((byte) 0, (byte) 0);
