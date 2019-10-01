@@ -401,7 +401,7 @@ public abstract class SubmodelComponent extends ModelComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	protected void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
+	private void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
 	{
 		if (symbolRenderer != null)
 			symbolRenderer.render(gc, visibleRegion);
@@ -412,7 +412,7 @@ public abstract class SubmodelComponent extends ModelComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	protected void renderOutline(GeneralGC gc, Rectangle visibleRegion)
+	private void renderOutline(GeneralGC gc, Rectangle visibleRegion)
 	{
 		if (outlineRenderer != null)
 			outlineRenderer.render(gc, visibleRegion);
