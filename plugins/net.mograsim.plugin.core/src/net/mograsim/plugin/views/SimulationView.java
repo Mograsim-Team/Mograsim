@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.SafeRunner;
 import org.eclipse.debug.core.ILaunch;
+import org.eclipse.debug.core.model.IDebugElement;
 import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.debug.ui.contexts.IDebugContextListener;
@@ -183,24 +184,20 @@ public class SimulationView extends ViewPart
 			Object[] selectedElements = treeSelection.toArray();
 			for (Object selectedElement : selectedElements)
 			{
-				MachineDebugTarget debugTarget;
-				if (selectedElement instanceof MachineDebugTarget)
-					debugTarget = (MachineDebugTarget) selectedElement;
+				IDebugTarget debugTarget;
+				if (selectedElement instanceof IDebugElement)
+					debugTarget = ((IDebugElement) selectedElement).getDebugTarget();
 				else if (selectedElement instanceof ILaunch)
-				{
-					ILaunch launch = (ILaunch) selectedElement;
-					IDebugTarget genericDebugTarget = launch.getDebugTarget();
-					if (genericDebugTarget instanceof MachineDebugTarget)
-						debugTarget = (MachineDebugTarget) genericDebugTarget;
-					else
-						continue;
-				} else
+					debugTarget = ((ILaunch) selectedElement).getDebugTarget();
+				else
+					continue;
+				if (!(debugTarget instanceof MachineDebugTarget))
 					continue;
 				if (debugTarget.isTerminated())
 					continue;
 				// we found a selected MachineDebugTarget
 				if (this.debugTarget != debugTarget)
-					bindToDebugTarget(debugTarget);
+					bindToDebugTarget((MachineDebugTarget) debugTarget);
 				return;
 			}
 		}
