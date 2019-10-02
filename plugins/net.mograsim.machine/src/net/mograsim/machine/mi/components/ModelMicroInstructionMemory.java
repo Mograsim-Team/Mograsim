@@ -1,5 +1,9 @@
 package net.mograsim.machine.mi.components;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -16,6 +20,8 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 	private CoreMicroInstructionMemory memory;
 	private final MicroInstructionMemoryDefinition definition;
 
+	private final List<Consumer<Object>> memoryBindingListeners;
+
 	public ModelMicroInstructionMemory(LogicModelModifiable model, MicroInstructionMemoryDefinition definition, String name)
 	{
 		super(model, 120, 150, name, "MPM", false);
@@ -24,10 +30,12 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 		addPin(dataPin = new Pin(model, this, "D", definition.getMicroInstructionDefinition().sizeInBits(), PinUsage.OUTPUT, getWidth(),
 				50));
 
+		memoryBindingListeners = new ArrayList<>();
+
 		setHighLevelStateHandler(new HighLevelStateHandler()
 		{
 			@Override
-			public Object getHighLevelState(String stateID)
+			public Object get(String stateID)
 			{
 				if (stateID.equals("memory_binding"))
 					return memory.getMemory();
@@ -35,10 +43,30 @@ public abstract class ModelMicroInstructionMemory extends ModelMemory
 			}
 
 			@Override
-			public void setHighLevelState(String stateID, Object newState)
+			public void set(String stateID, Object newState)
 			{
 				if (stateID.equals("memory_binding"))
+				{
 					memory.setMemory((MicroInstructionMemory) newState);
+					memoryBindingListeners.forEach(l -> l.accept(newState));
+				} else
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+			}
+
+			@Override
+			public void addListener(String stateID, Consumer<Object> stateChanged)
+			{
+				if (stateID.equals("memory_binding"))
+					memoryBindingListeners.add(stateChanged);
+				else
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+			}
+
+			@Override
+			public void removeListener(String stateID, Consumer<Object> stateChanged)
+			{
+				if (stateID.equals("memory_binding"))
+					memoryBindingListeners.remove(stateChanged);
 				else
 					throw new IllegalArgumentException("No high level state with ID " + stateID);
 			}

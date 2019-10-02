@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.snippets;
 
+import java.util.function.Consumer;
+
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.serializing.JSONSerializable;
 
@@ -20,22 +22,25 @@ public interface HighLevelStateHandler extends JSONSerializable
 	 * Gets the current value of the given high-level state. <br>
 	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
-	 * @see #setHighLevelState(String, Object)
+	 * @see #set(String, Object)
 	 * @see ModelComponent#getHighLevelState(String)
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public Object getHighLevelState(String stateID);
+	public Object get(String stateID);
 
 	/**
 	 * Sets the given high-level state to the given value. <br>
 	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
-	 * @see #getHighLevelState(String)
+	 * @see #get(String)
 	 * @see ModelComponent#setHighLevelState(String, Object)
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public void setHighLevelState(String stateID, Object newState);
+	public void set(String stateID, Object newState);
 
+	public void addListener(String stateID, Consumer<Object> stateChanged);
+
+	public void removeListener(String stateID, Consumer<Object> stateChanged);
 }

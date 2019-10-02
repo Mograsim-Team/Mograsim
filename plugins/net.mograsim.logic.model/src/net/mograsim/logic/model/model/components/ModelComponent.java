@@ -215,13 +215,13 @@ public abstract class ModelComponent implements JSONSerializable
 	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
 	 * @see #setHighLevelState(String, Object)
-	 * @see HighLevelStateHandler#getHighLevelState(String)
+	 * @see HighLevelStateHandler#get(String)
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public final Object getHighLevelState(String stateID)
 	{
-		return highLevelStateHandler.getHighLevelState(stateID);
+		return highLevelStateHandler.get(stateID);
 	}
 
 	/**
@@ -229,13 +229,23 @@ public abstract class ModelComponent implements JSONSerializable
 	 * See {@link HighLevelStateHandler} for an explanation of high-level state IDs.
 	 * 
 	 * @see #getHighLevelState(String)
-	 * @see HighLevelStateHandler#setHighLevelState(String, Object)
+	 * @see HighLevelStateHandler#set(String, Object)
 	 * 
 	 * @author Daniel Kirschten
 	 */
 	public final void setHighLevelState(String stateID, Object newState)
 	{
-		highLevelStateHandler.setHighLevelState(stateID, newState);
+		highLevelStateHandler.set(stateID, newState);
+	}
+
+	public final void addHighLevelStateListener(String stateID, Consumer<Object> stateChanged)
+	{
+		highLevelStateHandler.addListener(stateID, stateChanged);
+	}
+
+	public final void removeHighLevelStateListener(String stateID, Consumer<Object> stateChanged)
+	{
+		highLevelStateHandler.removeListener(stateID, stateChanged);
 	}
 
 	// "graphical" operations

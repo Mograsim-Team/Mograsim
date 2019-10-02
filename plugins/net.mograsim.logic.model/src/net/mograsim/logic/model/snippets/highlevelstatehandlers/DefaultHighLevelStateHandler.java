@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers;
 
+import java.util.function.Consumer;
+
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
@@ -25,13 +27,25 @@ public class DefaultHighLevelStateHandler implements HighLevelStateHandler
 	}
 
 	@Override
-	public Object getHighLevelState(String stateID)
+	public Object get(String stateID)
 	{
 		throw new IllegalArgumentException("No high level state with ID " + stateID);
 	}
 
 	@Override
-	public void setHighLevelState(String stateID, Object newState)
+	public void set(String stateID, Object newState)
+	{
+		throw new IllegalArgumentException("No high level state with ID " + stateID);
+	}
+
+	@Override
+	public void addListener(String stateID, Consumer<Object> stateChanged)
+	{
+		throw new IllegalArgumentException("No high level state with ID " + stateID);
+	}
+
+	@Override
+	public void removeListener(String stateID, Consumer<Object> stateChanged)
 	{
 		throw new IllegalArgumentException("No high level state with ID " + stateID);
 	}

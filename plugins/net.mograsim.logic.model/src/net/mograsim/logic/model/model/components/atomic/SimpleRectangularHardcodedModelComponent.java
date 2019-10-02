@@ -1,7 +1,10 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
@@ -20,6 +23,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.CenteredTextSymbolRende
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams;
 import net.mograsim.logic.model.snippets.symbolrenderers.PinNamesSymbolRenderer.PinNamesParams.Position;
+import net.mograsim.logic.model.util.ObservableAtomicReference;
 
 public abstract class SimpleRectangularHardcodedModelComponent extends ModelComponent
 {
@@ -33,8 +37,10 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 	private final CenteredTextSymbolRenderer centerTextRenderer;
 	private final PinNamesSymbolRenderer pinNamesRenderer;
 
-	private AtomicReference<Object> state;
+	private ObservableAtomicReference<Object> state;
 	private Runnable recalculate;
+
+	private final Map<String, Map<Consumer<Object>, Consumer<ObservableAtomicReference<Object>>>> stateObsPerHLSListenerPerStateID;
 
 	// creation and destruction
 
@@ -57,8 +63,37 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 		pinNamesParams.pinLabelMargin = pinNamesMargin;
 		this.pinNamesRenderer = new PinNamesSymbolRenderer(this, pinNamesParams);
 		addPinRemovedListener(this::pinRemoved);
+
+		this.stateObsPerHLSListenerPerStateID = new HashMap<>();
+
 		setHighLevelStateHandler(new HighLevelStateHandler()
 		{
+
+			@Override
+			public Object get(String stateID)
+			{
+				return getHighLevelState(state.get(), stateID);
+			}
+
+			@Override
+			public void set(String stateID, Object newState)
+			{
+				state.updateAndGet(s -> SimpleRectangularHardcodedModelComponent.this.setHighLevelState(s, stateID, newState));
+				recalculate.run();
+			}
+
+			@Override
+			public void addListener(String stateID, Consumer<Object> stateChanged)
+			{
+				addHighLevelStateListener(state.get(), stateID, stateChanged);
+			}
+
+			@Override
+			public void removeListener(String stateID, Consumer<Object> stateChanged)
+			{
+				removeHighLevelStateListener(state.get(), stateID, stateChanged);
+			}
+
 			@Override
 			public String getIDForSerializing(IdentifyParams idParams)
 			{
@@ -69,19 +104,6 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 			public Object getParamsForSerializing(IdentifyParams idParams)
 			{
 				return null;
-			}
-
-			@Override
-			public Object getHighLevelState(String stateID)
-			{
-				return SimpleRectangularHardcodedModelComponent.this.getHighLevelState(state.get(), stateID);
-			}
-
-			@Override
-			public void setHighLevelState(String stateID, Object newState)
-			{
-				state.updateAndGet(s -> SimpleRectangularHardcodedModelComponent.this.setHighLevelState(s, stateID, newState));
-				recalculate.run();
 			}
 		});
 
@@ -116,13 +138,36 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 		throw new IllegalArgumentException("No high level state with ID " + stateID);
 	}
 
+	protected void addHighLevelStateListener(Object state, String stateID, Consumer<Object> stateChanged)
+	{
+		AtomicReference<Object> lastHLSRef = new AtomicReference<>(getHighLevelState(state, stateID));
+		Consumer<ObservableAtomicReference<Object>> refObs = r ->
+		{
+			Object newHLS = getHighLevelState(stateID);
+			if (!Objects.equals(lastHLSRef.getAndSet(newHLS), newHLS))
+				stateChanged.accept(newHLS);
+		};
+		stateObsPerHLSListenerPerStateID.computeIfAbsent(stateID, s -> new HashMap<>()).put(stateChanged, refObs);
+		this.state.addObserver(refObs);
+	}
+
+	protected void removeHighLevelStateListener(Object state, String stateID, Consumer<Object> stateChanged)
+	{
+		getHighLevelState(state, stateID);// if this throws, we know there is no HLS with this name
+		var stateObsPerHLSListener = stateObsPerHLSListenerPerStateID.get(stateID);
+		if (stateObsPerHLSListener == null)
+			return;
+		Consumer<ObservableAtomicReference<Object>> refObs = stateObsPerHLSListener.remove(stateChanged);
+		this.state.removeObserver(refObs);
+	}
+
 	// logic
 
 	public abstract Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds);
 
 	// core model binding
 
-	public void setCoreModelBindingAndResetState(AtomicReference<Object> state, Runnable recalculate)
+	public void setCoreModelBindingAndResetState(ObservableAtomicReference<Object> state, Runnable recalculate)
 	{
 		this.state = state;
 		this.recalculate = recalculate;

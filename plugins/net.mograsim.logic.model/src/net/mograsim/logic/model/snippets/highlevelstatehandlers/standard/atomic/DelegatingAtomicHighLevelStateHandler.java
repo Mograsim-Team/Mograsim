@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic;
 
+import java.util.function.Consumer;
+
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
@@ -75,17 +77,35 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 	@Override
 	public Object getHighLevelState()
 	{
-		if (delegateTarget == null)
-			throw new IllegalStateException("Delegating to a component that was destroyed");
+		checkTarget();
 		return delegateTarget.getHighLevelState(subStateID);
 	}
 
 	@Override
 	public void setHighLevelState(Object newState)
 	{
+		checkTarget();
+		delegateTarget.setHighLevelState(subStateID, newState);
+	}
+
+	@Override
+	public void addListener(Consumer<Object> stateChanged)
+	{
+		checkTarget();
+		delegateTarget.addHighLevelStateListener(subStateID, stateChanged);
+	}
+
+	@Override
+	public void removeListener(Consumer<Object> stateChanged)
+	{
+		checkTarget();
+		delegateTarget.removeHighLevelStateListener(subStateID, stateChanged);
+	}
+
+	private void checkTarget()
+	{
 		if (delegateTarget == null)
 			throw new IllegalStateException("Delegating to a component that was destroyed");
-		delegateTarget.setHighLevelState(subStateID, newState);
 	}
 
 	@Override
@@ -97,8 +117,7 @@ public class DelegatingAtomicHighLevelStateHandler implements AtomicHighLevelSta
 	@Override
 	public DelegatingAtomicHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
-		if (delegateTarget == null)
-			throw new IllegalStateException("Delegating to a component that was destroyed");
+		checkTarget();
 		DelegatingAtomicHighLevelStateHandlerParams params = new DelegatingAtomicHighLevelStateHandlerParams();
 		params.delegateTarget = delegateTarget == parentComponent ? null : delegateTarget.getName();
 		params.subStateID = subStateID;

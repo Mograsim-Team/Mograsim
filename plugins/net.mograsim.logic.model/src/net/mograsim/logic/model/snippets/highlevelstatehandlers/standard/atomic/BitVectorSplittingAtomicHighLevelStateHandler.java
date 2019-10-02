@@ -2,7 +2,10 @@ package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
@@ -20,6 +23,8 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	private final List<Integer> vectorPartLengthesUnmodifiable;
 	private int length;
 
+	private final Map<Consumer<Object>, Consumer<Object>> targetListeners;
+
 	public BitVectorSplittingAtomicHighLevelStateHandler(SubmodelComponent component)
 	{
 		this(component, null);
@@ -33,6 +38,9 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 		this.vectorPartTargetsUnmodifiable = Collections.unmodifiableList(vectorPartTargets);
 		this.vectorPartLengthes = new ArrayList<>();
 		this.vectorPartLengthesUnmodifiable = Collections.unmodifiableList(vectorPartLengthes);
+
+		this.targetListeners = new HashMap<>();
+
 		if (params != null)
 			setVectorParts(params.vectorPartTargets, params.vectorPartLengthes);
 	}
@@ -109,6 +117,32 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 			component.setHighLevelState(vectorPartTargets.get(partIndex), vectorPart);
 			bitIndex += vectorPartLength;
 		}
+	}
+
+	@Override
+	public void addListener(Consumer<Object> stateChanged)
+	{
+		if (targetListeners.get(stateChanged) != null)
+			// this listener is/was already registered
+			return;
+
+		Consumer<Object> targetListener = o -> stateChanged.accept(getHighLevelState());
+		targetListeners.put(stateChanged, targetListener);
+
+		for (String target : vectorPartTargets)
+			component.addHighLevelStateListener(target, targetListener);
+	}
+
+	@Override
+	public void removeListener(Consumer<Object> stateChanged)
+	{
+		Consumer<Object> targetListener = targetListeners.get(stateChanged);
+		if (targetListener == null)
+			// this listener is/was not registered
+			return;
+
+		for (String target : vectorPartTargets)
+			component.removeHighLevelStateListener(target, targetListener);
 	}
 
 	@Override

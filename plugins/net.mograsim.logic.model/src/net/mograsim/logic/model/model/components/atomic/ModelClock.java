@@ -1,5 +1,9 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import org.eclipse.swt.graphics.Color;
 
 import com.google.gson.JsonSyntaxException;
@@ -10,6 +14,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreClock;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.Orientation;
@@ -37,6 +42,8 @@ public class ModelClock extends ModelComponent
 	private OrientationCalculator oc;
 	private CoreClock clock;
 
+	private final List<Consumer<Object>> hlsListeners;
+
 	public ModelClock(LogicModelModifiable model, ModelClockParams params)
 	{
 		this(model, params, null);
@@ -46,7 +53,6 @@ public class ModelClock extends ModelComponent
 	{
 		super(model, name, false);
 		this.params = params;
-		logicObs = (i) -> model.requestRedraw();
 
 		oc = new OrientationCalculator(params.orientation, width, height);
 		setSize(oc.width(), oc.height());
@@ -54,16 +60,25 @@ public class ModelClock extends ModelComponent
 		this.outputPin = new Pin(model, this, "", 1, PinUsage.OUTPUT, oc.newX(width, height / 2), oc.newY(width, height / 2));
 		addPin(outputPin);
 
+		this.hlsListeners = new ArrayList<>();
+
+		logicObs = i ->
+		{
+			model.requestRedraw();
+			BitVector v = getOutValues();
+			hlsListeners.forEach(l -> l.accept(v));
+		};
+
 		setHighLevelStateHandler(new HighLevelStateHandler()
 		{
 			@Override
-			public Object getHighLevelState(String stateID)
+			public Object get(String stateID)
 			{
 				switch (stateID)
 				{
 				case "out":
 					if (clock != null)
-						return clock.getOutValues();
+						return getOutValues();
 					return null;
 				default:
 					throw new IllegalArgumentException("No high level state with ID " + stateID);
@@ -71,12 +86,38 @@ public class ModelClock extends ModelComponent
 			}
 
 			@Override
-			public void setHighLevelState(String stateID, Object newState)
+			public void set(String stateID, Object newState)
 			{
 				switch (stateID)
 				{
 				case "out":
 					throw new UnsupportedOperationException("cannot set state of clock");
+				default:
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+				}
+			}
+
+			@Override
+			public void addListener(String stateID, Consumer<Object> stateChanged)
+			{
+				switch (stateID)
+				{
+				case "out":
+					hlsListeners.add(stateChanged);
+					break;
+				default:
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+				}
+			}
+
+			@Override
+			public void removeListener(String stateID, java.util.function.Consumer<Object> stateChanged)
+			{
+				switch (stateID)
+				{
+				case "out":
+					hlsListeners.remove(stateChanged);
+					break;
 				default:
 					throw new IllegalArgumentException("No high level state with ID " + stateID);
 				}
@@ -131,6 +172,7 @@ public class ModelClock extends ModelComponent
 		return clock != null;
 	}
 
+	// TODO remove
 	public CoreClock getClock()
 	{
 		return clock;
@@ -156,6 +198,11 @@ public class ModelClock extends ModelComponent
 	public ModelClockParams getParamsForSerializing(IdentifyParams idParams)
 	{
 		return params;
+	}
+
+	private BitVector getOutValues()
+	{
+		return clock.getOutValues();
 	}
 
 	static

@@ -1,5 +1,9 @@
 package net.mograsim.machine.standard.memory;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -16,6 +20,8 @@ public abstract class ModelWordAddressableMemory extends ModelMemory
 	private CoreWordAddressableMemory memory;
 	private MainMemoryDefinition definition;
 
+	private final List<Consumer<Object>> memoryBindingListeners;
+
 	public ModelWordAddressableMemory(LogicModelModifiable model, MainMemoryDefinition definition, String name)
 	{
 		super(model, 120, 150, name, "RAM", false);
@@ -25,10 +31,12 @@ public abstract class ModelWordAddressableMemory extends ModelMemory
 		addPin(dataPin = new Pin(model, this, "D", definition.getCellWidth(), PinUsage.TRISTATE, getWidth(), 50));
 		addPin(rWPin = new Pin(model, this, "RW", 1, PinUsage.INPUT, getWidth(), 70));
 
+		memoryBindingListeners = new ArrayList<>();
+
 		setHighLevelStateHandler(new HighLevelStateHandler()
 		{
 			@Override
-			public Object getHighLevelState(String stateID)
+			public Object get(String stateID)
 			{
 				if (stateID.equals("memory_binding"))
 					return memory.getMemory();
@@ -36,10 +44,30 @@ public abstract class ModelWordAddressableMemory extends ModelMemory
 			}
 
 			@Override
-			public void setHighLevelState(String stateID, Object newState)
+			public void set(String stateID, Object newState)
 			{
 				if (stateID.equals("memory_binding"))
+				{
 					memory.setMemory((MainMemory) newState);
+					memoryBindingListeners.forEach(l -> l.accept(newState));
+				} else
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+			}
+
+			@Override
+			public void addListener(String stateID, Consumer<Object> stateChanged)
+			{
+				if (stateID.equals("memory_binding"))
+					memoryBindingListeners.add(stateChanged);
+				else
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+			}
+
+			@Override
+			public void removeListener(String stateID, Consumer<Object> stateChanged)
+			{
+				if (stateID.equals("memory_binding"))
+					memoryBindingListeners.remove(stateChanged);
 				else
 					throw new IllegalArgumentException("No high level state with ID " + stateID);
 			}
