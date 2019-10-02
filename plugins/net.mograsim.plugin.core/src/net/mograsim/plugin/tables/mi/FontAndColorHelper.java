@@ -23,11 +23,11 @@ public class FontAndColorHelper
 	private Font boldItalic, bold, italic, normal;
 	private Color modifBackground, modifForeground, highlightBackground, highlightForeground;
 
-	private final static String font = "net.mograsim.plugin.table_font",
-			colorModifBackground = "net.mograsim.plugin.modified_cell_bg_color",
-			colorModifForeground = "net.mograsim.plugin.modified_cell_fg_color",
-			colorHighlightForeground = "net.mograsim.plugin.highlighted_cell_fg_color",
-			colorHighlightBackground = "net.mograsim.plugin.highlighted_cell_bg_color";
+	private final static String font = "net.mograsim.plugin.mi.table_font",
+			colorModifBackground = "net.mograsim.plugin.mi.modified_cell_bg_color",
+			colorModifForeground = "net.mograsim.plugin.mi.modified_cell_fg_color",
+			colorHighlightForeground = "net.mograsim.plugin.mi.highlighted_cell_fg_color",
+			colorHighlightBackground = "net.mograsim.plugin.mi.highlighted_cell_bg_color";
 	private final IPropertyChangeListener updateListener;
 
 	public FontAndColorHelper(TableViewer viewer, IThemeManager themeManager)
