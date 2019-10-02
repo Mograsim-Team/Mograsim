@@ -160,8 +160,9 @@ public class LogicUICanvas extends ZoomableCanvas
 		{
 			try
 			{
-				if (componentSelector.getSelectionIndex() >= componentsByItemIndex.size())
-					throw new RuntimeException("No valid component selected");
+				int componentIndex = componentSelector.getSelectionIndex();
+				if (componentIndex < 0 || componentIndex >= componentsByItemIndex.size())
+					throw new RuntimeException("No component selected");
 				output.setText("Success! Value: \r\n"
 						+ componentsByItemIndex.get(componentSelector.getSelectionIndex()).getHighLevelState(stateIDText.getText()));
 			}
