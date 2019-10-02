@@ -17,7 +17,7 @@ import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 public class CoreClock extends CoreComponent implements TimelineEventHandler, LogicObservable
 {
 	private Collection<LogicObserver> observers;
-	private boolean isOn = true;// first update switches to 0
+	private boolean isOn = false;// first update switches to 1; so the clock starts as 1.
 	private ReadWriteEnd out;
 	private int delta;
 
