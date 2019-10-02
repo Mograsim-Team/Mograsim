@@ -1,5 +1,7 @@
 package net.mograsim.machine;
 
+import java.util.function.Consumer;
+
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
@@ -21,6 +23,10 @@ public interface Machine
 	BitVector getRegister(Register r);
 
 	void setRegister(Register r, BitVector value);
+
+	void addRegisterListener(Register r, Consumer<BitVector> listener);
+
+	void removeRegisterListener(Register r, Consumer<BitVector> listener);
 
 	Timeline getTimeline();
 
