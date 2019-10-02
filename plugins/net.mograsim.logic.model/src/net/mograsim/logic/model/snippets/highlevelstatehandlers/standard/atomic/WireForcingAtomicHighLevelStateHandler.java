@@ -99,14 +99,20 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 	@Override
 	public Object getHighLevelState()
 	{
-		BitVector result = BitVector.of(Bit.ZERO, logicWidth);
-		for (ModelWire wire : wiresToForceInverted)
-			if (wire.hasCoreModelBinding())
-				result = result.or(wire.getWireValues());
-		result = result.not();
+		BitVector result = BitVector.of(Bit.Z, logicWidth);
+
+		if (!wiresToForceInverted.isEmpty())
+		{
+			for (ModelWire wire : wiresToForceInverted)
+				if (wire.hasCoreModelBinding())
+					result = result.join(wire.getWireValues());
+			result = result.not();
+		}
+
 		for (ModelWire wire : wiresToForce)
 			if (wire.hasCoreModelBinding())
-				result = result.and(wire.getWireValues());
+				result = result.join(wire.getWireValues());
+
 		return result;
 	}
 
