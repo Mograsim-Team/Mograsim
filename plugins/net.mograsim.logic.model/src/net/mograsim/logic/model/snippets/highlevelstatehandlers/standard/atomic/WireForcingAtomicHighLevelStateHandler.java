@@ -2,11 +2,16 @@ package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
@@ -24,6 +29,8 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 	private final List<ModelWire> wiresToForceInverted;
 	private final List<ModelWire> wiresToForceInvertedUnmodifiable;
 
+	private final Map<Consumer<Object>, LogicObserver> wireObsPerListener;
+
 	public WireForcingAtomicHighLevelStateHandler(SubmodelComponent component)
 	{
 		this(component, null);
@@ -36,6 +43,9 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 		this.wiresToForceUnmodifiable = Collections.unmodifiableList(wiresToForce);
 		this.wiresToForceInverted = new ArrayList<>();
 		this.wiresToForceInvertedUnmodifiable = Collections.unmodifiableList(wiresToForceInverted);
+
+		this.wireObsPerListener = new HashMap<>();
+
 		if (params != null)
 		{
 			Map<String, ModelWire> wiresByName = component.submodel.getWiresByName();
@@ -131,6 +141,37 @@ public class WireForcingAtomicHighLevelStateHandler implements AtomicHighLevelSt
 		for (ModelWire wire : wiresToForceInverted)
 			if (wire.hasCoreModelBinding())
 				wire.forceWireValues(vector);
+	}
+
+	@Override
+	public void addListener(Consumer<Object> stateChanged)
+	{
+		if (wireObsPerListener.containsKey(stateChanged))
+			return;
+		AtomicReference<Object> lastStateRef = new AtomicReference<>(getHighLevelState());
+		LogicObserver obs = w ->
+		{
+			Object newState = getHighLevelState();
+			if (!Objects.equals(lastStateRef.getAndSet(newState), newState))
+				stateChanged.accept(newState);
+		};
+		wireObsPerListener.put(stateChanged, obs);
+		for (ModelWire w : wiresToForce)
+			w.addObserver(obs);
+		for (ModelWire w : wiresToForceInverted)
+			w.addObserver(obs);
+	}
+
+	@Override
+	public void removeListener(Consumer<Object> stateChanged)
+	{
+		LogicObserver obs = wireObsPerListener.remove(stateChanged);
+		if (obs == null)
+			return;
+		for (ModelWire w : wiresToForce)
+			w.removeObserver(obs);
+		for (ModelWire w : wiresToForceInverted)
+			w.removeObserver(obs);
 	}
 
 	@Override

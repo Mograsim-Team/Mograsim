@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent;
 
+import java.util.function.Consumer;
+
 import com.google.gson.JsonElement;
 
 import net.mograsim.logic.model.serializing.JSONSerializable;
@@ -28,4 +30,8 @@ public interface SubcomponentHighLevelStateHandler extends JSONSerializable
 		public String id;
 		public JsonElement params;
 	}
+
+	public void addListener(String subStateID, Consumer<Object> stateChanged);
+
+	public void removeListener(String subStateID, Consumer<Object> stateChanged);
 }

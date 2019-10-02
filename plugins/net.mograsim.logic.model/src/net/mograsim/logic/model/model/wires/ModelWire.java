@@ -513,6 +513,28 @@ public class ModelWire
 		return end.getValues();
 	}
 
+	/**
+	 * Registers the given {@link LogicObserver} for the {@link ReadEnd} this {@link ModelWire} is bound to.
+	 * 
+	 * @see ReadEnd#registerObserver(LogicObserver)
+	 * @author Daniel Kirschten
+	 */
+	public void addObserver(LogicObserver obs)
+	{
+		end.registerObserver(obs);
+	}
+
+	/**
+	 * Deregisters the given {@link LogicObserver} for the {@link ReadEnd} this {@link ModelWire} is bound to.
+	 * 
+	 * @see ReadEnd#deregisterObserver(LogicObserver)
+	 * @author Daniel Kirschten
+	 */
+	public void removeObserver(LogicObserver obs)
+	{
+		end.deregisterObserver(obs);
+	}
+
 	// listeners
 
 	// @formatter:off

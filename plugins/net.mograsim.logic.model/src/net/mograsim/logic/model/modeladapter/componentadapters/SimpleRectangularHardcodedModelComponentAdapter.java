@@ -2,7 +2,6 @@ package net.mograsim.logic.model.modeladapter.componentadapters;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
@@ -13,6 +12,7 @@ import net.mograsim.logic.model.model.components.atomic.SimpleRectangularHardcod
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.util.ObservableAtomicReference;
 
 public class SimpleRectangularHardcodedModelComponentAdapter implements ComponentAdapter<SimpleRectangularHardcodedModelComponent>
 {
@@ -29,7 +29,7 @@ public class SimpleRectangularHardcodedModelComponentAdapter implements Componen
 		Map<String, ReadEnd> readEnds = new HashMap<>();
 		Map<String, ReadWriteEnd> readWriteEnds = new HashMap<>();
 
-		AtomicReference<Object> state = new AtomicReference<>();
+		ObservableAtomicReference<Object> state = new ObservableAtomicReference<>();
 
 		Runnable recalculate = () -> state.updateAndGet(s -> modelComponent.recalculate(s, readEnds, readWriteEnds));
 		LogicObserver logicObs = c -> timeline.addEvent(e -> recalculate.run(), params.gateProcessTime);

@@ -1,5 +1,9 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import org.eclipse.swt.graphics.Color;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -35,6 +39,8 @@ public class ModelManualSwitch extends ModelComponent
 	private final LogicObserver logicObs;
 	private CoreManualSwitch manualSwitch;
 
+	private final List<Consumer<Object>> hlsListeners;
+
 	public ModelManualSwitch(LogicModelModifiable model, int logicWidth)
 	{
 		this(model, logicWidth, null);
@@ -44,21 +50,29 @@ public class ModelManualSwitch extends ModelComponent
 	{
 		super(model, name, false);
 		this.logicWidth = logicWidth;
-		logicObs = (i) -> model.requestRedraw();
 
 		setSize(width, height);
 		addPin(this.outputPin = new Pin(model, this, "", logicWidth, PinUsage.OUTPUT, width, height / 2));
 
+		hlsListeners = new ArrayList<>();
+
+		logicObs = i ->
+		{
+			model.requestRedraw();
+			BitVector v = getOutValues();
+			hlsListeners.forEach(l -> l.accept(v));
+		};
+
 		setHighLevelStateHandler(new HighLevelStateHandler()
 		{
 			@Override
-			public Object getHighLevelState(String stateID)
+			public Object get(String stateID)
 			{
 				switch (stateID)
 				{
 				case "out":
 					if (manualSwitch != null)
-						return manualSwitch.getValues();
+						return getOutValues();
 					return null;
 				default:
 					throw new IllegalArgumentException("No high level state with ID " + stateID);
@@ -66,13 +80,39 @@ public class ModelManualSwitch extends ModelComponent
 			}
 
 			@Override
-			public void setHighLevelState(String stateID, Object newState)
+			public void set(String stateID, Object newState)
 			{
 				switch (stateID)
 				{
 				case "out":
 					if (manualSwitch != null)
 						manualSwitch.setState((BitVector) newState);
+					break;
+				default:
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+				}
+			}
+
+			@Override
+			public void addListener(String stateID, Consumer<Object> stateChanged)
+			{
+				switch (stateID)
+				{
+				case "out":
+					hlsListeners.add(stateChanged);
+					break;
+				default:
+					throw new IllegalArgumentException("No high level state with ID " + stateID);
+				}
+			}
+
+			@Override
+			public void removeListener(String stateID, java.util.function.Consumer<Object> stateChanged)
+			{
+				switch (stateID)
+				{
+				case "out":
+					hlsListeners.remove(stateChanged);
 					break;
 				default:
 					throw new IllegalArgumentException("No high level state with ID " + stateID);
@@ -102,7 +142,7 @@ public class ModelManualSwitch extends ModelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-		String label = BitVectorFormatter.formatAsString(manualSwitch == null ? null : manualSwitch.getValues());
+		String label = BitVectorFormatter.formatAsString(manualSwitch == null ? null : getOutValues());
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
@@ -120,7 +160,7 @@ public class ModelManualSwitch extends ModelComponent
 			gc.drawLine(x, y + heightMiniButtons, x + width, y + heightMiniButtons);
 			Color c = gc.getBackground();
 			gc.setBackground(gc.getForeground());
-			BitVector bv = manualSwitch.getValues();
+			BitVector bv = getOutValues();
 			double part = width / bv.length();
 			for (int i = 0; i < bv.length(); i++)
 			{
@@ -160,7 +200,7 @@ public class ModelManualSwitch extends ModelComponent
 			if (heightMiniButtons > 0 && y - getPosY() < heightMiniButtons)
 			{
 				int part = (int) ((x - getPosX()) * logicWidth / width);
-				manualSwitch.setState(manualSwitch.getValues().withBitChanged(part, Bit::not));
+				manualSwitch.setState(getOutValues().withBitChanged(part, Bit::not));
 			} else
 			{
 				manualSwitch.toggle();
@@ -189,6 +229,11 @@ public class ModelManualSwitch extends ModelComponent
 	public Integer getParamsForSerializing(IdentifyParams idParams)
 	{
 		return logicWidth;
+	}
+
+	private BitVector getOutValues()
+	{
+		return manualSwitch.getValues();
 	}
 
 	static

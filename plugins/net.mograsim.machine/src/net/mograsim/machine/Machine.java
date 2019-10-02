@@ -15,6 +15,7 @@ public interface Machine
 
 	LogicModel getModel();
 
+	// TODO replace with HLS references
 	CoreClock getClock();
 
 	BitVector getRegister(Register r);

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
@@ -129,7 +130,7 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 	}
 
 	@Override
-	public Object getHighLevelState(String stateID)
+	public Object get(String stateID)
 	{
 		int indexOfDot = stateID.indexOf('.');
 		if (indexOfDot == -1)
@@ -147,7 +148,7 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 	}
 
 	@Override
-	public void setHighLevelState(String stateID, Object newState)
+	public void set(String stateID, Object newState)
 	{
 		int indexOfDot = stateID.indexOf('.');
 		if (indexOfDot == -1)
@@ -162,6 +163,48 @@ public class StandardHighLevelStateHandler implements HighLevelStateHandler
 			SubcomponentHighLevelStateHandler handler = subcomponentHighLevelStateHandlers.get(stateID.substring(0, indexOfDot));
 			if (handler != null)
 				handler.setHighLevelState(stateID.substring(indexOfDot + 1), newState);
+			else
+				throw new IllegalArgumentException("No high level state with ID " + stateID);
+		}
+	}
+
+	@Override
+	public void addListener(String stateID, Consumer<Object> stateChanged)
+	{
+		int indexOfDot = stateID.indexOf('.');
+		if (indexOfDot == -1)
+		{
+			AtomicHighLevelStateHandler handler = atomicHighLevelStateHandlers.get(stateID);
+			if (handler != null)
+				handler.addListener(stateChanged);
+			else
+				throw new IllegalArgumentException("No high level state with ID " + stateID);
+		} else
+		{
+			SubcomponentHighLevelStateHandler handler = subcomponentHighLevelStateHandlers.get(stateID.substring(0, indexOfDot));
+			if (handler != null)
+				handler.addListener(stateID.substring(indexOfDot + 1), stateChanged);
+			else
+				throw new IllegalArgumentException("No high level state with ID " + stateID);
+		}
+	}
+
+	@Override
+	public void removeListener(String stateID, Consumer<Object> stateChanged)
+	{
+		int indexOfDot = stateID.indexOf('.');
+		if (indexOfDot == -1)
+		{
+			AtomicHighLevelStateHandler handler = atomicHighLevelStateHandlers.get(stateID);
+			if (handler != null)
+				handler.removeListener(stateChanged);
+			else
+				throw new IllegalArgumentException("No high level state with ID " + stateID);
+		} else
+		{
+			SubcomponentHighLevelStateHandler handler = subcomponentHighLevelStateHandlers.get(stateID.substring(0, indexOfDot));
+			if (handler != null)
+				handler.removeListener(stateID.substring(indexOfDot + 1), stateChanged);
 			else
 				throw new IllegalArgumentException("No high level state with ID " + stateID);
 		}

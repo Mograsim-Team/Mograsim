@@ -1,9 +1,10 @@
 package net.mograsim.logic.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 import org.eclipse.swt.SWT;
@@ -89,17 +90,19 @@ public class LogicUICanvas extends ZoomableCanvas
 		List<ModelComponent> componentsByItemIndex = new ArrayList<>();
 		List<LogicModel> models = new ArrayList<>();
 		AtomicBoolean recalculateQueued = new AtomicBoolean();
-		AtomicReference<Consumer<? super ModelComponent>> compAdded = new AtomicReference<>();
-		AtomicReference<Consumer<? super ModelComponent>> compRemoved = new AtomicReference<>();
-		compAdded.set(c -> compsChanged(compAdded.get(), compRemoved.get(), c, models, componentsByItemIndex, componentSelector, model,
-				recalculateQueued, true));
-		compRemoved.set(c -> compsChanged(compAdded.get(), compRemoved.get(), c, models, componentsByItemIndex, componentSelector, model,
-				recalculateQueued, false));
-		iterateModelTree(compAdded.get(), compRemoved.get(), model, models, true);
+		@SuppressWarnings("unchecked")
+		Consumer<? super ModelComponent>[] compAdded = new Consumer[1];
+		@SuppressWarnings("unchecked")
+		Consumer<? super ModelComponent>[] compRemoved = new Consumer[1];
+		compAdded[0] = c -> compsChanged(compAdded[0], compRemoved[0], c, models, componentsByItemIndex, componentSelector, model,
+				recalculateQueued, true);
+		compRemoved[0] = c -> compsChanged(compAdded[0], compRemoved[0], c, models, componentsByItemIndex, componentSelector, model,
+				recalculateQueued, false);
+		iterateModelTree(compAdded[0], compRemoved[0], model, models, true);
 		debugShell.addListener(SWT.Dispose, e -> models.forEach(m ->
 		{
-			m.removeComponentAddedListener(compAdded.get());
-			m.removeComponentRemovedListener(compRemoved.get());
+			m.removeComponentAddedListener(compAdded[0]);
+			m.removeComponentRemovedListener(compRemoved[0]);
 		}));
 		queueRecalculateComponentSelector(recalculateQueued, componentsByItemIndex, componentSelector, model);
 		new Label(debugShell, SWT.NONE).setText("Target state ID: ");
@@ -121,8 +124,12 @@ public class LogicUICanvas extends ZoomableCanvas
 		valueText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		Button send = new Button(debugShell, SWT.PUSH);
 		send.setText("Send!");
+		Button addListener = new Button(debugShell, SWT.PUSH);
+		addListener.setText("Add sysout listener");
 		Button get = new Button(debugShell, SWT.PUSH);
 		get.setText("Get!");
+		Button removeListener = new Button(debugShell, SWT.PUSH);
+		removeListener.setText("Remove sysout listener");
 		Text output = new Text(debugShell, SWT.READ_ONLY);
 		output.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		Listener sendAction = e ->
@@ -167,6 +174,53 @@ public class LogicUICanvas extends ZoomableCanvas
 		valueText.addListener(SWT.DefaultSelection, sendAction);
 		get.addListener(SWT.Selection, getAction);
 		stateIDText.addListener(SWT.DefaultSelection, getAction);
+		Map<ModelComponent, Map<String, Consumer<Object>>> sysoutListenersPerHLSPerTarget = new HashMap<>();
+		addListener.addListener(SWT.Selection, e ->
+		{
+			try
+			{
+				int componentIndex = componentSelector.getSelectionIndex();
+				if (componentIndex < 0 || componentIndex >= componentsByItemIndex.size())
+					throw new RuntimeException("No component selected");
+				ModelComponent target = componentsByItemIndex.get(componentIndex);
+				Map<String, Consumer<Object>> sysoutListenersPerHLS = sysoutListenersPerHLSPerTarget.computeIfAbsent(target,
+						k -> new HashMap<>());
+				String stateIDString = stateIDText.getText();
+				if (sysoutListenersPerHLS.containsKey(stateIDString))
+					throw new RuntimeException("Listener already registered");
+				Consumer<Object> sysoutListener = v -> System.out.println(stateIDString + ": " + v);
+				target.addHighLevelStateListener(stateIDString, sysoutListener);
+				sysoutListenersPerHLS.put(stateIDString, sysoutListener);
+				output.setText("Success!");
+			}
+			catch (Exception x)
+			{
+				output.setText(x.getClass().getSimpleName() + (x.getMessage() == null ? "" : ": " + x.getMessage()));
+			}
+		});
+		removeListener.addListener(SWT.Selection, e ->
+		{
+			try
+			{
+				int componentIndex = componentSelector.getSelectionIndex();
+				if (componentIndex < 0 || componentIndex >= componentsByItemIndex.size())
+					throw new RuntimeException("No component selected");
+				ModelComponent target = componentsByItemIndex.get(componentIndex);
+				Map<String, Consumer<Object>> sysoutListenersPerHLS = sysoutListenersPerHLSPerTarget.get(target);
+				if (sysoutListenersPerHLS == null)
+					throw new RuntimeException("Listener not registered");
+				String stateIDString = stateIDText.getText();
+				Consumer<Object> sysoutListener = sysoutListenersPerHLS.remove(stateIDString);
+				if (sysoutListener == null)
+					throw new RuntimeException("Listener not registered");
+				target.removeHighLevelStateListener(stateIDString, sysoutListener);
+				output.setText("Success!");
+			}
+			catch (Exception x)
+			{
+				output.setText(x.getClass().getSimpleName() + (x.getMessage() == null ? "" : ": " + x.getMessage()));
+			}
+		});
 		debugShell.open();
 		addDisposeListener(e -> debugShell.dispose());
 	}

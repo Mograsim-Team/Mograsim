@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.subcomponent;
 
+import java.util.function.Consumer;
+
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
@@ -76,17 +78,35 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 	@Override
 	public Object getHighLevelState(String subStateID)
 	{
-		if (delegateTarget == null)
-			throw new IllegalStateException("Delegating to a component that was destroyed");
+		checkTarget();
 		return delegateTarget.getHighLevelState(getDelegateTargetHighLevelStateID(subStateID));
 	}
 
 	@Override
 	public void setHighLevelState(String subStateID, Object newState)
 	{
+		checkTarget();
+		delegateTarget.setHighLevelState(getDelegateTargetHighLevelStateID(subStateID), newState);
+	}
+
+	@Override
+	public void addListener(String subStateID, Consumer<Object> stateChanged)
+	{
+		checkTarget();
+		delegateTarget.addHighLevelStateListener(getDelegateTargetHighLevelStateID(subStateID), stateChanged);
+	}
+
+	@Override
+	public void removeListener(String subStateID, Consumer<Object> stateChanged)
+	{
+		checkTarget();
+		delegateTarget.removeHighLevelStateListener(getDelegateTargetHighLevelStateID(subStateID), stateChanged);
+	}
+
+	private void checkTarget()
+	{
 		if (delegateTarget == null)
 			throw new IllegalStateException("Delegating to a component that was destroyed");
-		delegateTarget.setHighLevelState(getDelegateTargetHighLevelStateID(subStateID), newState);
 	}
 
 	private String getDelegateTargetHighLevelStateID(String subStateID)
@@ -103,8 +123,7 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 	@Override
 	public DelegatingSubcomponentHighLevelStateHandlerParams getParamsForSerializing(IdentifyParams idParams)
 	{
-		if (delegateTarget == null)
-			throw new IllegalStateException("Delegating to a component that was destroyed");
+		checkTarget();
 		DelegatingSubcomponentHighLevelStateHandlerParams params = new DelegatingSubcomponentHighLevelStateHandlerParams();
 		params.delegateTarget = delegateTarget == parentComponent ? null : delegateTarget.getName();
 		params.prefix = prefix;
