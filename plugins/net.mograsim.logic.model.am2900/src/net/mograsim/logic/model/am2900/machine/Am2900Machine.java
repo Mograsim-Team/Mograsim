@@ -1,7 +1,10 @@
 package net.mograsim.logic.model.am2900.machine;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
@@ -39,6 +42,7 @@ public class Am2900Machine implements Machine
 	private long activeInstructionAddress;
 
 	private final Set<ActiveMicroInstructionChangedListener> amicListeners;
+	private final Map<Register, Map<Consumer<BitVector>, Consumer<Object>>> modelListenersPerRegisterListenerPerRegister;
 
 	public Am2900Machine(LogicModelModifiable model, Am2900MachineDefinition am2900MachineDefinition)
 	{
@@ -47,6 +51,7 @@ public class Am2900Machine implements Machine
 		this.am2900 = IndirectModelComponentCreator.createComponent(logicModel,
 				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json", "Am2900");
 		this.amicListeners = new HashSet<>();
+		this.modelListenersPerRegisterListenerPerRegister = new HashMap<>();
 
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
@@ -109,16 +114,12 @@ public class Am2900Machine implements Machine
 		return clock;
 	}
 
+	// TODO too much code duplication
+
 	@Override
 	public BitVector getRegister(Register r)
 	{
-		String am2901CellSuffix;
-		if (r instanceof QRegister)
-			am2901CellSuffix = "qreg.q";
-		else if (r instanceof NumberedRegister)
-			am2901CellSuffix = "regs.c" + ((NumberedRegister) r).getIndexAsBitstring() + ".q";
-		else
-			throw new IllegalArgumentException("Not a register of an Am2900Machine: " + r);
+		String am2901CellSuffix = getAm2901CellSuffix(r);
 		BitVector result = BitVector.of();
 		for (int i = 0; i < 16; i += 4)
 		{
@@ -131,18 +132,57 @@ public class Am2900Machine implements Machine
 	@Override
 	public void setRegister(Register r, BitVector value)
 	{
-		String am2901CellSuffix;
-		if (r instanceof QRegister)
-			am2901CellSuffix = "qreg.q";
-		else if (r instanceof NumberedRegister)
-			am2901CellSuffix = "regs.c" + ((NumberedRegister) r).getIndexAsBitstring() + ".q";
-		else
-			throw new IllegalArgumentException("Not a register of an Am2900Machine: " + r);
+		String am2901CellSuffix = getAm2901CellSuffix(r);
 		for (int i = 0; i < 16; i += 4)
 		{
 			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
 			am2900.setHighLevelState(hlsID, value.subVector(i, i + 4));
 		}
+	}
+
+	@Override
+	public void addRegisterListener(Register r, Consumer<BitVector> listener)
+	{
+		Map<Consumer<BitVector>, Consumer<Object>> modelListenersPerRegisterListener = modelListenersPerRegisterListenerPerRegister
+				.computeIfAbsent(r, k -> new HashMap<>());
+		if (modelListenersPerRegisterListener.containsKey(listener))
+			return;
+
+		Consumer<Object> modelListener = v -> listener.accept(getRegister(r));
+		String am2901CellSuffix = getAm2901CellSuffix(r);
+		for (int i = 0; i < 16; i += 4)
+		{
+			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
+			am2900.addHighLevelStateListener(hlsID, modelListener);
+		}
+	}
+
+	@Override
+	public void removeRegisterListener(Register r, Consumer<BitVector> listener)
+	{
+		Map<Consumer<BitVector>, Consumer<Object>> modelListenersPerRegisterListener = modelListenersPerRegisterListenerPerRegister.get(r);
+		if (modelListenersPerRegisterListener == null)
+			return;
+
+		Consumer<Object> modelListener = modelListenersPerRegisterListener.get(listener);
+		if (modelListener == null)
+			return;
+
+		String am2901CellSuffix = getAm2901CellSuffix(r);
+		for (int i = 0; i < 16; i += 4)
+		{
+			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
+			am2900.removeHighLevelStateListener(hlsID, modelListener);
+		}
+	}
+
+	private static String getAm2901CellSuffix(Register r)
+	{
+		if (r instanceof QRegister)
+			return "qreg.q";
+		if (r instanceof NumberedRegister)
+			return "regs.c" + ((NumberedRegister) r).getIndexAsBitstring() + ".q";
+		throw new IllegalArgumentException("Not a register of an Am2900Machine: " + r);
 	}
 
 	@Override
