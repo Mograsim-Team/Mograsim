@@ -80,7 +80,7 @@ public class Modeldff4_finewe extends SimpleRectangularHardcodedModelComponent
 		switch (stateID)
 		{
 		case "q":
-			return BitVector.of(Arrays.copyOfRange((Bit[]) state, 1, 5));
+			return state == null ? BitVector.of(U, U, U, U) : BitVector.of(Arrays.copyOfRange((Bit[]) state, 1, 5));
 		default:
 			return super.getHighLevelState(state, stateID);
 		}
