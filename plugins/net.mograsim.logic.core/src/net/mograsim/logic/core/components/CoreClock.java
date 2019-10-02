@@ -9,7 +9,7 @@ import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.timeline.TimelineEvent;
 import net.mograsim.logic.core.timeline.TimelineEventHandler;
-import net.mograsim.logic.core.types.Bit;
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
@@ -17,7 +17,7 @@ import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 public class CoreClock extends CoreComponent implements TimelineEventHandler, LogicObservable
 {
 	private Collection<LogicObserver> observers;
-	private boolean toggle = false;
+	private boolean isOn = true;// first update switches to 0
 	private ReadWriteEnd out;
 	private int delta;
 
@@ -39,19 +39,19 @@ public class CoreClock extends CoreComponent implements TimelineEventHandler, Lo
 	public void handle(TimelineEvent e)
 	{
 		addToTimeline();
-		out.feedSignals(toggle ? Bit.ONE : Bit.ZERO);
-		toggle = !toggle;
+		isOn = !isOn;
+		out.feedSignals(getOutValues());
 		notifyObservers();
 	}
 
-	public ReadWriteEnd getOut()
+	public BitVector getOutValues()
 	{
-		return out;
+		return isOn ? BitVector.SINGLE_1 : BitVector.SINGLE_0;
 	}
 
 	public boolean isOn()
 	{
-		return !toggle;
+		return isOn;
 	}
 
 	private void addToTimeline()

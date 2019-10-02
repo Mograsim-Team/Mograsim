@@ -63,7 +63,7 @@ public class ModelClock extends ModelComponent
 				{
 				case "out":
 					if (clock != null)
-						return clock.getOut().getInputValues();
+						return clock.getOutValues();
 					return null;
 				default:
 					throw new IllegalArgumentException("No high level state with ID " + stateID);
