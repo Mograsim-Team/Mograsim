@@ -7,6 +7,7 @@ import java.math.BigInteger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
@@ -23,6 +24,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
+import org.eclipse.ui.themes.ITheme;
+import org.eclipse.ui.themes.IThemeManager;
 
 import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
@@ -55,6 +58,9 @@ public class MemoryEditor extends EditorPart
 	private boolean dirty;
 
 	private final MemoryCellModifiedListener memListener;
+
+	private final static String font = "net.mograsim.plugin.memory.table_font";
+	private IPropertyChangeListener fontChangeListener;
 
 	public MemoryEditor()
 	{
@@ -139,10 +145,27 @@ public class MemoryEditor extends EditorPart
 		table.setLinesVisible(true);
 		viewer.setUseHashlookup(true);
 		viewer.setContentProvider(provider);
-		getSite().setSelectionProvider(viewer);// TODO what does this?
+		getSite().setSelectionProvider(viewer);// TODO what does this do?
 		viewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 7, 1));
+
+		IThemeManager themeManager = getSite().getWorkbenchWindow().getWorkbench().getThemeManager();
+		themeManager.addPropertyChangeListener(fontChangeListener = (e) ->
+		{
+			if (IThemeManager.CHANGE_CURRENT_THEME.equals(e.getProperty()) || font.equals(e.getProperty()))
+			{
+				updateFont(themeManager.getCurrentTheme());
+				viewer.refresh();
+			}
+		});
+		updateFont(themeManager.getCurrentTheme());
+
 		if (memory != null)
 			viewer.setInput(memory);
+	}
+
+	private void updateFont(ITheme theme)
+	{
+		viewer.getTable().setFont(theme.getFontRegistry().get(font));
 	}
 
 	private void createColumns()
@@ -274,6 +297,7 @@ public class MemoryEditor extends EditorPart
 	@Override
 	public void dispose()
 	{
+		getSite().getWorkbenchWindow().getWorkbench().getThemeManager().removePropertyChangeListener(fontChangeListener);
 		if (memory != null)
 			memory.deregisterCellModifiedListener(memListener);
 		super.dispose();
