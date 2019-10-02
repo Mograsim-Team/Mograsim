@@ -2,7 +2,7 @@ package net.mograsim.plugin.util;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * A utility class that requests the asynchronous execution of a Runnable in the SWT Thread. Making a new request before the old one is
@@ -21,7 +21,7 @@ public class SingleSWTRequest
 			if (!waiting.get())
 			{
 				waiting.set(true);
-				Display.getDefault().asyncExec(() ->
+				PlatformUI.getWorkbench().getDisplay().asyncExec(() ->
 				{
 					synchronized (waiting)
 					{
