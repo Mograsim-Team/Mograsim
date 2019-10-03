@@ -1,18 +1,14 @@
 package net.mograsim.plugin.views;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Consumer;
 
 import org.eclipse.core.runtime.SafeRunner;
-import org.eclipse.debug.core.ILaunch;
-import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.ui.DebugUITools;
-import org.eclipse.debug.ui.contexts.IDebugContextListener;
 import org.eclipse.debug.ui.contexts.IDebugContextManager;
 import org.eclipse.debug.ui.contexts.IDebugContextService;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -33,6 +29,7 @@ import net.mograsim.logic.model.LogicUICanvas;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
+import net.mograsim.plugin.launch.MachineDebugContextListener;
 import net.mograsim.plugin.launch.MachineDebugTarget;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.mi.ActiveInstructionPreviewContentProvider;
@@ -61,7 +58,7 @@ public class SimulationView extends ViewPart
 
 	private final MemoryCellModifiedListener memCellListener;
 	private final LogicObserver clockObserver;
-	private final IDebugContextListener debugContextListener;
+	private final MachineDebugContextListener debugContextListener;
 	private final Consumer<Double> executionSpeedListener;
 
 	public SimulationView()
@@ -74,7 +71,14 @@ public class SimulationView extends ViewPart
 			if (((CoreClock) o).isOn())
 				SafeRunner.run(() -> debugTarget.suspend());
 		};
-		debugContextListener = e -> debugContextChanged(e.getContext());
+		debugContextListener = new MachineDebugContextListener()
+		{
+			@Override
+			public void machineDebugContextChanged(Optional<MachineDebugTarget> oldTarget, Optional<MachineDebugTarget> newTarget)
+			{
+				SimulationView.this.debugContextChanged(newTarget);
+			}
+		};
 		executionSpeedListener = this::speedFactorChanged;
 	}
 
@@ -108,7 +112,7 @@ public class SimulationView extends ViewPart
 		IDebugContextManager debugCManager = DebugUITools.getDebugContextManager();
 		IDebugContextService contextService = debugCManager.getContextService(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
 		contextService.addDebugContextListener(debugContextListener);
-		debugContextChanged(contextService.getActiveContext());
+		debugContextListener.debugContextChanged(contextService.getActiveContext());
 	}
 
 	private void addSimulationControlWidgets(Composite parent)
@@ -144,6 +148,7 @@ public class SimulationView extends ViewPart
 		simSpeedScale.addListener(SWT.Selection, e ->
 		{
 			double speed = Math.pow(SIM_SPEED_SCALE_STEP_FACTOR, simSpeedScale.getSelection() - SIM_SPEED_SCALE_STEPS);
+			// TODO: disable when debugTarget is not set
 			debugTarget.setExecutionSpeed(speed);
 		});
 
@@ -176,42 +181,16 @@ public class SimulationView extends ViewPart
 		instPreview.setContentProvider(contentProvider);
 	}
 
-	private void debugContextChanged(ISelection selection)
+	private void debugContextChanged(Optional<MachineDebugTarget> newTarget)
 	{
-		if (selection != null && selection instanceof TreeSelection)
-		{
-			TreeSelection treeSelection = (TreeSelection) selection;
-			Object[] selectedElements = treeSelection.toArray();
-			for (Object selectedElement : selectedElements)
-			{
-				MachineDebugTarget debugTarget;
-				if (selectedElement instanceof MachineDebugTarget)
-					debugTarget = (MachineDebugTarget) selectedElement;
-				else if (selectedElement instanceof ILaunch)
-				{
-					ILaunch launch = (ILaunch) selectedElement;
-					IDebugTarget genericDebugTarget = launch.getDebugTarget();
-					if (genericDebugTarget instanceof MachineDebugTarget)
-						debugTarget = (MachineDebugTarget) genericDebugTarget;
-					else
-						continue;
-				} else
-					continue;
-				if (debugTarget.isTerminated())
-					continue;
-				// we found a selected MachineDebugTarget
-				if (this.debugTarget != debugTarget)
-					bindToDebugTarget(debugTarget);
-				return;
-			}
-		}
-		// we didn't find a selected MachineDebugTarget
+		// if we didn't find a selected MachineDebugTarget
 		// call binToDebugTarget even if this.debugTarget==null
-		bindToDebugTarget(null);
+		bindToDebugTarget(newTarget.orElse(null));
 	}
 
 	private void bindToDebugTarget(MachineDebugTarget debugTarget)
 	{
+		deregisterMachineDependentListeners();
 		this.debugTarget = debugTarget;
 
 		if (canvasParent == null)
@@ -221,7 +200,6 @@ public class SimulationView extends ViewPart
 		double offX;
 		double offY;
 		double zoom;
-		deregisterMachineDependentListeners();
 		if (canvas != null)
 		{
 			offX = canvas.getOffX();
