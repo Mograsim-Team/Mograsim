@@ -2,29 +2,36 @@ package net.mograsim.plugin.tables.mi;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.swt.SWT;
+import org.eclipse.debug.ui.DebugUITools;
+import org.eclipse.debug.ui.contexts.IDebugContextManager;
+import org.eclipse.debug.ui.contexts.IDebugContextService;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
 
+import net.mograsim.machine.Machine;
 import net.mograsim.machine.Machine.ActiveMicroInstructionChangedListener;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
-import net.mograsim.machine.mi.AssignableMicroInstructionMemory.MIMemoryReassignedListener;
 import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
+import net.mograsim.plugin.launch.MachineDebugContextListener;
+import net.mograsim.plugin.launch.MachineDebugTarget;
+import net.mograsim.plugin.launch.MachineLaunchConfigType.MachineLaunchParams;
 import net.mograsim.plugin.nature.MachineContext;
-import net.mograsim.plugin.nature.MachineContext.ActiveMachineListener;
 import net.mograsim.plugin.nature.ProjectMachineContext;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.RadixSelector;
@@ -36,6 +43,8 @@ public class InstructionView extends EditorPart
 	private MicroInstructionMemory memory;
 	private InstructionTable table;
 	private MachineContext context;
+
+	private IFile file;
 
 	// Listeners
 	private MemoryCellModifiedListener cellModifiedListener = address ->
@@ -49,20 +58,26 @@ public class InstructionView extends EditorPart
 		highlight((int) (newAddress - memory.getDefinition().getMinimalAddress()));
 	};
 
-	private MIMemoryReassignedListener reassignedListener = newAssignee ->
+	private MachineDebugContextListener debugContextListener = new MachineDebugContextListener()
 	{
-		// clear highlighting if the memory is reassigned
-		if (newAssignee != memory)
-			highlight(-1);
-	};
-
-	private ActiveMachineListener activeMachineListener = (oldMachine, newMachine) ->
-	{
-		// clear highlighting if the active machine changes
-		if (newMachine.isEmpty() || !newMachine.equals(oldMachine))
+		@Override
+		public void machineDebugContextChanged(Optional<MachineDebugTarget> oldTarget, Optional<MachineDebugTarget> newTarget)
 		{
-			highlight(-1);
-			oldMachine.ifPresent(m -> m.getMicroInstructionMemory().deregisterMemoryReassignedListener(reassignedListener));
+			instChangeListener.instructionChanged(-1, -1);
+			oldTarget.ifPresent(target -> target.getMachine().removeActiveMicroInstructionChangedListener(instChangeListener));
+
+			newTarget.ifPresent(target ->
+			{
+				MachineLaunchParams params = target.getLaunchParams();
+				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(params.getProjectPath());
+
+				if (file.equals(project.getFile(params.getMpmPath())))
+				{
+					Machine m = target.getMachine();
+					target.getMachine().addActiveMicroInstructionChangedListener(instChangeListener);
+					instChangeListener.instructionChanged(-1, m.getActiveMicroInstructionAddress());
+				}
+			});
 		}
 	};
 
@@ -77,7 +92,6 @@ public class InstructionView extends EditorPart
 		DisplaySettings displaySettings = new DisplaySettings();
 		new RadixSelector(parent, displaySettings);
 
-		addActivationButton(parent);
 		table = new InstructionTable(parent, displaySettings, getSite().getWorkbenchWindow().getWorkbench().getThemeManager());
 		table.setContentProvider(provider);
 		table.bindMicroInstructionMemory(memory);
@@ -85,24 +99,17 @@ public class InstructionView extends EditorPart
 		GridData viewerData = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.FILL_BOTH);
 		viewerData.horizontalSpan = 3;
 		table.getTableViewer().getTable().setLayoutData(viewerData);
+
+		IDebugContextManager debugCManager = DebugUITools.getDebugContextManager();
+		IDebugContextService contextService = debugCManager.getContextService(PlatformUI.getWorkbench().getActiveWorkbenchWindow());
+		contextService.addDebugContextListener(debugContextListener);
+		debugContextListener.debugContextChanged(contextService.getActiveContext());
+		parent.addDisposeListener(e -> contextService.removeDebugContextListener(debugContextListener));
 	}
 
 	public void highlight(int row)
 	{
 		table.highlight(row);
-	}
-
-	private void addActivationButton(Composite parent)
-	{
-		Button activationButton = new Button(parent, SWT.PUSH);
-		activationButton.setText("Set Active");
-		activationButton.addListener(SWT.Selection, e -> context.getActiveMachine().ifPresent(m ->
-		{
-			m.getMicroInstructionMemory().registerMemoryReassignedListener(reassignedListener);
-			context.addActiveMachineListener(activeMachineListener);
-			m.getMicroInstructionMemory().bind(memory);
-			m.addActiveMicroInstructionChangedListener(instChangeListener);
-		}));
 	}
 
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
@@ -196,17 +203,18 @@ public class InstructionView extends EditorPart
 			if (input instanceof IFileEditorInput)
 			{
 				IFileEditorInput fileInput = (IFileEditorInput) input;
-				context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
-				context.activateMachine();
+				file = fileInput.getFile();
+				context = ProjectMachineContext.getMachineContextOf(file.getProject());
+
 				setPartName(fileInput.getName());
-				open(fileInput.getFile());
-			}
+				open(file);
+			} else
+				throw new IllegalArgumentException("Expected IFileEditorInput!");
 		}
 		catch (Exception e)
 		{
 			throw new PartInitException("Failed to read input!", e);
 		}
-
 	}
 
 	@Override
@@ -231,12 +239,6 @@ public class InstructionView extends EditorPart
 	public void dispose()
 	{
 		memory.deregisterCellModifiedListener(cellModifiedListener);
-		context.getActiveMachine().ifPresent(m ->
-		{
-			m.removeActiveMicroInstructionChangedListener(instChangeListener);
-			m.getMicroInstructionMemory().deregisterMemoryReassignedListener(reassignedListener);
-		});
-		context.removeActiveMachineListener(activeMachineListener);
 		super.dispose();
 	}
 }

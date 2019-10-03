@@ -27,6 +27,7 @@ import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
 import net.mograsim.plugin.MograsimActivator;
+import net.mograsim.plugin.launch.MachineLaunchConfigType.MachineLaunchParams;
 
 public class MachineDebugTarget extends PlatformObject implements IDebugTarget, IMemoryBlockRetrievalExtension
 {
@@ -38,13 +39,16 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 
 	private final List<Consumer<Double>> executionSpeedListeners;
 
-	public MachineDebugTarget(ILaunch launch, MachineDefinition machineDefinition)
+	private final MachineLaunchParams launchParams;
+
+	public MachineDebugTarget(ILaunch launch, MachineLaunchParams launchParams, MachineDefinition machineDefinition)
 	{
 		this.launch = launch;
 		this.machine = machineDefinition.createNew();
 		this.exec = new LogicExecuter(machine.getTimeline());
 
 		this.executionSpeedListeners = new ArrayList<>();
+		this.launchParams = launchParams;
 
 		exec.startLiveExecution();
 		running = true;
@@ -80,6 +84,11 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	public ILaunch getLaunch()
 	{
 		return launch;
+	}
+
+	public MachineLaunchParams getLaunchParams()
+	{
+		return launchParams;
 	}
 
 	public double getExecutionSpeed()
