@@ -111,19 +111,21 @@ public class MemoryEditor extends EditorPart
 		Text amountText = new Text(parent, SWT.BORDER);
 		amountText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		amountText.addVerifyListener(vl);
-		amountText.setText("0");
 		amountText.addModifyListener(e ->
 		{
 			try
 			{
-				provider.setAmount(AsmNumberUtil.valueOf(amountText.getText()).intValue());
-				viewer.refresh();
+				if (provider != null)
+					provider.setAmount(AsmNumberUtil.valueOf(amountText.getText()).intValue());
+				if (viewer != null)
+					viewer.refresh();
 			}
 			catch (NumberFormatException x)
 			{
 				// Nothing to do here
 			}
 		});
+		amountText.setText("100");// do this after registering the ModifyListener
 		new RadixSelector(parent, displaySettings);
 
 		addActivationButton(parent);
