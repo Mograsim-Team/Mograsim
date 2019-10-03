@@ -136,7 +136,8 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 		MachineDefinition machineDefinition = machineContext.getMachineDefinition().orElseThrow();
 		MainMemoryDefinition mainMemDef = machineDefinition.getMainMemoryDefinition();
 
-		mpmFile = project.getFile(configuration.getAttribute(MPM_FILE_ATTR, ""));
+		String mpmName;
+		mpmFile = project.getFile(mpmName = configuration.getAttribute(MPM_FILE_ATTR, ""));
 
 		String initialRAMFileName = configuration.getAttribute(INITIAL_RAM_FILE_ATTR, "");
 		MainMemory mem;
@@ -155,7 +156,8 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 		} else
 			mem = null;
 
-		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, machineDefinition);
+		MachineLaunchParams params = new MachineLaunchParams(projName, mpmName, initialRAMFileName);
+		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, params, machineDefinition);
 		debugTarget.suspend();
 		debugTarget.setExecutionSpeed(1);
 		machine = debugTarget.getMachine();
@@ -235,5 +237,32 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 			typeStr = "<unknown: " + type + ">";
 		}
 		System.out.println(typeStr + ": " + event);
+	}
+
+	public static class MachineLaunchParams
+	{
+		public final String projectPath, mpmPath, ramPath;
+
+		MachineLaunchParams(String projectPath, String mpmPath, String ramPath)
+		{
+			this.projectPath = projectPath;
+			this.mpmPath = mpmPath;
+			this.ramPath = ramPath;
+		}
+
+		public String getProjectPath()
+		{
+			return projectPath;
+		}
+
+		public String getMpmPath()
+		{
+			return mpmPath;
+		}
+
+		public String getRamPath()
+		{
+			return ramPath;
+		}
 	}
 }
