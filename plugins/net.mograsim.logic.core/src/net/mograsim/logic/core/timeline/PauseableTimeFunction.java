@@ -10,7 +10,7 @@ public class PauseableTimeFunction implements TimeFunction
 {
 	private boolean paused = false;
 	private long unpausedSysTime = 0, lastPausedInternalTime = 0;
-	private double speedFactor = 1;
+	private double speedFactor = 0;
 
 	private final List<Consumer<Double>> simulTimeToRealTimeFactorChangedListeners = new ArrayList<>();
 
