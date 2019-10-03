@@ -47,6 +47,7 @@ public class SimulationView extends ViewPart
 	private static final double SIM_SPEED_SCALE_STEP_FACTOR_LOG = Math.log(SIM_SPEED_SCALE_STEP_FACTOR);
 
 	private final Set<Control> controlsToDisableWhenNoMachinePresent;
+	private Button sbseButton;
 	private Scale simSpeedScale;
 	private DoubleInput simSpeedInput;
 	private Composite contextDependentControlsParent;
@@ -116,7 +117,7 @@ public class SimulationView extends ViewPart
 		c.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		c.setLayout(new GridLayout(7, false));
 
-		Button sbseButton = new Button(c, SWT.CHECK);
+		sbseButton = new Button(c, SWT.CHECK);
 		controlsToDisableWhenNoMachinePresent.add(sbseButton);
 
 		sbseButton.setText("Step by step execution");
@@ -282,6 +283,8 @@ public class SimulationView extends ViewPart
 			debugTarget.removeExecutionSpeedListener(executionSpeedListener);
 			debugTarget.getMachine().getMicroInstructionMemory().deregisterCellModifiedListener(memCellListener);
 			debugTarget.getMachine().getClock().deregisterObserver(clockObserver);
+			if (sbseButton != null && !sbseButton.isDisposed())
+				sbseButton.setSelection(false);
 		}
 	}
 
