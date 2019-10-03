@@ -27,12 +27,13 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryC
 
 	public void updateItemCount()
 	{
-		if (memory != null)
-		{
-			long size = memory.getDefinition().getMaximalAddress() - lower;
-			viewer.setItemCount(size > amount ? amount : (int) size);
-		} else
-			viewer.setItemCount(0);
+		if (viewer != null)
+			if (memory != null)
+			{
+				long size = memory.getDefinition().getMaximalAddress() - lower;
+				viewer.setItemCount(size > amount ? amount : (int) size);
+			} else
+				viewer.setItemCount(0);
 	}
 
 	public long getLowerBound()
