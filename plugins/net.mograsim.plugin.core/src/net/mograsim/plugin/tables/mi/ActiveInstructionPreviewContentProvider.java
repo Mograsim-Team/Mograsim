@@ -56,7 +56,7 @@ public class ActiveInstructionPreviewContentProvider implements InstructionTable
 	@Override
 	public void updateElement(int index)
 	{
-		if (activeRow != null)
+		if (activeRow != null && !viewer.getControl().isDisposed())
 			viewer.replace(activeRow, index);
 	}
 }

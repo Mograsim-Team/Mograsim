@@ -296,6 +296,7 @@ public class SimulationView extends ViewPart
 	public void dispose()
 	{
 		deregisterMachineDependentListeners();
+		contentProvider.setMachine(null);
 		DebugUITools.getDebugContextManager().removeDebugContextListener(debugContextListener);
 		super.dispose();
 	}
