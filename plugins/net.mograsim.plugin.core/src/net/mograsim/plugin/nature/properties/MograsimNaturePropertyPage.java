@@ -22,7 +22,7 @@ public class MograsimNaturePropertyPage extends PropertyPage
 	private static final String WARNING = "Changing the Mograsim machine can completely break your project. Be careful.";
 	private static final String MACHINE_LABEL = "Machine ID";
 	private static final String MACHINE_PROPERTY = "net.mograsim.projectMachineId";
-	private static final String DEFAULT_MACHINE = "Am2900";
+	private static final String DEFAULT_MACHINE = "Am2900Simple";
 
 	private Combo machineSelect;
 	private String defaultId;
