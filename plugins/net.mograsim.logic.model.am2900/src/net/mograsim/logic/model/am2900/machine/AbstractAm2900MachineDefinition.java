@@ -13,9 +13,10 @@ import net.mograsim.machine.Register;
 
 //we can't use the Singleton pattern here because a MachineDefinition needs a public parameterless constructor
 //(used for detecting installed machines in plugin.core)
-public class Am2900MachineDefinition implements MachineDefinition
+public class AbstractAm2900MachineDefinition implements MachineDefinition
 {
-	public static final String AM2900_MACHINE_ID = "Am2900";
+	public static final String SIMPLE_AM2900_MACHINE_ID = "Am2900Simple";
+	public static final String STRICT_AM2900_MACHINE_ID = "Am2900Strict";
 
 	public static final Set<Register> allRegisters;
 
@@ -27,10 +28,17 @@ public class Am2900MachineDefinition implements MachineDefinition
 		allRegisters = Collections.unmodifiableSet(allRegistersModifiable);
 	}
 
+	public final boolean strict;
+
+	protected AbstractAm2900MachineDefinition(boolean strict)
+	{
+		this.strict = strict;
+	}
+
 	@Override
 	public String getId()
 	{
-		return AM2900_MACHINE_ID;
+		return strict ? STRICT_AM2900_MACHINE_ID : SIMPLE_AM2900_MACHINE_ID;
 	}
 
 	@Override
@@ -72,13 +80,14 @@ public class Am2900MachineDefinition implements MachineDefinition
 	@Override
 	public int hashCode()
 	{
-		return 12345;
+		return strict ? 12345 : 54321;
 	}
 
 	@Override
 	public boolean equals(Object obj)
 	{
-		return obj != null && obj instanceof Am2900MachineDefinition;
+		return obj != null && obj instanceof AbstractAm2900MachineDefinition
+				&& ((AbstractAm2900MachineDefinition) obj).strict == this.strict;
 	}
 
 	@Override
