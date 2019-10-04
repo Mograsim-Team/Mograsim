@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.am2900.machine.registers.NumberedRegister;
 import net.mograsim.logic.model.am2900.machine.registers.QRegister;
@@ -32,7 +33,7 @@ import net.mograsim.machine.standard.memory.WordAddressableMemory;
 
 public class Am2900Machine implements Machine
 {
-	private Am2900MachineDefinition machineDefinition;
+	private AbstractAm2900MachineDefinition machineDefinition;
 	private LogicModelModifiable logicModel;
 	private ModelComponent am2900;
 	private Timeline timeline;
@@ -44,7 +45,7 @@ public class Am2900Machine implements Machine
 	private final Set<ActiveMicroInstructionChangedListener> amicListeners;
 	private final Map<Register, Map<Consumer<BitVector>, Consumer<Object>>> modelListenersPerRegisterListenerPerRegister;
 
-	public Am2900Machine(LogicModelModifiable model, Am2900MachineDefinition am2900MachineDefinition)
+	public Am2900Machine(LogicModelModifiable model, AbstractAm2900MachineDefinition am2900MachineDefinition)
 	{
 		this.machineDefinition = am2900MachineDefinition;
 		this.logicModel = model;
@@ -89,6 +90,12 @@ public class Am2900Machine implements Machine
 		defaultParams[19] = paramClassifications[19].parse("JZ");
 		MicroInstruction jzMI = MicroInstruction.create(defaultParams);
 		am2900.setHighLevelState("muir_2.q", jzMI.toBitVector());
+		if (!machineDefinition.strict)
+		{
+			for (Register r : machineDefinition.getRegisters())
+				setRegister(r, BitVector.of(Bit.ZERO, r.getWidth()));
+			// TODO reset latches?
+		}
 	}
 
 	@Override

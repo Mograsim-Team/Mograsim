@@ -6,7 +6,7 @@ import java.util.List;
 
 import net.mograsim.logic.model.SimpleLogicUIStandalone;
 import net.mograsim.logic.model.am2900.Am2900Loader;
-import net.mograsim.logic.model.am2900.machine.Am2900MachineDefinition;
+import net.mograsim.logic.model.am2900.machine.StrictAm2900MachineDefinition;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
@@ -26,7 +26,7 @@ public class ModelComponentTestbench
 	public static void createTestbench(LogicModelModifiable model)
 	{
 		Am2900Loader.setup();
-		ModelComponent comp = new Am2900MachineDefinition().createNew(model).getAm2900();
+		ModelComponent comp = new StrictAm2900MachineDefinition().createNew(model).getAm2900();
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
