@@ -1,17 +1,17 @@
 package net.mograsim.plugin.wizards.newWizards;
 
-public class NewWizardMPM extends BasicNewWizard
+public class NewWizardMEM extends BasicNewWizard
 {
 	@Override
 	public boolean performFinish()
 	{
-		setFileExtension("mpm");
+		setFileExtension("mem");
 		return super.performFinish();
 	}
 
 	@Override
 	public String getWindowTitle()
 	{
-		return "Create new Microprogram Memory";
+		return "Create new Main Memory";
 	}
 }
