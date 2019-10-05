@@ -12,7 +12,7 @@ import net.mograsim.plugin.asm.AsmNumberUtil;
 public abstract class NumberCellEditingSupport extends EditingSupport
 {
 	private final TableViewer viewer;
-	private final CellEditor editor;
+	protected final CellEditor editor;
 	private final DisplaySettings displaySettings;
 
 	public NumberCellEditingSupport(TableViewer viewer, DisplaySettings displaySettings)

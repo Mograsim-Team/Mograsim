@@ -3,6 +3,8 @@ package net.mograsim.plugin.editors;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.util.Collection;
+import java.util.HashSet;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -11,10 +13,12 @@ import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -54,6 +58,8 @@ public class MemoryEditor extends EditorPart
 	private LazyTableViewer viewer;
 	private MemoryTableContentProvider provider;
 	private DisplaySettings displaySettings;
+
+	private Collection<Control> fontDependent = new HashSet<>();
 
 	private boolean dirty;
 
@@ -141,6 +147,7 @@ public class MemoryEditor extends EditorPart
 	private void createViewer(Composite parent)
 	{
 		viewer = new LazyTableViewer(parent, SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
+		fontDependent.add(viewer.getTable());
 		createColumns();
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
@@ -167,7 +174,9 @@ public class MemoryEditor extends EditorPart
 
 	private void updateFont(ITheme theme)
 	{
-		viewer.getTable().setFont(theme.getFontRegistry().get(font));
+		Font newFont = theme.getFontRegistry().get(font);
+		// TODO: This is a quick fix! Still have to figure out why the CellEditors do not get the appropriate Font on their own
+		fontDependent.forEach(c -> c.setFont(newFont));
 	}
 
 	private void createColumns()
@@ -191,7 +200,9 @@ public class MemoryEditor extends EditorPart
 				return ((MemoryTableRow) element).getMemory().getDefinition().getCellWidth();
 			}
 		});
-		dataCol.setEditingSupport(new MemoryCellEditingSupport(viewer, displaySettings));
+		MemoryCellEditingSupport eSup;
+		dataCol.setEditingSupport(eSup = new MemoryCellEditingSupport(viewer, displaySettings));
+		fontDependent.add(eSup.getCellEditorControl());
 	}
 
 	private TableViewerColumn createTableViewerColumn(String title, int width)
