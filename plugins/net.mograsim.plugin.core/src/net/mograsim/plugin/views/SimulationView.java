@@ -183,8 +183,7 @@ public class SimulationView extends ViewPart
 
 	private void debugContextChanged(Optional<MachineDebugTarget> newTarget)
 	{
-		// if we didn't find a selected MachineDebugTarget
-		// call binToDebugTarget even if this.debugTarget==null
+		// call binToDebugTarget even if we didn't find a selected MachineDebugTarget
 		bindToDebugTarget(newTarget.orElse(null));
 	}
 

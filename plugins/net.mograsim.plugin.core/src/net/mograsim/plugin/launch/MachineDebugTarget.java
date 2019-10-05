@@ -31,9 +31,12 @@ import net.mograsim.plugin.launch.MachineLaunchConfigType.MachineLaunchParams;
 
 public class MachineDebugTarget extends PlatformObject implements IDebugTarget, IMemoryBlockRetrievalExtension
 {
+	private final static boolean USE_PSEUDO_THREAD = true;
+
 	private final ILaunch launch;
 	private final Machine machine;
 	private final LogicExecuter exec;
+	private final MachineThread thread;
 
 	private boolean running;
 
@@ -55,6 +58,9 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 
 		getLaunch().addDebugTarget(this);
 		fireCreationEvent();
+
+		// create after creating ourself
+		this.thread = USE_PSEUDO_THREAD ? new MachineThread(this) : null;
 	}
 
 	public Machine getMachine()
@@ -241,13 +247,13 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	@Override
 	public boolean hasThreads() throws DebugException
 	{
-		return false;
+		return USE_PSEUDO_THREAD;
 	}
 
 	@Override
 	public IThread[] getThreads() throws DebugException
 	{
-		return new IThread[0];
+		return thread == null ? new IThread[0] : new IThread[] { thread };
 	}
 
 	public void addExecutionSpeedListener(Consumer<Double> executionSpeedListener)
