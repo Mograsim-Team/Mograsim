@@ -25,6 +25,7 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 		Set<Register> allRegistersModifiable = new HashSet<>();
 		allRegistersModifiable.add(QRegister.instance);
 		allRegistersModifiable.addAll(NumberedRegister.instancesCorrectOrder);
+		// TODO MSR, muSR, MIR, IR, PC/BZ...
 		allRegisters = Collections.unmodifiableSet(allRegistersModifiable);
 	}
 
