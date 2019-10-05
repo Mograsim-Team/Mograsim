@@ -83,7 +83,8 @@ Start the machine:
 	In the toolbar, click the "Resume" button.
 	Slowly increase the simulation speed until the wires in the Simulation view start flickering. The machine is now running and starts executing the microprogram.
 
-Note:
-	If the MPM file used by a machine launch is opened in the Instruction editor, the row corresponding to the microinstruction currently being executed is highlighted there using a bold font and yellow background.
-	If the MPM file changes, after confirmation, the changes are hot-replaced into the machine.
+Notes:
+	- If the MPM file used by a machine launch is opened in the Instruction editor, the row corresponding to the microinstruction currently being executed is highlighted there using a bold font and yellow background.
+	- If the MPM file changes, after confirmation, the changes are hot-replaced into the machine.
 		Changes in the MPM file don't affect the currently active microinstruction, however.
+	- Some of the behaviour described here can be changed in the Eclipse Preferences (in the pages "Mograsim" and "General" -> "Appearance" -> "Colors and Fonts"). For these cases the default behaviour is described.
