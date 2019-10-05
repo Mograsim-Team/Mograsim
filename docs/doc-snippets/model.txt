@@ -9,7 +9,7 @@ The simulation model can be viewed in the Simulation view:
 	Each rectangle represents a component. Zooming in a component reveals its inner structure (if it has one).
 	The colored lines connecting these rectangles represent wires.
 	(Multiple-bit wires are displayed thicker than the single-bit wires, and always are black.
-	For single-bit wires, the color represents their current value:
+	For single-bit wires, the color represents their current value. These colors can be configured in the Eclipse preferences. The default values are:
 		1 | green
 		0 | grey
 		U | blue
