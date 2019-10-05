@@ -1,17 +1,11 @@
 package net.mograsim.plugin.launch;
 
-import static org.eclipse.core.resources.IResourceDelta.CHANGED;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -20,15 +14,11 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
-import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
-import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.machine.standard.memory.MainMemoryParser;
@@ -43,22 +33,8 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 	public static final String MPM_FILE_ATTR = MograsimActivator.PLUGIN_ID + ".mpm";
 	public static final String INITIAL_RAM_FILE_ATTR = MograsimActivator.PLUGIN_ID + ".initialram";
 
-	private final IResourceChangeListener resChangedListener;
 	private IFile mpmFile;
 	private Machine machine;
-
-	public MachineLaunchConfigType()
-	{
-		this.resChangedListener = this::resourceChanged;
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(resChangedListener,
-				// IResourceChangeEvent.POST_BUILD |
-				IResourceChangeEvent.POST_CHANGE |
-				// IResourceChangeEvent.PRE_BUILD |
-				// IResourceChangeEvent.PRE_CLOSE |
-				// IResourceChangeEvent.PRE_DELETE |
-				// IResourceChangeEvent.PRE_REFRESH |
-						0);
-	}
 
 	@Override
 	public boolean preLaunchCheck(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException
@@ -134,135 +110,20 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 
 		MachineContext machineContext = ProjectMachineContext.getMachineContextOf(project);
 		MachineDefinition machineDefinition = machineContext.getMachineDefinition().orElseThrow();
-		MainMemoryDefinition mainMemDef = machineDefinition.getMainMemoryDefinition();
 
-		String mpmName;
-		mpmFile = project.getFile(mpmName = configuration.getAttribute(MPM_FILE_ATTR, ""));
+		mpmFile = project.getFile(configuration.getAttribute(MPM_FILE_ATTR, ""));
 
 		String initialRAMFileName = configuration.getAttribute(INITIAL_RAM_FILE_ATTR, "");
-		MainMemory mem;
+		Optional<IFile> memFile = Optional.empty();
 		if (!"".equals(initialRAMFileName))
 		{
-			IFile initialRAMFile = project.getFile(initialRAMFileName);
-			try (InputStream initialRAMStream = initialRAMFile.getContents())
-			{
-				mem = MainMemoryParser.parseMemory(mainMemDef, initialRAMStream);
-			}
-			catch (IOException e)
-			{
-				throw new CoreException(
-						new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading initial RAM file", e));
-			}
-		} else
-			mem = null;
-
-		MachineLaunchParams params = new MachineLaunchParams(projName, mpmName, initialRAMFileName);
-		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, params, machineDefinition);
+			memFile = Optional.of(project.getFile(initialRAMFileName));
+		}
+		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, mpmFile, memFile, machineDefinition);
 		debugTarget.suspend();
 		debugTarget.setExecutionSpeed(1);
 		machine = debugTarget.getMachine();
-		assignMicroInstructionMemory();
-		if (mem != null)
-			machine.getMainMemory().bind(mem);
 		machine.reset();
 	}
 
-	private void assignMicroInstructionMemory() throws CoreException
-	{
-		try (InputStream mpmStream = mpmFile.getContents())
-		{
-			MicroInstructionMemory mpm = MicroInstructionMemoryParser
-					.parseMemory(machine.getDefinition().getMicroInstructionMemoryDefinition(), mpmStream);
-			machine.getMicroInstructionMemory().bind(mpm);
-		}
-		catch (IOException e)
-		{
-			throw new CoreException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading MPM file", e));
-		}
-	}
-
-	private void resourceChanged(IResourceChangeEvent event)
-	{
-		// TODO remove Sysout
-		int type = event.getType();
-		String typeStr;
-		switch (type)
-		{
-		case IResourceChangeEvent.POST_BUILD:
-			typeStr = "POST_BUILD";
-			break;
-		case IResourceChangeEvent.POST_CHANGE:
-			typeStr = "POST_CHANGE";
-			IResourceDelta mpmDelta;
-			if ((mpmDelta = event.getDelta().findMember(mpmFile.getFullPath())) != null && (mpmDelta.getKind() & CHANGED) == CHANGED
-					&& mpmFile.exists())
-			{
-				AtomicBoolean doHotReplace = new AtomicBoolean();
-				PlatformUI.getWorkbench().getDisplay().syncExec(() ->
-				{
-					if (MessageDialog.openConfirm(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Hot Replace MPM?",
-							String.format("The MPM %s has been modified on the file system. Replace simulated MPM with modified contents?",
-									mpmFile.getName())))
-						doHotReplace.set(true);
-				});
-				if (doHotReplace.get())
-				{
-					try
-					{
-						assignMicroInstructionMemory();
-					}
-					catch (CoreException e)
-					{
-						PlatformUI.getWorkbench().getDisplay()
-								.asyncExec(() -> MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-										"Failed Hot Replace!",
-										"An error occurred trying to read the modified MPM from the file system: " + e.getMessage()));
-					}
-				}
-			}
-			break;
-		case IResourceChangeEvent.PRE_BUILD:
-			typeStr = "PRE_BUILD";
-			break;
-		case IResourceChangeEvent.PRE_CLOSE:
-			typeStr = "PRE_CLOSE";
-			break;
-		case IResourceChangeEvent.PRE_DELETE:
-			typeStr = "PRE_DELETE";
-			break;
-		case IResourceChangeEvent.PRE_REFRESH:
-			typeStr = "PRE_REFRESH";
-			break;
-		default:
-			typeStr = "<unknown: " + type + ">";
-		}
-		System.out.println(typeStr + ": " + event);
-	}
-
-	public static class MachineLaunchParams
-	{
-		public final String projectPath, mpmPath, ramPath;
-
-		MachineLaunchParams(String projectPath, String mpmPath, String ramPath)
-		{
-			this.projectPath = projectPath;
-			this.mpmPath = mpmPath;
-			this.ramPath = ramPath;
-		}
-
-		public String getProjectPath()
-		{
-			return projectPath;
-		}
-
-		public String getMpmPath()
-		{
-			return mpmPath;
-		}
-
-		public String getRamPath()
-		{
-			return ramPath;
-		}
-	}
 }
