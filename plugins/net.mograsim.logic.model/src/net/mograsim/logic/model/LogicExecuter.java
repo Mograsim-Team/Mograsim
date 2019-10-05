@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import net.mograsim.logic.core.timeline.PauseableTimeFunction;
 import net.mograsim.logic.core.timeline.Timeline;
+import net.mograsim.logic.core.timeline.Timeline.ExecutionResult;
 
 //TODO maybe move to logic core?
 public class LogicExecuter
@@ -42,7 +43,11 @@ public class LogicExecuter
 				while (shouldBeRunningLive.get())
 				{
 					long current = tf.getTime();
-					timeline.executeUntil(timeline.laterThan(current), System.currentTimeMillis() + 10);
+					// The tf.isPaused() condition is justified, because timeline.getSimulationTime() returns the timestamp of the last
+					// processed event during executeUntil()
+					if (timeline.executeUntil(() -> timeline.laterThan(current).getAsBoolean() || tf.isPaused(),
+							System.currentTimeMillis() + 10) == ExecutionResult.EXEC_OUT_OF_TIME)
+						timeline.synchTime(); // TODO: should this also be called if tf.isPaused() condition is met?
 					long nextEventTime = timeline.nextEventTime();
 					long sleepTime;
 					if (timeline.hasNext())

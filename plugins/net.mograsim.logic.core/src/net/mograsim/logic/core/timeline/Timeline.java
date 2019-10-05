@@ -16,7 +16,7 @@ public class Timeline
 {
 	private PriorityQueue<InnerEvent> events;
 	private TimeFunction time;
-	private long lastTimeUpdated = 0;
+	private long processedUntil = 0;
 	private long eventCounter = 0;
 
 	private final List<Consumer<TimelineEvent>> eventAddedListener;
@@ -27,13 +27,13 @@ public class Timeline
 		@Override
 		public void setTime(long time)
 		{
-			lastTimeUpdated = time;
+			processedUntil = time;
 		}
 
 		@Override
 		public long getTime()
 		{
-			return lastTimeUpdated;
+			return processedUntil;
 		}
 	};
 	public final TimeFunction realTimeExec = new TimeFunction()
@@ -119,7 +119,7 @@ public class Timeline
 	{
 		if (events.isEmpty())
 		{
-			lastTimeUpdated = getSimulationTime();
+			processedUntil = getSimulationTime();
 			return ExecutionResult.NOTHING_DONE;
 		}
 		working();
@@ -131,19 +131,18 @@ public class Timeline
 			{
 				event = events.remove();
 			}
-			lastTimeUpdated = event.getTiming();
+			processedUntil = event.getTiming();
 			event.run();
 			// Don't check after every run
 			checkStop = (checkStop + 1) % 10;
 			if (checkStop == 0 && System.currentTimeMillis() >= stopMillis)
 			{
 				notWorking();
-				lastTimeUpdated = getSimulationTime();
 				return ExecutionResult.EXEC_OUT_OF_TIME;
 			}
 		}
 		notWorking();
-		lastTimeUpdated = getSimulationTime();
+		processedUntil = getSimulationTime();
 		return hasNext() ? ExecutionResult.EXEC_UNTIL_EMPTY : ExecutionResult.EXEC_UNTIL_CONDITION;
 	}
 
@@ -165,7 +164,7 @@ public class Timeline
 	 */
 	public long getSimulationTime()
 	{
-		return isWorking() ? lastTimeUpdated : time.getTime();
+		return isWorking() ? processedUntil : time.getTime();
 	}
 
 	/**
@@ -189,7 +188,7 @@ public class Timeline
 		{
 			events.clear();
 		}
-		lastTimeUpdated = time.getTime();
+		processedUntil = time.getTime();
 	}
 
 	/**
@@ -288,7 +287,7 @@ public class Timeline
 		{
 			eventsString = events.toString();
 		}
-		return String.format("Simulation time: %s, Last update: %d, Events: %s", getSimulationTime(), lastTimeUpdated, eventsString);
+		return String.format("Simulation time: %s, Last update: %d, Events: %s", getSimulationTime(), processedUntil, eventsString);
 	}
 
 	public static enum ExecutionResult
@@ -301,5 +300,13 @@ public class Timeline
 		long getTime();
 
 		void setTime(long time);
+	}
+
+	/**
+	 * Sets the time of the {@link TimeFunction} to the timestamp of the latest processed event
+	 */
+	public void synchTime()
+	{
+		time.setTime(processedUntil);
 	}
 }
