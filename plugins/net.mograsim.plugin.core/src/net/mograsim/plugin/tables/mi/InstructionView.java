@@ -5,8 +5,6 @@ import java.io.InputStream;
 import java.util.Optional;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.debug.ui.DebugUITools;
@@ -30,7 +28,6 @@ import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.plugin.launch.MachineDebugContextListener;
 import net.mograsim.plugin.launch.MachineDebugTarget;
-import net.mograsim.plugin.launch.MachineLaunchConfigType.MachineLaunchParams;
 import net.mograsim.plugin.nature.MachineContext;
 import net.mograsim.plugin.nature.ProjectMachineContext;
 import net.mograsim.plugin.tables.DisplaySettings;
@@ -68,10 +65,7 @@ public class InstructionView extends EditorPart
 
 			newTarget.ifPresent(target ->
 			{
-				MachineLaunchParams params = target.getLaunchParams();
-				IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(params.getProjectPath());
-
-				if (file.equals(project.getFile(params.getMpmPath())))
+				if (file.equals(target.getMPMFile()))
 				{
 					Machine m = target.getMachine();
 					target.getMachine().addActiveMicroInstructionChangedListener(instChangeListener);

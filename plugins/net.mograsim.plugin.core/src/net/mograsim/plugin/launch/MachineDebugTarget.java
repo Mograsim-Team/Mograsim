@@ -1,10 +1,22 @@
 package net.mograsim.plugin.launch;
 
+import static org.eclipse.core.resources.IResourceDelta.CHANGED;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarkerDelta;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.core.runtime.Status;
@@ -22,12 +34,15 @@ import org.eclipse.debug.core.model.IMemoryBlockRetrievalExtension;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStepFilters;
 import org.eclipse.debug.core.model.IThread;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.PlatformUI;
 
 import net.mograsim.logic.model.LogicExecuter;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.mi.MicroInstructionMemoryParser;
+import net.mograsim.machine.standard.memory.MainMemoryParser;
 import net.mograsim.plugin.MograsimActivator;
-import net.mograsim.plugin.launch.MachineLaunchConfigType.MachineLaunchParams;
 
 public class MachineDebugTarget extends PlatformObject implements IDebugTarget, IMemoryBlockRetrievalExtension
 {
@@ -37,27 +52,37 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	private final Machine machine;
 	private final LogicExecuter exec;
 	private final MachineThread thread;
+	private final IFile mpmFile;
+	private final Optional<IFile> memFile;
 
 	private boolean running;
 
 	private final List<Consumer<Double>> executionSpeedListeners;
 
-	private final MachineLaunchParams launchParams;
+	private final IResourceChangeListener resChangedListener;
 
-	public MachineDebugTarget(ILaunch launch, MachineLaunchParams launchParams, MachineDefinition machineDefinition)
+	public MachineDebugTarget(ILaunch launch, IFile mpmFile, Optional<IFile> memFile, MachineDefinition machineDefinition)
+			throws CoreException
 	{
 		this.launch = launch;
 		this.machine = machineDefinition.createNew();
 		this.exec = new LogicExecuter(machine.getTimeline());
 
 		this.executionSpeedListeners = new ArrayList<>();
-		this.launchParams = launchParams;
+		this.mpmFile = mpmFile;
+		this.memFile = memFile;
+
+		assignMicroInstructionMemory();
+		assignMainMemory();
 
 		exec.startLiveExecution();
 		running = true;
 
 		getLaunch().addDebugTarget(this);
 		fireCreationEvent();
+
+		this.resChangedListener = this::resourceChanged;
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(resChangedListener, IResourceChangeEvent.POST_CHANGE);
 
 		// create after creating ourself
 		this.thread = USE_PSEUDO_THREAD ? new MachineThread(this) : null;
@@ -90,11 +115,6 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	public ILaunch getLaunch()
 	{
 		return launch;
-	}
-
-	public MachineLaunchParams getLaunchParams()
-	{
-		return launchParams;
 	}
 
 	public double getExecutionSpeed()
@@ -171,6 +191,7 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 		if (isTerminated())
 			return;
 
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resChangedListener);
 		exec.stopLiveExecution();
 		running = false;
 		fireTerminateEvent();
@@ -346,5 +367,76 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	{
 		throw new DebugException(
 				new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED, message, null));
+	}
+
+	private void resourceChanged(IResourceChangeEvent event)
+	{
+		IResourceDelta mpmDelta;
+		if (event.getType() == IResourceChangeEvent.POST_CHANGE && (mpmDelta = event.getDelta().findMember(mpmFile.getFullPath())) != null
+				&& (mpmDelta.getKind() & CHANGED) == CHANGED && mpmFile.exists())
+		{
+			AtomicBoolean doHotReplace = new AtomicBoolean();
+			PlatformUI.getWorkbench().getDisplay().syncExec(() ->
+			{
+				if (MessageDialog.openConfirm(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Hot Replace MPM?",
+						String.format("The MPM %s has been modified on the file system. Replace simulated MPM with modified contents?",
+								mpmFile.getName())))
+					doHotReplace.set(true);
+			});
+			if (doHotReplace.get())
+			{
+				try
+				{
+					assignMicroInstructionMemory();
+				}
+				catch (CoreException e)
+				{
+					PlatformUI.getWorkbench().getDisplay()
+							.asyncExec(() -> MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+									"Failed Hot Replace!",
+									"An error occurred trying to read the modified MPM from the file system: " + e.getMessage()));
+				}
+			}
+		}
+	}
+
+	private void assignMicroInstructionMemory() throws CoreException
+	{
+		try (InputStream mpmStream = mpmFile.getContents())
+		{
+			machine.getMicroInstructionMemory().bind(
+					MicroInstructionMemoryParser.parseMemory(machine.getDefinition().getMicroInstructionMemoryDefinition(), mpmStream));
+		}
+		catch (IOException e)
+		{
+			throw new CoreException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading MPM file", e));
+		}
+	}
+
+	private void assignMainMemory() throws CoreException
+	{
+		if (memFile.isPresent())
+		{
+			try (InputStream initialRAMStream = memFile.get().getContents())
+			{
+				machine.getMainMemory()
+						.bind(MainMemoryParser.parseMemory(machine.getDefinition().getMainMemoryDefinition(), initialRAMStream));
+			}
+			catch (IOException e)
+			{
+				throw new CoreException(
+						new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading initial RAM file", e));
+			}
+		}
+	}
+
+	public IFile getMPMFile()
+	{
+		return mpmFile;
+	}
+
+	public Optional<IFile> getMEMFile()
+	{
+		return memFile;
 	}
 }
