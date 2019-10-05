@@ -241,4 +241,9 @@ public class InstructionView extends EditorPart
 		memory.deregisterCellModifiedListener(cellModifiedListener);
 		super.dispose();
 	}
+
+	public IFile getFile()
+	{
+		return file;
+	}
 }
