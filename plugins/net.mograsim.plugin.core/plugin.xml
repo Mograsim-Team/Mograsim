@@ -409,6 +409,15 @@
 			<description>%wizards.newWizards.mpm.desc</description>
 	   		<selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
+		<wizard
+			id="net.mograsim.plugin.wizards.newWizards.NewWizardMEM"
+	   		name="%wizards.newWizards.mem.name"
+			class="net.mograsim.plugin.wizards.newWizards.NewWizardMEM"
+			category="net.mograsim.plugin.wizards.newWizards.category"
+			icon="icons/mograsim/blue-orange/icon_blue-orange_16.png">
+			<description>%wizards.newWizards.mem.desc</description>
+	   		<selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
 	</extension>
  <extension
        point="org.eclipse.debug.core.launchConfigurationTypes">
