@@ -1,6 +1,5 @@
 package net.mograsim.plugin.launch;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,6 +14,7 @@ import org.eclipse.debug.core.model.IRegisterGroup;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.Register;
 import net.mograsim.plugin.MograsimActivator;
+import net.mograsim.plugin.util.NumberRespectingStringComparator;
 
 public class MachineRegisterGroup extends PlatformObject implements IRegisterGroup
 {
@@ -25,9 +25,9 @@ public class MachineRegisterGroup extends PlatformObject implements IRegisterGro
 	{
 		this.stackFrame = stackFrame;
 		Set<Register> machineRegisters = getMachine().getDefinition().getRegisters();
-		List<MachineRegister> registersModifiable = machineRegisters.stream().map(r -> new MachineRegister(this, r))
-				.collect(Collectors.toList());
-		this.registers = Collections.unmodifiableList(registersModifiable);
+		this.registers = machineRegisters.stream()
+				.sorted((r1, r2) -> NumberRespectingStringComparator.CASE_SENSITIVE.compare(r1.id(), r2.id()))
+				.map(r -> new MachineRegister(this, r)).collect(Collectors.toUnmodifiableList());
 	}
 
 	@Override
@@ -62,7 +62,6 @@ public class MachineRegisterGroup extends PlatformObject implements IRegisterGro
 	@Override
 	public IRegister[] getRegisters() throws DebugException
 	{
-		// TODO sort
 		return registers.toArray(IRegister[]::new);
 	}
 
