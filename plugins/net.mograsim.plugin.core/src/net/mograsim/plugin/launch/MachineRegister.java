@@ -18,7 +18,7 @@ import org.eclipse.swt.SWT;
 
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.Machine;
-import net.mograsim.machine.Register;
+import net.mograsim.machine.registers.Register;
 import net.mograsim.plugin.MograsimActivator;
 
 public class MachineRegister extends PlatformObject implements IRegister

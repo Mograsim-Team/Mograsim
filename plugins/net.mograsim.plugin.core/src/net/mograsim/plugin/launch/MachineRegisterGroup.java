@@ -1,7 +1,6 @@
 package net.mograsim.plugin.launch;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.PlatformObject;
@@ -12,22 +11,20 @@ import org.eclipse.debug.core.model.IRegister;
 import org.eclipse.debug.core.model.IRegisterGroup;
 
 import net.mograsim.machine.Machine;
-import net.mograsim.machine.Register;
+import net.mograsim.machine.registers.Register;
 import net.mograsim.plugin.MograsimActivator;
-import net.mograsim.plugin.util.NumberRespectingStringComparator;
 
 public class MachineRegisterGroup extends PlatformObject implements IRegisterGroup
 {
 	private final MachineStackFrame stackFrame;
+	private final String name;
 	private final List<MachineRegister> registers;
 
-	public MachineRegisterGroup(MachineStackFrame stackFrame)
+	public MachineRegisterGroup(MachineStackFrame stackFrame, String name, List<Register> registers)
 	{
 		this.stackFrame = stackFrame;
-		Set<Register> machineRegisters = getMachine().getDefinition().getRegisters();
-		this.registers = machineRegisters.stream()
-				.sorted((r1, r2) -> NumberRespectingStringComparator.CASE_SENSITIVE.compare(r1.id(), r2.id()))
-				.map(r -> new MachineRegister(this, r)).collect(Collectors.toUnmodifiableList());
+		this.name = name;
+		this.registers = registers.stream().map(r -> new MachineRegister(this, r)).collect(Collectors.toUnmodifiableList());
 	}
 
 	@Override
@@ -56,7 +53,7 @@ public class MachineRegisterGroup extends PlatformObject implements IRegisterGro
 	@Override
 	public String getName() throws DebugException
 	{
-		return "pseudo register group";
+		return name;
 	}
 
 	@Override
@@ -68,6 +65,11 @@ public class MachineRegisterGroup extends PlatformObject implements IRegisterGro
 	@Override
 	public boolean hasRegisters() throws DebugException
 	{
-		return true;
+		return hasRegistersSafe();
+	}
+
+	public boolean hasRegistersSafe()
+	{
+		return registers.size() > 0;
 	}
 }
