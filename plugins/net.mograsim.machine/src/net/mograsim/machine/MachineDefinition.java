@@ -40,6 +40,14 @@ public interface MachineDefinition
 	Set<Register> getRegisters();
 
 	/**
+	 * Returns a set of all RegisterGroups that the machine contains
+	 * 
+	 * @return all register groups present in the machine.
+	 * @author Christian Femers
+	 */
+	Set<RegisterGroup> getRegisterGroups();
+
+	/**
 	 * The number of bits used by the machine to address main memory. Note that this should be the number of bits used in the CPU, not a
 	 * possibly different one used by the bus system.
 	 * 
