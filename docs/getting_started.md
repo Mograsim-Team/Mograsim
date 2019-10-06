@@ -1,7 +1,7 @@
 ## Getting started with Mograsim
 ### Prerequisites
 - [Java](http://jdk.java.net/) 11 or later (or [Oracle Implementation](https://www.oracle.com/technetwork/java/javase/downloads/index.html))
-- [Eclipse](https://www.eclipse.org/downloads/) 2019-03 or later (TODO do earlier versions work?)
+- [Eclipse](https://www.eclipse.org/downloads/) 2019-03 or later (TODO: do earlier versions work?)
 ### Install Mograsim
 1. Start Eclipse
 2. Go to "Help" -> "Install New Software..."
@@ -57,7 +57,7 @@ Zoom in and out by either scrolling up or down or by dragging down and up with t
 
 Using the slider or by directly entering a number in the text field, the machine can be slowed down or sped up.
 
-Also, a "step by step execution" mode can be enabled. (TODO use "Step over" instead)  
+Also, a "step by step execution" mode can be enabled. (TODO: use "Step over" instead)  
 Step by step execution means that the machine is automatically paused on each rising edge of the clock.  
 
 At the bottom of the Simulation view, a single instruction table row is displayed. This row contains the instruction currently being executed.
@@ -71,9 +71,9 @@ The table now displays the contents of the currently running machine. At this mo
 #### Register view
 1. Expand the pseudo register group.  
 It should contain the registers R0-R15 as well as the Q register.  
-All of them should be 0, displayed as a bitstring (TODO view in hex).
+All of them should be 0, displayed as a bitstring (TODO: view in hex).
 
-It is possible to change the register contents via this view by clicking on the old value and entering a new bitstring (TODO a hex integer). It is not recommended to use `Z` in these bitstrings.
+It is possible to change the register contents via this view by clicking on the old value and entering a new bitstring (TODO: a hex integer). It is not recommended to use `Z` in these bitstrings.
 #### Debug view
 Lists all currently running machines. The Simulation, Memory, and Register view follow the selection done here.
 A Mograsim machine launch contains one debug target, which contains one thread labeled "pseudo thread".  
