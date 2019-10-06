@@ -11,7 +11,8 @@
 2. Go to "Help" -> "Install New Software..."
 3. Enter the Mograsim update site address
 	1. Click on "Add..."
-	2. Next to "Location:", enter the update site address
+	2. Next to "Location:", enter the update site address  
+Note: Currently, there is no online update site for Mograsim. You have to build Mograsim yourself as described in [Building Mograsim](building_mograsim.md).
 	3. Click on "Add"
 1. Tick "Mograsim"
 2. Click on "Next >" two times, read and accept the license, and click on "Finish"
