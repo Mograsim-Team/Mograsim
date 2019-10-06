@@ -232,7 +232,8 @@ public class InstructionView extends EditorPart
 	@Override
 	public void dispose()
 	{
-		memory.deregisterCellModifiedListener(cellModifiedListener);
+		if (memory != null)
+			memory.deregisterCellModifiedListener(cellModifiedListener);
 		super.dispose();
 	}
 
