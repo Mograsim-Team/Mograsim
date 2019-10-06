@@ -1,7 +1,7 @@
 ## Getting started with Mograsim
 ### Prerequisites
 - [Java](http://jdk.java.net/) 11 or later (or [Oracle Implementation](https://www.oracle.com/technetwork/java/javase/downloads/index.html))
-- [Eclipse 2019-03 or later](https://www.eclipse.org/downloads/) (TODO do earlier versions work?)
+- [Eclipse](https://www.eclipse.org/downloads/) 2019-03 or later (TODO do earlier versions work?)
 ### Install Mograsim
 1. Start Eclipse
 2. Go to "Help" -> "Install New Software..."
@@ -92,6 +92,7 @@ Slowly increase the simulation speed until the wires in the Simulation view star
 	Changes in the MPM file don't affect the currently active microinstruction, however.
 3. Some of the behaviour described here can be changed in the Eclipse Preferences (in the pages "Mograsim" and "General" -> "Appearance" -> "Colors and Fonts"). For these cases the default behaviour is described.
 ### Troubleshooting
-- Make sure Eclipse uses Java 11 or later
-  1. Go to "Help" -> "About Eclipse IDE", click on "Installation Details", go to the tab "Configuration"
-  2. Search the line starting with "java.version=".
+- If nothing Mograsim-related seems to be installed after installing Mograsim, make sure Eclipse uses Java 11 or later.
+1. Go to "Help" -> "About Eclipse IDE", click on "Installation Details", go to the tab "Configuration"
+2. Search the line starting with "java.version=". (This line is in the "System properties" block, which usually occupies the first 200 lines)
+3. If this line specifies a version less than 11, configure your Eclipse installation to use a Java 11 JRE (or later). See https://wiki.eclipse.org/FAQ_How_do_I_run_Eclipse%3F#Find_the_JVM.
