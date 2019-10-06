@@ -9,7 +9,7 @@ import java.util.Set;
  * @author Christian Femers
  *
  */
-public interface Register
+public interface Register extends Identifiable
 {
 	/**
 	 * The unique identifier of the register. This does not have to be the display name or name in the assembly language.
@@ -17,6 +17,7 @@ public interface Register
 	 * @return the registers id as case sensitive String
 	 * @author Christian Femers
 	 */
+	@Override
 	String id();
 
 	/**

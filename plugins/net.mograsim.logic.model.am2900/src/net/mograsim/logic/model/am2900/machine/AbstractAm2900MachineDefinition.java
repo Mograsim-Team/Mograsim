@@ -10,6 +10,7 @@ import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.machine.ISASchema;
 import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.Register;
+import net.mograsim.machine.RegisterGroup;
 
 //we can't use the Singleton pattern here because a MachineDefinition needs a public parameterless constructor
 //(used for detecting installed machines in plugin.core)
@@ -95,6 +96,12 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 	public Am2900MicroInstructionMemoryDefinition getMicroInstructionMemoryDefinition()
 	{
 		return Am2900MicroInstructionMemoryDefinition.instance;
+	}
+
+	@Override
+	public Set<RegisterGroup> getRegisterGroups()
+	{
+		return null; // TODO create groups for am2904, am2901-asmUsable, am2901-internal, ...
 	}
 
 }
