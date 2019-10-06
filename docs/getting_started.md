@@ -7,29 +7,29 @@
 
 ## Install Mograsim
 
-1. Start Eclipse
-2. Go to "Help" -> "Install New Software..."
-3. Enter the Mograsim update site address
-	1. Click on "Add..."
-	2. Next to "Location:", enter the update site address  
+1. Start Eclipse.
+2. Go to "Help" -> "Install New Software...".
+3. Add the Mograsim update site:
+	1. Click on "Add...".
+	2. Next to "Location:", enter the update site address.  
 Note: Currently, there is no online update site for Mograsim. You have to build Mograsim yourself as described in [Building Mograsim](building_mograsim.md).
-	3. Click on "Add"
-1. Tick "Mograsim"
-2. Click on "Next >" two times, read and accept the license, and click on "Finish"
-3. Confirm that you want to install unsigned content
+	3. Click on "Add".
+1. Tick "Mograsim".
+2. Click on "Next >" two times, read and accept the license, and click on "Finish".
+3. Confirm that you want to install unsigned content.
 4. Wait for the installation to complete (may take a while). When prompted, restart Eclipse.
 
 ## Enable the Launch action set
 
-1. Go to "Window" -> "Perspective" -> "Customize Perspective..."
-2. Go to the tab "Action Set Availability"
-3. Under "Available action sets", enable "Launch" (if it is not already enabled); click on "Apply and Close"
+1. Go to "Window" -> "Perspective" -> "Customize Perspective...".
+2. Go to the tab "Action Set Availability".
+3. Under "Available action sets", enable "Launch" (if it is not already enabled); click on "Apply and Close".
 
 ## Create a new Mograsim project
 
-1. Create a new Eclipse project ("File" -> "New" -> "Project...", select "General" -> "Project")
-2. Add the Mograsim nature to the new project and set it up.
-	1. Open the properties dialog of the new project (right-click on it, select Properties)
+1. Create a new Eclipse project. (Go to "File" -> "New" -> "Project...", select "General" -> "Project".)
+2. Add the Mograsim nature to the new project and set it up:
+	1. Open the properties dialog of the new project. (Right-click on it, select Properties.)
 	2. Go to the "Project Natures" page, click on "Add...". If a confirmation dialog pops up, confirm.
 	3. Select "Mograsim Project Nature"; click on "OK".
 	4. Click on "Apply and Close" and re-open the properties dialog.
@@ -37,14 +37,15 @@ Note: Currently, there is no online update site for Mograsim. You have to build 
 
 ## Write a MPM file (containing the microprogram)
 
-1. Create a new file with the extension ".mpm". (Right-click on the project -> "New" -> "File"; enter the filename; click on "Finish")
+1. Create a new file with the extension ".mpm". (Right-click on the project -> "New" -> "File"; enter the filename; click on "Finish".)
 2. The Mograsim instruction editor should open. If not, right-click on the MPM file -> "Open With" -> "Other..."; select "Instruction Editor"; click on "OK".
-3. Write a microprogram. (Note: The MPROM is hardcoded to be Opcode * 0x10)
-4. Every cell differing from the default value is highlighted with a cursive font and green background.
+3. Write a microprogram. (Note: The MPROM is hardcoded to be Opcode * 0x10.)
+
+Every cell differing from the default value is highlighted with a cursive font and green background.
 
 ## _(optional)_ Write a MEM file (containing the initial contents of the memory)
 
-1. Create a new file with the extension ".mem" (as described above)
+1. Create a new file with the extension ".mem" (as described above).
 2. The Mograsim memory editor should open. If not, open it as described above.
 3. Write the memory contents.
 
@@ -56,11 +57,12 @@ Don't use the "Set active" button. (TODO: remove it)
 
 1. Go to "Window" -> "Show View" -> "Other...", select a view; click on "Open".  
 The Simulation view is in the category "Mograsim" and the other views in "Debug".
-2. It is recommended to move the Simulation view to the Editor pane.
+
+It is recommended to move the Simulation view to the Editor pane.
 
 ## Create a machine launch configuration and run it
 
-1. Click on the little triangle next to the "Launch" symbol in the toolbar; click on "Run configurations..."
+1. Click on the little triangle next to the "Launch" symbol in the toolbar; click on "Run configurations...".
 2. Right-click on "Mograsim machine" -> "New Configuration".
 3. Enter the Mograsim project containing both the MPM and MEM file, as well as these files.
 4. If you don't have a MEM file, leave the according field blank. This causes the memory to be initialized with 0.
@@ -127,6 +129,6 @@ Slowly increase the simulation speed until the wires in the Simulation view star
 ## Troubleshooting
 
 - If nothing Mograsim-related seems to be installed after installing Mograsim, make sure Eclipse uses Java 11 or later.
-1. Go to "Help" -> "About Eclipse IDE", click on "Installation Details", go to the tab "Configuration"
-2. Search the line starting with "java.version=". (This line is in the "System properties" block, which usually occupies the first 200 lines)
+1. Go to "Help" -> "About Eclipse IDE", click on "Installation Details", go to the tab "Configuration".
+2. Search the line starting with "java.version=". (This line is in the "System properties" block, which usually occupies the first 200 lines.)
 3. If this line specifies a version less than 11, configure your Eclipse installation to use a Java 11 JRE (or later). See https://wiki.eclipse.org/FAQ_How_do_I_run_Eclipse%3F#Find_the_JVM.
