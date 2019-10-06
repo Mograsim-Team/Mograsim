@@ -175,7 +175,8 @@ public class SimulationView extends ViewPart
 
 	private void addInstructionPreviewControlWidgets(Composite parent)
 	{
-		instPreview = new InstructionTable(parent, new DisplaySettings(), getSite().getWorkbenchWindow().getWorkbench().getThemeManager());
+		instPreview = new InstructionTable(parent, new DisplaySettings(), getSite().getWorkbenchWindow().getWorkbench().getThemeManager(),
+				false);
 		instPreview.getTableViewer().getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		contentProvider = new ActiveInstructionPreviewContentProvider(instPreview.getTableViewer());
 		instPreview.setContentProvider(contentProvider);
