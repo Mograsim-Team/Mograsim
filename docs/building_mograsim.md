@@ -76,4 +76,8 @@ In there you should see, among other files, a folder named "features", a folder 
 "plugins" containing some jar files, and two jar files called "artifacts.jar" and 
 "content.jar".
 
+To install Mograsim from this site, follow the [Getting Started](getting_started.md) guide,
+but in the dialog for adding a software site, instead of using the online update site address,
+click on "Local..." and select `<repository directory>/releng/net.mograsim.plugin.updatesite/target/repository/`.
+
 More information about the build, structure and environment can be found in the [development environment description](development_environment.md).
