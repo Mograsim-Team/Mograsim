@@ -1,40 +1,53 @@
 ## Getting started with Mograsim
+### Prerequisites
+- [Java](http://jdk.java.net/) 11 or later (or [Oracle Implementation](https://www.oracle.com/technetwork/java/javase/downloads/index.html))
+- [Eclipse 2019-03 or later](https://www.eclipse.org/downloads/) (TODO do earlier versions work?)
 ### Install Mograsim
+1. Start Eclipse
+2. Go to "Help" -> "Install New Software..."
+3. Enter the Mograsim update site address
+	1. Click on "Add..."
+	2. Next to "Location:", enter the update site address
+	3. Click on "Add"
+1. Tick "Mograsim"
+2. Click on "Next >" two times, read and accept the license, and click on "Finish"
+3. Confirm that you want to install unsigned content
+4. Wait for the installation to complete (may take a while). When prompted, restart Eclipse.
 ### Enable the Launch action set
-  - Go to "Window" -> "Perspective" -> "Customize Perspective..."
-  - Go to the tab "Action Set Availability"
-  - Under "Available action sets", enable "Launch" (if it is not already enabled); click on "Apply and Close"
+1. Go to "Window" -> "Perspective" -> "Customize Perspective..."
+2. Go to the tab "Action Set Availability"
+3. Under "Available action sets", enable "Launch" (if it is not already enabled); click on "Apply and Close"
 ### Create a new Mograsim project
-  - Create a new Eclipse project ("File" -> "New" -> "Project...", select "General" -> "Project")
-  - Add the Mograsim nature to the new project and set it up.
-    - Open the properties dialog of the new project (right-click on it, select Properties)
-    - Go to the "Project Natures" page, click on "Add...". If a confirmation dialog pops up, confirm.
-    - Select "Mograsim Project Nature"; click on "OK".
-    - Click on "Apply and Close" and re-open the properties dialog.
-    - Go to the new "Mograsim" page, select "Am2900Simple", click on "Apply and Close".
+1. Create a new Eclipse project ("File" -> "New" -> "Project...", select "General" -> "Project")
+2. Add the Mograsim nature to the new project and set it up.
+	1. Open the properties dialog of the new project (right-click on it, select Properties)
+	2. Go to the "Project Natures" page, click on "Add...". If a confirmation dialog pops up, confirm.
+	3. Select "Mograsim Project Nature"; click on "OK".
+	4. Click on "Apply and Close" and re-open the properties dialog.
+	5. Go to the new "Mograsim" page, select "Am2900Simple", click on "Apply and Close".
 ### Write a MPM file (containing the microprogram)
-- Create a new file with the extension ".mpm". (Right-click on the project -> "New" -> "File"; enter the filename; click on "Finish")
-- The Mograsim instruction editor should open. If not, right-click on the MPM file -> "Open With" -> "Other..."; select "Instruction Editor"; click on "OK".
-- Write a microprogram. (Note: The MPROM is hardcoded to be Opcode * 0x10)
-- Every cell differing from the default value is highlighted with a cursive font and green background.
+1. Create a new file with the extension ".mpm". (Right-click on the project -> "New" -> "File"; enter the filename; click on "Finish")
+2. The Mograsim instruction editor should open. If not, right-click on the MPM file -> "Open With" -> "Other..."; select "Instruction Editor"; click on "OK".
+3. Write a microprogram. (Note: The MPROM is hardcoded to be Opcode * 0x10)
+4. Every cell differing from the default value is highlighted with a cursive font and green background.
 ### _(optional)_ Write a MEM file (containing the initial contents of the memory)
-- Create a new file with the extension ".mem" (as described above)
-- The Mograsim memory editor should open. If not, open it as described above.
-- Write the memory contents.
+1. Create a new file with the extension ".mem" (as described above)
+2. The Mograsim memory editor should open. If not, open it as described above.
+3. Write the memory contents.
 
 Each table row contains one (16 bit wide) memory cell.  
 The two text fields labeled "Address" and "Number of cells" only refer to the cells displayed simultaneously in the editor. The editor internally retains all 65536 addressable cells.  
 Don't use the "Set active" button. (TODO: remove it)
 ### Open the views "Simulation", "Debug", "Memory" and "Registers"
-- Go to "Window" -> "Show View" -> "Other...", select a view; click on "Open".  
+1. Go to "Window" -> "Show View" -> "Other...", select a view; click on "Open".  
 The Simulation view is in the category "Mograsim" and the other views in "Debug".
-- It is recommended to move the Simulation view to the Editor pane.
+2. It is recommended to move the Simulation view to the Editor pane.
 ### Create a machine launch configuration and run it
-- Click on the little triangle next to the "Launch" symbol in the toolbar; click on "Run configurations..."
-- Right-click on "Mograsim machine" -> "New Configuration".
-- Enter the Mograsim project containing both the MPM and MEM file, as well as these files.
-- If you don't have a MEM file, leave the according field blank. This causes the memory to be initialized with 0.
-- Click "Run". The Simulation view now should contain a rectangle containing either the text "Am2900" in a very small font or a huge mess of smaller rectangles connected by colored lines.
+1. Click on the little triangle next to the "Launch" symbol in the toolbar; click on "Run configurations..."
+2. Right-click on "Mograsim machine" -> "New Configuration".
+3. Enter the Mograsim project containing both the MPM and MEM file, as well as these files.
+4. If you don't have a MEM file, leave the according field blank. This causes the memory to be initialized with 0.
+5. Click "Run". The Simulation view now should contain a rectangle containing either the text "Am2900" in a very small font or a huge mess of smaller rectangles connected by colored lines.
 
 The machine doesn't start running yet since it starts paused. (TODO: make a checkbox for this)
 ### Set up and get used to the views
@@ -50,13 +63,13 @@ Step by step execution means that the machine is automatically paused on each ri
 At the bottom of the Simulation view, a single instruction table row is displayed. This row contains the instruction currently being executed.
 The MPM can be modified by this line. This is not recommended, however, because changes done here are not reflected in the MPM file, and will be undone if the MPM file is hot-replaced (see below), even if the changed row didn't change in the hot replace. Also, as for a hot replace, these changes doesn't affect the currently active microinstruction.
 #### Memory view
-- In the Memory view, click on the green +, enter 0 and click on "OK".
-- Right-click on the table -> "Format...".
-- Select 16 units per row and one unit per column. (8 units per row if 16 don't fit on the screen.)
+1. In the Memory view, click on the green +, enter 0 and click on "OK".
+2. Right-click on the table -> "Format...".
+3. Select 16 units per row and one unit per column. (8 units per row if 16 don't fit on the screen.)
 
 The table now displays the contents of the currently running machine. At this moment, this should be equal to the contents of the initial memory specified when creating the launch configuration. This table updates automatically if the machine writes a memory cell. In this case, for a short time, this cell is highlighted using a red font and with a small delta symbol in the cell's corner.
 #### Register view
-- Expand the pseudo register group.  
+1. Expand the pseudo register group.  
 It should contain the registers R0-R15 as well as the Q register.  
 All of them should be 0, displayed as a bitstring (TODO view in hex).
 
@@ -74,7 +87,11 @@ Set the simulation speed to the lowest setting.
 In the toolbar, click the "Resume" button.
 Slowly increase the simulation speed until the wires in the Simulation view start flickering. The machine is now running and starts executing the microprogram.
 ### Notes
-- If the MPM file used by a machine launch is opened in the Instruction editor, the row corresponding to the microinstruction currently being executed is highlighted there using a bold font and yellow background.
-- If the MPM file changes, after confirmation, the changes are hot-replaced into the machine.
+1. If the MPM file used by a machine launch is opened in the Instruction editor, the row corresponding to the microinstruction currently being executed is highlighted there using a bold font and yellow background.
+2. If the MPM file changes, after confirmation, the changes are hot-replaced into the machine.
 	Changes in the MPM file don't affect the currently active microinstruction, however.
-- Some of the behaviour described here can be changed in the Eclipse Preferences (in the pages "Mograsim" and "General" -> "Appearance" -> "Colors and Fonts"). For these cases the default behaviour is described.
+3. Some of the behaviour described here can be changed in the Eclipse Preferences (in the pages "Mograsim" and "General" -> "Appearance" -> "Colors and Fonts"). For these cases the default behaviour is described.
+### Troubleshooting
+- Make sure Eclipse uses Java 11 or later
+  1. Go to "Help" -> "About Eclipse IDE", click on "Installation Details", go to the tab "Configuration"
+  2. Search the line starting with "java.version=".
