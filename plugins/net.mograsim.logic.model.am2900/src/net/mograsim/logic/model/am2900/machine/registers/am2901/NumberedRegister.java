@@ -1,15 +1,10 @@
-package net.mograsim.logic.model.am2900.machine.registers;
+package net.mograsim.logic.model.am2900.machine.registers.am2901;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
-import net.mograsim.machine.StandardRegister;
-
-public class NumberedRegister extends StandardRegister
+public class NumberedRegister extends Am2901Register
 {
 	public static final List<NumberedRegister> instancesCorrectOrder;
 
@@ -21,29 +16,19 @@ public class NumberedRegister extends StandardRegister
 		instancesCorrectOrder = Collections.unmodifiableList(instancesCorrectOrderModifiable);
 	}
 
-	private final int index;
-	private final String indexBitstring;
-
-	private NumberedRegister(int i)
+	private NumberedRegister(int index)
 	{
-		super("R" + i, new HashSet<>(Arrays.asList(new String[] { "R" + i, "Register #" + i, "Register " + i })), 16, new HashMap<>());
-		this.index = i;
+		super("R" + index, "regs.c" + getIndexAsBitstring(index) + ".q", 4);
 
+	}
+
+	private static String getIndexAsBitstring(int index)
+	{
 		StringBuilder sb = new StringBuilder();
 		sb.append((index & 0b1000) != 0 ? '1' : '0');
 		sb.append((index & 0b0100) != 0 ? '1' : '0');
 		sb.append((index & 0b0010) != 0 ? '1' : '0');
 		sb.append((index & 0b0001) != 0 ? '1' : '0');
-		this.indexBitstring = sb.toString();
-	}
-
-	public int getIndex()
-	{
-		return index;
-	}
-
-	public String getIndexAsBitstring()
-	{
-		return indexBitstring;
+		return sb.toString();
 	}
 }
