@@ -46,9 +46,7 @@ public class Modeldff4_finewe extends SimpleRectangularHardcodedModelComponent
 	@Override
 	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
-		Bit[] QC = (Bit[]) lastState;
-		if (QC == null)
-			QC = new Bit[] { U, U, U, U, U };
+		Bit[] QC = castAndInitState(lastState);
 
 		Bit CVal = readEnds.get("C").getValue();
 
@@ -77,29 +75,60 @@ public class Modeldff4_finewe extends SimpleRectangularHardcodedModelComponent
 	@Override
 	protected Object getHighLevelState(Object state, String stateID)
 	{
-		switch (stateID)
+		Bit[] QC = castAndInitState(state);
+
+		if ("q".equals(stateID))
+			return BitVector.of(Arrays.copyOfRange(QC, 1, 5));
+		if (stateID.length() == 2 && stateID.charAt(0) == 'q')
 		{
-		case "q":
-			return state == null ? BitVector.of(U, U, U, U) : BitVector.of(Arrays.copyOfRange((Bit[]) state, 1, 5));
-		default:
-			return super.getHighLevelState(state, stateID);
+			char secondChar = stateID.charAt(1);
+			if (secondChar >= '1' && secondChar <= '4')
+				return BitVector.of(QC[secondChar - '0']);
 		}
+		return super.getHighLevelState(state, stateID);
 	}
 
 	@Override
 	protected Object setHighLevelState(Object lastState, String stateID, Object newHighLevelState)
 	{
-		switch (stateID)
+		Bit[] QC = castAndInitState(lastState);
+
+		if ("q".equals(stateID))
 		{
-		case "q":
 			BitVector newHighLevelStateCasted = (BitVector) newHighLevelState;
 			if (newHighLevelStateCasted.length() != 4)
 				throw new IllegalArgumentException("Expected BitVector of length 4, not " + newHighLevelStateCasted.length());
-			System.arraycopy(newHighLevelStateCasted.getBits(), 0, lastState, 1, 4);
-			return lastState;
-		default:
-			return super.setHighLevelState(lastState, stateID, newHighLevelState);
+			System.arraycopy(newHighLevelStateCasted.getBits(), 0, QC, 1, 4);
+			return QC;
 		}
+		if (stateID.length() == 2 && stateID.charAt(0) == 'q')
+		{
+			char secondChar = stateID.charAt(1);
+			if (secondChar >= '1' && secondChar <= '4')
+			{
+				Bit newHighLevelStateCasted;
+				if (newHighLevelState instanceof Bit)
+					newHighLevelStateCasted = (Bit) newHighLevelState;
+				else
+				{
+					BitVector vector = (BitVector) newHighLevelState;
+					if (vector.length() != 1)
+						throw new IllegalArgumentException("Expected BitVector of length 1, not " + vector.length());
+					newHighLevelStateCasted = vector.getMSBit(0);
+				}
+				QC[secondChar - '0'] = newHighLevelStateCasted;
+				return QC;
+			}
+		}
+		return super.setHighLevelState(QC, stateID, newHighLevelState);
+	}
+
+	private static Bit[] castAndInitState(Object state)
+	{
+		Bit[] QC = (Bit[]) state;
+		if (QC == null)
+			QC = new Bit[] { U, U, U, U, U };
+		return QC;
 	}
 
 	static

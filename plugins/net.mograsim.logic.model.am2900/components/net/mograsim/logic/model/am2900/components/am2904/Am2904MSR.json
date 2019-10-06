@@ -1929,6 +1929,34 @@
           "delegateTarget": "dff4_finewe#0",
           "subStateID": "q"
         }
+      },
+      "q1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff4_finewe#0",
+          "subStateID": "q1"
+        }
+      },
+      "q2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff4_finewe#0",
+          "subStateID": "q2"
+        }
+      },
+      "q3": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff4_finewe#0",
+          "subStateID": "q3"
+        }
+      },
+      "q4": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff4_finewe#0",
+          "subStateID": "q4"
+        }
       }
     }
   },
