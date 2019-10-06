@@ -1,5 +1,9 @@
 package net.mograsim.plugin.launch;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.ILaunch;
@@ -10,17 +14,34 @@ import org.eclipse.debug.core.model.IThread;
 import org.eclipse.debug.core.model.IVariable;
 
 import net.mograsim.machine.Machine;
+import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.registers.RegisterGroup;
 import net.mograsim.plugin.MograsimActivator;
 
 public class MachineStackFrame extends PlatformObject implements IStackFrame
 {
 	private final MachineThread thread;
-	private final MachineRegisterGroup registerGroup;
+	private final List<MachineRegisterGroup> registerGroups;
 
 	public MachineStackFrame(MachineThread thread)
 	{
 		this.thread = thread;
-		this.registerGroup = new MachineRegisterGroup(this);
+		List<MachineRegisterGroup> registerGroupsModifiable = new ArrayList<>();
+		MachineDefinition machDef = getMachine().getDefinition();
+		if (!machDef.getUnsortedRegisters().isEmpty())
+			registerGroupsModifiable.add(new MachineRegisterGroup(this, "<unsorted>", machDef.getUnsortedRegisters()));
+		addRegisterGroups(null, registerGroupsModifiable, machDef.getRegisterGroups());
+		this.registerGroups = Collections.unmodifiableList(registerGroupsModifiable);
+	}
+
+	private void addRegisterGroups(String base, List<MachineRegisterGroup> target, List<RegisterGroup> registerGroups)
+	{
+		for (RegisterGroup rg : registerGroups)
+		{
+			String name = (base == null ? "" : base + '.') + rg.id();
+			target.add(new MachineRegisterGroup(this, name, rg.getRegisters()));
+			addRegisterGroups(name, target, rg.getSubGroups());
+		}
 	}
 
 	@Override
@@ -182,7 +203,7 @@ public class MachineStackFrame extends PlatformObject implements IStackFrame
 	@Override
 	public IRegisterGroup[] getRegisterGroups() throws DebugException
 	{
-		return new IRegisterGroup[] { registerGroup };
+		return registerGroups.toArray(IRegisterGroup[]::new);
 	}
 
 	@Override

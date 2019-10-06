@@ -1,8 +1,7 @@
 package net.mograsim.logic.model.am2900.machine;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -10,8 +9,7 @@ import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.model.am2900.machine.registers.NumberedRegister;
-import net.mograsim.logic.model.am2900.machine.registers.QRegister;
+import net.mograsim.logic.model.am2900.machine.registers.Am2900Register;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
@@ -21,13 +19,14 @@ import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
-import net.mograsim.machine.Register;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.StandardMicroInstructionMemory;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
+import net.mograsim.machine.registers.Register;
+import net.mograsim.machine.registers.RegisterGroup;
 import net.mograsim.machine.standard.memory.AssignableMainMemory;
 import net.mograsim.machine.standard.memory.WordAddressableMemory;
 
@@ -43,7 +42,6 @@ public class Am2900Machine implements Machine
 	private long activeInstructionAddress;
 
 	private final Set<ActiveMicroInstructionChangedListener> amicListeners;
-	private final Map<Register, Map<Consumer<BitVector>, Consumer<Object>>> modelListenersPerRegisterListenerPerRegister;
 
 	public Am2900Machine(LogicModelModifiable model, AbstractAm2900MachineDefinition am2900MachineDefinition)
 	{
@@ -52,7 +50,6 @@ public class Am2900Machine implements Machine
 		this.am2900 = IndirectModelComponentCreator.createComponent(logicModel,
 				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json", "Am2900");
 		this.amicListeners = new HashSet<>();
-		this.modelListenersPerRegisterListenerPerRegister = new HashMap<>();
 
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
@@ -92,9 +89,24 @@ public class Am2900Machine implements Machine
 		am2900.setHighLevelState("muir_2.q", jzMI.toBitVector());
 		if (!machineDefinition.strict)
 		{
-			for (Register r : machineDefinition.getRegisters())
-				setRegister(r, BitVector.of(Bit.ZERO, r.getWidth()));
+			setRegistersToZero(machineDefinition.getUnsortedRegisters());
+			setRegisterGroupToZero(machineDefinition.getRegisterGroups());
 			// TODO reset latches?
+		}
+	}
+
+	private void setRegistersToZero(List<Register> registers)
+	{
+		for (Register r : registers)
+			setRegister(r, BitVector.of(Bit.ZERO, r.getWidth()));
+	}
+
+	private void setRegisterGroupToZero(List<RegisterGroup> registerGroups)
+	{
+		for (RegisterGroup rg : registerGroups)
+		{
+			setRegistersToZero(rg.getRegisters());
+			setRegisterGroupToZero(rg.getSubGroups());
 		}
 	}
 
@@ -121,74 +133,34 @@ public class Am2900Machine implements Machine
 		return clock;
 	}
 
-	// TODO too much code duplication
-
 	@Override
 	public BitVector getRegister(Register r)
 	{
-		String am2901CellSuffix = getAm2901CellSuffix(r);
-		BitVector result = BitVector.of();
-		for (int i = 0; i < 16; i += 4)
-		{
-			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
-			result = result.concat((BitVector) am2900.getHighLevelState(hlsID));
-		}
-		return result;
+		return castAm2900Register(r).read(am2900);
 	}
 
 	@Override
 	public void setRegister(Register r, BitVector value)
 	{
-		String am2901CellSuffix = getAm2901CellSuffix(r);
-		for (int i = 0; i < 16; i += 4)
-		{
-			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
-			am2900.setHighLevelState(hlsID, value.subVector(i, i + 4));
-		}
+		castAm2900Register(r).write(am2900, value);
 	}
 
 	@Override
 	public void addRegisterListener(Register r, Consumer<BitVector> listener)
 	{
-		Map<Consumer<BitVector>, Consumer<Object>> modelListenersPerRegisterListener = modelListenersPerRegisterListenerPerRegister
-				.computeIfAbsent(r, k -> new HashMap<>());
-		if (modelListenersPerRegisterListener.containsKey(listener))
-			return;
-
-		Consumer<Object> modelListener = v -> listener.accept(getRegister(r));
-		String am2901CellSuffix = getAm2901CellSuffix(r);
-		for (int i = 0; i < 16; i += 4)
-		{
-			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
-			am2900.addHighLevelStateListener(hlsID, modelListener);
-		}
+		castAm2900Register(r).addListener(am2900, listener);
 	}
 
 	@Override
 	public void removeRegisterListener(Register r, Consumer<BitVector> listener)
 	{
-		Map<Consumer<BitVector>, Consumer<Object>> modelListenersPerRegisterListener = modelListenersPerRegisterListenerPerRegister.get(r);
-		if (modelListenersPerRegisterListener == null)
-			return;
-
-		Consumer<Object> modelListener = modelListenersPerRegisterListener.get(listener);
-		if (modelListener == null)
-			return;
-
-		String am2901CellSuffix = getAm2901CellSuffix(r);
-		for (int i = 0; i < 16; i += 4)
-		{
-			String hlsID = String.format("am2901_%d-%d.%s", (i + 3), i, am2901CellSuffix);
-			am2900.removeHighLevelStateListener(hlsID, modelListener);
-		}
+		castAm2900Register(r).removeListener(am2900, listener);
 	}
 
-	private static String getAm2901CellSuffix(Register r)
+	private static Am2900Register castAm2900Register(Register r)
 	{
-		if (r instanceof QRegister)
-			return "qreg.q";
-		if (r instanceof NumberedRegister)
-			return "regs.c" + ((NumberedRegister) r).getIndexAsBitstring() + ".q";
+		if (r instanceof Am2900Register)
+			return (Am2900Register) r;
 		throw new IllegalArgumentException("Not a register of an Am2900Machine: " + r);
 	}
 

@@ -1,8 +1,10 @@
 package net.mograsim.machine;
 
-import java.util.Set;
+import java.util.List;
 
 import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
+import net.mograsim.machine.registers.Register;
+import net.mograsim.machine.registers.RegisterGroup;
 
 public interface MachineDefinition
 {
@@ -32,12 +34,12 @@ public interface MachineDefinition
 	ISASchema getISASchema();
 
 	/**
-	 * Returns a set of all {@link Register}s present in the machine.
+	 * Returns a set of all {@link Register}s present in the machine that are not part of a register group.
 	 * 
 	 * @return all registers present in the machine.
 	 * @author Christian Femers
 	 */
-	Set<Register> getRegisters();
+	List<Register> getUnsortedRegisters();
 
 	/**
 	 * Returns a set of all RegisterGroups that the machine contains
@@ -45,7 +47,7 @@ public interface MachineDefinition
 	 * @return all register groups present in the machine.
 	 * @author Christian Femers
 	 */
-	Set<RegisterGroup> getRegisterGroups();
+	List<RegisterGroup> getRegisterGroups();
 
 	/**
 	 * The number of bits used by the machine to address main memory. Note that this should be the number of bits used in the CPU, not a

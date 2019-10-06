@@ -7,6 +7,7 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
+import net.mograsim.machine.registers.Register;
 import net.mograsim.machine.standard.memory.AssignableMainMemory;
 
 public interface Machine

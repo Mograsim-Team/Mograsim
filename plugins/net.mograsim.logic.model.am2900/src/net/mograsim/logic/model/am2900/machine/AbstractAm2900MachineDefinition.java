@@ -1,16 +1,14 @@
 package net.mograsim.logic.model.am2900.machine;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-import net.mograsim.logic.model.am2900.machine.registers.NumberedRegister;
-import net.mograsim.logic.model.am2900.machine.registers.QRegister;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.machine.ISASchema;
 import net.mograsim.machine.MachineDefinition;
-import net.mograsim.machine.Register;
-import net.mograsim.machine.RegisterGroup;
+import net.mograsim.machine.registers.Register;
+import net.mograsim.machine.registers.RegisterGroup;
 
 //we can't use the Singleton pattern here because a MachineDefinition needs a public parameterless constructor
 //(used for detecting installed machines in plugin.core)
@@ -19,15 +17,17 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 	public static final String SIMPLE_AM2900_MACHINE_ID = "Am2900Simple";
 	public static final String STRICT_AM2900_MACHINE_ID = "Am2900Strict";
 
-	public static final Set<Register> allRegisters;
+	public static final List<Register> unsortedRegisters;
+	public static final List<RegisterGroup> registerGroups;
 
 	static
 	{
-		Set<Register> allRegistersModifiable = new HashSet<>();
-		allRegistersModifiable.add(QRegister.instance);
-		allRegistersModifiable.addAll(NumberedRegister.instancesCorrectOrder);
-		// TODO MSR, muSR, MIR, IR, PC/BZ...
-		allRegisters = Collections.unmodifiableSet(allRegistersModifiable);
+		List<Register> unsortedRegistersModifiable = new ArrayList<>();
+		// TODO MIR, IR, PC/BZ...
+		unsortedRegisters = Collections.unmodifiableList(unsortedRegistersModifiable);
+		List<RegisterGroup> registerGroupsModifiable = new ArrayList<>();
+		// TODO Am2901, Am2904, Am2910
+		registerGroups = Collections.unmodifiableList(registerGroupsModifiable);
 	}
 
 	public final boolean strict;
@@ -62,9 +62,15 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 	}
 
 	@Override
-	public Set<Register> getRegisters()
+	public List<Register> getUnsortedRegisters()
 	{
-		return allRegisters;
+		return unsortedRegisters;
+	}
+
+	@Override
+	public List<RegisterGroup> getRegisterGroups()
+	{
+		return registerGroups;
 	}
 
 	@Override
@@ -96,12 +102,6 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 	public Am2900MicroInstructionMemoryDefinition getMicroInstructionMemoryDefinition()
 	{
 		return Am2900MicroInstructionMemoryDefinition.instance;
-	}
-
-	@Override
-	public Set<RegisterGroup> getRegisterGroups()
-	{
-		return null; // TODO create groups for am2904, am2901-asmUsable, am2901-internal, ...
 	}
 
 }
