@@ -11,7 +11,7 @@
     - Go to the "Project Natures" page, click on "Add...". If a confirmation dialog pops up, confirm.
     - Select "Mograsim Project Nature"; click on "OK".
     - Click on "Apply and Close" and re-open the properties dialog.
-    - Go to the new "Mograsim" page, select "Am29000Simple", click on "Apply and Close".
+    - Go to the new "Mograsim" page, select "Am2900Simple", click on "Apply and Close".
 ### Write a MPM file (containing the microprogram)
 - Create a new file with the extension ".mpm". (Right-click on the project -> "New" -> "File"; enter the filename; click on "Finish")
 - The Mograsim instruction editor should open. If not, right-click on the MPM file -> "Open With" -> "Other..."; select "Instruction Editor"; click on "OK".
@@ -36,7 +36,7 @@ The Simulation view is in the category "Mograsim" and the other views in "Debug"
 - If you don't have a MEM file, leave the according field blank. This causes the memory to be initialized with 0.
 - Click "Run". The Simulation view now should contain a rectangle containing either the text "Am2900" in a very small font or a huge mess of smaller rectangles connected by colored lines.
 
-The machine doesn't start running yet since it starts paused. (TODO make a checkbox for this)
+The machine doesn't start running yet since it starts paused. (TODO: make a checkbox for this)
 ### Set up and get used to the views
 #### Simulation view (see also the [simulation model explanation](model.md))
 Move the view around by dragging with the left mouse button held.  
@@ -45,8 +45,7 @@ Zoom in and out by either scrolling up or down or by dragging down and up with t
 Using the slider or by directly entering a number in the text field, the machine can be slowed down or sped up.
 
 Also, a "step by step execution" mode can be enabled. (TODO use "Step over" instead)  
-Step by step execution means that the machine is automatically paused as soon as the clock switches to 1.  
-When simulating the machine at a slow speed, this pause event happens fast enough for the wire connected to the clock to still be 0, but for fast speeds the pause event may happen late, causing this wire to already be updated to 1 when the machine is actually paused. Sometimes even some components react to the new clock value. (TODO fix this)
+Step by step execution means that the machine is automatically paused on each rising edge of the clock.  
 
 At the bottom of the Simulation view, a single instruction table row is displayed. This row contains the instruction currently being executed.
 The MPM can be modified by this line. This is not recommended, however, because changes done here are not reflected in the MPM file, and will be undone if the MPM file is hot-replaced (see below), even if the changed row didn't change in the hot replace. Also, as for a hot replace, these changes doesn't affect the currently active microinstruction.
