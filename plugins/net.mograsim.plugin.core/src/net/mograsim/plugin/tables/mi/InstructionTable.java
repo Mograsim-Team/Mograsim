@@ -40,12 +40,20 @@ public class InstructionTable
 	private final RowHighlighter highlighter;
 	private final FontAndColorHelper cProv;
 
+	private final boolean isEditable;
+
 	public InstructionTable(Composite parent, DisplaySettings displaySettings, IThemeManager themeManager)
+	{
+		this(parent, displaySettings, themeManager, true);
+	}
+
+	public InstructionTable(Composite parent, DisplaySettings displaySettings, IThemeManager themeManager, boolean allowEditing)
 	{
 		viewer = new LazyTableViewer(parent, SWT.FULL_SELECTION | SWT.BORDER | SWT.VIRTUAL);
 		this.displaySettings = displaySettings;
 		this.cProv = new FontAndColorHelper(viewer, themeManager);
 		this.highlighter = new RowHighlighter(viewer, cProv);
+		this.isEditable = allowEditing;
 
 		Table table = viewer.getTable();
 		table.setHeaderVisible(true);
@@ -183,22 +191,23 @@ public class InstructionTable
 		switch (parameterClassification.getExpectedType())
 		{
 		case BOOLEAN_IMMEDIATE:
-			support = new BooleanEditingSupport(viewer, miDef, index);
+			support = isEditable ? new BooleanEditingSupport(viewer, miDef, index) : null;
 			provider = new ParameterLabelProvider(cProv, index);
 			break;
 		case INTEGER_IMMEDIATE:
-			support = new IntegerEditingSupport(viewer, miDef, index, displaySettings, this.provider);
+			support = isEditable ? new IntegerEditingSupport(viewer, miDef, index, displaySettings, this.provider) : null;
 			provider = new IntegerColumnLabelProvider(displaySettings, cProv, index);
 			break;
 		case MNEMONIC:
-			support = new MnemonicEditingSupport(viewer, miDef, index, this.provider);
+			support = isEditable ? new MnemonicEditingSupport(viewer, miDef, index, this.provider) : null;
 			provider = new ParameterLabelProvider(cProv, index);
 			break;
 		default:
 			throw new IllegalStateException(
 					"Unable to create EditingSupport for unknown ParameterType " + parameterClassification.getExpectedType());
 		}
-		col.setEditingSupport(support);
+		if (isEditable)
+			col.setEditingSupport(support);
 		col.setLabelProvider(provider);
 		col.getColumn().setToolTipText(miDef.getParameterDescription(index).orElse(""));
 	}
