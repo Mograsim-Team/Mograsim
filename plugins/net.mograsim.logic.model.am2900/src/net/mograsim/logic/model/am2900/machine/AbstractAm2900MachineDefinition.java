@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import net.mograsim.logic.model.am2900.machine.registers.am2901.Am2901RegisterGroup;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.machine.ISASchema;
 import net.mograsim.machine.MachineDefinition;
@@ -26,7 +27,8 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 		// TODO MIR, IR, PC/BZ...
 		unsortedRegisters = Collections.unmodifiableList(unsortedRegistersModifiable);
 		List<RegisterGroup> registerGroupsModifiable = new ArrayList<>();
-		// TODO Am2901, Am2904, Am2910
+		registerGroupsModifiable.add(Am2901RegisterGroup.instance);
+		// TODO Am2904, Am2910
 		registerGroups = Collections.unmodifiableList(registerGroupsModifiable);
 	}
 
