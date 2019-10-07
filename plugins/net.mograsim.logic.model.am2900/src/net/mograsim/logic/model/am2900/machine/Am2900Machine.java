@@ -10,6 +10,7 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.am2900.machine.registers.Am2900Register;
+import net.mograsim.logic.model.am2900.machine.registers.muInstrRegister;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
@@ -98,7 +99,8 @@ public class Am2900Machine implements Machine
 	private void setRegistersToZero(List<Register> registers)
 	{
 		for (Register r : registers)
-			setRegister(r, BitVector.of(Bit.ZERO, r.getWidth()));
+			if (r != muInstrRegister.instance)// don't reset; sometimes causes a glitch
+				setRegister(r, BitVector.of(Bit.ZERO, r.getWidth()));
 	}
 
 	private void setRegisterGroupToZero(List<RegisterGroup> registerGroups)
