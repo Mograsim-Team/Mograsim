@@ -86,7 +86,7 @@ public class Modelram5_12 extends SimpleRectangularHardcodedModelComponent
 		return (bits[0] == ONE ? 4 : 0) + (bits[1] == ONE ? 2 : 0) + (bits[2] == ONE ? 1 : 0);
 	}
 
-	Pattern stateIDPattern = Pattern.compile("c(0[10][10]|100)");
+	Pattern stateIDPattern = Pattern.compile("c(0[10][10]|100).q");
 
 	@Override
 	protected Object getHighLevelState(Object state, String stateID)
