@@ -65,7 +65,7 @@ public class SimulationView extends ViewPart
 	{
 		controlsToDisableWhenNoMachinePresent = new HashSet<>();
 		memCellListener = a -> instPreview.refresh();
-		// TODO could this be a breakpoint?
+		// TODO use Step Over instead
 		clockObserver = o ->
 		{
 			if (((CoreClock) o).isOn())
@@ -148,7 +148,6 @@ public class SimulationView extends ViewPart
 		simSpeedScale.addListener(SWT.Selection, e ->
 		{
 			double speed = Math.pow(SIM_SPEED_SCALE_STEP_FACTOR, simSpeedScale.getSelection() - SIM_SPEED_SCALE_STEPS);
-			// TODO: disable when debugTarget is not set
 			debugTarget.setExecutionSpeed(speed);
 		});
 

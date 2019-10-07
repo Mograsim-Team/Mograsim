@@ -120,6 +120,7 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 			memFile = Optional.of(project.getFile(initialRAMFileName));
 		}
 		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, mpmFile, memFile, machineDefinition);
+		// TODO make selectable whether the machine starts paused or not
 		debugTarget.suspend();
 		debugTarget.setExecutionSpeed(1);
 		machine = debugTarget.getMachine();
