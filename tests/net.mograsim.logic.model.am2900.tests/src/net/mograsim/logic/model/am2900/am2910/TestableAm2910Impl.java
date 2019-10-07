@@ -139,7 +139,7 @@ public class TestableAm2910Impl implements TestableAm2910
 		case S_2:
 		case S_3:
 		case S_4:
-			return "stack.c" + BitVector.from(r.ordinal(), 3);
+			return "stack.c" + BitVector.from(r.ordinal(), 3) + ".q";
 		case SP:
 			return "sp.q";
 		case PC:
