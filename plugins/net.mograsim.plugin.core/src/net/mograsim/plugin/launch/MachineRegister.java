@@ -95,12 +95,14 @@ public class MachineRegister extends PlatformObject implements IRegister
 
 	public String getValueString()
 	{
+		// TODO view in hex
 		return getMachine().getRegister(machineRegister).toString();
 	}
 
 	@Override
 	public void setValue(String expression) throws DebugException
 	{
+		// TODO support hex
 		// TODO exception handling
 		getMachine().setRegister(machineRegister, BitVector.parse(expression));
 	}

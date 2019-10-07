@@ -16,7 +16,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -133,15 +132,6 @@ public class MemoryEditor extends EditorPart
 		});
 		amountText.setText("100");// do this after registering the ModifyListener
 		new RadixSelector(parent, displaySettings);
-
-		addActivationButton(parent);
-	}
-
-	private void addActivationButton(Composite parent)
-	{
-		Button activationButton = new Button(parent, SWT.PUSH);
-		activationButton.setText("Set Active");
-		activationButton.addListener(SWT.Selection, e -> context.getActiveMachine().ifPresent(m -> m.getMainMemory().bind(memory)));
 	}
 
 	private void createViewer(Composite parent)
@@ -223,7 +213,6 @@ public class MemoryEditor extends EditorPart
 		{
 			IFileEditorInput fileInput = (IFileEditorInput) input;
 			context = ProjectMachineContext.getMachineContextOf(fileInput.getFile().getProject());
-			context.activateMachine();
 
 			setPartName(fileInput.getName());
 			try

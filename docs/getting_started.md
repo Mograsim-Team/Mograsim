@@ -50,8 +50,7 @@ Every cell differing from the default value is highlighted with a cursive font a
 3. Write the memory contents.
 
 Each table row contains one (16 bit wide) memory cell.  
-The two text fields labeled "Address" and "Number of cells" only refer to the cells displayed simultaneously in the editor. The editor internally retains all 65536 addressable cells.  
-Don't use the "Set active" button. (TODO: remove it)
+The two text fields labeled "Address" and "Number of cells" only refer to the cells displayed simultaneously in the editor. The editor internally retains all 65536 addressable cells.
 
 ## Open the views "Simulation", "Debug", "Memory" and "Registers"
 
@@ -68,7 +67,7 @@ It is recommended to move the Simulation view to the Editor pane.
 4. If you don't have a MEM file, leave the according field blank. This causes the memory to be initialized with 0.
 5. Click "Run". The Simulation view now should contain a rectangle containing either the text "Am2900" in a very small font or a huge mess of smaller rectangles connected by colored lines.
 
-The machine doesn't start running yet since it starts paused. (TODO: make a checkbox for this)
+The machine doesn't start running yet since it starts paused.
 
 ## Set up and get used to the views
 
@@ -79,7 +78,7 @@ Zoom in and out by either scrolling up or down or by dragging down and up with t
 
 Using the slider or by directly entering a number in the text field, the machine can be slowed down or sped up.
 
-Also, a "step by step execution" mode can be enabled. (TODO: use "Step over" instead)  
+Also, a "step by step execution" mode can be enabled.
 Step by step execution means that the machine is automatically paused on each rising edge of the clock.  
 
 At the bottom of the Simulation view, a single instruction table row is displayed. This row contains the instruction currently being executed.
@@ -97,9 +96,9 @@ The table now displays the contents of the currently running machine. At this mo
 
 1. Expand the pseudo register group.  
 It should contain the registers R0-R15 as well as the Q register.  
-All of them should be 0, displayed as a bitstring (TODO: view in hex).
+All of them should be 0, displayed as a bitstring
 
-It is possible to change the register contents via this view by clicking on the old value and entering a new bitstring (TODO: a hex integer). It is not recommended to use `Z` in these bitstrings.
+It is possible to change the register contents via this view by clicking on the old value and entering a new bitstring. It is not recommended to use `Z` in these bitstrings.
 
 ### Debug view
 
