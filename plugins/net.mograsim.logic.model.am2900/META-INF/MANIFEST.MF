@@ -14,6 +14,8 @@ Export-Package: net.mograsim.logic.model.am2900,
  net.mograsim.logic.model.am2900.machine.registers.am2904,
  net.mograsim.logic.model.am2900.machine.registers.am2904.msr,
  net.mograsim.logic.model.am2900.machine.registers.am2904.musr,
+ net.mograsim.logic.model.am2900.machine.registers.am2910,
+ net.mograsim.logic.model.am2900.machine.registers.am2910.stack,
  net.mograsim.logic.model.examples
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.osgi,
