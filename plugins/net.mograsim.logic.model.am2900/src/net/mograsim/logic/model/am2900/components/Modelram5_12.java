@@ -41,13 +41,8 @@ public class Modelram5_12 extends SimpleRectangularHardcodedModelComponent
 	@Override
 	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
-		BitVector[] memC = (BitVector[]) lastState;
-		if (memC == null)
-		{
-			memC = new BitVector[6];
-			Arrays.fill(memC, 0, 5, BitVector.of(U, 12));
-			memC[5] = BitVector.of(U);
-		}
+		BitVector[] memC = castAndInitState(lastState);
+
 		BitVector CVal = readEnds.get("C").getValues();
 		BitVector oldC = memC[5];
 		// TODO is the timing right?
@@ -91,15 +86,19 @@ public class Modelram5_12 extends SimpleRectangularHardcodedModelComponent
 	@Override
 	protected Object getHighLevelState(Object state, String stateID)
 	{
+		BitVector[] memC = castAndInitState(state);
+
 		Matcher m = stateIDPattern.matcher(stateID);
 		if (m.matches())
-			return ((BitVector[]) state)[Integer.parseInt(m.group(1), 2)];
-		return super.getHighLevelState(state, stateID);
+			return memC[Integer.parseInt(m.group(1), 2)];
+		return super.getHighLevelState(memC, stateID);
 	}
 
 	@Override
 	protected Object setHighLevelState(Object lastState, String stateID, Object newHighLevelState)
 	{
+		BitVector[] memC = castAndInitState(lastState);
+
 		Matcher m = stateIDPattern.matcher(stateID);
 		if (m.matches())
 		{
@@ -107,11 +106,22 @@ public class Modelram5_12 extends SimpleRectangularHardcodedModelComponent
 			BitVector newHighLevelStateCasted = (BitVector) newHighLevelState;
 			if (newHighLevelStateCasted.length() != 12)
 				throw new IllegalArgumentException("Expected BitVector of length 12, not " + newHighLevelStateCasted.length());
-			BitVector[] memC = (BitVector[]) lastState;
 			memC[addr] = newHighLevelStateCasted;
 			return memC;
 		}
-		return super.setHighLevelState(lastState, stateID, newHighLevelState);
+		return super.setHighLevelState(memC, stateID, newHighLevelState);
+	}
+
+	private static BitVector[] castAndInitState(Object state)
+	{
+		BitVector[] memC = (BitVector[]) state;
+		if (memC == null)
+		{
+			memC = new BitVector[6];
+			Arrays.fill(memC, 0, 5, BitVector.of(U, 12));
+			memC[5] = BitVector.of(U);
+		}
+		return memC;
 	}
 
 	static

@@ -37,13 +37,7 @@ public class ModelAm2910SP extends SimpleRectangularHardcodedModelComponent
 	@Override
 	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
-		BitAndInt SPC = (BitAndInt) lastState;
-		if (SPC == null)
-		{
-			SPC = new BitAndInt();
-			SPC.bit = U;
-			SPC.i = -2;
-		}
+		BitAndInt SPC = castAndInitState(lastState);
 		int SP = SPC.i;
 
 		Bit STKI0Val = readEnds.get("STKI0").getValue();
@@ -77,18 +71,22 @@ public class ModelAm2910SP extends SimpleRectangularHardcodedModelComponent
 	@Override
 	protected Object getHighLevelState(Object state, String stateID)
 	{
+		BitAndInt SPC = castAndInitState(state);
+
 		switch (stateID)
 		{
 		case "q":
-			return getAsBitVector(((BitAndInt) state).i);
+			return getAsBitVector(SPC.i);
 		default:
-			return super.getHighLevelState(state, stateID);
+			return super.getHighLevelState(SPC, stateID);
 		}
 	}
 
 	@Override
 	protected Object setHighLevelState(Object lastState, String stateID, Object newHighLevelState)
 	{
+		BitAndInt SPC = castAndInitState(lastState);
+
 		switch (stateID)
 		{
 		case "q":
@@ -102,11 +100,23 @@ public class ModelAm2910SP extends SimpleRectangularHardcodedModelComponent
 				i = -1;// this makes setting to U impossible
 			if (i > 5)
 				throw new IllegalArgumentException("Given value not in range (0-5 incl.): " + i);
-			((BitAndInt) lastState).i = i;
-			return lastState;
+			SPC.i = i;
+			return SPC;
 		default:
-			return super.setHighLevelState(lastState, stateID, newHighLevelState);
+			return super.setHighLevelState(SPC, stateID, newHighLevelState);
 		}
+	}
+
+	private static BitAndInt castAndInitState(Object lastState)
+	{
+		BitAndInt SPC = (BitAndInt) lastState;
+		if (SPC == null)
+		{
+			SPC = new BitAndInt();
+			SPC.bit = U;
+			SPC.i = -2;
+		}
+		return SPC;
 	}
 
 	private static class BitAndInt

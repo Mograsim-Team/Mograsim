@@ -34,12 +34,7 @@ public class Modeldff12 extends SimpleRectangularHardcodedModelComponent
 	@Override
 	public Object recalculate(Object lastState, Map<String, ReadEnd> readEnds, Map<String, ReadWriteEnd> readWriteEnds)
 	{
-		Bit[] QC = (Bit[]) lastState;
-		if (QC == null)
-		{
-			QC = new Bit[13];
-			Arrays.fill(QC, U);
-		}
+		Bit[] QC = castAndInitState(lastState);
 
 		Bit CVal = readEnds.get("C").getValue();
 
@@ -55,29 +50,44 @@ public class Modeldff12 extends SimpleRectangularHardcodedModelComponent
 	@Override
 	protected Object getHighLevelState(Object state, String stateID)
 	{
+		Bit[] QC = castAndInitState(state);
+
 		switch (stateID)
 		{
 		case "q":
-			return BitVector.of(Arrays.copyOfRange((Bit[]) state, 0, 12));
+			return BitVector.of(Arrays.copyOfRange(QC, 0, 12));
 		default:
-			return super.getHighLevelState(state, stateID);
+			return super.getHighLevelState(QC, stateID);
 		}
 	}
 
 	@Override
 	protected Object setHighLevelState(Object lastState, String stateID, Object newHighLevelState)
 	{
+		Bit[] QC = castAndInitState(lastState);
+
 		switch (stateID)
 		{
 		case "q":
 			BitVector newHighLevelStateCasted = (BitVector) newHighLevelState;
 			if (newHighLevelStateCasted.length() != 12)
 				throw new IllegalArgumentException("Expected BitVector of length 12, not " + newHighLevelStateCasted.length());
-			System.arraycopy(newHighLevelStateCasted.getBits(), 0, lastState, 0, 12);
-			return lastState;
+			System.arraycopy(newHighLevelStateCasted.getBits(), 0, QC, 0, 12);
+			return QC;
 		default:
-			return super.setHighLevelState(lastState, stateID, newHighLevelState);
+			return super.setHighLevelState(QC, stateID, newHighLevelState);
 		}
+	}
+
+	private static Bit[] castAndInitState(Object state)
+	{
+		Bit[] QC = (Bit[]) state;
+		if (QC == null)
+		{
+			QC = new Bit[13];
+			Arrays.fill(QC, U);
+		}
+		return QC;
 	}
 
 	static
