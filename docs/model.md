@@ -4,7 +4,7 @@ Some components consist of other components and wires. The components contained 
 
 Some wires carry one bit, and some carry multiple bits.
 
-Each bit carried by a wire is one of 1, 0, U, Z, or X. These values are IEEE 1164-compilant. (We don't use H, L, or W.)  
+Each bit carried by a wire is one of 1, 0, U, Z, or X. These values are IEEE 1164-compliant. (We don't use H, L, or W.)  
 See https://en.wikipedia.org/wiki/IEEE_1164 for an explanation of these values.  
 Note: We also use X to denote illegal states. For example, when two components try to put different values on the D bus, the conflicting bits on the D bus will become X.
 
