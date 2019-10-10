@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.machine.MachineException;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
 
 public class MnemonicFamily implements ParameterClassification
@@ -20,12 +21,15 @@ public class MnemonicFamily implements ParameterClassification
 
 	MnemonicFamily(String defaultValueName, MnemonicPair... values)
 	{
+		if (values.length == 0)
+			throw new MachineException("Mnemonics must not be empty!");
 		this.values = new Mnemonic[values.length];
 		this.stringValues = new String[values.length];
 
 		setup(values);
 
-		int defaultValueIndex = -1;
+		// if no valid defaultValue is specified, pick first value as default
+		int defaultValueIndex = 0;
 		for (int i = 0; i < values.length; i++)
 			if (stringValues[i].equals(defaultValueName))
 			{
