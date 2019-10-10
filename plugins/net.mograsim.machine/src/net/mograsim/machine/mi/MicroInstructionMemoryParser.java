@@ -99,7 +99,7 @@ public class MicroInstructionMemoryParser
 		}
 		catch (Exception e)
 		{
-			throw new MicroInstructionMemoryParseException(e.getCause());
+			throw new MicroInstructionMemoryParseException(e);
 		}
 	}
 
