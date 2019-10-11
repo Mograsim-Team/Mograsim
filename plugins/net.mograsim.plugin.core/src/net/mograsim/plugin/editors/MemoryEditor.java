@@ -16,9 +16,11 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.ScrollBar;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
@@ -78,8 +80,7 @@ public class MemoryEditor extends EditorPart
 		provider = new MemoryTableContentProvider();
 		displaySettings = new DisplaySettings();
 
-		parent.setLayout(new GridLayout(7, false));
-
+		parent.setLayout(new GridLayout(8, false));
 		createHeader(parent);
 		createViewer(parent);
 
@@ -89,48 +90,40 @@ public class MemoryEditor extends EditorPart
 	@SuppressWarnings("unused") // RadixSelector and exceptions
 	private void createHeader(Composite parent)
 	{
-		Label fromLabel = new Label(parent, SWT.NONE);
-		fromLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-		fromLabel.setText("Address: ");
-
-		Text fromText = new Text(parent, SWT.BORDER);
-		fromText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		Text gotoText = new Text(parent, SWT.BORDER);
+		gotoText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		NumberVerifyListener vl = new NumberVerifyListener();
-		fromText.addVerifyListener(vl);
-		fromText.setText("0");
-		fromText.addModifyListener(e ->
+		gotoText.addVerifyListener(vl);
+		gotoText.setText("0");
+
+		Runnable gotoAction = () ->
 		{
 			try
 			{
-				provider.setLowerBound(AsmNumberUtil.valueOf(fromText.getText()).longValue());
-				viewer.refresh();
+				loadAround((int) (AsmNumberUtil.valueOf(gotoText.getText()).longValue() - provider.getLowerBound()));
+				viewer.getTable().deselectAll();
 			}
 			catch (NumberFormatException x)
 			{
 				// Nothing to do here
 			}
-		});
-		Label amountLabel = new Label(parent, SWT.NONE);
-		amountLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false));
-		amountLabel.setText("Number of cells: ");
-		Text amountText = new Text(parent, SWT.BORDER);
-		amountText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		amountText.addVerifyListener(vl);
-		amountText.addModifyListener(e ->
+		};
+
+		gotoText.addTraverseListener((e) ->
 		{
-			try
-			{
-				if (provider != null)
-					provider.setAmount(AsmNumberUtil.valueOf(amountText.getText()).intValue());
-				if (viewer != null)
-					viewer.refresh();
-			}
-			catch (NumberFormatException x)
-			{
-				// Nothing to do here
-			}
+			if (e.detail == SWT.TRAVERSE_RETURN)
+				gotoAction.run();
 		});
-		amountText.setText("100");// do this after registering the ModifyListener
+
+		Button gotoButton = new Button(parent, SWT.PUSH);
+		gotoButton.setText("Go to");
+		gotoButton.addListener(SWT.Selection, e ->
+		{
+			gotoAction.run();
+		});
+
+		new Label(parent, SWT.NONE).setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
 		new RadixSelector(parent, displaySettings);
 	}
 
@@ -144,8 +137,20 @@ public class MemoryEditor extends EditorPart
 		table.setLinesVisible(true);
 		viewer.setUseHashlookup(true);
 		viewer.setContentProvider(provider);
-		getSite().setSelectionProvider(viewer);// TODO what does this do?
-		viewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 7, 1));
+		getSite().setSelectionProvider(viewer);
+		viewer.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 8, 1));
+
+		// TODO: Also support keyboard inputs for flexible scrolling
+		ScrollBar vBar = table.getVerticalBar();
+		vBar.addListener(SWT.Selection, (e) ->
+		{
+			int sel;
+			if ((sel = vBar.getSelection()) < vBar.getMinimum() + vBar.getThumb() * 2 || sel > vBar.getMaximum() - vBar.getThumb() * 2)
+			{
+				loadAround(table.getTopIndex());
+				table.deselectAll();
+			}
+		});
 
 		IThemeManager themeManager = getSite().getWorkbenchWindow().getWorkbench().getThemeManager();
 		themeManager.addPropertyChangeListener(fontChangeListener = (e) ->
@@ -167,6 +172,27 @@ public class MemoryEditor extends EditorPart
 		Font newFont = theme.getFontRegistry().get(font);
 		// TODO: This is a quick fix! Still have to figure out why the CellEditors do not get the appropriate Font on their own
 		fontDependent.forEach(c -> c.setFont(newFont));
+	}
+
+	private void loadAround(int row)
+	{
+		long prevLb = provider.getLowerBound();
+		long address = prevLb + row;
+		long actualLb = Long.max(address - MemoryTableContentProvider.MAX_VISIBLE_ROWS / 2, memory.getDefinition().getMinimalAddress());
+
+		long prevHb = provider.getUpperBound();
+		// +- 1 row is not really important
+		long actualHb = Long.min(address + MemoryTableContentProvider.MAX_VISIBLE_ROWS / 2, memory.getDefinition().getMaximalAddress());
+
+		if (actualLb != prevLb || actualHb != prevHb)
+		{
+			Table table = viewer.getTable();
+			provider.setBounds(actualLb, actualHb);
+			int rowIndex = (int) (address - actualLb);
+			if (rowIndex >= 0 && rowIndex < table.getItemCount())
+				table.showItem(table.getItem(rowIndex));
+			viewer.refresh();
+		}
 	}
 
 	private void createColumns()
