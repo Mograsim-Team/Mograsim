@@ -6,34 +6,35 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Display;
 
 import net.mograsim.machine.MainMemory;
+import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 
 public class MemoryTableContentProvider implements ILazyContentProvider, MemoryCellModifiedListener
 {
-	private long lower;
+	private long lower, upper;
 	private TableViewer viewer;
-	private final static int limit = 10_000;
-	private int amount = 0;
+	public final static int MAX_VISIBLE_ROWS = 1_000;
 	private MainMemory memory;
 
-	public void setLowerBound(long lower)
+	public void setBounds(long lower, long upper)
 	{
 		if (memory != null)
-			this.lower = Long.min(memory.getDefinition().getMaximalAddress(), Long.max(memory.getDefinition().getMinimalAddress(), lower));
-		else
+		{
+			MainMemoryDefinition definition = memory.getDefinition();
+			this.lower = Long.min(definition.getMaximalAddress(), Long.max(definition.getMinimalAddress(), lower));
+			this.upper = Long.max(this.lower, Long.min(definition.getMaximalAddress(), upper));
+		} else
+		{
 			this.lower = lower;
+			this.upper = Long.max(this.lower, upper);
+		}
 		updateItemCount();
 	}
 
 	public void updateItemCount()
 	{
 		if (viewer != null)
-			if (memory != null)
-			{
-				long size = memory.getDefinition().getMaximalAddress() - lower;
-				viewer.setItemCount(size > amount ? amount : (int) size);
-			} else
-				viewer.setItemCount(0);
+			viewer.setItemCount(getAmount());
 	}
 
 	public long getLowerBound()
@@ -41,21 +42,20 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryC
 		return lower;
 	}
 
-	public void setAmount(int amount)
+	public long getUpperBound()
 	{
-		this.amount = Integer.min(amount, limit);
-		updateItemCount();
+		return upper;
 	}
 
 	public int getAmount()
 	{
-		return amount;
+		return (int) (upper - lower);
 	}
 
 	@Override
 	public void updateElement(int index)
 	{
-		if (index < amount)
+		if (index < getAmount())
 		{
 			long address = lower + index;
 			if (address <= memory.getDefinition().getMaximalAddress())
@@ -72,7 +72,7 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryC
 			((MainMemory) oldInput).deregisterCellModifiedListener(this);
 		if (memory != null)
 			memory.registerCellModifiedListener(this);
-		setLowerBound(0L);
+		setBounds(0, MAX_VISIBLE_ROWS);
 	}
 
 	@Override
