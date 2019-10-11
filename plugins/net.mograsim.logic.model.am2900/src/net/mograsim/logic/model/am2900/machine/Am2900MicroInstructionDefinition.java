@@ -36,29 +36,32 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 			.add("LSLCO", "LSHCO", "LSL", "LSH", "LSDLCO", "LSDHCO", "LSDL", "LSDH", "LSCRO", "LSCRIO", "LSR", "LSLICI", "LSDCIO", "LSDRCO",
 					"LSDCI", "LDSR")
 			.build();
-//	private static final MnemonicFamily am2904StatusInstructions = new MnemonicFamily(
-//			new String[] { "MI_Zero", "MI_NotZero", "MI_UGTEQ", "MI_ULT", "MI_UGT", "MI_ULTEQ", "MI_SGTEQ", "MI_SLT", "MI_SGT", "MI_SLTEQ",
-//					"MA_Zero", "MA_NotZero", "MA_UGTEQ", "MA_ULT", "MA_UGT", "MA_ULTEQ", "MA_SGTEQ", "MA_SLT", "MA_SGT", "MA_SLTEQ" },
-//			new long[] { 0b01_0101, 0b01_0100, 0b01_1101, 0b01_1100, 0b01_1110, 0b01_1111, 0b01_0010, 0b01_0011, 0b01_0000, 0b01_0001,
-//					0b10_0101, 0b10_0100, 0b10_1101, 0b10_1100, 0b10_1110, 0b10_1111, 0b10_0010, 0b10_0011, 0b10_0000, 0b10_0001 },
-//			6);
 	// TODO: Maybe "X" and "notX" are swapped.
-	private static final MnemonicFamily am2904StatusInstructions = new MnemonicFamilyBuilder(6).addX().setXDefault().add(
-			"LoadM_LoadY_\u00b5_NxorOVRorZ", "Set_Set_\u00b5_NxnorOVRornotZ", "Swap_Swap_\u00b5_NxorOVR", "Reset_Reset_\u00b5_NxnorOVR",
-			"Load_LoadForShiftThroughOvr_\u00b5_Z", "Load_Invert_\u00b5_notZ", "LoadOvrRetain_Load_\u00b5_OVR",
-			"LoadOvrRetain_Load_\u00b5_notOVR", "ResetZ_LoadCarryInvert_\u00b5_CorZ", "SetZ_LoadCarryInvert_\u00b5_notCandnotZ",
-			"ResetC_Load_\u00b5_C", "SetC_Load_\u00b5_notC", "ResetN_Load_\u00b5_notCorZ", "SetN_Load_\u00b5_CandnotZ",
-			"ResetOvr_Load_IM_NxorN", "SetOvr_Load_IM_NxnorN", "Load_Load_\u00b5_NxorOVRorZ", "Load_Load_\u00b5_NxnorOVRornotZ",
-			"Load_Load_\u00b5_NxorOVR", "Load_Load_\u00b5_NxnorOVR", "Load_Load_\u00b5_Z", "Load_Load_\u00b5_notZ", "Load_Load_\u00b5_OVR",
-			"Load_Load_\u00b5_notOVR", "LoadCarryInvert_LoadCarryInvert_\u00b5_CorZ", "LoadCarryInvert_LoadCarryInvert_\u00b5_notCandnotZ",
-			"Load_Load_\u00b5_C", "Load_Load_\u00b5_notC", "Load_Load_\u00b5_notCorZ", "Load_Load_\u00b5_CandnotZ", "Load_Load_\u00b5_N",
-			"Load_Load_\u00b5_notN", "Load_Load_M_NxorOVRorZ", "Load_Load_M_NxnorOVRornotZ", "Load_Load_M_NxorOVR", "Load_Load_M_NxnorOVR",
-			"Load_Load_M_Z", "Load_Load_M_notZ", "Load_Load_M_OVR", "Load_Load_M_notOVR", "LoadCarryInvert_LoadCarryInvert_M_CorZ",
-			"LoadCarryInvert_LoadCarryInvert_M_notCandnotZ", "Load_Load_M_C", "Load_Load_M_notC", "Load_Load_M_notCorZ",
-			"Load_Load_M_CandnotZ", "Load_Load_M_N", "Load_Load_M_notN", "Load_Load_I_NxorOVRorZ", "Load_Load_I_NxnorOVRornotZ",
-			"Load_Load_I_NxorOVR", "Load_Load_I_NxnorOVR", "Load_Load_I_Z", "Load_Load_I_notZ", "Load_Load_I_OVR", "Load_Load_I_notOVR",
-			"LoadCarryInvert_LoadCarryInvert_I_notCorZ", "LoadCarryInvert_LoadCarryInvert_I_CandnotZ", "Load_Load_I_C", "Load_Load_I_notC",
-			"Load_Load_I_notCorZ", "Load_Load_I_CandnotZ", "Load_Load_I_N", "Load_Load_I_notN").build();
+	private static final MnemonicFamily am2904StatusInstructions = new MnemonicFamilyBuilder(6).addX().setXDefault()
+			.add(new String[] { "LOAD", "MI_Zero", "MI_NotZero", "MI_UGTEQ", "MI_ULT", "MI_UGT", "MI_ULTEQ", "MI_SGTEQ", "MI_SLT", "MI_SGT",
+					"MI_SLTEQ", "MA_Zero", "MA_NotZero", "MA_UGTEQ", "MA_ULT", "MA_UGT", "MA_ULTEQ", "MA_SGTEQ", "MA_SLT", "MA_SGT",
+					"MA_SLTEQ" },
+					new long[] { 0b01_0000, 0b01_0101, 0b01_0100, 0b01_1101, 0b01_1100, 0b01_1110, 0b01_1111, 0b01_0010, 0b01_0011,
+							0b01_0000, 0b01_0001, 0b10_0101, 0b10_0100, 0b10_1101, 0b10_1100, 0b10_1110, 0b10_1111, 0b10_0010, 0b10_0011,
+							0b10_0000, 0b10_0001 })
+			.add("LoadM_LoadY_\u00b5_NxorOVRorZ", "Set_Set_\u00b5_NxnorOVRornotZ", "Swap_Swap_\u00b5_NxorOVR",
+					"Reset_Reset_\u00b5_NxnorOVR", "Load_LoadForShiftThroughOvr_\u00b5_Z", "Load_Invert_\u00b5_notZ",
+					"LoadOvrRetain_Load_\u00b5_OVR", "LoadOvrRetain_Load_\u00b5_notOVR", "ResetZ_LoadCarryInvert_\u00b5_CorZ",
+					"SetZ_LoadCarryInvert_\u00b5_notCandnotZ", "ResetC_Load_\u00b5_C", "SetC_Load_\u00b5_notC",
+					"ResetN_Load_\u00b5_notCorZ", "SetN_Load_\u00b5_CandnotZ", "ResetOvr_Load_IM_NxorN", "SetOvr_Load_IM_NxnorN",
+					"Load_Load_\u00b5_NxorOVRorZ", "Load_Load_\u00b5_NxnorOVRornotZ", "Load_Load_\u00b5_NxorOVR",
+					"Load_Load_\u00b5_NxnorOVR", "Load_Load_\u00b5_Z", "Load_Load_\u00b5_notZ", "Load_Load_\u00b5_OVR",
+					"Load_Load_\u00b5_notOVR", "LoadCarryInvert_LoadCarryInvert_\u00b5_CorZ",
+					"LoadCarryInvert_LoadCarryInvert_\u00b5_notCandnotZ", "Load_Load_\u00b5_C", "Load_Load_\u00b5_notC",
+					"Load_Load_\u00b5_notCorZ", "Load_Load_\u00b5_CandnotZ", "Load_Load_\u00b5_N", "Load_Load_\u00b5_notN",
+					"Load_Load_M_NxorOVRorZ", "Load_Load_M_NxnorOVRornotZ", "Load_Load_M_NxorOVR", "Load_Load_M_NxnorOVR", "Load_Load_M_Z",
+					"Load_Load_M_notZ", "Load_Load_M_OVR", "Load_Load_M_notOVR", "LoadCarryInvert_LoadCarryInvert_M_CorZ",
+					"LoadCarryInvert_LoadCarryInvert_M_notCandnotZ", "Load_Load_M_C", "Load_Load_M_notC", "Load_Load_M_notCorZ",
+					"Load_Load_M_CandnotZ", "Load_Load_M_N", "Load_Load_M_notN", "Load_Load_I_NxorOVRorZ", "Load_Load_I_NxnorOVRornotZ",
+					"Load_Load_I_NxorOVR", "Load_Load_I_NxnorOVR", "Load_Load_I_Z", "Load_Load_I_notZ", "Load_Load_I_OVR",
+					"Load_Load_I_notOVR", "LoadCarryInvert_LoadCarryInvert_I_notCorZ", "LoadCarryInvert_LoadCarryInvert_I_CandnotZ",
+					"Load_Load_I_C", "Load_Load_I_notC", "Load_Load_I_notCorZ", "Load_Load_I_CandnotZ", "Load_Load_I_N", "Load_Load_I_notN")
+			.build();
 	// 00b5 = micro symbol
 	private static final BooleanClassification ccen = new BooleanClassification(true, "PS", "C");
 	private static final MnemonicFamily am2910Instructions = new MnemonicFamilyBuilder(4).addX()
