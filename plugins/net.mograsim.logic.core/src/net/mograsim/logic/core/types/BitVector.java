@@ -111,6 +111,16 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return true;
 	}
 
+	public boolean isHighImpedance()
+	{
+		for (int i = 0; i < bits.length; i++)
+		{
+			if (!bits[i].equals(Bit.Z))
+				return false;
+		}
+		return true;
+	}
+
 	@Override
 	public BitVector join(BitVector t)
 	{
@@ -404,6 +414,8 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	@Override
 	public String toString()
 	{
+		if (isHighImpedance())
+			return "-";
 		StringBuilder sb = new StringBuilder(bits.length);
 		for (Bit bit : bits)
 			sb.append(bit);
