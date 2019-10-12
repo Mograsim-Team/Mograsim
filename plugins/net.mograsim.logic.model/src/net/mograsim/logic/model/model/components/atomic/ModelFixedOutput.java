@@ -23,8 +23,8 @@ import net.mograsim.preferences.Preferences;
 
 public class ModelFixedOutput extends ModelComponent
 {
-	private static final double width = 20;
-	private static final double height = 20;
+	private static final double width = 10;
+	private static final double height = 10;
 	private static final double fontHeight = 5;
 	private static final double textMargin = 0.5;
 
