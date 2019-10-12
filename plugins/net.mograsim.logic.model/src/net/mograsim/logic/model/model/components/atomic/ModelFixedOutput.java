@@ -58,7 +58,7 @@ public class ModelFixedOutput extends ModelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-		String label = BitVectorFormatter.formatAsString(bits);
+		String label = BitVectorFormatter.formatAsString(bits, false);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);

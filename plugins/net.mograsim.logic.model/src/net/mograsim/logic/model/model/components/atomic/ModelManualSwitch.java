@@ -142,7 +142,7 @@ public class ModelManualSwitch extends ModelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-		String label = BitVectorFormatter.formatAsString(manualSwitch == null ? null : getOutValues());
+		String label = BitVectorFormatter.formatAsString(manualSwitch == null ? null : getOutValues(), false);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
