@@ -1334,7 +1334,7 @@
   },
   "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
-    "centerText": "Am2901ALUInclSourceDecodeInclFunctionDecode",
+    "centerText": "ALU\nincl. source decode\nincl. function decode",
     "centerTextHeight": 5.0,
     "horizontalComponentCenter": 17.5,
     "pinLabelHeight": 3.5,

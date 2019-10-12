@@ -1083,7 +1083,7 @@
   },
   "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
-    "centerText": "Am2901DestDecode",
+    "centerText": "Dest.\ndecode",
     "centerTextHeight": 5.0,
     "horizontalComponentCenter": 17.5,
     "pinLabelHeight": 3.5,
