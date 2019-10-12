@@ -4,7 +4,6 @@ import org.eclipse.swt.graphics.Color;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
-import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreBitDisplay;
@@ -17,6 +16,7 @@ import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.BitDisplayAdapter;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
+import net.mograsim.logic.model.util.TextRenderingHelper;
 import net.mograsim.preferences.Preferences;
 
 public class ModelBitDisplay extends ModelComponent
@@ -24,6 +24,7 @@ public class ModelBitDisplay extends ModelComponent
 	private static final double width = 20;
 	private static final double height = 10;
 	private static final double fontHeight = 5;
+	private static final double textMargin = 0.5;
 
 	public final int logicWidth;
 	private final Pin inputPin;
@@ -59,11 +60,10 @@ public class ModelBitDisplay extends ModelComponent
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
-		Point textExtent = gc.textExtent(label);
 		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
 		if (textColor != null)
 			gc.setForeground(textColor);
-		gc.drawText(label, getPosX() + (width - textExtent.x) / 2, getPosY() + (height - textExtent.y) / 2, true);
+		TextRenderingHelper.drawTextFitting(gc, label, getBounds(), textMargin, true);
 		gc.setFont(oldFont);
 	}
 
