@@ -100,7 +100,7 @@
         "name": "BitDisplay#2",
         "pos": {
           "x": 280.0,
-          "y": 60.0
+          "y": 65.0
         },
         "params": 16
       },
@@ -816,7 +816,7 @@
         "name": "TextComponent#0",
         "pos": {
           "x": 305.0,
-          "y": 30.0
+          "y": 25.0
         },
         "params": "D bus"
       },
@@ -825,7 +825,7 @@
         "name": "TextComponent#1",
         "pos": {
           "x": 305.0,
-          "y": 60.0
+          "y": 55.0
         },
         "params": "A bus"
       },
@@ -6594,7 +6594,12 @@
           "pinName": ""
         },
         "name": "unnamedWire#330",
-        "path": []
+        "path": [
+          {
+            "x": 275.0,
+            "y": 35.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -6635,7 +6640,12 @@
           "pinName": ""
         },
         "name": "unnamedWire#333",
-        "path": []
+        "path": [
+          {
+            "x": 275.0,
+            "y": 70.0
+          }
+        ]
       },
       {
         "pin1": {
