@@ -22,7 +22,7 @@ import net.mograsim.preferences.Preferences;
 public class ModelBitDisplay extends ModelComponent
 {
 	private static final double width = 20;
-	private static final double height = 15;
+	private static final double height = 10;
 	private static final double fontHeight = 5;
 
 	public final int logicWidth;
