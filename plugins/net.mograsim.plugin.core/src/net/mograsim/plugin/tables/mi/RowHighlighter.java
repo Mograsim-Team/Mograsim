@@ -35,7 +35,7 @@ public class RowHighlighter
 		cProv.highlight(row);
 		if (row != -1)
 		{
-			table.showItem(table.getItem(Math.min(table.getItemCount(), row + 2)));
+			table.showItem(table.getItem(Math.min(table.getItemCount() - 1, row + 2)));
 			table.showItem(table.getItem(row));
 			Optional.ofNullable(table.getItem(row).getData()).ifPresent(d -> viewer.update(d, null));
 		}
