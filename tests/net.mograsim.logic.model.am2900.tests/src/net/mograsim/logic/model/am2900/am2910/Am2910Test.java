@@ -57,8 +57,8 @@ public class Am2910Test
 	@EnumSource(Register.class)
 	void testDirectAccess(Register r)
 	{
-		String us = U.toVector(r.size()).toString();
-		String three = BitVector.from(3, r.size()).toString();
+		String us = U.toVector(r.size()).toBitstring();
+		String three = BitVector.from(3, r.size()).toBitstring();
 
 		assertEquals(us, am2910.getDirectly(r));
 

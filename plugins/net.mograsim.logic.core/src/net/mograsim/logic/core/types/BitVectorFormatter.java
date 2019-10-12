@@ -1,5 +1,7 @@
 package net.mograsim.logic.core.types;
 
+import java.math.BigInteger;
+
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorDefinition.BuiltInColor;
@@ -12,11 +14,57 @@ public class BitVectorFormatter
 		return formatAsString(end == null ? null : end.getValues());
 	}
 
+	public static String toBitstring(BitVector bitVector)
+	{
+		return bitVector.toBitstring();
+	}
+
 	public static String formatAsString(BitVector bitVector)
 	{
 		if (bitVector == null)
 			return "null";
-		return bitVector.toString();
+		if (bitVector.isBinary())
+		{
+			String hexdigits = bitVector.getUnsignedValue().toString(16);
+			StringBuilder sb = new StringBuilder();
+			sb.append("0x");
+			sb.append("0".repeat((bitVector.length() + 3) / 4 - hexdigits.length()));
+			sb.append(hexdigits);
+			return sb.toString();
+		}
+		if (bitVector.isHighImpedance())
+			return "-";
+		return bitVector.toBitstring();
+	}
+
+	// TODO this method overlaps in functionality with AsmNumberUtil (in plugin.core)
+	public static BitVector parseUserBitVector(String userInput, int width)
+	{
+		BitVector bitvector = null;
+		if (width > 0 && userInput.matches("0x[0-9a-fA-F]+"))
+			// TODO should we check for overflows?
+			bitvector = BitVector.from(new BigInteger(userInput.substring(2), 16), width);
+		else if (width <= 0 || userInput.length() == width)
+			// TODO do this without exceptions
+			try
+			{
+				bitvector = BitVector.parseBitstring(userInput);
+			}
+			catch (@SuppressWarnings("unused") NullPointerException x)
+			{
+				// ignore
+			}
+		if (bitvector == null && width > 0)
+			try
+			{
+				// TODO should we check for overflows?
+				bitvector = BitVector.from(new BigInteger(userInput), width);
+			}
+			catch (@SuppressWarnings("unused") NumberFormatException x)
+			{
+				// ignore
+			}
+		return bitvector;
 	}
 
 	// TODO doesn't this belong to logic.model?

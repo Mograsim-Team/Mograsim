@@ -63,7 +63,7 @@ public class MainMemoryParser
 			{
 				for (; i <= maxAddr && reader.ready() && !"".equals((line = reader.readLine())); i++)
 				{
-					memory.setCell(i, BitVector.parse(line));
+					memory.setCell(i, BitVector.parseBitstring(line));
 				}
 			}
 			catch (IOException e)
@@ -86,7 +86,7 @@ public class MainMemoryParser
 				int val = instStream.read();
 				if (val == -1 && instIndex <= maxAddress)
 				{
-					instStream = new ByteArrayInputStream((memory.getCell(instIndex++).toString() + lineSeparator).getBytes());
+					instStream = new ByteArrayInputStream((memory.getCell(instIndex++).toBitstring() + lineSeparator).getBytes());
 					val = instStream.read();
 				}
 				return val;

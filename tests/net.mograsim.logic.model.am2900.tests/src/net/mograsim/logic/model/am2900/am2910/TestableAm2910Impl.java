@@ -55,79 +55,79 @@ public class TestableAm2910Impl implements TestableAm2910
 	@Override
 	public void set_CCEN(String val_1_bit)
 	{
-		_CCEN.setState(BitVector.parse(val_1_bit));
+		_CCEN.setState(BitVector.parseBitstring(val_1_bit));
 	}
 
 	@Override
 	public void setD(String val_12_bit)
 	{
-		D.setState(BitVector.parse(val_12_bit));
+		D.setState(BitVector.parseBitstring(val_12_bit));
 	}
 
 	@Override
 	public void set_CC(String val_1_bit)
 	{
-		_CC.setState(BitVector.parse(val_1_bit));
+		_CC.setState(BitVector.parseBitstring(val_1_bit));
 	}
 
 	@Override
 	public void setCI(String val_1_bit)
 	{
-		CI.setState(BitVector.parse(val_1_bit));
+		CI.setState(BitVector.parseBitstring(val_1_bit));
 	}
 
 	@Override
 	public void set_RLD(String val_1_bit)
 	{
-		_RLD.setState(BitVector.parse(val_1_bit));
+		_RLD.setState(BitVector.parseBitstring(val_1_bit));
 	}
 
 	@Override
 	public void set_OE(String val_1_bit)
 	{
-		_OE.setState(BitVector.parse(val_1_bit));
+		_OE.setState(BitVector.parseBitstring(val_1_bit));
 	}
 
 	@Override
 	public void setDirectly(Register r, String val_X_bit)
 	{
-		am2901.setHighLevelState(regToStateID(r), BitVector.parse(val_X_bit));
+		am2901.setHighLevelState(regToStateID(r), BitVector.parseBitstring(val_X_bit));
 	}
 
 	@Override
 	public String getY()
 	{
-		return Y.getDisplayedValue().toString();
+		return Y.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String get_FULL()
 	{
-		return _FULL.getDisplayedValue().toString();
+		return _FULL.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String get_PL()
 	{
-		return _PL.getDisplayedValue().toString();
+		return _PL.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String get_MAP()
 	{
-		return _MAP.getDisplayedValue().toString();
+		return _MAP.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String get_VECT()
 	{
-		return _VECT.getDisplayedValue().toString();
+		return _VECT.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String getDirectly(Register r)
 	{
-		return am2901.getHighLevelState(regToStateID(r)).toString();
+		return ((BitVector) am2901.getHighLevelState(regToStateID(r))).toBitstring();
 	}
 
 	private static String regToStateID(Register r)

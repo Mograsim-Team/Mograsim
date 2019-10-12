@@ -1,6 +1,5 @@
 package net.mograsim.plugin.launch;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
@@ -19,6 +18,7 @@ import org.eclipse.debug.core.model.IValue;
 import org.eclipse.swt.SWT;
 
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.registers.Register;
 import net.mograsim.plugin.MograsimActivator;
@@ -97,56 +97,17 @@ public class MachineRegister extends PlatformObject implements IRegister
 
 	public String getValueString()
 	{
-		BitVector bitvector = getMachine().getRegister(machineRegister);
-		if (bitvector.isBinary())
-		{
-			String hexdigits = bitvector.getUnsignedValue().toString(16);
-			StringBuilder sb = new StringBuilder();
-			sb.append("0x");
-			sb.append("0".repeat((machineRegister.getWidth() + 3) / 4 - hexdigits.length()));
-			sb.append(hexdigits);
-			return sb.toString();
-		}
-		return bitvector.toString();
+		return BitVectorFormatter.formatAsString(getMachine().getRegister(machineRegister));
 	}
 
 	@Override
 	public void setValue(String expression) throws DebugException
 	{
-		BitVector bitvector = parseValue(expression);
+		BitVector bitvector = BitVectorFormatter.parseUserBitVector(expression, machineRegister.getWidth());
 		if (bitvector == null)
 			throw new DebugException(
 					new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Couldn't parse value string: " + expression, null));
 		getMachine().setRegister(machineRegister, bitvector);
-	}
-
-	private BitVector parseValue(String expression)
-	{
-		BitVector bitvector = null;
-		if (expression.matches("0x[0-9a-fA-F]+"))
-			// TODO should we check for overflows?
-			bitvector = BitVector.from(new BigInteger(expression.substring(2), 16), machineRegister.getWidth());
-		else if (expression.length() == machineRegister.getWidth())
-			// TODO do this without exceptions
-			try
-			{
-				bitvector = BitVector.parse(expression);
-			}
-			catch (@SuppressWarnings("unused") NullPointerException x)
-			{
-				// ignore
-			}
-		if (bitvector == null)
-			try
-			{
-				// TODO should we check for overflows?
-				bitvector = BitVector.from(new BigInteger(expression), machineRegister.getWidth());
-			}
-			catch (@SuppressWarnings("unused") NumberFormatException x)
-			{
-				// ignore
-			}
-		return bitvector;
 	}
 
 	@Override
@@ -166,7 +127,7 @@ public class MachineRegister extends PlatformObject implements IRegister
 	@Override
 	public boolean verifyValue(String expression) throws DebugException
 	{
-		return parseValue(expression) != null;
+		return BitVectorFormatter.parseUserBitVector(expression, machineRegister.getWidth()) != null;
 	}
 
 	@Override

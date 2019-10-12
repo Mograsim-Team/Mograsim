@@ -25,6 +25,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
@@ -141,14 +142,24 @@ public class LogicUICanvas extends ZoomableCanvas
 					throw new RuntimeException("No component selected");
 				ModelComponent target = componentsByItemIndex.get(componentIndex);
 				String valueString = valueText.getText();
+				String stateID = stateIDText.getText();
 				Object value;
 				if (radioBit.getSelection())
 					value = Bit.parse(valueString);
 				else if (radioBitVector.getSelection())
-					value = BitVector.parse(valueString);
-				else
+				{
+					Object hls = target.getHighLevelState(stateID);
+					int width;
+					if (hls instanceof Bit)
+						width = 1;
+					else if (hls instanceof BitVector)
+						width = ((BitVector) hls).length();
+					else
+						width = -1;
+					value = BitVectorFormatter.parseUserBitVector(valueString, width);
+				} else
 					throw new RuntimeException("No value type selected");
-				target.setHighLevelState(stateIDText.getText(), value);
+				target.setHighLevelState(stateID, value);
 				output.setText("Success!");
 			}
 			catch (Exception x)

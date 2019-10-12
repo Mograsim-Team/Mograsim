@@ -42,31 +42,31 @@ class BitVectorTest
 	@Test
 	void testGetUnsignedValue()
 	{
-		assertEquals(BigInteger.valueOf(0b101), BitVector.parse("101").getUnsignedValue());
-		assertEquals(BigInteger.valueOf(0b01010), BitVector.parse("01010").getUnsignedValue());
-		assertEquals(BigInteger.valueOf(0), BitVector.parse("0000").getUnsignedValue());
-		assertEquals(BigInteger.valueOf(0b0000000101), BitVector.parse("0000000101").getUnsignedValue());
-		assertEquals(BigInteger.valueOf(0b1010000000), BitVector.parse("1010000000").getUnsignedValue());
+		assertEquals(BigInteger.valueOf(0b101), BitVector.parseBitstring("101").getUnsignedValue());
+		assertEquals(BigInteger.valueOf(0b01010), BitVector.parseBitstring("01010").getUnsignedValue());
+		assertEquals(BigInteger.valueOf(0), BitVector.parseBitstring("0000").getUnsignedValue());
+		assertEquals(BigInteger.valueOf(0b0000000101), BitVector.parseBitstring("0000000101").getUnsignedValue());
+		assertEquals(BigInteger.valueOf(0b1010000000), BitVector.parseBitstring("1010000000").getUnsignedValue());
 
-		assertThrows(NumberFormatException.class, () -> BitVector.parse("00X1").getUnsignedValue());
+		assertThrows(NumberFormatException.class, () -> BitVector.parseBitstring("00X1").getUnsignedValue());
 	}
 
 	@Test
 	void testOfLongInt()
 	{
-		assertEquals(BitVector.parse("101"), BitVector.from(0b101L, 3));
-		assertEquals(BitVector.parse("01010"), BitVector.from(0b01010L, 5));
-		assertEquals(BitVector.parse("10101"), BitVector.from(-11L, 5));
-		assertEquals(BitVector.parse("0000"), BitVector.from(0L, 4));
+		assertEquals(BitVector.parseBitstring("101"), BitVector.from(0b101L, 3));
+		assertEquals(BitVector.parseBitstring("01010"), BitVector.from(0b01010L, 5));
+		assertEquals(BitVector.parseBitstring("10101"), BitVector.from(-11L, 5));
+		assertEquals(BitVector.parseBitstring("0000"), BitVector.from(0L, 4));
 	}
 
 	@Test
 	void testOfBigIntegerInt()
 	{
-		assertEquals(BitVector.parse("101"), BitVector.from(BigInteger.valueOf(0b101), 3));
-		assertEquals(BitVector.parse("01010"), BitVector.from(BigInteger.valueOf(0b01010), 5));
-		assertEquals(BitVector.parse("10101"), BitVector.from(BigInteger.valueOf(-11), 5));
-		assertEquals(BitVector.parse("0000"), BitVector.from(BigInteger.valueOf(0), 4));
+		assertEquals(BitVector.parseBitstring("101"), BitVector.from(BigInteger.valueOf(0b101), 3));
+		assertEquals(BitVector.parseBitstring("01010"), BitVector.from(BigInteger.valueOf(0b01010), 5));
+		assertEquals(BitVector.parseBitstring("10101"), BitVector.from(BigInteger.valueOf(-11), 5));
+		assertEquals(BitVector.parseBitstring("0000"), BitVector.from(BigInteger.valueOf(0), 4));
 	}
 
 	@Test
@@ -100,7 +100,7 @@ class BitVectorTest
 	void testGetBits()
 	{
 		assertArrayEquals(new Bit[] { X, ONE, Z }, BitVector.of(X, ONE, Z).getBits());
-		assertArrayEquals(new Bit[] { X, ONE, Z }, BitVector.parse("X1Z").getBits());
+		assertArrayEquals(new Bit[] { X, ONE, Z }, BitVector.parseBitstring("X1Z").getBits());
 	}
 
 	@Test
@@ -263,15 +263,15 @@ class BitVectorTest
 	@Test
 	void testParse()
 	{
-		assertEquals(SINGLE_U, BitVector.parse("U"));
-		assertEquals(SINGLE_X, BitVector.parse("X"));
-		assertEquals(SINGLE_0, BitVector.parse("0"));
-		assertEquals(SINGLE_1, BitVector.parse("1"));
-		assertEquals(SINGLE_Z, BitVector.parse("Z"));
+		assertEquals(SINGLE_U, BitVector.parseBitstring("U"));
+		assertEquals(SINGLE_X, BitVector.parseBitstring("X"));
+		assertEquals(SINGLE_0, BitVector.parseBitstring("0"));
+		assertEquals(SINGLE_1, BitVector.parseBitstring("1"));
+		assertEquals(SINGLE_Z, BitVector.parseBitstring("Z"));
 
-		assertEquals(BitVector.of(X, U, Z, ONE, ZERO), BitVector.parse("XUZ10"));
+		assertEquals(BitVector.of(X, U, Z, ONE, ZERO), BitVector.parseBitstring("XUZ10"));
 
-		assertThrows(RuntimeException.class, () -> BitVector.parse("01BX"));
+		assertThrows(RuntimeException.class, () -> BitVector.parseBitstring("01BX"));
 	}
 
 	@Test
