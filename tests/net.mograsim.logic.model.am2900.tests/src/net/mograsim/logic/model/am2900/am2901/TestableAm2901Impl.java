@@ -61,13 +61,13 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setReg_A(String val_4_bit)
 	{
-		A.setState(BitVector.parse(val_4_bit));
+		A.setState(BitVector.parseBitstring(val_4_bit));
 	}
 
 	@Override
 	public void setReg_B(String val_4_bit)
 	{
-		B.setState(BitVector.parse(val_4_bit));
+		B.setState(BitVector.parseBitstring(val_4_bit));
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public void setD(String val_4_bit)
 	{
-		D.setState(BitVector.parse(val_4_bit));
+		D.setState(BitVector.parseBitstring(val_4_bit));
 	}
 
 	@Override
@@ -121,25 +121,25 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public String getQ_0()
 	{
-		return Qn.getDisplayedValue().toString();
+		return Qn.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String getQ_3()
 	{
-		return Qn_3.getDisplayedValue().toString();
+		return Qn_3.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String getRAM_0()
 	{
-		return RAMn.getDisplayedValue().toString();
+		return RAMn.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String getRAM_3()
 	{
-		return RAMn_3.getDisplayedValue().toString();
+		return RAMn_3.getDisplayedValue().toBitstring();
 	}
 
 	@Override
@@ -157,43 +157,43 @@ public class TestableAm2901Impl implements TestableAm2901
 	@Override
 	public String getCarryOut()
 	{
-		return Cn_4.getDisplayedValue().toString();
+		return Cn_4.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String getSign()
 	{
-		return F3.getDisplayedValue().toString();
+		return F3.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String getZero()
 	{
-		return F_0.getDisplayedValue().toString();
+		return F_0.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String getOverflow()
 	{
-		return OVR.getDisplayedValue().toString();
+		return OVR.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public String getY()
 	{
-		return Y.getDisplayedValue().toString();
+		return Y.getDisplayedValue().toBitstring();
 	}
 
 	@Override
 	public void setDirectly(Register r, String val_4_bit)
 	{
-		am2901.setHighLevelState(regToStateID(r), BitVector.parse(val_4_bit));
+		am2901.setHighLevelState(regToStateID(r), BitVector.parseBitstring(val_4_bit));
 	}
 
 	@Override
 	public String getDirectly(Register r)
 	{
-		return ((BitVector) am2901.getHighLevelState(regToStateID(r))).toString();
+		return ((BitVector) am2901.getHighLevelState(regToStateID(r))).toBitstring();
 	}
 
 	private static String regToStateID(Register r)

@@ -406,13 +406,18 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 		return Arrays.equals(bits, offset, offset + other.length(), other.bits, 0, other.length());
 	}
 
+	@Override
+	public String toString()
+	{
+		return toBitstring();
+	}
+
 	/**
 	 * All {@link Bit}s symbols concatenated together (MSB first)
 	 * 
-	 * @see #parse(String)
+	 * @see #parseBitstring(String)
 	 */
-	@Override
-	public String toString()
+	public String toBitstring()
 	{
 		StringBuilder sb = new StringBuilder(bits.length);
 		for (Bit bit : bits)
@@ -475,9 +480,9 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	/**
 	 * Parses a String containing solely {@link Bit} symbols (MSB first)
 	 * 
-	 * @see #toString()
+	 * @see #toBitString()
 	 */
-	public static BitVector parse(String s)
+	public static BitVector parseBitstring(String s)
 	{
 		Bit[] values = new Bit[s.length()];
 		for (int i = 0; i < s.length(); i++)

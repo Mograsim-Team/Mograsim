@@ -8,7 +8,6 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreBitDisplay;
-import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
@@ -56,15 +55,7 @@ public class ModelBitDisplay extends ModelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-		String label;
-		if (bitDisplay == null)
-			label = BitVectorFormatter.formatAsString(null);
-		else
-		{
-			BitVector toDisplay = bitDisplay.getDisplayedValue();
-			label = toDisplay != null && toDisplay.isHighImpedance() ? "-"
-					: BitVectorFormatter.formatAsString(bitDisplay.getDisplayedValue());
-		}
+		String label = BitVectorFormatter.formatAsString(bitDisplay == null ? null : bitDisplay.getDisplayedValue());
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
