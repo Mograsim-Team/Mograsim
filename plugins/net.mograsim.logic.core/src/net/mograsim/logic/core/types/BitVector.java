@@ -414,8 +414,6 @@ public final class BitVector implements StrictLogicType<BitVector>, Iterable<Bit
 	@Override
 	public String toString()
 	{
-		if (isHighImpedance())
-			return "-";
 		StringBuilder sb = new StringBuilder(bits.length);
 		for (Bit bit : bits)
 			sb.append(bit);
