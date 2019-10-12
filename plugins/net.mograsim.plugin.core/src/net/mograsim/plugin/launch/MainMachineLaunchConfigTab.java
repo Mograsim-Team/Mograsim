@@ -293,6 +293,6 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 	@Override
 	public String getName()
 	{
-		return "testlaunchconfigtabname";
+		return "Main";
 	}
 }
