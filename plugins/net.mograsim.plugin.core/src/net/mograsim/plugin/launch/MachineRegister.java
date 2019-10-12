@@ -97,7 +97,7 @@ public class MachineRegister extends PlatformObject implements IRegister
 
 	public String getValueString()
 	{
-		return BitVectorFormatter.formatAsString(getMachine().getRegister(machineRegister));
+		return BitVectorFormatter.formatAsString(getMachine().getRegister(machineRegister), false);
 	}
 
 	@Override

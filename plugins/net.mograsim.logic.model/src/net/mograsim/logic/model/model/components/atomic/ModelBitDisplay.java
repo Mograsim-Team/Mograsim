@@ -55,7 +55,7 @@ public class ModelBitDisplay extends ModelComponent
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
-		String label = BitVectorFormatter.formatAsString(bitDisplay == null ? null : bitDisplay.getDisplayedValue());
+		String label = BitVectorFormatter.formatAsString(bitDisplay == null ? null : bitDisplay.getDisplayedValue(), true);
 		Font oldFont = gc.getFont();
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);

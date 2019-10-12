@@ -9,9 +9,9 @@ import net.mograsim.preferences.Preferences;
 
 public class BitVectorFormatter
 {
-	public static String formatValueAsString(ReadEnd end)
+	public static String formatValueAsString(ReadEnd end, boolean useDashInsteadOfZ)
 	{
-		return formatAsString(end == null ? null : end.getValues());
+		return formatAsString(end == null ? null : end.getValues(), useDashInsteadOfZ);
 	}
 
 	public static String toBitstring(BitVector bitVector)
@@ -19,7 +19,7 @@ public class BitVectorFormatter
 		return bitVector.toBitstring();
 	}
 
-	public static String formatAsString(BitVector bitVector)
+	public static String formatAsString(BitVector bitVector, boolean useDashInsteadOfZ)
 	{
 		if (bitVector == null)
 			return "null";
@@ -32,7 +32,7 @@ public class BitVectorFormatter
 			sb.append(hexdigits);
 			return sb.toString();
 		}
-		if (bitVector.isHighImpedance())
+		if (useDashInsteadOfZ && bitVector.isHighImpedance())
 			return "-";
 		return bitVector.toBitstring();
 	}
