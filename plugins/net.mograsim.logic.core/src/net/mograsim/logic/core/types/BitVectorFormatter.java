@@ -23,6 +23,10 @@ public class BitVectorFormatter
 	{
 		if (bitVector == null)
 			return "null";
+		if (useDashInsteadOfZ && bitVector.isHighImpedance())
+			return "-";
+		if (bitVector.length() == 1)
+			return bitVector.toBitstring();
 		if (bitVector.isBinary())
 		{
 			String hexdigits = bitVector.getUnsignedValue().toString(16);
@@ -32,8 +36,6 @@ public class BitVectorFormatter
 			sb.append(hexdigits);
 			return sb.toString();
 		}
-		if (useDashInsteadOfZ && bitVector.isHighImpedance())
-			return "-";
 		return bitVector.toBitstring();
 	}
 
