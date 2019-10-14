@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 /**
  * Compares Strings respecting integers that appear in the strings with positions in common.<br>
  * Note that 0003 , 03 and 3 are considered to be at the same level; however if there is no further difference, lexicographic ordering is
- * applied to ensure the comparator meets the {@link Comparator contract} (this will sort "foor_02" before "foo_2").
+ * applied to ensure the comparator meets the {@link Comparator contract} (this will sort "foo_02" before "foo_2").
  *
  * @author Christian Femers
  *
