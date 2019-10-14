@@ -195,7 +195,7 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 	@Override
 	public int getAddressSize() throws DebugException
 	{
-		return getBigLength().bitLength() / 8;
+		return (getBigLength().bitLength() + 7) / 8;
 	}
 
 	@Override
