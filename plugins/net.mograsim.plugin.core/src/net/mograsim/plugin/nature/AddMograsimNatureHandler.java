@@ -85,4 +85,20 @@ public class AddMograsimNatureHandler extends AbstractHandler
 
 		return status;
 	}
+
+	/**
+	 * Adds Mograsim nature on a project
+	 *
+	 * @param project to have Mograsim nature
+	 * @return
+	 */
+	public static IStatus addNatureAndConfigure(IProject project, String machineId) throws CoreException
+	{
+		IStatus result = addNature(project);
+		if (result.getSeverity() > IStatus.INFO)
+			return result;
+		MachineContext mc = ProjectMachineContext.getMachineContextOf(project);
+		mc.setMachineId(machineId);
+		return result;
+	}
 }
