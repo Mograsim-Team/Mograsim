@@ -72,7 +72,7 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 
 		if (baseAddrWords.compareTo(minAddrWords) < 0 || baseAddrWords.compareTo(maxAddrWords) > 0)
 			throwDebugException("Base address out of range");
-		if (baseAddrWords.add(lengthWords).compareTo(maxAddrWords) > 0)
+		if (baseAddrWords.add(lengthWords).subtract(BigInteger.ONE).compareTo(maxAddrWords) > 0)
 			throwDebugException("End address out of range");
 
 		this.clients = new HashSet<>();
@@ -195,7 +195,7 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 	@Override
 	public int getAddressSize() throws DebugException
 	{
-		return Long.BYTES;
+		return getBigLength().bitLength() / 8;
 	}
 
 	@Override
