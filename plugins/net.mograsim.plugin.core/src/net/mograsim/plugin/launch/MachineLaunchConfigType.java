@@ -11,8 +11,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.model.IMemoryBlock;
 import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
 import org.eclipse.ui.statushandlers.StatusManager;
 
@@ -125,6 +127,10 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 		debugTarget.setExecutionSpeed(1);
 		machine = debugTarget.getMachine();
 		machine.reset();
+
+		// Add the default Mograsim memory block to make it less confusing and more comfortable.
+		DebugPlugin.getDefault().getMemoryBlockManager()
+				.addMemoryBlocks(new IMemoryBlock[] { new MainMemoryBlockExtension(debugTarget, "0", null) });
 	}
 
 }
