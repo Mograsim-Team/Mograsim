@@ -33,6 +33,7 @@ cache:
 stages:
   - validate
   - test
+  - package_repo
 
 default:
   before_script:
@@ -50,6 +51,15 @@ test:
   script:
     - mvn $MAVEN_CLI_OPTS verify
   artifacts:
+    when: on_failure
+    expire_in: 1 week
     reports:
-      junit:
-        - tests/*/target/surefire-reports/TEST-*.xml
+      junit: tests/*/target/surefire-reports/TEST-*.xml
+
+package_repo:
+  stage: package_repo
+  when: manual
+  script: 
+    - mvn $MAVEN_CLI_OPTS verify
+  artifacts:
+    paths: releng/net.mograsim.plugin.updatesite/target/*.zip
