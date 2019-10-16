@@ -84,10 +84,10 @@
    </extension>
    <extension
          point="org.eclipse.ui.editors">
-      <editorContentTypeBinding
+      <!-- editorContentTypeBinding
             contentTypeId="net.mograsim.plugin.asm"
             editorId="org.eclipse.ui.genericeditor.GenericEditor">
-      </editorContentTypeBinding>
+      </editorContentTypeBinding -->
       <editor
       		name="%editor.name.0"
       		icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
