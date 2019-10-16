@@ -34,34 +34,16 @@ public enum Bit implements StrictLogicType<Bit>
 		return fromTable(AND_TABLE, this, other);
 	}
 
-	public static void and(Bit[] dst, Bit[] src)
-	{
-		for (int i = 0; i < dst.length; i++)
-			dst[i] = dst[i].and(src[i]);
-	}
-
 	@Override
 	public Bit or(Bit other)
 	{
 		return fromTable(OR_TABLE, this, other);
 	}
 
-	public static void or(Bit[] dst, Bit[] src)
-	{
-		for (int i = 0; i < dst.length; i++)
-			dst[i] = dst[i].or(src[i]);
-	}
-
 	@Override
 	public Bit xor(Bit other)
 	{
 		return fromTable(XOR_TABLE, this, other);
-	}
-
-	public static void xor(Bit[] dst, Bit[] src)
-	{
-		for (int i = 0; i < dst.length; i++)
-			dst[i] = dst[i].xor(src[i]);
 	}
 
 	@Override
