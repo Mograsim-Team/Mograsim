@@ -62,4 +62,5 @@ package_repo:
   script: 
     - mvn $MAVEN_CLI_OPTS verify
   artifacts:
-    paths: releng/net.mograsim.plugin.updatesite/target/*.zip
+    paths:
+      - releng/net.mograsim.plugin.updatesite/target/*.zip
