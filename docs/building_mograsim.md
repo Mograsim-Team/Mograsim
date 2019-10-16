@@ -4,6 +4,9 @@ These is a very basic instruction set for building Mograsim from source.
 
 It assumes you know nothing about Eclipse Plug-In development, Maven, or Git.
 
+**Note: Mograsim in built automatically by GitLab CI, packaging the repository only 
+requires one extra **
+
 ## Prerequisites
 
 - [Java JDK](http://jdk.java.net/) 11 or later (or [Oracle Implementation](https://www.oracle.com/technetwork/java/javase/downloads/index.html))
