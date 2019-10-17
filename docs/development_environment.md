@@ -1,6 +1,6 @@
 # Mograsim Development Environment
 
-<span style="color:grey">_Mograsim Development Documentation Version 0.3 --- 2019-09-27_</span>
+<span style="color:grey">_Mograsim Development Documentation Version 0.4 --- 2019-10-17_</span>
 
 A short guide to the Mograsim Maven Tycho configuration and Maven Tycho in general, 
 as well as some information on Eclipse Plugin Development and OSGi.
@@ -43,11 +43,6 @@ Roughly, an OSGi bundle has:
   Library in the Eclipse projects.<br> This should be the same as the one the target 
   definition used for the build and the same that maven is run with ( -> check the 
   Run Configuration)
-
-## Eclipse Plugins
-
-- Short explanation of the different names and terms used in Eclipse Plugin Dev, 
-  and short introduction to the different mechanisms used.
 
 ## Mograsim Structure
 
@@ -167,7 +162,7 @@ The Tycho extra `tycho-pomless` is a Maven core extension allows for simpler str
 and less redundancy. Maven core extensions must be available at [the central maven repository](http://repo.maven.apache.org/maven2/) 
 (or already in the local repository), you cannot specify an alternative remote repository 
 in `.mvn/extensions.xml`. If a core extension cannot be resolved, you will get currently 
-(Maven 3.6.2) only a warning like
+(Maven 3.6.1) only a warning like
 
 > [WARNING] The POM for org.eclipse.tycho.extras:tycho-pomless:jar:1.5.0-SNAPSHOT is missing, no dependency information available
 
@@ -222,7 +217,7 @@ in it need to be build, too. But not only that, they need to use the same config
 for the build, which is problematic if you do not have control over them. The solution 
 only exists with Tycho 1.5.0 (currently only as snapshot), where deep folder structures 
 are automatically scanned and poms get gnereated; not every folder requires an aggregator 
-pom. This however requires (at the moment) certain naming conventions (see section 
+pom. This however **requires** (at the moment) certain naming conventions (see section 
 on Tycho itself).
 
 In our case, [SWTHelper](https://github.com/Haspamelodica/SWTHelper) is a git submodule 
