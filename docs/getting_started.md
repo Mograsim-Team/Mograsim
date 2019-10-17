@@ -3,7 +3,7 @@
 ## Prerequisites
 
 - [Java](http://jdk.java.net/) 11 or later (or [Oracle Implementation](https://www.oracle.com/technetwork/java/javase/downloads/index.html))
-- [Eclipse](https://www.eclipse.org/downloads/) 2019-03 or later (TODO: do earlier versions work?)
+- [Eclipse](https://www.eclipse.org/downloads/) 2019-03 or later (Open question: do earlier versions work?)
 
 ## Install Mograsim
 
@@ -21,19 +21,23 @@ Note: Currently, there is no online update site for Mograsim. You have to build 
 
 ## Enable the Launch action set
 
-1. Go to "Window" -> "Perspective" -> "Customize Perspective...".
-2. Go to the tab "Action Set Availability".
-3. Under "Available action sets", enable "Launch" (if it is not already enabled); click on "Apply and Close".
+1. Go to "Window" -> "Perspective" -> "Open Perspective"
+   and select "Mograsim" or click "Other..." and then select Mograsim.<br>
+   This can also be done by the perspective switcher on the right.
 
 ## Create a new Mograsim project
 
-1. Create a new Eclipse project. (Go to "File" -> "New" -> "Project...", select "General" -> "Project".)
-2. Add the Mograsim nature to the new project and set it up:
-	1. Open the properties dialog of the new project. (Right-click on it, select Properties.)
-	2. Go to the "Project Natures" page, click on "Add...". If a confirmation dialog pops up, confirm.
-	3. Select "Mograsim Project Nature"; click on "OK".
-	4. Click on "Apply and Close" and re-open the properties dialog.
-	5. Go to the new "Mograsim" page, select "Am2900Simple", click on "Apply and Close".
+1. Create a new Mograsim project. (Go to "File" -> "New" -> "Project...", select "Mograsim" -> "Mograsim 
+   Project".)
+2. Give it a project name and a Mograsim machine and finish.
+
+Alternatively, you can create a general Project and add the Mograsim nature to the new project and set it up:
+
+1. Open the properties dialog of the new project. (Right-click on it, select Properties.)
+2. Go to the "Project Natures" page, click on "Add...". If a confirmation dialog pops up, confirm.
+3. Select "Mograsim Project Nature"; click on "OK".
+4. Click on "Apply and Close" and re-open the properties dialog.
+5. Go to the new "Mograsim" page, select "Am2900Simple", click on "Apply and Close".
 
 ## Write a MPM file (containing the microprogram)
 
@@ -86,7 +90,7 @@ The MPM can be modified by this line. This is not recommended, however, because 
 
 ### Memory view
 
-1. In the Memory view, click on the green +, enter 0 and click on "OK".
+1. Select the preferred numerical representation
 2. Right-click on the table -> "Format...".
 3. Select 16 units per row and one unit per column. (8 units per row if 16 don't fit on the screen.)
 
@@ -94,7 +98,7 @@ The table now displays the contents of the currently running machine. At this mo
 
 ### Register view
 
-1. Expand the pseudo register group.  
+1. Expand the register group you would like to view.  
 It should contain the registers R0-R15 as well as the Q register.  
 All of them should be 0, displayed as a bitstring
 
