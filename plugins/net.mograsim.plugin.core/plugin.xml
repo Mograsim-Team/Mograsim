@@ -418,6 +418,22 @@
 			<description>%wizards.newWizards.mem.desc</description>
 	   		<selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
+  <wizard
+        category="net.mograsim.plugin.wizards.newWizards.category"
+        class="net.mograsim.plugin.wizards.newWizards.NewMograsimProject"
+        descriptionImage="icons/mograsim/logo/logo_blue-orange_128.png"
+        finalPerspective="net.mograsim.plugin.core.mograsimDefaultPerspective"
+        icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
+        id="net.mograsim.plugin.wizards.newWizards.NewProjectWizzard"
+        name="%wizards.newWizards.project.name"
+        project="true">
+     <description>
+        %wizards.newWizards.project.desc
+     </description>
+     <selection
+           class="org.eclipse.core.resources.IResource">
+     </selection>
+  </wizard>
 	</extension>
  <extension
        point="org.eclipse.debug.core.launchConfigurationTypes">
@@ -542,6 +558,9 @@
        <actionSet
              id="org.eclipse.debug.ui.launchActionSet">
        </actionSet>
+       <newWizardShortcut
+             id="net.mograsim.plugin.wizards.newWizards.NewProjectWizzard">
+       </newWizardShortcut>
     </perspectiveExtension>
     <perspectiveExtension
           targetID="org.eclipse.ui.resourcePerspective">
