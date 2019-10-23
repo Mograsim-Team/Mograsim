@@ -61,18 +61,14 @@ Can be done via Git or via EGit (Eclipse Git).
 Note: After importing the projects, probably an automatic workspace build will start. 
 Wait for it to finish before continuing.
 
-## Do the Maven Tycho workaround:
-
-In the project explorer or package explorer, right-click on "net.mograsim.tycho-download", 
-click on "Run As" -> "Maven clean" and wait for it to finish.
-
 ## Build the Update Site
 
 1. In the project explorer or package explorer, right-click on "net.mograsim", click 
    on "Run As" -> "Maven build...".
-2. Next to "Goals", enter "clean verify"; click on "Run" and wait for it to finish 
+2. Make sure to run Maven with JDK 11
+3. Next to "Goals", enter "clean verify"; click on "Run" and wait for it to finish 
    (this will take a while).
-3. Select all projects, right-click, and click on "Refresh".
+4. Select all projects, right-click, and click on "Refresh".
 
 The update site now should be built and is located in net.mograsim.plugin.updatesite/target/repository. 
 In there you should see, among other files, a folder named "features", a folder named 

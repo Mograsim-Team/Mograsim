@@ -149,14 +149,15 @@ A short guide to the [Maven goals (Maven Lifecycle)](https://maven.apache.org/gu
 - I recommend running `clean verify` or `verify`, this will do everything up to and 
   including the testing.
 
-Please note that Tycho 1.5.0 is not released yet, and thus requires a workaround. 
-More information can be found under [Maven Core Extension Problems](#mceps).
-
 ## Challenges
 
 Not everything is as simple as it seems at first glance.
 
-### Maven Core Extension Problems <a name="mceps"></a>
+### Maven Core Extension Problems
+
+Context: Tycho 1.5.0 was not released, and thus required a workaround.
+This Problem may appear again, maybe with a different core extension, so this section 
+explains the problem, how to diagnose it and a fairly good workaround.
 
 The Tycho extra `tycho-pomless` is a Maven core extension allows for simpler structure 
 and less redundancy. Maven core extensions must be available at [the central maven repository](http://repo.maven.apache.org/maven2/) 

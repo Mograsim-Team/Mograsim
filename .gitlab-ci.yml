@@ -35,12 +35,6 @@ stages:
   - test
   - package_repo
 
-default:
-  before_script:
-    - cd TempMavenTychoSnapshotWorkaround
-    - mvn $MAVEN_CLI_OPTS clean # This is only temporary to resolve TYCHO 1.5.0-SNAPSHOT for the main build
-    - cd ..
-
 validate:
   stage: validate
   script:
