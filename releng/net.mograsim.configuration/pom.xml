@@ -13,23 +13,9 @@
 		<changelist>-SNAPSHOT</changelist>
 		<!-- Environment -->
 		<java.version>11</java.version> <!-- currently unused -->
-		<tycho.version>1.5.0-SNAPSHOT</tycho.version>
+		<tycho.version>1.5.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
-	<pluginRepositories>
-		<!-- currently necessary because we are using a SNAPSHOT build of tycho -->
-		<pluginRepository>
-			<id>tycho-snapshots</id>
-			<url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<!-- Not needed, as an explicit target definition is provided by releng/net.mograsim.target/ 
 		This provides a uniform configuration, and we don't get weird errors. -->
