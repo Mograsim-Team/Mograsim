@@ -6,8 +6,8 @@ circuit logic in a way that allows for a smooth transition between those levels.
 The aim is to give students a better understanding how these layers blend in a machine, 
 and what the purpose of microprogramming is. In more detail, Mograsim allows:
 
-* Programming and running simple assembler on the machine
-* Defining an ISA (Instruction Set) to use in the assembler
+* Programming and running simple assembler on the machine *(in development)*
+* Defining an ISA (Instruction Set) to use in the assembler *(in development)*
 * Microprogram the CPU to implement the specified ISA
 * View the Circuit Logic operating and executing the microprogram in detail
 
