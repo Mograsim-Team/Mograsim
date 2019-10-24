@@ -1,4 +1,4 @@
-# About
+# Mograsim [![Build Status](https://travis-ci.com/Mograsim-Team/Mograsim.svg?branch=master)](https://travis-ci.com/Mograsim-Team/Mograsim)
 
 Mograsim is a modular, graphical simulator for teaching microprogramming, ISAs and 
 circuit logic in a way that allows for a smooth transition between those levels. 
