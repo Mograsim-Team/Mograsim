@@ -1,4 +1,4 @@
-# Mograsim [![Build Status](https://travis-ci.com/Mograsim-Team/Mograsim.svg?branch=master)](https://travis-ci.com/Mograsim-Team/Mograsim)
+# About Mograsim
 
 Mograsim is a modular, graphical simulator for teaching microprogramming, ISAs and 
 circuit logic in a way that allows for a smooth transition between those levels. 
@@ -19,5 +19,10 @@ Mograsim focuses especially on the AMD Am2900 Family microprocessors in a specif
 See [Getting Started](docs/getting_started.md)
 
 # Building Mograsim
+
+| Branch | Status |
+| ------ | ------ |
+| `master` | [![Build Status](https://travis-ci.com/Mograsim-Team/Mograsim.svg?branch=master)](https://travis-ci.com/Mograsim-Team/Mograsim) |
+| `development` | [![Build Status](https://travis-ci.com/Mograsim-Team/Mograsim.svg?branch=development)](https://travis-ci.com/Mograsim-Team/Mograsim) |
 
 See [Building Mograsim](docs/building_mograsim.md)
