@@ -1,0 +1,35 @@
+sudo: false 
+language: java
+
+jdk:
+  - openjdk11
+
+# Cache downloaded dependencies and plugins between builds.
+# To keep cache across branches add 'key: "$CI_JOB_NAME"'
+cache:
+  directories:
+    - $HOME/.m2
+
+# stages:
+#   - name: clean-verify
+
+env:
+  global:
+    - MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end --show-version -DinstallAtEnd=true -DdeployAtEnd=true"
+
+
+script:
+  - mvn $MAVEN_CLI_OPTS clean verify
+# TODO!!
+# jobs:
+#   include:
+#     - stage: clean-verify
+#       if: branch NOT IN (master)
+#       name: Development Build
+#       script:
+#         - mvn $MAVEN_CLI_OPTS clean verify
+#     - stage: clean-verify
+#       if: branch IN (master)
+#       name: Release Build
+#       script:
+#         - mvn $MAVEN_CLI_OPTS clean verify
