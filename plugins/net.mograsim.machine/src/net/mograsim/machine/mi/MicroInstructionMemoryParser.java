@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
@@ -49,7 +50,7 @@ public class MicroInstructionMemoryParser
 	 */
 	public static void parseMemory(final MicroInstructionMemory memory, InputStream input) throws IOException
 	{
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(input)))
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8)))
 		{
 			MicroInstructionMemoryDefinition def = memory.getDefinition();
 			MicroInstructionDefinition miDef = def.getMicroInstructionDefinition();
@@ -129,7 +130,8 @@ public class MicroInstructionMemoryParser
 				int val = instStream.read();
 				if (val == -1 && instIndex <= maxAddress)
 				{
-					instStream = new ByteArrayInputStream((toCSV(memory.getCell(instIndex++)) + lineSeparator).getBytes());
+					instStream = new ByteArrayInputStream(
+							(toCSV(memory.getCell(instIndex++)) + lineSeparator).getBytes(StandardCharsets.UTF_8));
 					val = instStream.read();
 				}
 				return val;

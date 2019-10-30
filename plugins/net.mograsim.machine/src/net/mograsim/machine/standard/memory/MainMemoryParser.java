@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.MainMemory;
@@ -50,7 +51,7 @@ public class MainMemoryParser
 	 */
 	public static void parseMemory(final MainMemory memory, InputStream input) throws IOException
 	{
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(input)))
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8)))
 		{
 			MainMemoryDefinition def = memory.getDefinition();
 
@@ -86,7 +87,8 @@ public class MainMemoryParser
 				int val = instStream.read();
 				if (val == -1 && instIndex <= maxAddress)
 				{
-					instStream = new ByteArrayInputStream((memory.getCell(instIndex++).toBitstring() + lineSeparator).getBytes());
+					instStream = new ByteArrayInputStream(
+							(memory.getCell(instIndex++).toBitstring() + lineSeparator).getBytes(StandardCharsets.UTF_8));
 					val = instStream.read();
 				}
 				return val;
