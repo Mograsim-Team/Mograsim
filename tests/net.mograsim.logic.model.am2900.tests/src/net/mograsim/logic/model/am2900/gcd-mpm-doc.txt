@@ -2,8 +2,8 @@ Register allocation:
 
 R0: a1 (Euclid)
 R2: a2 (Euclid)
-R1: b (Euclid)
-Q: c (copy of b) / result
+R1: b (Euclid) / result
+Q: c (copy of b)
 
 Most of the time, a1 holds the actual value of a, and a2 holds some garbage. But in the main subtract-and-half loop, it sometimes is the other way around for speed reasons.
 
