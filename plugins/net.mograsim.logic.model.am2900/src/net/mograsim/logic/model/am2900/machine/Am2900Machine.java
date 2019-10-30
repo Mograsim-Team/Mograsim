@@ -54,6 +54,7 @@ public class Am2900Machine implements Machine
 
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
+		params.hardcodedComponentProcessTime = params.gateProcessTime * 5;
 		params.wireTravelTime = 10;
 		mainMemory = new AssignableMainMemory(new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition()));
 		instMemory = new AssignableMicroInstructionMemory(

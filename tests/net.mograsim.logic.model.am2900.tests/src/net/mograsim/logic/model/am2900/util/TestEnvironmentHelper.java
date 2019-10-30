@@ -90,6 +90,7 @@ public class TestEnvironmentHelper
 		// Create core model
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
+		params.hardcodedComponentProcessTime = params.gateProcessTime * 5;
 		params.wireTravelTime = 10;
 		timeline = LogicCoreAdapter.convert(logicModel, params);
 		timelineField.ifPresent(f -> setField(f, timeline));

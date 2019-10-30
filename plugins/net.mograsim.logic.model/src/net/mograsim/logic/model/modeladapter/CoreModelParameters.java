@@ -4,4 +4,5 @@ public class CoreModelParameters
 {
 	public int wireTravelTime;
 	public int gateProcessTime;
+	public int hardcodedComponentProcessTime;
 }

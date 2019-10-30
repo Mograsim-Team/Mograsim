@@ -43,7 +43,7 @@ public class SimpleRectangularHardcodedModelComponentAdapter implements Componen
 			if (pin.usage != PinUsage.INPUT)
 			{
 				// TODO do this prettier
-				CoreWire pseudoWire = new CoreWire(timeline, wire.width, params.gateProcessTime);
+				CoreWire pseudoWire = new CoreWire(timeline, wire.width, params.hardcodedComponentProcessTime);
 				CoreWire.fuse(wire, pseudoWire);
 				readWriteEnds.put(pin.name, pseudoWire.createReadWriteEnd());
 			}

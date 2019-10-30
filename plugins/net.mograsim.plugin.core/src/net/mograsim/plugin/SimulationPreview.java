@@ -39,6 +39,7 @@ public class SimulationPreview implements IThemePreview
 		LogicModelModifiable model = new LogicModelModifiable();
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
+		params.hardcodedComponentProcessTime = params.gateProcessTime * 5;
 		params.wireTravelTime = 10;
 
 		ModelManualSwitch rIn = new ModelManualSwitch(model, 1);
