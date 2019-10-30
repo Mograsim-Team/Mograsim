@@ -18,6 +18,7 @@ public class SimpleLogicUIStandalone
 	{
 		CoreModelParameters params = new CoreModelParameters();
 		params.gateProcessTime = 50;
+		params.hardcodedComponentProcessTime = params.gateProcessTime * 5;
 		params.wireTravelTime = 10;
 		executeVisualisation(setupLogicModel, params, beforeRun);
 	}
