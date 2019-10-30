@@ -118,6 +118,10 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 			{
 				RWE.feedSignals(PASSVal);
 				RDEC.feedSignals(PASSVal == ONE ? ZERO : PASSVal);// "forward" X/U/Z
+			} else if (IAsInt == 12)
+			{
+				RWE.feedSignals(ONE);
+				RDEC.feedSignals(ZERO);
 			} else
 			{
 				RWE.feedSignals(ZERO);
