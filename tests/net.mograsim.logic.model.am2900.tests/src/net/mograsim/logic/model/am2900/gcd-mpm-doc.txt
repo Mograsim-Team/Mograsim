@@ -1,0 +1,29 @@
+Register allocation:
+
+R0: a1 (Euclid)
+R2: a2 (Euclid)
+R1: b (Euclid)
+Q: c (copy of b) / result
+
+Most of the time, a1 holds the actual value of a, and a2 holds some garbage. But in the main subtract-and-half loop, it sometimes is the other way around for speed reasons.
+
+Idea for calculating the remainder (we always calculate a%b):
+A copy of b (c) is l-shifted until it is bigger than or equal to a (or it can't be l-shifted further without losing the most significant 1).
+Then, repeatedly, if c is smaller than a, a is assigned a-c; then c is r-shifted; until c is again equal to b.
+
+MPM:
+0x00: put the address of the first argument (0x0000) on the address bus; load the address of the second argument (0x0001) into a2 by lshifting a 1 into a2; load the address of the version of the second subtract-and-half loop cycle where a1 and a2 are swapped (0x08) into Am2910's Reg/Cntr
+0x01: load the first argument from RAM into c, load muSR accordingly
+0x02: put a2 (the address of the second argument (0x0001)) on the address bus; copy c to b; if c==0 (stored in muSR.Z), jump to the end saving the D bus (from RAM) to b (0x0e)
+0x03: load the second argument from RAM into a1; if the new a1==0, jump to the end (0x12)
+0x04: caluclate c-0x8000, if c>=0x8000, jump to the main subtract-and-half loop (0x07)
+0x05: lshift c; calculate (old c)-a, if c<a, jump back to the loop lshifting c (The result of (old c)-a is stored in a2, but never used)
+0x06: rshift c; calculate b-(old c); if b>(old c), jump to swapping a / b where a1 and a2 are not swapped (0x0a)
+0x07: store a1-c in a2; if a1<c, jump to the version of the second subtract-and-half loop cycle where a1 and a2 are not swapped (0x06)
+0x08: rshift c; calculate b-(old c); if b>(old c), jump to swapping a / b where a1 and a2 are swapped (0x0b)
+0x09: store a2-c in a1; if a2<c, jump to the version of the second subtract-and-half loop cycle where a1 and a2 are not swapped (0x06), else jump to where they are swapped (0x07)
+0x0a: copy a1 to c; load the muSR accordingly; jump to copying b to a1 (0x0c)
+0x0b: copy a2 to c; load the muSR accordingly
+0x0c: copy b to a1; if c==0 (stored in muSR.Z), jump to the end (0x12)
+0x0d: copy c to b; jump back to the start of Euclid's algorithm (0x04)
+0x0e: load the second argument from RAM into b; jump to the end (0x12)
