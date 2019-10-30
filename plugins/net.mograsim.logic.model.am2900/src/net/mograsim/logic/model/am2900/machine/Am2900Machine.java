@@ -88,27 +88,25 @@ public class Am2900Machine implements Machine
 		defaultParams[19] = paramClassifications[19].parse("JZ");
 		MicroInstruction jzMI = MicroInstruction.create(defaultParams);
 		am2900.setHighLevelState("muir_2.q", jzMI.toBitVector());
-		if (!machineDefinition.strict)
-		{
-			setRegistersToZero(machineDefinition.getUnsortedRegisters());
-			setRegisterGroupToZero(machineDefinition.getRegisterGroups());
-			// TODO reset latches?
-		}
+		Bit regsValue = machineDefinition.strict ? Bit.U : Bit.ZERO;
+		setRegistersTo(machineDefinition.getUnsortedRegisters(), regsValue);
+		setRegisterGroupTo(machineDefinition.getRegisterGroups(), regsValue);
+		// TODO reset latches?
 	}
 
-	private void setRegistersToZero(List<Register> registers)
+	private void setRegistersTo(List<Register> registers, Bit value)
 	{
 		for (Register r : registers)
 			if (r != muInstrRegister.instance)// don't reset; sometimes causes a glitch
-				setRegister(r, BitVector.of(Bit.ZERO, r.getWidth()));
+				setRegister(r, BitVector.of(value, r.getWidth()));
 	}
 
-	private void setRegisterGroupToZero(List<RegisterGroup> registerGroups)
+	private void setRegisterGroupTo(List<RegisterGroup> registerGroups, Bit value)
 	{
 		for (RegisterGroup rg : registerGroups)
 		{
-			setRegistersToZero(rg.getRegisters());
-			setRegisterGroupToZero(rg.getSubGroups());
+			setRegistersTo(rg.getRegisters(), value);
+			setRegisterGroupTo(rg.getSubGroups(), value);
 		}
 	}
 
