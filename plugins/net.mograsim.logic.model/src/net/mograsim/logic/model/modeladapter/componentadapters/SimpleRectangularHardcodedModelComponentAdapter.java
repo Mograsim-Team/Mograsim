@@ -32,7 +32,7 @@ public class SimpleRectangularHardcodedModelComponentAdapter implements Componen
 		ObservableAtomicReference<Object> state = new ObservableAtomicReference<>();
 
 		Runnable recalculate = () -> state.updateAndGet(s -> modelComponent.recalculate(s, readEnds, readWriteEnds));
-		LogicObserver logicObs = c -> timeline.addEvent(e -> recalculate.run(), params.gateProcessTime);
+		LogicObserver logicObs = c -> recalculate.run();
 
 		modelComponent.setCoreModelBindingAndResetState(state, recalculate);
 
@@ -42,11 +42,12 @@ public class SimpleRectangularHardcodedModelComponentAdapter implements Componen
 			ReadEnd end;
 			if (pin.usage != PinUsage.INPUT)
 			{
-				ReadWriteEnd rwEnd = wire.createReadWriteEnd();
-				readWriteEnds.put(pin.name, rwEnd);
-				end = rwEnd;
-			} else
-				end = wire.createReadOnlyEnd();
+				// TODO do this prettier
+				CoreWire pseudoWire = new CoreWire(timeline, wire.width, params.gateProcessTime);
+				CoreWire.fuse(wire, pseudoWire);
+				readWriteEnds.put(pin.name, pseudoWire.createReadWriteEnd());
+			}
+			end = wire.createReadOnlyEnd();
 			readEnds.put(pin.name, end);
 			if (pin.usage != PinUsage.OUTPUT)
 				end.registerObserver(logicObs);
