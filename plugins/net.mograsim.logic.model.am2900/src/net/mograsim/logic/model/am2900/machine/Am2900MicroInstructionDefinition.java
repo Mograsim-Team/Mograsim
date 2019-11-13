@@ -80,6 +80,10 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 			dbus, am2904CarryInstructions, am2904ShiftInstructions, hL, hL, am2904StatusInstructions, ccen, am2910Instructions,
 			constant_12bit, hL, hE, hI, hE, hL, rW };
 
+	private static final String[] paramTitle = { "IE", "I", "KMUX", "K", "01 Src", "01 Func", "01 Dest", "01 RA", "01 ASel", "01 RB",
+			"01 BSel", "_ABus", "_DBus", "04 Cin", "04 Shift", "04 _CE\u00b5", "_CEM", "04 Op", "10 _CCEN", "10 I", "D", "BZ _LD", "BZ _ED",
+			"BZ _INC", "BZ _EA", "IR _LD", "_MWE" };
+
 	private static final String[] paramDesc = { "Allow interrupts?", "Interrupt instructions; omitted for simplicity",
 			"Get D-input from data bus/constant value", "Constant value", "Operand sources for ALU operation", "ALU operation",
 			"Destination of ALU calculation", "Register for A-operand", "Get A-operand from instruction register/micro instruction?",
@@ -100,6 +104,12 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 	public ParameterClassification getParameterClassification(int index)
 	{
 		return classes[index];
+	}
+
+	@Override
+	public Optional<String> getParameterTitle(int index)
+	{
+		return Optional.of(paramTitle[index]);
 	}
 
 	@Override
