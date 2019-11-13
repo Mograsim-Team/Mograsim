@@ -80,9 +80,8 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 			dbus, am2904CarryInstructions, am2904ShiftInstructions, hL, hL, am2904StatusInstructions, ccen, am2910Instructions,
 			constant_12bit, hL, hE, hI, hE, hL, rW };
 
-	// TODO "SW ..." and "LW ..." create a very weird mix of German and English
 	private static final String[] paramTitle = { "IE", "I", "KMUX", "K", "ALU Src", "ALU Func", "ALU Dest", "ALU RA", "ALU ASel", "ALU RB",
-			"ALU BSel", "_ABus", "_DBus", "SW Cin", "SW Shift", "SW _CE\u00b5", "SW _CEM", "SW Op", "LW _CCEN", "LW I", "D", "BZ_LD",
+			"ALU BSel", "_ABus", "_DBus", "SU Cin", "SU Shift", "SU _CE\u00b5", "SU _CEM", "SU Op", "CU _CCEN", "CU I", "D", "BZ_LD",
 			"BZ_ED", "BZ_INC", "BZ_EA", "IR_LD", "_MWE" };
 
 	private static final String[] paramDesc = { "Allow interrupts?", "Interrupt instructions; omitted for simplicity",
