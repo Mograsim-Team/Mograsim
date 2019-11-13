@@ -34,6 +34,8 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements IWo
 		addField(new ComboFieldEditor("net.mograsim.logic.model.button.action", "Mouse button for actions", MOUSE_BUTTONS, parent));
 		addField(new ComboFieldEditor("net.mograsim.logic.model.button.drag", "Mouse button for dragging", MOUSE_BUTTONS, parent));
 		addField(new ComboFieldEditor("net.mograsim.logic.model.button.zoom", "Mouse button for zooming", MOUSE_BUTTONS, parent));
+		addField(new BooleanFieldEditor("net.mograsim.plugin.core.editors.mpm.descriptionascolumnname",
+				"Use the MPM column description as table header", parent));
 		// TODO add other preferences
 	}
 }

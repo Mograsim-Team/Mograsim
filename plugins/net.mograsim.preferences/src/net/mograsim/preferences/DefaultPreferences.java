@@ -13,6 +13,8 @@ public class DefaultPreferences extends Preferences
 			return true;
 		case "net.mograsim.logic.model.debug.openhlsshell":
 			return false;
+		case "net.mograsim.plugin.core.editors.mpm.descriptionascolumnname":
+			return false;
 		default:
 			throw new IllegalArgumentException("Unknown boolean preference name: " + name);
 		}
