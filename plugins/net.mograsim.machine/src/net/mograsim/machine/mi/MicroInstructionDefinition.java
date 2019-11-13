@@ -48,5 +48,7 @@ public interface MicroInstructionDefinition
 		return new StandardMicroInstruction(params);
 	}
 
+	public Optional<String> getParameterTitle(int index);
+
 	public Optional<String> getParameterDescription(int index);
 }
