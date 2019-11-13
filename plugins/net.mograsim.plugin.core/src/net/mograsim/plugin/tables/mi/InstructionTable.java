@@ -28,6 +28,7 @@ import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.plugin.tables.AddressLabelProvider;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.LazyTableViewer;
+import net.mograsim.preferences.Preferences;
 
 public class InstructionTable
 {
@@ -98,7 +99,7 @@ public class InstructionTable
 		int size = miDef.size();
 		columns = new TableViewerColumn[size + 1];
 
-		TableViewerColumn col = createTableViewerColumn("Address");
+		TableViewerColumn col = createTableViewerColumn("Address", null);
 		columns[0] = col;
 		col.setLabelProvider(new AddressLabelProvider()
 		{
@@ -130,9 +131,22 @@ public class InstructionTable
 		{
 			int startBit = bit - 1;
 			int endBit = bit = bit - classes[i].getExpectedBits();
-			String columnTitle = calculateColumnTitle(startBit, endBit);
+
+			String description = miDef.getParameterDescription(i).orElse(null);
+			String bitString = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
+			String columnTitle, columnTooltip;
+			if (useDescriptionAsColumnTitle(description))
+			{
+				columnTitle = description;
+				columnTooltip = bitString;
+			} else
+			{
+				columnTitle = bitString;
+				columnTooltip = description;
+			}
 			columnTitles[i] = columnTitle;
-			col = createTableViewerColumn(columnTitle);
+
+			col = createTableViewerColumn(columnTitle, columnTooltip);
 			columns[i + 1] = col;
 			createEditingAndLabel(col, miDef, i);
 		}
@@ -161,9 +175,9 @@ public class InstructionTable
 		viewer.getTable().setVisible(true);
 	}
 
-	private static String calculateColumnTitle(int startBit, int endBit)
+	private static boolean useDescriptionAsColumnTitle(String description)
 	{
-		return startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
+		return description != null && Preferences.current().getBoolean("net.mograsim.plugin.core.editors.mpm.descriptionascolumnname");
 	}
 
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
@@ -209,14 +223,14 @@ public class InstructionTable
 		if (isEditable)
 			col.setEditingSupport(support);
 		col.setLabelProvider(provider);
-		col.getColumn().setToolTipText(miDef.getParameterDescription(index).orElse(""));
 	}
 
-	private TableViewerColumn createTableViewerColumn(String title)
+	private TableViewerColumn createTableViewerColumn(String title, String toolTip)
 	{
 		TableViewerColumn viewerColumn = new TableViewerColumn(viewer, SWT.NONE);
 		TableColumn column = viewerColumn.getColumn();
 		column.setText(title);
+		column.setToolTipText(toolTip);
 		column.setResizable(true);
 		column.setMoveable(false);
 		return viewerColumn;
