@@ -132,19 +132,14 @@ public class InstructionTable
 			int startBit = bit - 1;
 			int endBit = bit = bit - classes[i].getExpectedBits();
 
-			String description = miDef.getParameterDescription(i).orElse(null);
+			String columnTitle;
 			String bitString = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
-			String columnTitle, columnTooltip;
-			if (useDescriptionAsColumnTitle(description))
-			{
-				columnTitle = description;
-				columnTooltip = bitString;
-			} else
-			{
+			if (Preferences.current().getBoolean("net.mograsim.plugin.core.editors.mpm.bitsascolumnname"))
 				columnTitle = bitString;
-				columnTooltip = description;
-			}
+			else
+				columnTitle = miDef.getParameterTitle(i).orElse(bitString);
 			columnTitles[i] = columnTitle;
+			String columnTooltip = miDef.getParameterDescription(i).orElse(null);
 
 			col = createTableViewerColumn(columnTitle, columnTooltip);
 			columns[i + 1] = col;
@@ -173,11 +168,6 @@ public class InstructionTable
 		}
 
 		viewer.getTable().setVisible(true);
-	}
-
-	private static boolean useDescriptionAsColumnTitle(String description)
-	{
-		return description != null && Preferences.current().getBoolean("net.mograsim.plugin.core.editors.mpm.descriptionascolumnname");
 	}
 
 	public void bindMicroInstructionMemory(MicroInstructionMemory memory)
