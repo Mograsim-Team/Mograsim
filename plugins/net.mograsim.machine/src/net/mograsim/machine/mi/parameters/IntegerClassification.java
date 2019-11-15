@@ -10,10 +10,19 @@ public class IntegerClassification implements ParameterClassification
 	private final int bits;
 	private final IntegerImmediate defaultValue;
 
+	/**
+	 * The default value is set to X.
+	 */
+	public IntegerClassification(int bits)
+	{
+		this.bits = bits;
+		this.defaultValue = new IntegerImmediate(this, null, bits);
+	}
+
 	public IntegerClassification(int defaultValue, int bits)
 	{
 		this.bits = bits;
-		this.defaultValue = new IntegerImmediate(BitVector.from(defaultValue, bits));
+		this.defaultValue = new IntegerImmediate(this, BitVector.from(defaultValue, bits));
 	}
 
 	@Override
@@ -31,7 +40,7 @@ public class IntegerClassification implements ParameterClassification
 	@Override
 	public IntegerImmediate parse(String toParse)
 	{
-		return new IntegerImmediate(new BigInteger(toParse), bits);
+		return new IntegerImmediate(this, toParse.equals("X") ? null : new BigInteger(toParse), bits);
 	}
 
 	@Override

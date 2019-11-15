@@ -1,20 +1,27 @@
 package net.mograsim.machine.mi.parameters;
 
+import static net.mograsim.logic.core.types.Bit.X;
+
 import java.math.BigInteger;
 
 import net.mograsim.logic.core.types.BitVector;
 
 public final class IntegerImmediate implements MicroInstructionParameter
 {
+	private IntegerClassification owner;
 	private BitVector value;
 
-	public IntegerImmediate(BigInteger value, int bits)
+	/**
+	 * <code>value == null</code> means a vector consisting only of X
+	 */
+	public IntegerImmediate(IntegerClassification owner, BigInteger value, int bits)
 	{
-		this.value = BitVector.from(value, bits);
+		this(owner, value == null ? BitVector.of(X, bits) : BitVector.from(value, bits));
 	}
 
-	public IntegerImmediate(BitVector value)
+	public IntegerImmediate(IntegerClassification owner, BitVector value)
 	{
+		this.owner = owner;
 		this.value = value;
 	}
 
@@ -58,23 +65,28 @@ public final class IntegerImmediate implements MicroInstructionParameter
 		return true;
 	}
 
+	public boolean isX()
+	{
+		return value.equals(BitVector.of(X, value.length()));
+	}
+
 	/**
-	 * @return The value of this IntegerImmediate as an unsigned BigInteger
+	 * @return The value of this IntegerImmediate as an unsigned BigInteger, or null, if the value is X.
 	 */
 	public BigInteger getValueAsBigInteger()
 	{
-		return value.getUnsignedValue();
+		return isX() ? null : value.getUnsignedValue();
 	}
 
 	@Override
 	public String toString()
 	{
-		return getValueAsBigInteger().toString();
+		return isX() ? "X" : getValueAsBigInteger().toString();
 	}
 
 	@Override
 	public boolean isDefault()
 	{
-		return value.getSignedValueLong() == 0;
+		return equals(owner.getDefault());
 	}
 }
