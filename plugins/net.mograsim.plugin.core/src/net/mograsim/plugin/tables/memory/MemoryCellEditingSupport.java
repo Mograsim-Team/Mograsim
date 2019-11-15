@@ -12,7 +12,8 @@ public class MemoryCellEditingSupport extends NumberCellEditingSupport
 {
 	public MemoryCellEditingSupport(TableViewer viewer, DisplaySettings displaySettings)
 	{
-		super(viewer, displaySettings);
+		// TODO maybe allow X here too?
+		super(viewer, displaySettings, false);
 	}
 
 	@Override

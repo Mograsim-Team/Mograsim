@@ -1,6 +1,9 @@
 package net.mograsim.machine.mi.parameters;
 
-import net.mograsim.logic.core.types.BitVector;
+import static net.mograsim.logic.core.types.BitVector.SINGLE_0;
+import static net.mograsim.logic.core.types.BitVector.SINGLE_1;
+import static net.mograsim.logic.core.types.BitVector.SINGLE_X;
+
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
 
 public class BooleanClassification extends MnemonicFamily
@@ -9,16 +12,15 @@ public class BooleanClassification extends MnemonicFamily
 
 	public BooleanClassification(boolean defaultValue, String trueName, String falseName)
 	{
-		super(defaultValue ? trueName : falseName, new MnemonicPair("X", BitVector.SINGLE_0),
-				new MnemonicPair(trueName, BitVector.SINGLE_1), new MnemonicPair(falseName, BitVector.SINGLE_0));
+		super(defaultValue ? trueName : falseName, new MnemonicPair("X", SINGLE_X), new MnemonicPair(trueName, SINGLE_1),
+				new MnemonicPair(falseName, SINGLE_0));
 		this.trueName = trueName;
 		this.falseName = falseName;
 	}
 
 	public BooleanClassification(String trueName, String falseName)
 	{
-		super("X", new MnemonicPair("X", BitVector.SINGLE_0), new MnemonicPair(trueName, BitVector.SINGLE_1),
-				new MnemonicPair(falseName, BitVector.SINGLE_0));
+		super("X", new MnemonicPair("X", SINGLE_X), new MnemonicPair(trueName, SINGLE_1), new MnemonicPair(falseName, SINGLE_0));
 		this.trueName = trueName;
 		this.falseName = falseName;
 	}

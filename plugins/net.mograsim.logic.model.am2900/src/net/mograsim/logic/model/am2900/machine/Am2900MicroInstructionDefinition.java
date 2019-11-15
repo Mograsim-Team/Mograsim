@@ -24,7 +24,7 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 			.add("ADD", "SUBR", "SUBS", "OR", "AND", "NOTRS", "EXOR", "EXNOR").build();
 	private static final MnemonicFamily am2901DestInstructions = new MnemonicFamilyBuilder(3).addX()
 			.add("QREG", "NOP", "RAMA", "RAMF", "RAMQD", "RAMD", "RAMQU", "RAMU").setDefault("NOP").build();
-	private static final IntegerClassification register = new IntegerClassification(0, 4);
+	private static final IntegerClassification register = new IntegerClassification(4);
 	private static final BooleanClassification registerSelect = new BooleanClassification("MR", "IR");
 	private static final BooleanClassification abus = new BooleanClassification(true, "H", "AB");
 	private static final BooleanClassification dbus = new BooleanClassification(true, "H", "DB");
@@ -68,8 +68,8 @@ public class Am2900MicroInstructionDefinition implements MicroInstructionDefinit
 			.add("JZ", "CJS", "JMAP", "CJP", "PUSH", "JSRP", "CJV", "JRP", "RFCT", "RPCT", "CRTN", "CJPP", "LDCT", "LOOP", "CONT", "TWB")
 			.setDefault("CONT").build();
 
-	private static final IntegerClassification constant_12bit = new IntegerClassification(0, 12);
-	private static final IntegerClassification constant_16bit = new IntegerClassification(0, 16);
+	private static final IntegerClassification constant_12bit = new IntegerClassification(12);
+	private static final IntegerClassification constant_16bit = new IntegerClassification(16);
 	private static final BooleanClassification hE = new BooleanClassification(true, "H", "E");
 	private static final BooleanClassification hI = new BooleanClassification(true, "H", "I");
 	private static final BooleanClassification hL = new BooleanClassification(true, "H", "L");

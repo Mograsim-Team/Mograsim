@@ -18,7 +18,8 @@ public abstract class NumberColumnLabelProvider extends ColumnLabelProvider
 	@Override
 	public String getText(Object element)
 	{
-		return AsmNumberUtil.toString(getAsBigInteger(element), displaySettings.getDataNumberType(), getBitLength(element));
+		BigInteger bi = getAsBigInteger(element);
+		return bi == null ? "X" : AsmNumberUtil.toString(bi, displaySettings.getDataNumberType(), getBitLength(element));
 	}
 
 	public abstract BigInteger getAsBigInteger(Object element);
