@@ -21,7 +21,7 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 	public IntegerEditingSupport(TableViewer viewer, MicroInstructionDefinition miDef, int index, DisplaySettings displaySettings,
 			InstructionTableContentProvider provider)
 	{
-		super(viewer, displaySettings);
+		super(viewer, displaySettings, true);
 		classification = (IntegerClassification) miDef.getParameterClassifications()[index];
 		this.index = index;
 		this.provider = provider;
@@ -32,7 +32,7 @@ public class IntegerEditingSupport extends NumberCellEditingSupport
 	{
 		InstructionTableRow row = ((InstructionTableRow) element);
 		MicroInstructionParameter[] params = row.data.getCell(row.address).getParameters();
-		IntegerImmediate newParam = new IntegerImmediate(value, classification.getExpectedBits());
+		IntegerImmediate newParam = new IntegerImmediate(classification, value, classification.getExpectedBits());
 		if (params[index].equals(newParam))
 			return;
 		params[index] = newParam;

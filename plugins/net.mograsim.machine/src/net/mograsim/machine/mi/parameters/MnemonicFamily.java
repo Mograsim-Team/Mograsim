@@ -1,12 +1,13 @@
 package net.mograsim.machine.mi.parameters;
 
+import static net.mograsim.logic.core.types.Bit.X;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.machine.MachineException;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter.ParameterType;
@@ -181,7 +182,7 @@ public class MnemonicFamily implements ParameterClassification
 
 		public MnemonicFamilyBuilder addX()
 		{
-			pairs.add(new MnemonicPair("X", BitVector.of(Bit.ZERO, bits)));
+			pairs.add(new MnemonicPair("X", BitVector.of(X, bits)));
 			return this;
 		}
 
