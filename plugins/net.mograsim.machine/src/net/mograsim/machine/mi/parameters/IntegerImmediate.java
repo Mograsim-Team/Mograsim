@@ -1,6 +1,6 @@
 package net.mograsim.machine.mi.parameters;
 
-import static net.mograsim.logic.core.types.Bit.X;
+import static net.mograsim.logic.core.types.Bit.U;
 
 import java.math.BigInteger;
 
@@ -16,7 +16,7 @@ public final class IntegerImmediate implements MicroInstructionParameter
 	 */
 	public IntegerImmediate(IntegerClassification owner, BigInteger value, int bits)
 	{
-		this(owner, value == null ? BitVector.of(X, bits) : BitVector.from(value, bits));
+		this(owner, value == null ? BitVector.of(U, bits) : BitVector.from(value, bits));
 	}
 
 	public IntegerImmediate(IntegerClassification owner, BitVector value)
@@ -67,7 +67,7 @@ public final class IntegerImmediate implements MicroInstructionParameter
 
 	public boolean isX()
 	{
-		return value.equals(BitVector.of(X, value.length()));
+		return value.equals(BitVector.of(U, value.length()));
 	}
 
 	/**
