@@ -8,7 +8,6 @@ import static net.mograsim.logic.core.types.Bit.ZERO;
 import java.util.Map;
 
 import net.mograsim.logic.core.types.Bit;
-import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
 import net.mograsim.logic.model.model.LogicModelModifiable;
@@ -78,6 +77,14 @@ public class ModelAm2904RegCTInstrDecode extends SimpleRectangularHardcodedModel
 	{
 		Bit[] I5_0Bits = readEnds.get("I5-0").getValues().getBits();
 		Bit[] I12_11Bits = readEnds.get("I12-11").getValues().getBits();
+
+		readWriteEnds.get("OEN").feedSignals(I5_0Bits[0].or(I5_0Bits[1]).or(I5_0Bits[2]).or(I5_0Bits[3]).or(I5_0Bits[4]).or(I5_0Bits[5]));
+		readWriteEnds.get("Y_MUX").feedSignals(I5_0Bits[0], I5_0Bits[1]);
+		readWriteEnds.get("CT_INV").feedSignals(I5_0Bits[5]);
+		readWriteEnds.get("CT_MUX").feedSignals(I5_0Bits[2], I5_0Bits[3], I5_0Bits[4]);
+		readWriteEnds.get("C0_MUX").feedSignals(I12_11Bits[0], I12_11Bits[1], I5_0Bits[0],
+				I5_0Bits[2].and(I5_0Bits[3].not()).and(I5_0Bits[4].not()));
+
 		int IAsInt = 0;
 		for (int i = 0; i < 6; i++)
 			switch (I5_0Bits[5 - i])
@@ -86,19 +93,34 @@ public class ModelAm2904RegCTInstrDecode extends SimpleRectangularHardcodedModel
 				IAsInt |= 1 << i;
 				break;
 			case U:
-				for (ReadWriteEnd e : readWriteEnds.values())
-					e.feedSignals(BitVector.of(U, e.width()));
+				readWriteEnds.get("muSR_MUX").feedSignals(U, U);
+				readWriteEnds.get("muSR_OVRRET").feedSignals(U);
+				readWriteEnds.get("muSR_CINV").feedSignals(U);
+				readWriteEnds.get("muSR_WEZ").feedSignals(U);
+				readWriteEnds.get("muSR_WEC").feedSignals(U);
+				readWriteEnds.get("muSR_WEN").feedSignals(U);
+				readWriteEnds.get("muSR_WEOVR").feedSignals(U);
+				readWriteEnds.get("MSR_MUX").feedSignals(U, U, U);
 				return null;
 			case X:
 			case Z:
-				for (ReadWriteEnd e : readWriteEnds.values())
-					e.feedSignals(BitVector.of(X, e.width()));
+				readWriteEnds.get("muSR_MUX").feedSignals(X, X);
+				readWriteEnds.get("muSR_OVRRET").feedSignals(X);
+				readWriteEnds.get("muSR_CINV").feedSignals(X);
+				readWriteEnds.get("muSR_WEZ").feedSignals(X);
+				readWriteEnds.get("muSR_WEC").feedSignals(X);
+				readWriteEnds.get("muSR_WEN").feedSignals(X);
+				readWriteEnds.get("muSR_WEOVR").feedSignals(X);
+				readWriteEnds.get("MSR_MUX").feedSignals(X, X, X);
 				return null;
 			case ZERO:
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown enum constant: " + I5_0Bits[i]);
 			}
+
+		readWriteEnds.get("CT_EXP").feedSignals((IAsInt & 0b111110) == 0b001110 ? ONE : ZERO);
+
 		switch (IAsInt)
 		{
 		case 0:
@@ -268,13 +290,6 @@ public class ModelAm2904RegCTInstrDecode extends SimpleRectangularHardcodedModel
 			readWriteEnds.get("MSR_MUX").feedSignals(ONE, ZERO, ZERO);
 			break;
 		}
-		readWriteEnds.get("OEN").feedSignals(I5_0Bits[0].or(I5_0Bits[1]).or(I5_0Bits[2]).or(I5_0Bits[3]).or(I5_0Bits[4]).or(I5_0Bits[5]));
-		readWriteEnds.get("Y_MUX").feedSignals(I5_0Bits[0], I5_0Bits[1]);
-		readWriteEnds.get("CT_INV").feedSignals(I5_0Bits[5]);
-		readWriteEnds.get("CT_MUX").feedSignals(I5_0Bits[2], I5_0Bits[3], I5_0Bits[4]);
-		readWriteEnds.get("CT_EXP").feedSignals((IAsInt & 0b111110) == 0b001110 ? ONE : ZERO);
-		readWriteEnds.get("C0_MUX").feedSignals(I12_11Bits[0], I12_11Bits[1], I5_0Bits[0],
-				I5_0Bits[2].and(I5_0Bits[3].not()).and(I5_0Bits[4].not()));
 		return null;
 	}
 
