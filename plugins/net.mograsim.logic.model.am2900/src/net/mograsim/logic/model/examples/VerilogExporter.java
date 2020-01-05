@@ -423,6 +423,9 @@ public class VerilogExporter
 			result.append(COMPONENT_PREFIX);
 			String paramsString = subcomponentParams.params == JsonNull.INSTANCE ? "" : subcomponentParams.params.toString();
 			result.append(sanitizeVerilog(subcomponentID + paramsString));
+			result.append(' ');
+			// abuse the pinIdentifierGenerator for making these unique
+			result.append(pinIdentifierGenerator.getPinID("comp", subcomponentName));
 			result.append(" (");
 			for (int i = 0; i < subcomponentInterfacePinNames.size(); i++)
 			{
