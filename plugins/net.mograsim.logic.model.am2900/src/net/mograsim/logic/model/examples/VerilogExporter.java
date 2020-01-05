@@ -18,6 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.gson.JsonElement;
+import com.google.gson.JsonNull;
 
 import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.LogicModelModifiable;
@@ -420,7 +421,8 @@ public class VerilogExporter
 			}
 
 			result.append(COMPONENT_PREFIX);
-			result.append(sanitizeVerilog(subcomponentID + subcomponentParams.params));
+			String paramsString = subcomponentParams.params == JsonNull.INSTANCE ? "" : subcomponentParams.params.toString();
+			result.append(sanitizeVerilog(subcomponentID + paramsString));
 			result.append(" (");
 			for (int i = 0; i < subcomponentInterfacePinNames.size(); i++)
 			{
