@@ -67,7 +67,7 @@ public class LogicExecuter
 						}
 					}
 					catch (@SuppressWarnings("unused") InterruptedException e)
-					{// do nothing; it is normal execution flow to be interrupted
+					{ // do nothing; it is normal execution flow to be interrupted
 					}
 				}
 			}
@@ -83,8 +83,11 @@ public class LogicExecuter
 		timeline.addEventAddedListener(event ->
 		{
 			if (isRunningLive.get())
-				if (Timeline.timeCmp(event.getTiming(), nextExecSimulTime.get()) < 0)
+			{
+				long nextExecSimulTime = this.nextExecSimulTime.get();
+				if (nextExecSimulTime == -1 || Timeline.timeCmp(event.getTiming(), nextExecSimulTime) < 0)
 					simulationThread.interrupt();
+			}
 		});
 		// not optimal; but we don't expect this to happen very often
 		tf.addSimulTimeToRealTimeFactorChangedListener(d -> simulationThread.interrupt());

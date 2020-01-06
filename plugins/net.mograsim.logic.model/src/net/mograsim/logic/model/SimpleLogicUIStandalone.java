@@ -46,6 +46,7 @@ public class SimpleLogicUIStandalone
 			beforeRun.accept(new VisualisationObjects(logicModel, timeline, ui, exec));
 
 		// run it
+		exec.setSpeedFactor(1);
 		exec.startLiveExecution();
 		ui.run();
 		exec.stopLiveExecution();
