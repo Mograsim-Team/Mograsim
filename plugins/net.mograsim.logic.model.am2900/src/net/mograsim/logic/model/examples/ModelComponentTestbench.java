@@ -43,14 +43,14 @@ public class ModelComponentTestbench
 		for (int i = 0; i < inputPinNames.size(); i++)
 		{
 			String pinName = inputPinNames.get(i);
-			ModelManualSwitch sw = new ModelManualSwitch(model, comp.getPin(pinName).logicWidth);
+			ModelManualSwitch sw = new ModelManualSwitch(model, comp.getPin(pinName).logicWidth, pinName);
 			sw.moveTo(0, 20 * i);
 			new ModelWire(model, comp.getPin(pinName), sw.getOutputPin());
 		}
 		for (int i = 0; i < outputPinNames.size(); i++)
 		{
 			String pinName = outputPinNames.get(i);
-			ModelBitDisplay bd = new ModelBitDisplay(model, comp.getPin(pinName).logicWidth);
+			ModelBitDisplay bd = new ModelBitDisplay(model, comp.getPin(pinName).logicWidth, pinName);
 			bd.moveTo(200, 20 * i);
 			new ModelWire(model, comp.getPin(pinName), bd.getInputPin());
 		}
