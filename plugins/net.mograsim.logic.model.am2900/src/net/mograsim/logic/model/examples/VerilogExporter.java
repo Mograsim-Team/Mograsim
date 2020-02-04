@@ -305,13 +305,14 @@ public class VerilogExporter
 
 	private void appendInterface(StringBuilder result)
 	{
+		result.append("input rst");
 		if (!sortedInterfacePinNames.isEmpty())
 		{
 			Map<String, Integer> logicWidthsPerInterfacePinName = Arrays.stream(componentJson.interfacePins)
 					.collect(Collectors.toMap(p -> p.name, p -> p.logicWidth));
-			result.append('\n');
 			for (int i = 0; i < sortedInterfacePinNames.size(); i++)
 			{
+				result.append(",\n");
 				String interfacePinName = sortedInterfacePinNames.get(i);
 				int logicWidth = logicWidthsPerInterfacePinName.get(interfacePinName);
 
@@ -325,10 +326,8 @@ public class VerilogExporter
 				appendLogicWidth(result, logicWidth);
 				result.append(sanitizeVerilog(interfacePinName));
 				result.append("_res");
-				if (i != sortedInterfacePinNames.size() - 1)
-					result.append(',');
-				result.append('\n');
 			}
+			result.append('\n');
 		}
 	}
 
@@ -395,7 +394,12 @@ public class VerilogExporter
 
 			result.append("assign ");
 			result.append(sanitizeVerilog(resultWireName));
-			result.append(" = ");
+			result.append(" = rst ? ");
+			result.append(logicWidth * 2);
+			result.append("'b");
+			for (int i = 0; i < logicWidth; i++)
+				result.append("10");
+			result.append(" : ");
 			result.append(sanitizeVerilog(lastWireName));
 			result.append(";\n");
 		}
@@ -426,9 +430,10 @@ public class VerilogExporter
 			result.append(' ');
 			// abuse the pinIdentifierGenerator for making these unique
 			result.append(pinIdentifierGenerator.getPinID("comp", subcomponentName));
-			result.append(" (");
+			result.append(" (rst");
 			for (int i = 0; i < subcomponentInterfacePinNames.size(); i++)
 			{
+				result.append(",\n  ");
 				String innerPinID = pinIdentifierGenerator.getPinID(subcomponentName, subcomponentInterfacePinNames.get(i));
 
 				String lastWireName;
@@ -452,8 +457,6 @@ public class VerilogExporter
 				result.append(sanitizeVerilog(nextWireName));
 				result.append(", ");
 				result.append(sanitizeVerilog(resultWireName));
-				if (i != subcomponentInterfacePinNames.size() - 1)
-					result.append(", \n  ");
 			}
 			result.append(");\n\n");
 		}
