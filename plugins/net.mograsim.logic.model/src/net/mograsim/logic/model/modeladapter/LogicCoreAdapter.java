@@ -142,11 +142,14 @@ public class LogicCoreAdapter
 		return connectedPinsPerPin;
 	}
 
+	public static final Map<Class<? extends ModelComponent>, Integer> gateCountsPerComponentClass = new HashMap<>();
+
 	@SuppressWarnings("unchecked")
 	private static <G extends ModelComponent> void createAndLinkComponent(Timeline timeline, CoreModelParameters params,
 			ModelComponent modelComponent, Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		Class<?> cls = modelComponent.getClass();
+		gateCountsPerComponentClass.merge(modelComponent.getClass(), 1, Integer::sum);
 		ComponentAdapter<? super G> adapter = null;
 		while (cls != ModelComponent.class && adapter == null)
 		{
