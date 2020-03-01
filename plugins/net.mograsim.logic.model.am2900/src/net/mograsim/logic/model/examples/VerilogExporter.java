@@ -305,7 +305,7 @@ public class VerilogExporter
 
 	private void appendInterface(StringBuilder result)
 	{
-		result.append("input rst");
+		result.append("input rst, input clk");
 		if (!sortedInterfacePinNames.isEmpty())
 		{
 			Map<String, Integer> logicWidthsPerInterfacePinName = Arrays.stream(componentJson.interfacePins)
@@ -430,7 +430,7 @@ public class VerilogExporter
 			result.append(' ');
 			// abuse the pinIdentifierGenerator for making these unique
 			result.append(pinIdentifierGenerator.getPinID("comp", subcomponentName));
-			result.append(" (rst");
+			result.append(" (rst, clk");
 			for (int i = 0; i < subcomponentInterfacePinNames.size(); i++)
 			{
 				result.append(",\n  ");
