@@ -229,7 +229,8 @@ public class VerilogExporter
 	{
 		return combinedInterfacePinsPerComponentID.entrySet().stream().collect(Collectors.toMap(Entry::getKey, e ->
 		{
-			List<String> names = e.getValue().values().stream().distinct().collect(Collectors.toList());
+			List<String> names = e.getValue().values().stream().distinct().sorted().collect(Collectors.toList());
+			System.out.println("Assuming following order for interface pins of " + e.getKey() + ": " + names);
 			Map<String, Integer> widthesPerName = Arrays.stream(componentsById.get(e.getKey()).interfacePins)
 					.collect(Collectors.toMap(p -> p.name, p -> p.logicWidth));
 			List<Integer> widthes = names.stream().map(widthesPerName::get).collect(Collectors.toList());
@@ -462,10 +463,18 @@ public class VerilogExporter
 		}
 	}
 
+	private static Map<Tuple2<String, JsonElement>, Tuple2<List<String>, List<Integer>>> atomicComponentInterfaces = new HashMap<>();
+
 	private Tuple2<List<String>, List<Integer>> getSubcomponentInterfacePinNamesAndWidths(String subcomponentID,
 			JsonElement subcomponentParams)
 	{
 		Tuple2<List<String>, List<Integer>> result = sortedInterfacePinNamesAndWidthsPerComponentID.get(subcomponentID);
+		if (result != null)
+			return result;
+
+		Tuple2<String, JsonElement> subcomponentKey = new Tuple2<>(subcomponentID, subcomponentParams);
+
+		result = atomicComponentInterfaces.get(subcomponentKey);
 		if (result != null)
 			return result;
 
@@ -474,8 +483,12 @@ public class VerilogExporter
 		List<String> names = pins.keySet().stream().sorted().collect(Collectors.toList());
 		List<Integer> widthes = pins.entrySet().stream().sorted(Comparator.comparing(e -> e.getKey())).map(Entry::getValue)
 				.map(p -> p.logicWidth).collect(Collectors.toList());
-		System.out.println("Assuming following order for interface pins of " + subcomponentID + ": " + names);
-		return new Tuple2<>(names, widthes);
+		System.out.println(
+				"Assuming following order for interface pins of " + subcomponentID + " with params " + subcomponentParams + ": " + names);
+		result = new Tuple2<>(names, widthes);
+
+		atomicComponentInterfaces.put(subcomponentKey, result);
+		return result;
 	}
 
 	private static void appendLogicWidth(StringBuilder result, int logicWidth)
@@ -539,6 +552,41 @@ public class VerilogExporter
 		{
 			this.e1 = e1;
 			this.e2 = e2;
+		}
+
+		@Override
+		public int hashCode()
+		{
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((e1 == null) ? 0 : e1.hashCode());
+			result = prime * result + ((e2 == null) ? 0 : e2.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj)
+		{
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Tuple2<?, ?> other = (Tuple2<?, ?>) obj;
+			if (e1 == null)
+			{
+				if (other.e1 != null)
+					return false;
+			} else if (!e1.equals(other.e1))
+				return false;
+			if (e2 == null)
+			{
+				if (other.e2 != null)
+					return false;
+			} else if (!e2.equals(other.e2))
+				return false;
+			return true;
 		}
 	}
 
