@@ -54,9 +54,9 @@ public class DefaultPreferences extends Preferences
 		case "net.mograsim.logic.model.linewidth.wire.multibit":
 			return 0.85;
 		case "net.mograsim.logic.model.submodel.zoomalpha0":
-			return 0.8;
+			return 0.1;
 		case "net.mograsim.logic.model.submodel.zoomalpha1":
-			return 0.9;
+			return 0.2;
 		default:
 			throw new IllegalArgumentException("Unknown double preference name: " + name);
 		}

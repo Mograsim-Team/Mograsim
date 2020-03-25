@@ -362,7 +362,7 @@ public abstract class SubmodelComponent extends ModelComponent
 		GCConfig conf = new GCConfig(gc);
 		GeneralGC tgc = new TranslatedGC(gc, getPosX(), getPosY(), submodelScale, true);
 		conf.reset(tgc);
-		double visibleRegionFillRatio = Math.max(getWidth() / visibleRegion.width, getHeight() / visibleRegion.height);
+		double visibleRegionFillRatio = getWidth() * getHeight() / (visibleRegion.width * visibleRegion.height);
 		/**
 		 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel
 		 * starts to be visible.
