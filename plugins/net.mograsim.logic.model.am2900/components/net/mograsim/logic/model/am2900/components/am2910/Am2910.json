@@ -472,11 +472,11 @@
       {
         "pin1": {
           "compName": "Am2910InstrPLA#0",
-          "pinName": "RWE"
+          "pinName": "RLD"
         },
         "pin2": {
           "compName": "Am2910RegCntr#0",
-          "pinName": "WE"
+          "pinName": "LD"
         },
         "name": "unnamedWire#11",
         "path": [

@@ -29,7 +29,7 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 		addPin(new Pin(model, this, "_PL", 1, PinUsage.OUTPUT, 5, 85), Position.TOP);
 		addPin(new Pin(model, this, "_MAP", 1, PinUsage.OUTPUT, 15, 85), Position.TOP);
 		addPin(new Pin(model, this, "_VECT", 1, PinUsage.OUTPUT, 25, 85), Position.TOP);
-		addPin(new Pin(model, this, "RWE", 1, PinUsage.OUTPUT, 30, 5), Position.LEFT);
+		addPin(new Pin(model, this, "RLD", 1, PinUsage.OUTPUT, 30, 5), Position.LEFT);
 		addPin(new Pin(model, this, "RDEC", 1, PinUsage.OUTPUT, 30, 15), Position.LEFT);
 		addPin(new Pin(model, this, "YD", 1, PinUsage.OUTPUT, 30, 25), Position.LEFT);
 		addPin(new Pin(model, this, "YR", 1, PinUsage.OUTPUT, 30, 35), Position.LEFT);
@@ -50,7 +50,7 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 		ReadWriteEnd _PL = readWriteEnds.get("_PL");
 		ReadWriteEnd _MAP = readWriteEnds.get("_MAP");
 		ReadWriteEnd _VECT = readWriteEnds.get("_VECT");
-		ReadWriteEnd RWE = readWriteEnds.get("RWE");
+		ReadWriteEnd RLD = readWriteEnds.get("RLD");
 		ReadWriteEnd RDEC = readWriteEnds.get("RDEC");
 		ReadWriteEnd YD = readWriteEnds.get("YD");
 		ReadWriteEnd YR = readWriteEnds.get("YR");
@@ -73,7 +73,7 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 				_PL.feedSignals(U);
 				_MAP.feedSignals(U);
 				_VECT.feedSignals(U);
-				RWE.feedSignals(U);
+				RLD.feedSignals(U);
 				RDEC.feedSignals(U);
 				YD.feedSignals(U);
 				YR.feedSignals(U);
@@ -86,7 +86,7 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 				_PL.feedSignals(X);
 				_MAP.feedSignals(X);
 				_VECT.feedSignals(X);
-				RWE.feedSignals(X);
+				RLD.feedSignals(X);
 				RDEC.feedSignals(X);
 				YD.feedSignals(X);
 				YR.feedSignals(X);
@@ -112,19 +112,19 @@ public class ModelAm2910InstrPLA extends SimpleRectangularHardcodedModelComponen
 			_VECT.feedSignals(_VECTVal);
 			if (IAsInt == 8 || IAsInt == 9 || IAsInt == 15)
 			{
-				RWE.feedSignals(Req0Val);
+				RLD.feedSignals(ZERO);
 				RDEC.feedSignals(Req0Val);// "forward" X/U/Z
 			} else if (IAsInt == 4)
 			{
-				RWE.feedSignals(PASSVal);
-				RDEC.feedSignals(PASSVal == ONE ? ZERO : PASSVal);// "forward" X/U/Z
+				RLD.feedSignals(PASSVal);// "forward" X/U/Z
+				RDEC.feedSignals(X);
 			} else if (IAsInt == 12)
 			{
-				RWE.feedSignals(ONE);
-				RDEC.feedSignals(ZERO);
+				RLD.feedSignals(ONE);
+				RDEC.feedSignals(X);
 			} else
 			{
-				RWE.feedSignals(ZERO);
+				RLD.feedSignals(ZERO);
 				RDEC.feedSignals(ZERO);
 			}
 			if (!PASSVal.isBinary())

@@ -26,7 +26,7 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 		setSize(40, 40);
 		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 20, 0), Position.BOTTOM);
 		addPin(new Pin(model, this, "_RLD", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
-		addPin(new Pin(model, this, "WE", 1, PinUsage.INPUT, 0, 20), Position.RIGHT);
+		addPin(new Pin(model, this, "LD", 1, PinUsage.INPUT, 0, 20), Position.RIGHT);
 		addPin(new Pin(model, this, "DEC", 1, PinUsage.INPUT, 0, 30), Position.RIGHT);
 		addPin(new Pin(model, this, "C", 1, PinUsage.INPUT, 40, 20), Position.LEFT);
 		addPin(new Pin(model, this, "Y", 12, PinUsage.OUTPUT, 20, 40), Position.TOP);
@@ -41,7 +41,7 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 
 		ReadEnd D = readEnds.get("D");
 		ReadEnd _RLD = readEnds.get("_RLD");
-		ReadEnd WE = readEnds.get("WE");
+		ReadEnd LD = readEnds.get("LD");
 		ReadEnd DEC = readEnds.get("DEC");
 		ReadEnd C = readEnds.get("C");
 		ReadWriteEnd Y = readWriteEnds.get("Y");
@@ -52,9 +52,9 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 		// TODO handle U/X/Z
 		if (oldCVal == ZERO && CVal == ONE)
 		{
-			if ((DEC.getValue() == ZERO && WE.getValue() == ONE) || _RLD.getValue() == ZERO)
+			if (LD.getValue() == ONE || _RLD.getValue() == ZERO)
 				System.arraycopy(D.getValues().getBits(), 0, QC, 0, 12);
-			else if (WE.getValue() == ONE)
+			else if (DEC.getValue() == ONE)
 			{
 				Bit carry = Bit.ZERO;
 				// TODO extract to helper. This code almost also exists in Modelinc.
