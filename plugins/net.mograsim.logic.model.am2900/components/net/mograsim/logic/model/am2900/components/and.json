@@ -1,5 +1,5 @@
 {
-  "width": 35.0,
+  "width": 25.0,
   "height": 20.0,
   "interfacePins": [
     {
@@ -22,7 +22,7 @@
     },
     {
       "location": {
-        "x": 35.0,
+        "x": 25.0,
         "y": 5.0
       },
       "name": "Y",
@@ -37,7 +37,7 @@
         "id": "NandGate",
         "name": "NandGate#0",
         "pos": {
-          "x": 20.0,
+          "x": 10.0,
           "y": 15.0
         },
         "params": 1
@@ -46,7 +46,7 @@
         "id": "NandGate",
         "name": "NandGate#1",
         "pos": {
-          "x": 50.0,
+          "x": 35.0,
           "y": 15.0
         },
         "params": 1
@@ -55,7 +55,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
-          "x": 44.0,
+          "x": 31.5,
           "y": 24.0
         },
         "params": 1
@@ -71,7 +71,17 @@
           "compName": "NandGate#0",
           "pinName": "A"
         },
-        "name": "unnamedWire#0"
+        "name": "unnamedWire#0",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 12.5
+          },
+          {
+            "x": 5.0,
+            "y": 20.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -82,7 +92,17 @@
           "compName": "NandGate#0",
           "pinName": "B"
         },
-        "name": "unnamedWire#1"
+        "name": "unnamedWire#1",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 37.5
+          },
+          {
+            "x": 5.0,
+            "y": 30.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -108,7 +128,7 @@
         "name": "unnamedWire#3",
         "path": [
           {
-            "x": 45.0,
+            "x": 32.5,
             "y": 20.0
           }
         ]
@@ -125,7 +145,7 @@
         "name": "unnamedWire#4",
         "path": [
           {
-            "x": 45.0,
+            "x": 32.5,
             "y": 30.0
           }
         ]
@@ -139,7 +159,17 @@
           "compName": "_submodelinterface",
           "pinName": "Y"
         },
-        "name": "unnamedWire#5"
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 57.5,
+            "y": 25.0
+          },
+          {
+            "x": 57.5,
+            "y": 12.5
+          }
+        ]
       }
     ],
     "version": "0.1.1"
