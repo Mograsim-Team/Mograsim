@@ -137,7 +137,7 @@
         "name": "NandGate#0",
         "pos": {
           "x": 45.0,
-          "y": 95.0
+          "y": 105.0
         },
         "params": 1
       },
@@ -146,7 +146,7 @@
         "name": "NandGate#1",
         "pos": {
           "x": 45.0,
-          "y": 120.0
+          "y": 130.0
         },
         "params": 1
       },
@@ -155,7 +155,7 @@
         "name": "NandGate#2",
         "pos": {
           "x": 45.0,
-          "y": 180.0
+          "y": 190.0
         },
         "params": 1
       },
@@ -163,8 +163,8 @@
         "id": "NandGate",
         "name": "NandGate#3",
         "pos": {
-          "x": 125.0,
-          "y": 350.0
+          "x": 130.0,
+          "y": 355.0
         },
         "params": 1
       },
@@ -173,7 +173,7 @@
         "name": "NandGate#4",
         "pos": {
           "x": 45.0,
-          "y": 150.0
+          "y": 160.0
         },
         "params": 1
       },
@@ -191,7 +191,7 @@
         "name": "NandGate#6",
         "pos": {
           "x": 140.0,
-          "y": 85.0
+          "y": 95.0
         },
         "params": 1
       },
@@ -200,7 +200,7 @@
         "name": "NandGate#7",
         "pos": {
           "x": 140.0,
-          "y": 60.0
+          "y": 70.0
         },
         "params": 1
       },
@@ -217,8 +217,8 @@
         "id": "NandGate",
         "name": "NandGate#9",
         "pos": {
-          "x": 165.0,
-          "y": 15.0
+          "x": 85.0,
+          "y": 5.0
         },
         "params": 1
       },
@@ -226,8 +226,8 @@
         "id": "NandGate",
         "name": "NandGate#10",
         "pos": {
-          "x": 130.0,
-          "y": 235.0
+          "x": 135.0,
+          "y": 280.0
         },
         "params": 1
       },
@@ -235,8 +235,8 @@
         "id": "NandGate",
         "name": "NandGate#11",
         "pos": {
-          "x": 160.0,
-          "y": 240.0
+          "x": 165.0,
+          "y": 285.0
         },
         "params": 1
       },
@@ -244,8 +244,8 @@
         "id": "NandGate",
         "name": "NandGate#12",
         "pos": {
-          "x": 190.0,
-          "y": 235.0
+          "x": 195.0,
+          "y": 280.0
         },
         "params": 1
       },
@@ -253,8 +253,8 @@
         "id": "NandGate",
         "name": "NandGate#13",
         "pos": {
-          "x": 135.0,
-          "y": 270.0
+          "x": 170.0,
+          "y": 310.0
         },
         "params": 1
       },
@@ -262,8 +262,8 @@
         "id": "NandGate",
         "name": "NandGate#14",
         "pos": {
-          "x": 220.0,
-          "y": 240.0
+          "x": 225.0,
+          "y": 285.0
         },
         "params": 1
       },
@@ -271,8 +271,8 @@
         "id": "NandGate",
         "name": "NandGate#15",
         "pos": {
-          "x": 190.0,
-          "y": 170.0
+          "x": 195.0,
+          "y": 190.0
         },
         "params": 1
       },
@@ -280,8 +280,8 @@
         "id": "NandGate",
         "name": "NandGate#16",
         "pos": {
-          "x": 130.0,
-          "y": 175.0
+          "x": 135.0,
+          "y": 200.0
         },
         "params": 1
       },
@@ -289,7 +289,7 @@
         "id": "NandGate",
         "name": "NandGate#17",
         "pos": {
-          "x": 245.0,
+          "x": 255.0,
           "y": 90.0
         },
         "params": 1
@@ -298,8 +298,8 @@
         "id": "NandGate",
         "name": "NandGate#18",
         "pos": {
-          "x": 160.0,
-          "y": 175.0
+          "x": 165.0,
+          "y": 200.0
         },
         "params": 1
       },
@@ -307,8 +307,8 @@
         "id": "NandGate",
         "name": "NandGate#19",
         "pos": {
-          "x": 220.0,
-          "y": 175.0
+          "x": 225.0,
+          "y": 190.0
         },
         "params": 1
       },
@@ -316,7 +316,7 @@
         "id": "NandGate",
         "name": "NandGate#20",
         "pos": {
-          "x": 210.0,
+          "x": 220.0,
           "y": 45.0
         },
         "params": 1
@@ -325,8 +325,8 @@
         "id": "NandGate",
         "name": "NandGate#21",
         "pos": {
-          "x": 250.0,
-          "y": 235.0
+          "x": 255.0,
+          "y": 280.0
         },
         "params": 1
       },
@@ -334,7 +334,7 @@
         "id": "NandGate",
         "name": "NandGate#22",
         "pos": {
-          "x": 245.0,
+          "x": 255.0,
           "y": 115.0
         },
         "params": 1
@@ -343,8 +343,8 @@
         "id": "NandGate",
         "name": "NandGate#23",
         "pos": {
-          "x": 250.0,
-          "y": 175.0
+          "x": 255.0,
+          "y": 190.0
         },
         "params": 1
       },
@@ -352,7 +352,7 @@
         "id": "NandGate",
         "name": "NandGate#24",
         "pos": {
-          "x": 280.0,
+          "x": 290.0,
           "y": 115.0
         },
         "params": 1
@@ -361,8 +361,8 @@
         "id": "NandGate",
         "name": "NandGate#25",
         "pos": {
-          "x": 130.0,
-          "y": 200.0
+          "x": 135.0,
+          "y": 225.0
         },
         "params": 1
       },
@@ -370,8 +370,8 @@
         "id": "NandGate",
         "name": "NandGate#26",
         "pos": {
-          "x": 90.0,
-          "y": 120.0
+          "x": 95.0,
+          "y": 130.0
         },
         "params": 1
       },
@@ -379,8 +379,8 @@
         "id": "NandGate",
         "name": "NandGate#27",
         "pos": {
-          "x": 160.0,
-          "y": 200.0
+          "x": 165.0,
+          "y": 230.0
         },
         "params": 1
       },
@@ -388,8 +388,8 @@
         "id": "NandGate",
         "name": "NandGate#28",
         "pos": {
-          "x": 190.0,
-          "y": 200.0
+          "x": 195.0,
+          "y": 235.0
         },
         "params": 1
       },
@@ -397,8 +397,8 @@
         "id": "NandGate",
         "name": "NandGate#29",
         "pos": {
-          "x": 50.0,
-          "y": 200.0
+          "x": 45.0,
+          "y": 225.0
         },
         "params": 1
       },
@@ -407,7 +407,7 @@
         "name": "NandGate#30",
         "pos": {
           "x": 225.0,
-          "y": 205.0
+          "y": 235.0
         },
         "params": 1
       },
@@ -415,8 +415,8 @@
         "id": "NandGate",
         "name": "NandGate#31",
         "pos": {
-          "x": 365.0,
-          "y": 265.0
+          "x": 290.0,
+          "y": 245.0
         },
         "params": 1
       },
@@ -424,8 +424,8 @@
         "id": "NandGate",
         "name": "NandGate#32",
         "pos": {
-          "x": 330.0,
-          "y": 285.0
+          "x": 255.0,
+          "y": 250.0
         },
         "params": 1
       },
@@ -433,8 +433,8 @@
         "id": "NandGate",
         "name": "NandGate#33",
         "pos": {
-          "x": 295.0,
-          "y": 300.0
+          "x": 325.0,
+          "y": 165.0
         },
         "params": 1
       },
@@ -442,8 +442,8 @@
         "id": "NandGate",
         "name": "NandGate#34",
         "pos": {
-          "x": 250.0,
-          "y": 295.0
+          "x": 295.0,
+          "y": 170.0
         },
         "params": 1
       },
@@ -451,8 +451,8 @@
         "id": "NandGate",
         "name": "NandGate#35",
         "pos": {
-          "x": 205.0,
-          "y": 300.0
+          "x": 250.0,
+          "y": 145.0
         },
         "params": 1
       },
@@ -460,8 +460,8 @@
         "id": "NandGate",
         "name": "NandGate#36",
         "pos": {
-          "x": 170.0,
-          "y": 285.0
+          "x": 220.0,
+          "y": 150.0
         },
         "params": 1
       },
@@ -469,8 +469,8 @@
         "id": "NandGate",
         "name": "NandGate#37",
         "pos": {
-          "x": 230.0,
-          "y": 320.0
+          "x": 115.0,
+          "y": 20.0
         },
         "params": 1
       },
@@ -479,7 +479,7 @@
         "name": "NandGate#38",
         "pos": {
           "x": 95.0,
-          "y": 50.0
+          "y": 60.0
         },
         "params": 1
       },
@@ -496,8 +496,8 @@
         "id": "NandGate",
         "name": "NandGate#40",
         "pos": {
-          "x": 270.0,
-          "y": 325.0
+          "x": 145.0,
+          "y": 30.0
         },
         "params": 1
       },
@@ -518,7 +518,7 @@
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 24.0,
-          "y": 99.0
+          "y": 109.0
         },
         "params": 1
       },
@@ -536,7 +536,7 @@
         "name": "WireCrossPoint#2",
         "pos": {
           "x": 34.0,
-          "y": 354.0
+          "y": 359.0
         },
         "params": 1
       },
@@ -545,7 +545,7 @@
         "name": "WireCrossPoint#3",
         "pos": {
           "x": 29.0,
-          "y": 124.0
+          "y": 134.0
         },
         "params": 1
       },
@@ -554,7 +554,7 @@
         "name": "WireCrossPoint#4",
         "pos": {
           "x": 39.0,
-          "y": 184.0
+          "y": 194.0
         },
         "params": 1
       },
@@ -562,8 +562,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#5",
         "pos": {
-          "x": 119.0,
-          "y": 339.0
+          "x": 124.0,
+          "y": 344.0
         },
         "params": 1
       },
@@ -581,7 +581,7 @@
         "name": "WireCrossPoint#7",
         "pos": {
           "x": 34.0,
-          "y": 164.0
+          "y": 174.0
         },
         "params": 1
       },
@@ -590,7 +590,7 @@
         "name": "WireCrossPoint#8",
         "pos": {
           "x": 34.0,
-          "y": 154.0
+          "y": 164.0
         },
         "params": 1
       },
@@ -599,7 +599,7 @@
         "name": "WireCrossPoint#9",
         "pos": {
           "x": 24.0,
-          "y": 89.0
+          "y": 99.0
         },
         "params": 1
       },
@@ -608,7 +608,7 @@
         "name": "WireCrossPoint#10",
         "pos": {
           "x": 74.0,
-          "y": 129.0
+          "y": 139.0
         },
         "params": 1
       },
@@ -634,8 +634,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#13",
         "pos": {
-          "x": 84.0,
-          "y": 74.0
+          "x": 89.0,
+          "y": 84.0
         },
         "params": 1
       },
@@ -644,7 +644,7 @@
         "name": "WireCrossPoint#14",
         "pos": {
           "x": 79.0,
-          "y": 154.0
+          "y": 164.0
         },
         "params": 1
       },
@@ -652,8 +652,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#15",
         "pos": {
-          "x": 79.0,
-          "y": 189.0
+          "x": 84.0,
+          "y": 199.0
         },
         "params": 1
       },
@@ -662,7 +662,7 @@
         "name": "WireCrossPoint#16",
         "pos": {
           "x": 29.0,
-          "y": 134.0
+          "y": 144.0
         },
         "params": 1
       },
@@ -680,7 +680,7 @@
         "name": "WireCrossPoint#18",
         "pos": {
           "x": 69.0,
-          "y": 124.0
+          "y": 134.0
         },
         "params": 1
       },
@@ -689,7 +689,7 @@
         "name": "WireCrossPoint#19",
         "pos": {
           "x": 74.0,
-          "y": 174.0
+          "y": 204.0
         },
         "params": 1
       },
@@ -698,7 +698,7 @@
         "name": "WireCrossPoint#20",
         "pos": {
           "x": 24.0,
-          "y": 109.0
+          "y": 119.0
         },
         "params": 1
       },
@@ -707,7 +707,7 @@
         "name": "WireCrossPoint#21",
         "pos": {
           "x": 34.0,
-          "y": 259.0
+          "y": 304.0
         },
         "params": 1
       },
@@ -716,7 +716,7 @@
         "name": "WireCrossPoint#22",
         "pos": {
           "x": 24.0,
-          "y": 249.0
+          "y": 294.0
         },
         "params": 1
       },
@@ -725,7 +725,7 @@
         "name": "WireCrossPoint#23",
         "pos": {
           "x": 39.0,
-          "y": 194.0
+          "y": 204.0
         },
         "params": 1
       },
@@ -733,8 +733,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#24",
         "pos": {
-          "x": 119.0,
-          "y": 364.0
+          "x": 124.0,
+          "y": 369.0
         },
         "params": 1
       },
@@ -742,8 +742,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#25",
         "pos": {
-          "x": 119.0,
-          "y": 284.0
+          "x": 124.0,
+          "y": 324.0
         },
         "params": 1
       },
@@ -751,8 +751,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#26",
         "pos": {
-          "x": 124.0,
-          "y": 259.0
+          "x": 129.0,
+          "y": 304.0
         },
         "params": 1
       },
@@ -769,8 +769,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#28",
         "pos": {
-          "x": 119.0,
-          "y": 189.0
+          "x": 124.0,
+          "y": 214.0
         },
         "params": 1
       },
@@ -779,7 +779,7 @@
         "name": "WireCrossPoint#29",
         "pos": {
           "x": 74.0,
-          "y": 239.0
+          "y": 284.0
         },
         "params": 1
       },
@@ -787,7 +787,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#30",
         "pos": {
-          "x": 199.0,
+          "x": 214.0,
           "y": 74.0
         },
         "params": 1
@@ -797,7 +797,7 @@
         "name": "WireCrossPoint#31",
         "pos": {
           "x": 129.0,
-          "y": 44.0
+          "y": 64.0
         },
         "params": 1
       },
@@ -805,8 +805,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#32",
         "pos": {
-          "x": 129.0,
-          "y": 144.0
+          "x": 134.0,
+          "y": 154.0
         },
         "params": 1
       },
@@ -815,7 +815,7 @@
         "name": "WireCrossPoint#33",
         "pos": {
           "x": 129.0,
-          "y": 64.0
+          "y": 74.0
         },
         "params": 1
       },
@@ -824,7 +824,7 @@
         "name": "WireCrossPoint#34",
         "pos": {
           "x": 134.0,
-          "y": 99.0
+          "y": 109.0
         },
         "params": 1
       },
@@ -833,7 +833,7 @@
         "name": "WireCrossPoint#35",
         "pos": {
           "x": 34.0,
-          "y": 79.0
+          "y": 89.0
         },
         "params": 1
       },
@@ -841,7 +841,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#36",
         "pos": {
-          "x": 199.0,
+          "x": 214.0,
           "y": 49.0
         },
         "params": 1
@@ -850,7 +850,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#37",
         "pos": {
-          "x": 199.0,
+          "x": 214.0,
           "y": 59.0
         },
         "params": 1
@@ -859,8 +859,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#38",
         "pos": {
-          "x": 244.0,
-          "y": 184.0
+          "x": 249.0,
+          "y": 199.0
         },
         "params": 1
       },
@@ -869,7 +869,7 @@
         "name": "WireCrossPoint#39",
         "pos": {
           "x": 79.0,
-          "y": 134.0
+          "y": 144.0
         },
         "params": 1
       },
@@ -878,7 +878,7 @@
         "name": "WireCrossPoint#40",
         "pos": {
           "x": 69.0,
-          "y": 104.0
+          "y": 114.0
         },
         "params": 1
       },
@@ -886,8 +886,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#41",
         "pos": {
-          "x": 124.0,
-          "y": 224.0
+          "x": 129.0,
+          "y": 269.0
         },
         "params": 1
       },
@@ -895,8 +895,116 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#42",
         "pos": {
-          "x": 89.0,
-          "y": 54.0
+          "x": 79.0,
+          "y": 64.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#43",
+        "pos": {
+          "x": 4.0,
+          "y": 239.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#44",
+        "pos": {
+          "x": 24.0,
+          "y": 229.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#45",
+        "pos": {
+          "x": 84.0,
+          "y": 214.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#46",
+        "pos": {
+          "x": 29.0,
+          "y": 154.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#47",
+        "pos": {
+          "x": 214.0,
+          "y": 104.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#48",
+        "pos": {
+          "x": 39.0,
+          "y": 64.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#49",
+        "pos": {
+          "x": 109.0,
+          "y": 24.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#50",
+        "pos": {
+          "x": 109.0,
+          "y": 14.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#51",
+        "pos": {
+          "x": 79.0,
+          "y": 49.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#52",
+        "pos": {
+          "x": 24.0,
+          "y": 184.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#53",
+        "pos": {
+          "x": 79.0,
+          "y": 169.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#54",
+        "pos": {
+          "x": 74.0,
+          "y": 264.0
         },
         "params": 1
       },
@@ -904,16 +1012,16 @@
         "id": "and",
         "name": "and#0",
         "pos": {
-          "x": 125.0,
-          "y": 375.0
+          "x": 130.0,
+          "y": 380.0
         }
       },
       {
         "id": "and",
         "name": "and#1",
         "pos": {
-          "x": 125.0,
-          "y": 325.0
+          "x": 130.0,
+          "y": 330.0
         }
       },
       {
@@ -921,7 +1029,7 @@
         "name": "and#2",
         "pos": {
           "x": 45.0,
-          "y": 65.0
+          "y": 75.0
         }
       },
       {
@@ -929,23 +1037,23 @@
         "name": "and#3",
         "pos": {
           "x": 80.0,
-          "y": 385.0
+          "y": 390.0
         }
       },
       {
         "id": "and",
         "name": "and#4",
         "pos": {
-          "x": 90.0,
-          "y": 180.0
+          "x": 95.0,
+          "y": 210.0
         }
       },
       {
         "id": "and",
         "name": "and#5",
         "pos": {
-          "x": 90.0,
-          "y": 95.0
+          "x": 95.0,
+          "y": 105.0
         }
       },
       {
@@ -953,14 +1061,14 @@
         "name": "and#6",
         "pos": {
           "x": 45.0,
-          "y": 40.0
+          "y": 50.0
         }
       },
       {
         "id": "and",
         "name": "and#7",
         "pos": {
-          "x": 210.0,
+          "x": 220.0,
           "y": 70.0
         }
       },
@@ -968,23 +1076,23 @@
         "id": "and",
         "name": "and#8",
         "pos": {
-          "x": 90.0,
-          "y": 150.0
+          "x": 95.0,
+          "y": 160.0
         }
       },
       {
         "id": "and",
         "name": "and#9",
         "pos": {
-          "x": 135.0,
-          "y": 140.0
+          "x": 140.0,
+          "y": 150.0
         }
       },
       {
         "id": "and",
         "name": "and#10",
         "pos": {
-          "x": 210.0,
+          "x": 220.0,
           "y": 20.0
         }
       },
@@ -992,8 +1100,8 @@
         "id": "and",
         "name": "and#11",
         "pos": {
-          "x": 90.0,
-          "y": 235.0
+          "x": 95.0,
+          "y": 280.0
         }
       },
       {
@@ -1001,14 +1109,14 @@
         "name": "and#12",
         "pos": {
           "x": 140.0,
-          "y": 110.0
+          "y": 120.0
         }
       },
       {
         "id": "and",
         "name": "and#13",
         "pos": {
-          "x": 210.0,
+          "x": 220.0,
           "y": 100.0
         }
       }
@@ -1135,7 +1243,7 @@
         "path": [
           {
             "x": 30.0,
-            "y": 70.0
+            "y": 80.0
           }
         ]
       },
@@ -1248,7 +1356,7 @@
         "path": [
           {
             "x": 35.0,
-            "y": 390.0
+            "y": 395.0
           }
         ]
       },
@@ -1262,12 +1370,7 @@
           "pinName": ""
         },
         "name": "unnamedWire#19",
-        "path": [
-          {
-            "x": 120.0,
-            "y": 185.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1305,16 +1408,16 @@
         "name": "unnamedWire#22",
         "path": [
           {
-            "x": 160.0,
-            "y": 380.0
+            "x": 165.0,
+            "y": 385.0
           },
           {
-            "x": 160.0,
-            "y": 415.0
+            "x": 165.0,
+            "y": 420.0
           },
           {
             "x": 125.0,
-            "y": 415.0
+            "y": 420.0
           }
         ]
       },
@@ -1330,8 +1433,8 @@
         "name": "unnamedWire#23",
         "path": [
           {
-            "x": 85.0,
-            "y": 70.0
+            "x": 90.0,
+            "y": 80.0
           }
         ]
       },
@@ -1348,7 +1451,7 @@
         "path": [
           {
             "x": 175.0,
-            "y": 330.0
+            "y": 335.0
           }
         ]
       },
@@ -1400,16 +1503,16 @@
         "name": "unnamedWire#28",
         "path": [
           {
-            "x": 155.0,
-            "y": 360.0
+            "x": 160.0,
+            "y": 365.0
           },
           {
-            "x": 155.0,
-            "y": 410.0
+            "x": 160.0,
+            "y": 415.0
           },
           {
             "x": 75.0,
-            "y": 410.0
+            "y": 415.0
           }
         ]
       },
@@ -1435,7 +1538,16 @@
           "pinName": ""
         },
         "name": "unnamedWire#30",
-        "path": []
+        "path": [
+          {
+            "x": 200.0,
+            "y": 10.0
+          },
+          {
+            "x": 215.0,
+            "y": 10.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -1479,16 +1591,11 @@
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "WireCrossPoint#14",
+          "compName": "WireCrossPoint#53",
           "pinName": ""
         },
         "name": "unnamedWire#34",
-        "path": [
-          {
-            "x": 80.0,
-            "y": 160.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1515,7 +1622,7 @@
         "path": [
           {
             "x": 75.0,
-            "y": 100.0
+            "y": 110.0
           }
         ]
       },
@@ -1568,7 +1675,7 @@
         "path": [
           {
             "x": 165.0,
-            "y": 95.0
+            "y": 105.0
           },
           {
             "x": 165.0,
@@ -1586,16 +1693,7 @@
           "pinName": "A"
         },
         "name": "unnamedWire#41",
-        "path": [
-          {
-            "x": 165.0,
-            "y": 70.0
-          },
-          {
-            "x": 165.0,
-            "y": 80.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1646,7 +1744,7 @@
         "path": [
           {
             "x": 25.0,
-            "y": 45.0
+            "y": 55.0
           }
         ]
       },
@@ -1664,20 +1762,15 @@
       },
       {
         "pin1": {
-          "compName": "and#6",
-          "pinName": "B"
-        },
-        "pin2": {
           "compName": "WireCrossPoint#12",
           "pinName": ""
         },
+        "pin2": {
+          "compName": "WireCrossPoint#48",
+          "pinName": ""
+        },
         "name": "unnamedWire#47",
-        "path": [
-          {
-            "x": 40.0,
-            "y": 55.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1691,8 +1784,8 @@
         "name": "unnamedWire#48",
         "path": [
           {
-            "x": 85.0,
-            "y": 330.0
+            "x": 90.0,
+            "y": 335.0
           }
         ]
       },
@@ -1718,7 +1811,12 @@
           "pinName": ""
         },
         "name": "unnamedWire#50",
-        "path": []
+        "path": [
+          {
+            "x": 130.0,
+            "y": 55.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -1746,20 +1844,15 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#15",
+          "compName": "WireCrossPoint#45",
           "pinName": ""
         },
         "pin2": {
           "compName": "and#4",
-          "pinName": "B"
+          "pinName": "A"
         },
         "name": "unnamedWire#53",
-        "path": [
-          {
-            "x": 80.0,
-            "y": 195.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1773,8 +1866,8 @@
         "name": "unnamedWire#54",
         "path": [
           {
-            "x": 80.0,
-            "y": 165.0
+            "x": 85.0,
+            "y": 175.0
           }
         ]
       },
@@ -1808,16 +1901,11 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#32",
+          "compName": "WireCrossPoint#46",
           "pinName": ""
         },
         "name": "unnamedWire#57",
-        "path": [
-          {
-            "x": 30.0,
-            "y": 145.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1867,13 +1955,13 @@
         },
         "pin2": {
           "compName": "and#4",
-          "pinName": "A"
+          "pinName": "B"
         },
         "name": "unnamedWire#61",
         "path": [
           {
             "x": 70.0,
-            "y": 185.0
+            "y": 225.0
           }
         ]
       },
@@ -1919,8 +2007,8 @@
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "and#10",
-          "pinName": "A"
+          "compName": "WireCrossPoint#50",
+          "pinName": ""
         },
         "name": "unnamedWire#65",
         "path": []
@@ -1937,18 +2025,18 @@
         "name": "unnamedWire#66",
         "path": [
           {
-            "x": 205.0,
+            "x": 195.0,
             "y": 35.0
           },
           {
-            "x": 205.0,
-            "y": 145.0
+            "x": 195.0,
+            "y": 155.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#19",
+          "compName": "WireCrossPoint#54",
           "pinName": ""
         },
         "pin2": {
@@ -1984,11 +2072,11 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#22",
+          "compName": "WireCrossPoint#20",
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#20",
+          "compName": "WireCrossPoint#52",
           "pinName": ""
         },
         "name": "unnamedWire#70",
@@ -2055,15 +2143,15 @@
         "path": [
           {
             "x": 25.0,
-            "y": 265.0
+            "y": 310.0
           },
           {
-            "x": 155.0,
-            "y": 265.0
+            "x": 160.0,
+            "y": 310.0
           },
           {
-            "x": 155.0,
-            "y": 255.0
+            "x": 160.0,
+            "y": 300.0
           }
         ]
       },
@@ -2104,15 +2192,15 @@
         "path": [
           {
             "x": 40.0,
-            "y": 230.0
+            "y": 275.0
           },
           {
-            "x": 185.0,
-            "y": 230.0
+            "x": 190.0,
+            "y": 275.0
           },
           {
-            "x": 185.0,
-            "y": 240.0
+            "x": 190.0,
+            "y": 285.0
           }
         ]
       },
@@ -2140,8 +2228,8 @@
         "name": "unnamedWire#80",
         "path": [
           {
-            "x": 120.0,
-            "y": 380.0
+            "x": 125.0,
+            "y": 385.0
           }
         ]
       },
@@ -2169,12 +2257,12 @@
         "name": "unnamedWire#82",
         "path": [
           {
-            "x": 215.0,
-            "y": 255.0
+            "x": 220.0,
+            "y": 300.0
           },
           {
-            "x": 215.0,
-            "y": 280.0
+            "x": 220.0,
+            "y": 320.0
           }
         ]
       },
@@ -2214,8 +2302,8 @@
         "name": "unnamedWire#85",
         "path": [
           {
-            "x": 125.0,
-            "y": 250.0
+            "x": 130.0,
+            "y": 295.0
           }
         ]
       },
@@ -2231,8 +2319,8 @@
         "name": "unnamedWire#86",
         "path": [
           {
-            "x": 125.0,
-            "y": 275.0
+            "x": 130.0,
+            "y": 315.0
           }
         ]
       },
@@ -2254,16 +2342,11 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#41",
+          "compName": "WireCrossPoint#43",
           "pinName": ""
         },
         "name": "unnamedWire#88",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 225.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2314,7 +2397,7 @@
         "path": [
           {
             "x": 75.0,
-            "y": 400.0
+            "y": 405.0
           }
         ]
       },
@@ -2328,16 +2411,7 @@
           "pinName": "A"
         },
         "name": "unnamedWire#93",
-        "path": [
-          {
-            "x": 120.0,
-            "y": 175.0
-          },
-          {
-            "x": 120.0,
-            "y": 180.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2351,11 +2425,11 @@
         "name": "unnamedWire#94",
         "path": [
           {
-            "x": 195.0,
-            "y": 45.0
+            "x": 205.0,
+            "y": 65.0
           },
           {
-            "x": 195.0,
+            "x": 205.0,
             "y": 95.0
           }
         ]
@@ -2366,16 +2440,11 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "and#13",
-          "pinName": "A"
+          "compName": "WireCrossPoint#47",
+          "pinName": ""
         },
         "name": "unnamedWire#95",
-        "path": [
-          {
-            "x": 200.0,
-            "y": 105.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2389,15 +2458,15 @@
         "name": "unnamedWire#96",
         "path": [
           {
-            "x": 130.0,
-            "y": 135.0
+            "x": 135.0,
+            "y": 145.0
           },
           {
-            "x": 200.0,
-            "y": 135.0
+            "x": 175.0,
+            "y": 145.0
           },
           {
-            "x": 200.0,
+            "x": 175.0,
             "y": 115.0
           }
         ]
@@ -2462,20 +2531,20 @@
         "name": "unnamedWire#101",
         "path": [
           {
-            "x": 270.0,
+            "x": 280.0,
             "y": 100.0
           },
           {
-            "x": 270.0,
-            "y": 165.0
-          },
-          {
-            "x": 155.0,
-            "y": 165.0
-          },
-          {
-            "x": 155.0,
+            "x": 280.0,
             "y": 180.0
+          },
+          {
+            "x": 160.0,
+            "y": 180.0
+          },
+          {
+            "x": 160.0,
+            "y": 205.0
           }
         ]
       },
@@ -2491,12 +2560,12 @@
         "name": "unnamedWire#102",
         "path": [
           {
-            "x": 155.0,
-            "y": 185.0
+            "x": 160.0,
+            "y": 210.0
           },
           {
-            "x": 155.0,
-            "y": 190.0
+            "x": 160.0,
+            "y": 215.0
           }
         ]
       },
@@ -2541,20 +2610,12 @@
         "name": "unnamedWire#105",
         "path": [
           {
-            "x": 120.0,
-            "y": 60.0
+            "x": 125.0,
+            "y": 70.0
           },
           {
-            "x": 120.0,
-            "y": 170.0
-          },
-          {
-            "x": 185.0,
-            "y": 170.0
-          },
-          {
-            "x": 185.0,
-            "y": 175.0
+            "x": 125.0,
+            "y": 195.0
           }
         ]
       },
@@ -2568,7 +2629,16 @@
           "pinName": "B"
         },
         "name": "unnamedWire#106",
-        "path": []
+        "path": [
+          {
+            "x": 190.0,
+            "y": 210.0
+          },
+          {
+            "x": 190.0,
+            "y": 205.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -2580,7 +2650,16 @@
           "pinName": "Y"
         },
         "name": "unnamedWire#107",
-        "path": []
+        "path": [
+          {
+            "x": 220.0,
+            "y": 195.0
+          },
+          {
+            "x": 220.0,
+            "y": 200.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -2594,20 +2673,20 @@
         "name": "unnamedWire#108",
         "path": [
           {
-            "x": 215.0,
-            "y": 190.0
+            "x": 220.0,
+            "y": 205.0
           },
           {
-            "x": 215.0,
-            "y": 200.0
+            "x": 220.0,
+            "y": 215.0
           },
           {
-            "x": 275.0,
-            "y": 200.0
+            "x": 285.0,
+            "y": 215.0
           },
           {
-            "x": 275.0,
-            "y": 245.0
+            "x": 285.0,
+            "y": 290.0
           }
         ]
       },
@@ -2624,7 +2703,7 @@
         "path": [
           {
             "x": 130.0,
-            "y": 115.0
+            "y": 125.0
           }
         ]
       },
@@ -2641,7 +2720,7 @@
         "path": [
           {
             "x": 135.0,
-            "y": 125.0
+            "y": 135.0
           }
         ]
       },
@@ -2681,11 +2760,11 @@
         "name": "unnamedWire#113",
         "path": [
           {
-            "x": 240.0,
+            "x": 250.0,
             "y": 55.0
           },
           {
-            "x": 240.0,
+            "x": 250.0,
             "y": 120.0
           }
         ]
@@ -2703,7 +2782,7 @@
         "path": [
           {
             "x": 170.0,
-            "y": 115.0
+            "y": 125.0
           },
           {
             "x": 170.0,
@@ -2735,8 +2814,8 @@
         "name": "unnamedWire#116",
         "path": [
           {
-            "x": 245.0,
-            "y": 180.0
+            "x": 250.0,
+            "y": 195.0
           }
         ]
       },
@@ -2752,11 +2831,11 @@
         "name": "unnamedWire#117",
         "path": [
           {
-            "x": 275.0,
+            "x": 285.0,
             "y": 125.0
           },
           {
-            "x": 275.0,
+            "x": 285.0,
             "y": 120.0
           }
         ]
@@ -2773,12 +2852,12 @@
         "name": "unnamedWire#118",
         "path": [
           {
-            "x": 275.0,
+            "x": 285.0,
             "y": 130.0
           },
           {
-            "x": 275.0,
-            "y": 185.0
+            "x": 285.0,
+            "y": 200.0
           }
         ]
       },
@@ -2832,14 +2911,6 @@
           {
             "x": 40.0,
             "y": 10.0
-          },
-          {
-            "x": 160.0,
-            "y": 10.0
-          },
-          {
-            "x": 160.0,
-            "y": 20.0
           }
         ]
       },
@@ -2879,8 +2950,8 @@
         "name": "unnamedWire#125",
         "path": [
           {
-            "x": 245.0,
-            "y": 190.0
+            "x": 250.0,
+            "y": 205.0
           }
         ]
       },
@@ -2897,7 +2968,7 @@
         "path": [
           {
             "x": 80.0,
-            "y": 110.0
+            "y": 120.0
           }
         ]
       },
@@ -2931,34 +3002,22 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "WireCrossPoint#40",
-          "pinName": ""
-        },
-        "name": "unnamedWire#129",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "WireCrossPoint#40",
-          "pinName": ""
-        },
-        "pin2": {
           "compName": "NandGate#9",
           "pinName": "B"
         },
-        "name": "unnamedWire#130",
+        "name": "unnamedWire#129",
         "path": [
           {
             "x": 70.0,
-            "y": 95.0
+            "y": 105.0
           },
           {
             "x": 75.0,
-            "y": 95.0
+            "y": 105.0
           },
           {
             "x": 75.0,
-            "y": 30.0
+            "y": 20.0
           }
         ]
       },
@@ -2971,15 +3030,15 @@
           "compName": "NandGate#25",
           "pinName": "A"
         },
-        "name": "unnamedWire#131",
+        "name": "unnamedWire#130",
         "path": [
           {
-            "x": 125.0,
-            "y": 130.0
+            "x": 130.0,
+            "y": 140.0
           },
           {
-            "x": 125.0,
-            "y": 205.0
+            "x": 130.0,
+            "y": 230.0
           }
         ]
       },
@@ -2992,15 +3051,15 @@
           "compName": "NandGate#21",
           "pinName": "A"
         },
-        "name": "unnamedWire#132",
+        "name": "unnamedWire#131",
         "path": [
           {
-            "x": 245.0,
-            "y": 225.0
+            "x": 250.0,
+            "y": 270.0
           },
           {
-            "x": 245.0,
-            "y": 240.0
+            "x": 250.0,
+            "y": 285.0
           }
         ]
       },
@@ -3013,11 +3072,11 @@
           "compName": "NandGate#25",
           "pinName": "B"
         },
-        "name": "unnamedWire#133",
+        "name": "unnamedWire#132",
         "path": [
           {
-            "x": 125.0,
-            "y": 215.0
+            "x": 130.0,
+            "y": 240.0
           }
         ]
       },
@@ -3030,7 +3089,7 @@
           "compName": "NandGate#27",
           "pinName": "A"
         },
-        "name": "unnamedWire#134",
+        "name": "unnamedWire#133",
         "path": []
       },
       {
@@ -3039,58 +3098,75 @@
           "pinName": ""
         },
         "pin2": {
+          "compName": "WireCrossPoint#45",
+          "pinName": ""
+        },
+        "name": "unnamedWire#134",
+        "path": []
+      },
+      {
+        "pin1": {
           "compName": "NandGate#27",
-          "pinName": "B"
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "NandGate#28",
+          "pinName": "A"
         },
         "name": "unnamedWire#135",
         "path": []
       },
       {
         "pin1": {
-          "compName": "NandGate#27",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "NandGate#28",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#136",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "NandGate#29",
           "pinName": "Y"
         },
         "pin2": {
           "compName": "NandGate#28",
           "pinName": "B"
+        },
+        "name": "unnamedWire#136",
+        "path": [
+          {
+            "x": 70.0,
+            "y": 235.0
+          },
+          {
+            "x": 70.0,
+            "y": 255.0
+          },
+          {
+            "x": 190.0,
+            "y": 255.0
+          },
+          {
+            "x": 190.0,
+            "y": 250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#29",
+          "pinName": "A"
         },
         "name": "unnamedWire#137",
         "path": []
       },
       {
         "pin1": {
-          "compName": "Splitter#0",
-          "pinName": "O3"
+          "compName": "WireCrossPoint#43",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "NandGate#29",
-          "pinName": "A"
-        },
-        "name": "unnamedWire#138",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "NandGate#29",
           "pinName": "B"
         },
-        "pin2": {
-          "compName": "WireCrossPoint#27",
-          "pinName": ""
-        },
-        "name": "unnamedWire#139",
+        "name": "unnamedWire#138",
         "path": []
       },
       {
@@ -3102,20 +3178,42 @@
           "compName": "NandGate#30",
           "pinName": "A"
         },
-        "name": "unnamedWire#140",
-        "path": []
+        "name": "unnamedWire#139",
+        "path": [
+          {
+            "x": 220.0,
+            "y": 245.0
+          },
+          {
+            "x": 220.0,
+            "y": 240.0
+          }
+        ]
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#46",
+          "pinName": ""
+        },
+        "pin2": {
           "compName": "NandGate#30",
           "pinName": "B"
         },
-        "pin2": {
-          "compName": "WireCrossPoint#16",
-          "pinName": ""
-        },
-        "name": "unnamedWire#141",
-        "path": []
+        "name": "unnamedWire#140",
+        "path": [
+          {
+            "x": 30.0,
+            "y": 260.0
+          },
+          {
+            "x": 220.0,
+            "y": 260.0
+          },
+          {
+            "x": 220.0,
+            "y": 250.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -3126,8 +3224,17 @@
           "compName": "NandGate#31",
           "pinName": "A"
         },
-        "name": "unnamedWire#142",
-        "path": []
+        "name": "unnamedWire#141",
+        "path": [
+          {
+            "x": 280.0,
+            "y": 245.0
+          },
+          {
+            "x": 280.0,
+            "y": 250.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -3138,8 +3245,17 @@
           "compName": "_submodelinterface",
           "pinName": "YmuPC"
         },
-        "name": "unnamedWire#143",
-        "path": []
+        "name": "unnamedWire#142",
+        "path": [
+          {
+            "x": 350.0,
+            "y": 255.0
+          },
+          {
+            "x": 350.0,
+            "y": 275.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -3150,19 +3266,19 @@
           "compName": "NandGate#31",
           "pinName": "B"
         },
-        "name": "unnamedWire#144",
+        "name": "unnamedWire#143",
         "path": []
       },
       {
         "pin1": {
-          "compName": "NandGate#32",
-          "pinName": "A"
-        },
-        "pin2": {
-          "compName": "WireCrossPoint#29",
+          "compName": "WireCrossPoint#54",
           "pinName": ""
         },
-        "name": "unnamedWire#145",
+        "pin2": {
+          "compName": "NandGate#32",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#144",
         "path": []
       },
       {
@@ -3172,6 +3288,35 @@
         },
         "pin2": {
           "compName": "NandGate#32",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#145",
+        "path": [
+          {
+            "x": 350.0,
+            "y": 175.0
+          },
+          {
+            "x": 350.0,
+            "y": 240.0
+          },
+          {
+            "x": 250.0,
+            "y": 240.0
+          },
+          {
+            "x": 250.0,
+            "y": 255.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#34",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "NandGate#33",
           "pinName": "B"
         },
         "name": "unnamedWire#146",
@@ -3179,26 +3324,14 @@
       },
       {
         "pin1": {
-          "compName": "NandGate#34",
-          "pinName": "Y"
+          "compName": "WireCrossPoint#52",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "NandGate#33",
-          "pinName": "A"
+          "compName": "NandGate#34",
+          "pinName": "B"
         },
         "name": "unnamedWire#147",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "NandGate#34",
-          "pinName": "A"
-        },
-        "pin2": {
-          "compName": "Splitter#0",
-          "pinName": "O3"
-        },
-        "name": "unnamedWire#148",
         "path": []
       },
       {
@@ -3208,6 +3341,27 @@
         },
         "pin2": {
           "compName": "NandGate#34",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#148",
+        "path": [
+          {
+            "x": 290.0,
+            "y": 155.0
+          },
+          {
+            "x": 290.0,
+            "y": 175.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#36",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "NandGate#35",
           "pinName": "B"
         },
         "name": "unnamedWire#149",
@@ -3215,39 +3369,53 @@
       },
       {
         "pin1": {
-          "compName": "NandGate#36",
-          "pinName": "Y"
+          "compName": "WireCrossPoint#47",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "NandGate#35",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#150",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "NandGate#36",
           "pinName": "A"
         },
-        "pin2": {
-          "compName": "WireCrossPoint#30",
-          "pinName": ""
-        },
-        "name": "unnamedWire#151",
-        "path": []
+        "name": "unnamedWire#150",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 155.0
+          }
+        ]
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#53",
+          "pinName": ""
+        },
+        "pin2": {
           "compName": "NandGate#36",
           "pinName": "B"
         },
-        "pin2": {
-          "compName": "NandGate#4",
-          "pinName": "Y"
-        },
-        "name": "unnamedWire#152",
-        "path": []
+        "name": "unnamedWire#151",
+        "path": [
+          {
+            "x": 80.0,
+            "y": 190.0
+          },
+          {
+            "x": 135.0,
+            "y": 190.0
+          },
+          {
+            "x": 135.0,
+            "y": 175.0
+          },
+          {
+            "x": 195.0,
+            "y": 175.0
+          },
+          {
+            "x": 195.0,
+            "y": 165.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -3255,13 +3423,13 @@
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "WireCrossPoint#42",
+          "compName": "WireCrossPoint#51",
           "pinName": ""
         },
-        "name": "unnamedWire#153",
+        "name": "unnamedWire#152",
         "path": [
           {
-            "x": 90.0,
+            "x": 80.0,
             "y": 25.0
           }
         ]
@@ -3275,7 +3443,7 @@
           "compName": "NandGate#38",
           "pinName": "A"
         },
-        "name": "unnamedWire#154",
+        "name": "unnamedWire#153",
         "path": []
       },
       {
@@ -3287,21 +3455,58 @@
           "compName": "NandGate#38",
           "pinName": "B"
         },
-        "name": "unnamedWire#155",
+        "name": "unnamedWire#154",
         "path": [
           {
-            "x": 90.0,
-            "y": 65.0
+            "x": 80.0,
+            "y": 75.0
           }
         ]
       },
       {
         "pin1": {
+          "compName": "WireCrossPoint#51",
+          "pinName": ""
+        },
+        "pin2": {
           "compName": "NandGate#35",
           "pinName": "A"
         },
+        "name": "unnamedWire#155",
+        "path": [
+          {
+            "x": 135.0,
+            "y": 50.0
+          },
+          {
+            "x": 135.0,
+            "y": 60.0
+          },
+          {
+            "x": 200.0,
+            "y": 60.0
+          },
+          {
+            "x": 200.0,
+            "y": 145.0
+          },
+          {
+            "x": 245.0,
+            "y": 145.0
+          },
+          {
+            "x": 245.0,
+            "y": 150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#50",
+          "pinName": ""
+        },
         "pin2": {
-          "compName": "WireCrossPoint#42",
+          "compName": "WireCrossPoint#49",
           "pinName": ""
         },
         "name": "unnamedWire#156",
@@ -3309,27 +3514,24 @@
       },
       {
         "pin1": {
-          "compName": "NandGate#9",
-          "pinName": "Y"
+          "compName": "WireCrossPoint#50",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "NandGate#37",
+          "compName": "and#10",
           "pinName": "A"
         },
         "name": "unnamedWire#157",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "NandGate#37",
-          "pinName": "B"
-        },
-        "pin2": {
-          "compName": "NandGate#9",
-          "pinName": "Y"
-        },
-        "name": "unnamedWire#158",
-        "path": []
+        "path": [
+          {
+            "x": 140.0,
+            "y": 15.0
+          },
+          {
+            "x": 140.0,
+            "y": 25.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -3338,10 +3540,27 @@
         },
         "pin2": {
           "compName": "NandGate#33",
-          "pinName": "B"
+          "pinName": "A"
         },
-        "name": "unnamedWire#159",
-        "path": []
+        "name": "unnamedWire#158",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 40.0
+          },
+          {
+            "x": 210.0,
+            "y": 140.0
+          },
+          {
+            "x": 320.0,
+            "y": 140.0
+          },
+          {
+            "x": 320.0,
+            "y": 170.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -3352,19 +3571,200 @@
           "compName": "NandGate#37",
           "pinName": "Y"
         },
-        "name": "unnamedWire#160",
-        "path": []
+        "name": "unnamedWire#159",
+        "path": [
+          {
+            "x": 140.0,
+            "y": 35.0
+          },
+          {
+            "x": 140.0,
+            "y": 30.0
+          }
+        ]
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#23",
+          "compName": "WireCrossPoint#48",
           "pinName": ""
         },
         "pin2": {
           "compName": "NandGate#40",
           "pinName": "B"
         },
+        "name": "unnamedWire#160",
+        "path": [
+          {
+            "x": 40.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#43",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#41",
+          "pinName": ""
+        },
         "name": "unnamedWire#161",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 270.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#22",
+          "pinName": ""
+        },
+        "name": "unnamedWire#162",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#45",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#27",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#163",
+        "path": [
+          {
+            "x": 85.0,
+            "y": 250.0
+          },
+          {
+            "x": 160.0,
+            "y": 250.0
+          },
+          {
+            "x": 160.0,
+            "y": 245.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#46",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#32",
+          "pinName": ""
+        },
+        "name": "unnamedWire#164",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#47",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#13",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#165",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#48",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#6",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#166",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#49",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#37",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#167",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#49",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#37",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#168",
+        "path": [
+          {
+            "x": 110.0,
+            "y": 35.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#51",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#42",
+          "pinName": ""
+        },
+        "name": "unnamedWire#169",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#52",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#44",
+          "pinName": ""
+        },
+        "name": "unnamedWire#170",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#53",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#14",
+          "pinName": ""
+        },
+        "name": "unnamedWire#171",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#19",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#54",
+          "pinName": ""
+        },
+        "name": "unnamedWire#172",
         "path": []
       }
     ],
