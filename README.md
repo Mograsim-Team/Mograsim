@@ -22,7 +22,7 @@ See [Getting Started](docs/getting_started.md)
 
 | Branch | Status |
 | ------ | ------ |
-| `master` | [![Build Status](https://travis-ci.com/Mograsim-Team/Mograsim.svg?branch=master)](https://travis-ci.com/Mograsim-Team/Mograsim) |
-| `development` | [![Build Status](https://travis-ci.com/Mograsim-Team/Mograsim.svg?branch=development)](https://travis-ci.com/Mograsim-Team/Mograsim) |
+| `master` | ![Java CI](https://github.com/MaisiKoleni/Mograsim/workflows/Java%20CI/badge.svg) |
+| `development` | ![Java CI](https://github.com/MaisiKoleni/Mograsim/workflows/Java%20CI/badge.svg?branch=development) |
 
 See [Building Mograsim](docs/building_mograsim.md)
