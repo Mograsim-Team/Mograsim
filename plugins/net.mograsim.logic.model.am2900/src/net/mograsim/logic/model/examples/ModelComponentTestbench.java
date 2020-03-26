@@ -27,7 +27,7 @@ public class ModelComponentTestbench
 	{
 		Am2900Loader.setup();
 //		ModelComponent comp = new StrictAm2900MachineDefinition().createNew(model).getAm2900();
-		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "xnor");
+		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "Am2910InstrPLA_");
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
