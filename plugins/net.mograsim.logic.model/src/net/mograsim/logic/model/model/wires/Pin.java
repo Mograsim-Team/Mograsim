@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
+import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 

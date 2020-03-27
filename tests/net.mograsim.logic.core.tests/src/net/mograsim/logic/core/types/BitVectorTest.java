@@ -1,8 +1,22 @@
 package net.mograsim.logic.core.types;
 
-import static net.mograsim.logic.core.types.BitVector.*;
-import static net.mograsim.logic.core.types.Bit.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static net.mograsim.logic.core.types.Bit.ONE;
+import static net.mograsim.logic.core.types.Bit.U;
+import static net.mograsim.logic.core.types.Bit.X;
+import static net.mograsim.logic.core.types.Bit.Z;
+import static net.mograsim.logic.core.types.Bit.ZERO;
+import static net.mograsim.logic.core.types.BitVector.SINGLE_0;
+import static net.mograsim.logic.core.types.BitVector.SINGLE_1;
+import static net.mograsim.logic.core.types.BitVector.SINGLE_U;
+import static net.mograsim.logic.core.types.BitVector.SINGLE_X;
+import static net.mograsim.logic.core.types.BitVector.SINGLE_Z;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigInteger;
 import java.util.Iterator;

@@ -8,9 +8,9 @@ import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas.ZoomedRenderer
 import net.mograsim.logic.model.editor.Editor;
 import net.mograsim.logic.model.editor.Selection;
 import net.mograsim.logic.model.editor.handles.Handle;
+import net.mograsim.logic.model.editor.handles.Handle.HandleClickInfo;
 import net.mograsim.logic.model.editor.handles.PinHandle;
 import net.mograsim.logic.model.editor.handles.WireHandle;
-import net.mograsim.logic.model.editor.handles.Handle.HandleClickInfo;
 import net.mograsim.logic.model.editor.handles.WireHandle.WireHandleClickInfo;
 import net.mograsim.logic.model.editor.ui.DialogManager;
 import net.mograsim.logic.model.model.wires.MovablePin;

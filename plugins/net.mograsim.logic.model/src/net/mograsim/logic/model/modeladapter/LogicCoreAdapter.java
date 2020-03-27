@@ -18,8 +18,8 @@ import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelInterface;
 import net.mograsim.logic.model.model.wires.ModelWire;
-import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
+import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.componentadapters.ComponentAdapter;
 
 public class LogicCoreAdapter

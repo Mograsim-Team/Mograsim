@@ -7,8 +7,8 @@ import org.eclipse.swt.widgets.Shell;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas.ZoomedRenderer;
 import net.mograsim.logic.model.editor.Editor;
-import net.mograsim.logic.model.editor.handles.PinHandle;
 import net.mograsim.logic.model.editor.handles.Handle.HandleClickInfo;
+import net.mograsim.logic.model.editor.handles.PinHandle;
 
 public class CreateWireState extends EditorState
 {
