@@ -17,24 +17,20 @@ import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
-import net.mograsim.preferences.Preferences;
+import net.mograsim.logic.model.preferences.RenderPreferences;
+import net.mograsim.plugin.preferences.EclipseRenderPreferences;
 
 public class SimulationPreview implements IThemePreview
 {
 	private LogicUICanvas ui;
 	private LogicExecuter exec;
-	private Preferences oldPreferences;
-	private Preferences currentThemePreferences;
 
 	@Override
 	@SuppressWarnings("unused")
 	public void createControl(Composite parent, ITheme currentTheme)
 	{
-		oldPreferences = Preferences.current();
-
-		currentThemePreferences = new EclipsePreferences(currentTheme, MograsimActivator.instance().getPreferenceStore());
-		// TODO this will change the global preferences; so if another LogicUICanvas redraws, it will use the "new" colors too.
-		Preferences.setPreferences(currentThemePreferences);
+		RenderPreferences currentThemeRenderPrefs = new EclipseRenderPreferences(currentTheme,
+				MograsimActivator.instance().getPreferenceStore());
 
 		LogicModelModifiable model = new LogicModelModifiable();
 		CoreModelParameters params = new CoreModelParameters();
@@ -86,7 +82,7 @@ public class SimulationPreview implements IThemePreview
 
 		rIn.clicked(0, 0);
 
-		ui = new LogicUICanvas(parent, SWT.NONE, model);
+		ui = new LogicUICanvas(parent, SWT.NONE, model, currentThemeRenderPrefs);
 
 		ui.zoom(3.5, 10, 10);
 		exec.startLiveExecution();
@@ -98,7 +94,5 @@ public class SimulationPreview implements IThemePreview
 	public void dispose()
 	{
 		exec.stopLiveExecution();
-		if (Preferences.current() == currentThemePreferences)
-			Preferences.setPreferences(oldPreferences);
 	}
 }

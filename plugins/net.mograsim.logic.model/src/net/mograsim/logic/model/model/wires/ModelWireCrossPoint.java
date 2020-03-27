@@ -3,10 +3,11 @@ package net.mograsim.logic.model.model.wires;
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
-import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.model.BitVectorFormatter;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.preferences.ColorDefinition;
@@ -83,9 +84,9 @@ public class ModelWireCrossPoint extends ModelComponent
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
-		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(end);
+		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(renderPrefs, end);
 		if (wireColor != null)
 			gc.setBackground(ColorManager.current().toColor(wireColor));
 		gc.fillOval(getPosX(), getPosY(), CIRCLE_DIAM, CIRCLE_DIAM);

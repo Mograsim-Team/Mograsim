@@ -18,7 +18,7 @@ import org.eclipse.debug.core.model.IValue;
 import org.eclipse.swt.SWT;
 
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.types.BitVectorFormatter;
+import net.mograsim.logic.model.BitVectorFormatter;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.registers.Register;
 import net.mograsim.plugin.MograsimActivator;

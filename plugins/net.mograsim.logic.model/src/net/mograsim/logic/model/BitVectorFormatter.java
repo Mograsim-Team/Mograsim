@@ -1,11 +1,18 @@
-package net.mograsim.logic.core.types;
+package net.mograsim.logic.model;
+
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_ONE_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_U_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_X_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_ZERO_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_Z_COLOR;
 
 import java.math.BigInteger;
 
+import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorDefinition.BuiltInColor;
-import net.mograsim.preferences.Preferences;
 
 public class BitVectorFormatter
 {
@@ -70,12 +77,12 @@ public class BitVectorFormatter
 	}
 
 	// TODO doesn't this belong to logic.model?
-	public static ColorDefinition formatAsColor(ReadEnd end)
+	public static ColorDefinition formatAsColor(RenderPreferences renderPrefs, ReadEnd end)
 	{
-		return formatAsColor(end == null ? null : end.getValues());
+		return formatAsColor(renderPrefs, end == null ? null : end.getValues());
 	}
 
-	public static ColorDefinition formatAsColor(BitVector bitVector)
+	public static ColorDefinition formatAsColor(RenderPreferences renderPrefs, BitVector bitVector)
 	{
 		// TODO maybe find a color assignment for multiple-bit bit vectors?
 		if (bitVector == null || bitVector.length() != 1)
@@ -83,15 +90,15 @@ public class BitVectorFormatter
 		switch (bitVector.getLSBit(0))
 		{
 		case ONE:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.one");
+			return renderPrefs.getColorDefinition(BIT_ONE_COLOR);
 		case U:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.u");
+			return renderPrefs.getColorDefinition(BIT_U_COLOR);
 		case X:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.x");
+			return renderPrefs.getColorDefinition(BIT_X_COLOR);
 		case Z:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.z");
+			return renderPrefs.getColorDefinition(BIT_Z_COLOR);
 		case ZERO:
-			return Preferences.current().getColorDefinition("net.mograsim.logic.model.color.bit.zero");
+			return renderPrefs.getColorDefinition(BIT_ZERO_COLOR);
 		default:
 			throw new IllegalArgumentException("Unknown enum constant: " + bitVector.getLSBit(0));
 		}

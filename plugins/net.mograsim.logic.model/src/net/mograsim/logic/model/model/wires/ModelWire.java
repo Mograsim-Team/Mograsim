@@ -1,5 +1,9 @@
 package net.mograsim.logic.model.model.wires;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.DEFAULT_LINE_WIDTH;
+import static net.mograsim.logic.model.preferences.RenderPreferences.WIRE_WIDTH_MULTIBIT;
+import static net.mograsim.logic.model.preferences.RenderPreferences.WIRE_WIDTH_SINGLEBIT;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,13 +16,13 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.model.BitVectorFormatter;
 import net.mograsim.logic.model.model.LogicModelModifiable;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
-import net.mograsim.preferences.Preferences;
 
 /**
  * A wire connecting exactly two {@link Pin}s.
@@ -363,15 +367,14 @@ public class ModelWire
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public void render(GeneralGC gc)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs)
 	{
-		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(end);
+		ColorDefinition wireColor = BitVectorFormatter.formatAsColor(renderPrefs, end);
 		if (wireColor != null)
 			gc.setForeground(ColorManager.current().toColor(wireColor));
-		gc.setLineWidth(
-				Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire." + (logicWidth == 1 ? "singlebit" : "multibit")));
+		gc.setLineWidth(renderPrefs.getDouble(logicWidth == 1 ? WIRE_WIDTH_SINGLEBIT : WIRE_WIDTH_MULTIBIT));
 		gc.drawPolyline(effectivePath);
-		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
+		gc.setLineWidth(renderPrefs.getDouble(DEFAULT_LINE_WIDTH));
 	}
 
 	// operations concerning the path

@@ -1,5 +1,8 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.FOREGROUND_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.TEXT_COLOR;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -23,11 +26,11 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.ClockAdapter;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.util.JsonHandler;
-import net.mograsim.preferences.Preferences;
 
 public class ModelClock extends ModelComponent
 {
@@ -140,9 +143,9 @@ public class ModelClock extends ModelComponent
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
-		Color foreground = Preferences.current().getColor("net.mograsim.logic.model.color.foreground");
+		Color foreground = renderPrefs.getColor(FOREGROUND_COLOR);
 		if (foreground != null)
 			gc.setForeground(foreground);
 		gc.drawRectangle(getBounds());
@@ -151,7 +154,7 @@ public class ModelClock extends ModelComponent
 		Font labelFont = new Font(oldFont.getName(), fontHeight, oldFont.getStyle());
 		gc.setFont(labelFont);
 		Point textExtent = gc.textExtent(label);
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
+		Color textColor = renderPrefs.getColor(TEXT_COLOR);
 		if (textColor != null)
 			gc.setForeground(textColor);
 		gc.drawText(label, getPosX() + (oc.width() - textExtent.x) / 2, getPosY() + (oc.height() - textExtent.y) / 2, true);

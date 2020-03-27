@@ -1,5 +1,11 @@
 package net.mograsim.logic.model;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.ACTION_BUTTON;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BACKGROUND_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.DEBUG_HLSSHELL_DEPTH;
+import static net.mograsim.logic.model.preferences.RenderPreferences.DEBUG_OPEN_HLSSHELL;
+import static net.mograsim.logic.model.preferences.RenderPreferences.IMPROVE_TEXT;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,12 +31,11 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.haspamelodica.swt.helper.zoomablecanvas.ZoomableCanvas;
 import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
-import net.mograsim.preferences.Preferences;
 
 /**
  * Simulation visualizer canvas.
@@ -39,20 +44,25 @@ import net.mograsim.preferences.Preferences;
  */
 public class LogicUICanvas extends ZoomableCanvas
 {
-	private final LogicModel model;
+	protected final LogicModel model;
+	protected final RenderPreferences renderPrefs;
 
-	public LogicUICanvas(Composite parent, int style, LogicModel model)
+	public LogicUICanvas(Composite parent, int style, LogicModel model, RenderPreferences renderPrefs)
 	{
-		super(parent, style, Preferences.current().getBoolean("net.mograsim.logic.model.improvetext"));
+		// TODO add a listener
+		super(parent, style, renderPrefs.getBoolean(IMPROVE_TEXT));
 
+		this.renderPrefs = renderPrefs;
 		this.model = model;
 
-		Color background = Preferences.current().getColor("net.mograsim.logic.model.color.background");
+		// TODO add listeners for the render prefs
+
+		Color background = renderPrefs.getColor(BACKGROUND_COLOR);
 		if (background != null)
 			setBackground(background);
 
 		LogicUIRenderer renderer = new LogicUIRenderer(model);
-		addZoomedRenderer(gc -> renderer.render(gc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom)));
+		addZoomedRenderer(gc -> renderer.render(gc, renderPrefs, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom)));
 		model.setRedrawHandler(() ->
 		{
 			if (!isDisposed())
@@ -61,13 +71,13 @@ public class LogicUICanvas extends ZoomableCanvas
 
 		addListener(SWT.MouseDown, this::mouseDown);
 
-		if (Preferences.current().getBoolean("net.mograsim.logic.model.debug.openhlsshell"))
-			openDebugSetHighLevelStateShell(model);
+		if (renderPrefs.getBoolean(DEBUG_OPEN_HLSSHELL))
+			openDebugSetHighLevelStateShell(model, renderPrefs.getInt(DEBUG_HLSSHELL_DEPTH) - 1);
 	}
 
 	private void mouseDown(Event e)
 	{
-		if (e.button == Preferences.current().getInt("net.mograsim.logic.model.button.action"))
+		if (e.button == renderPrefs.getInt(ACTION_BUTTON))
 		{
 			Point click = canvasToWorldCoords(e.x, e.y);
 			for (ModelComponent component : model.getComponentsByName().values())
@@ -79,7 +89,7 @@ public class LogicUICanvas extends ZoomableCanvas
 		}
 	}
 
-	private void openDebugSetHighLevelStateShell(LogicModel model)
+	private void openDebugSetHighLevelStateShell(LogicModel model, int depth)
 	{
 		Shell debugShell = new Shell();
 		debugShell.setLayout(new GridLayout(2, false));
@@ -94,16 +104,16 @@ public class LogicUICanvas extends ZoomableCanvas
 		@SuppressWarnings("unchecked")
 		Consumer<? super ModelComponent>[] compRemoved = new Consumer[1];
 		compAdded[0] = c -> compsChanged(compAdded[0], compRemoved[0], c, models, componentsByItemIndex, componentSelector, model,
-				recalculateQueued, true);
+				recalculateQueued, depth, true);
 		compRemoved[0] = c -> compsChanged(compAdded[0], compRemoved[0], c, models, componentsByItemIndex, componentSelector, model,
-				recalculateQueued, false);
+				recalculateQueued, depth, false);
 		iterateModelTree(compAdded[0], compRemoved[0], model, models, true);
 		debugShell.addListener(SWT.Dispose, e -> models.forEach(m ->
 		{
 			m.removeComponentAddedListener(compAdded[0]);
 			m.removeComponentRemovedListener(compRemoved[0]);
 		}));
-		queueRecalculateComponentSelector(recalculateQueued, componentsByItemIndex, componentSelector, model);
+		queueRecalculateComponentSelector(recalculateQueued, componentsByItemIndex, componentSelector, model, depth);
 		new Label(debugShell, SWT.NONE).setText("Target state ID: ");
 		Text stateIDText = new Text(debugShell, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
 		stateIDText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -237,10 +247,10 @@ public class LogicUICanvas extends ZoomableCanvas
 
 	private void compsChanged(Consumer<? super ModelComponent> compAdded, Consumer<? super ModelComponent> compRemoved, ModelComponent c,
 			List<LogicModel> models, List<ModelComponent> componentsByItemIndex, Combo componentSelector, LogicModel model,
-			AtomicBoolean recalculateQueued, boolean add)
+			AtomicBoolean recalculateQueued, int depth, boolean add)
 	{
 		iterateSubmodelTree(compAdded, compRemoved, c, models, add);
-		queueRecalculateComponentSelector(recalculateQueued, componentsByItemIndex, componentSelector, model);
+		queueRecalculateComponentSelector(recalculateQueued, componentsByItemIndex, componentSelector, model, depth);
 	}
 
 	private void iterateSubmodelTree(Consumer<? super ModelComponent> compAdded, Consumer<? super ModelComponent> compRemoved,
@@ -272,20 +282,20 @@ public class LogicUICanvas extends ZoomableCanvas
 	}
 
 	private void queueRecalculateComponentSelector(AtomicBoolean recalculateQueued, List<ModelComponent> componentsByItemIndex,
-			Combo componentSelector, LogicModel model)
+			Combo componentSelector, LogicModel model, int depth)
 	{
 		if (recalculateQueued.compareAndSet(false, true))
-			getDisplay().asyncExec(() -> recalculateComponentSelector(recalculateQueued, componentsByItemIndex, componentSelector, model));
+			getDisplay().asyncExec(
+					() -> recalculateComponentSelector(recalculateQueued, componentsByItemIndex, componentSelector, model, depth));
 	}
 
 	private void recalculateComponentSelector(AtomicBoolean recalculateQueued, List<ModelComponent> componentsByItemIndex,
-			Combo componentSelector, LogicModel model)
+			Combo componentSelector, LogicModel model, int depth)
 	{
 		recalculateQueued.set(false);
 		componentsByItemIndex.clear();
 		componentSelector.setItems();
-		addComponentSelectorItems(componentsByItemIndex, "", componentSelector, model,
-				Preferences.current().getInt("net.mograsim.logic.model.debug.hlsshelldepth") - 1);
+		addComponentSelectorItems(componentsByItemIndex, "", componentSelector, model, depth);
 	}
 
 	private void addComponentSelectorItems(List<ModelComponent> componentsByItemIndex, String base, Combo componentSelector,

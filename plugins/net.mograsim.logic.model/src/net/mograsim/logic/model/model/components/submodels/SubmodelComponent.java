@@ -1,5 +1,9 @@
 package net.mograsim.logic.model.model.components.submodels;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.DEFAULT_LINE_WIDTH;
+import static net.mograsim.logic.model.preferences.RenderPreferences.SUBMODEL_ZOOM_ALPHA_0;
+import static net.mograsim.logic.model.preferences.RenderPreferences.SUBMODEL_ZOOM_ALPHA_1;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,13 +21,13 @@ import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.MovablePin;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.serializing.SubmodelComponentParams;
 import net.mograsim.logic.model.serializing.SubmodelComponentSerializer;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.util.JsonHandler;
-import net.mograsim.preferences.Preferences;
 
 /**
  * A {@link ModelComponent} consisting of another model. A <code>SubmodelComponent</code> can have so-called "interface pins" connecting the
@@ -357,7 +361,7 @@ public abstract class SubmodelComponent extends ModelComponent
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
 		GCConfig conf = new GCConfig(gc);
 		GeneralGC tgc = new TranslatedGC(gc, getPosX(), getPosY(), submodelScale, true);
@@ -367,12 +371,14 @@ public abstract class SubmodelComponent extends ModelComponent
 		 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel
 		 * starts to be visible.
 		 */
-		double maxVisibleRegionFillRatioForAlpha0 = Preferences.current().getDouble("net.mograsim.logic.model.submodel.zoomalpha0");
+		// TODO add a listener
+		double maxVisibleRegionFillRatioForAlpha0 = renderPrefs.getDouble(SUBMODEL_ZOOM_ALPHA_0);
 		/**
 		 * If this {@link SubmodelComponent} fills at least this amount of the visible region vertically or horizontally, the submodel is
 		 * fully visible.
 		 */
-		double minVisibleRegionFillRatioForAlpha1 = Preferences.current().getDouble("net.mograsim.logic.model.submodel.zoomalpha1");
+		// TODO add a listener
+		double minVisibleRegionFillRatioForAlpha1 = renderPrefs.getDouble(SUBMODEL_ZOOM_ALPHA_1);
 		double alphaFactor = map(visibleRegionFillRatio, maxVisibleRegionFillRatioForAlpha0, minVisibleRegionFillRatioForAlpha1, 0, 1);
 		alphaFactor = Math.max(0, Math.min(1, alphaFactor));
 		// we need to take the old alpha into account to support nested submodules better.
@@ -382,18 +388,19 @@ public abstract class SubmodelComponent extends ModelComponent
 		if (submodelAlpha != 0)
 		{
 			gc.setAlpha(submodelAlpha);
-			renderer.render(tgc, visibleRegion.translate(getPosX() / submodelScale, getPosY() / submodelScale, 1 / submodelScale));
+			renderer.render(tgc, renderPrefs,
+					visibleRegion.translate(getPosX() / submodelScale, getPosY() / submodelScale, 1 / submodelScale));
 		}
 		if (labelAlpha != 0)
 		{
 			gc.setAlpha(labelAlpha);
-			renderSymbol(gc, visibleRegion);
+			renderSymbol(gc, renderPrefs, visibleRegion);
 		}
 		conf.reset(gc);
 		// reset line width explicitly to avoid rounding errors causing weird glitches
-		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
+		gc.setLineWidth(renderPrefs.getDouble(DEFAULT_LINE_WIDTH));
 		// draw the outline after all other operations to make interface pins look better
-		renderOutline(gc, visibleRegion);
+		renderOutline(gc, renderPrefs, visibleRegion);
 	}
 
 	/**
@@ -401,10 +408,10 @@ public abstract class SubmodelComponent extends ModelComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	private void renderSymbol(GeneralGC gc, Rectangle visibleRegion)
+	private void renderSymbol(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
 		if (symbolRenderer != null)
-			symbolRenderer.render(gc, visibleRegion);
+			symbolRenderer.render(gc, renderPrefs, visibleRegion);
 	}
 
 	/**
@@ -412,10 +419,10 @@ public abstract class SubmodelComponent extends ModelComponent
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	private void renderOutline(GeneralGC gc, Rectangle visibleRegion)
+	private void renderOutline(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
 		if (outlineRenderer != null)
-			outlineRenderer.render(gc, visibleRegion);
+			outlineRenderer.render(gc, renderPrefs, visibleRegion);
 	}
 
 	private static double map(double val, double valMin, double valMax, double mapMin, double mapMax)

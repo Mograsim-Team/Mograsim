@@ -4,6 +4,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
 import net.mograsim.logic.model.snippets.symbolrenderers.SimpleRectangularLikeSymbolRenderer;
@@ -34,9 +35,9 @@ public abstract class ModelMemory extends ModelComponent
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
-		symbolRenderer.render(gc, visibleRegion);
-		outlineRenderer.render(gc, visibleRegion);
+		symbolRenderer.render(gc, renderPrefs, visibleRegion);
+		outlineRenderer.render(gc, renderPrefs, visibleRegion);
 	}
 }

@@ -1,16 +1,18 @@
 package net.mograsim.logic.model.snippets.symbolrenderers;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.TEXT_COLOR;
+
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
-import net.mograsim.preferences.Preferences;
 
 public class DefaultSymbolRenderer implements Renderer
 {
@@ -29,9 +31,9 @@ public class DefaultSymbolRenderer implements Renderer
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
-		ColorDefinition fg = Preferences.current().getColorDefinition("net.mograsim.logic.model.color.text");
+		ColorDefinition fg = renderPrefs.getColorDefinition(TEXT_COLOR);
 		if (fg != null)
 			gc.setForeground(ColorManager.current().toColor(fg));
 		Point idSize = gc.textExtent(id);

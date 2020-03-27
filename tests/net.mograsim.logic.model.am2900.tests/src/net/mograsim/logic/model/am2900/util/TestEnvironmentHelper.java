@@ -29,6 +29,7 @@ import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
+import net.mograsim.logic.model.preferences.DefaultRenderPreferences;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.ModellingTool;
 
@@ -261,7 +262,7 @@ public class TestEnvironmentHelper
 	{
 		try
 		{
-			new LogicUIStandaloneGUI(logicModel).run();
+			new LogicUIStandaloneGUI(logicModel, new DefaultRenderPreferences()).run();
 			logicModel.setRedrawHandler(null);
 		}
 		catch (Exception e)

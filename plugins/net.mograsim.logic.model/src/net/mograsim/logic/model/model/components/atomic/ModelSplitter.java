@@ -1,11 +1,16 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.DEFAULT_LINE_WIDTH;
+import static net.mograsim.logic.model.preferences.RenderPreferences.FOREGROUND_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.WIRE_WIDTH_MULTIBIT;
+import static net.mograsim.logic.model.preferences.RenderPreferences.WIRE_WIDTH_SINGLEBIT;
+
 import org.eclipse.swt.SWT;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
-import net.mograsim.logic.core.types.BitVectorFormatter;
 import net.mograsim.logic.core.wires.CoreWire.ReadEnd;
+import net.mograsim.logic.model.BitVectorFormatter;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.Orientation;
@@ -14,12 +19,12 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SplitterAdapter;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
-import net.mograsim.preferences.Preferences;
 
 public class ModelSplitter extends ModelComponent
 {
@@ -57,30 +62,29 @@ public class ModelSplitter extends ModelComponent
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
 		double posX = getPosX();
 		double posY = getPosY();
 
-		ColorDefinition c = BitVectorFormatter.formatAsColor(inputEnd);
+		ColorDefinition c = BitVectorFormatter.formatAsColor(renderPrefs, inputEnd);
 		if (c != null)
 			gc.setForeground(ColorManager.current().toColor(c));
-		gc.setLineWidth(
-				Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire." + (logicWidth == 1 ? "singlebit" : "multibit")));
+		gc.setLineWidth(renderPrefs.getDouble(logicWidth == 1 ? WIRE_WIDTH_SINGLEBIT : WIRE_WIDTH_MULTIBIT));
 		double inLineY = heightWithoutOC / 2;
 		gc.drawLine(posX + oc.newX(0, inLineY), posY + oc.newY(0, inLineY), posX + oc.newX(width / 2, inLineY),
 				posY + oc.newY(width / 2, inLineY));
-		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.wire.singlebit"));
+		gc.setLineWidth(renderPrefs.getDouble(WIRE_WIDTH_SINGLEBIT));
 		double outputHeight = 0;
 		for (int i = 0; i < logicWidth; i++, outputHeight += 10)
 		{
-			c = BitVectorFormatter.formatAsColor(outputEnds[i]);
+			c = BitVectorFormatter.formatAsColor(renderPrefs, outputEnds[i]);
 			if (c != null)
 				gc.setForeground(ColorManager.current().toColor(c));
 			gc.drawLine(posX + oc.newX(width / 2, outputHeight), posY + oc.newY(width / 2, outputHeight),
 					posX + oc.newX(width, outputHeight), posY + oc.newY(width, outputHeight));
 		}
-		gc.setForeground(Preferences.current().getColor("net.mograsim.logic.model.color.foreground"));
+		gc.setForeground(renderPrefs.getColor(FOREGROUND_COLOR));
 		int oldLineCap = gc.getLineCap();
 		int lineJoin = gc.getLineJoin();
 		// TODO find better "replacement" for JOIN_BEVEL
@@ -88,7 +92,7 @@ public class ModelSplitter extends ModelComponent
 		gc.setLineCap(lineJoin == SWT.JOIN_MITER ? SWT.CAP_SQUARE : lineJoin == SWT.JOIN_ROUND ? SWT.CAP_ROUND : SWT.CAP_SQUARE);
 		gc.drawLine(posX + oc.newX(width / 2, 0), posY + oc.newY(width / 2, 0), posX + oc.newX(width / 2, heightWithoutOC),
 				posY + oc.newY(width / 2, heightWithoutOC));
-		gc.setLineWidth(Preferences.current().getDouble("net.mograsim.logic.model.linewidth.default"));
+		gc.setLineWidth(renderPrefs.getDouble(DEFAULT_LINE_WIDTH));
 		gc.setLineCap(oldLineCap);
 	}
 

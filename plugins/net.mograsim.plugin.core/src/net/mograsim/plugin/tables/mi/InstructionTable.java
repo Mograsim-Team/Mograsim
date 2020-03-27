@@ -1,5 +1,7 @@
 package net.mograsim.plugin.tables.mi;
 
+import static net.mograsim.plugin.preferences.PluginPreferences.MPM_EDITOR_BITS_AS_COLUMN_NAME;
+
 import java.util.Arrays;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -25,10 +27,10 @@ import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemory;
 import net.mograsim.machine.mi.parameters.MnemonicFamily;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
+import net.mograsim.plugin.MograsimActivator;
 import net.mograsim.plugin.tables.AddressLabelProvider;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.LazyTableViewer;
-import net.mograsim.preferences.Preferences;
 
 public class InstructionTable
 {
@@ -134,7 +136,8 @@ public class InstructionTable
 
 			String columnTitle;
 			String bitString = startBit == endBit ? Integer.toString(startBit) : startBit + "..." + endBit;
-			if (Preferences.current().getBoolean("net.mograsim.plugin.core.editors.mpm.bitsascolumnname"))
+			// TODO add a listener
+			if (MograsimActivator.instance().getPluginPrefs().getBoolean(MPM_EDITOR_BITS_AS_COLUMN_NAME))
 				columnTitle = bitString;
 			else
 				columnTitle = miDef.getParameterTitle(i).orElse(bitString);

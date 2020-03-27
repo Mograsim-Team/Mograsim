@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.snippets.symbolrenderers;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.TEXT_COLOR;
+
 import java.util.Map.Entry;
 
 import org.eclipse.swt.graphics.Color;
@@ -10,11 +12,11 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
 import net.mograsim.logic.model.snippets.SubmodelComponentSnippetSuppliers;
-import net.mograsim.preferences.Preferences;
 
 /**
  * Renders a text (<code>"centerText"</code>) with a given font height (<code>"centerTextHeight"</code>) in the center of the component and
@@ -44,7 +46,7 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
 		double posX = component.getPosX();
 		double posY = component.getPosY();
@@ -54,7 +56,7 @@ public class SimpleRectangularLikeSymbolRenderer implements Renderer
 		Font oldFont = gc.getFont();
 		gc.setFont(new Font(oldFont.getName(), centerTextHeight, oldFont.getStyle()));
 		Point textExtent = gc.textExtent(centerText);
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
+		Color textColor = renderPrefs.getColor(TEXT_COLOR);
 		if (textColor != null)
 			gc.setForeground(textColor);
 		gc.drawText(centerText, posX + (width - textExtent.x) / 2, posY + (height - textExtent.y) / 2, true);

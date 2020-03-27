@@ -11,6 +11,8 @@ Export-Package: net.mograsim.plugin;uses:="org.eclipse.ui.themes,org.eclipse.swt
  net.mograsim.plugin.launch,
  net.mograsim.plugin.nature,
  net.mograsim.plugin.nature.properties,
+ net.mograsim.plugin.perspectives,
+ net.mograsim.plugin.preferences,
  net.mograsim.plugin.tables,
  net.mograsim.plugin.tables.memory,
  net.mograsim.plugin.tables.mi,

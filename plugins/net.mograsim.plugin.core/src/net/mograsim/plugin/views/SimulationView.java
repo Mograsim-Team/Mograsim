@@ -1,5 +1,9 @@
 package net.mograsim.plugin.views;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.DRAG_BUTTON;
+import static net.mograsim.logic.model.preferences.RenderPreferences.ZOOM_BUTTON;
+import static net.mograsim.plugin.preferences.PluginPreferences.SIMULATION_SPEED_PRECISION;
+
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -26,16 +30,17 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.model.LogicUICanvas;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
+import net.mograsim.plugin.MograsimActivator;
 import net.mograsim.plugin.launch.MachineDebugContextListener;
 import net.mograsim.plugin.launch.MachineDebugTarget;
 import net.mograsim.plugin.tables.DisplaySettings;
 import net.mograsim.plugin.tables.mi.ActiveInstructionPreviewContentProvider;
 import net.mograsim.plugin.tables.mi.InstructionTable;
 import net.mograsim.plugin.util.OverlappingFillLayout;
-import net.mograsim.preferences.Preferences;
 
 public class SimulationView extends ViewPart
 {
@@ -153,7 +158,8 @@ public class SimulationView extends ViewPart
 
 		simSpeedInput = new DoubleInput(c, SWT.NONE);
 		controlsToDisableWhenNoMachinePresent.add(simSpeedInput);
-		simSpeedInput.setPrecision(Preferences.current().getInt("net.mograsim.plugin.core.simspeedprecision"));
+		// TODO add a listener
+		simSpeedInput.setPrecision(MograsimActivator.instance().getPluginPrefs().getInt(SIMULATION_SPEED_PRECISION));
 		simSpeedInput.addChangeListener(speed ->
 		{
 			if (speed != 0)
@@ -220,11 +226,14 @@ public class SimulationView extends ViewPart
 
 			Machine machine = debugTarget.getMachine();
 
-			canvas = new LogicUICanvas(canvasParent, SWT.NONE, machine.getModel());
+			RenderPreferences renderPrefs = MograsimActivator.instance().getRenderPrefs();
+			canvas = new LogicUICanvas(canvasParent, SWT.NONE, machine.getModel(), renderPrefs);
 			canvas.addListener(SWT.MouseDown, e -> canvas.setFocus());
 			ZoomableCanvasUserInput userInput = new ZoomableCanvasUserInput(canvas);
-			userInput.buttonDrag = Preferences.current().getInt("net.mograsim.logic.model.button.drag");
-			userInput.buttonZoom = Preferences.current().getInt("net.mograsim.logic.model.button.zoom");
+			// TODO add a listener
+			userInput.buttonDrag = renderPrefs.getInt(DRAG_BUTTON);
+			// TODO add a listener
+			userInput.buttonZoom = renderPrefs.getInt(ZOOM_BUTTON);
 			userInput.enableUserInput();
 			if (zoom > 0)
 			{
