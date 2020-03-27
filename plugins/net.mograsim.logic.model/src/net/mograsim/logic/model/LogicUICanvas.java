@@ -47,14 +47,12 @@ public class LogicUICanvas extends ZoomableCanvas
 
 		this.model = model;
 
+		Color background = Preferences.current().getColor("net.mograsim.logic.model.color.background");
+		if (background != null)
+			setBackground(background);
+
 		LogicUIRenderer renderer = new LogicUIRenderer(model);
-		addZoomedRenderer(gc ->
-		{
-			Color background = Preferences.current().getColor("net.mograsim.logic.model.color.background");
-			if (background != null)
-				setBackground(background);// this.setBackground, not gc.setBackground to have the background fill the canvas
-			renderer.render(gc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom));
-		});
+		addZoomedRenderer(gc -> renderer.render(gc, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom)));
 		model.setRedrawHandler(() ->
 		{
 			if (!isDisposed())
