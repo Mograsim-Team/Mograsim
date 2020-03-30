@@ -382,7 +382,7 @@
       {
         "pin1": {
           "compName": "dff12#0",
-          "pinName": "Y"
+          "pinName": "Q"
         },
         "pin2": {
           "compName": "WireCrossPoint#0",
