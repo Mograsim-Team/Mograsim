@@ -4848,7 +4848,14 @@
     ],
     "version": "0.1.1"
   },
-  "symbolRendererSnippetID": "default",
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "Instruction\nPLA",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 40.0,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
   "outlineRendererSnippetID": "default",
   "highLevelStateHandlerSnippetID": "default",
   "version": "0.1.5"
