@@ -6,8 +6,8 @@ import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
-import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
+import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.util.ModellingTool;
 
 public class SwitchWithDisplay

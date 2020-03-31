@@ -1348,13 +1348,12 @@
         }
       },
       {
-        "id": "inc",
-        "name": "inc#0",
+        "id": "inc16",
+        "name": "inc16#0",
         "pos": {
-          "x": 315.0,
-          "y": 135.0
-        },
-        "params": 16
+          "x": 335.0,
+          "y": 115.0
+        }
       },
       {
         "id": "mux1_4",
@@ -3610,7 +3609,7 @@
       },
       {
         "pin1": {
-          "compName": "inc#0",
+          "compName": "inc16#0",
           "pinName": "Y"
         },
         "pin2": {
@@ -3618,16 +3617,11 @@
           "pinName": "D"
         },
         "name": "unnamedWire#128",
-        "path": [
-          {
-            "x": 335.0,
-            "y": 130.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
-          "compName": "inc#0",
+          "compName": "inc16#0",
           "pinName": "A"
         },
         "pin2": {
@@ -3637,14 +3631,18 @@
         "name": "unnamedWire#129",
         "path": [
           {
-            "x": 335.0,
+            "x": 315.0,
+            "y": 130.0
+          },
+          {
+            "x": 315.0,
             "y": 160.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "inc#0",
+          "compName": "inc16#0",
           "pinName": "CI"
         },
         "pin2": {
@@ -3654,8 +3652,16 @@
         "name": "unnamedWire#130",
         "path": [
           {
+            "x": 330.0,
+            "y": 120.0
+          },
+          {
+            "x": 330.0,
+            "y": 160.0
+          },
+          {
             "x": 360.0,
-            "y": 145.0
+            "y": 160.0
           },
           {
             "x": 360.0,

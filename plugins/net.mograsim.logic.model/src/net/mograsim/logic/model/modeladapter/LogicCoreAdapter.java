@@ -18,8 +18,8 @@ import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.components.submodels.SubmodelInterface;
 import net.mograsim.logic.model.model.wires.ModelWire;
-import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
+import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.componentadapters.ComponentAdapter;
 
 public class LogicCoreAdapter
@@ -142,11 +142,14 @@ public class LogicCoreAdapter
 		return connectedPinsPerPin;
 	}
 
+	public static final Map<Class<? extends ModelComponent>, Integer> gateCountsPerComponentClass = new HashMap<>();
+
 	@SuppressWarnings("unchecked")
 	private static <G extends ModelComponent> void createAndLinkComponent(Timeline timeline, CoreModelParameters params,
 			ModelComponent modelComponent, Map<Pin, CoreWire> logicWiresPerPin)
 	{
 		Class<?> cls = modelComponent.getClass();
+		gateCountsPerComponentClass.merge(modelComponent.getClass(), 1, Integer::sum);
 		ComponentAdapter<? super G> adapter = null;
 		while (cls != ModelComponent.class && adapter == null)
 		{

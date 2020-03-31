@@ -10,6 +10,7 @@ import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
@@ -44,7 +45,7 @@ public class Am2904Testbench
 			}
 
 			@Override
-			public void render(GeneralGC gc, Rectangle visibleRegion)
+			public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 			{
 				// do nothing
 			}

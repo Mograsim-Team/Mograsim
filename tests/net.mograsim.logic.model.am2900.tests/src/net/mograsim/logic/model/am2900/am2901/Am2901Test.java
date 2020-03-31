@@ -1,11 +1,23 @@
 package net.mograsim.logic.model.am2900.am2901;
 
-import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Dest.*;
-import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Func.*;
-import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Src.*;
-import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Register.*;
-import static net.mograsim.logic.model.am2900.util.TestUtil.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Dest.NOP;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Dest.QREG;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Dest.RAMF;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Func.ADD;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Func.AND;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Func.EXOR;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Func.OR;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Func.SUBR;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Src.AB;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Src.DA;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Am2901_Src.DZ;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Register.Q;
+import static net.mograsim.logic.model.am2900.am2901.TestableAm2901.Register.r0;
+import static net.mograsim.logic.model.am2900.util.TestUtil.signed4ToSigned32;
+import static net.mograsim.logic.model.am2900.util.TestUtil.to1bitBin;
+import static net.mograsim.logic.model.am2900.util.TestUtil.to4bitBin;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.Point;
 import java.util.stream.IntStream;
@@ -13,8 +25,8 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.RegisterExtension;

@@ -1,5 +1,7 @@
 package net.mograsim.plugin.launch;
 
+import static net.mograsim.plugin.preferences.PluginPreferences.MAX_MEMORY_CHANGE_INTERVAL;
+
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +23,6 @@ import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.plugin.MograsimActivator;
-import net.mograsim.preferences.Preferences;
 
 public class MainMemoryBlockExtension extends PlatformObject implements IMemoryBlockExtension
 {
@@ -80,7 +81,8 @@ public class MainMemoryBlockExtension extends PlatformObject implements IMemoryB
 		this.memListener = a -> queueFireContentChangeEvent();
 		this.memListenerRegistered = new AtomicBoolean();
 
-		this.maxContentChangeInterval = Preferences.current().getInt("net.mograsim.plugin.core.maxmemchangeinterval");
+		// TODO add a listener
+		this.maxContentChangeInterval = MograsimActivator.instance().getPluginPrefs().getInt(MAX_MEMORY_CHANGE_INTERVAL);
 		this.contentChangeLock = new Object();
 		this.nextContentChangeAllowedMillis = System.currentTimeMillis() - maxContentChangeInterval - 1;
 	}

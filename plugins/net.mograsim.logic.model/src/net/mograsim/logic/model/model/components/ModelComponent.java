@@ -11,6 +11,7 @@ import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.JSONSerializable;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
@@ -98,13 +99,6 @@ public abstract class ModelComponent implements JSONSerializable
 		model.componentCreated(this, this::destroyed);
 	}
 
-	// basic getters
-
-	public String getName()
-	{
-		return name;
-	}
-
 	/**
 	 * Destroys this component. This method is called from {@link LogicModelModifiable#componentDestroyed(ModelComponent)
 	 * destroyComponent()} of the model this component is a part of.<br>
@@ -115,6 +109,13 @@ public abstract class ModelComponent implements JSONSerializable
 	protected void destroyed()
 	{
 		pinsByName.values().forEach(this::removePinWithoutRedraw);
+	}
+
+	// basic getters
+
+	public String getName()
+	{
+		return name;
 	}
 
 	// pins
@@ -344,7 +345,7 @@ public abstract class ModelComponent implements JSONSerializable
 	 * 
 	 * @author Daniel Kirschten
 	 */
-	public abstract void render(GeneralGC gc, Rectangle visibleRegion);
+	public abstract void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion);
 
 	// serializing
 

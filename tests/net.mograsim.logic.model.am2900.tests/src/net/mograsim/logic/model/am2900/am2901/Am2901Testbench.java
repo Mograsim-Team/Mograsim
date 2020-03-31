@@ -16,9 +16,9 @@ import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.atomic.ModelNotGate;
 import net.mograsim.logic.model.model.components.atomic.ModelTextComponent;
+import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
-import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.ModellingTool;
 

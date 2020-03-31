@@ -3,8 +3,8 @@ package net.mograsim.logic.model.util;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
-import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
+import net.mograsim.logic.model.model.wires.Pin;
 
 public class ModellingTool
 {

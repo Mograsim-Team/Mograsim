@@ -5,6 +5,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 
 public class SubmodelInterface extends ModelComponent
@@ -15,7 +16,7 @@ public class SubmodelInterface extends ModelComponent
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{// nothing to do here
 	}
 

@@ -24,6 +24,7 @@ import net.mograsim.logic.model.am2900.machine.Am2900MicroInstructionDefinition;
 import net.mograsim.logic.model.am2900.machine.Am2900MicroInstructionMemoryDefinition;
 import net.mograsim.logic.model.am2900.machine.StrictAm2900MachineDefinition;
 import net.mograsim.logic.model.am2900.machine.registers.am2901.NumberedRegister;
+import net.mograsim.logic.model.preferences.DefaultRenderPreferences;
 import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
@@ -99,7 +100,7 @@ public class TestGCD
 
 	private void startGUI()
 	{
-		new Thread(() -> new LogicUIStandaloneGUI(mach.getModel()).run(), "GUI thread").start();
+		new Thread(() -> new LogicUIStandaloneGUI(mach.getModel(), new DefaultRenderPreferences()).run(), "GUI thread").start();
 	}
 
 	@Test

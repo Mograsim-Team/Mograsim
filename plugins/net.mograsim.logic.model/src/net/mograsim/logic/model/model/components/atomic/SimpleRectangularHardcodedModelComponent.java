@@ -15,6 +15,7 @@ import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.SimpleRectangularHardcodedModelComponentAdapter;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.HighLevelStateHandler;
 import net.mograsim.logic.model.snippets.outlinerenderers.DefaultOutlineRenderer;
@@ -176,11 +177,11 @@ public abstract class SimpleRectangularHardcodedModelComponent extends ModelComp
 	// "graphical" operations
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
-		outlineRenderer.render(gc, visibleRegion);
-		centerTextRenderer.render(gc, visibleRegion);
-		pinNamesRenderer.render(gc, visibleRegion);
+		outlineRenderer.render(gc, renderPrefs, visibleRegion);
+		centerTextRenderer.render(gc, renderPrefs, visibleRegion);
+		pinNamesRenderer.render(gc, renderPrefs, visibleRegion);
 	}
 
 	// serializing

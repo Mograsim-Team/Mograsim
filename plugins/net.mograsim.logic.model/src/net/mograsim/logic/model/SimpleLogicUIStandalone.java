@@ -6,6 +6,7 @@ import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
+import net.mograsim.logic.model.preferences.DefaultRenderPreferences;
 
 public class SimpleLogicUIStandalone
 {
@@ -39,13 +40,14 @@ public class SimpleLogicUIStandalone
 		Timeline timeline = LogicCoreAdapter.convert(logicModel, params);
 
 		// initialize UI and executer
-		LogicUIStandaloneGUI ui = new LogicUIStandaloneGUI(logicModel);
+		LogicUIStandaloneGUI ui = new LogicUIStandaloneGUI(logicModel, new DefaultRenderPreferences());
 		LogicExecuter exec = new LogicExecuter(timeline);
 
 		if (beforeRun != null)
 			beforeRun.accept(new VisualisationObjects(logicModel, timeline, ui, exec));
 
 		// run it
+		exec.setSpeedFactor(1);
 		exec.startLiveExecution();
 		ui.run();
 		exec.stopLiveExecution();

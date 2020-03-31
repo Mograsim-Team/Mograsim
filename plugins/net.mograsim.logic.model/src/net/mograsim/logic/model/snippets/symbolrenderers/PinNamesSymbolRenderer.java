@@ -1,7 +1,11 @@
 package net.mograsim.logic.model.snippets.symbolrenderers;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.TEXT_COLOR;
+
 import java.util.HashMap;
 import java.util.Map;
+
+import org.eclipse.swt.graphics.Color;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Font;
@@ -9,6 +13,7 @@ import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.haspamelodica.swt.helper.swtobjectwrappers.Rectangle;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.snippets.Renderer;
 import net.mograsim.logic.model.snippets.SnippetDefinintion;
@@ -47,8 +52,11 @@ public class PinNamesSymbolRenderer implements Renderer
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
+		Color textColor = renderPrefs.getColor(TEXT_COLOR);
+		if (textColor != null)
+			gc.setForeground(textColor);
 		Font oldFont = gc.getFont();
 		gc.setFont(new Font(oldFont.getName(), pinLabelHeight, oldFont.getStyle()));
 		for (Pin pin : component.getPins().values())

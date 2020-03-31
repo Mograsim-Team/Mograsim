@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.FOREGROUND_COLOR;
+
 import org.eclipse.swt.graphics.Color;
 
 import com.google.gson.JsonSyntaxException;
@@ -14,10 +16,10 @@ import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.TriStateBufferAdapter;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.util.JsonHandler;
-import net.mograsim.preferences.Preferences;
 
 public class ModelTriStateBuffer extends ModelComponent
 {
@@ -78,9 +80,9 @@ public class ModelTriStateBuffer extends ModelComponent
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
-		Color foreground = Preferences.current().getColor("net.mograsim.logic.model.color.foreground");
+		Color foreground = renderPrefs.getColor(FOREGROUND_COLOR);
 		if (foreground != null)
 			gc.setForeground(foreground);
 		double x = getPosX();

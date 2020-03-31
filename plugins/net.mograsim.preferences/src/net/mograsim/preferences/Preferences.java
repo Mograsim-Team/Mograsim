@@ -1,34 +1,36 @@
 package net.mograsim.preferences;
 
-import java.util.Objects;
+import java.util.function.Consumer;
 
 import org.eclipse.swt.graphics.Color;
 
-public abstract class Preferences
+public interface Preferences
 {
-	private static Preferences currentPreferences;
+	public boolean getBoolean(String name);
 
-	public static void setPreferences(Preferences preferences)
-	{
-		currentPreferences = Objects.requireNonNull(preferences);
-	}
+	public void addBooleanListener(String name, Consumer<Boolean> listener);
 
-	public static Preferences current()
-	{
-		if (currentPreferences == null)
-			currentPreferences = new DefaultPreferences();
-		return currentPreferences;
-	}
+	public void removeBooleanListener(String name, Consumer<Boolean> listener);
 
-	public abstract boolean getBoolean(String name);
+	public int getInt(String name);
 
-	public abstract int getInt(String name);
+	public void addIntListener(String name, Consumer<Integer> listener);
 
-	public abstract double getDouble(String name);
+	public void removeIntListener(String name, Consumer<Integer> listener);
 
-	public abstract ColorDefinition getColorDefinition(String name);
+	public double getDouble(String name);
 
-	public Color getColor(String name)
+	public void addDoubleListener(String name, Consumer<Double> listener);
+
+	public void removeDoubleListener(String name, Consumer<Double> listener);
+
+	public ColorDefinition getColorDefinition(String name);
+
+	public void addColorDefinitionListener(String name, Consumer<ColorDefinition> listener);
+
+	public void removeColorDefinitionListener(String name, Consumer<ColorDefinition> listener);
+
+	public default Color getColor(String name)
 	{
 		return ColorManager.current().toColor(getColorDefinition(name));
 	}

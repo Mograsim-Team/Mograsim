@@ -1,6 +1,5 @@
 package net.mograsim.logic.model.am2900.machine.registers;
 
-import net.mograsim.logic.model.am2900.machine.registers.Am2900Register;
 import net.mograsim.machine.registers.HighLevelStateBasedRegister;
 
 public class muInstrRegister extends HighLevelStateBasedRegister implements Am2900Register

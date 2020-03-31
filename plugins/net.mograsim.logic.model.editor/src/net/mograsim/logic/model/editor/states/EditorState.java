@@ -2,8 +2,8 @@ package net.mograsim.logic.model.editor.states;
 
 import net.haspamelodica.swt.helper.swtobjectwrappers.Point;
 import net.mograsim.logic.model.editor.Editor;
-import net.mograsim.logic.model.editor.handles.InterfacePinHandle;
 import net.mograsim.logic.model.editor.handles.Handle.HandleClickInfo;
+import net.mograsim.logic.model.editor.handles.InterfacePinHandle;
 
 public abstract class EditorState
 {

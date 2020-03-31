@@ -1,5 +1,6 @@
 package net.mograsim.logic.model.examples;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -114,7 +115,12 @@ public class ReserializeAndVerifyJSONs
 				changeWireNames_AfterSerialization(newComponentJSON, wireNameRemapping);
 			sortAllJSONArrays(newComponentJSON);
 
-			JsonHandler.writeJson(newComponentJSON, componentPath.toString());
+			try (FileWriter writer = new FileWriter(componentPath.toString()))
+			{
+				String json = JsonHandler.toJson(newComponentJSON);
+				json = json.replace("\u00b5", "\\u00b5");
+				writer.write(json);
+			}
 		}
 		catch (Exception e)
 		{

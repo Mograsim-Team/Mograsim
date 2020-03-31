@@ -1,0 +1,405 @@
+{
+  "width": 20.0,
+  "height": 30.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "A",
+      "logicWidth": 4,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "CI",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 20.0,
+        "y": 15.0
+      },
+      "name": "Y",
+      "logicWidth": 4,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "Z",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    }
+  ],
+  "innerScale": 0.2,
+  "submodel": {
+    "components": [
+      {
+        "id": "Splitter",
+        "name": "Splitter#0",
+        "pos": {
+          "x": 5.0,
+          "y": 60.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT_ALT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#1",
+        "pos": {
+          "x": 85.0,
+          "y": 60.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT_ALT"
+        }
+      },
+      {
+        "id": "halfadder",
+        "name": "halfadder#0",
+        "pos": {
+          "x": 40.0,
+          "y": 5.0
+        }
+      },
+      {
+        "id": "halfadder",
+        "name": "halfadder#1",
+        "pos": {
+          "x": 40.0,
+          "y": 40.0
+        }
+      },
+      {
+        "id": "halfadder",
+        "name": "halfadder#2",
+        "pos": {
+          "x": 40.0,
+          "y": 75.0
+        }
+      },
+      {
+        "id": "halfadder",
+        "name": "halfadder#3",
+        "pos": {
+          "x": 40.0,
+          "y": 110.0
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "halfadder#0",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfadder#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#0",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 30.0
+          },
+          {
+            "x": 35.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfadder#1",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfadder#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#1",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 65.0
+          },
+          {
+            "x": 35.0,
+            "y": 80.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfadder#2",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfadder#3",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 100.0
+          },
+          {
+            "x": 35.0,
+            "y": 115.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "halfadder#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 60.0
+          },
+          {
+            "x": 20.0,
+            "y": 20.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "halfadder#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 70.0
+          },
+          {
+            "x": 25.0,
+            "y": 55.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "halfadder#2",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 80.0
+          },
+          {
+            "x": 25.0,
+            "y": 90.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "halfadder#3",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 90.0
+          },
+          {
+            "x": 20.0,
+            "y": 125.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "halfadder#0",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 80.0,
+            "y": 60.0
+          },
+          {
+            "x": 80.0,
+            "y": 10.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfadder#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 75.0,
+            "y": 45.0
+          },
+          {
+            "x": 75.0,
+            "y": 70.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfadder#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "halfadder#3",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#10",
+        "path": [
+          {
+            "x": 75.0,
+            "y": 90.0
+          },
+          {
+            "x": 75.0,
+            "y": 115.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "CI"
+        },
+        "pin2": {
+          "compName": "halfadder#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#12",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 25.0
+          },
+          {
+            "x": 10.0,
+            "y": 10.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "halfadder#3",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Z"
+        },
+        "name": "unnamedWire#14",
+        "path": [
+          {
+            "x": 10.0,
+            "y": 135.0
+          },
+          {
+            "x": 10.0,
+            "y": 125.0
+          }
+        ]
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "Incrementer\n4 bit",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 10.0,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}

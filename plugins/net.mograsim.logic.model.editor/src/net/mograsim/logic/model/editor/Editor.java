@@ -22,6 +22,8 @@ import net.mograsim.logic.model.editor.ui.EditorGUI;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
+import net.mograsim.logic.model.preferences.DefaultRenderPreferences;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.DeserializedSubmodelComponent;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevelStateHandler;
@@ -35,6 +37,7 @@ public final class Editor
 	public final DeserializedSubmodelComponent toBeEdited;
 	public final HandleManager handleManager;
 	public final EditorGUI gui;
+	public final RenderPreferences renderPrefs;
 	public final StateManager stateManager;
 	private final SaveLoadManager saveManager;
 	private Snapping snapping = Snapping.ABSOLUTE;
@@ -46,6 +49,7 @@ public final class Editor
 	{
 		this.toBeEdited = toBeEdited;
 		handleManager = new HandleManager(this);
+		renderPrefs = new DefaultRenderPreferences();
 		gui = new EditorGUI(this);
 		userInput = new EditorUserInput(this);
 		stateManager = new StateManager(this);

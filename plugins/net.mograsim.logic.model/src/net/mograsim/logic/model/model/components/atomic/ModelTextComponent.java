@@ -1,5 +1,7 @@
 package net.mograsim.logic.model.model.components.atomic;
 
+import static net.mograsim.logic.model.preferences.RenderPreferences.TEXT_COLOR;
+
 import org.eclipse.swt.graphics.Color;
 
 import net.haspamelodica.swt.helper.gcs.GeneralGC;
@@ -9,9 +11,9 @@ import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.modeladapter.componentadapters.NoLogicAdapter;
+import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
-import net.mograsim.preferences.Preferences;
 
 //TODO clean size calculation mess
 public class ModelTextComponent extends ModelComponent
@@ -36,7 +38,7 @@ public class ModelTextComponent extends ModelComponent
 	}
 
 	@Override
-	public void render(GeneralGC gc, Rectangle visibleRegion)
+	public void render(GeneralGC gc, RenderPreferences renderPrefs, Rectangle visibleRegion)
 	{
 		if (!calculatedSize)
 		{
@@ -45,7 +47,7 @@ public class ModelTextComponent extends ModelComponent
 			setSize(textExtent.x, textExtent.y);
 		}
 
-		Color textColor = Preferences.current().getColor("net.mograsim.logic.model.color.text");
+		Color textColor = renderPrefs.getColor(TEXT_COLOR);
 		if (textColor != null)
 			gc.setForeground(textColor);
 		gc.drawText(text, getPosX(), getPosY(), true);

@@ -1,5 +1,5 @@
 {
-  "width": 35.0,
+  "width": 15.0,
   "height": 50.0,
   "interfacePins": [
     {
@@ -49,7 +49,7 @@
     },
     {
       "location": {
-        "x": 35.0,
+        "x": 15.0,
         "y": 5.0
       },
       "name": "Y1",
@@ -58,7 +58,7 @@
     },
     {
       "location": {
-        "x": 35.0,
+        "x": 15.0,
         "y": 15.0
       },
       "name": "Y2",
@@ -67,7 +67,7 @@
     },
     {
       "location": {
-        "x": 35.0,
+        "x": 15.0,
         "y": 25.0
       },
       "name": "Y3",
@@ -76,7 +76,7 @@
     },
     {
       "location": {
-        "x": 35.0,
+        "x": 15.0,
         "y": 35.0
       },
       "name": "Y4",
@@ -91,7 +91,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
-          "x": 24.0,
+          "x": 4.0,
           "y": 46.5
         },
         "params": 1
@@ -100,7 +100,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
-          "x": 24.0,
+          "x": 4.0,
           "y": 71.5
         },
         "params": 1
@@ -109,7 +109,7 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
-          "x": 24.0,
+          "x": 4.0,
           "y": 96.5
         },
         "params": 1
@@ -118,7 +118,7 @@
         "id": "and",
         "name": "and#0",
         "pos": {
-          "x": 30.0,
+          "x": 7.5,
           "y": 7.5
         }
       },
@@ -126,7 +126,7 @@
         "id": "and",
         "name": "and#1",
         "pos": {
-          "x": 30.0,
+          "x": 7.5,
           "y": 32.5
         }
       },
@@ -134,7 +134,7 @@
         "id": "and",
         "name": "and#2",
         "pos": {
-          "x": 30.0,
+          "x": 7.5,
           "y": 57.5
         }
       },
@@ -142,7 +142,7 @@
         "id": "and",
         "name": "and#3",
         "pos": {
-          "x": 30.0,
+          "x": 7.5,
           "y": 82.5
         }
       }
@@ -208,7 +208,7 @@
         "name": "unnamedWire#4",
         "path": [
           {
-            "x": 25.0,
+            "x": 5.0,
             "y": 112.5
           }
         ]
@@ -285,7 +285,7 @@
         "name": "unnamedWire#10",
         "path": [
           {
-            "x": 25.0,
+            "x": 5.0,
             "y": 22.5
           }
         ]

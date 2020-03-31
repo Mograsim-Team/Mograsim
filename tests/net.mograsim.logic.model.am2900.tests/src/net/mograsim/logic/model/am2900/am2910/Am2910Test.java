@@ -1,15 +1,15 @@
 package net.mograsim.logic.model.am2900.am2910;
 
-import static net.mograsim.logic.model.am2900.am2910.TestableAm2910.Am2910_Inst.*;
-import static net.mograsim.logic.core.types.Bit.*;
+import static net.mograsim.logic.core.types.Bit.U;
+import static net.mograsim.logic.model.am2900.am2910.TestableAm2910.Am2910_Inst.JZ;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.RegisterExtension;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 

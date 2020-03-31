@@ -1,0 +1,645 @@
+{
+  "width": 20.0,
+  "height": 25.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "A",
+      "logicWidth": 12,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "CI",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 20.0,
+        "y": 15.0
+      },
+      "name": "Y",
+      "logicWidth": 12,
+      "usage": "OUTPUT"
+    }
+  ],
+  "innerScale": 0.2,
+  "submodel": {
+    "components": [
+      {
+        "id": "Splitter",
+        "name": "Splitter#0",
+        "pos": {
+          "x": 7.5,
+          "y": 10.0
+        },
+        "params": {
+          "logicWidth": 12,
+          "orientation": "RIGHT_ALT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#1",
+        "pos": {
+          "x": 82.5,
+          "y": 10.0
+        },
+        "params": {
+          "logicWidth": 12,
+          "orientation": "LEFT_ALT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#2",
+        "pos": {
+          "x": 22.5,
+          "y": 10.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT_ALT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#3",
+        "pos": {
+          "x": 22.5,
+          "y": 50.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT_ALT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#4",
+        "pos": {
+          "x": 22.5,
+          "y": 90.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT_ALT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#5",
+        "pos": {
+          "x": 67.5,
+          "y": 10.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT_ALT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#6",
+        "pos": {
+          "x": 67.5,
+          "y": 50.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT_ALT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#7",
+        "pos": {
+          "x": 67.5,
+          "y": 90.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT_ALT"
+        }
+      },
+      {
+        "id": "inc4",
+        "name": "inc4#0",
+        "pos": {
+          "x": 42.5,
+          "y": 10.0
+        }
+      },
+      {
+        "id": "inc4",
+        "name": "inc4#1",
+        "pos": {
+          "x": 42.5,
+          "y": 50.0
+        }
+      },
+      {
+        "id": "inc4",
+        "name": "inc4#2",
+        "pos": {
+          "x": 42.5,
+          "y": 90.0
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "CI"
+        },
+        "pin2": {
+          "compName": "inc4#0",
+          "pinName": "CI"
+        },
+        "name": "unnamedWire#0",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 25.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 37.5,
+            "y": 5.0
+          },
+          {
+            "x": 37.5,
+            "y": 15.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#2",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "inc4#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "inc4#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#4",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "inc4#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inc4#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#5",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inc4#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#6",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inc4#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#7",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 75.0
+          },
+          {
+            "x": 5.0,
+            "y": 65.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "Splitter#2",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#2",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "Splitter#2",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#10",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#2",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O4"
+        },
+        "pin2": {
+          "compName": "Splitter#3",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O5"
+        },
+        "pin2": {
+          "compName": "Splitter#3",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#3",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O6"
+        },
+        "name": "unnamedWire#14",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O7"
+        },
+        "pin2": {
+          "compName": "Splitter#3",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#15",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#4",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O8"
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O9"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#4",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O10"
+        },
+        "name": "unnamedWire#18",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O11"
+        },
+        "pin2": {
+          "compName": "Splitter#4",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "inc4#0",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "inc4#1",
+          "pinName": "CI"
+        },
+        "name": "unnamedWire#20",
+        "path": [
+          {
+            "x": 37.5,
+            "y": 35.0
+          },
+          {
+            "x": 37.5,
+            "y": 55.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "inc4#1",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "inc4#2",
+          "pinName": "CI"
+        },
+        "name": "unnamedWire#21",
+        "path": [
+          {
+            "x": 37.5,
+            "y": 75.0
+          },
+          {
+            "x": 37.5,
+            "y": 95.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#5",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#22",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "Splitter#5",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#24",
+        "path": [
+          {
+            "x": 95.0,
+            "y": 65.0
+          },
+          {
+            "x": 95.0,
+            "y": 75.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#5",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "Splitter#5",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#6",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O4"
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O5"
+        },
+        "pin2": {
+          "compName": "Splitter#6",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#28",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#6",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O6"
+        },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O7"
+        },
+        "pin2": {
+          "compName": "Splitter#6",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#30",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#7",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O8"
+        },
+        "name": "unnamedWire#31",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O9"
+        },
+        "pin2": {
+          "compName": "Splitter#7",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#32",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#7",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O10"
+        },
+        "name": "unnamedWire#33",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O11"
+        },
+        "pin2": {
+          "compName": "Splitter#7",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#34",
+        "path": []
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "Incrementer\n12 bit",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 10.0,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}
