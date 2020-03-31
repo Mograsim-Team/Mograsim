@@ -1348,13 +1348,12 @@
         }
       },
       {
-        "id": "inc",
-        "name": "inc#0",
+        "id": "inc16",
+        "name": "inc16#0",
         "pos": {
           "x": 315.0,
           "y": 135.0
-        },
-        "params": 16
+        }
       },
       {
         "id": "mux1_4",
@@ -3610,7 +3609,7 @@
       },
       {
         "pin1": {
-          "compName": "inc#0",
+          "compName": "inc16#0",
           "pinName": "Y"
         },
         "pin2": {
@@ -3627,7 +3626,7 @@
       },
       {
         "pin1": {
-          "compName": "inc#0",
+          "compName": "inc16#0",
           "pinName": "A"
         },
         "pin2": {
@@ -3644,7 +3643,7 @@
       },
       {
         "pin1": {
-          "compName": "inc#0",
+          "compName": "inc16#0",
           "pinName": "CI"
         },
         "pin2": {

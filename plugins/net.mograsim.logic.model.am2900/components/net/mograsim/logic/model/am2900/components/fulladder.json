@@ -61,16 +61,16 @@
         "params": 1
       },
       {
-        "id": "halfadder",
-        "name": "halfadder#0",
+        "id": "halfadder_invz",
+        "name": "halfadder_invz#0",
         "pos": {
           "x": 5.0,
           "y": 40.0
         }
       },
       {
-        "id": "halfadder",
-        "name": "halfadder#1",
+        "id": "halfadder_invz",
+        "name": "halfadder_invz#1",
         "pos": {
           "x": 45.0,
           "y": 7.5
@@ -84,7 +84,7 @@
           "pinName": "A"
         },
         "pin2": {
-          "compName": "halfadder#1",
+          "compName": "halfadder_invz#1",
           "pinName": "A"
         },
         "name": "unnamedWire#0",
@@ -96,7 +96,7 @@
           "pinName": "B"
         },
         "pin2": {
-          "compName": "halfadder#0",
+          "compName": "halfadder_invz#0",
           "pinName": "A"
         },
         "name": "unnamedWire#1"
@@ -107,25 +107,25 @@
           "pinName": "C"
         },
         "pin2": {
-          "compName": "halfadder#0",
+          "compName": "halfadder_invz#0",
           "pinName": "B"
         },
         "name": "unnamedWire#2"
       },
       {
         "pin1": {
-          "compName": "halfadder#0",
+          "compName": "halfadder_invz#0",
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "halfadder#1",
+          "compName": "halfadder_invz#1",
           "pinName": "B"
         },
         "name": "unnamedWire#3"
       },
       {
         "pin1": {
-          "compName": "halfadder#0",
+          "compName": "halfadder_invz#0",
           "pinName": "_Z"
         },
         "pin2": {
@@ -137,7 +137,7 @@
       },
       {
         "pin1": {
-          "compName": "halfadder#1",
+          "compName": "halfadder_invz#1",
           "pinName": "Y"
         },
         "pin2": {
@@ -149,7 +149,7 @@
       },
       {
         "pin1": {
-          "compName": "halfadder#1",
+          "compName": "halfadder_invz#1",
           "pinName": "_Z"
         },
         "pin2": {

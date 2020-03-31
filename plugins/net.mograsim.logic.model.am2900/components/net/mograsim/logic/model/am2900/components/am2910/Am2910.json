@@ -285,13 +285,12 @@
         }
       },
       {
-        "id": "inc",
-        "name": "inc#0",
+        "id": "inc12",
+        "name": "inc12#0",
         "pos": {
           "x": 245.0,
           "y": 155.0
-        },
-        "params": 12
+        }
       },
       {
         "id": "nor12",
@@ -369,7 +368,7 @@
       },
       {
         "pin1": {
-          "compName": "inc#0",
+          "compName": "inc12#0",
           "pinName": "Y"
         },
         "pin2": {
@@ -618,7 +617,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "inc#0",
+          "compName": "inc12#0",
           "pinName": "A"
         },
         "name": "unnamedWire#18",
@@ -963,7 +962,7 @@
       },
       {
         "pin1": {
-          "compName": "inc#0",
+          "compName": "inc12#0",
           "pinName": "CI"
         },
         "pin2": {
