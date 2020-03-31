@@ -271,7 +271,7 @@
       {
         "pin1": {
           "compName": "dff4_finewe#0",
-          "pinName": "Q1"
+          "pinName": "Q4"
         },
         "pin2": {
           "compName": "Splitter#3",
@@ -287,7 +287,7 @@
         },
         "pin2": {
           "compName": "dff4_finewe#0",
-          "pinName": "Q2"
+          "pinName": "Q3"
         },
         "name": "unnamedWire#1",
         "path": []
@@ -299,7 +299,7 @@
         },
         "pin2": {
           "compName": "dff4_finewe#0",
-          "pinName": "Q3"
+          "pinName": "Q2"
         },
         "name": "unnamedWire#2",
         "path": []
@@ -307,7 +307,7 @@
       {
         "pin1": {
           "compName": "dff4_finewe#0",
-          "pinName": "Q4"
+          "pinName": "Q1"
         },
         "pin2": {
           "compName": "WireCrossPoint#3",
@@ -848,7 +848,7 @@
       {
         "pin1": {
           "compName": "dff4_finewe#0",
-          "pinName": "_WE1"
+          "pinName": "_WE4"
         },
         "pin2": {
           "compName": "_submodelinterface",
@@ -898,7 +898,7 @@
         },
         "pin2": {
           "compName": "dff4_finewe#0",
-          "pinName": "_WE4"
+          "pinName": "_WE1"
         },
         "name": "unnamedWire#38",
         "path": [
@@ -919,7 +919,7 @@
       {
         "pin1": {
           "compName": "dff4_finewe#0",
-          "pinName": "_WE3"
+          "pinName": "_WE2"
         },
         "pin2": {
           "compName": "_submodelinterface",
@@ -948,7 +948,7 @@
         },
         "pin2": {
           "compName": "dff4_finewe#0",
-          "pinName": "_WE2"
+          "pinName": "_WE3"
         },
         "name": "unnamedWire#40",
         "path": [
@@ -969,7 +969,7 @@
       {
         "pin1": {
           "compName": "dff4_finewe#0",
-          "pinName": "D1"
+          "pinName": "D4"
         },
         "pin2": {
           "compName": "mux1_4#1",
@@ -985,7 +985,7 @@
         },
         "pin2": {
           "compName": "dff4_finewe#0",
-          "pinName": "D2"
+          "pinName": "D3"
         },
         "name": "unnamedWire#42",
         "path": [
@@ -1002,7 +1002,7 @@
       {
         "pin1": {
           "compName": "dff4_finewe#0",
-          "pinName": "D3"
+          "pinName": "D2"
         },
         "pin2": {
           "compName": "mux1_4#1",
@@ -1035,7 +1035,7 @@
         },
         "pin2": {
           "compName": "dff4_finewe#0",
-          "pinName": "D4"
+          "pinName": "D1"
         },
         "name": "unnamedWire#45",
         "path": [
