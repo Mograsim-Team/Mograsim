@@ -114,6 +114,7 @@ public class TestGCD
 		checkGCD(48820, 8480);
 		checkGCD(21420, 11288);
 		checkGCD(15862, 21219);
+		checkGCD(15525, 57040);
 	}
 
 	@ParameterizedTest
@@ -133,7 +134,7 @@ public class TestGCD
 	private void checkGCD(int euclidA, int euclidB) throws InterruptedException
 	{
 		int exp = gcd(euclidA, euclidB);
-		System.out.println("Checking gcd(" + euclidA + ", " + euclidB + ") + (expected " + exp + ")");
+		System.out.println("Checking gcd(" + euclidA + ", " + euclidB + "); expected " + exp);
 		int act = executeGCD(euclidA, euclidB);
 		assertEquals(exp, act);
 	}
