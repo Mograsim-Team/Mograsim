@@ -123,11 +123,7 @@
           "x": 555.0,
           "y": 270.0
         },
-        "params": {
-          "bits": [
-            "ZERO"
-          ]
-        }
+        "params": "0"
       },
       {
         "id": "FixedOutput",
@@ -136,11 +132,7 @@
           "x": 645.0,
           "y": 390.0
         },
-        "params": {
-          "bits": [
-            "ZERO"
-          ]
-        }
+        "params": "0"
       },
       {
         "id": "FixedOutput",
@@ -149,11 +141,7 @@
           "x": 385.0,
           "y": 510.0
         },
-        "params": {
-          "bits": [
-            "ONE"
-          ]
-        }
+        "params": "1"
       },
       {
         "id": "FixedOutput",
@@ -162,11 +150,7 @@
           "x": 455.0,
           "y": 560.0
         },
-        "params": {
-          "bits": [
-            "ONE"
-          ]
-        }
+        "params": "1"
       },
       {
         "id": "FixedOutput",
@@ -175,11 +159,7 @@
           "x": 430.0,
           "y": 570.0
         },
-        "params": {
-          "bits": [
-            "ZERO"
-          ]
-        }
+        "params": "0"
       },
       {
         "id": "FixedOutput",
@@ -188,11 +168,7 @@
           "x": 485.0,
           "y": 510.0
         },
-        "params": {
-          "bits": [
-            "ZERO"
-          ]
-        }
+        "params": "0"
       },
       {
         "id": "FixedOutput",
@@ -201,11 +177,7 @@
           "x": 545.0,
           "y": 380.0
         },
-        "params": {
-          "bits": [
-            "ZERO"
-          ]
-        }
+        "params": "0"
       },
       {
         "id": "FixedOutput",
@@ -214,11 +186,7 @@
           "x": 270.0,
           "y": 380.0
         },
-        "params": {
-          "bits": [
-            "ZERO"
-          ]
-        }
+        "params": "0"
       },
       {
         "id": "NandGate",

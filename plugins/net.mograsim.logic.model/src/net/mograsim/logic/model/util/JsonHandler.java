@@ -13,9 +13,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 
+import net.mograsim.logic.core.types.BitVector;
+
 public class JsonHandler
 {
-	public final static Gson parser = new GsonBuilder().setPrettyPrinting().create();
+	public final static Gson parser = new GsonBuilder().registerTypeAdapter(BitVector.class, new BitVectorAdapter()).setPrettyPrinting()
+			.create();
 
 	public static <T> T readJson(String path, Class<T> type) throws IOException
 	{
