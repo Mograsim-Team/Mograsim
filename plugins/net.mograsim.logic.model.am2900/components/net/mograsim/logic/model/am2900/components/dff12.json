@@ -27,7 +27,7 @@
       },
       "name": "Q",
       "logicWidth": 12,
-      "usage": "TRISTATE"
+      "usage": "OUTPUT"
     }
   ],
   "innerScale": 0.2,

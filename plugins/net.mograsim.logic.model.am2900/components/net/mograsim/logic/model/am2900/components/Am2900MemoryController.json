@@ -45,7 +45,7 @@
       },
       "name": "Dmem",
       "logicWidth": 16,
-      "usage": "OUTPUT"
+      "usage": "TRISTATE"
     },
     {
       "location": {

@@ -3,16 +3,29 @@ package net.mograsim.logic.model.model.wires;
 public enum PinUsage
 {
 	/**
-	 * The component never affects the value of the wire connected to the pin.
+	 * The component never applies a value (other than Z) to the wire connected to the pin.
 	 */
 	INPUT,
 	/**
-	 * The component is never affected by the value of the wire connected to this pin. This includes the look of the component.
+	 * The component expects that the wire is never pulled to a value (other than Z) by another component.
 	 */
 	OUTPUT,
 	/**
-	 * The component (sometimes) affects the value of the wire connected to the pin, but is also (sometimes) affected by the value of this
-	 * wire.
+	 * The component is free to use the pin in any way.
 	 */
 	TRISTATE;
+
+	private PinUsage opposite;
+
+	static
+	{
+		INPUT.opposite = OUTPUT;
+		OUTPUT.opposite = INPUT;
+		TRISTATE.opposite = TRISTATE;
+	}
+
+	public PinUsage getOpposite()
+	{
+		return opposite;
+	}
 }

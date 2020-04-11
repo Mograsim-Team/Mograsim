@@ -27,7 +27,7 @@ public class ModelComponentTestbench
 	{
 		Am2900Loader.setup();
 //		ModelComponent comp = new StrictAm2900MachineDefinition().createNew(model).getAm2900();
-		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "Am2910");
+		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "Am2900");
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
@@ -35,6 +35,7 @@ public class ModelComponentTestbench
 			if (p.usage == PinUsage.INPUT)
 				inputPinNames.add(p.name);
 			else
+				// TODO handle TRISTATE pins
 				outputPinNames.add(p.name);
 
 		inputPinNames.sort(Comparator.comparing(comp::getPin, Comparator.comparing(Pin::getRelY)));

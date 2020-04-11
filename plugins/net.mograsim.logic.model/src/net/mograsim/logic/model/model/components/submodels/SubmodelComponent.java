@@ -142,21 +142,7 @@ public abstract class SubmodelComponent extends ModelComponent
 
 		String name = supermodelPin.name;
 		// TODO if we upgrade to Java 12, replace with switch-expression
-		PinUsage submodelPinUsage;
-		switch (supermodelPin.usage)
-		{
-		case INPUT:
-			submodelPinUsage = PinUsage.OUTPUT;
-			break;
-		case OUTPUT:
-			submodelPinUsage = PinUsage.INPUT;
-			break;
-		case TRISTATE:
-			submodelPinUsage = PinUsage.TRISTATE;
-			break;
-		default:
-			throw new IllegalArgumentException("Unknown enum constant: " + supermodelPin.usage);
-		}
+		PinUsage submodelPinUsage = supermodelPin.usage.getOpposite();
 		MovablePin submodelPin = new MovablePin(submodelModifiable, submodelInterface, name, supermodelPin.logicWidth, submodelPinUsage,
 				supermodelPin.getRelX() / submodelScale, supermodelPin.getRelY() / submodelScale);
 

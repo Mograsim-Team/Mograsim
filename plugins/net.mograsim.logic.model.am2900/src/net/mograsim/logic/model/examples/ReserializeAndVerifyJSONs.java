@@ -161,10 +161,25 @@ public class ReserializeAndVerifyJSONs
 				{
 					System.out.print("  Usage for interface pin " + pin.name + " (empty: " + oldUsage + ") >");
 					String usageStr = sysin.nextLine().toUpperCase();
-					usage = usageStr.equals("") ? oldUsage
-							: usageStr.equals("I") ? PinUsage.INPUT
-									: usageStr.equals("O") ? PinUsage.OUTPUT
-											: usageStr.equals("T") ? PinUsage.TRISTATE : PinUsage.valueOf(usageStr);
+					// TODO replace with switch expression if we upgrade to Java 12
+					switch (usageStr)
+					{
+					case "":
+						usage = oldUsage;
+						break;
+					case "I":
+						usage = PinUsage.INPUT;
+						break;
+					case "O":
+						usage = PinUsage.OUTPUT;
+						break;
+					case "T":
+						usage = PinUsage.TRISTATE;
+						break;
+					default:
+						usage = PinUsage.valueOf(usageStr);
+						break;
+					}
 				}
 				catch (@SuppressWarnings("unused") IllegalArgumentException e)
 				{

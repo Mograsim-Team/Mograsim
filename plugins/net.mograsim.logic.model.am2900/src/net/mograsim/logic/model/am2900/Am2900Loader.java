@@ -11,7 +11,6 @@ import net.mograsim.machine.MachineLoader;
 
 public class Am2900Loader implements BundleActivator
 {
-	// TODO use dff16 in dff16_we & dff16_invwe
 	private static AtomicBoolean activated = new AtomicBoolean(false);
 
 	@Override

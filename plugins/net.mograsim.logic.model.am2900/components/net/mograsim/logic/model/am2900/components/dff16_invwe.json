@@ -27,7 +27,7 @@
       },
       "name": "Q",
       "logicWidth": 16,
-      "usage": "TRISTATE"
+      "usage": "OUTPUT"
     },
     {
       "location": {

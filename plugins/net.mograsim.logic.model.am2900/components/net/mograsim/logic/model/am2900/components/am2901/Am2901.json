@@ -135,7 +135,7 @@
       },
       "name": "Y",
       "logicWidth": 4,
-      "usage": "INPUT"
+      "usage": "OUTPUT"
     }
   ],
   "innerScale": 0.1,

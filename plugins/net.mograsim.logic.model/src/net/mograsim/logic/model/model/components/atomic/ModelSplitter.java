@@ -26,6 +26,7 @@ import net.mograsim.logic.model.util.JsonHandler;
 import net.mograsim.preferences.ColorDefinition;
 import net.mograsim.preferences.ColorManager;
 
+//TODO introduce a direction
 public class ModelSplitter extends ModelComponent
 {
 	private static final double width = 10;

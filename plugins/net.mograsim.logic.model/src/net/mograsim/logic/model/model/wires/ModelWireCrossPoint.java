@@ -59,7 +59,7 @@ public class ModelWireCrossPoint extends ModelComponent
 		logicObs = (i) -> model.requestRedraw();
 
 		setSize(CIRCLE_DIAM, CIRCLE_DIAM);
-		addPin(this.pin = new Pin(model, this, "", logicWidth, PinUsage.TRISTATE, CIRCLE_RADIUS, CIRCLE_RADIUS));
+		addPin(this.pin = new Pin(model, this, "", logicWidth, PinUsage.INPUT, CIRCLE_RADIUS, CIRCLE_RADIUS));
 
 		init();
 	}
