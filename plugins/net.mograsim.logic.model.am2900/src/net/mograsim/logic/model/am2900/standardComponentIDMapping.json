@@ -66,6 +66,7 @@
   "sel1": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel1.json",
   "sel2_4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel2_4.json",
   "sel3_4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel3_4.json",
+  "sel4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel4.json",
   "xnor": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/xnor.json",
   "xor": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/xor.json"
 }
