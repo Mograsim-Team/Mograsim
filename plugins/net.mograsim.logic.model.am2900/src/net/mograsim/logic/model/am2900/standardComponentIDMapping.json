@@ -7,7 +7,6 @@
   "Am2910RegCntr": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2910.ModelAm2910RegCntr",
   "Am2910SP": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2910.ModelAm2910SP",
   "ram5_12": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.Modelram5_12",
-  "sel4_12": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.Modelsel4_12",
   "Am2900": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json",
   "Am2901": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901.json",
   "Am2901ALUFuncDecode": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901ALUFuncDecode.json",
@@ -68,6 +67,7 @@
   "sel3_4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel3_4.json",
   "sel4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel4.json",
   "sel4_4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel4_4.json",
+  "sel4_12": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel4_12.json",
   "xnor": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/xnor.json",
   "xor": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/xor.json"
 }
