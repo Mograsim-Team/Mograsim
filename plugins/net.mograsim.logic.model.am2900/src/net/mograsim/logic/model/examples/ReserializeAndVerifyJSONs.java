@@ -152,15 +152,16 @@ public class ReserializeAndVerifyJSONs
 
 	private static void changePinUsages(Scanner sysin, DeserializedSubmodelComponent comp)
 	{
-		comp.getSupermodelPins().entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).map(Entry::getValue).forEach(pin ->
+		comp.getSubmodelPins().entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).map(Entry::getValue).forEach(pin ->
 		{
+			PinUsage oldUsage = comp.getSupermodelPin(pin.name).usage;
 			PinUsage usage = null;
-			while (usage == null)
+			do
 				try
 				{
-					System.out.print("  Usage for interface pin " + pin.name + " (empty: " + pin.usage + ") >");
+					System.out.print("  Usage for interface pin " + pin.name + " (empty: " + oldUsage + ") >");
 					String usageStr = sysin.nextLine().toUpperCase();
-					usage = usageStr.equals("") ? pin.usage
+					usage = usageStr.equals("") ? oldUsage
 							: usageStr.equals("I") ? PinUsage.INPUT
 									: usageStr.equals("O") ? PinUsage.OUTPUT
 											: usageStr.equals("T") ? PinUsage.TRISTATE : PinUsage.valueOf(usageStr);
@@ -169,6 +170,7 @@ public class ReserializeAndVerifyJSONs
 				{
 					System.err.println("  Illegal usage");
 				}
+			while (usage == null);
 			setInterfacePinUsage(comp, pin, usage);
 		});
 	}
@@ -433,13 +435,19 @@ public class ReserializeAndVerifyJSONs
 
 	private static void setInterfacePinUsage(DeserializedSubmodelComponent comp, Pin interfacePin, PinUsage usage)
 	{
-		Set<ModelWire> wiresConnectedToPin = comp.submodel.getWiresByName().values().stream()
-				.filter(w -> w.getPin1() == interfacePin || w.getPin2() == interfacePin).collect(Collectors.toSet());
+		Set<ModelWire> wiresConnectedToPin1 = comp.submodel.getWiresByName().values().stream().filter(w -> w.getPin1() == interfacePin)
+				.collect(Collectors.toSet());
+		Set<ModelWire> wiresConnectedToPin2 = comp.submodel.getWiresByName().values().stream().filter(w -> w.getPin2() == interfacePin)
+				.collect(Collectors.toSet());
 		LogicModelModifiable submodelModifiable = comp.getSubmodelModifiable();
-		wiresConnectedToPin.forEach(submodelModifiable::destroyWire);
+		wiresConnectedToPin1.forEach(submodelModifiable::destroyWire);
+		wiresConnectedToPin2.forEach(submodelModifiable::destroyWire);
+		Pin supermodelPin = comp.getSupermodelPin(interfacePin.name);
 		comp.removeSubmodelInterface(interfacePin.name);
 		comp.addSubmodelInterface(new MovablePin(submodelModifiable, comp, interfacePin.name, interfacePin.logicWidth, usage,
-				interfacePin.getRelX(), interfacePin.getRelY()));
-		wiresConnectedToPin.forEach(w -> new ModelWire(submodelModifiable, w.getPin1(), w.getPin2()));
+				supermodelPin.getRelX(), supermodelPin.getRelY()));
+		Pin interfacePinNew = comp.getSubmodelPin(interfacePin.name);
+		wiresConnectedToPin1.forEach(w -> new ModelWire(submodelModifiable, interfacePinNew, w.getPin2(), w.getPath()));
+		wiresConnectedToPin2.forEach(w -> new ModelWire(submodelModifiable, w.getPin1(), interfacePinNew, w.getPath()));
 	}
 }
