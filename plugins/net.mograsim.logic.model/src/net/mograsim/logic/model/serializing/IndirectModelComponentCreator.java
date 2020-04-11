@@ -95,7 +95,7 @@ public class IndirectModelComponentCreator
 		if (id == null)
 			throw new NullPointerException("Component ID is null");
 		if (componentCache.containsKey(id))
-			return loadComponentFromJsonObject(model, id, name, componentCache.get(id));
+			return loadComponentFromJsonObject(model, id, name, componentCache.get(id), false);
 		String resolvedID = resolveID(id);
 		if (resolvedID == null)
 			throw new IllegalArgumentException("Unknown standard ID or illegal resolved ID: " + id);
@@ -113,7 +113,7 @@ public class IndirectModelComponentCreator
 			{
 				throw new UncheckedIOException("Error loading JSON file", e);
 			}
-			return loadComponentFromJsonObject(model, id, name, jsonContents);
+			return loadComponentFromJsonObject(model, id, name, jsonContents, false);
 		}
 		ResourceLoader loader;
 		String resTypeID;
@@ -149,7 +149,7 @@ public class IndirectModelComponentCreator
 			{
 				throw new UncheckedIOException("Error loading JSON resource", e);
 			}
-			return loadComponentFromJsonObject(model, id, name, jsonContents);
+			return loadComponentFromJsonObject(model, id, name, jsonContents, true);
 		} else if (resTypeID.equals("class"))
 		{
 			ComponentSupplier componentSupplier = componentSuppliers.get(resID);
@@ -184,9 +184,10 @@ public class IndirectModelComponentCreator
 	}
 
 	private static SubmodelComponent loadComponentFromJsonObject(LogicModelModifiable model, String id, String name,
-			SubmodelComponentParams jsonContents)
+			SubmodelComponentParams jsonContents, boolean cache)
 	{
-		componentCache.putIfAbsent(id, jsonContents);
+		if (cache)
+			componentCache.putIfAbsent(id, jsonContents);
 		return SubmodelComponentSerializer.deserialize(model, jsonContents, name, id, null);
 	}
 
