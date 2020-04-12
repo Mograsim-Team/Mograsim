@@ -3,7 +3,6 @@
   "Am2900MicroInstructionMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MicroInstructionMemory",
   "Am2904RegCTInstrDecode": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2904.ModelAm2904RegCTInstrDecode",
   "Am2904ShiftInstrDecode": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2904.ModelAm2904ShiftInstrDecode",
-  "Am2910RegCntr": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2910.ModelAm2910RegCntr",
   "Am2910SP": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.am2910.ModelAm2910SP",
   "ram5_12": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.Modelram5_12",
 
@@ -19,6 +18,7 @@
   "Am2904": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2904/Am2904.json",
   "Am2910": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2910/Am2910.json",
   "Am2910InstrPLA": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2910/Am2910InstrPLA.json",
+  "Am2910RegCntr": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2910/Am2910RegCntr.json",
   "Am2904MSR": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2904/Am2904MSR.json",
   "Am2904muSR": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2904/Am2904muSR.json",
   "Am2904TestLogic": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2904/Am2904TestLogic.json",

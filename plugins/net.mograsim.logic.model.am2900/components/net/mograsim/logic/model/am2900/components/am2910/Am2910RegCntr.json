@@ -1,0 +1,374 @@
+{
+  "width": 25.0,
+  "height": 25.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 10.0,
+        "y": 0.0
+      },
+      "name": "C",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 10.0
+      },
+      "name": "D",
+      "logicWidth": 12,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 20.0
+      },
+      "name": "DEC",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "LD",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 25.0,
+        "y": 5.0
+      },
+      "name": "Y",
+      "logicWidth": 12,
+      "usage": "OUTPUT"
+    }
+  ],
+  "innerScale": 0.2,
+  "submodel": {
+    "components": [
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 114.0,
+          "y": 29.0
+        },
+        "params": 12
+      },
+      {
+        "id": "dec12",
+        "name": "dec12#0",
+        "pos": {
+          "x": 70.0,
+          "y": 65.0
+        }
+      },
+      {
+        "id": "dff12",
+        "name": "dff12#0",
+        "pos": {
+          "x": 70.0,
+          "y": 10.0
+        }
+      },
+      {
+        "id": "mux1_12",
+        "name": "mux1_12#0",
+        "pos": {
+          "x": 10.0,
+          "y": 20.0
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "DEC"
+        },
+        "pin2": {
+          "compName": "dec12#0",
+          "pinName": "CI"
+        },
+        "name": "unnamedWire#0",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 100.0
+          },
+          {
+            "x": 5.0,
+            "y": 105.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "dff12#0",
+          "pinName": "C"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#1",
+        "path": [
+          {
+            "x": 50.0,
+            "y": 15.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "dff12#0",
+          "pinName": "Q"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 115.0,
+            "y": 25.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "dec12#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 115.0,
+            "y": 55.0
+          },
+          {
+            "x": 65.0,
+            "y": 55.0
+          },
+          {
+            "x": 65.0,
+            "y": 85.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "LD"
+        },
+        "pin2": {
+          "compName": "mux1_12#0",
+          "pinName": "S"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "mux1_12#0",
+          "pinName": "I1"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 50.0
+          },
+          {
+            "x": 5.0,
+            "y": 80.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "dec12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "mux1_12#0",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 120.0,
+            "y": 85.0
+          },
+          {
+            "x": 120.0,
+            "y": 5.0
+          },
+          {
+            "x": 5.0,
+            "y": 5.0
+          },
+          {
+            "x": 5.0,
+            "y": 40.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "mux1_12#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "dff12#0",
+          "pinName": "D"
+        },
+        "name": "unnamedWire#8",
+        "path": [
+          {
+            "x": 65.0,
+            "y": 50.0
+          },
+          {
+            "x": 65.0,
+            "y": 30.0
+          }
+        ]
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "Register/\nCounter",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 12.5,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {},
+    "atomicHighLevelStates": {
+      "q": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q"
+        }
+      },
+      "q1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q1"
+        }
+      },
+      "q2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q2"
+        }
+      },
+      "q3": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q3"
+        }
+      },
+      "q4": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q4"
+        }
+      },
+      "q5": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q5"
+        }
+      },
+      "q6": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q6"
+        }
+      },
+      "q7": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q7"
+        }
+      },
+      "q8": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q8"
+        }
+      },
+      "q9": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q9"
+        }
+      },
+      "q10": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q10"
+        }
+      },
+      "q11": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q11"
+        }
+      },
+      "q12": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12#0",
+          "subStateID": "q12"
+        }
+      }
+    }
+  },
+  "version": "0.1.5"
+}
