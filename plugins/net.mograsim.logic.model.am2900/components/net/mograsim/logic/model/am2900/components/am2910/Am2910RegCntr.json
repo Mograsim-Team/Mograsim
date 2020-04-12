@@ -1,10 +1,10 @@
 {
-  "width": 25.0,
-  "height": 25.0,
+  "width": 50.0,
+  "height": 46.0,
   "interfacePins": [
     {
       "location": {
-        "x": 10.0,
+        "x": 25.0,
         "y": 0.0
       },
       "name": "C",
@@ -14,7 +14,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 10.0
+        "y": 30.0
       },
       "name": "D",
       "logicWidth": 12,
@@ -23,7 +23,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 20.0
+        "y": 40.0
       },
       "name": "DEC",
       "logicWidth": 1,
@@ -32,7 +32,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 5.0
+        "y": 10.0
       },
       "name": "LD",
       "logicWidth": 1,
@@ -40,15 +40,15 @@
     },
     {
       "location": {
-        "x": 25.0,
-        "y": 5.0
+        "x": 50.0,
+        "y": 20.0
       },
       "name": "Y",
       "logicWidth": 12,
       "usage": "OUTPUT"
     }
   ],
-  "innerScale": 0.2,
+  "innerScale": 0.4,
   "submodel": {
     "components": [
       {
@@ -56,7 +56,7 @@
         "name": "WireCrossPoint#0",
         "pos": {
           "x": 114.0,
-          "y": 29.0
+          "y": 49.0
         },
         "params": 12
       },
@@ -119,7 +119,7 @@
         "name": "unnamedWire#1",
         "path": [
           {
-            "x": 50.0,
+            "x": 62.5,
             "y": 15.0
           }
         ]
@@ -134,7 +134,12 @@
           "pinName": ""
         },
         "name": "unnamedWire#2",
-        "path": []
+        "path": [
+          {
+            "x": 115.0,
+            "y": 30.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -146,12 +151,7 @@
           "pinName": "Y"
         },
         "name": "unnamedWire#3",
-        "path": [
-          {
-            "x": 115.0,
-            "y": 25.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -203,7 +203,7 @@
         "path": [
           {
             "x": 5.0,
-            "y": 50.0
+            "y": 75.0
           },
           {
             "x": 5.0,
