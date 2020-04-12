@@ -41,6 +41,7 @@
   "fulladder": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/fulladder.json",
   "halfadder": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/halfadder.json",
   "halfadder_invz": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/halfadder_invz.json",
+  "halfsubtracter": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/halfsubtracter.json",
   "inc4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/inc4.json",
   "inc12": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/inc12.json",
   "inc16": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/inc16.json",
