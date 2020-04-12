@@ -25,7 +25,6 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 		super(model, "Am2910RegCntr", name, "Register/\nCounter", false);
 		setSize(40, 40);
 		addPin(new Pin(model, this, "D", 12, PinUsage.INPUT, 20, 0), Position.BOTTOM);
-		addPin(new Pin(model, this, "_RLD", 1, PinUsage.INPUT, 0, 5), Position.RIGHT);
 		addPin(new Pin(model, this, "LD", 1, PinUsage.INPUT, 0, 20), Position.RIGHT);
 		addPin(new Pin(model, this, "DEC", 1, PinUsage.INPUT, 0, 30), Position.RIGHT);
 		addPin(new Pin(model, this, "C", 1, PinUsage.INPUT, 40, 20), Position.LEFT);
@@ -40,7 +39,6 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 		Bit[] QC = castAndInitState(lastState);
 
 		ReadEnd D = readEnds.get("D");
-		ReadEnd _RLD = readEnds.get("_RLD");
 		ReadEnd LD = readEnds.get("LD");
 		ReadEnd DEC = readEnds.get("DEC");
 		ReadEnd C = readEnds.get("C");
@@ -52,7 +50,8 @@ public class ModelAm2910RegCntr extends SimpleRectangularHardcodedModelComponent
 		// TODO handle U/X/Z
 		if (oldCVal == ZERO && CVal == ONE)
 		{
-			if (LD.getValue() == ONE || _RLD.getValue() == ZERO)
+//			if (LD.getValue() == ONE || _RLD.getValue() == ZERO)
+			if (LD.getValue() == ONE)
 				System.arraycopy(D.getValues().getBits(), 0, QC, 0, 12);
 			else if (DEC.getValue() == ONE)
 			{

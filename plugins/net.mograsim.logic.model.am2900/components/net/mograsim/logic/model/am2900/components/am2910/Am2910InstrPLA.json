@@ -41,15 +41,6 @@
     {
       "location": {
         "x": 60.0,
-        "y": 5.0
-      },
-      "name": "RLD",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 60.0,
         "y": 65.0
       },
       "name": "STKI0",
@@ -116,6 +107,15 @@
         "y": 85.0
       },
       "name": "_PL",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 60.0,
+        "y": 5.0
+      },
+      "name": "_RLD",
       "logicWidth": 1,
       "usage": "OUTPUT"
     },
@@ -759,6 +759,15 @@
         "pos": {
           "x": 125.0,
           "y": 820.0
+        },
+        "params": 1
+      },
+      {
+        "id": "NandGate",
+        "name": "NandGate#70",
+        "pos": {
+          "x": 390.0,
+          "y": 40.0
         },
         "params": 1
       },
@@ -1706,15 +1715,15 @@
         "name": "and#9",
         "pos": {
           "x": 355.0,
-          "y": 45.0
+          "y": 40.0
         }
       },
       {
         "id": "and",
         "name": "and#10",
         "pos": {
-          "x": 390.0,
-          "y": 45.0
+          "x": 385.0,
+          "y": 430.0
         }
       },
       {
@@ -1771,14 +1780,6 @@
         "pos": {
           "x": 415.0,
           "y": 345.0
-        }
-      },
-      {
-        "id": "and",
-        "name": "and#18",
-        "pos": {
-          "x": 385.0,
-          "y": 430.0
         }
       }
     ],
@@ -2724,12 +2725,12 @@
       },
       {
         "pin1": {
-          "compName": "and#10",
+          "compName": "NandGate#70",
           "pinName": "Y"
         },
         "pin2": {
           "compName": "_submodelinterface",
-          "pinName": "RLD"
+          "pinName": "_RLD"
         },
         "name": "unnamedWire#64",
         "path": []
@@ -2752,7 +2753,7 @@
           "pinName": "Y"
         },
         "pin2": {
-          "compName": "and#10",
+          "compName": "NandGate#70",
           "pinName": "A"
         },
         "name": "unnamedWire#66",
@@ -3263,7 +3264,7 @@
           },
           {
             "x": 350.0,
-            "y": 50.0
+            "y": 45.0
           }
         ]
       },
@@ -4200,7 +4201,7 @@
       },
       {
         "pin1": {
-          "compName": "and#10",
+          "compName": "NandGate#70",
           "pinName": "B"
         },
         "pin2": {
@@ -4211,7 +4212,7 @@
         "path": [
           {
             "x": 385.0,
-            "y": 60.0
+            "y": 55.0
           },
           {
             "x": 385.0,
@@ -5307,7 +5308,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "and#18",
+          "compName": "and#10",
           "pinName": "A"
         },
         "name": "unnamedWire#227",
@@ -5319,7 +5320,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "and#18",
+          "compName": "and#10",
           "pinName": "B"
         },
         "name": "unnamedWire#228",
@@ -5327,7 +5328,7 @@
       },
       {
         "pin1": {
-          "compName": "and#18",
+          "compName": "and#10",
           "pinName": "Y"
         },
         "pin2": {
@@ -5654,7 +5655,7 @@
         "path": [
           {
             "x": 350.0,
-            "y": 60.0
+            "y": 55.0
           }
         ]
       },
