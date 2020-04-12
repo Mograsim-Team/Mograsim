@@ -32,6 +32,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.DefaultSymbolRenderer;
 
 public final class Editor
 {
+	private static final boolean FINE_SNAP = true;
 	final Selection selection = new Selection();
 	final Set<ComponentInfo> copyBuffer = new HashSet<>();
 	public final DeserializedSubmodelComponent toBeEdited;
@@ -41,7 +42,7 @@ public final class Editor
 	public final StateManager stateManager;
 	private final SaveLoadManager saveManager;
 	private Snapping snapping = Snapping.ABSOLUTE;
-	private double snapX = 5, snapY = 5;
+	private double snapX = FINE_SNAP ? 2.5 : 5, snapY = snapX;
 	public final DialogManager dialogManager;
 	public final EditorUserInput userInput;
 
