@@ -1,0 +1,1042 @@
+{
+  "width": 45.0,
+  "height": 45.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 20.0
+      },
+      "name": "A",
+      "logicWidth": 12,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 40.0
+      },
+      "name": "CI",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 45.0,
+        "y": 20.0
+      },
+      "name": "Y",
+      "logicWidth": 12,
+      "usage": "OUTPUT"
+    }
+  ],
+  "innerScale": 0.2,
+  "submodel": {
+    "components": [
+      {
+        "id": "NandGate",
+        "name": "NandGate#0",
+        "pos": {
+          "x": 20.0,
+          "y": 200.0
+        },
+        "params": 1
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#0",
+        "pos": {
+          "x": 5.0,
+          "y": 45.0
+        },
+        "params": {
+          "logicWidth": 12,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#1",
+        "pos": {
+          "x": 210.0,
+          "y": 45.0
+        },
+        "params": {
+          "logicWidth": 12,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 14.0,
+          "y": 204.0
+        },
+        "params": 1
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#0",
+        "pos": {
+          "x": 115.0,
+          "y": 180.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#1",
+        "pos": {
+          "x": 55.0,
+          "y": 155.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#2",
+        "pos": {
+          "x": 115.0,
+          "y": 145.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#3",
+        "pos": {
+          "x": 55.0,
+          "y": 120.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#4",
+        "pos": {
+          "x": 115.0,
+          "y": 110.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#5",
+        "pos": {
+          "x": 55.0,
+          "y": 85.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#6",
+        "pos": {
+          "x": 115.0,
+          "y": 75.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#7",
+        "pos": {
+          "x": 55.0,
+          "y": 50.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#8",
+        "pos": {
+          "x": 115.0,
+          "y": 40.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#9",
+        "pos": {
+          "x": 55.0,
+          "y": 15.0
+        }
+      },
+      {
+        "id": "halfsubtracter",
+        "name": "halfsubtracter#10",
+        "pos": {
+          "x": 55.0,
+          "y": 190.0
+        }
+      },
+      {
+        "id": "xnor",
+        "name": "xnor#0",
+        "pos": {
+          "x": 115.0,
+          "y": 5.0
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "halfsubtracter#9",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "xnor#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#8",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#9",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#1",
+        "path": [
+          {
+            "x": 170.0,
+            "y": 45.0
+          },
+          {
+            "x": 170.0,
+            "y": 35.0
+          },
+          {
+            "x": 110.0,
+            "y": 35.0
+          },
+          {
+            "x": 110.0,
+            "y": 40.0
+          },
+          {
+            "x": 50.0,
+            "y": 40.0
+          },
+          {
+            "x": 50.0,
+            "y": 30.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#7",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#8",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#6",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#7",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 170.0,
+            "y": 80.0
+          },
+          {
+            "x": 170.0,
+            "y": 70.0
+          },
+          {
+            "x": 110.0,
+            "y": 70.0
+          },
+          {
+            "x": 110.0,
+            "y": 75.0
+          },
+          {
+            "x": 50.0,
+            "y": 75.0
+          },
+          {
+            "x": 50.0,
+            "y": 65.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#5",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#6",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#4",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#4",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#5",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 170.0,
+            "y": 115.0
+          },
+          {
+            "x": 170.0,
+            "y": 105.0
+          },
+          {
+            "x": 110.0,
+            "y": 105.0
+          },
+          {
+            "x": 110.0,
+            "y": 110.0
+          },
+          {
+            "x": 50.0,
+            "y": 110.0
+          },
+          {
+            "x": 50.0,
+            "y": 100.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#3",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#4",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#2",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#3",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 170.0,
+            "y": 150.0
+          },
+          {
+            "x": 170.0,
+            "y": 140.0
+          },
+          {
+            "x": 110.0,
+            "y": 140.0
+          },
+          {
+            "x": 110.0,
+            "y": 145.0
+          },
+          {
+            "x": 50.0,
+            "y": 145.0
+          },
+          {
+            "x": 50.0,
+            "y": 135.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#1",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#2",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#0",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 170.0,
+            "y": 185.0
+          },
+          {
+            "x": 170.0,
+            "y": 175.0
+          },
+          {
+            "x": 110.0,
+            "y": 175.0
+          },
+          {
+            "x": 110.0,
+            "y": 180.0
+          },
+          {
+            "x": 50.0,
+            "y": 180.0
+          },
+          {
+            "x": 50.0,
+            "y": 170.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#10",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#10",
+        "path": [
+          {
+            "x": 20.0,
+            "y": 155.0
+          },
+          {
+            "x": 20.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O11"
+        },
+        "pin2": {
+          "compName": "xnor#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#11",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 45.0
+          },
+          {
+            "x": 25.0,
+            "y": 10.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#9",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O10"
+        },
+        "name": "unnamedWire#12",
+        "path": [
+          {
+            "x": 30.0,
+            "y": 20.0
+          },
+          {
+            "x": 30.0,
+            "y": 55.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O9"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#8",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#13",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 65.0
+          },
+          {
+            "x": 35.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#7",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O8"
+        },
+        "name": "unnamedWire#14",
+        "path": [
+          {
+            "x": 40.0,
+            "y": 55.0
+          },
+          {
+            "x": 40.0,
+            "y": 75.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O7"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#6",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 45.0,
+            "y": 85.0
+          },
+          {
+            "x": 45.0,
+            "y": 80.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#5",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O6"
+        },
+        "name": "unnamedWire#16",
+        "path": [
+          {
+            "x": 45.0,
+            "y": 90.0
+          },
+          {
+            "x": 45.0,
+            "y": 95.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O5"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#4",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#17",
+        "path": [
+          {
+            "x": 45.0,
+            "y": 105.0
+          },
+          {
+            "x": 45.0,
+            "y": 115.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#3",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O4"
+        },
+        "name": "unnamedWire#18",
+        "path": [
+          {
+            "x": 40.0,
+            "y": 125.0
+          },
+          {
+            "x": 40.0,
+            "y": 115.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#19",
+        "path": [
+          {
+            "x": 35.0,
+            "y": 125.0
+          },
+          {
+            "x": 35.0,
+            "y": 150.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#1",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#20",
+        "path": [
+          {
+            "x": 30.0,
+            "y": 160.0
+          },
+          {
+            "x": 30.0,
+            "y": 135.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#21",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 145.0
+          },
+          {
+            "x": 25.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "CI"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#22",
+        "path": [
+          {
+            "x": 15.0,
+            "y": 200.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#10",
+          "pinName": "Z"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#10",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#24",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 205.0
+          },
+          {
+            "x": 205.0,
+            "y": 155.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "xnor#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O11"
+        },
+        "name": "unnamedWire#26",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 10.0
+          },
+          {
+            "x": 195.0,
+            "y": 45.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O10"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#9",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#27",
+        "path": [
+          {
+            "x": 190.0,
+            "y": 55.0
+          },
+          {
+            "x": 190.0,
+            "y": 30.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#8",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O9"
+        },
+        "name": "unnamedWire#28",
+        "path": [
+          {
+            "x": 185.0,
+            "y": 55.0
+          },
+          {
+            "x": 185.0,
+            "y": 65.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O8"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#7",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#29",
+        "path": [
+          {
+            "x": 180.0,
+            "y": 75.0
+          },
+          {
+            "x": 180.0,
+            "y": 65.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#6",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O7"
+        },
+        "name": "unnamedWire#30",
+        "path": [
+          {
+            "x": 180.0,
+            "y": 90.0
+          },
+          {
+            "x": 180.0,
+            "y": 85.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O6"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#5",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#31",
+        "path": [
+          {
+            "x": 180.0,
+            "y": 95.0
+          },
+          {
+            "x": 180.0,
+            "y": 100.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#4",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O5"
+        },
+        "name": "unnamedWire#32",
+        "path": [
+          {
+            "x": 180.0,
+            "y": 125.0
+          },
+          {
+            "x": 180.0,
+            "y": 105.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O4"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#3",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#33",
+        "path": [
+          {
+            "x": 185.0,
+            "y": 115.0
+          },
+          {
+            "x": 185.0,
+            "y": 135.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#34",
+        "path": [
+          {
+            "x": 190.0,
+            "y": 160.0
+          },
+          {
+            "x": 190.0,
+            "y": 125.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#1",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#35",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 135.0
+          },
+          {
+            "x": 195.0,
+            "y": 170.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "halfsubtracter#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#36",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 195.0
+          },
+          {
+            "x": 200.0,
+            "y": 145.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y"
+        },
+        "name": "unnamedWire#37",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#38",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "NandGate#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "halfsubtracter#10",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#39",
+        "path": [
+          {
+            "x": 50.0,
+            "y": 210.0
+          },
+          {
+            "x": 50.0,
+            "y": 205.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "NandGate#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#40",
+        "path": [
+          {
+            "x": 15.0,
+            "y": 215.0
+          }
+        ]
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "Decrementer\n12-bit",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 22.5,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}

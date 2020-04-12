@@ -32,7 +32,7 @@ import net.mograsim.logic.model.snippets.symbolrenderers.DefaultSymbolRenderer;
 
 public final class Editor
 {
-	private static final boolean FINE_SNAP = true;
+	private static final boolean FINE_SNAP = false;
 	final Selection selection = new Selection();
 	final Set<ComponentInfo> copyBuffer = new HashSet<>();
 	public final DeserializedSubmodelComponent toBeEdited;
