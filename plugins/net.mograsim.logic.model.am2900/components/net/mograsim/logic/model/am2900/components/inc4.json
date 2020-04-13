@@ -14,7 +14,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 5.0
+        "y": 25.0
       },
       "name": "CI",
       "logicWidth": 1,
@@ -32,7 +32,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 25.0
+        "y": 5.0
       },
       "name": "Z",
       "logicWidth": 1,
@@ -51,7 +51,7 @@
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "RIGHT_ALT"
+          "orientation": "RIGHT"
         }
       },
       {
@@ -63,7 +63,7 @@
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "LEFT_ALT"
+          "orientation": "LEFT"
         }
       },
       {
@@ -71,7 +71,7 @@
         "name": "halfadder#0",
         "pos": {
           "x": 40.0,
-          "y": 5.0
+          "y": 110.0
         }
       },
       {
@@ -79,7 +79,7 @@
         "name": "halfadder#1",
         "pos": {
           "x": 40.0,
-          "y": 40.0
+          "y": 75.0
         }
       },
       {
@@ -87,7 +87,7 @@
         "name": "halfadder#2",
         "pos": {
           "x": 40.0,
-          "y": 75.0
+          "y": 40.0
         }
       },
       {
@@ -95,7 +95,7 @@
         "name": "halfadder#3",
         "pos": {
           "x": 40.0,
-          "y": 110.0
+          "y": 5.0
         }
       }
     ],
@@ -107,17 +107,17 @@
         },
         "pin2": {
           "compName": "halfadder#1",
-          "pinName": "A"
+          "pinName": "B"
         },
         "name": "unnamedWire#0",
         "path": [
           {
             "x": 35.0,
-            "y": 30.0
+            "y": 115.0
           },
           {
             "x": 35.0,
-            "y": 45.0
+            "y": 100.0
           }
         ]
       },
@@ -128,17 +128,17 @@
         },
         "pin2": {
           "compName": "halfadder#2",
-          "pinName": "A"
+          "pinName": "B"
         },
         "name": "unnamedWire#1",
         "path": [
           {
             "x": 35.0,
-            "y": 65.0
+            "y": 80.0
           },
           {
             "x": 35.0,
-            "y": 80.0
+            "y": 65.0
           }
         ]
       },
@@ -149,17 +149,17 @@
         },
         "pin2": {
           "compName": "halfadder#3",
-          "pinName": "A"
+          "pinName": "B"
         },
         "name": "unnamedWire#2",
         "path": [
           {
             "x": 35.0,
-            "y": 100.0
+            "y": 45.0
           },
           {
             "x": 35.0,
-            "y": 115.0
+            "y": 30.0
           }
         ]
       },
@@ -170,17 +170,17 @@
         },
         "pin2": {
           "compName": "halfadder#0",
-          "pinName": "B"
+          "pinName": "A"
         },
         "name": "unnamedWire#3",
         "path": [
           {
             "x": 20.0,
-            "y": 60.0
+            "y": 90.0
           },
           {
             "x": 20.0,
-            "y": 20.0
+            "y": 125.0
           }
         ]
       },
@@ -191,9 +191,30 @@
         },
         "pin2": {
           "compName": "halfadder#1",
-          "pinName": "B"
+          "pinName": "A"
         },
         "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 25.0,
+            "y": 80.0
+          },
+          {
+            "x": 25.0,
+            "y": 90.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "halfadder#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#5",
         "path": [
           {
             "x": 25.0,
@@ -208,42 +229,21 @@
       {
         "pin1": {
           "compName": "Splitter#0",
-          "pinName": "O2"
-        },
-        "pin2": {
-          "compName": "halfadder#2",
-          "pinName": "B"
-        },
-        "name": "unnamedWire#5",
-        "path": [
-          {
-            "x": 25.0,
-            "y": 80.0
-          },
-          {
-            "x": 25.0,
-            "y": 90.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#0",
           "pinName": "O3"
         },
         "pin2": {
           "compName": "halfadder#3",
-          "pinName": "B"
+          "pinName": "A"
         },
         "name": "unnamedWire#6",
         "path": [
           {
             "x": 20.0,
-            "y": 90.0
+            "y": 60.0
           },
           {
             "x": 20.0,
-            "y": 125.0
+            "y": 20.0
           }
         ]
       },
@@ -260,11 +260,11 @@
         "path": [
           {
             "x": 80.0,
-            "y": 60.0
+            "y": 90.0
           },
           {
             "x": 80.0,
-            "y": 10.0
+            "y": 115.0
           }
         ]
       },
@@ -278,6 +278,18 @@
           "pinName": "O1"
         },
         "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "halfadder#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#1",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#9",
         "path": [
           {
             "x": 75.0,
@@ -291,18 +303,6 @@
       },
       {
         "pin1": {
-          "compName": "halfadder#2",
-          "pinName": "Y"
-        },
-        "pin2": {
-          "compName": "Splitter#1",
-          "pinName": "O2"
-        },
-        "name": "unnamedWire#9",
-        "path": []
-      },
-      {
-        "pin1": {
           "compName": "Splitter#1",
           "pinName": "O3"
         },
@@ -313,12 +313,12 @@
         "name": "unnamedWire#10",
         "path": [
           {
-            "x": 75.0,
-            "y": 90.0
+            "x": 80.0,
+            "y": 60.0
           },
           {
-            "x": 75.0,
-            "y": 115.0
+            "x": 80.0,
+            "y": 10.0
           }
         ]
       },
@@ -341,17 +341,17 @@
         },
         "pin2": {
           "compName": "halfadder#0",
-          "pinName": "A"
+          "pinName": "B"
         },
         "name": "unnamedWire#12",
         "path": [
           {
             "x": 10.0,
-            "y": 25.0
+            "y": 125.0
           },
           {
             "x": 10.0,
-            "y": 10.0
+            "y": 135.0
           }
         ]
       },
@@ -380,11 +380,11 @@
         "path": [
           {
             "x": 10.0,
-            "y": 135.0
+            "y": 10.0
           },
           {
             "x": 10.0,
-            "y": 125.0
+            "y": 25.0
           }
         ]
       }

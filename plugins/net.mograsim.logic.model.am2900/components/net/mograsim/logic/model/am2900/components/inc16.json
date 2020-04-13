@@ -14,7 +14,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 5.0
+        "y": 30.0
       },
       "name": "CI",
       "logicWidth": 1,
@@ -42,7 +42,7 @@
         },
         "params": {
           "logicWidth": 16,
-          "orientation": "RIGHT_ALT"
+          "orientation": "RIGHT"
         }
       },
       {
@@ -54,7 +54,7 @@
         },
         "params": {
           "logicWidth": 16,
-          "orientation": "LEFT_ALT"
+          "orientation": "LEFT"
         }
       },
       {
@@ -62,11 +62,11 @@
         "name": "Splitter#2",
         "pos": {
           "x": 22.5,
-          "y": 10.0
+          "y": 130.0
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "LEFT_ALT"
+          "orientation": "LEFT"
         }
       },
       {
@@ -74,11 +74,11 @@
         "name": "Splitter#3",
         "pos": {
           "x": 22.5,
-          "y": 50.0
+          "y": 90.0
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "LEFT_ALT"
+          "orientation": "LEFT"
         }
       },
       {
@@ -86,11 +86,11 @@
         "name": "Splitter#4",
         "pos": {
           "x": 22.5,
-          "y": 90.0
+          "y": 50.0
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "LEFT_ALT"
+          "orientation": "LEFT"
         }
       },
       {
@@ -98,11 +98,11 @@
         "name": "Splitter#5",
         "pos": {
           "x": 22.5,
-          "y": 130.0
+          "y": 10.0
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "LEFT_ALT"
+          "orientation": "LEFT"
         }
       },
       {
@@ -110,11 +110,11 @@
         "name": "Splitter#6",
         "pos": {
           "x": 67.5,
-          "y": 10.0
+          "y": 130.0
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "RIGHT_ALT"
+          "orientation": "RIGHT"
         }
       },
       {
@@ -122,11 +122,11 @@
         "name": "Splitter#7",
         "pos": {
           "x": 67.5,
-          "y": 50.0
+          "y": 90.0
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "RIGHT_ALT"
+          "orientation": "RIGHT"
         }
       },
       {
@@ -134,11 +134,11 @@
         "name": "Splitter#8",
         "pos": {
           "x": 67.5,
-          "y": 90.0
+          "y": 50.0
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "RIGHT_ALT"
+          "orientation": "RIGHT"
         }
       },
       {
@@ -146,11 +146,11 @@
         "name": "Splitter#9",
         "pos": {
           "x": 67.5,
-          "y": 130.0
+          "y": 10.0
         },
         "params": {
           "logicWidth": 4,
-          "orientation": "RIGHT_ALT"
+          "orientation": "RIGHT"
         }
       },
       {
@@ -158,7 +158,7 @@
         "name": "inc4#0",
         "pos": {
           "x": 42.5,
-          "y": 10.0
+          "y": 130.0
         }
       },
       {
@@ -166,7 +166,7 @@
         "name": "inc4#1",
         "pos": {
           "x": 42.5,
-          "y": 50.0
+          "y": 90.0
         }
       },
       {
@@ -174,7 +174,7 @@
         "name": "inc4#2",
         "pos": {
           "x": 42.5,
-          "y": 90.0
+          "y": 50.0
         }
       },
       {
@@ -182,7 +182,7 @@
         "name": "inc4#3",
         "pos": {
           "x": 42.5,
-          "y": 130.0
+          "y": 10.0
         }
       }
     ],
@@ -200,19 +200,19 @@
         "path": [
           {
             "x": 5.0,
-            "y": 25.0
+            "y": 150.0
           },
           {
             "x": 5.0,
-            "y": 5.0
+            "y": 165.0
           },
           {
             "x": 37.5,
-            "y": 5.0
+            "y": 165.0
           },
           {
             "x": 37.5,
-            "y": 15.0
+            "y": 155.0
           }
         ]
       },
@@ -538,11 +538,11 @@
         "path": [
           {
             "x": 37.5,
-            "y": 35.0
+            "y": 135.0
           },
           {
             "x": 37.5,
-            "y": 55.0
+            "y": 115.0
           }
         ]
       },
@@ -559,11 +559,11 @@
         "path": [
           {
             "x": 37.5,
-            "y": 75.0
+            "y": 95.0
           },
           {
             "x": 37.5,
-            "y": 95.0
+            "y": 75.0
           }
         ]
       },
@@ -580,11 +580,11 @@
         "path": [
           {
             "x": 37.5,
-            "y": 115.0
+            "y": 55.0
           },
           {
             "x": 37.5,
-            "y": 135.0
+            "y": 35.0
           }
         ]
       },
