@@ -1,5 +1,6 @@
 package net.mograsim.logic.model.snippets.highlevelstatehandlers.standard.atomic;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,6 +22,10 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	private final List<String> vectorPartTargetsUnmodifiable;
 	private final List<Integer> vectorPartLengthes;
 	private final List<Integer> vectorPartLengthesUnmodifiable;
+	private BitVector minimalValue;
+	private BigInteger minimalValueBigInteger;
+	private BitVector maximalValue;
+	private BigInteger maximalValueBigInteger;
 	private int length;
 
 	private final Map<Consumer<Object>, Consumer<Object>> targetListeners;
@@ -42,12 +47,16 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 		this.targetListeners = new HashMap<>();
 
 		if (params != null)
+		{
 			setVectorParts(params.vectorPartTargets, params.vectorPartLengthes);
+			setRange(params.minimalValue, params.maximalValue);
+		}
 	}
 
-	public void set(List<String> targets, List<Integer> lengthes)
+	public void set(List<String> targets, List<Integer> lengthes, BitVector minimalValue, BitVector maximalValue)
 	{
 		setVectorParts(targets, lengthes);
+		setRange(minimalValue, maximalValue);
 	}
 
 	public void addVectorPart(String target, int length)
@@ -72,6 +81,35 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 		vectorPartTargets.addAll(targets);
 		vectorPartLengthes.addAll(lengthes);
 		length += lengthes.stream().mapToInt(Integer::intValue).sum();
+	}
+
+	@SuppressWarnings("null") // explicit checks for null are in place
+	public void setRange(BitVector minimalValue, BitVector maximalValue)
+	{
+		boolean minIsNull = minimalValue == null;
+		if (minIsNull != (maximalValue == null))
+			throw new IllegalArgumentException("minimalValue and maximalValue must either both be null or both non-null");
+		if (!minIsNull)
+		{
+			if (!minimalValue.isBinary())
+				throw new IllegalArgumentException("minimalValue is not binary");
+			if (!maximalValue.isBinary())
+				throw new IllegalArgumentException("maximalValue is not binary");
+			this.minimalValueBigInteger = minimalValue.getUnsignedValue();
+			this.maximalValueBigInteger = maximalValue.getUnsignedValue();
+		}
+		this.minimalValue = minimalValue;
+		this.maximalValue = maximalValue;
+	}
+
+	public BitVector getMinimalValue()
+	{
+		return minimalValue;
+	}
+
+	public BitVector getMaximalValue()
+	{
+		return maximalValue;
 	}
 
 	public List<String> getVectorPartTargets()
@@ -110,6 +148,14 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 		BitVector newStateCasted = (BitVector) newState;
 		if (newStateCasted.length() != length)
 			throw new IllegalArgumentException("Incorrect vector length: " + newStateCasted.length() + "; expected " + length);
+		// TODO what for non-binary values?
+		if (minimalValue != null && newStateCasted.isBinary())
+		{
+			BigInteger newStateBigInteger = newStateCasted.getUnsignedValue();
+			if (newStateBigInteger.compareTo(minimalValueBigInteger) < 0 || newStateBigInteger.compareTo(maximalValueBigInteger) > 0)
+				throw new IllegalArgumentException(
+						"Value out of range: should be in " + minimalValue + " - " + maximalValue + "; was " + newState);
+		}
 		for (int partIndex = 0, bitIndex = 0; partIndex < vectorPartTargets.size(); partIndex++)
 		{
 			int vectorPartLength = vectorPartLengthes.get(partIndex);
@@ -157,6 +203,8 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 		BitVectorSplittingAtomicHighLevelStateHandlerParams params = new BitVectorSplittingAtomicHighLevelStateHandlerParams();
 		params.vectorPartTargets = new ArrayList<>(vectorPartTargets);
 		params.vectorPartLengthes = new ArrayList<>(vectorPartLengthes);
+		params.minimalValue = minimalValue;
+		params.maximalValue = maximalValue;
 		return params;
 	}
 
@@ -164,6 +212,8 @@ public class BitVectorSplittingAtomicHighLevelStateHandler implements AtomicHigh
 	{
 		public List<String> vectorPartTargets;
 		public List<Integer> vectorPartLengthes;
+		public BitVector minimalValue;
+		public BitVector maximalValue;
 	}
 
 	static
