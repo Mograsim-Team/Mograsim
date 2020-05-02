@@ -1626,6 +1626,49 @@
     "pinLabelMargin": 0.5
   },
   "outlineRendererSnippetID": "default",
-  "highLevelStateHandlerSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {},
+    "atomicHighLevelStates": {
+      "q": {
+        "id": "bitVectorSplitting",
+        "params": {
+          "vectorPartTargets": [
+            "q3",
+            "q2",
+            "q1"
+          ],
+          "vectorPartLengthes": [
+            1,
+            1,
+            1
+          ],
+          "minimalValue": "000",
+          "maximalValue": "101"
+        }
+      },
+      "q1": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#2",
+          "subStateID": "q"
+        }
+      },
+      "q2": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#1",
+          "subStateID": "q"
+        }
+      },
+      "q3": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff#0",
+          "subStateID": "q"
+        }
+      }
+    }
+  },
   "version": "0.1.5"
 }
