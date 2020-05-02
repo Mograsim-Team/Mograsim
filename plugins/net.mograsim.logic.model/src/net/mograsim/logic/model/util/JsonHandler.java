@@ -45,6 +45,11 @@ public class JsonHandler
 		return parser.fromJson(src, type);
 	}
 
+	public static <T> T fromJson(JsonElement json, Class<T> type)
+	{
+		return parser.fromJson(json, type);
+	}
+
 	public static <T> T fromJsonTree(JsonElement src, Class<T> type)
 	{
 		return parser.fromJson(src, type);

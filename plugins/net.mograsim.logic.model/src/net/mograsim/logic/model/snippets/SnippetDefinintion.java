@@ -2,8 +2,9 @@ package net.mograsim.logic.model.snippets;
 
 import java.util.function.BiFunction;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+
+import net.mograsim.logic.model.util.JsonHandler;
 
 public interface SnippetDefinintion<C, P, S>
 {
@@ -20,7 +21,7 @@ public interface SnippetDefinintion<C, P, S>
 				throw new IllegalArgumentException("Params given where none were expected");
 			return create(context, (P) null);
 		}
-		return create(context, new Gson().fromJson(params, getParamClass()));
+		return create(context, JsonHandler.fromJson(params, getParamClass()));
 	}
 
 	public static <C, P, S> SnippetDefinintion<C, P, S> create(Class<P> paramClass, BiFunction<C, P, S> supplier)
