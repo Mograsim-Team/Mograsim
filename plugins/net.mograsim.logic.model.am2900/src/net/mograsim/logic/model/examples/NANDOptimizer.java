@@ -1,4 +1,4 @@
-package net.mograsim.logic.model;
+package net.mograsim.logic.model.examples;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
