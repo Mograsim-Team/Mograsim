@@ -221,11 +221,11 @@ public class ModelAm2904ShiftInstrDecode extends SimpleRectangularHardcodedModel
 				break;
 			case 24:
 			case 26:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ONE, X);
+				readWriteEnds.get("SIO0_MUX").feedSignals(ZERO, ONE, X);
 				break;
 			case 25:
 			case 27:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ZERO, ONE, X);
+				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ONE, X);
 				break;
 			default:
 				throw new IllegalStateException("can't happen");
@@ -248,11 +248,11 @@ public class ModelAm2904ShiftInstrDecode extends SimpleRectangularHardcodedModel
 			case 24:
 			case 25:
 			case 26:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ZERO, X);
+				readWriteEnds.get("QIO0_MUX").feedSignals(ONE, ZERO, X);
 				break;
 			case 28:
 			case 30:
-				readWriteEnds.get("SIO0_MUX").feedSignals(ONE, ONE, X);
+				readWriteEnds.get("QIO0_MUX").feedSignals(ONE, ONE, X);
 				break;
 			case 29:
 			case 31:
