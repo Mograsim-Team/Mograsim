@@ -3986,7 +3986,7 @@
   "symbolRendererParams": {
     "centerText": "Instruction\ndecode",
     "centerTextHeight": 5.0,
-    "horizontalComponentCenter": 17.5,
+    "horizontalComponentCenter": 40.0,
     "pinLabelHeight": 3.5,
     "pinLabelMargin": 0.5
   },
