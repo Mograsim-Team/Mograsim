@@ -10,6 +10,7 @@ import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelBitDisplay;
 import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
+import net.mograsim.logic.model.model.components.atomic.ModelTextComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.model.wires.PinUsage;
@@ -27,7 +28,7 @@ public class ModelComponentTestbench
 	{
 		Am2900Loader.setup();
 //		ModelComponent comp = new StrictAm2900MachineDefinition().createNew(model).getAm2900();
-		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "Am2910");
+		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "Am2904");
 
 		List<String> inputPinNames = new ArrayList<>();
 		List<String> outputPinNames = new ArrayList<>();
@@ -47,6 +48,7 @@ public class ModelComponentTestbench
 			String pinName = inputPinNames.get(i);
 			ModelManualSwitch sw = new ModelManualSwitch(model, comp.getPin(pinName).logicWidth, pinName);
 			sw.moveTo(0, 20 * i);
+			new ModelTextComponent(model, pinName).moveTo(20, 20 * i);
 			new ModelWire(model, comp.getPin(pinName), sw.getOutputPin());
 		}
 		for (int i = 0; i < outputPinNames.size(); i++)
@@ -54,6 +56,7 @@ public class ModelComponentTestbench
 			String pinName = outputPinNames.get(i);
 			ModelBitDisplay bd = new ModelBitDisplay(model, comp.getPin(pinName).logicWidth, pinName);
 			bd.moveTo(200, 20 * i);
+			new ModelTextComponent(model, pinName).moveTo(220, 20 * i);
 			new ModelWire(model, comp.getPin(pinName), bd.getInputPin());
 		}
 	}
