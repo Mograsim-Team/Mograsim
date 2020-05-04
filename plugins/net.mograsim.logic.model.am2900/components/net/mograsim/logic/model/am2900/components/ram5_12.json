@@ -1207,6 +1207,41 @@
     "pinLabelMargin": 0.5
   },
   "outlineRendererSnippetID": "default",
-  "highLevelStateHandlerSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "standard",
+  "highLevelStateHandlerParams": {
+    "subcomponentHighLevelStates": {
+      "c000": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12_we#2"
+        }
+      },
+      "c001": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12_we#1"
+        }
+      },
+      "c010": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12_we#0"
+        }
+      },
+      "c011": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12_we#3"
+        }
+      },
+      "c100": {
+        "id": "delegating",
+        "params": {
+          "delegateTarget": "dff12_we#4"
+        }
+      }
+    },
+    "atomicHighLevelStates": {}
+  },
   "version": "0.1.5"
 }
