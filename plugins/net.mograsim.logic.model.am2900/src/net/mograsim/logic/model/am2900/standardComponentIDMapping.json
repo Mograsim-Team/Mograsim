@@ -1,7 +1,6 @@
 {
   "Am2900MainMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MainMemory",
   "Am2900MicroInstructionMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MicroInstructionMemory",
-  "ram5_12": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.Modelram5_12",
 
   "Am2900": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json",
   "Am2900MemoryController": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900MemoryController.json",
@@ -25,6 +24,7 @@
   "_rsLatch": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/_rsLatch.json",
   "and": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/and.json",
   "and41": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/and41.json",
+  "and51": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/and51.json",
   "andor414": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/andor414.json",
   "dec12": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dec12.json",
   "demux2": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/demux2.json",
@@ -32,6 +32,7 @@
   "dff4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff4.json",
   "dff4_finewe": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff4_finewe.json",
   "dff12": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff12.json",
+  "dff12_we": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff12_we.json",
   "dff16": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff16.json",
   "dff16_invwe": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff16_invwe.json",
   "dlatch": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dlatch.json",
@@ -60,6 +61,7 @@
   "or_4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/or_4.json",
   "ram2": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/ram2.json",
   "ram4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/ram4.json",
+  "ram5_12": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/ram5_12.json",
   "sel1": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel1.json",
   "sel2_4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel2_4.json",
   "sel3_4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/sel3_4.json",

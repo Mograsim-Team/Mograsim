@@ -1,0 +1,438 @@
+{
+  "width": 15.0,
+  "height": 60.0,
+  "interfacePins": [
+    {
+      "location": {
+        "x": 0.0,
+        "y": 5.0
+      },
+      "name": "A1",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 15.0
+      },
+      "name": "A2",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 25.0
+      },
+      "name": "A3",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 35.0
+      },
+      "name": "A4",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 45.0
+      },
+      "name": "A5",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
+        "y": 55.0
+      },
+      "name": "B",
+      "logicWidth": 1,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 15.0,
+        "y": 5.0
+      },
+      "name": "Y1",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 15.0,
+        "y": 15.0
+      },
+      "name": "Y2",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 15.0,
+        "y": 25.0
+      },
+      "name": "Y3",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 15.0,
+        "y": 35.0
+      },
+      "name": "Y4",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    },
+    {
+      "location": {
+        "x": 15.0,
+        "y": 45.0
+      },
+      "name": "Y5",
+      "logicWidth": 1,
+      "usage": "OUTPUT"
+    }
+  ],
+  "innerScale": 0.4,
+  "submodel": {
+    "components": [
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 4.0,
+          "y": 46.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 4.0,
+          "y": 71.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 4.0,
+          "y": 96.5
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "pos": {
+          "x": 4.0,
+          "y": 121.5
+        },
+        "params": 1
+      },
+      {
+        "id": "and",
+        "name": "and#0",
+        "pos": {
+          "x": 7.5,
+          "y": 7.5
+        }
+      },
+      {
+        "id": "and",
+        "name": "and#1",
+        "pos": {
+          "x": 7.5,
+          "y": 32.5
+        }
+      },
+      {
+        "id": "and",
+        "name": "and#2",
+        "pos": {
+          "x": 7.5,
+          "y": 57.5
+        }
+      },
+      {
+        "id": "and",
+        "name": "and#3",
+        "pos": {
+          "x": 7.5,
+          "y": 82.5
+        }
+      },
+      {
+        "id": "and",
+        "name": "and#4",
+        "pos": {
+          "x": 7.5,
+          "y": 107.5
+        }
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A1"
+        },
+        "pin2": {
+          "compName": "and#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#0",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A2"
+        },
+        "pin2": {
+          "compName": "and#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#1",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A3"
+        },
+        "pin2": {
+          "compName": "and#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#2",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A4"
+        },
+        "pin2": {
+          "compName": "and#3",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#3",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "B"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 137.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#3",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#5",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#6",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#2",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#7",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#1",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#9",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#0",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#10",
+        "path": [
+          {
+            "x": 5.0,
+            "y": 22.5
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "and#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y1"
+        },
+        "name": "unnamedWire#11",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "and#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y2"
+        },
+        "name": "unnamedWire#12",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "and#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y3"
+        },
+        "name": "unnamedWire#13",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "and#3",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y4"
+        },
+        "name": "unnamedWire#14",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "A5"
+        },
+        "pin2": {
+          "compName": "and#4",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#15",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "and#4",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#17",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "and#4",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "_submodelinterface",
+          "pinName": "Y5"
+        },
+        "name": "unnamedWire#18",
+        "path": []
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "simpleRectangularLike",
+  "symbolRendererParams": {
+    "centerText": "and51",
+    "centerTextHeight": 5.0,
+    "horizontalComponentCenter": 17.5,
+    "pinLabelHeight": 3.5,
+    "pinLabelMargin": 0.5
+  },
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}
