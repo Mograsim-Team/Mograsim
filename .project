@@ -3,6 +3,24 @@
 	<name>net.mograsim</name>
 	<comment></comment>
 	<projects>
+		<project>net.mograsim.configuration</project>
+		<project>net.mograsim.feature</project>
+		<project>net.mograsim.logic.core</project>
+		<project>net.mograsim.logic.core.tests</project>
+		<project>net.mograsim.logic.model</project>
+		<project>net.mograsim.logic.model.am2900</project>
+		<project>net.mograsim.logic.model.am2900.tests</project>
+		<project>net.mograsim.logic.model.editor</project>
+		<project>net.mograsim.machine</project>
+		<project>net.mograsim.machine.tests</project>
+		<project>net.mograsim.plugin.branding</project>
+		<project>net.mograsim.plugin.core</project>
+		<project>net.mograsim.plugin.core.nl_de</project>
+		<project>net.mograsim.plugin.docs</project>
+		<project>net.mograsim.plugin.updatesite</project>
+		<project>net.mograsim.preferences</project>
+		<project>net.mograsim.product</project>
+		<project>net.mograsim.target</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
