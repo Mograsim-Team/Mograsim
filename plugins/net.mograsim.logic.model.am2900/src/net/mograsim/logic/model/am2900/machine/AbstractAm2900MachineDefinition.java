@@ -22,8 +22,9 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 {
 	public static final String AM2900_TEACHING_MACHINE_ID = "Am2900Simple";
 	public static final String AM2900_EXPERT_MACHINE_ID = "Am2900Strict";
-	public static final String AM2900_TEACHING_DESCRIPTION = "Am2900Teaching\nTODO Description";
-	public static final String AM2900_EXPERT_DESCRIPTION = "Am2900Expert\nTODO Description";
+	public static final String AM2900_TEACHING_DESCRIPTION = "Am2900 for teaching purposes.\nAll registers are reset to 0 when starting.";
+	public static final String AM2900_EXPERT_DESCRIPTION = "Am2900 \"for experts\".\nOnly the \u00b5PC will be reset to 0 when starting."
+			+ "The microprogram will have to reset the other registers manually, including the PC.";
 
 	public static final List<Register> unsortedRegisters;
 	public static final List<RegisterGroup> registerGroups;
