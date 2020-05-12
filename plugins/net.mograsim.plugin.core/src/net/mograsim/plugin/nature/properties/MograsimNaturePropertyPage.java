@@ -69,7 +69,7 @@ public class MograsimNaturePropertyPage extends PropertyPage
 		// Machine choice
 		machineSelect = MachineContextSwtTools.createMachineSelector(composite, SWT.NONE);
 
-		machineDescription = new Label(composite, SWT.NONE);
+		machineDescription = new Label(composite, SWT.WRAP);
 		machineSelect.addListener(md -> machineDescription.setText(md.getDescription()));
 		machineDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
