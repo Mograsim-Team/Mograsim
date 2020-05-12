@@ -36,7 +36,7 @@ Alternatively, you can create a general Project and add the Mograsim nature to t
 2. Go to the "Project Natures" page, click on "Add...". If a confirmation dialog pops up, confirm.
 3. Select "Mograsim Project Nature"; click on "OK".
 4. Click on "Apply and Close" and re-open the properties dialog.
-5. Go to the new "Mograsim" page, select "Am2900Simple", click on "Apply and Close".
+5. Go to the new "Mograsim" page, select "Am2900Teaching", click on "Apply and Close".
 
 ## Write a MPM file (containing the microprogram)
 

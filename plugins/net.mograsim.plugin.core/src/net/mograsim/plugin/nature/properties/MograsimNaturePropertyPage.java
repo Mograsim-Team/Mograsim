@@ -24,7 +24,7 @@ public class MograsimNaturePropertyPage extends PropertyPage
 	private static final String WARNING = "Changing the Mograsim machine can completely break your project. Be careful.";
 	private static final String MACHINE_LABEL = "Machine definition";
 	private static final String MACHINE_PROPERTY = "net.mograsim.projectMachineId";
-	private static final String DEFAULT_MACHINE = "Am2900Simple";// TODO don't hardcode that here!
+	private static final String DEFAULT_MACHINE = "Am2900Teaching";// TODO don't hardcode that here!
 
 	private MachineCombo machineSelect;
 	private Label machineDescription;
