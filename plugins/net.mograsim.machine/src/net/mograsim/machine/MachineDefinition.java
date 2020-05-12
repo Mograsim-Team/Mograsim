@@ -18,6 +18,13 @@ public interface MachineDefinition
 	String getId();
 
 	/**
+	 * Returns a human-readable description of the machine definition.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	String getDescription();
+
+	/**
 	 * Creates a new instance of the machine
 	 * 
 	 * @return a new object of an {@link Machine} implementation.

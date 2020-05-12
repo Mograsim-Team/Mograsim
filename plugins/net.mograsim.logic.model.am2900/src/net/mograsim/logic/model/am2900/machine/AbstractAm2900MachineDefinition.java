@@ -22,6 +22,8 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 {
 	public static final String SIMPLE_AM2900_MACHINE_ID = "Am2900Simple";
 	public static final String STRICT_AM2900_MACHINE_ID = "Am2900Strict";
+	public static final String SIMPLE_AM2900_DESCRIPTION = "Am2900Simple\nTODO Description";
+	public static final String STRICT_AM2900_DESCRIPTION = "Am2900Strict\nTODO Description";
 
 	public static final List<Register> unsortedRegisters;
 	public static final List<RegisterGroup> registerGroups;
@@ -51,6 +53,12 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 	public String getId()
 	{
 		return strict ? STRICT_AM2900_MACHINE_ID : SIMPLE_AM2900_MACHINE_ID;
+	}
+
+	@Override
+	public String getDescription()
+	{
+		return strict ? STRICT_AM2900_DESCRIPTION : SIMPLE_AM2900_DESCRIPTION;
 	}
 
 	@Override

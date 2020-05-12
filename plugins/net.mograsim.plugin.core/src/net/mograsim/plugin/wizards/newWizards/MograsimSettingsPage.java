@@ -15,6 +15,7 @@ import net.mograsim.plugin.nature.MachineContextSwtTools.MachineCombo;
 public class MograsimSettingsPage extends WizardPage
 {
 	private MachineCombo machineSelect;
+	private Label machineDescription;
 
 	public MograsimSettingsPage(IStructuredSelection selection)
 	{
@@ -49,7 +50,7 @@ public class MograsimSettingsPage extends WizardPage
 
 	private void addFirstSection(Composite parent)
 	{
-		Composite composite = createDefaultComposite(parent);
+		Composite composite = createDefaultComposite(parent, false);
 
 		// Label for path field
 		Label pathLabel = new Label(composite, SWT.NONE);
@@ -65,7 +66,7 @@ public class MograsimSettingsPage extends WizardPage
 		separator.setLayoutData(gridData);
 	}
 
-	private Composite createDefaultComposite(Composite parent)
+	private Composite createDefaultComposite(Composite parent, boolean grabExcessVerticalSpace)
 	{
 		Composite composite = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout();
@@ -75,6 +76,8 @@ public class MograsimSettingsPage extends WizardPage
 		GridData data = new GridData();
 		data.verticalAlignment = GridData.FILL;
 		data.horizontalAlignment = GridData.FILL;
+		data.grabExcessHorizontalSpace = true;
+		data.grabExcessVerticalSpace = grabExcessVerticalSpace;
 		composite.setLayoutData(data);
 
 		return composite;
@@ -82,7 +85,7 @@ public class MograsimSettingsPage extends WizardPage
 
 	private void addSecondSection(Composite parent)
 	{
-		Composite composite = createDefaultComposite(parent);
+		Composite composite = createDefaultComposite(parent, true);
 
 		// Label for machine
 		Label ownerLabel = new Label(composite, SWT.NONE);
@@ -91,8 +94,10 @@ public class MograsimSettingsPage extends WizardPage
 		// Machine choice
 		machineSelect = MachineContextSwtTools.createMachineSelector(composite, SWT.NONE);
 		machineSelect.addListener(md -> setPageComplete(isValid()));
-		GridData gd = new GridData();
-//		machineSelect.setLayoutData(gd);
+
+		machineDescription = new Label(composite, SWT.NONE);
+		machineSelect.addListener(md -> machineDescription.setText(md.getDescription()));
+		machineDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 	}
 
 	public boolean isValid()

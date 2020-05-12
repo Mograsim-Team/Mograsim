@@ -27,6 +27,7 @@ public class MograsimNaturePropertyPage extends PropertyPage
 	private static final String DEFAULT_MACHINE = "Am2900Simple";// TODO don't hardcode that here!
 
 	private MachineCombo machineSelect;
+	private Label machineDescription;
 	private MachineDefinition defaultMachineDefinition;
 
 	private MachineContext machineContext;
@@ -41,7 +42,7 @@ public class MograsimNaturePropertyPage extends PropertyPage
 
 	private void addFirstSection(Composite parent)
 	{
-		Composite composite = createDefaultComposite(parent);
+		Composite composite = createDefaultComposite(parent, false);
 
 		// Label for path field
 		Label pathLabel = new Label(composite, SWT.NONE);
@@ -59,7 +60,7 @@ public class MograsimNaturePropertyPage extends PropertyPage
 
 	private void addSecondSection(Composite parent)
 	{
-		Composite composite = createDefaultComposite(parent);
+		Composite composite = createDefaultComposite(parent, true);
 
 		// Label for machine
 		Label ownerLabel = new Label(composite, SWT.NONE);
@@ -68,8 +69,9 @@ public class MograsimNaturePropertyPage extends PropertyPage
 		// Machine choice
 		machineSelect = MachineContextSwtTools.createMachineSelector(composite, SWT.NONE);
 
-		if (currentId.isPresent())
-			machineSelect.add(currentId.get());
+		machineDescription = new Label(composite, SWT.NONE);
+		machineSelect.addListener(md -> machineDescription.setText(md.getDescription()));
+		machineDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
 		Optional<MachineDefinition> currentMachineDefinition = machineContext.getMachineDefinition();
 
@@ -99,7 +101,7 @@ public class MograsimNaturePropertyPage extends PropertyPage
 		return composite;
 	}
 
-	private Composite createDefaultComposite(Composite parent)
+	private Composite createDefaultComposite(Composite parent, boolean grabExcessVerticalSpace)
 	{
 		Composite composite = new Composite(parent, SWT.NULL);
 		GridLayout layout = new GridLayout();
@@ -109,6 +111,8 @@ public class MograsimNaturePropertyPage extends PropertyPage
 		GridData data = new GridData();
 		data.verticalAlignment = GridData.FILL;
 		data.horizontalAlignment = GridData.FILL;
+		data.grabExcessHorizontalSpace = true;
+		data.grabExcessVerticalSpace = grabExcessVerticalSpace;
 		composite.setLayoutData(data);
 
 		return composite;
