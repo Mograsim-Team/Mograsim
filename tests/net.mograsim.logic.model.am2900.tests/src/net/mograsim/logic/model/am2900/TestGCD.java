@@ -22,7 +22,7 @@ import net.mograsim.logic.model.am2900.machine.Am2900Machine;
 import net.mograsim.logic.model.am2900.machine.Am2900MainMemoryDefinition;
 import net.mograsim.logic.model.am2900.machine.Am2900MicroInstructionDefinition;
 import net.mograsim.logic.model.am2900.machine.Am2900MicroInstructionMemoryDefinition;
-import net.mograsim.logic.model.am2900.machine.StrictAm2900MachineDefinition;
+import net.mograsim.logic.model.am2900.machine.Am2900ExpertMachineDefinition;
 import net.mograsim.logic.model.am2900.machine.registers.am2901.NumberedRegister;
 import net.mograsim.logic.model.preferences.DefaultRenderPreferences;
 import net.mograsim.machine.MainMemory;
@@ -51,7 +51,7 @@ public class TestGCD
 	public void setupMachine() throws IOException
 	{
 		Am2900Loader.setup();
-		mach = new StrictAm2900MachineDefinition().createNew();
+		mach = new Am2900ExpertMachineDefinition().createNew();
 		mpm = MicroInstructionMemoryParser.parseMemory(Am2900MicroInstructionMemoryDefinition.instance,
 				TestGCD.class.getResourceAsStream("gcd.mpm"));
 		ram = new WordAddressableMemory(Am2900MainMemoryDefinition.instance);

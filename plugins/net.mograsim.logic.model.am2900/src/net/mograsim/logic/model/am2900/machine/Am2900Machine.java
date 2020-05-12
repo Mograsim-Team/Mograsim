@@ -89,7 +89,7 @@ public class Am2900Machine implements Machine
 		defaultParams[19] = paramClassifications[19].parse("JZ");
 		MicroInstruction jzMI = MicroInstruction.create(defaultParams);
 		am2900.setHighLevelState("muir_2.q", jzMI.toBitVector());
-		Bit regsValue = machineDefinition.strict ? Bit.U : Bit.ZERO;
+		Bit regsValue = machineDefinition.expert ? Bit.U : Bit.ZERO;
 		setRegistersTo(machineDefinition.getUnsortedRegisters(), regsValue);
 		setRegisterGroupTo(machineDefinition.getRegisterGroups(), regsValue);
 		// TODO reset latches?

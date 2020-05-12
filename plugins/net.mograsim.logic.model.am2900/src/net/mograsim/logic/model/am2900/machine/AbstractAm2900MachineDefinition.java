@@ -20,10 +20,10 @@ import net.mograsim.machine.registers.RegisterGroup;
 //(used for detecting installed machines in plugin.core)
 public class AbstractAm2900MachineDefinition implements MachineDefinition
 {
-	public static final String SIMPLE_AM2900_MACHINE_ID = "Am2900Simple";
-	public static final String STRICT_AM2900_MACHINE_ID = "Am2900Strict";
-	public static final String SIMPLE_AM2900_DESCRIPTION = "Am2900Simple\nTODO Description";
-	public static final String STRICT_AM2900_DESCRIPTION = "Am2900Strict\nTODO Description";
+	public static final String AM2900_TEACHING_MACHINE_ID = "Am2900Simple";
+	public static final String AM2900_EXPERT_MACHINE_ID = "Am2900Strict";
+	public static final String AM2900_TEACHING_DESCRIPTION = "Am2900Teaching\nTODO Description";
+	public static final String AM2900_EXPERT_DESCRIPTION = "Am2900Expert\nTODO Description";
 
 	public static final List<Register> unsortedRegisters;
 	public static final List<RegisterGroup> registerGroups;
@@ -42,23 +42,23 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 		registerGroups = Collections.unmodifiableList(registerGroupsModifiable);
 	}
 
-	public final boolean strict;
+	public final boolean expert;
 
-	protected AbstractAm2900MachineDefinition(boolean strict)
+	protected AbstractAm2900MachineDefinition(boolean expert)
 	{
-		this.strict = strict;
+		this.expert = expert;
 	}
 
 	@Override
 	public String getId()
 	{
-		return strict ? STRICT_AM2900_MACHINE_ID : SIMPLE_AM2900_MACHINE_ID;
+		return expert ? AM2900_EXPERT_MACHINE_ID : AM2900_TEACHING_MACHINE_ID;
 	}
 
 	@Override
 	public String getDescription()
 	{
-		return strict ? STRICT_AM2900_DESCRIPTION : SIMPLE_AM2900_DESCRIPTION;
+		return expert ? AM2900_EXPERT_DESCRIPTION : AM2900_TEACHING_DESCRIPTION;
 	}
 
 	@Override
@@ -106,14 +106,14 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 	@Override
 	public int hashCode()
 	{
-		return strict ? 12345 : 54321;
+		return expert ? 12345 : 54321;
 	}
 
 	@Override
 	public boolean equals(Object obj)
 	{
 		return obj != null && obj instanceof AbstractAm2900MachineDefinition
-				&& ((AbstractAm2900MachineDefinition) obj).strict == this.strict;
+				&& ((AbstractAm2900MachineDefinition) obj).expert == this.expert;
 	}
 
 	@Override

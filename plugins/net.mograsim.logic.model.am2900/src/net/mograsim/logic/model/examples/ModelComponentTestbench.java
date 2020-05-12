@@ -27,7 +27,7 @@ public class ModelComponentTestbench
 	public static void createTestbench(LogicModelModifiable model)
 	{
 		Am2900Loader.setup();
-//		ModelComponent comp = new StrictAm2900MachineDefinition().createNew(model).getAm2900();
+//		ModelComponent comp = new Am2900ExpertMachineDefinition().createNew(model).getAm2900();
 		ModelComponent comp = IndirectModelComponentCreator.createComponent(model, "ram5_12");
 
 		List<String> inputPinNames = new ArrayList<>();

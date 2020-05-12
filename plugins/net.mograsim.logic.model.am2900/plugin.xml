@@ -4,11 +4,11 @@
    <extension
          point="net.mograsim.machine.machine_definition">
       <machineDefinitionImplementation
-            class="net.mograsim.logic.model.am2900.machine.SimpleAm2900MachineDefinition"
+            class="net.mograsim.logic.model.am2900.machine.Am2900TeachingMachineDefinition"
             unique_id="Am2900Simple">
       </machineDefinitionImplementation>
       <machineDefinitionImplementation
-            class="net.mograsim.logic.model.am2900.machine.StrictAm2900MachineDefinition"
+            class="net.mograsim.logic.model.am2900.machine.Am2900ExpertMachineDefinition"
             unique_id="Am2900Strict">
       </machineDefinitionImplementation>
    </extension>
