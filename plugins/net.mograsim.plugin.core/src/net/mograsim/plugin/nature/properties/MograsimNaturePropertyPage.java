@@ -6,26 +6,28 @@ import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.dialogs.PropertyPage;
 
+import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.MachineRegistry;
 import net.mograsim.plugin.nature.MachineContext;
+import net.mograsim.plugin.nature.MachineContextSwtTools;
+import net.mograsim.plugin.nature.MachineContextSwtTools.MachineCombo;
 import net.mograsim.plugin.nature.ProjectMachineContext;
 
 public class MograsimNaturePropertyPage extends PropertyPage
 {
-
+	// TODO i10n
 	private static final String WARNING = "Changing the Mograsim machine can completely break your project. Be careful.";
-	private static final String MACHINE_LABEL = "Machine ID";
+	private static final String MACHINE_LABEL = "Machine definition";
 	private static final String MACHINE_PROPERTY = "net.mograsim.projectMachineId";
-	private static final String DEFAULT_MACHINE = "Am2900Simple";
+	private static final String DEFAULT_MACHINE = "Am2900Simple";// TODO don't hardcode that here!
 
-	private Combo machineSelect;
-	private String defaultId;
+	private MachineCombo machineSelect;
+	private MachineDefinition defaultMachineDefinition;
 
 	private MachineContext machineContext;
 
@@ -64,25 +66,17 @@ public class MograsimNaturePropertyPage extends PropertyPage
 		ownerLabel.setText(MACHINE_LABEL);
 
 		// Machine choice
-		machineSelect = new Combo(parent, SWT.BORDER);
-		GridData gd = new GridData();
-		machineSelect.setLayoutData(gd);
-
-		Optional<String> currentId = machineContext.getMachineId();
+		machineSelect = MachineContextSwtTools.createMachineSelector(composite, SWT.NONE);
 
 		if (currentId.isPresent())
 			machineSelect.add(currentId.get());
 
-		for (String machineId : MachineRegistry.getInstalledMachines().keySet())
-		{
-			if (currentId.isPresent() && currentId.get().equals(machineId))
-				continue;
-			machineSelect.add(machineId);
-		}
+		Optional<MachineDefinition> currentMachineDefinition = machineContext.getMachineDefinition();
 
-		defaultId = currentId.orElse(DEFAULT_MACHINE);
+		if (currentMachineDefinition.isPresent())
+			machineSelect.setSelection(currentMachineDefinition.get());
 
-		machineSelect.select(machineSelect.indexOf(defaultId));
+		defaultMachineDefinition = currentMachineDefinition.orElseGet(() -> MachineRegistry.getMachine(DEFAULT_MACHINE));
 	}
 
 	/**
@@ -124,14 +118,12 @@ public class MograsimNaturePropertyPage extends PropertyPage
 	{
 		super.performDefaults();
 		// Populate the owner text field with the default value
-		machineSelect.select(machineSelect.indexOf(DEFAULT_MACHINE));
+		machineSelect.setSelection(defaultMachineDefinition);
 	}
 
 	public boolean performOk()
 	{
-		int selected = machineSelect.getSelectionIndex();
-		String newId = machineSelect.getItem(selected);
-		return machineContext.setMachineId(newId);
+		return machineContext.setMachineId(machineSelect.getSelection().getId());
 	}
 
 }
