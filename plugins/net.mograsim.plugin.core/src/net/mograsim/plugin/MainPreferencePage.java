@@ -64,24 +64,6 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements IWo
 
 	private void addDashesGroup(Composite parent)
 	{
-//		Composite groupComposite = new Composite(parent, SWT.LEFT);
-//		GridDataFactory.fillDefaults().grab(true, false).applyTo(groupComposite);
-//		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(groupComposite);
-//		GridLayout gl = ((GridLayout) groupComposite.getLayout());
-//		gl.horizontalSpacing = 0;
-//
-//		Group grpWindowTitle = new Group(groupComposite, SWT.NONE);
-//		grpWindowTitle.setText("Line dashes");
-//		grpWindowTitle.setLayout(new GridLayout(1, false));
-//		grpWindowTitle.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-//
-//		// show workspace name
-//		Composite content = new Composite(grpWindowTitle, SWT.NONE);
-//		GridDataFactory.defaultsFor(content).indent(0, 0).grab(true, false).applyTo(content);
-//		GridLayout locationNameLayout = new GridLayout(2, false);
-//		content.setLayout(locationNameLayout);
-//		locationNameLayout.marginWidth = locationNameLayout.marginHeight = 0;
-
 		Composite dashesGroupParent = new Composite(parent, SWT.NONE);
 		dashesGroupParent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 		GridLayout dashesGroupParentLayout = new GridLayout();
