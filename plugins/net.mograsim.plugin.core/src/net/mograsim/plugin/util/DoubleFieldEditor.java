@@ -59,7 +59,7 @@ public class DoubleFieldEditor extends StringFieldEditor
 	 * @param min the minimum allowed value (inclusive)
 	 * @param max the maximum allowed value (inclusive)
 	 */
-	public void setValidRange(int min, int max)
+	public void setValidRange(double min, double max)
 	{
 		minValidValue = min;
 		maxValidValue = max;
@@ -131,7 +131,7 @@ public class DoubleFieldEditor extends StringFieldEditor
 		if (text != null)
 		{
 			Double d = Double.valueOf(text.getText());
-			getPreferenceStore().setValue(getPreferenceName(), d.intValue());
+			getPreferenceStore().setValue(getPreferenceName(), d.doubleValue());
 		}
 	}
 
