@@ -65,6 +65,16 @@ public class DefaultRenderPreferences extends DefaultPreferences implements Rend
 	{
 		switch (name)
 		{
+		case BIT_ZERO_DASH:
+			return "10, 2.5";
+		case BIT_Z_DASH:
+			return "10, 0.25, 0.25, 1.5, 0.25, 0.25";
+		case BIT_X_DASH:
+			return "10, 0.25, 0.25, 0.25, 0.25, 0.5, 0.25, 0.25, 0.25, 0.25";
+		case BIT_U_DASH:
+			return "10, 0.25, 0.25, 0.25, 1, 0.25, 0.25, 0.25";
+		case BIT_ONE_DASH:
+			return "10, 0.5, 1.5, 0.5";
 		default:
 			throw new IllegalArgumentException("Unknown string preference name: " + name);
 		}

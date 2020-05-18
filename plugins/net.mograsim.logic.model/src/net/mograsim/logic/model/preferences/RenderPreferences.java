@@ -21,6 +21,11 @@ public interface RenderPreferences extends Preferences
 	public static final String WIRE_WIDTH_MULTIBIT = PREFIX + "linewidth.wire.multibit";
 	public static final String WIRE_WIDTH_SINGLEBIT = PREFIX + "linewidth.wire.singlebit";
 	public static final String DEFAULT_LINE_WIDTH = PREFIX + "linewidth.default";
+	public static final String BIT_ZERO_DASH = PREFIX + "linedash.bit.zero";
+	public static final String BIT_Z_DASH = PREFIX + "linedash.bit.z";
+	public static final String BIT_X_DASH = PREFIX + "linedash.bit.x";
+	public static final String BIT_U_DASH = PREFIX + "linedash.bit.u";
+	public static final String BIT_ONE_DASH = PREFIX + "linedash.bit.one";
 	public static final String ZOOM_BUTTON = PREFIX + "button.zoom";
 	public static final String DRAG_BUTTON = PREFIX + "button.drag";
 	public static final String ACTION_BUTTON = PREFIX + "button.action";

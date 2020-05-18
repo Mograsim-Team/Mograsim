@@ -373,7 +373,9 @@ public class ModelWire
 		if (wireColor != null)
 			gc.setForeground(ColorManager.current().toColor(wireColor));
 		gc.setLineWidth(renderPrefs.getDouble(logicWidth == 1 ? WIRE_WIDTH_SINGLEBIT : WIRE_WIDTH_MULTIBIT));
+		gc.setLineDash(BitVectorFormatter.formatAsLineDash(renderPrefs, end));
 		gc.drawPolyline(effectivePath);
+		gc.setLineDash(null);
 		gc.setLineWidth(renderPrefs.getDouble(DEFAULT_LINE_WIDTH));
 	}
 

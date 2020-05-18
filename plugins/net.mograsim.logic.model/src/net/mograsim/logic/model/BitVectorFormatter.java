@@ -1,10 +1,15 @@
 package net.mograsim.logic.model;
 
 import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_ONE_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_ONE_DASH;
 import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_U_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_U_DASH;
 import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_X_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_X_DASH;
 import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_ZERO_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_ZERO_DASH;
 import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_Z_COLOR;
+import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_Z_DASH;
 
 import java.math.BigInteger;
 
@@ -74,6 +79,52 @@ public class BitVectorFormatter
 				// ignore
 			}
 		return bitvector;
+	}
+
+	public static double[] formatAsLineDash(RenderPreferences renderPrefs, ReadEnd end)
+	{
+		return formatAsLineDash(renderPrefs, end == null ? null : end.getValues());
+	}
+
+	public static double[] formatAsLineDash(RenderPreferences renderPrefs, BitVector bitVector)
+	{
+		// TODO maybe find a line dash assignment for multiple-bit bit vectors?
+		if (bitVector == null || bitVector.length() != 1)
+			return null;
+		String prefName;
+		switch (bitVector.getLSBit(0))
+		{
+		case ONE:
+			prefName = BIT_ONE_DASH;
+			break;
+		case U:
+			prefName = BIT_U_DASH;
+			break;
+		case X:
+			prefName = BIT_X_DASH;
+			break;
+		case Z:
+			prefName = BIT_Z_DASH;
+			break;
+		case ZERO:
+			prefName = BIT_ZERO_DASH;
+			break;
+		default:
+			throw new IllegalArgumentException("Unknown enum constant: " + bitVector.getLSBit(0));
+		}
+		return parseLineDashes(renderPrefs.getString(prefName));
+	}
+
+	// TODO this method does not belong here
+	public static double[] parseLineDashes(String dashesString)
+	{
+		if (dashesString.isEmpty())
+			return null;
+		String[] dashesStrings = dashesString.split(",");
+		double[] dashes = new double[dashesStrings.length];
+		for (int i = 0; i < dashesStrings.length; i++)
+			dashes[i] = Double.parseDouble(dashesStrings[i]);
+		return dashes;
 	}
 
 	public static ColorDefinition formatAsColor(RenderPreferences renderPrefs, ReadEnd end)
