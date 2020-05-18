@@ -61,6 +61,16 @@ public class DefaultRenderPreferences extends DefaultPreferences implements Rend
 	}
 
 	@Override
+	public String getString(String name)
+	{
+		switch (name)
+		{
+		default:
+			throw new IllegalArgumentException("Unknown string preference name: " + name);
+		}
+	}
+
+	@Override
 	public ColorDefinition getColorDefinition(String name)
 	{
 		switch (name)

@@ -42,6 +42,16 @@ public class DefaultPluginPreferences extends DefaultPreferences implements Plug
 	}
 
 	@Override
+	public String getString(String name)
+	{
+		switch (name)
+		{
+		default:
+			throw new IllegalArgumentException("Unknown double preference name: " + name);
+		}
+	}
+
+	@Override
 	public ColorDefinition getColorDefinition(String name)
 	{
 		switch (name)

@@ -30,6 +30,7 @@ public class EclipsePreferences implements Preferences
 	private final ListenerManager<Boolean> booleanListeners;
 	private final ListenerManager<Integer> intListeners;
 	private final ListenerManager<Double> doubleListeners;
+	private final ListenerManager<String> stringListeners;
 	private final ListenerManager<ColorDefinition> colorDefinitionListeners;
 
 	protected EclipsePreferences(ITheme theme, IPreferenceStore prefs, Preferences defaultPrefs)
@@ -41,6 +42,7 @@ public class EclipsePreferences implements Preferences
 		this.booleanListeners = new ListenerManager<>(this::getBoolean);
 		this.intListeners = new ListenerManager<>(this::getInt);
 		this.doubleListeners = new ListenerManager<>(this::getDouble);
+		this.stringListeners = new ListenerManager<>(this::getString);
 		this.colorDefinitionListeners = new ListenerManager<>(this::getColorDefinition);
 	}
 
@@ -63,6 +65,13 @@ public class EclipsePreferences implements Preferences
 	{
 		prefs.setDefault(name, defaultPrefs.getDouble(name));
 		return prefs.getDouble(name);
+	}
+
+	@Override
+	public String getString(String name)
+	{
+		prefs.setDefault(name, defaultPrefs.getString(name));
+		return prefs.getString(name);
 	}
 
 	@Override
@@ -122,6 +131,18 @@ public class EclipsePreferences implements Preferences
 	public void removeDoubleListener(String name, Consumer<Double> listener)
 	{
 		doubleListeners.removeListener(name, listener);
+	}
+
+	@Override
+	public void addStringListener(String name, Consumer<String> listener)
+	{
+		stringListeners.addListener(name, listener);
+	}
+
+	@Override
+	public void removeStringListener(String name, Consumer<String> listener)
+	{
+		stringListeners.removeListener(name, listener);
 	}
 
 	@Override

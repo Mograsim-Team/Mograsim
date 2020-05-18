@@ -24,6 +24,12 @@ public interface Preferences
 
 	public void removeDoubleListener(String name, Consumer<Double> listener);
 
+	public String getString(String name);
+
+	public void addStringListener(String name, Consumer<String> listener);
+
+	public void removeStringListener(String name, Consumer<String> listener);
+
 	public ColorDefinition getColorDefinition(String name);
 
 	public void addColorDefinitionListener(String name, Consumer<ColorDefinition> listener);
