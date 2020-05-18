@@ -76,7 +76,6 @@ public class BitVectorFormatter
 		return bitvector;
 	}
 
-	// TODO doesn't this belong to logic.model?
 	public static ColorDefinition formatAsColor(RenderPreferences renderPrefs, ReadEnd end)
 	{
 		return formatAsColor(renderPrefs, end == null ? null : end.getValues());
