@@ -8,7 +8,10 @@ import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_ZERO_DA
 import static net.mograsim.logic.model.preferences.RenderPreferences.BIT_Z_DASH;
 import static net.mograsim.logic.model.preferences.RenderPreferences.DEBUG_HLSSHELL_DEPTH;
 import static net.mograsim.logic.model.preferences.RenderPreferences.DEBUG_OPEN_HLSSHELL;
+import static net.mograsim.logic.model.preferences.RenderPreferences.DEFAULT_LINE_WIDTH;
 import static net.mograsim.logic.model.preferences.RenderPreferences.DRAG_BUTTON;
+import static net.mograsim.logic.model.preferences.RenderPreferences.WIRE_WIDTH_MULTIBIT;
+import static net.mograsim.logic.model.preferences.RenderPreferences.WIRE_WIDTH_SINGLEBIT;
 import static net.mograsim.logic.model.preferences.RenderPreferences.ZOOM_BUTTON;
 import static net.mograsim.plugin.preferences.PluginPreferences.MPM_EDITOR_BITS_AS_COLUMN_NAME;
 
@@ -30,6 +33,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.plugin.preferences.PluginPreferences;
+import net.mograsim.plugin.util.DoubleFieldEditor;
 import net.mograsim.preferences.Preferences;
 
 public class MainPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage
@@ -58,6 +62,11 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements IWo
 		addIntCombo(DRAG_BUTTON, "Mouse button for dragging", MOUSE_BUTTONS, parent);
 		addIntCombo(ZOOM_BUTTON, "Mouse button for zooming", MOUSE_BUTTONS, parent);
 		addBoolean(MPM_EDITOR_BITS_AS_COLUMN_NAME, "Use the raw bit indices of MPM columns as column titles in the MPM editor", parent);
+
+		insertSeparator(parent);
+		addDouble(WIRE_WIDTH_SINGLEBIT, "Line width for single-bit wires", parent);
+		addDouble(WIRE_WIDTH_MULTIBIT, "Line width for multi-bit wires", parent);
+		addDouble(DEFAULT_LINE_WIDTH, "Line width for other wires", parent);
 		addDashesGroup(parent);
 		// TODO add other preferences
 	}
@@ -108,6 +117,12 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements IWo
 		addField(new IntegerFieldEditor(name, label, parent));
 	}
 
+	private void addDouble(String name, String label, Composite parent)
+	{
+		defaultsPreferenceStore(name).getDouble(name);
+		addField(new DoubleFieldEditor(name, label, parent));
+	}
+
 	private void addIntCombo(String name, String label, String[][] entryNamesAndValues, Composite parent)
 	{
 		addCombo(name, label, entryNamesAndValues, parent, defaultsPreferenceStore(name)::getInt);
@@ -123,6 +138,11 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements IWo
 	{
 		defaultsPreferenceStore(name).getString(name);
 		addField(new StringFieldEditor(name, label, parent));
+	}
+
+	private static void insertSeparator(Composite parent)
+	{
+		new Label(parent, SWT.SEPARATOR | SWT.HORIZONTAL).setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 	}
 
 	private static Preferences defaultsPreferenceStore(String name)
