@@ -11,7 +11,7 @@ public class DefaultRenderPreferences extends DefaultPreferences implements Rend
 	{
 		switch (name)
 		{
-		case IMPROVE_TEXT:
+		case IMPROVE_SCALING:
 			return true;
 		case DEBUG_OPEN_HLSSHELL:
 			return false;
@@ -43,6 +43,8 @@ public class DefaultRenderPreferences extends DefaultPreferences implements Rend
 	{
 		switch (name)
 		{
+		case LINE_DASH_IMPROVEMENT_FACTOR:
+			return 100.0;
 		case DEFAULT_LINE_WIDTH:
 			return 0.5;
 		case WIRE_WIDTH_SINGLEBIT:

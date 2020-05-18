@@ -4,7 +4,8 @@ import static net.mograsim.logic.model.preferences.RenderPreferences.ACTION_BUTT
 import static net.mograsim.logic.model.preferences.RenderPreferences.BACKGROUND_COLOR;
 import static net.mograsim.logic.model.preferences.RenderPreferences.DEBUG_HLSSHELL_DEPTH;
 import static net.mograsim.logic.model.preferences.RenderPreferences.DEBUG_OPEN_HLSSHELL;
-import static net.mograsim.logic.model.preferences.RenderPreferences.IMPROVE_TEXT;
+import static net.mograsim.logic.model.preferences.RenderPreferences.IMPROVE_SCALING;
+import static net.mograsim.logic.model.preferences.RenderPreferences.LINE_DASH_IMPROVEMENT_FACTOR;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,7 +51,7 @@ public class LogicUICanvas extends ZoomableCanvas
 	public LogicUICanvas(Composite parent, int style, LogicModel model, RenderPreferences renderPrefs)
 	{
 		// TODO add a listener
-		super(parent, style, renderPrefs.getBoolean(IMPROVE_TEXT));
+		super(parent, style, renderPrefs.getBoolean(IMPROVE_SCALING), (float) renderPrefs.getDouble(LINE_DASH_IMPROVEMENT_FACTOR));
 
 		this.renderPrefs = renderPrefs;
 		this.model = model;

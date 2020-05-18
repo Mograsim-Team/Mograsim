@@ -6,7 +6,8 @@ public interface RenderPreferences extends Preferences
 {
 	public static final String PREFIX = "net.mograsim.logic.model.";
 
-	public static final String IMPROVE_TEXT = PREFIX + "improvetext";
+	public static final String IMPROVE_SCALING = PREFIX + "improvescaling.enable";
+	public static final String LINE_DASH_IMPROVEMENT_FACTOR = PREFIX + "improvescaling.factor";
 	public static final String TEXT_COLOR = PREFIX + "color.text";
 	public static final String FOREGROUND_COLOR = PREFIX + "color.foreground";
 	public static final String BACKGROUND_COLOR = PREFIX + "color.background";
