@@ -53,7 +53,7 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements IWo
 	{
 		Composite parent = getFieldEditorParent();
 		addBoolean(DEBUG_OPEN_HLSSHELL, "Open the debug HLS shell", parent);
-		addInt("Depth of components to list in the debug HLS shell (0: unbounded)", DEBUG_HLSSHELL_DEPTH, parent);
+		addInt(DEBUG_HLSSHELL_DEPTH, "Depth of components to list in the debug HLS shell (0: unbounded)", parent);
 		addIntCombo(ACTION_BUTTON, "Mouse button for actions", MOUSE_BUTTONS, parent);
 		addIntCombo(DRAG_BUTTON, "Mouse button for dragging", MOUSE_BUTTONS, parent);
 		addIntCombo(ZOOM_BUTTON, "Mouse button for zooming", MOUSE_BUTTONS, parent);
@@ -103,7 +103,7 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements IWo
 
 		Label dashesDescription = new Label(content, SWT.WRAP);
 		dashesDescription.setText("Line dashes for single-bit wires displaying the respective value.\n"
-				+ "Format: As comma-separated list of doubles. The first value is the width of the first segment,\n"
+				+ "Format: A comma-separated list of doubles. The first value is the width of the first segment,\n"
 				+ "the second is the spacing between the first and second segments,\n"
 				+ "the third is the width of the second segment and so on.");
 		dashesDescription.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 2, 1));
@@ -120,7 +120,7 @@ public class MainPreferencePage extends FieldEditorPreferencePage implements IWo
 		addField(new BooleanFieldEditor(name, label, parent));
 	}
 
-	private void addInt(String label, String name, Composite parent)
+	private void addInt(String name, String label, Composite parent)
 	{
 		defaultsPreferenceStore(name).getInt(name);
 		addField(new IntegerFieldEditor(name, label, parent));
