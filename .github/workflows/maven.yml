@@ -19,5 +19,12 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Cache Maven Dependencies
+      uses: actions/cache@v2.1.1
+      with:
+        path: ~/.m2/repository
+        key: mograsim-maven-${{ hashFiles('**/pom.xml,**/MANIFEST.MF') }}
+        restore-keys: |
+          mograsim-maven-
     - name: Build with Maven
       run: mvn --batch-mode --errors --fail-at-end --show-version clean verify --file pom.xml
