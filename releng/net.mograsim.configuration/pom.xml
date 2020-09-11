@@ -17,9 +17,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<!-- Not needed, as an explicit target definition is provided by releng/net.mograsim.target/
+	<!-- Not needed, as an explicit target definition is provided by releng/net.mograsim.target/ 
 		This provides a uniform configuration, and we don't get weird errors. -->
-	<!-- <repositories> <repository> <id>eclipse-release</id> <url>http://download.eclipse.org/releases/2019-06</url>
+	<!-- <repositories> <repository> <id>eclipse-release</id> <url>http://download.eclipse.org/releases/2019-06</url> 
 		<layout>p2</layout> </repository> </repositories> -->
 
 	<build>
@@ -33,13 +33,13 @@
 			</plugin>
 
 			<!-- We might use this in future to change versions comfortably -->
-			<!-- <plugin> <groupId>org.eclipse.tycho</groupId> <artifactId>tycho-versions-plugin</artifactId>
-				<version>${tycho.version}</version> <executions> <execution> <id>set-all-versions</id>
-				<phase>post-clean</phase> <goals> <goal>set-version</goal> <goal>update-eclipse-metadata</goal>
-				</goals> <configuration> <newVersion>0.2.0</newVersion> <properties>revision</properties>
+			<!-- <plugin> <groupId>org.eclipse.tycho</groupId> <artifactId>tycho-versions-plugin</artifactId> 
+				<version>${tycho.version}</version> <executions> <execution> <id>set-all-versions</id> 
+				<phase>post-clean</phase> <goals> <goal>set-version</goal> <goal>update-eclipse-metadata</goal> 
+				</goals> <configuration> <newVersion>0.2.0</newVersion> <properties>revision</properties> 
 				</configuration> </execution> </executions> </plugin> -->
 
-			<!--Enable the replacement of the SNAPSHOT version in the final feature/product
+			<!--Enable the replacement of the SNAPSHOT version in the final feature/product 
 				configuration -->
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -73,7 +73,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- This makes maven generate proper POMs without the revision placeholder,
+			<!-- This makes maven generate proper POMs without the revision placeholder, 
 				this is related to the ".flattened-pom.xml" mentioned in .gitignore -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
