@@ -31,8 +31,10 @@ jobs:
     - name: Deploy to mograsim.net
       env:
         DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        MOGRASIM_NET_HOST_PUBKEY: ${{ secrets.MOGRASIM_NET_HOST_PUBKEY }}
       run: |
         mkdir -p ~/.ssh
         echo "${DEPLOY_TOKEN}" > ~/.ssh/id_rsa_deploy
         chmod 600 ~/.ssh/id_rsa_deploy
+        echo "${MOGRASIM_NET_HOST_PUBKEY}" >> ~/.ssh/known_hosts
         scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mograsim.net:mograsim/testdeploy
