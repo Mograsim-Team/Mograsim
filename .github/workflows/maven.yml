@@ -34,7 +34,7 @@ jobs:
         MOGRASIM_NET_HOST_PUBKEY: ${{ secrets.MOGRASIM_NET_HOST_PUBKEY }}
       run: |
         mkdir -p ~/.ssh
-        echo "${DEPLOY_KEY}" > ~/.ssh/id_rsa_deploy
+        printenv DEPLOY_KEY > ~/.ssh/id_rsa_deploy
         chmod 600 ~/.ssh/id_rsa_deploy
-        echo "${MOGRASIM_NET_HOST_PUBKEY}" >> ~/.ssh/known_hosts
+        printenv MOGRASIM_NET_HOST_PUBKEY >> ~/.ssh/known_hosts
         scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mgsdeploy@mograsim.net:/mograsim/testdeploy
