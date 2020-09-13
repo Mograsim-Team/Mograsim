@@ -23,7 +23,7 @@ jobs:
       uses: actions/cache@v2.1.1
       with:
         path: ~/.m2/repository
-        key: mograsim-maven-${{ hashFiles('**/pom.xml,**/MANIFEST.MF') }}
+        key: mograsim-maven-${{ hashFiles('**/pom.xml', '**/MANIFEST.MF', '.github/workflows/maven.yml') }}
         restore-keys: |
           mograsim-maven-
     - name: Build with Maven
