@@ -3,7 +3,7 @@ name: Java CI
 on: [push]
 
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
@@ -28,3 +28,11 @@ jobs:
           mograsim-maven-
     - name: Build with Maven
       run: mvn --batch-mode --errors --fail-at-end --show-version clean verify --file pom.xml
+    - name: Deploy to mograsim.net
+      env:
+        DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "${DEPLOY_TOKEN}" > ~/.ssh/id_rsa_deploy
+        chmod 600 ~/.ssh/id_rsa_deploy
+        scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mograsim.net/mograsim/testdeploy
