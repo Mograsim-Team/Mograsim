@@ -26,8 +26,12 @@ jobs:
         key: mograsim-maven-${{ hashFiles('**/pom.xml,**/MANIFEST.MF') }}
         restore-keys: |
           mograsim-maven-
-    - name: Build with Maven
-      run: mvn --batch-mode --errors --fail-at-end --show-version clean verify --file pom.xml
+    - name: Build with Maven (mocked)
+      run: |
+        echo mvn --batch-mode --errors --fail-at-end --show-version clean verify --file pom.xml
+        mkdir -p releng/net.mograsim.plugin.updatesite/target/repository/subdir
+        echo "file contents" > releng/net.mograsim.plugin.updatesite/target/repository/somefile.txt
+        echo "another contents" > releng/net.mograsim.plugin.updatesite/target/repository/subdir/somefile2.txt
     - name: Deploy to mograsim.net
       env:
         DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
