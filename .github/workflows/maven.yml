@@ -41,4 +41,5 @@ jobs:
         echo "${DEPLOY_TOKEN}" > ~/.ssh/id_rsa_deploy
         chmod 600 ~/.ssh/id_rsa_deploy
         echo "${MOGRASIM_NET_HOST_PUBKEY}" >> ~/.ssh/known_hosts
+        cat ~/.ssh/id_rsa_deploy
         scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mograsim.net:mograsim/testdeploy
