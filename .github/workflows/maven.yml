@@ -42,5 +42,5 @@ jobs:
         printenv MOGRASIM_NET_HOST_PUBKEY >> ~/.ssh/known_hosts
         date=$(date +%Y%m%d_%H%M%S)
         scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mgsdeploy@mograsim.net:/mograsim/upload_tmp/$date
-        printenv github.env
+        echo Ref: $github.ref
         echo ssh -i ~/.ssh/id_rsa_deploy /mograsim/upload_updatesite_finished.sh $date $github.env
