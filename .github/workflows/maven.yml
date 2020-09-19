@@ -3,7 +3,7 @@ name: Java CI
 on: [push]
 
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
@@ -23,8 +23,22 @@ jobs:
       uses: actions/cache@v2.1.1
       with:
         path: ~/.m2/repository
-        key: mograsim-maven-${{ hashFiles('**/pom.xml,**/MANIFEST.MF') }}
+        key: mograsim-maven-${{ hashFiles('**/pom.xml', '**/MANIFEST.MF', '.github/workflows/maven.yml') }}
         restore-keys: |
           mograsim-maven-
     - name: Build with Maven
       run: mvn --batch-mode --errors --fail-at-end --show-version clean verify --file pom.xml
+    - name: Deploy to mograsim.net
+      env:
+        DEPLOY_KEY: ${{secrets.DEPLOY_KEY}}
+        MOGRASIM_NET_HOST_PUBKEY: ${{secrets.MOGRASIM_NET_HOST_PUBKEY }}
+        REF: ${{github.ref}}
+      run: |
+        mkdir -p ~/.ssh
+        touch ~/.ssh/id_rsa_deploy
+        chmod 600 ~/.ssh/id_rsa_deploy
+        printenv DEPLOY_KEY > ~/.ssh/id_rsa_deploy
+        printenv MOGRASIM_NET_HOST_PUBKEY >> ~/.ssh/known_hosts
+        date=$(date +%Y%m%d_%H%M%S)
+        scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mgsdeploy@mograsim.net:/mograsim/upload_tmp/$date
+        ssh -i ~/.ssh/id_rsa_deploy mgsdeploy@mograsim.net /mograsim/upload_updatesite_finished.sh $date $REF
