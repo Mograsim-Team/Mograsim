@@ -114,6 +114,7 @@ public class LogicCoreAdapter
 			modelWire.setCoreModelBinding(modelWireSharedReadEnd.get(logicWiresPerPin.get(modelWire.getPin1())));
 	}
 
+	// TODO replace with a proper Union-Find datastructure
 	private static Map<Pin, Set<Pin>> getConnectedPinGroups(Set<Pin> allPins, Collection<ModelWire> wires)
 	{
 		Map<Pin, Set<Pin>> connectedPinsPerPin = new HashMap<>();
