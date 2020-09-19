@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Mograsim Preferences
 Bundle-SymbolicName: net.mograsim.preferences
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.1.1.qualifier
 Export-Package: net.mograsim.preferences
 Bundle-Vendor: Mograsim Team
 Automatic-Module-Name: net.mograsim.preferences

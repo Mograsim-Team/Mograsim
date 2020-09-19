@@ -2,15 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Editor
 Bundle-SymbolicName: net.mograsim.logic.model.editor
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.1.1.qualifier
 Export-Package: net.mograsim.logic.model.editor,
  net.mograsim.logic.model.editor.handles,
  net.mograsim.logic.model.editor.states,
  net.mograsim.logic.model.editor.ui,
  net.mograsim.logic.model.editor.util
-Require-Bundle: net.mograsim.logic.model;bundle-version="0.1.0",
- net.mograsim.preferences;bundle-version="0.1.0",
- net.mograsim.logic.model.am2900;bundle-version="0.1.0"
+Require-Bundle: net.mograsim.logic.model;bundle-version="0.1.1",
+ net.mograsim.preferences;bundle-version="0.1.1",
+ net.mograsim.logic.model.am2900;bundle-version="0.1.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: net.mograsim.logic.model.editor
 Bundle-Vendor: Mograsim Team
