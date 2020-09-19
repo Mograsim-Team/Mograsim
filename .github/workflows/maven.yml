@@ -26,8 +26,10 @@ jobs:
         key: mograsim-maven-${{ hashFiles('**/pom.xml', '**/MANIFEST.MF', '.github/workflows/maven.yml') }}
         restore-keys: |
           mograsim-maven-
-    - name: Build with Maven
-      run: mvn --batch-mode --errors --fail-at-end --show-version clean verify --file pom.xml
+    - name: Build with Maven (mocked)
+      run: |
+        echo mvn --batch-mode --errors --fail-at-end --show-version clean verify --file pom.xml
+        mkdir -p releng/net.mograsim.plugin.updatesite/target/repository/subdir
     - name: Deploy to mograsim.net
       env:
         DEPLOY_KEY: ${{ secrets.DEPLOY_KEY}}
@@ -38,4 +40,7 @@ jobs:
         chmod 600 ~/.ssh/id_rsa_deploy
         printenv DEPLOY_KEY > ~/.ssh/id_rsa_deploy
         printenv MOGRASIM_NET_HOST_PUBKEY >> ~/.ssh/known_hosts
-        scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mgsdeploy@mograsim.net:/mograsim/testdeploy
+        date=$(date +%Y%m%d_%H%M%S)
+        scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mgsdeploy@mograsim.net:/mograsim/upload_tmp/$date
+        printenv github.env
+        echo ssh -i ~/.ssh/id_rsa_deploy /mograsim/upload_updatesite_finished.sh $date $github.env
