@@ -7,11 +7,18 @@
 
 ## Install Mograsim
 
+### Via the Eclipse Marketplace
+1. Start Eclipse.
+2. Go to "Help" -> "Eclipse Marketplace...".
+3. Search for "Mograsim"
+4. Click on "Install" and follow the instructions.
+
+### Manually via an updatesite
 1. Start Eclipse.
 2. Go to "Help" -> "Install New Software...".
 3. Add the Mograsim update site:
 	1. Click on "Add...".
-	2. Next to "Location:", enter the update site address. Currently, this is http://vmschulz34.in.tum.de/updatesite/. This address could, however, change in the future.
+	2. Next to "Location:", enter the update site address. Currently, this is https://mograsim.net/updatesite/. This address could, however, change in the future.
 	3. Click on "Add".
 1. Tick "Mograsim".
 2. Click on "Next >" two times, read and accept the license, and click on "Finish".
