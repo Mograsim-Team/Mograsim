@@ -2,6 +2,7 @@ package net.mograsim.machine;
 
 import java.util.List;
 
+import net.mograsim.machine.mi.MPROMDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 import net.mograsim.machine.registers.Register;
 import net.mograsim.machine.registers.RegisterGroup;
@@ -80,5 +81,14 @@ public interface MachineDefinition
 	 * @return the {@link InstructionMemoryDefinition} that defines the instruction memory.
 	 */
 	MicroInstructionMemoryDefinition getMicroInstructionMemoryDefinition();
+
+	/**
+	 * Returns the definition of the machines instruction memory.
+	 * 
+	 * @return the {@link InstructionMemoryDefinition} that defines the instruction memory.
+	 * 
+	 * @author Daniel Kirschten
+	 */
+	MPROMDefinition getMPROMDefinition();
 
 }

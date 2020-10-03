@@ -1,6 +1,7 @@
 {
   "Am2900MainMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MainMemory",
   "Am2900MicroInstructionMemory": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MicroInstructionMemory",
+  "Am2900MPROM": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MPROM",
 
   "Am2900": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json",
   "Am2900MemoryController": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900MemoryController.json",

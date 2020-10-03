@@ -20,9 +20,11 @@ import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.mi.AssignableMPROM;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
+import net.mograsim.machine.mi.StandardMPROM;
 import net.mograsim.machine.mi.StandardMicroInstructionMemory;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
@@ -39,6 +41,7 @@ public class Am2900Machine implements Machine
 	private Timeline timeline;
 	private AssignableMainMemory mainMemory;
 	private AssignableMicroInstructionMemory instMemory;
+	private AssignableMPROM mprom;
 	private CoreClock clock;
 	private long activeInstructionAddress;
 
@@ -59,9 +62,11 @@ public class Am2900Machine implements Machine
 		mainMemory = new AssignableMainMemory(new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition()));
 		instMemory = new AssignableMicroInstructionMemory(
 				new StandardMicroInstructionMemory(am2900MachineDefinition.getMicroInstructionMemoryDefinition()));
+		mprom = new AssignableMPROM(new StandardMPROM(am2900MachineDefinition.getMPROMDefinition()));
 		timeline = LogicCoreAdapter.convert(logicModel, params);
 		am2900.setHighLevelState("ram.memory_binding", mainMemory);
 		am2900.setHighLevelState("mpm.memory_binding", instMemory);
+		am2900.setHighLevelState("mprom.memory_binding", mprom);
 		clock = logicModel.getComponentBySubmodelPath("Am2900.Clock#0", ModelClock.class).getClock();
 		clock.registerObserver(c ->
 		{
@@ -175,6 +180,12 @@ public class Am2900Machine implements Machine
 	public AssignableMicroInstructionMemory getMicroInstructionMemory()
 	{
 		return instMemory;
+	}
+
+	@Override
+	public AssignableMPROM getMPROM()
+	{
+		return mprom;
 	}
 
 	@Override

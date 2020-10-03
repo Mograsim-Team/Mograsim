@@ -13,6 +13,7 @@ import net.mograsim.logic.model.am2900.machine.registers.am2910.Am2910RegisterGr
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.machine.ISASchema;
 import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.mi.MPROMDefinition;
 import net.mograsim.machine.registers.Register;
 import net.mograsim.machine.registers.RegisterGroup;
 
@@ -123,4 +124,9 @@ public class AbstractAm2900MachineDefinition implements MachineDefinition
 		return Am2900MicroInstructionMemoryDefinition.instance;
 	}
 
+	@Override
+	public MPROMDefinition getMPROMDefinition()
+	{
+		return Am2900MPROMDefinition.instance;
+	}
 }
