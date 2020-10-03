@@ -9,7 +9,6 @@ import net.mograsim.logic.model.model.LogicModel;
 import net.mograsim.machine.mi.AssignableMPROM;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.machine.registers.Register;
-import net.mograsim.machine.standard.memory.AssignableMainMemory;
 
 public interface Machine
 {

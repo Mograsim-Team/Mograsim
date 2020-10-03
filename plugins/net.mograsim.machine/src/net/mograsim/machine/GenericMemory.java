@@ -5,16 +5,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class GenericMemory<T> implements Memory<T>
+public abstract class GenericMemory<T, D extends MemoryDefinition> implements Memory<T>
 {
 	private final long minimalAddress, maximalAddress;
-	private final MemoryDefinition definition;
+	private final D definition;
 	private final int pageSize = 64;
 	private Set<MemoryCellModifiedListener> observers = new HashSet<>();
 
 	private HashMap<Long, Page> pages;
 
-	public GenericMemory(MemoryDefinition definition)
+	public GenericMemory(D definition)
 	{
 		super();
 		this.definition = definition;
@@ -67,18 +67,17 @@ public abstract class GenericMemory<T> implements Memory<T>
 
 	private class Page
 	{
-		private Object[] memory;
+		private T[] memory;
 
+		@SuppressWarnings("unchecked")
 		public Page()
 		{
-			memory = new Object[pageSize];
+			memory = (T[]) new Object[pageSize];
 		}
 
 		public T getCell(int index)
 		{
-			@SuppressWarnings("unchecked")
-			T data = (T) memory[index];
-			return data;
+			return memory[index];
 		}
 
 		public void setCell(int index, T data)
@@ -111,7 +110,7 @@ public abstract class GenericMemory<T> implements Memory<T>
 	}
 
 	@Override
-	public MemoryDefinition getDefinition()
+	public D getDefinition()
 	{
 		return definition;
 	}

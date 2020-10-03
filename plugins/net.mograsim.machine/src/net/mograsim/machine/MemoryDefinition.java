@@ -29,7 +29,7 @@ public interface MemoryDefinition
 	long getMaximalAddress();
 
 	/**
-	 * The size of the MainMemory as the amount of addressable memory cells.
+	 * The size of the memory as the amount of addressable memory cells.
 	 * 
 	 * @return the amount of addressable memory cells
 	 */

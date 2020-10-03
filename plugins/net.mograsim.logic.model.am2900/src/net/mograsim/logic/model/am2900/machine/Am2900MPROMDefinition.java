@@ -25,7 +25,7 @@ public class Am2900MPROMDefinition implements MPROMDefinition
 	}
 
 	@Override
-	public int getMicroInstructionMemoryAddressBits()
+	public int getCellWidth()
 	{
 		return 12;
 	}

@@ -13,11 +13,6 @@ public class StandardMemoryDefinition implements MemoryDefinition
 		this.maximalAddress = maximalAddress;
 	}
 
-	public StandardMemoryDefinition(MainMemoryDefinition definition)
-	{
-		this(definition.getMemoryAddressBits(), definition.getMinimalAddress(), definition.getMaximalAddress());
-	}
-
 	@Override
 	public int getMemoryAddressBits()
 	{

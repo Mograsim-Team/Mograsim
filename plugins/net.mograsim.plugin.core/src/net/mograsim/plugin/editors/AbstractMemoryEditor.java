@@ -32,11 +32,11 @@ import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.themes.ITheme;
 import org.eclipse.ui.themes.IThemeManager;
 
-import net.mograsim.machine.MainMemory;
-import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.BitVectorMemory;
+import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 import net.mograsim.machine.mi.MicroInstructionMemoryParseException;
-import net.mograsim.machine.standard.memory.MainMemoryParser;
+import net.mograsim.machine.standard.memory.BitVectorBasedMemoryParser;
 import net.mograsim.plugin.asm.AsmNumberUtil;
 import net.mograsim.plugin.nature.MachineContext;
 import net.mograsim.plugin.nature.ProjectMachineContext;
@@ -50,11 +50,11 @@ import net.mograsim.plugin.tables.memory.MemoryTableContentProvider;
 import net.mograsim.plugin.tables.memory.MemoryTableRow;
 import net.mograsim.plugin.tables.memory.NumberVerifyListener;
 
-public class MemoryEditor extends EditorPart
+public abstract class AbstractMemoryEditor extends EditorPart
 {
 	private MachineContext context;
 
-	private MainMemory memory;
+	private BitVectorMemory memory;
 
 	private LazyTableViewer viewer;
 	private MemoryTableContentProvider provider;
@@ -69,7 +69,7 @@ public class MemoryEditor extends EditorPart
 	private final static String font = "net.mograsim.plugin.memory.table_font";
 	private IPropertyChangeListener fontChangeListener;
 
-	public MemoryEditor()
+	public AbstractMemoryEditor()
 	{
 		memListener = this::cellModified;
 	}
@@ -268,9 +268,9 @@ public class MemoryEditor extends EditorPart
 	{
 		if (memory == null)
 		{
-			throw new MicroInstructionMemoryParseException("Failed to write MainMemory to File. No MainMemory assigned.");
+			throw new MicroInstructionMemoryParseException("Failed to write the memory to File. No memory assigned.");
 		}
-		try (InputStream toWrite = MainMemoryParser.write(memory))
+		try (InputStream toWrite = BitVectorBasedMemoryParser.write(memory))
 		{
 			file.setContents(toWrite, 0, monitor);
 			setDirty(false);
@@ -279,13 +279,16 @@ public class MemoryEditor extends EditorPart
 
 	private void open(IFile file) throws IOException, CoreException
 	{
-		MainMemoryDefinition memDef = context.getMachineDefinition()
-				.orElseThrow(() -> new MicroInstructionMemoryParseException("No MachineDefinition assigned!")).getMainMemoryDefinition();
-		memory = MainMemoryParser.parseMemory(memDef, file.getContents());
+		MachineDefinition machDef = context.getMachineDefinition()
+				.orElseThrow(() -> new MicroInstructionMemoryParseException("No MachineDefinition assigned!"));
+		memory = createEmptyMemory(machDef);
+		BitVectorBasedMemoryParser.parseMemory(memory, file.getContents());
 		memory.registerCellModifiedListener(memListener);
 		if (viewer != null)
 			viewer.setInput(memory);
 	}
+
+	protected abstract BitVectorMemory createEmptyMemory(MachineDefinition activeMachineDefinition);
 
 	private void cellModified(@SuppressWarnings("unused") long address)
 	{

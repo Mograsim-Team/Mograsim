@@ -245,6 +245,11 @@ public class MachineContext
 			return;
 		machineId = newMachineDefinitionId;
 		machineDefinition = machineId.map(MachineRegistry::getMachine);
+		if (machineDefinition.isEmpty() && newMachineDefinitionId.isPresent())
+		{
+			// TODO open a dialog
+			System.err.println("Machine definition for ID " + newMachineDefinitionId.get() + " not found");
+		}
 		updateStatus();
 		ProjectMachineContext.notifyListeners(new ProjectContextEvent(this, ProjectContextEventType.MACHINE_DEFINITION_CHANGE));
 	}

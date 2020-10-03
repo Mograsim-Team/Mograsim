@@ -14,9 +14,11 @@ import net.mograsim.logic.core.types.Bit;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.core.wires.CoreWire;
 import net.mograsim.logic.core.wires.CoreWire.ReadWriteEnd;
+import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.StandardMainMemory;
 
-class WordAddressableMemoryTest
+class MainMemoryTest
 {
 
 	private Timeline t = new Timeline(10);
@@ -33,9 +35,9 @@ class WordAddressableMemoryTest
 		ReadWriteEnd addressI = address.createReadWriteEnd();
 
 		MainMemoryDefinition definition = MainMemoryDefinition.create(64, 16, 4096L, Long.MAX_VALUE);
-		CoreWordAddressableMemory memory = new CoreWordAddressableMemory(t, 4, definition, data.createReadWriteEnd(),
-				rW.createReadOnlyEnd(), address.createReadOnlyEnd());
-		memory.setMemory(new WordAddressableMemory(definition));
+		CoreBitVectorMemory<MainMemory> memory = new CoreBitVectorMemory<>(t, 4, definition, data.createReadWriteEnd(),
+				rW.createReadOnlyEnd(), address.createReadOnlyEnd(), false);
+		memory.setMemory(new StandardMainMemory(definition));
 
 		Random r = new Random(seed);
 		for (long j = 1; j > 0; j *= 2)

@@ -18,12 +18,15 @@ import org.eclipse.debug.core.model.IMemoryBlock;
 import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
 import org.eclipse.ui.statushandlers.StatusManager;
 
+import net.mograsim.machine.BitVectorMemoryDefinition;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
 import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.mi.MPROMDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemoryDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
-import net.mograsim.machine.standard.memory.MainMemoryParser;
+import net.mograsim.machine.standard.memory.BitVectorBasedMemoryParser;
+import net.mograsim.machine.standard.memory.StandardBitVectorMemory;
 import net.mograsim.plugin.MograsimActivator;
 import net.mograsim.plugin.nature.MachineContext;
 import net.mograsim.plugin.nature.MograsimNature;
@@ -33,10 +36,8 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 {
 	public static final String PROJECT_ATTR = MograsimActivator.PLUGIN_ID + ".project";
 	public static final String MPM_FILE_ATTR = MograsimActivator.PLUGIN_ID + ".mpm";
+	public static final String MPROM_FILE_ATTR = MograsimActivator.PLUGIN_ID + ".mprom";
 	public static final String INITIAL_RAM_FILE_ATTR = MograsimActivator.PLUGIN_ID + ".initialram";
-
-	private IFile mpmFile;
-	private Machine machine;
 
 	@Override
 	public boolean preLaunchCheck(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException
@@ -59,6 +60,7 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 		MachineDefinition machineDefinition = machDefOptional.orElseThrow();
 		MicroInstructionMemoryDefinition miMemDef = machineDefinition.getMicroInstructionMemoryDefinition();
 		MainMemoryDefinition mainMemDef = machineDefinition.getMainMemoryDefinition();
+		MPROMDefinition mpromDef = machineDefinition.getMPROMDefinition();
 
 		String mpmFileName = configuration.getAttribute(MPM_FILE_ATTR, "");
 		if ("".equals(mpmFileName))
@@ -77,25 +79,37 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 			throw new CoreException(new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading MPM file", e));
 		}
 
+		String mpromFileName = configuration.getAttribute(MPROM_FILE_ATTR, "");
+		if (!checkMemoryFileReadable(project, mpromDef, mpromFileName, "MPROM"))
+			return false;
+
 		String initialRAMFileName = configuration.getAttribute(INITIAL_RAM_FILE_ATTR, "");
-		if (!"".equals(initialRAMFileName))
+		if (!checkMemoryFileReadable(project, mainMemDef, initialRAMFileName, "initial RAM"))
+			return false;
+
+		return super.preLaunchCheck(configuration, mode, monitor);
+	}
+
+	private static boolean checkMemoryFileReadable(IProject project, BitVectorMemoryDefinition mainMemDef, String fileName, String fileType)
+			throws CoreException
+	{
+		if (!"".equals(fileName))
 		{
-			IFile initialRAMFile = project.getFile(initialRAMFileName);
+			IFile initialRAMFile = project.getFile(fileName);
 			if (initialRAMFile == null || !initialRAMFile.isAccessible())
-				return showErrorAndReturnFalse("Initial RAM file not accessible");
+				return showErrorAndReturnFalse(fileType + " file not accessible");
 
 			try (InputStream initialRAMStream = initialRAMFile.getContents())
 			{
-				MainMemoryParser.parseMemory(mainMemDef, initialRAMStream);
+				BitVectorBasedMemoryParser.parseMemory(new StandardBitVectorMemory<>(mainMemDef), initialRAMStream);
 			}
 			catch (IOException e)
 			{
 				throw new CoreException(
-						new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading initial RAM file", e));
+						new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading " + fileType + " file", e));
 			}
 		}
-
-		return super.preLaunchCheck(configuration, mode, monitor);
+		return true;
 	}
 
 	private static boolean showErrorAndReturnFalse(String message)
@@ -113,24 +127,26 @@ public class MachineLaunchConfigType extends LaunchConfigurationDelegate
 		MachineContext machineContext = ProjectMachineContext.getMachineContextOf(project);
 		MachineDefinition machineDefinition = machineContext.getMachineDefinition().orElseThrow();
 
-		mpmFile = project.getFile(configuration.getAttribute(MPM_FILE_ATTR, ""));
-
-		String initialRAMFileName = configuration.getAttribute(INITIAL_RAM_FILE_ATTR, "");
-		Optional<IFile> memFile = Optional.empty();
-		if (!"".equals(initialRAMFileName))
-		{
-			memFile = Optional.of(project.getFile(initialRAMFileName));
-		}
-		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, mpmFile, memFile, machineDefinition);
+		IFile mpmFile = project.getFile(configuration.getAttribute(MPM_FILE_ATTR, ""));
+		Optional<IFile> mpromFile = fileOptional(project, configuration.getAttribute(MPROM_FILE_ATTR, ""));
+		Optional<IFile> memFile = fileOptional(project, configuration.getAttribute(INITIAL_RAM_FILE_ATTR, ""));
+		MachineDebugTarget debugTarget = new MachineDebugTarget(launch, mpmFile, mpromFile, memFile, machineDefinition);
 		// TODO make selectable whether the machine starts paused or not
 		debugTarget.suspend();
 		debugTarget.setExecutionSpeed(1);
-		machine = debugTarget.getMachine();
+		Machine machine = debugTarget.getMachine();
 		machine.reset();
 
 		// Add the default Mograsim memory block to make it less confusing and more comfortable.
 		DebugPlugin.getDefault().getMemoryBlockManager()
 				.addMemoryBlocks(new IMemoryBlock[] { new MainMemoryBlockExtension(debugTarget, "0", null) });
+	}
+
+	private static Optional<IFile> fileOptional(IProject project, String filename)
+	{
+		if ("".equals(filename))
+			return Optional.empty();
+		return Optional.of(project.getFile(filename));
 	}
 
 }

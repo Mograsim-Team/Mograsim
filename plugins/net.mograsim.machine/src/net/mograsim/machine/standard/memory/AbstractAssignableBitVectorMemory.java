@@ -5,23 +5,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.machine.MainMemory;
-import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.BitVectorMemory;
+import net.mograsim.machine.BitVectorMemoryDefinition;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 
-public class AssignableMainMemory implements MainMemory, MemoryCellModifiedListener
+public class AbstractAssignableBitVectorMemory<M extends BitVectorMemory> implements BitVectorMemory, MemoryCellModifiedListener
 {
 	private Set<MemoryCellModifiedListener> observers = new HashSet<>();
-	private Set<MainMemoryReassignedListener> reassignmentListeners = new HashSet<>();
-	private MainMemory real = null;
+	private Set<BitVectorMemoryReassignedListener<M>> reassignmentListeners = new HashSet<>();
+	private M real = null;
 
-	public AssignableMainMemory(MainMemory mainMemory)
+	public AbstractAssignableBitVectorMemory(M memory)
 	{
-		real = mainMemory;
+		real = memory;
 		real.registerCellModifiedListener(this);
 	}
 
-	public void bind(MainMemory real)
+	public void bind(M real)
 	{
 		this.real.deregisterCellModifiedListener(this);
 		this.real = real;
@@ -60,6 +60,17 @@ public class AssignableMainMemory implements MainMemory, MemoryCellModifiedListe
 		observers.add(ob);
 	}
 
+	protected M getReal()
+	{
+		return real;
+	}
+
+	@Override
+	public BitVectorMemoryDefinition getDefinition()
+	{
+		return real.getDefinition();
+	}
+
 	@Override
 	public void deregisterCellModifiedListener(MemoryCellModifiedListener ob)
 	{
@@ -72,34 +83,28 @@ public class AssignableMainMemory implements MainMemory, MemoryCellModifiedListe
 	}
 
 	@Override
-	public MainMemoryDefinition getDefinition()
-	{
-		return real.getDefinition();
-	}
-
-	@Override
 	public void update(long address)
 	{
 		notifyMemoryChanged(address);
 	}
 
-	public void registerMemoryReassignedListener(MainMemoryReassignedListener listener)
+	public void registerMemoryReassignedListener(BitVectorMemoryReassignedListener<M> listener)
 	{
 		reassignmentListeners.add(listener);
 	}
 
-	public void deregisterMemoryReassignedListener(MainMemoryReassignedListener listener)
+	public void deregisterMemoryReassignedListener(BitVectorMemoryReassignedListener<M> listener)
 	{
 		reassignmentListeners.remove(listener);
 	}
 
-	private void notifyMemoryReassigned(MainMemory newAssignee)
+	private void notifyMemoryReassigned(M newAssignee)
 	{
 		reassignmentListeners.forEach(l -> l.reassigned(newAssignee));
 	}
 
-	public static interface MainMemoryReassignedListener
+	public interface BitVectorMemoryReassignedListener<M extends BitVectorMemory>
 	{
-		public void reassigned(MainMemory newAssignee);
+		public void reassigned(M newAssignee);
 	}
 }

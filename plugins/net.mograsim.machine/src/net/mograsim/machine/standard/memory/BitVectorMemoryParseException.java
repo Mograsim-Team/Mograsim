@@ -2,7 +2,7 @@ package net.mograsim.machine.standard.memory;
 
 import net.mograsim.machine.MachineException;
 
-public class MainMemoryParseException extends MachineException
+public class BitVectorMemoryParseException extends MachineException
 {
 
 	/**
@@ -10,17 +10,17 @@ public class MainMemoryParseException extends MachineException
 	 */
 	private static final long serialVersionUID = 6820101808901789906L;
 
-	public MainMemoryParseException()
+	public BitVectorMemoryParseException()
 	{
 		super();
 	}
 
-	public MainMemoryParseException(String message)
+	public BitVectorMemoryParseException(String message)
 	{
 		super(message);
 	}
 
-	public MainMemoryParseException(Throwable cause)
+	public BitVectorMemoryParseException(Throwable cause)
 	{
 		super(cause);
 	}

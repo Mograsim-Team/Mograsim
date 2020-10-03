@@ -9,14 +9,20 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.machine.BitVectorMemory;
 import net.mograsim.machine.MainMemory;
 import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.MemoryDefinition;
+import net.mograsim.machine.StandardMainMemory;
+import net.mograsim.machine.mi.MPROM;
+import net.mograsim.machine.mi.MPROMDefinition;
+import net.mograsim.machine.mi.StandardMPROM;
 
-public class MainMemoryParser
+public class BitVectorBasedMemoryParser
 {
 	private final static String lineSeparator = System.getProperty("line.separator");
 
-	public static void parseMemory(final MainMemory memory, String inputPath) throws IOException
+	public static void parseMemory(final BitVectorMemory memory, String inputPath) throws IOException
 	{
 		try (InputStream input = new FileInputStream(inputPath))
 		{
@@ -29,17 +35,36 @@ public class MainMemoryParser
 	 * 
 	 * @throws IOException
 	 */
-	public static MainMemory parseMemory(MainMemoryDefinition memDef, InputStream input) throws IOException
+	public static MainMemory parseMainMemory(MainMemoryDefinition memDef, InputStream input) throws IOException
 	{
 		try
 		{
-			MainMemory memory = new WordAddressableMemory(memDef);
+			MainMemory memory = new StandardMainMemory(memDef);
 			parseMemory(memory, input);
 			return memory;
 		}
 		catch (NullPointerException e)
 		{
-			throw new MainMemoryParseException(e);
+			throw new BitVectorMemoryParseException(e);
+		}
+	}
+
+	/**
+	 * @param input The input to parse must be in csv format; The stream is closed after being consumed.
+	 * 
+	 * @throws IOException
+	 */
+	public static MPROM parseMPROM(MPROMDefinition memDef, InputStream input) throws IOException
+	{
+		try
+		{
+			MPROM memory = new StandardMPROM(memDef);
+			parseMemory(memory, input);
+			return memory;
+		}
+		catch (NullPointerException e)
+		{
+			throw new BitVectorMemoryParseException(e);
 		}
 	}
 
@@ -49,11 +74,11 @@ public class MainMemoryParser
 	 * 
 	 * @throws IOException
 	 */
-	public static void parseMemory(final MainMemory memory, InputStream input) throws IOException
+	public static void parseMemory(final BitVectorMemory memory, InputStream input) throws IOException
 	{
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8)))
 		{
-			MainMemoryDefinition def = memory.getDefinition();
+			MemoryDefinition def = memory.getDefinition();
 
 			long minAddr = def.getMinimalAddress();
 			long maxAddr = def.getMaximalAddress();
@@ -74,7 +99,7 @@ public class MainMemoryParser
 		}
 	}
 
-	public static InputStream write(MainMemory memory)
+	public static InputStream write(BitVectorMemory memory)
 	{
 		return new InputStream()
 		{

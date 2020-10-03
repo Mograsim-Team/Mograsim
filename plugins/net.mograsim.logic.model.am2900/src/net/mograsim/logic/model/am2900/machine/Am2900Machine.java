@@ -18,8 +18,10 @@ import net.mograsim.logic.model.model.components.atomic.ModelClock;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
+import net.mograsim.machine.AssignableMainMemory;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.StandardMainMemory;
 import net.mograsim.machine.mi.AssignableMPROM;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.machine.mi.MicroInstruction;
@@ -30,8 +32,6 @@ import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
 import net.mograsim.machine.registers.Register;
 import net.mograsim.machine.registers.RegisterGroup;
-import net.mograsim.machine.standard.memory.AssignableMainMemory;
-import net.mograsim.machine.standard.memory.WordAddressableMemory;
 
 public class Am2900Machine implements Machine
 {
@@ -59,7 +59,7 @@ public class Am2900Machine implements Machine
 		params.gateProcessTime = 50;
 		params.hardcodedComponentProcessTime = params.gateProcessTime * 5;
 		params.wireTravelTime = 10;
-		mainMemory = new AssignableMainMemory(new WordAddressableMemory(am2900MachineDefinition.getMainMemoryDefinition()));
+		mainMemory = new AssignableMainMemory(new StandardMainMemory(am2900MachineDefinition.getMainMemoryDefinition()));
 		instMemory = new AssignableMicroInstructionMemory(
 				new StandardMicroInstructionMemory(am2900MachineDefinition.getMicroInstructionMemoryDefinition()));
 		mprom = new AssignableMPROM(new StandardMPROM(am2900MachineDefinition.getMPROMDefinition()));

@@ -1,20 +1,11 @@
 package net.mograsim.machine.mi;
 
-import net.mograsim.machine.StandardMemoryDefinition;
+import net.mograsim.machine.standard.memory.StandardBitVectorMemoryDefinition;
 
-class StandardMPROMDefinition extends StandardMemoryDefinition implements MPROMDefinition
+class StandardMPROMDefinition extends StandardBitVectorMemoryDefinition implements MPROMDefinition
 {
-	private final int microInstructionMemoryAddressBits;
-
 	StandardMPROMDefinition(int opcodeBits, int microInstructionMemoryAddressBits)
 	{
-		super(opcodeBits, 0, 1 << opcodeBits);
-		this.microInstructionMemoryAddressBits = microInstructionMemoryAddressBits;
-	}
-
-	@Override
-	public int getMicroInstructionMemoryAddressBits()
-	{
-		return microInstructionMemoryAddressBits;
+		super(opcodeBits, microInstructionMemoryAddressBits, 0, 1 << opcodeBits);
 	}
 }

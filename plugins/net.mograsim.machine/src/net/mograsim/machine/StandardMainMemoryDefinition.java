@@ -1,18 +1,11 @@
 package net.mograsim.machine;
 
-class StandardMainMemoryDefinition extends StandardMemoryDefinition implements MainMemoryDefinition
-{
-	private final int cellWidth;
+import net.mograsim.machine.standard.memory.StandardBitVectorMemoryDefinition;
 
+class StandardMainMemoryDefinition extends StandardBitVectorMemoryDefinition implements MainMemoryDefinition
+{
 	StandardMainMemoryDefinition(int memoryAddressBits, int cellWidth, long minimalAddress, long maximalAddress)
 	{
-		super(memoryAddressBits, minimalAddress, maximalAddress);
-		this.cellWidth = cellWidth;
-	}
-
-	@Override
-	public int getCellWidth()
-	{
-		return cellWidth;
+		super(memoryAddressBits, cellWidth, minimalAddress, maximalAddress);
 	}
 }

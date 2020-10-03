@@ -44,6 +44,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 {
 	private Text projSelText;
 	private Text mpmFileSelText;
+	private Text mpromFileSelText;
 	private Text initialRAMFileSelText;
 
 	@Override
@@ -55,9 +56,11 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 
 		innerParent.setLayout(new GridLayout(3, false));
 
-		this.projSelText = addResourceSelector(innerParent, "&Project:", this::chooseMograsimProject);
+		this.projSelText = addResourceSelector(innerParent, "P&roject:", this::chooseMograsimProject);
 
 		this.mpmFileSelText = addResourceSelector(innerParent, "&MPM:", this::chooseMPMFile);
+
+		this.mpromFileSelText = addResourceSelector(innerParent, "M&PROM:", this::chooseMPROMFile);
 
 		this.initialRAMFileSelText = addResourceSelector(innerParent, "Initial &RAM (optional):", this::chooseInitialRAMFile);
 	}
@@ -97,6 +100,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 
 	private String chooseMograsimProject()
 	{
+		// TODO this seems very ugly, especially hardcoded width/height
 		WorkbenchLabelProvider renderer = new WorkbenchLabelProvider()
 		{
 			@Override
@@ -116,27 +120,27 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 
 	private String chooseMPMFile()
 	{
-		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(),
-				new WorkbenchContentProvider());
-		dialog.setTitle("MPM Selection");
-		dialog.setMessage("Select a MPM file");
-		dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
-		dialog.addFilter(new FileExtensionViewerFilter("mpm"));
-		dialog.addFilter(new ProjectViewerFilter(getSelectedProject()));
+		return chooseFile("MPM", "mpm");
+	}
 
-		if (dialog.open() == Window.OK)
-			return ((IResource) dialog.getResult()[0]).getProjectRelativePath().toPortableString();
-		return null;
+	private String chooseMPROMFile()
+	{
+		return chooseFile("MPROM", "mprom");
 	}
 
 	private String chooseInitialRAMFile()
 	{
+		return chooseFile("Initial RAM", "mem");
+	}
+
+	private String chooseFile(String type, String fileext)
+	{
 		ElementTreeSelectionDialog dialog = new ElementTreeSelectionDialog(getShell(), new WorkbenchLabelProvider(),
 				new WorkbenchContentProvider());
-		dialog.setTitle("Initial RAM Selection");
-		dialog.setMessage("Select a RAM file");
+		dialog.setTitle(type + " Selection");
+		dialog.setMessage("Select a ." + fileext + " file");
 		dialog.setInput(ResourcesPlugin.getWorkspace().getRoot());
-		dialog.addFilter(new FileExtensionViewerFilter("mem"));
+		dialog.addFilter(new FileExtensionViewerFilter(fileext));
 		dialog.addFilter(new ProjectViewerFilter(getSelectedProject()));
 
 		if (dialog.open() == Window.OK)
@@ -179,6 +183,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 	{
 		projSelText.setText(getStringAttribSafe(configuration, MachineLaunchConfigType.PROJECT_ATTR, ""));
 		mpmFileSelText.setText(getStringAttribSafe(configuration, MachineLaunchConfigType.MPM_FILE_ATTR, ""));
+		mpromFileSelText.setText(getStringAttribSafe(configuration, MachineLaunchConfigType.MPROM_FILE_ATTR, ""));
 		initialRAMFileSelText.setText(getStringAttribSafe(configuration, MachineLaunchConfigType.INITIAL_RAM_FILE_ATTR, ""));
 	}
 
@@ -200,6 +205,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 	{
 		String projName = projSelText.getText().trim();
 		String mpmFileName = mpmFileSelText.getText().trim();
+		String mpromFileName = mpromFileSelText.getText().trim();
 		String initialRAMFileName = initialRAMFileSelText.getText().trim();
 
 		Set<IResource> associatedResources = new HashSet<>();
@@ -217,6 +223,10 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 					if (mpmFile != null && mpmFile.exists() && mpmFile.getType() == IResource.FILE)
 						associatedResources.add(mpmFile);
 
+					IResource mpromFile = project.findMember(mpromFileName);
+					if (mpromFile != null && mpromFile.exists() && mpromFile.getType() == IResource.FILE)
+						associatedResources.add(mpromFile);
+
 					IResource ramFile = project.findMember(initialRAMFileName);
 					if (ramFile != null && ramFile.exists() && ramFile.getType() == IResource.FILE)
 						associatedResources.add(ramFile);
@@ -230,6 +240,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 		configuration.setMappedResources(associatedResources.toArray(IResource[]::new));
 		configuration.setAttribute(MachineLaunchConfigType.PROJECT_ATTR, projName);
 		configuration.setAttribute(MachineLaunchConfigType.MPM_FILE_ATTR, mpmFileName);
+		configuration.setAttribute(MachineLaunchConfigType.MPROM_FILE_ATTR, mpromFileName);
 		configuration.setAttribute(MachineLaunchConfigType.INITIAL_RAM_FILE_ATTR, initialRAMFileName);
 	}
 
@@ -270,6 +281,16 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 			return setErrorAndReturnFalse("MPM file {0} does not exist", mpmFileName);
 		if (mpmResource.getType() != IResource.FILE)
 			return setErrorAndReturnFalse("MPM file {0} is not a file", mpmFileName);
+
+		String mpromFileName = mpromFileSelText.getText().trim();
+		if (mpromFileName.length() > 0)
+		{
+			IResource mpromResource = project.findMember(mpromFileName);
+			if (mpromResource == null || !mpromResource.exists())
+				return setErrorAndReturnFalse("MPROM file {0} does not exist", mpromFileName);
+			if (mpromResource.getType() != IResource.FILE)
+				return setErrorAndReturnFalse("MPROM file {0} is not a file", mpromFileName);
+		}
 
 		String initialRAMFileName = initialRAMFileSelText.getText().trim();
 		if (initialRAMFileName.length() > 0)

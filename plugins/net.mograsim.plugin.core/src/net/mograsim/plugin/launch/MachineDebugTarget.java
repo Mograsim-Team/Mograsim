@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarkerDelta;
@@ -38,10 +39,15 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.PlatformUI;
 
 import net.mograsim.logic.model.LogicExecuter;
+import net.mograsim.machine.BitVectorMemory;
+import net.mograsim.machine.BitVectorMemoryDefinition;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.MachineDefinition;
+import net.mograsim.machine.StandardMainMemory;
 import net.mograsim.machine.mi.MicroInstructionMemoryParser;
-import net.mograsim.machine.standard.memory.MainMemoryParser;
+import net.mograsim.machine.mi.StandardMPROM;
+import net.mograsim.machine.standard.memory.AbstractAssignableBitVectorMemory;
+import net.mograsim.machine.standard.memory.BitVectorBasedMemoryParser;
 import net.mograsim.plugin.MograsimActivator;
 
 public class MachineDebugTarget extends PlatformObject implements IDebugTarget, IMemoryBlockRetrievalExtension
@@ -53,6 +59,7 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	private final LogicExecuter exec;
 	private final MachineThread thread;
 	private final IFile mpmFile;
+	private final Optional<IFile> mpromFile;
 	private final Optional<IFile> memFile;
 
 	private boolean running;
@@ -61,8 +68,8 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 
 	private final IResourceChangeListener resChangedListener;
 
-	public MachineDebugTarget(ILaunch launch, IFile mpmFile, Optional<IFile> memFile, MachineDefinition machineDefinition)
-			throws CoreException
+	public MachineDebugTarget(ILaunch launch, IFile mpmFile, Optional<IFile> mpromFile, Optional<IFile> memFile,
+			MachineDefinition machineDefinition) throws CoreException
 	{
 		this.launch = launch;
 		this.machine = machineDefinition.createNew();
@@ -70,9 +77,11 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 
 		this.executionSpeedListeners = new ArrayList<>();
 		this.mpmFile = mpmFile;
+		this.mpromFile = mpromFile;
 		this.memFile = memFile;
 
 		assignMicroInstructionMemory();
+		assignMPROM();
 		assignMainMemory();
 
 		exec.startLiveExecution();
@@ -371,33 +380,51 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 
 	private void resourceChanged(IResourceChangeEvent event)
 	{
-		IResourceDelta mpmDelta;
-		if (event.getType() == IResourceChangeEvent.POST_CHANGE && (mpmDelta = event.getDelta().findMember(mpmFile.getFullPath())) != null
-				&& (mpmDelta.getKind() & CHANGED) == CHANGED && mpmFile.exists())
+		if (event.getType() == IResourceChangeEvent.POST_CHANGE)
 		{
-			AtomicBoolean doHotReplace = new AtomicBoolean();
-			PlatformUI.getWorkbench().getDisplay().syncExec(() ->
+			tryHotReplaceIfChanged(event, mpmFile, this::assignMicroInstructionMemory, "MPM");
+
+			if (mpromFile.isPresent())
+				tryHotReplaceIfChanged(event, mpromFile.get(), this::assignMPROM, "MPROM");
+		}
+	}
+
+	private static void tryHotReplaceIfChanged(IResourceChangeEvent event, IFile memFile, RunnableThrowingCoreException assign, String type)
+	{
+		IResourceDelta mpmDelta = event.getDelta().findMember(memFile.getFullPath());
+		if (mpmDelta != null && (mpmDelta.getKind() & CHANGED) == CHANGED && memFile.exists())
+			tryHotReplace(memFile, assign, type);
+	}
+
+	private static void tryHotReplace(IFile memFile, RunnableThrowingCoreException assign, String type)
+	{
+		AtomicBoolean doHotReplace = new AtomicBoolean();
+		PlatformUI.getWorkbench().getDisplay().syncExec(() ->
+		{
+			if (MessageDialog.openConfirm(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Hot Replace " + type + "?",
+					String.format("The " + type + " %s has been modified on the file system. Replace simulated " + type
+							+ " with modified contents?", memFile.getName())))
+				doHotReplace.set(true);
+		});
+		if (doHotReplace.get())
+		{
+			try
 			{
-				if (MessageDialog.openConfirm(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Hot Replace MPM?",
-						String.format("The MPM %s has been modified on the file system. Replace simulated MPM with modified contents?",
-								mpmFile.getName())))
-					doHotReplace.set(true);
-			});
-			if (doHotReplace.get())
+				assign.run();
+			}
+			catch (CoreException e)
 			{
-				try
-				{
-					assignMicroInstructionMemory();
-				}
-				catch (CoreException e)
-				{
-					PlatformUI.getWorkbench().getDisplay()
-							.asyncExec(() -> MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-									"Failed Hot Replace!",
-									"An error occurred trying to read the modified MPM from the file system: " + e.getMessage()));
-				}
+				PlatformUI.getWorkbench().getDisplay()
+						.asyncExec(() -> MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+								"Failed Hot Replace!",
+								"An error occurred trying to read the modified " + type + " from the file system: " + e.getMessage()));
 			}
 		}
+	}
+
+	private static interface RunnableThrowingCoreException
+	{
+		public void run() throws CoreException;
 	}
 
 	private void assignMicroInstructionMemory() throws CoreException
@@ -413,19 +440,32 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 		}
 	}
 
+	private void assignMPROM() throws CoreException
+	{
+		assignMemory(mpromFile, machine.getMPROM(), machine.getDefinition().getMPROMDefinition(), StandardMPROM::new, "MPROM");
+	}
+
 	private void assignMainMemory() throws CoreException
+	{
+		assignMemory(memFile, machine.getMainMemory(), machine.getDefinition().getMainMemoryDefinition(), StandardMainMemory::new,
+				"initial RAM");
+	}
+
+	private static <D extends BitVectorMemoryDefinition, M extends BitVectorMemory> void assignMemory(Optional<IFile> memFile,
+			AbstractAssignableBitVectorMemory<M> memoryToAssign, D definition, Function<D, M> newMemory, String type) throws CoreException
 	{
 		if (memFile.isPresent())
 		{
 			try (InputStream initialRAMStream = memFile.get().getContents())
 			{
-				machine.getMainMemory()
-						.bind(MainMemoryParser.parseMemory(machine.getDefinition().getMainMemoryDefinition(), initialRAMStream));
+				M mem = newMemory.apply(definition);
+				BitVectorBasedMemoryParser.parseMemory(mem, initialRAMStream);
+				memoryToAssign.bind(mem);
 			}
 			catch (IOException e)
 			{
 				throw new CoreException(
-						new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading initial RAM file", e));
+						new Status(IStatus.ERROR, MograsimActivator.PLUGIN_ID, "Unexpected IO exception reading " + type + " file", e));
 			}
 		}
 	}
@@ -433,6 +473,11 @@ public class MachineDebugTarget extends PlatformObject implements IDebugTarget, 
 	public IFile getMPMFile()
 	{
 		return mpmFile;
+	}
+
+	public Optional<IFile> getMPROMFile()
+	{
+		return mpromFile;
 	}
 
 	public Optional<IFile> getMEMFile()

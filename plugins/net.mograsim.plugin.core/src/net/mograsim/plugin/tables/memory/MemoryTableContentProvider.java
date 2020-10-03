@@ -5,8 +5,8 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Display;
 
-import net.mograsim.machine.MainMemory;
-import net.mograsim.machine.MainMemoryDefinition;
+import net.mograsim.machine.BitVectorMemory;
+import net.mograsim.machine.BitVectorMemoryDefinition;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
 
 public class MemoryTableContentProvider implements ILazyContentProvider, MemoryCellModifiedListener
@@ -14,13 +14,13 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryC
 	private long lower, upper;
 	private TableViewer viewer;
 	public final static int MAX_VISIBLE_ROWS = 1_000;
-	private MainMemory memory;
+	private BitVectorMemory memory;
 
 	public void setBounds(long lower, long upper)
 	{
 		if (memory != null)
 		{
-			MainMemoryDefinition definition = memory.getDefinition();
+			BitVectorMemoryDefinition definition = memory.getDefinition();
 			this.lower = Long.min(definition.getMaximalAddress(), Long.max(definition.getMinimalAddress(), lower));
 			this.upper = Long.max(this.lower, Long.min(definition.getMaximalAddress(), upper));
 		} else
@@ -67,9 +67,9 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryC
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput)
 	{
 		this.viewer = (TableViewer) viewer;
-		this.memory = (MainMemory) newInput;
+		this.memory = (BitVectorMemory) newInput;
 		if (oldInput != null)
-			((MainMemory) oldInput).deregisterCellModifiedListener(this);
+			((BitVectorMemory) oldInput).deregisterCellModifiedListener(this);
 		if (memory != null)
 			memory.registerCellModifiedListener(this);
 		setBounds(0, MAX_VISIBLE_ROWS);

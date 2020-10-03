@@ -18,14 +18,15 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.LogicUIStandaloneGUI;
+import net.mograsim.logic.model.am2900.machine.Am2900ExpertMachineDefinition;
 import net.mograsim.logic.model.am2900.machine.Am2900Machine;
 import net.mograsim.logic.model.am2900.machine.Am2900MainMemoryDefinition;
 import net.mograsim.logic.model.am2900.machine.Am2900MicroInstructionDefinition;
 import net.mograsim.logic.model.am2900.machine.Am2900MicroInstructionMemoryDefinition;
-import net.mograsim.logic.model.am2900.machine.Am2900ExpertMachineDefinition;
 import net.mograsim.logic.model.am2900.machine.registers.am2901.NumberedRegister;
 import net.mograsim.logic.model.preferences.DefaultRenderPreferences;
 import net.mograsim.machine.MainMemory;
+import net.mograsim.machine.StandardMainMemory;
 import net.mograsim.machine.mi.MicroInstruction;
 import net.mograsim.machine.mi.MicroInstructionDefinition;
 import net.mograsim.machine.mi.MicroInstructionMemory;
@@ -33,7 +34,6 @@ import net.mograsim.machine.mi.MicroInstructionMemoryParser;
 import net.mograsim.machine.mi.StandardMicroInstructionMemory;
 import net.mograsim.machine.mi.parameters.MicroInstructionParameter;
 import net.mograsim.machine.mi.parameters.ParameterClassification;
-import net.mograsim.machine.standard.memory.WordAddressableMemory;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class TestGCD
@@ -54,7 +54,7 @@ public class TestGCD
 		mach = new Am2900ExpertMachineDefinition().createNew();
 		mpm = MicroInstructionMemoryParser.parseMemory(Am2900MicroInstructionMemoryDefinition.instance,
 				TestGCD.class.getResourceAsStream("gcd.mpm"));
-		ram = new WordAddressableMemory(Am2900MainMemoryDefinition.instance);
+		ram = new StandardMainMemory(Am2900MainMemoryDefinition.instance);
 		mach.getMainMemory().bind(ram);
 
 		if (startGUI)

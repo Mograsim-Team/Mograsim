@@ -1,14 +1,9 @@
 package net.mograsim.machine.mi;
 
-import java.math.BigInteger;
+import net.mograsim.machine.BitVectorMemory;
 
-import net.mograsim.logic.core.types.BitVector;
-import net.mograsim.machine.Memory;
-
-public interface MPROM extends Memory<BitVector>
+public interface MPROM extends BitVectorMemory
 {
-	public BigInteger getCellAsBigInteger(long address);
-
 	@Override
 	public MPROMDefinition getDefinition();
 }

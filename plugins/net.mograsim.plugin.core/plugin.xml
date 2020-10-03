@@ -49,6 +49,14 @@
             name="Main Memory"
             priority="high">
       </content-type>
+      <content-type
+            base-type="org.eclipse.core.runtime.text"
+            default-charset="UTF-8"
+            file-extensions="mprom"
+            id="net.mograsim.plugin.mprom"
+            name="%content-type.mprom.name"
+            priority="high">
+      </content-type>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -96,10 +104,20 @@
       		<contentTypeBinding contentTypeId="net.mograsim.plugin.mpm"/>
       </editor>
       <editor
-            class="net.mograsim.plugin.editors.MemoryEditor"
+            class="net.mograsim.plugin.editors.MPROMEditor"
             icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
-            id="net.mograsim.plugin.editors.memoryeditor"
-            name="Memory Editor">
+            id="net.mograsim.plugin.editors.mpromeditor"
+            name="MPROM Editor">xcdys
+         <contentTypeBinding
+               contentTypeId="net.mograsim.plugin.mprom">
+         </contentTypeBinding>
+      </editor>
+      <editor
+            class="net.mograsim.plugin.editors.MainMemoryEditor"
+            icon="icons/mograsim/blue-orange/icon_blue-orange_16.png"
+            id="net.mograsim.plugin.editors.mainmemoryeditor"
+            name="Main Memory Editor">
+         xcdys
          <contentTypeBinding
                contentTypeId="net.mograsim.plugin.mem">
          </contentTypeBinding>
