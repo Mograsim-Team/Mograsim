@@ -40,6 +40,6 @@ jobs:
         printenv DEPLOY_KEY > ~/.ssh/id_rsa_deploy
         printenv MOGRASIM_NET_HOST_PUBKEY >> ~/.ssh/known_hosts
         date=$(date +%Y%m%d_%H%M%S)
-        scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mgsdeploy@mograsim.net:/mograsim/upload_tmp/$date
-          || { echo Uploading files failed, aborting; exit 1; }
+        scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mgsdeploy@mograsim.net:/mograsim/upload_tmp/$date ||
+          { echo Uploading files failed, aborting; exit 1; }
         exec ssh -i ~/.ssh/id_rsa_deploy mgsdeploy@mograsim.net /mograsim/upload_updatesite_finished.sh $date $REF
