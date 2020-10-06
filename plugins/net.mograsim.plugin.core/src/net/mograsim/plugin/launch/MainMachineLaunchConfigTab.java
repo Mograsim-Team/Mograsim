@@ -60,7 +60,7 @@ public class MainMachineLaunchConfigTab extends AbstractLaunchConfigurationTab
 
 		this.mpmFileSelText = addResourceSelector(innerParent, "&MPM:", this::chooseMPMFile);
 
-		this.mpromFileSelText = addResourceSelector(innerParent, "M&PROM:", this::chooseMPROMFile);
+		this.mpromFileSelText = addResourceSelector(innerParent, "M&PROM (optional):", this::chooseMPROMFile);
 
 		this.initialRAMFileSelText = addResourceSelector(innerParent, "Initial &RAM (optional):", this::chooseInitialRAMFile);
 	}
