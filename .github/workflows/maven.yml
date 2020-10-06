@@ -34,11 +34,12 @@ jobs:
         MOGRASIM_NET_HOST_PUBKEY: ${{secrets.MOGRASIM_NET_HOST_PUBKEY }}
         REF: ${{github.ref}}
       run: |
-        mkdir -p ~/.ssh
+        mkdir -p ~/.ssh || {echo Creating '~/.ssh' failed, aborting; exit 1; }
         touch ~/.ssh/id_rsa_deploy
         chmod 600 ~/.ssh/id_rsa_deploy
         printenv DEPLOY_KEY > ~/.ssh/id_rsa_deploy
         printenv MOGRASIM_NET_HOST_PUBKEY >> ~/.ssh/known_hosts
         date=$(date +%Y%m%d_%H%M%S)
         scp -i ~/.ssh/id_rsa_deploy -r releng/net.mograsim.plugin.updatesite/target/repository mgsdeploy@mograsim.net:/mograsim/upload_tmp/$date
-        ssh -i ~/.ssh/id_rsa_deploy mgsdeploy@mograsim.net /mograsim/upload_updatesite_finished.sh $date $REF
+          || {echo Uploading files failed, aborting; exit 1; }
+        exec ssh -i ~/.ssh/id_rsa_deploy mgsdeploy@mograsim.net /mograsim/upload_updatesite_finished.sh $date $REF
