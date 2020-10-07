@@ -5,7 +5,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 35.0
+        "y": 15.0
       },
       "name": "Cn",
       "logicWidth": 1,
@@ -59,28 +59,10 @@
     {
       "location": {
         "x": 0.0,
-        "y": 25.0
-      },
-      "name": "I3",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 15.0
-      },
-      "name": "I4",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
         "y": 5.0
       },
-      "name": "I5",
-      "logicWidth": 1,
+      "name": "I",
+      "logicWidth": 3,
       "usage": "INPUT"
     },
     {
@@ -95,7 +77,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 45.0
+        "y": 25.0
       },
       "name": "R1",
       "logicWidth": 1,
@@ -104,7 +86,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 55.0
+        "y": 35.0
       },
       "name": "R2",
       "logicWidth": 1,
@@ -113,7 +95,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 65.0
+        "y": 45.0
       },
       "name": "R3",
       "logicWidth": 1,
@@ -122,7 +104,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 75.0
+        "y": 55.0
       },
       "name": "R4",
       "logicWidth": 1,
@@ -131,7 +113,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 85.0
+        "y": 65.0
       },
       "name": "S1",
       "logicWidth": 1,
@@ -140,7 +122,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 95.0
+        "y": 75.0
       },
       "name": "S2",
       "logicWidth": 1,
@@ -149,7 +131,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 105.0
+        "y": 85.0
       },
       "name": "S3",
       "logicWidth": 1,
@@ -158,7 +140,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 115.0
+        "y": 95.0
       },
       "name": "S4",
       "logicWidth": 1,
@@ -401,63 +383,21 @@
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "I5"
+          "pinName": "I"
         },
         "pin2": {
           "compName": "Am2901ALUFuncDecode#0",
-          "pinName": "I5"
+          "pinName": "I"
         },
         "name": "unnamedWire#0",
         "path": [
           {
-            "x": 5.0,
+            "x": 15.0,
             "y": 20.0
           },
           {
-            "x": 5.0,
-            "y": 7.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "I4"
-        },
-        "pin2": {
-          "compName": "Am2901ALUFuncDecode#0",
-          "pinName": "I4"
-        },
-        "name": "unnamedWire#1",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 60.0
-          },
-          {
-            "x": 10.0,
-            "y": 17.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "I3"
-        },
-        "pin2": {
-          "compName": "Am2901ALUFuncDecode#0",
-          "pinName": "I3"
-        },
-        "name": "unnamedWire#2",
-        "path": [
-          {
             "x": 15.0,
-            "y": 100.0
-          },
-          {
-            "x": 15.0,
-            "y": 27.5
+            "y": 12.5
           }
         ]
       },
@@ -470,7 +410,7 @@
           "compName": "WireCrossPoint#0",
           "pinName": ""
         },
-        "name": "unnamedWire#3",
+        "name": "unnamedWire#1",
         "path": [
           {
             "x": 62.5,
@@ -495,7 +435,7 @@
           "compName": "WireCrossPoint#1",
           "pinName": ""
         },
-        "name": "unnamedWire#4",
+        "name": "unnamedWire#2",
         "path": []
       },
       {
@@ -507,7 +447,7 @@
           "compName": "WireCrossPoint#2",
           "pinName": ""
         },
-        "name": "unnamedWire#5",
+        "name": "unnamedWire#3",
         "path": []
       },
       {
@@ -519,7 +459,7 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "CoutE"
         },
-        "name": "unnamedWire#6",
+        "name": "unnamedWire#4",
         "path": []
       },
       {
@@ -531,7 +471,7 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "CoutE"
         },
-        "name": "unnamedWire#7",
+        "name": "unnamedWire#5",
         "path": []
       },
       {
@@ -543,7 +483,7 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "CoutE"
         },
-        "name": "unnamedWire#8",
+        "name": "unnamedWire#6",
         "path": []
       },
       {
@@ -555,7 +495,7 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "CoutE"
         },
-        "name": "unnamedWire#9",
+        "name": "unnamedWire#7",
         "path": [
           {
             "x": 25.0,
@@ -572,7 +512,7 @@
           "compName": "WireCrossPoint#3",
           "pinName": ""
         },
-        "name": "unnamedWire#10",
+        "name": "unnamedWire#8",
         "path": [
           {
             "x": 70.0,
@@ -597,7 +537,7 @@
           "compName": "WireCrossPoint#4",
           "pinName": ""
         },
-        "name": "unnamedWire#11",
+        "name": "unnamedWire#9",
         "path": []
       },
       {
@@ -609,7 +549,7 @@
           "compName": "WireCrossPoint#5",
           "pinName": ""
         },
-        "name": "unnamedWire#12",
+        "name": "unnamedWire#10",
         "path": []
       },
       {
@@ -621,7 +561,7 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "CinE"
         },
-        "name": "unnamedWire#13",
+        "name": "unnamedWire#11",
         "path": []
       },
       {
@@ -633,7 +573,7 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "CinE"
         },
-        "name": "unnamedWire#14",
+        "name": "unnamedWire#12",
         "path": []
       },
       {
@@ -645,7 +585,7 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "CinE"
         },
-        "name": "unnamedWire#15",
+        "name": "unnamedWire#13",
         "path": []
       },
       {
@@ -657,7 +597,7 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "CinE"
         },
-        "name": "unnamedWire#16",
+        "name": "unnamedWire#14",
         "path": [
           {
             "x": 27.5,
@@ -674,7 +614,7 @@
           "compName": "WireCrossPoint#6",
           "pinName": ""
         },
-        "name": "unnamedWire#17",
+        "name": "unnamedWire#15",
         "path": [
           {
             "x": 57.5,
@@ -699,7 +639,7 @@
           "compName": "WireCrossPoint#7",
           "pinName": ""
         },
-        "name": "unnamedWire#18",
+        "name": "unnamedWire#16",
         "path": []
       },
       {
@@ -711,7 +651,7 @@
           "compName": "WireCrossPoint#8",
           "pinName": ""
         },
-        "name": "unnamedWire#19",
+        "name": "unnamedWire#17",
         "path": []
       },
       {
@@ -723,7 +663,7 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "RN"
         },
-        "name": "unnamedWire#20",
+        "name": "unnamedWire#18",
         "path": []
       },
       {
@@ -735,7 +675,7 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "RN"
         },
-        "name": "unnamedWire#21",
+        "name": "unnamedWire#19",
         "path": []
       },
       {
@@ -747,7 +687,7 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "RN"
         },
-        "name": "unnamedWire#22",
+        "name": "unnamedWire#20",
         "path": []
       },
       {
@@ -759,7 +699,7 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "RN"
         },
-        "name": "unnamedWire#23",
+        "name": "unnamedWire#21",
         "path": [
           {
             "x": 30.0,
@@ -776,7 +716,7 @@
           "compName": "WireCrossPoint#9",
           "pinName": ""
         },
-        "name": "unnamedWire#24",
+        "name": "unnamedWire#22",
         "path": [
           {
             "x": 65.0,
@@ -801,7 +741,7 @@
           "compName": "WireCrossPoint#10",
           "pinName": ""
         },
-        "name": "unnamedWire#25",
+        "name": "unnamedWire#23",
         "path": []
       },
       {
@@ -813,7 +753,7 @@
           "compName": "WireCrossPoint#11",
           "pinName": ""
         },
-        "name": "unnamedWire#26",
+        "name": "unnamedWire#24",
         "path": []
       },
       {
@@ -825,7 +765,7 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "SN"
         },
-        "name": "unnamedWire#27",
+        "name": "unnamedWire#25",
         "path": []
       },
       {
@@ -837,7 +777,7 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "SN"
         },
-        "name": "unnamedWire#28",
+        "name": "unnamedWire#26",
         "path": []
       },
       {
@@ -849,7 +789,7 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "SN"
         },
-        "name": "unnamedWire#29",
+        "name": "unnamedWire#27",
         "path": []
       },
       {
@@ -861,7 +801,7 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "SN"
         },
-        "name": "unnamedWire#30",
+        "name": "unnamedWire#28",
         "path": [
           {
             "x": 32.5,
@@ -878,7 +818,7 @@
           "compName": "WireCrossPoint#12",
           "pinName": ""
         },
-        "name": "unnamedWire#31",
+        "name": "unnamedWire#29",
         "path": [
           {
             "x": 60.0,
@@ -903,7 +843,7 @@
           "compName": "WireCrossPoint#13",
           "pinName": ""
         },
-        "name": "unnamedWire#32",
+        "name": "unnamedWire#30",
         "path": []
       },
       {
@@ -915,7 +855,7 @@
           "compName": "WireCrossPoint#14",
           "pinName": ""
         },
-        "name": "unnamedWire#33",
+        "name": "unnamedWire#31",
         "path": []
       },
       {
@@ -927,7 +867,7 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "FN"
         },
-        "name": "unnamedWire#34",
+        "name": "unnamedWire#32",
         "path": []
       },
       {
@@ -939,7 +879,7 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "FN"
         },
-        "name": "unnamedWire#35",
+        "name": "unnamedWire#33",
         "path": []
       },
       {
@@ -951,7 +891,7 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "FN"
         },
-        "name": "unnamedWire#36",
+        "name": "unnamedWire#34",
         "path": []
       },
       {
@@ -963,7 +903,7 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "FN"
         },
-        "name": "unnamedWire#37",
+        "name": "unnamedWire#35",
         "path": [
           {
             "x": 35.0,
@@ -980,7 +920,7 @@
           "compName": "WireCrossPoint#15",
           "pinName": ""
         },
-        "name": "unnamedWire#38",
+        "name": "unnamedWire#36",
         "path": [
           {
             "x": 67.5,
@@ -1005,7 +945,7 @@
           "compName": "WireCrossPoint#16",
           "pinName": ""
         },
-        "name": "unnamedWire#39",
+        "name": "unnamedWire#37",
         "path": []
       },
       {
@@ -1017,7 +957,7 @@
           "compName": "WireCrossPoint#17",
           "pinName": ""
         },
-        "name": "unnamedWire#40",
+        "name": "unnamedWire#38",
         "path": []
       },
       {
@@ -1029,7 +969,7 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "L"
         },
-        "name": "unnamedWire#41",
+        "name": "unnamedWire#39",
         "path": []
       },
       {
@@ -1041,7 +981,7 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "L"
         },
-        "name": "unnamedWire#42",
+        "name": "unnamedWire#40",
         "path": []
       },
       {
@@ -1053,7 +993,7 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "L"
         },
-        "name": "unnamedWire#43",
+        "name": "unnamedWire#41",
         "path": []
       },
       {
@@ -1065,7 +1005,7 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "L"
         },
-        "name": "unnamedWire#44",
+        "name": "unnamedWire#42",
         "path": [
           {
             "x": 37.5,
@@ -1082,11 +1022,11 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "R"
         },
-        "name": "unnamedWire#45",
+        "name": "unnamedWire#43",
         "path": [
           {
             "x": 10.0,
-            "y": 180.0
+            "y": 100.0
           },
           {
             "x": 10.0,
@@ -1103,11 +1043,11 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "R"
         },
-        "name": "unnamedWire#46",
+        "name": "unnamedWire#44",
         "path": [
           {
             "x": 10.0,
-            "y": 220.0
+            "y": 140.0
           },
           {
             "x": 10.0,
@@ -1124,14 +1064,14 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "R"
         },
-        "name": "unnamedWire#47",
+        "name": "unnamedWire#45",
         "path": [
           {
-            "x": 10.0,
-            "y": 260.0
+            "x": 5.0,
+            "y": 180.0
           },
           {
-            "x": 10.0,
+            "x": 5.0,
             "y": 315.0
           }
         ]
@@ -1145,11 +1085,11 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "R"
         },
-        "name": "unnamedWire#48",
+        "name": "unnamedWire#46",
         "path": [
           {
             "x": 20.0,
-            "y": 300.0
+            "y": 220.0
           },
           {
             "x": 20.0,
@@ -1166,11 +1106,11 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "S"
         },
-        "name": "unnamedWire#49",
+        "name": "unnamedWire#47",
         "path": [
           {
             "x": 15.0,
-            "y": 340.0
+            "y": 260.0
           },
           {
             "x": 15.0,
@@ -1187,14 +1127,14 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "S"
         },
-        "name": "unnamedWire#50",
+        "name": "unnamedWire#48",
         "path": [
           {
-            "x": 5.0,
-            "y": 380.0
+            "x": 10.0,
+            "y": 300.0
           },
           {
-            "x": 5.0,
+            "x": 10.0,
             "y": 235.0
           }
         ]
@@ -1208,11 +1148,11 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "S"
         },
-        "name": "unnamedWire#51",
+        "name": "unnamedWire#49",
         "path": [
           {
             "x": 10.0,
-            "y": 420.0
+            "y": 340.0
           },
           {
             "x": 10.0,
@@ -1229,11 +1169,11 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "S"
         },
-        "name": "unnamedWire#52",
+        "name": "unnamedWire#50",
         "path": [
           {
             "x": 10.0,
-            "y": 460.0
+            "y": 380.0
           },
           {
             "x": 10.0,
@@ -1250,11 +1190,11 @@
           "compName": "Am2901ALUOneBit#0",
           "pinName": "Cin"
         },
-        "name": "unnamedWire#53",
+        "name": "unnamedWire#51",
         "path": [
           {
             "x": 5.0,
-            "y": 140.0
+            "y": 60.0
           },
           {
             "x": 5.0,
@@ -1271,7 +1211,7 @@
           "compName": "Am2901ALUOneBit#1",
           "pinName": "Cin"
         },
-        "name": "unnamedWire#54",
+        "name": "unnamedWire#52",
         "path": [
           {
             "x": 85.0,
@@ -1300,7 +1240,7 @@
           "compName": "Am2901ALUOneBit#2",
           "pinName": "Cin"
         },
-        "name": "unnamedWire#55",
+        "name": "unnamedWire#53",
         "path": [
           {
             "x": 85.0,
@@ -1329,7 +1269,7 @@
           "compName": "WireCrossPoint#18",
           "pinName": ""
         },
-        "name": "unnamedWire#56",
+        "name": "unnamedWire#54",
         "path": [
           {
             "x": 85.0,
@@ -1346,7 +1286,7 @@
           "compName": "Am2901ALUOneBit#3",
           "pinName": "Cin"
         },
-        "name": "unnamedWire#57",
+        "name": "unnamedWire#55",
         "path": [
           {
             "x": 40.0,
@@ -1367,7 +1307,7 @@
           "compName": "WireCrossPoint#19",
           "pinName": ""
         },
-        "name": "unnamedWire#58",
+        "name": "unnamedWire#56",
         "path": []
       },
       {
@@ -1379,7 +1319,7 @@
           "compName": "_submodelinterface",
           "pinName": "F1"
         },
-        "name": "unnamedWire#59",
+        "name": "unnamedWire#57",
         "path": [
           {
             "x": 90.0,
@@ -1400,7 +1340,7 @@
           "compName": "_submodelinterface",
           "pinName": "F2"
         },
-        "name": "unnamedWire#60",
+        "name": "unnamedWire#58",
         "path": [
           {
             "x": 95.0,
@@ -1421,7 +1361,7 @@
           "compName": "_submodelinterface",
           "pinName": "F3"
         },
-        "name": "unnamedWire#61",
+        "name": "unnamedWire#59",
         "path": [
           {
             "x": 100.0,
@@ -1442,7 +1382,7 @@
           "compName": "_submodelinterface",
           "pinName": "F4"
         },
-        "name": "unnamedWire#62",
+        "name": "unnamedWire#60",
         "path": [
           {
             "x": 105.0,
@@ -1463,7 +1403,7 @@
           "compName": "xor#0",
           "pinName": "A"
         },
-        "name": "unnamedWire#63",
+        "name": "unnamedWire#61",
         "path": [
           {
             "x": 90.0,
@@ -1484,7 +1424,7 @@
           "compName": "xor#0",
           "pinName": "B"
         },
-        "name": "unnamedWire#64",
+        "name": "unnamedWire#62",
         "path": [
           {
             "x": 85.0,
@@ -1501,7 +1441,7 @@
           "compName": "_submodelinterface",
           "pinName": "Cn+4"
         },
-        "name": "unnamedWire#65",
+        "name": "unnamedWire#63",
         "path": [
           {
             "x": 130.0,
@@ -1522,7 +1462,7 @@
           "compName": "_submodelinterface",
           "pinName": "OVR"
         },
-        "name": "unnamedWire#66"
+        "name": "unnamedWire#64"
       }
     ],
     "version": "0.1.1"
