@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import net.mograsim.logic.model.am2900.Am2900Loader;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
-import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters.CoreModelParametersBuilder;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 
@@ -29,7 +29,7 @@ public class CountGatesPerComponent
 		IndirectModelComponentCreator.createComponent(model, componentID);
 
 		LogicCoreAdapter.gateCountsPerComponentClass.clear();
-		LogicCoreAdapter.convert(model, new CoreModelParameters());
+		LogicCoreAdapter.convert(model, new CoreModelParametersBuilder().build());
 
 		System.out.println(componentID + ':');
 		for (Entry<Class<? extends ModelComponent>, Integer> e : LogicCoreAdapter.gateCountsPerComponentClass.entrySet())

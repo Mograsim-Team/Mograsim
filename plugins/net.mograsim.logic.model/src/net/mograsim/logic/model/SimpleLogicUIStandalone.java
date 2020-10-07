@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters.CoreModelParametersBuilder;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.preferences.DefaultRenderPreferences;
 
@@ -17,11 +18,11 @@ public class SimpleLogicUIStandalone
 
 	public static void executeVisualisation(Consumer<LogicModelModifiable> setupLogicModel, Consumer<VisualisationObjects> beforeRun)
 	{
-		CoreModelParameters params = new CoreModelParameters();
-		params.gateProcessTime = 50;
-		params.hardcodedComponentProcessTime = params.gateProcessTime * 5;
-		params.wireTravelTime = 10;
-		executeVisualisation(setupLogicModel, params, beforeRun);
+		CoreModelParametersBuilder paramsBuilder = new CoreModelParametersBuilder();
+		paramsBuilder.gateProcessTime = 50;
+		paramsBuilder.hardcodedComponentProcessTime = paramsBuilder.gateProcessTime * 5;
+		paramsBuilder.wireTravelTime = 10;
+		executeVisualisation(setupLogicModel, paramsBuilder.build(), beforeRun);
 	}
 
 	public static void executeVisualisation(Consumer<LogicModelModifiable> setupLogicModel, CoreModelParameters params)

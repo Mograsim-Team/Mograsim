@@ -16,6 +16,7 @@ import net.mograsim.logic.model.model.components.atomic.ModelOrGate;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters.CoreModelParametersBuilder;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.plugin.preferences.EclipseRenderPreferences;
@@ -33,10 +34,12 @@ public class SimulationPreview implements IThemePreview
 				MograsimActivator.instance().getPreferenceStore());
 
 		LogicModelModifiable model = new LogicModelModifiable();
-		CoreModelParameters params = new CoreModelParameters();
-		params.gateProcessTime = 50;
-		params.hardcodedComponentProcessTime = params.gateProcessTime * 5;
-		params.wireTravelTime = 10;
+
+		CoreModelParametersBuilder paramsBuilder = new CoreModelParametersBuilder();
+		paramsBuilder.gateProcessTime = 50;
+		paramsBuilder.hardcodedComponentProcessTime = paramsBuilder.gateProcessTime * 5;
+		paramsBuilder.wireTravelTime = 10;
+		CoreModelParameters params = paramsBuilder.build();
 
 		ModelManualSwitch rIn = new ModelManualSwitch(model, 1);
 		rIn.moveTo(10, 10);

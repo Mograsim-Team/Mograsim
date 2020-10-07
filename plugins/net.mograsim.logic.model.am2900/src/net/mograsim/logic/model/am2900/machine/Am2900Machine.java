@@ -16,6 +16,7 @@ import net.mograsim.logic.model.model.LogicModelModifiable;
 import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelClock;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters.CoreModelParametersBuilder;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.machine.AssignableMainMemory;
@@ -55,10 +56,12 @@ public class Am2900Machine implements Machine
 				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json", "Am2900");
 		this.amicListeners = new HashSet<>();
 
-		CoreModelParameters params = new CoreModelParameters();
-		params.gateProcessTime = 50;
-		params.hardcodedComponentProcessTime = params.gateProcessTime * 5;
-		params.wireTravelTime = 10;
+		CoreModelParametersBuilder paramsBuilder = new CoreModelParametersBuilder();
+		paramsBuilder.gateProcessTime = 50;
+		paramsBuilder.hardcodedComponentProcessTime = paramsBuilder.gateProcessTime * 5;
+		paramsBuilder.wireTravelTime = 10;
+		CoreModelParameters params = paramsBuilder.build();
+
 		mainMemory = new AssignableMainMemory(new StandardMainMemory(am2900MachineDefinition.getMainMemoryDefinition()));
 		instMemory = new AssignableMicroInstructionMemory(
 				new StandardMicroInstructionMemory(am2900MachineDefinition.getMicroInstructionMemoryDefinition()));
