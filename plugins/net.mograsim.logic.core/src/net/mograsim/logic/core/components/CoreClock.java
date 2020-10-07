@@ -44,6 +44,11 @@ public class CoreClock extends CoreComponent implements TimelineEventHandler, Lo
 		notifyObservers();
 	}
 
+	public int getDelta()
+	{
+		return delta;
+	}
+
 	public BitVector getOutValues()
 	{
 		return isOn ? BitVector.SINGLE_1 : BitVector.SINGLE_0;

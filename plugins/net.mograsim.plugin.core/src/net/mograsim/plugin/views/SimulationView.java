@@ -4,6 +4,8 @@ import static net.mograsim.logic.model.preferences.RenderPreferences.DRAG_BUTTON
 import static net.mograsim.logic.model.preferences.RenderPreferences.ZOOM_BUTTON;
 import static net.mograsim.plugin.preferences.PluginPreferences.SIMULATION_SPEED_PRECISION;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -30,6 +32,7 @@ import net.haspamelodica.swt.helper.zoomablecanvas.helper.ZoomableCanvasUserInpu
 import net.mograsim.logic.core.LogicObserver;
 import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.model.LogicUICanvas;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.preferences.RenderPreferences;
 import net.mograsim.machine.Machine;
 import net.mograsim.machine.Memory.MemoryCellModifiedListener;
@@ -52,6 +55,7 @@ public class SimulationView extends ViewPart
 	private Button sbseButton;
 	private Scale simSpeedScale;
 	private DoubleInput simSpeedInput;
+	private Label simSpeedDescription;
 	private Composite contextDependentControlsParent;
 	private Composite canvasParent;
 	private InstructionTable instPreview;
@@ -124,7 +128,7 @@ public class SimulationView extends ViewPart
 	{
 		Composite c = new Composite(parent, SWT.NONE);
 		c.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		c.setLayout(new GridLayout(7, false));
+		c.setLayout(new GridLayout(8, false));
 
 		sbseButton = new Button(c, SWT.CHECK);
 		controlsToDisableWhenNoMachinePresent.add(sbseButton);
@@ -168,7 +172,35 @@ public class SimulationView extends ViewPart
 				debugTarget.setExecutionSpeed(Math.pow(10, -simSpeedInput.getPrecision()));
 		});
 
+		simSpeedDescription = new Label(c, SWT.NONE);
+		simSpeedDescription.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
 		c.layout();
+	}
+
+	private String describeSimSpeed(double speed)
+	{
+		CoreModelParameters coreModelParameters = debugTarget.getMachine().getCoreModelParameters();
+		// TODO hardcoding this seems not optimal
+		int ticksPerSecond = 1000000;
+
+		double simulTicksPerRealSecond = speed * ticksPerSecond;
+
+		// TODO internationalize
+		StringBuilder sb = new StringBuilder();
+		sb.append("Per second: ");
+		sb.append(formatNSignificantDigits(4, simulTicksPerRealSecond / coreModelParameters.wireTravelTime));
+		sb.append(" wire travel times; ");
+		sb.append(formatNSignificantDigits(4, simulTicksPerRealSecond / coreModelParameters.gateProcessTime));
+		sb.append(" gate process times; ");
+		sb.append(formatNSignificantDigits(4, simulTicksPerRealSecond / debugTarget.getMachine().getClock().getDelta() / 2));
+		sb.append(" clock cycles");
+		return sb.toString();
+	}
+
+	private static String formatNSignificantDigits(int digits, double d)
+	{
+		return new BigDecimal(d, new MathContext(digits)).toPlainString();
 	}
 
 	private void speedFactorChanged(double speed)
@@ -176,6 +208,7 @@ public class SimulationView extends ViewPart
 		simSpeedInput.setValue(speed);
 		int closestScalePos = (int) Math.round(Math.log(speed) / SIM_SPEED_SCALE_STEP_FACTOR_LOG + SIM_SPEED_SCALE_STEPS);
 		simSpeedScale.setSelection(Math.min(Math.max(closestScalePos, 0), SIM_SPEED_SCALE_STEPS));
+		simSpeedDescription.setText(describeSimSpeed(speed));
 	}
 
 	private void addInstructionPreviewControlWidgets(Composite parent)
