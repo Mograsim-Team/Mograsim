@@ -36,15 +36,15 @@ import net.mograsim.machine.registers.RegisterGroup;
 
 public class Am2900Machine implements Machine
 {
-	private AbstractAm2900MachineDefinition machineDefinition;
-	private LogicModelModifiable logicModel;
-	private ModelComponent am2900;
-	private Timeline timeline;
-	private CoreModelParameters params;
-	private AssignableMainMemory mainMemory;
-	private AssignableMicroInstructionMemory instMemory;
-	private AssignableMPROM mprom;
-	private CoreClock clock;
+	private final AbstractAm2900MachineDefinition machineDefinition;
+	private final LogicModelModifiable logicModel;
+	private final ModelComponent am2900;
+	private final Timeline timeline;
+	private final CoreModelParameters params;
+	private final AssignableMainMemory mainMemory;
+	private final AssignableMicroInstructionMemory instMemory;
+	private final AssignableMPROM mprom;
+	private final CoreClock clock;
 	private long activeInstructionAddress;
 
 	private final Set<ActiveMicroInstructionChangedListener> amicListeners;
