@@ -49,7 +49,7 @@ public class MemoryTableContentProvider implements ILazyContentProvider, MemoryC
 
 	public int getAmount()
 	{
-		return (int) (upper - lower);
+		return (int) (upper - lower + 1);
 	}
 
 	@Override
