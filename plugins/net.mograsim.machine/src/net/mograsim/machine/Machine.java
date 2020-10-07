@@ -6,6 +6,7 @@ import net.mograsim.logic.core.components.CoreClock;
 import net.mograsim.logic.core.timeline.Timeline;
 import net.mograsim.logic.core.types.BitVector;
 import net.mograsim.logic.model.model.LogicModel;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.machine.mi.AssignableMPROM;
 import net.mograsim.machine.mi.AssignableMicroInstructionMemory;
 import net.mograsim.machine.registers.Register;
@@ -30,6 +31,8 @@ public interface Machine
 	void removeRegisterListener(Register r, Consumer<BitVector> listener);
 
 	Timeline getTimeline();
+
+	public CoreModelParameters getCoreModelParameters();
 
 	AssignableMainMemory getMainMemory();
 

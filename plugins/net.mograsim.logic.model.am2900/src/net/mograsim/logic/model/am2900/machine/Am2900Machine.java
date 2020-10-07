@@ -40,6 +40,7 @@ public class Am2900Machine implements Machine
 	private LogicModelModifiable logicModel;
 	private ModelComponent am2900;
 	private Timeline timeline;
+	private CoreModelParameters params;
 	private AssignableMainMemory mainMemory;
 	private AssignableMicroInstructionMemory instMemory;
 	private AssignableMPROM mprom;
@@ -60,7 +61,7 @@ public class Am2900Machine implements Machine
 		paramsBuilder.gateProcessTime = 50;
 		paramsBuilder.hardcodedComponentProcessTime = paramsBuilder.gateProcessTime * 5;
 		paramsBuilder.wireTravelTime = 10;
-		CoreModelParameters params = paramsBuilder.build();
+		params = paramsBuilder.build();
 
 		mainMemory = new AssignableMainMemory(new StandardMainMemory(am2900MachineDefinition.getMainMemoryDefinition()));
 		instMemory = new AssignableMicroInstructionMemory(
@@ -134,6 +135,12 @@ public class Am2900Machine implements Machine
 	public Timeline getTimeline()
 	{
 		return timeline;
+	}
+
+	@Override
+	public CoreModelParameters getCoreModelParameters()
+	{
+		return params;
 	}
 
 	@Override
