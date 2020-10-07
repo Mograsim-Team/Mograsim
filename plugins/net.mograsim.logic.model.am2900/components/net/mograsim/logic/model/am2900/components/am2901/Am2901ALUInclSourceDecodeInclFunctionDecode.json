@@ -774,12 +774,12 @@
       },
       {
         "pin1": {
-          "compName": "Splitter#5",
-          "pinName": "O3"
+          "compName": "sel2_4#0",
+          "pinName": "Y4"
         },
         "pin2": {
-          "compName": "sel2_4#0",
-          "pinName": "Y1"
+          "compName": "Splitter#5",
+          "pinName": "O3"
         },
         "name": "unnamedWire#34",
         "path": []
@@ -787,7 +787,7 @@
       {
         "pin1": {
           "compName": "sel2_4#0",
-          "pinName": "Y2"
+          "pinName": "Y3"
         },
         "pin2": {
           "compName": "Splitter#5",
@@ -798,24 +798,24 @@
       },
       {
         "pin1": {
-          "compName": "Splitter#5",
-          "pinName": "O1"
+          "compName": "sel2_4#0",
+          "pinName": "Y2"
         },
         "pin2": {
-          "compName": "sel2_4#0",
-          "pinName": "Y3"
+          "compName": "Splitter#5",
+          "pinName": "O1"
         },
         "name": "unnamedWire#36",
         "path": []
       },
       {
         "pin1": {
-          "compName": "sel2_4#0",
-          "pinName": "Y4"
-        },
-        "pin2": {
           "compName": "Splitter#5",
           "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "sel2_4#0",
+          "pinName": "Y1"
         },
         "name": "unnamedWire#37",
         "path": []
@@ -823,7 +823,7 @@
       {
         "pin1": {
           "compName": "sel3_4#0",
-          "pinName": "Y1"
+          "pinName": "Y4"
         },
         "pin2": {
           "compName": "Splitter#9",
@@ -835,7 +835,7 @@
       {
         "pin1": {
           "compName": "sel3_4#0",
-          "pinName": "Y2"
+          "pinName": "Y3"
         },
         "pin2": {
           "compName": "Splitter#9",
@@ -846,12 +846,12 @@
       },
       {
         "pin1": {
-          "compName": "Splitter#9",
-          "pinName": "O1"
+          "compName": "sel3_4#0",
+          "pinName": "Y2"
         },
         "pin2": {
-          "compName": "sel3_4#0",
-          "pinName": "Y3"
+          "compName": "Splitter#9",
+          "pinName": "O1"
         },
         "name": "unnamedWire#40",
         "path": []
@@ -859,7 +859,7 @@
       {
         "pin1": {
           "compName": "sel3_4#0",
-          "pinName": "Y4"
+          "pinName": "Y1"
         },
         "pin2": {
           "compName": "Splitter#9",
