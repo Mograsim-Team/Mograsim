@@ -199,8 +199,8 @@
         "id": "Splitter",
         "name": "Splitter#0",
         "pos": {
-          "x": 140.0,
-          "y": 440.0
+          "x": 295.0,
+          "y": 900.0
         },
         "params": {
           "logicWidth": 4,
@@ -223,7 +223,7 @@
         "id": "Splitter",
         "name": "Splitter#2",
         "pos": {
-          "x": 137.5,
+          "x": 135.0,
           "y": 375.0
         },
         "params": {
@@ -235,8 +235,8 @@
         "id": "Splitter",
         "name": "Splitter#3",
         "pos": {
-          "x": 235.0,
-          "y": 490.0
+          "x": 295.0,
+          "y": 785.0
         },
         "params": {
           "logicWidth": 4,
@@ -261,6 +261,78 @@
         "pos": {
           "x": 235.0,
           "y": 155.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#6",
+        "pos": {
+          "x": 135.0,
+          "y": 485.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#7",
+        "pos": {
+          "x": 135.0,
+          "y": 525.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#8",
+        "pos": {
+          "x": 135.0,
+          "y": 635.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#9",
+        "pos": {
+          "x": 135.0,
+          "y": 675.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#10",
+        "pos": {
+          "x": 135.0,
+          "y": 785.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#11",
+        "pos": {
+          "x": 135.0,
+          "y": 825.0
         },
         "params": {
           "logicWidth": 4,
@@ -548,7 +620,7 @@
         "name": "andor414#0",
         "pos": {
           "x": 250.0,
-          "y": 485.0
+          "y": 475.0
         }
       },
       {
@@ -556,7 +628,7 @@
         "name": "andor414#1",
         "pos": {
           "x": 250.0,
-          "y": 635.0
+          "y": 625.0
         }
       },
       {
@@ -564,7 +636,7 @@
         "name": "andor414#2",
         "pos": {
           "x": 250.0,
-          "y": 785.0
+          "y": 775.0
         }
       },
       {
@@ -1713,43 +1785,34 @@
       },
       {
         "pin1": {
-          "compName": "demux2#0",
-          "pinName": "Y10"
+          "compName": "Splitter#8",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "andor414#4",
-          "pinName": "B"
+          "pinName": "A"
         },
         "name": "unnamedWire#75",
-        "path": [
-          {
-            "x": 125.0,
-            "y": 70.0
-          },
-          {
-            "x": 125.0,
-            "y": 670.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
-          "compName": "demux2#0",
-          "pinName": "Y11"
-        },
-        "pin2": {
           "compName": "andor414#5",
           "pinName": "B"
+        },
+        "pin2": {
+          "compName": "demux2#0",
+          "pinName": "Y11"
         },
         "name": "unnamedWire#76",
         "path": [
           {
             "x": 120.0,
-            "y": 80.0
+            "y": 820.0
           },
           {
             "x": 120.0,
-            "y": 820.0
+            "y": 80.0
           }
         ]
       },
@@ -1783,7 +1846,7 @@
         "path": [
           {
             "x": 225.0,
-            "y": 570.0
+            "y": 560.0
           }
         ]
       },
@@ -1800,7 +1863,7 @@
         "path": [
           {
             "x": 220.0,
-            "y": 720.0
+            "y": 710.0
           }
         ]
       },
@@ -1817,7 +1880,7 @@
         "path": [
           {
             "x": 215.0,
-            "y": 870.0
+            "y": 860.0
           }
         ]
       },
@@ -1871,24 +1934,15 @@
       },
       {
         "pin1": {
-          "compName": "ram2#1",
-          "pinName": "QB1"
+          "compName": "Splitter#7",
+          "pinName": "O0"
         },
         "pin2": {
-          "compName": "andor414#0",
-          "pinName": "A1"
+          "compName": "ram2#1",
+          "pinName": "QB1"
         },
         "name": "unnamedWire#85",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 525.0
-          },
-          {
-            "x": 140.0,
-            "y": 530.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1896,41 +1950,23 @@
           "pinName": "QB2"
         },
         "pin2": {
-          "compName": "andor414#0",
-          "pinName": "A2"
+          "compName": "Splitter#7",
+          "pinName": "O1"
         },
         "name": "unnamedWire#86",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 535.0
-          },
-          {
-            "x": 140.0,
-            "y": 540.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
-          "compName": "ram2#1",
-          "pinName": "QB3"
+          "compName": "Splitter#7",
+          "pinName": "O2"
         },
         "pin2": {
-          "compName": "andor414#0",
-          "pinName": "A3"
+          "compName": "ram2#1",
+          "pinName": "QB3"
         },
         "name": "unnamedWire#87",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 545.0
-          },
-          {
-            "x": 140.0,
-            "y": 550.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1938,20 +1974,11 @@
           "pinName": "QB4"
         },
         "pin2": {
-          "compName": "andor414#0",
-          "pinName": "A4"
+          "compName": "Splitter#7",
+          "pinName": "O3"
         },
         "name": "unnamedWire#88",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 555.0
-          },
-          {
-            "x": 140.0,
-            "y": 560.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1959,41 +1986,23 @@
           "pinName": "QB1"
         },
         "pin2": {
-          "compName": "andor414#1",
-          "pinName": "A1"
+          "compName": "Splitter#9",
+          "pinName": "O0"
         },
         "name": "unnamedWire#89",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 675.0
-          },
-          {
-            "x": 140.0,
-            "y": 680.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
+          "compName": "Splitter#9",
+          "pinName": "O1"
+        },
+        "pin2": {
           "compName": "ram2#2",
           "pinName": "QB2"
         },
-        "pin2": {
-          "compName": "andor414#1",
-          "pinName": "A2"
-        },
         "name": "unnamedWire#90",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 685.0
-          },
-          {
-            "x": 140.0,
-            "y": 690.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2001,125 +2010,71 @@
           "pinName": "QB3"
         },
         "pin2": {
-          "compName": "andor414#1",
-          "pinName": "A3"
+          "compName": "Splitter#9",
+          "pinName": "O2"
         },
         "name": "unnamedWire#91",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 695.0
-          },
-          {
-            "x": 140.0,
-            "y": 700.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
+          "compName": "Splitter#9",
+          "pinName": "O3"
+        },
+        "pin2": {
           "compName": "ram2#2",
           "pinName": "QB4"
         },
-        "pin2": {
-          "compName": "andor414#1",
-          "pinName": "A4"
-        },
         "name": "unnamedWire#92",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 705.0
-          },
-          {
-            "x": 140.0,
-            "y": 710.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
+          "compName": "ram2#3",
+          "pinName": "QB4"
+        },
+        "pin2": {
+          "compName": "Splitter#11",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#93",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#11",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "ram2#3",
+          "pinName": "QB3"
+        },
+        "name": "unnamedWire#94",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ram2#3",
+          "pinName": "QB2"
+        },
+        "pin2": {
+          "compName": "Splitter#11",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#95",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#11",
+          "pinName": "O0"
+        },
+        "pin2": {
           "compName": "ram2#3",
           "pinName": "QB1"
         },
-        "pin2": {
-          "compName": "andor414#2",
-          "pinName": "A1"
-        },
-        "name": "unnamedWire#93",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 825.0
-          },
-          {
-            "x": 140.0,
-            "y": 830.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#3",
-          "pinName": "QB2"
-        },
-        "pin2": {
-          "compName": "andor414#2",
-          "pinName": "A2"
-        },
-        "name": "unnamedWire#94",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 835.0
-          },
-          {
-            "x": 140.0,
-            "y": 840.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#3",
-          "pinName": "QB3"
-        },
-        "pin2": {
-          "compName": "andor414#2",
-          "pinName": "A3"
-        },
-        "name": "unnamedWire#95",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 845.0
-          },
-          {
-            "x": 140.0,
-            "y": 850.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#3",
-          "pinName": "QB4"
-        },
-        "pin2": {
-          "compName": "andor414#2",
-          "pinName": "A4"
-        },
         "name": "unnamedWire#96",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 855.0
-          },
-          {
-            "x": 140.0,
-            "y": 860.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2171,24 +2126,39 @@
       },
       {
         "pin1": {
-          "compName": "ram2#1",
-          "pinName": "QA1"
+          "compName": "Splitter#6",
+          "pinName": "I"
         },
         "pin2": {
           "compName": "andor414#3",
-          "pinName": "A1"
+          "pinName": "A"
         },
         "name": "unnamedWire#101",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 485.0
-          },
-          {
-            "x": 140.0,
-            "y": 480.0
-          }
-        ]
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ram2#1",
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compName": "Splitter#6",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#102",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#6",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "ram2#1",
+          "pinName": "QA3"
+        },
+        "name": "unnamedWire#103",
+        "path": []
       },
       {
         "pin1": {
@@ -2196,606 +2166,521 @@
           "pinName": "QA2"
         },
         "pin2": {
-          "compName": "andor414#3",
-          "pinName": "A2"
+          "compName": "Splitter#6",
+          "pinName": "O1"
         },
-        "name": "unnamedWire#102",
+        "name": "unnamedWire#104",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "demux2#0",
+          "pinName": "Y10"
+        },
+        "pin2": {
+          "compName": "andor414#4",
+          "pinName": "B"
+        },
+        "name": "unnamedWire#105",
         "path": [
           {
-            "x": 140.0,
-            "y": 495.0
+            "x": 125.0,
+            "y": 70.0
           },
           {
-            "x": 140.0,
-            "y": 490.0
+            "x": 125.0,
+            "y": 670.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "ram2#1",
+          "compName": "Splitter#8",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "ram2#2",
+          "pinName": "QA1"
+        },
+        "name": "unnamedWire#106",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ram2#2",
+          "pinName": "QA2"
+        },
+        "pin2": {
+          "compName": "Splitter#8",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#107",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#8",
+          "pinName": "O2"
+        },
+        "pin2": {
+          "compName": "ram2#2",
+          "pinName": "QA3"
+        },
+        "name": "unnamedWire#108",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#10",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "ram2#3",
+          "pinName": "QA1"
+        },
+        "name": "unnamedWire#109",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#10",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "ram2#3",
+          "pinName": "QA2"
+        },
+        "name": "unnamedWire#110",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ram2#3",
           "pinName": "QA3"
         },
         "pin2": {
-          "compName": "andor414#3",
-          "pinName": "A3"
+          "compName": "Splitter#10",
+          "pinName": "O2"
         },
-        "name": "unnamedWire#103",
+        "name": "unnamedWire#111",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#10",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "ram2#3",
+          "pinName": "QA4"
+        },
+        "name": "unnamedWire#112",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "and41#1",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "andor414#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#113",
         "path": [
           {
-            "x": 140.0,
-            "y": 505.0
+            "x": 290.0,
+            "y": 390.0
           },
           {
-            "x": 140.0,
+            "x": 290.0,
+            "y": 470.0
+          },
+          {
+            "x": 245.0,
+            "y": 470.0
+          },
+          {
+            "x": 245.0,
             "y": 500.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "ram2#1",
-          "pinName": "QA4"
+          "compName": "andor414#0",
+          "pinName": "Y"
         },
         "pin2": {
-          "compName": "andor414#3",
-          "pinName": "A4"
+          "compName": "andor414#1",
+          "pinName": "C"
         },
-        "name": "unnamedWire#104",
+        "name": "unnamedWire#114",
         "path": [
           {
-            "x": 140.0,
-            "y": 515.0
+            "x": 290.0,
+            "y": 500.0
           },
           {
-            "x": 140.0,
-            "y": 510.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#2",
-          "pinName": "QA1"
-        },
-        "pin2": {
-          "compName": "andor414#4",
-          "pinName": "A1"
-        },
-        "name": "unnamedWire#105",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 635.0
+            "x": 290.0,
+            "y": 620.0
           },
           {
-            "x": 140.0,
-            "y": 630.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#2",
-          "pinName": "QA2"
-        },
-        "pin2": {
-          "compName": "andor414#4",
-          "pinName": "A2"
-        },
-        "name": "unnamedWire#106",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 645.0
+            "x": 245.0,
+            "y": 620.0
           },
           {
-            "x": 140.0,
-            "y": 640.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#2",
-          "pinName": "QA3"
-        },
-        "pin2": {
-          "compName": "andor414#4",
-          "pinName": "A3"
-        },
-        "name": "unnamedWire#107",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 655.0
-          },
-          {
-            "x": 140.0,
+            "x": 245.0,
             "y": 650.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "ram2#2",
-          "pinName": "QA4"
+          "compName": "andor414#1",
+          "pinName": "Y"
         },
         "pin2": {
-          "compName": "andor414#4",
-          "pinName": "A4"
+          "compName": "andor414#2",
+          "pinName": "C"
         },
-        "name": "unnamedWire#108",
+        "name": "unnamedWire#115",
         "path": [
           {
-            "x": 140.0,
-            "y": 665.0
+            "x": 290.0,
+            "y": 650.0
           },
           {
-            "x": 140.0,
-            "y": 660.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#3",
-          "pinName": "QA1"
-        },
-        "pin2": {
-          "compName": "andor414#5",
-          "pinName": "A1"
-        },
-        "name": "unnamedWire#109",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 785.0
+            "x": 290.0,
+            "y": 770.0
           },
           {
-            "x": 140.0,
-            "y": 780.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#3",
-          "pinName": "QA2"
-        },
-        "pin2": {
-          "compName": "andor414#5",
-          "pinName": "A2"
-        },
-        "name": "unnamedWire#110",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 795.0
+            "x": 245.0,
+            "y": 770.0
           },
           {
-            "x": 140.0,
-            "y": 790.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "ram2#3",
-          "pinName": "QA3"
-        },
-        "pin2": {
-          "compName": "andor414#5",
-          "pinName": "A3"
-        },
-        "name": "unnamedWire#111",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 805.0
-          },
-          {
-            "x": 140.0,
+            "x": 245.0,
             "y": 800.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "ram2#3",
-          "pinName": "QA4"
-        },
-        "pin2": {
-          "compName": "andor414#5",
-          "pinName": "A4"
-        },
-        "name": "unnamedWire#112",
-        "path": [
-          {
-            "x": 140.0,
-            "y": 815.0
-          },
-          {
-            "x": 140.0,
-            "y": 810.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#3",
-          "pinName": "O0"
-        },
-        "pin2": {
-          "compName": "andor414#0",
-          "pinName": "C1"
-        },
-        "name": "unnamedWire#113",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#3",
-          "pinName": "O1"
-        },
-        "pin2": {
-          "compName": "andor414#0",
-          "pinName": "C2"
-        },
-        "name": "unnamedWire#114",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#3",
-          "pinName": "O2"
-        },
-        "pin2": {
-          "compName": "andor414#0",
-          "pinName": "C3"
-        },
-        "name": "unnamedWire#115",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "andor414#0",
-          "pinName": "C4"
+          "compName": "andor414#2",
+          "pinName": "Y"
         },
         "pin2": {
           "compName": "Splitter#3",
-          "pinName": "O3"
+          "pinName": "I"
         },
         "name": "unnamedWire#116",
         "path": []
       },
       {
         "pin1": {
-          "compName": "andor414#0",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "andor414#1",
-          "pinName": "C1"
-        },
-        "name": "unnamedWire#117",
-        "path": [
-          {
-            "x": 305.0,
-            "y": 490.0
-          },
-          {
-            "x": 305.0,
-            "y": 595.0
-          },
-          {
-            "x": 245.0,
-            "y": 595.0
-          },
-          {
-            "x": 245.0,
-            "y": 640.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#0",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "andor414#1",
-          "pinName": "C2"
-        },
-        "name": "unnamedWire#118",
-        "path": [
-          {
-            "x": 300.0,
-            "y": 500.0
-          },
-          {
-            "x": 300.0,
-            "y": 590.0
-          },
-          {
-            "x": 240.0,
-            "y": 590.0
-          },
-          {
-            "x": 240.0,
-            "y": 650.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#0",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "andor414#1",
-          "pinName": "C3"
-        },
-        "name": "unnamedWire#119",
-        "path": [
-          {
-            "x": 295.0,
-            "y": 510.0
-          },
-          {
-            "x": 295.0,
-            "y": 585.0
-          },
-          {
-            "x": 235.0,
-            "y": 585.0
-          },
-          {
-            "x": 235.0,
-            "y": 660.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#0",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "andor414#1",
-          "pinName": "C4"
-        },
-        "name": "unnamedWire#120",
-        "path": [
-          {
-            "x": 290.0,
-            "y": 520.0
-          },
-          {
-            "x": 290.0,
-            "y": 580.0
-          },
-          {
-            "x": 230.0,
-            "y": 580.0
-          },
-          {
-            "x": 230.0,
-            "y": 670.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#1",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "andor414#2",
-          "pinName": "C1"
-        },
-        "name": "unnamedWire#121",
-        "path": [
-          {
-            "x": 305.0,
-            "y": 640.0
-          },
-          {
-            "x": 305.0,
-            "y": 745.0
-          },
-          {
-            "x": 245.0,
-            "y": 745.0
-          },
-          {
-            "x": 245.0,
-            "y": 790.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#1",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "andor414#2",
-          "pinName": "C2"
-        },
-        "name": "unnamedWire#122",
-        "path": [
-          {
-            "x": 300.0,
-            "y": 650.0
-          },
-          {
-            "x": 300.0,
-            "y": 740.0
-          },
-          {
-            "x": 240.0,
-            "y": 740.0
-          },
-          {
-            "x": 240.0,
-            "y": 800.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#1",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "andor414#2",
-          "pinName": "C3"
-        },
-        "name": "unnamedWire#123",
-        "path": [
-          {
-            "x": 295.0,
-            "y": 660.0
-          },
-          {
-            "x": 295.0,
-            "y": 735.0
-          },
-          {
-            "x": 235.0,
-            "y": 735.0
-          },
-          {
-            "x": 235.0,
-            "y": 810.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#1",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "andor414#2",
-          "pinName": "C4"
-        },
-        "name": "unnamedWire#124",
-        "path": [
-          {
-            "x": 290.0,
-            "y": 670.0
-          },
-          {
-            "x": 290.0,
-            "y": 730.0
-          },
-          {
-            "x": 230.0,
-            "y": 730.0
-          },
-          {
-            "x": 230.0,
-            "y": 820.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#2",
-          "pinName": "Y1"
+          "compName": "Splitter#3",
+          "pinName": "O0"
         },
         "pin2": {
           "compName": "_submodelinterface",
           "pinName": "QB1"
         },
-        "name": "unnamedWire#125",
+        "name": "unnamedWire#117",
         "path": [
           {
-            "x": 330.0,
-            "y": 790.0
+            "x": 345.0,
+            "y": 815.0
           },
           {
-            "x": 330.0,
+            "x": 345.0,
             "y": 450.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "andor414#2",
-          "pinName": "Y2"
-        },
-        "pin2": {
           "compName": "_submodelinterface",
           "pinName": "QB2"
         },
-        "name": "unnamedWire#126",
+        "pin2": {
+          "compName": "Splitter#3",
+          "pinName": "O1"
+        },
+        "name": "unnamedWire#118",
         "path": [
           {
-            "x": 335.0,
-            "y": 800.0
+            "x": 340.0,
+            "y": 550.0
           },
           {
-            "x": 335.0,
-            "y": 550.0
+            "x": 340.0,
+            "y": 805.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "andor414#2",
-          "pinName": "Y3"
+          "compName": "Splitter#3",
+          "pinName": "O2"
         },
         "pin2": {
           "compName": "_submodelinterface",
           "pinName": "QB3"
         },
-        "name": "unnamedWire#127",
+        "name": "unnamedWire#119",
         "path": [
           {
-            "x": 340.0,
-            "y": 810.0
+            "x": 335.0,
+            "y": 795.0
           },
           {
-            "x": 340.0,
+            "x": 335.0,
             "y": 650.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "andor414#2",
-          "pinName": "Y4"
-        },
-        "pin2": {
           "compName": "_submodelinterface",
           "pinName": "QB4"
+        },
+        "pin2": {
+          "compName": "Splitter#3",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#120",
+        "path": [
+          {
+            "x": 330.0,
+            "y": 750.0
+          },
+          {
+            "x": 330.0,
+            "y": 785.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#6",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "ram2#1",
+          "pinName": "QA1"
+        },
+        "name": "unnamedWire#121",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#7",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "andor414#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#122",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ram2#2",
+          "pinName": "QA4"
+        },
+        "pin2": {
+          "compName": "Splitter#8",
+          "pinName": "O3"
+        },
+        "name": "unnamedWire#123",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#9",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "andor414#1",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#124",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#10",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "andor414#5",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#125",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#11",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "andor414#2",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#126",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "and41#2",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "andor414#3",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#127",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 350.0
+          },
+          {
+            "x": 195.0,
+            "y": 430.0
+          },
+          {
+            "x": 150.0,
+            "y": 430.0
+          },
+          {
+            "x": 150.0,
+            "y": 460.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "andor414#3",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "andor414#4",
+          "pinName": "C"
         },
         "name": "unnamedWire#128",
         "path": [
           {
-            "x": 345.0,
-            "y": 820.0
+            "x": 195.0,
+            "y": 460.0
           },
           {
-            "x": 345.0,
-            "y": 750.0
+            "x": 195.0,
+            "y": 580.0
+          },
+          {
+            "x": 150.0,
+            "y": 580.0
+          },
+          {
+            "x": 150.0,
+            "y": 610.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "andor414#4",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "andor414#5",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#129",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 610.0
+          },
+          {
+            "x": 195.0,
+            "y": 730.0
+          },
+          {
+            "x": 150.0,
+            "y": 730.0
+          },
+          {
+            "x": 150.0,
+            "y": 760.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "andor414#5",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#130",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 760.0
+          },
+          {
+            "x": 195.0,
+            "y": 915.0
           }
         ]
       },
       {
         "pin1": {
           "compName": "Splitter#0",
-          "pinName": "O0"
+          "pinName": "O3"
         },
         "pin2": {
-          "compName": "andor414#3",
-          "pinName": "C1"
+          "compName": "_submodelinterface",
+          "pinName": "QA4"
         },
-        "name": "unnamedWire#129",
-        "path": []
+        "name": "unnamedWire#131",
+        "path": [
+          {
+            "x": 310.0,
+            "y": 900.0
+          },
+          {
+            "x": 310.0,
+            "y": 350.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "QA3"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#132",
+        "path": [
+          {
+            "x": 315.0,
+            "y": 250.0
+          },
+          {
+            "x": 315.0,
+            "y": 910.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -2803,410 +2688,39 @@
           "pinName": "O1"
         },
         "pin2": {
-          "compName": "andor414#3",
-          "pinName": "C2"
-        },
-        "name": "unnamedWire#130",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#0",
-          "pinName": "O2"
-        },
-        "pin2": {
-          "compName": "andor414#3",
-          "pinName": "C3"
-        },
-        "name": "unnamedWire#131",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "andor414#3",
-          "pinName": "C4"
-        },
-        "pin2": {
-          "compName": "Splitter#0",
-          "pinName": "O3"
-        },
-        "name": "unnamedWire#132",
-        "path": []
-      },
-      {
-        "pin1": {
-          "compName": "andor414#3",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "andor414#4",
-          "pinName": "C1"
+          "compName": "_submodelinterface",
+          "pinName": "QA2"
         },
         "name": "unnamedWire#133",
         "path": [
           {
-            "x": 210.0,
-            "y": 440.0
+            "x": 320.0,
+            "y": 920.0
           },
           {
-            "x": 210.0,
-            "y": 580.0
-          },
-          {
-            "x": 150.0,
-            "y": 580.0
-          },
-          {
-            "x": 150.0,
-            "y": 590.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#3",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "andor414#4",
-          "pinName": "C2"
-        },
-        "name": "unnamedWire#134",
-        "path": [
-          {
-            "x": 205.0,
-            "y": 450.0
-          },
-          {
-            "x": 205.0,
-            "y": 575.0
-          },
-          {
-            "x": 145.0,
-            "y": 575.0
-          },
-          {
-            "x": 145.0,
-            "y": 600.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#3",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "andor414#4",
-          "pinName": "C3"
-        },
-        "name": "unnamedWire#135",
-        "path": [
-          {
-            "x": 200.0,
-            "y": 460.0
-          },
-          {
-            "x": 200.0,
-            "y": 570.0
-          },
-          {
-            "x": 140.0,
-            "y": 570.0
-          },
-          {
-            "x": 140.0,
-            "y": 610.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#3",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "andor414#4",
-          "pinName": "C4"
-        },
-        "name": "unnamedWire#136",
-        "path": [
-          {
-            "x": 195.0,
-            "y": 470.0
-          },
-          {
-            "x": 195.0,
-            "y": 565.0
-          },
-          {
-            "x": 135.0,
-            "y": 565.0
-          },
-          {
-            "x": 135.0,
-            "y": 620.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#4",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "andor414#5",
-          "pinName": "C1"
-        },
-        "name": "unnamedWire#137",
-        "path": [
-          {
-            "x": 210.0,
-            "y": 590.0
-          },
-          {
-            "x": 210.0,
-            "y": 730.0
-          },
-          {
-            "x": 150.0,
-            "y": 730.0
-          },
-          {
-            "x": 150.0,
-            "y": 740.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#4",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "andor414#5",
-          "pinName": "C2"
-        },
-        "name": "unnamedWire#138",
-        "path": [
-          {
-            "x": 205.0,
-            "y": 600.0
-          },
-          {
-            "x": 205.0,
-            "y": 725.0
-          },
-          {
-            "x": 145.0,
-            "y": 725.0
-          },
-          {
-            "x": 145.0,
-            "y": 750.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#4",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "andor414#5",
-          "pinName": "C3"
-        },
-        "name": "unnamedWire#139",
-        "path": [
-          {
-            "x": 200.0,
-            "y": 610.0
-          },
-          {
-            "x": 200.0,
-            "y": 720.0
-          },
-          {
-            "x": 140.0,
-            "y": 720.0
-          },
-          {
-            "x": 140.0,
-            "y": 760.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#4",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "andor414#5",
-          "pinName": "C4"
-        },
-        "name": "unnamedWire#140",
-        "path": [
-          {
-            "x": 195.0,
-            "y": 620.0
-          },
-          {
-            "x": 195.0,
-            "y": 715.0
-          },
-          {
-            "x": 135.0,
-            "y": 715.0
-          },
-          {
-            "x": 135.0,
-            "y": 770.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#5",
-          "pinName": "Y1"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QA1"
-        },
-        "name": "unnamedWire#141",
-        "path": [
-          {
-            "x": 210.0,
-            "y": 740.0
-          },
-          {
-            "x": 210.0,
-            "y": 880.0
-          },
-          {
-            "x": 310.0,
-            "y": 880.0
-          },
-          {
-            "x": 310.0,
-            "y": 50.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#5",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QA2"
-        },
-        "name": "unnamedWire#142",
-        "path": [
-          {
-            "x": 205.0,
-            "y": 750.0
-          },
-          {
-            "x": 205.0,
-            "y": 885.0
-          },
-          {
-            "x": 315.0,
-            "y": 885.0
-          },
-          {
-            "x": 315.0,
+            "x": 320.0,
             "y": 150.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "andor414#5",
-          "pinName": "Y3"
+          "compName": "_submodelinterface",
+          "pinName": "QA1"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QA3"
-        },
-        "name": "unnamedWire#143",
-        "path": [
-          {
-            "x": 200.0,
-            "y": 760.0
-          },
-          {
-            "x": 200.0,
-            "y": 890.0
-          },
-          {
-            "x": 320.0,
-            "y": 890.0
-          },
-          {
-            "x": 320.0,
-            "y": 250.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "andor414#5",
-          "pinName": "Y4"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "QA4"
-        },
-        "name": "unnamedWire#144",
-        "path": [
-          {
-            "x": 195.0,
-            "y": 770.0
-          },
-          {
-            "x": 195.0,
-            "y": 895.0
-          },
-          {
-            "x": 325.0,
-            "y": 895.0
-          },
-          {
-            "x": 325.0,
-            "y": 350.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "Splitter#0",
-          "pinName": "I"
+          "pinName": "O0"
         },
-        "pin2": {
-          "compName": "and41#2",
-          "pinName": "Y"
-        },
-        "name": "unnamedWire#145",
+        "name": "unnamedWire#134",
         "path": [
           {
-            "x": 135.0,
-            "y": 455.0
+            "x": 325.0,
+            "y": 50.0
           },
           {
-            "x": 135.0,
-            "y": 430.0
-          },
-          {
-            "x": 195.0,
-            "y": 430.0
-          },
-          {
-            "x": 195.0,
-            "y": 350.0
+            "x": 325.0,
+            "y": 930.0
           }
         ]
       },
@@ -3219,7 +2733,7 @@
           "compName": "and41#2",
           "pinName": "A"
         },
-        "name": "unnamedWire#146",
+        "name": "unnamedWire#135",
         "path": []
       },
       {
@@ -3231,37 +2745,8 @@
           "compName": "and41#1",
           "pinName": "A"
         },
-        "name": "unnamedWire#147",
+        "name": "unnamedWire#136",
         "path": []
-      },
-      {
-        "pin1": {
-          "compName": "Splitter#3",
-          "pinName": "I"
-        },
-        "pin2": {
-          "compName": "and41#1",
-          "pinName": "Y"
-        },
-        "name": "unnamedWire#148",
-        "path": [
-          {
-            "x": 230.0,
-            "y": 505.0
-          },
-          {
-            "x": 230.0,
-            "y": 460.0
-          },
-          {
-            "x": 290.0,
-            "y": 460.0
-          },
-          {
-            "x": 290.0,
-            "y": 390.0
-          }
-        ]
       },
       {
         "pin1": {
@@ -3272,7 +2757,7 @@
           "compName": "Splitter#4",
           "pinName": "I"
         },
-        "name": "unnamedWire#149",
+        "name": "unnamedWire#137",
         "path": [
           {
             "x": 290.0,
@@ -3293,7 +2778,7 @@
           "compName": "and41#0",
           "pinName": "A"
         },
-        "name": "unnamedWire#150",
+        "name": "unnamedWire#138",
         "path": []
       }
     ],

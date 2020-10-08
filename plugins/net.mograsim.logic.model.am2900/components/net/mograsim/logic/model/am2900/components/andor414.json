@@ -5,6 +5,15 @@
     {
       "location": {
         "x": 0.0,
+        "y": 65.0
+      },
+      "name": "A",
+      "logicWidth": 4,
+      "usage": "INPUT"
+    },
+    {
+      "location": {
+        "x": 0.0,
         "y": 45.0
       },
       "name": "A1",
@@ -22,7 +31,7 @@
     },
     {
       "location": {
-        "x": 0.0,
+        "x": -6.0,
         "y": 65.0
       },
       "name": "A3",
@@ -50,73 +59,19 @@
     {
       "location": {
         "x": 0.0,
-        "y": 5.0
-      },
-      "name": "C1",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 15.0
-      },
-      "name": "C2",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
         "y": 25.0
       },
-      "name": "C3",
-      "logicWidth": 1,
+      "name": "C",
+      "logicWidth": 4,
       "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 35.0
-      },
-      "name": "C4",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 5.0
-      },
-      "name": "Y1",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 15.0
-      },
-      "name": "Y2",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
     },
     {
       "location": {
         "x": 35.0,
         "y": 25.0
       },
-      "name": "Y3",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 35.0
-      },
-      "name": "Y4",
-      "logicWidth": 1,
+      "name": "Y",
+      "logicWidth": 4,
       "usage": "OUTPUT"
     }
   ],
@@ -127,8 +82,8 @@
         "id": "Splitter",
         "name": "Splitter#0",
         "pos": {
-          "x": 20.0,
-          "y": 82.5
+          "x": 17.5,
+          "y": 87.5
         },
         "params": {
           "logicWidth": 4,
@@ -139,8 +94,8 @@
         "id": "Splitter",
         "name": "Splitter#1",
         "pos": {
-          "x": 15.0,
-          "y": 142.5
+          "x": 72.5,
+          "y": 47.5
         },
         "params": {
           "logicWidth": 4,
@@ -148,19 +103,31 @@
         }
       },
       {
+        "id": "Splitter",
+        "name": "Splitter#2",
+        "pos": {
+          "x": 17.5,
+          "y": 47.5
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
+      },
+      {
         "id": "and41",
         "name": "and41#0",
         "pos": {
           "x": 35.0,
-          "y": 142.5
+          "y": 147.5
         }
       },
       {
         "id": "or_4",
         "name": "or_4#0",
         "pos": {
-          "x": 35.0,
-          "y": 37.5
+          "x": 32.5,
+          "y": 42.5
         }
       }
     ],
@@ -168,47 +135,47 @@
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "A4"
+          "pinName": "A"
         },
         "pin2": {
-          "compName": "Splitter#1",
-          "pinName": "O3"
+          "compName": "and41#0",
+          "pinName": "A"
         },
         "name": "unnamedWire#0",
         "path": []
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A3"
+          "compName": "Splitter#1",
+          "pinName": "I"
         },
         "pin2": {
-          "compName": "Splitter#1",
-          "pinName": "O2"
+          "compName": "_submodelinterface",
+          "pinName": "Y"
         },
         "name": "unnamedWire#1",
         "path": []
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "A2"
+          "compName": "or_4#0",
+          "pinName": "Y1"
         },
         "pin2": {
           "compName": "Splitter#1",
-          "pinName": "O1"
+          "pinName": "O0"
         },
         "name": "unnamedWire#2",
         "path": []
       },
       {
         "pin1": {
-          "compName": "Splitter#1",
-          "pinName": "O0"
+          "compName": "or_4#0",
+          "pinName": "Y2"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "A1"
+          "compName": "Splitter#1",
+          "pinName": "O1"
         },
         "name": "unnamedWire#3",
         "path": []
@@ -230,56 +197,38 @@
           },
           {
             "x": 30.0,
-            "y": 172.5
+            "y": 177.5
           }
         ]
       },
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "C1"
+          "pinName": "C"
         },
         "pin2": {
-          "compName": "or_4#0",
-          "pinName": "A1"
+          "compName": "Splitter#2",
+          "pinName": "I"
         },
         "name": "unnamedWire#5",
-        "path": [
-          {
-            "x": 10.0,
-            "y": 12.5
-          },
-          {
-            "x": 10.0,
-            "y": 42.5
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C2"
+          "compName": "Splitter#2",
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "or_4#0",
-          "pinName": "A2"
+          "pinName": "A4"
         },
         "name": "unnamedWire#6",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 37.5
-          },
-          {
-            "x": 5.0,
-            "y": 52.5
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C3"
+          "compName": "Splitter#2",
+          "pinName": "O2"
         },
         "pin2": {
           "compName": "or_4#0",
@@ -290,24 +239,15 @@
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "C4"
+          "compName": "Splitter#2",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "or_4#0",
-          "pinName": "A4"
+          "pinName": "A2"
         },
         "name": "unnamedWire#8",
-        "path": [
-          {
-            "x": 5.0,
-            "y": 87.5
-          },
-          {
-            "x": 5.0,
-            "y": 72.5
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -360,77 +300,26 @@
       {
         "pin1": {
           "compName": "or_4#0",
-          "pinName": "Y1"
+          "pinName": "Y3"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Y1"
+          "compName": "Splitter#1",
+          "pinName": "O2"
         },
         "name": "unnamedWire#13",
-        "path": [
-          {
-            "x": 75.0,
-            "y": 42.5
-          },
-          {
-            "x": 75.0,
-            "y": 12.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "or_4#0",
-          "pinName": "Y2"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Y2"
-        },
-        "name": "unnamedWire#14",
-        "path": [
-          {
-            "x": 80.0,
-            "y": 52.5
-          },
-          {
-            "x": 80.0,
-            "y": 37.5
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "or_4#0",
-          "pinName": "Y3"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Y3"
-        },
-        "name": "unnamedWire#15",
         "path": []
       },
       {
         "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "O3"
+        },
+        "pin2": {
           "compName": "or_4#0",
           "pinName": "Y4"
         },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Y4"
-        },
-        "name": "unnamedWire#16",
-        "path": [
-          {
-            "x": 80.0,
-            "y": 72.5
-          },
-          {
-            "x": 80.0,
-            "y": 87.5
-          }
-        ]
+        "name": "unnamedWire#14",
+        "path": []
       },
       {
         "pin1": {
@@ -441,14 +330,14 @@
           "compName": "and41#0",
           "pinName": "Y"
         },
-        "name": "unnamedWire#17",
+        "name": "unnamedWire#15",
         "path": [
           {
-            "x": 15.0,
-            "y": 97.5
+            "x": 12.5,
+            "y": 102.5
           },
           {
-            "x": 15.0,
+            "x": 12.5,
             "y": 127.5
           },
           {
@@ -457,20 +346,20 @@
           },
           {
             "x": 75.0,
-            "y": 157.5
+            "y": 162.5
           }
         ]
       },
       {
         "pin1": {
-          "compName": "Splitter#1",
-          "pinName": "I"
+          "compName": "or_4#0",
+          "pinName": "A1"
         },
         "pin2": {
-          "compName": "and41#0",
-          "pinName": "A"
+          "compName": "Splitter#2",
+          "pinName": "O0"
         },
-        "name": "unnamedWire#18",
+        "name": "unnamedWire#16",
         "path": []
       }
     ],
