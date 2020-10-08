@@ -404,6 +404,18 @@
         }
       },
       {
+        "id": "Splitter",
+        "name": "Splitter#19",
+        "pos": {
+          "x": 840.0,
+          "y": 760.0
+        },
+        "params": {
+          "logicWidth": 3,
+          "orientation": "RIGHT"
+        }
+      },
+      {
         "id": "TriStateBuffer",
         "name": "TriStateBuffer#0",
         "pos": {
@@ -761,32 +773,15 @@
     "wires": [
       {
         "pin1": {
+          "compName": "Splitter#19",
+          "pinName": "O0"
+        },
+        "pin2": {
           "compName": "Splitter#0",
           "pinName": "O6"
         },
-        "pin2": {
-          "compName": "Am2901DestDecode#0",
-          "pinName": "I6"
-        },
         "name": "unnamedWire#0",
-        "path": [
-          {
-            "x": 845.0,
-            "y": 780.0
-          },
-          {
-            "x": 845.0,
-            "y": 305.0
-          },
-          {
-            "x": 375.0,
-            "y": 305.0
-          },
-          {
-            "x": 375.0,
-            "y": 185.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -1017,31 +1012,14 @@
       {
         "pin1": {
           "compName": "Splitter#0",
-          "pinName": "O8"
+          "pinName": "O7"
         },
         "pin2": {
-          "compName": "Am2901DestDecode#0",
-          "pinName": "I8"
+          "compName": "Splitter#19",
+          "pinName": "O1"
         },
         "name": "unnamedWire#15",
-        "path": [
-          {
-            "x": 835.0,
-            "y": 760.0
-          },
-          {
-            "x": 835.0,
-            "y": 315.0
-          },
-          {
-            "x": 365.0,
-            "y": 315.0
-          },
-          {
-            "x": 365.0,
-            "y": 165.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -2034,32 +2012,15 @@
       },
       {
         "pin1": {
-          "compName": "Splitter#0",
-          "pinName": "O7"
+          "compName": "Splitter#19",
+          "pinName": "O2"
         },
         "pin2": {
-          "compName": "Am2901DestDecode#0",
-          "pinName": "I7"
+          "compName": "Splitter#0",
+          "pinName": "O8"
         },
         "name": "unnamedWire#77",
-        "path": [
-          {
-            "x": 840.0,
-            "y": 770.0
-          },
-          {
-            "x": 840.0,
-            "y": 310.0
-          },
-          {
-            "x": 370.0,
-            "y": 310.0
-          },
-          {
-            "x": 370.0,
-            "y": 175.0
-          }
-        ]
+        "path": []
       },
       {
         "pin1": {
@@ -3454,6 +3415,35 @@
         },
         "name": "unnamedWire#165",
         "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#19",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "Am2901DestDecode#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#166",
+        "path": [
+          {
+            "x": 835.0,
+            "y": 770.0
+          },
+          {
+            "x": 835.0,
+            "y": 330.0
+          },
+          {
+            "x": 375.0,
+            "y": 330.0
+          },
+          {
+            "x": 375.0,
+            "y": 175.0
+          }
+        ]
       }
     ],
     "version": "0.1.1"
