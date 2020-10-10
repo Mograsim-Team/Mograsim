@@ -491,7 +491,7 @@
   },
   "symbolRendererSnippetID": "simpleRectangularLike",
   "symbolRendererParams": {
-    "centerText": "mux1_4",
+    "centerText": "mux1_4_sb",
     "centerTextHeight": 5.0,
     "horizontalComponentCenter": 17.5,
     "pinLabelHeight": 3.5,

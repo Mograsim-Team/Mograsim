@@ -730,8 +730,8 @@
         }
       },
       {
-        "id": "mux1_4",
-        "name": "mux1_4#0",
+        "id": "mux1_4_sb",
+        "name": "mux1_4_sb#0",
         "pos": {
           "x": 500.0,
           "y": 350.0
@@ -873,7 +873,7 @@
           "pinName": "O1"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "Y2"
         },
         "name": "unnamedWire#8",
@@ -1609,7 +1609,7 @@
           "pinName": "O3"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "I0_4"
         },
         "name": "unnamedWire#50",
@@ -1621,7 +1621,7 @@
           "pinName": "O2"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "I0_3"
         },
         "name": "unnamedWire#51",
@@ -1633,7 +1633,7 @@
           "pinName": "O1"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "I0_2"
         },
         "name": "unnamedWire#52",
@@ -1641,7 +1641,7 @@
       },
       {
         "pin1": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "I0_1"
         },
         "pin2": {
@@ -2273,7 +2273,7 @@
           "pinName": "O0"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "I1_1"
         },
         "name": "unnamedWire#95",
@@ -2285,7 +2285,7 @@
           "pinName": "O1"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "I1_2"
         },
         "name": "unnamedWire#96",
@@ -2297,7 +2297,7 @@
           "pinName": "O2"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "I1_3"
         },
         "name": "unnamedWire#97",
@@ -2309,7 +2309,7 @@
           "pinName": "O3"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "I1_4"
         },
         "name": "unnamedWire#98",
@@ -2836,7 +2836,7 @@
           "pinName": "YF"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "S0"
         },
         "name": "unnamedWire#134",
@@ -2877,7 +2877,7 @@
       },
       {
         "pin1": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "Y3"
         },
         "pin2": {
@@ -2989,7 +2989,7 @@
           "pinName": "O0"
         },
         "pin2": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "Y1"
         },
         "name": "unnamedWire#142",
@@ -3093,7 +3093,7 @@
       },
       {
         "pin1": {
-          "compName": "mux1_4#0",
+          "compName": "mux1_4_sb#0",
           "pinName": "Y4"
         },
         "pin2": {
