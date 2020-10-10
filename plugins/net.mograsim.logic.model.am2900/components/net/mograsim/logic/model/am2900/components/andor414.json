@@ -14,42 +14,6 @@
     {
       "location": {
         "x": 0.0,
-        "y": 45.0
-      },
-      "name": "A1",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 55.0
-      },
-      "name": "A2",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": -6.0,
-        "y": 65.0
-      },
-      "name": "A3",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 75.0
-      },
-      "name": "A4",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
         "y": 85.0
       },
       "name": "B",
