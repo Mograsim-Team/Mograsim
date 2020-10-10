@@ -50,7 +50,6 @@
   "inc16": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/inc16.json",
   "mux1": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/mux1.json",
   "mux1_4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/mux1_4.json",
-  "mux1_4_sb": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/mux1_4_sb.json",
   "mux1_12": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/mux1_12.json",
   "mux1_16": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/mux1_16.json",
   "mux2": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/mux2.json",
