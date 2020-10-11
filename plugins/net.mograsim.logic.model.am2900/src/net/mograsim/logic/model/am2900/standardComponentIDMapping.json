@@ -30,6 +30,7 @@
   "dec12": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dec12.json",
   "demux2": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/demux2.json",
   "dff": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff.json",
+  "dff4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff4.json",
   "dff4_finewe": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff4_finewe.json",
   "dff4_we": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff4_we.json",
   "dff12": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/dff12.json",
