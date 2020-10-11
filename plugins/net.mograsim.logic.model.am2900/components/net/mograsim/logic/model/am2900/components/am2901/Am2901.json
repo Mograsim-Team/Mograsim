@@ -670,8 +670,8 @@
         }
       },
       {
-        "id": "dff4",
-        "name": "dff4#0",
+        "id": "dff4_we",
+        "name": "dff4_we#0",
         "pos": {
           "x": 220.0,
           "y": 930.0
@@ -992,7 +992,7 @@
           "pinName": ""
         },
         "pin2": {
-          "compName": "dff4#0",
+          "compName": "dff4_we#0",
           "pinName": "C"
         },
         "name": "unnamedWire#17",
@@ -1664,7 +1664,7 @@
       },
       {
         "pin1": {
-          "compName": "dff4#0",
+          "compName": "dff4_we#0",
           "pinName": "Q"
         },
         "pin2": {
@@ -1680,7 +1680,7 @@
           "pinName": "I"
         },
         "pin2": {
-          "compName": "dff4#0",
+          "compName": "dff4_we#0",
           "pinName": "D"
         },
         "name": "unnamedWire#58",
@@ -2644,7 +2644,7 @@
           "pinName": "QWE"
         },
         "pin2": {
-          "compName": "dff4#0",
+          "compName": "dff4_we#0",
           "pinName": "WE"
         },
         "name": "unnamedWire#123",
@@ -3048,7 +3048,7 @@
       "qreg": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff4#0"
+          "delegateTarget": "dff4_we#0"
         }
       },
       "regs": {
