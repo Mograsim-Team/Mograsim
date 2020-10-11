@@ -52,13 +52,13 @@ public class DelegatingSubcomponentHighLevelStateHandler implements Subcomponent
 
 	public void setDelegateTarget(ModelComponent delegateTarget)
 	{
-		if (delegateTarget == null)
+		if (delegateTarget == null || delegateTarget == parentComponent)
 			this.delegateTarget = parentComponent;
-		else if (delegateTarget != parentComponent
-				&& parentComponent.submodel.getComponentsByName().get(delegateTarget.getName()) != delegateTarget)
+		else if (parentComponent.submodel.getComponentsByName().get(delegateTarget.getName()) == delegateTarget)
+			this.delegateTarget = delegateTarget;
+		else
 			throw new IllegalArgumentException(
 					"Can only set components belonging to the submodel of the parent component of this handler or the parent component itself as the delegate target");
-		this.delegateTarget = delegateTarget;
 	}
 
 	public ModelComponent getDelegateTarget()
