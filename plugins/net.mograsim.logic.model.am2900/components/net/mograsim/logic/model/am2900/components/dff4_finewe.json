@@ -1,6 +1,6 @@
 {
   "width": 35.0,
-  "height": 90.0,
+  "height": 35.0,
   "interfacePins": [
     {
       "location": {
@@ -14,109 +14,28 @@
     {
       "location": {
         "x": 0.0,
-        "y": 85.0
+        "y": 15.0
       },
-      "name": "D1",
-      "logicWidth": 1,
+      "name": "D",
+      "logicWidth": 4,
       "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 75.0
-      },
-      "name": "D2",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 65.0
-      },
-      "name": "D3",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 55.0
-      },
-      "name": "D4",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 35.0
-      },
-      "name": "Q1",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 25.0
-      },
-      "name": "Q2",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
     },
     {
       "location": {
         "x": 35.0,
         "y": 15.0
       },
-      "name": "Q3",
-      "logicWidth": 1,
+      "name": "Q",
+      "logicWidth": 4,
       "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 35.0,
-        "y": 5.0
-      },
-      "name": "Q4",
-      "logicWidth": 1,
-      "usage": "OUTPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 45.0
-      },
-      "name": "_WE1",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 35.0
-      },
-      "name": "_WE2",
-      "logicWidth": 1,
-      "usage": "INPUT"
     },
     {
       "location": {
         "x": 0.0,
         "y": 25.0
       },
-      "name": "_WE3",
-      "logicWidth": 1,
-      "usage": "INPUT"
-    },
-    {
-      "location": {
-        "x": 0.0,
-        "y": 15.0
-      },
-      "name": "_WE4",
-      "logicWidth": 1,
+      "name": "_WE",
+      "logicWidth": 4,
       "usage": "INPUT"
     }
   ],
@@ -124,11 +43,47 @@
   "submodel": {
     "components": [
       {
+        "id": "Splitter",
+        "name": "Splitter#0",
+        "pos": {
+          "x": 5.0,
+          "y": 110.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#1",
+        "pos": {
+          "x": 160.0,
+          "y": 60.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#2",
+        "pos": {
+          "x": 5.0,
+          "y": 60.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
+      },
+      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
-          "x": 109.0,
-          "y": 34.0
+          "x": 99.0,
+          "y": 24.0
         },
         "params": 1
       },
@@ -136,8 +91,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#1",
         "pos": {
-          "x": 109.0,
-          "y": 84.0
+          "x": 99.0,
+          "y": 64.0
         },
         "params": 1
       },
@@ -145,8 +100,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#2",
         "pos": {
-          "x": 109.0,
-          "y": 134.0
+          "x": 99.0,
+          "y": 104.0
         },
         "params": 1
       },
@@ -154,8 +109,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#3",
         "pos": {
-          "x": 159.0,
-          "y": 24.0
+          "x": 144.0,
+          "y": 14.0
         },
         "params": 1
       },
@@ -163,8 +118,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#4",
         "pos": {
-          "x": 159.0,
-          "y": 74.0
+          "x": 144.0,
+          "y": 54.0
         },
         "params": 1
       },
@@ -172,8 +127,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#5",
         "pos": {
-          "x": 159.0,
-          "y": 124.0
+          "x": 144.0,
+          "y": 94.0
         },
         "params": 1
       },
@@ -181,8 +136,8 @@
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#6",
         "pos": {
-          "x": 159.0,
-          "y": 174.0
+          "x": 144.0,
+          "y": 134.0
         },
         "params": 1
       },
@@ -190,64 +145,64 @@
         "id": "dff",
         "name": "dff#0",
         "pos": {
-          "x": 115.0,
-          "y": 20.0
+          "x": 105.0,
+          "y": 10.0
         }
       },
       {
         "id": "dff",
         "name": "dff#1",
         "pos": {
-          "x": 115.0,
-          "y": 70.0
+          "x": 105.0,
+          "y": 50.0
         }
       },
       {
         "id": "dff",
         "name": "dff#2",
         "pos": {
-          "x": 115.0,
-          "y": 120.0
+          "x": 105.0,
+          "y": 90.0
         }
       },
       {
         "id": "dff",
         "name": "dff#3",
         "pos": {
-          "x": 115.0,
-          "y": 170.0
+          "x": 105.0,
+          "y": 130.0
         }
       },
       {
         "id": "mux1",
         "name": "mux1#0",
         "pos": {
-          "x": 65.0,
-          "y": 20.0
+          "x": 60.0,
+          "y": 10.0
         }
       },
       {
         "id": "mux1",
         "name": "mux1#1",
         "pos": {
-          "x": 65.0,
-          "y": 70.0
+          "x": 60.0,
+          "y": 50.0
         }
       },
       {
         "id": "mux1",
         "name": "mux1#2",
         "pos": {
-          "x": 65.0,
-          "y": 120.0
+          "x": 60.0,
+          "y": 90.0
         }
       },
       {
         "id": "mux1",
         "name": "mux1#3",
         "pos": {
-          "x": 65.0,
-          "y": 170.0
+          "x": 60.0,
+          "y": 130.0
         }
       }
     ],
@@ -300,8 +255,8 @@
         "name": "unnamedWire#3",
         "path": [
           {
-            "x": 110.0,
-            "y": 185.0
+            "x": 100.0,
+            "y": 145.0
           }
         ]
       },
@@ -370,11 +325,11 @@
           },
           {
             "x": 10.0,
-            "y": 15.0
+            "y": 5.0
           },
           {
-            "x": 110.0,
-            "y": 15.0
+            "x": 100.0,
+            "y": 5.0
           }
         ]
       },
@@ -414,16 +369,16 @@
         "name": "unnamedWire#11",
         "path": [
           {
-            "x": 60.0,
-            "y": 95.0
+            "x": 55.0,
+            "y": 75.0
           },
           {
-            "x": 60.0,
-            "y": 105.0
+            "x": 55.0,
+            "y": 85.0
           },
           {
-            "x": 160.0,
-            "y": 105.0
+            "x": 145.0,
+            "y": 85.0
           }
         ]
       },
@@ -439,16 +394,16 @@
         "name": "unnamedWire#12",
         "path": [
           {
-            "x": 160.0,
-            "y": 55.0
-          },
-          {
-            "x": 60.0,
-            "y": 55.0
-          },
-          {
-            "x": 60.0,
+            "x": 145.0,
             "y": 45.0
+          },
+          {
+            "x": 55.0,
+            "y": 45.0
+          },
+          {
+            "x": 55.0,
+            "y": 35.0
           }
         ]
       },
@@ -466,27 +421,36 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#3",
-          "pinName": ""
+          "compName": "_submodelinterface",
+          "pinName": "Q"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q4"
+          "compName": "Splitter#1",
+          "pinName": "I"
         },
         "name": "unnamedWire#14",
         "path": []
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "Q3"
+          "compName": "Splitter#1",
+          "pinName": "O3"
         },
         "pin2": {
-          "compName": "WireCrossPoint#4",
+          "compName": "WireCrossPoint#3",
           "pinName": ""
         },
         "name": "unnamedWire#15",
-        "path": []
+        "path": [
+          {
+            "x": 155.0,
+            "y": 60.0
+          },
+          {
+            "x": 155.0,
+            "y": 15.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -512,16 +476,16 @@
         "name": "unnamedWire#17",
         "path": [
           {
-            "x": 160.0,
-            "y": 155.0
+            "x": 145.0,
+            "y": 125.0
           },
           {
-            "x": 60.0,
-            "y": 155.0
+            "x": 55.0,
+            "y": 125.0
           },
           {
-            "x": 60.0,
-            "y": 145.0
+            "x": 55.0,
+            "y": 115.0
           }
         ]
       },
@@ -539,27 +503,45 @@
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#5",
+          "compName": "WireCrossPoint#4",
           "pinName": ""
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q2"
+          "compName": "Splitter#1",
+          "pinName": "O2"
         },
         "name": "unnamedWire#19",
-        "path": []
+        "path": [
+          {
+            "x": 150.0,
+            "y": 55.0
+          },
+          {
+            "x": 150.0,
+            "y": 70.0
+          }
+        ]
       },
       {
         "pin1": {
-          "compName": "WireCrossPoint#6",
-          "pinName": ""
+          "compName": "Splitter#1",
+          "pinName": "O1"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "Q1"
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
         },
         "name": "unnamedWire#20",
-        "path": []
+        "path": [
+          {
+            "x": 150.0,
+            "y": 80.0
+          },
+          {
+            "x": 150.0,
+            "y": 95.0
+          }
+        ]
       },
       {
         "pin1": {
@@ -585,163 +567,145 @@
         "name": "unnamedWire#22",
         "path": [
           {
-            "x": 160.0,
-            "y": 205.0
+            "x": 145.0,
+            "y": 165.0
           },
           {
-            "x": 60.0,
-            "y": 205.0
+            "x": 55.0,
+            "y": 165.0
           },
           {
-            "x": 60.0,
-            "y": 195.0
+            "x": 55.0,
+            "y": 155.0
           }
         ]
       },
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "_WE4"
+          "pinName": "_WE"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "_submodelinterface",
+          "pinName": "D"
+        },
+        "pin2": {
+          "compName": "Splitter#2",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#24",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#2",
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "mux1#0",
-          "pinName": "S0"
+          "pinName": "I0"
         },
-        "name": "unnamedWire#23",
+        "name": "unnamedWire#25",
         "path": [
           {
-            "x": 15.0,
-            "y": 75.0
+            "x": 20.0,
+            "y": 60.0
           },
           {
-            "x": 15.0,
+            "x": 20.0,
             "y": 25.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "mux1#3",
-          "pinName": "I0"
+          "compName": "Splitter#2",
+          "pinName": "O2"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "D1"
-        },
-        "name": "unnamedWire#24",
-        "path": [
-          {
-            "x": 55.0,
-            "y": 185.0
-          },
-          {
-            "x": 55.0,
-            "y": 425.0
-          }
-        ]
-      },
-      {
-        "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D2"
-        },
-        "pin2": {
-          "compName": "mux1#2",
-          "pinName": "I0"
-        },
-        "name": "unnamedWire#25",
-        "path": [
-          {
-            "x": 50.0,
-            "y": 375.0
-          },
-          {
-            "x": 50.0,
-            "y": 135.0
-          }
-        ]
-      },
-      {
-        "pin1": {
           "compName": "mux1#1",
           "pinName": "I0"
-        },
-        "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "D3"
         },
         "name": "unnamedWire#26",
         "path": [
           {
-            "x": 45.0,
-            "y": 85.0
+            "x": 20.0,
+            "y": 70.0
           },
           {
-            "x": 45.0,
-            "y": 325.0
+            "x": 20.0,
+            "y": 65.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "D4"
+          "compName": "Splitter#2",
+          "pinName": "O1"
         },
         "pin2": {
-          "compName": "mux1#0",
+          "compName": "mux1#2",
           "pinName": "I0"
         },
         "name": "unnamedWire#27",
         "path": [
           {
-            "x": 40.0,
-            "y": 275.0
+            "x": 25.0,
+            "y": 80.0
           },
           {
-            "x": 40.0,
-            "y": 35.0
+            "x": 25.0,
+            "y": 105.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "mux1#2",
-          "pinName": "S0"
+          "compName": "Splitter#0",
+          "pinName": "O3"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "_WE2"
+          "compName": "mux1#0",
+          "pinName": "S0"
         },
         "name": "unnamedWire#28",
         "path": [
           {
-            "x": 25.0,
-            "y": 125.0
+            "x": 35.0,
+            "y": 110.0
           },
           {
-            "x": 25.0,
-            "y": 175.0
+            "x": 35.0,
+            "y": 15.0
           }
         ]
       },
       {
         "pin1": {
-          "compName": "_submodelinterface",
-          "pinName": "_WE1"
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
         },
         "pin2": {
-          "compName": "mux1#3",
-          "pinName": "S0"
+          "compName": "Splitter#1",
+          "pinName": "O0"
         },
         "name": "unnamedWire#29",
         "path": [
           {
-            "x": 30.0,
-            "y": 225.0
+            "x": 155.0,
+            "y": 135.0
           },
           {
-            "x": 30.0,
-            "y": 175.0
+            "x": 155.0,
+            "y": 90.0
           }
         ]
       },
@@ -751,18 +715,81 @@
           "pinName": "S0"
         },
         "pin2": {
-          "compName": "_submodelinterface",
-          "pinName": "_WE3"
+          "compName": "Splitter#0",
+          "pinName": "O2"
         },
         "name": "unnamedWire#30",
         "path": [
           {
+            "x": 40.0,
+            "y": 55.0
+          },
+          {
+            "x": 40.0,
+            "y": 120.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "mux1#2",
+          "pinName": "S0"
+        },
+        "name": "unnamedWire#31",
+        "path": [
+          {
+            "x": 45.0,
+            "y": 130.0
+          },
+          {
+            "x": 45.0,
+            "y": 95.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "mux1#3",
+          "pinName": "S0"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#32",
+        "path": [
+          {
+            "x": 45.0,
+            "y": 135.0
+          },
+          {
+            "x": 45.0,
+            "y": 140.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#2",
+          "pinName": "O0"
+        },
+        "pin2": {
+          "compName": "mux1#3",
+          "pinName": "I0"
+        },
+        "name": "unnamedWire#33",
+        "path": [
+          {
             "x": 20.0,
-            "y": 75.0
+            "y": 90.0
           },
           {
             "x": 20.0,
-            "y": 125.0
+            "y": 145.0
           }
         ]
       }
