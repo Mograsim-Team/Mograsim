@@ -773,19 +773,19 @@
         },
         "pin2": {
           "compName": "demux2#0",
-          "pinName": "S0"
+          "pinName": "S1"
         },
         "name": "unnamedWire#28",
         "path": []
       },
       {
         "pin1": {
-          "compName": "Splitter#1",
-          "pinName": "O0"
+          "compName": "demux2#0",
+          "pinName": "S0"
         },
         "pin2": {
-          "compName": "demux2#0",
-          "pinName": "S1"
+          "compName": "Splitter#1",
+          "pinName": "O0"
         },
         "name": "unnamedWire#29",
         "path": []
@@ -1275,13 +1275,13 @@
       "c001": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff12_we#1"
+          "delegateTarget": "dff12_we#0"
         }
       },
       "c010": {
         "id": "delegating",
         "params": {
-          "delegateTarget": "dff12_we#0"
+          "delegateTarget": "dff12_we#1"
         }
       },
       "c011": {
