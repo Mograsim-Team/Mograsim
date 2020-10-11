@@ -51,7 +51,7 @@ public class TestEnvironmentHelper
 	private DebugState debug = DebugState.NO_DEBUG;
 	private Set<String> wireDebugChangeSet;
 	private boolean debugWires = false;
-	public int debugEventThreshold = 10_000;
+	public int debugEventThreshold = 20_000;
 	public int debugEventCount = 500;
 	private int eventCounter;
 
