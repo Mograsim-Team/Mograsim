@@ -250,6 +250,30 @@
         "params": 1
       },
       {
+        "id": "Splitter",
+        "name": "Splitter#0",
+        "pos": {
+          "x": 100.0,
+          "y": 205.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#1",
+        "pos": {
+          "x": 75.0,
+          "y": 255.0
+        },
+        "params": {
+          "logicWidth": 4,
+          "orientation": "LEFT"
+        }
+      },
+      {
         "id": "WireCrossPoint",
         "name": "WireCrossPoint#0",
         "pos": {
@@ -280,8 +304,8 @@
         "id": "not4",
         "name": "not4#0",
         "pos": {
-          "x": 75.0,
-          "y": 250.0
+          "x": 60.0,
+          "y": 200.0
         }
       },
       {
@@ -510,20 +534,20 @@
           "pinName": "Y1"
         },
         "pin2": {
-          "compName": "not4#0",
-          "pinName": "A1"
+          "compName": "Splitter#1",
+          "pinName": "O3"
         },
         "name": "unnamedWire#10",
         "path": []
       },
       {
         "pin1": {
-          "compName": "sel2_4#0",
-          "pinName": "Y2"
+          "compName": "Splitter#1",
+          "pinName": "O2"
         },
         "pin2": {
-          "compName": "not4#0",
-          "pinName": "A2"
+          "compName": "sel2_4#0",
+          "pinName": "Y2"
         },
         "name": "unnamedWire#11",
         "path": []
@@ -534,20 +558,20 @@
           "pinName": "Y3"
         },
         "pin2": {
-          "compName": "not4#0",
-          "pinName": "A3"
+          "compName": "Splitter#1",
+          "pinName": "O1"
         },
         "name": "unnamedWire#12",
         "path": []
       },
       {
         "pin1": {
-          "compName": "sel2_4#0",
-          "pinName": "Y4"
+          "compName": "Splitter#1",
+          "pinName": "O0"
         },
         "pin2": {
-          "compName": "not4#0",
-          "pinName": "A4"
+          "compName": "sel2_4#0",
+          "pinName": "Y4"
         },
         "name": "unnamedWire#13",
         "path": []
@@ -706,8 +730,8 @@
       },
       {
         "pin1": {
-          "compName": "not4#0",
-          "pinName": "Y1"
+          "compName": "Splitter#0",
+          "pinName": "O3"
         },
         "pin2": {
           "compName": "NandGate#4",
@@ -717,7 +741,7 @@
         "path": [
           {
             "x": 115.0,
-            "y": 255.0
+            "y": 205.0
           },
           {
             "x": 115.0,
@@ -727,8 +751,8 @@
       },
       {
         "pin1": {
-          "compName": "not4#0",
-          "pinName": "Y2"
+          "compName": "Splitter#0",
+          "pinName": "O2"
         },
         "pin2": {
           "compName": "NandGate#5",
@@ -738,7 +762,7 @@
         "path": [
           {
             "x": 120.0,
-            "y": 265.0
+            "y": 215.0
           },
           {
             "x": 120.0,
@@ -748,8 +772,8 @@
       },
       {
         "pin1": {
-          "compName": "not4#0",
-          "pinName": "Y3"
+          "compName": "Splitter#0",
+          "pinName": "O1"
         },
         "pin2": {
           "compName": "NandGate#6",
@@ -759,7 +783,7 @@
         "path": [
           {
             "x": 125.0,
-            "y": 275.0
+            "y": 225.0
           },
           {
             "x": 125.0,
@@ -769,8 +793,8 @@
       },
       {
         "pin1": {
-          "compName": "not4#0",
-          "pinName": "Y4"
+          "compName": "Splitter#0",
+          "pinName": "O0"
         },
         "pin2": {
           "compName": "NandGate#7",
@@ -780,7 +804,7 @@
         "path": [
           {
             "x": 130.0,
-            "y": 285.0
+            "y": 235.0
           },
           {
             "x": 130.0,
@@ -918,6 +942,47 @@
           "pinName": "Y4"
         },
         "name": "unnamedWire#36",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#1",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "not4#0",
+          "pinName": "A"
+        },
+        "name": "unnamedWire#37",
+        "path": [
+          {
+            "x": 90.0,
+            "y": 270.0
+          },
+          {
+            "x": 90.0,
+            "y": 245.0
+          },
+          {
+            "x": 55.0,
+            "y": 245.0
+          },
+          {
+            "x": 55.0,
+            "y": 220.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "not4#0",
+          "pinName": "Y"
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#38",
         "path": []
       }
     ],
