@@ -189,7 +189,7 @@
         },
         "pin2": {
           "compName": "or4#0",
-          "pinName": "A1"
+          "pinName": "A4"
         },
         "name": "unnamedWire#1",
         "path": [
@@ -206,7 +206,7 @@
       {
         "pin1": {
           "compName": "or4#0",
-          "pinName": "A2"
+          "pinName": "A3"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -227,7 +227,7 @@
       {
         "pin1": {
           "compName": "or4#0",
-          "pinName": "A3"
+          "pinName": "A2"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -252,7 +252,7 @@
         },
         "pin2": {
           "compName": "or4#0",
-          "pinName": "A4"
+          "pinName": "A1"
         },
         "name": "unnamedWire#4",
         "path": [
@@ -273,7 +273,7 @@
         },
         "pin2": {
           "compName": "or4#1",
-          "pinName": "A1"
+          "pinName": "A4"
         },
         "name": "unnamedWire#5",
         "path": []
@@ -281,7 +281,7 @@
       {
         "pin1": {
           "compName": "or4#1",
-          "pinName": "A2"
+          "pinName": "A3"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -297,7 +297,7 @@
         },
         "pin2": {
           "compName": "or4#1",
-          "pinName": "A3"
+          "pinName": "A2"
         },
         "name": "unnamedWire#7",
         "path": []
@@ -305,7 +305,7 @@
       {
         "pin1": {
           "compName": "or4#1",
-          "pinName": "A4"
+          "pinName": "A1"
         },
         "pin2": {
           "compName": "Splitter#0",
@@ -321,7 +321,7 @@
         },
         "pin2": {
           "compName": "or4#2",
-          "pinName": "A1"
+          "pinName": "A4"
         },
         "name": "unnamedWire#9",
         "path": [
@@ -342,7 +342,7 @@
         },
         "pin2": {
           "compName": "or4#2",
-          "pinName": "A2"
+          "pinName": "A3"
         },
         "name": "unnamedWire#10",
         "path": [
@@ -363,7 +363,7 @@
         },
         "pin2": {
           "compName": "or4#2",
-          "pinName": "A3"
+          "pinName": "A2"
         },
         "name": "unnamedWire#11",
         "path": [
@@ -384,7 +384,7 @@
         },
         "pin2": {
           "compName": "or4#2",
-          "pinName": "A4"
+          "pinName": "A1"
         },
         "name": "unnamedWire#12",
         "path": [

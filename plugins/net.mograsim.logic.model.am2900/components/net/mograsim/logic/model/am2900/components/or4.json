@@ -5,7 +5,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 5.0
+        "y": 35.0
       },
       "name": "A1",
       "logicWidth": 1,
@@ -14,7 +14,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 15.0
+        "y": 25.0
       },
       "name": "A2",
       "logicWidth": 1,
@@ -23,7 +23,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 25.0
+        "y": 15.0
       },
       "name": "A3",
       "logicWidth": 1,
@@ -32,7 +32,7 @@
     {
       "location": {
         "x": 0.0,
-        "y": 35.0
+        "y": 5.0
       },
       "name": "A4",
       "logicWidth": 1,
@@ -191,7 +191,7 @@
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "A1"
+          "pinName": "A4"
         },
         "pin2": {
           "compName": "WireCrossPoint#0",
@@ -203,7 +203,7 @@
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "A2"
+          "pinName": "A3"
         },
         "pin2": {
           "compName": "WireCrossPoint#1",
@@ -215,7 +215,7 @@
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "A3"
+          "pinName": "A2"
         },
         "pin2": {
           "compName": "WireCrossPoint#2",
@@ -227,7 +227,7 @@
       {
         "pin1": {
           "compName": "_submodelinterface",
-          "pinName": "A4"
+          "pinName": "A1"
         },
         "pin2": {
           "compName": "WireCrossPoint#3",
