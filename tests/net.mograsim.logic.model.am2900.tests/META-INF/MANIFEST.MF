@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Am2900 Tests
 Bundle-SymbolicName: net.mograsim.logic.model.am2900.tests;singleton:=true
-Bundle-Version: 0.1.1.qualifier
+Bundle-Version: 0.1.2.qualifier
 Bundle-Vendor: Mograsim Team
-Fragment-Host: net.mograsim.logic.model.am2900;bundle-version="0.1.1"
+Fragment-Host: net.mograsim.logic.model.am2900;bundle-version="0.1.2"
 Automatic-Module-Name: net.mograsim.logic.model.am2900.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.junit;bundle-version="4.12.0",
