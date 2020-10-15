@@ -27,6 +27,7 @@ import net.mograsim.logic.model.model.components.atomic.ModelManualSwitch;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
 import net.mograsim.logic.model.model.wires.Pin;
+import net.mograsim.logic.model.modeladapter.CoreModelParameters;
 import net.mograsim.logic.model.modeladapter.CoreModelParameters.CoreModelParametersBuilder;
 import net.mograsim.logic.model.modeladapter.LogicCoreAdapter;
 import net.mograsim.logic.model.preferences.DefaultRenderPreferences;
@@ -89,7 +90,7 @@ public class TestEnvironmentHelper
 		component.getPins().values().forEach(this::extendModelPin);
 
 		// Create core model
-		CoreModelParametersBuilder paramsBuilder = new CoreModelParametersBuilder();
+		CoreModelParametersBuilder paramsBuilder = CoreModelParameters.builder();
 		paramsBuilder.gateProcessTime = 50;
 		paramsBuilder.hardcodedComponentProcessTime = paramsBuilder.gateProcessTime * 5;
 		paramsBuilder.wireTravelTime = 10;

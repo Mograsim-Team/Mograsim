@@ -57,7 +57,7 @@ public class Am2900Machine implements Machine
 				"resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json", "Am2900");
 		this.amicListeners = new HashSet<>();
 
-		CoreModelParametersBuilder paramsBuilder = new CoreModelParametersBuilder();
+		CoreModelParametersBuilder paramsBuilder = CoreModelParameters.builder();
 		paramsBuilder.gateProcessTime = 50;
 		paramsBuilder.hardcodedComponentProcessTime = paramsBuilder.gateProcessTime * 5;
 		paramsBuilder.wireTravelTime = 10;

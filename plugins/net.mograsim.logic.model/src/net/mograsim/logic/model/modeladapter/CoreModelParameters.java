@@ -20,11 +20,20 @@ public class CoreModelParameters
 		this.hardcodedComponentProcessTime = builder.hardcodedComponentProcessTime;
 	}
 
+	public static CoreModelParametersBuilder builder()
+	{
+		return new CoreModelParametersBuilder();
+	}
+
 	public static class CoreModelParametersBuilder
 	{
 		public int wireTravelTime;
 		public int gateProcessTime;
 		public int hardcodedComponentProcessTime;
+
+		private CoreModelParametersBuilder()
+		{
+		}
 
 		public CoreModelParametersBuilder wireTravelTime(int wireTravelTime)
 		{
