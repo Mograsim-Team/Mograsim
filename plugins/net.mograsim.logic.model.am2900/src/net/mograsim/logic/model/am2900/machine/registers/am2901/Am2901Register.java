@@ -15,7 +15,7 @@ public class Am2901Register extends HighLevelStateBasedRegister implements Am290
 	{
 		String[] prefixed = new String[4];
 		for (int i = 0, b = 0; i < 4; i++, b += 4)
-			prefixed[i] = String.format("am2901_%d-%d.%s", (b + 3), b, suffix);
+			prefixed[i] = String.format("am2901.%d-%d.%s", (b + 3), b, suffix);
 		return prefixed;
 	}
 }

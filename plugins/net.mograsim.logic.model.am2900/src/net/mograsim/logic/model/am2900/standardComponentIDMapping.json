@@ -12,6 +12,7 @@
   "Am2901ALUOneBit": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901ALUOneBit.json",
   "Am2901DestDecode": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901DestDecode.json",
   "Am2901SourceDecode": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901SourceDecode.json",
+  "Am2901x4": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901x4.json",
   "Am2904": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2904/Am2904.json",
   "Am2904MSR": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2904/Am2904MSR.json",
   "Am2904muSR": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2904/Am2904muSR.json",
