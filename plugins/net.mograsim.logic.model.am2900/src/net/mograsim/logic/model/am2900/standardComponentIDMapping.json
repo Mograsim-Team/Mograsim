@@ -4,6 +4,7 @@
   "Am2900MPROM": "resloader:Am2900Loader:class:net.mograsim.logic.model.am2900.components.ModelAm2900MPROM",
 
   "Am2900": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900.json",
+  "Am2900PC": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900PC.json",
   "Am2900MemoryController": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/Am2900MemoryController.json",
   "Am2901": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901.json",
   "Am2901ALUFuncDecode": "resloader:Am2900Loader:jsonres:net/mograsim/logic/model/am2900/components/am2901/Am2901ALUFuncDecode.json",
