@@ -12,11 +12,13 @@ and what the purpose of microprogramming is. In more detail, Mograsim allows:
 * View the Circuit Logic operating and executing the microprogram in detail
 
 Mograsim focuses especially on the AMD Am2900 Family microprocessors in a specific 
-16-bit arrangement used by the Technical University of Munich as an example.  
+16-bit arrangement used by the Technical University of Munich as an example.
+
+**For more information and how to use and install Mograsim, visit https://mograsim.net**
 
 # Getting Started
 
-See [Getting Started](docs/getting_started.md)
+See https://mograsim.net#_getting_started_with_mograsim
 
 # Building Mograsim
 
