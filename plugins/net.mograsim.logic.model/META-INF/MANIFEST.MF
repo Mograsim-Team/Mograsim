@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.mograsim.logic.model;singleton:=true
-Bundle-Version: 0.1.3.qualifier
+Bundle-Version: 0.1.4.qualifier
 Export-Package: net.mograsim.logic.model,
  net.mograsim.logic.model.examples,
  net.mograsim.logic.model.model,
@@ -25,8 +25,8 @@ Export-Package: net.mograsim.logic.model,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.swt;bundle-version="3.0.0";visibility:=reexport,
  SWTZoomableCanvas;bundle-version="1.0.0";visibility:=reexport,
- net.mograsim.logic.core;bundle-version="0.1.3";visibility:=reexport,
+ net.mograsim.logic.core;bundle-version="0.1.4";visibility:=reexport,
  com.google.gson;bundle-version="2.8.2";visibility:=reexport,
- net.mograsim.preferences;bundle-version="0.1.3"
+ net.mograsim.preferences;bundle-version="0.1.4"
 Automatic-Module-Name: net.mograsim.logic.model
 Bundle-Vendor: Mograsim Team

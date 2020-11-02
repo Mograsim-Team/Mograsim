@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.mograsim.logic.core
-Bundle-Version: 0.1.3.qualifier
+Bundle-Version: 0.1.4.qualifier
 Export-Package: net.mograsim.logic.core,
  net.mograsim.logic.core.components,
  net.mograsim.logic.core.components.gates,
@@ -12,4 +12,4 @@ Export-Package: net.mograsim.logic.core,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: net.mograsim.logic.core
 Bundle-Vendor: Mograsim Team
-Require-Bundle: net.mograsim.preferences;bundle-version="0.1.3"
+Require-Bundle: net.mograsim.preferences;bundle-version="0.1.4"

@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Mograsim docs
 Bundle-SymbolicName: net.mograsim.plugin.docs;singleton:=true
-Bundle-Version: 0.1.3.qualifier
+Bundle-Version: 0.1.4.qualifier
 Bundle-Vendor: Mograsim Team
 Automatic-Module-Name: net.mograsim.plugin.docs
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Bundle: net.mograsim.plugin.core;bundle-version="0.1.3",
+Require-Bundle: net.mograsim.plugin.core;bundle-version="0.1.4",
  org.eclipse.help

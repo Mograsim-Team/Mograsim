@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Logic Tests
 Bundle-SymbolicName: net.mograsim.logic.core.tests;singleton:=true
-Bundle-Version: 0.1.3.qualifier
+Bundle-Version: 0.1.4.qualifier
 Bundle-Vendor: Mograsim Team
-Fragment-Host: net.mograsim.logic.core;bundle-version="0.1.3"
+Fragment-Host: net.mograsim.logic.core;bundle-version="0.1.4"
 Automatic-Module-Name: net.mograsim.logic.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.junit.jupiter.api;bundle-version="5.4.0";visibility:=reexport,
