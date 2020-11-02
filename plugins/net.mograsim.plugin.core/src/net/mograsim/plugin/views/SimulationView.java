@@ -75,6 +75,7 @@ public class SimulationView extends ViewPart
 		controlsToDisableWhenNoMachinePresent = new HashSet<>();
 		memCellListener = a -> instPreview.refresh();
 		// TODO use Step Over instead
+		// TODO this should not be managed by the Simulation View
 		clockObserver = o ->
 		{
 			if (((CoreClock) o).isOn())
@@ -142,7 +143,7 @@ public class SimulationView extends ViewPart
 			else
 				cl.deregisterObserver(clockObserver);
 		});
-		sbseButton.setSelection(false);
+		sbseButton.setSelection(true);
 
 		Label simSpeedLabel = new Label(c, SWT.NONE);
 		controlsToDisableWhenNoMachinePresent.add(simSpeedLabel);
@@ -283,6 +284,9 @@ public class SimulationView extends ViewPart
 			// update preview
 			contentProvider.setMachine(machine);
 
+			// enable SBSE
+			machine.getClock().registerObserver(clockObserver);
+
 			// initialize executer
 			debugTarget.addExecutionSpeedListener(executionSpeedListener);
 			speedFactorChanged(debugTarget.getExecutionSpeed());
@@ -303,7 +307,7 @@ public class SimulationView extends ViewPart
 			debugTarget.getMachine().getMicroInstructionMemory().deregisterCellModifiedListener(memCellListener);
 			debugTarget.getMachine().getClock().deregisterObserver(clockObserver);
 			if (sbseButton != null && !sbseButton.isDisposed())
-				sbseButton.setSelection(false);
+				sbseButton.setSelection(true);
 		}
 	}
 
