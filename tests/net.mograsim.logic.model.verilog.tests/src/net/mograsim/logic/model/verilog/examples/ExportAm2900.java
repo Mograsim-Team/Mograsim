@@ -33,6 +33,8 @@ import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.verilog.converter.ModelComponentToVerilogComponentDeclarationMapping;
 import net.mograsim.logic.model.verilog.converter.ModelComponentToVerilogConverter;
 import net.mograsim.logic.model.verilog.helper.UnionFind;
+import net.mograsim.logic.model.verilog.model.IOPort;
+import net.mograsim.logic.model.verilog.model.VerilogComponentDeclaration;
 import net.mograsim.logic.model.verilog.model.VerilogComponentImplementation;
 
 public class ExportAm2900
@@ -96,6 +98,9 @@ public class ExportAm2900
 			ModelComponentToVerilogComponentDeclarationMapping generateCanonicalDeclarationMapping = ModelComponentToVerilogConverter
 					.generateCanonicalDeclarationMapping(c, new UnionFind<>(), id, params,
 							ModelComponentToVerilogConverter.sanitizeVerilogID("mgs_" + id + (params.isJsonNull() ? "" : "_" + params)));
+			VerilogComponentDeclaration d = generateCanonicalDeclarationMapping.getVerilogComponentDeclaration();
+			System.out.println("module " + d.getID() + " "
+					+ d.getIOPorts().stream().map(IOPort::toDeclarationVerilogCode).collect(Collectors.joining(", ", "(", ")")) + ";");
 			return generateCanonicalDeclarationMapping;
 		}).collect(Collectors.toSet());
 
