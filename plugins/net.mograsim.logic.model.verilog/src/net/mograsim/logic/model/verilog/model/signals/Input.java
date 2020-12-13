@@ -10,6 +10,6 @@ public class Input extends IOPort
 	@Override
 	public String toDeclarationVerilogCode()
 	{
-		return "input [" + getWidth() + ":0] " + getName();
+		return "input [" + (getWidth() - 1) + ":0] " + getName();
 	}
 }

@@ -9,6 +9,6 @@ public class Wire extends Signal
 
 	public String toDeclarationVerilogCode()
 	{
-		return "wire [" + getWidth() + ":0] " + getName() + ";";
+		return "wire [" + (getWidth() - 1) + ":0] " + getName() + ";";
 	}
 }
