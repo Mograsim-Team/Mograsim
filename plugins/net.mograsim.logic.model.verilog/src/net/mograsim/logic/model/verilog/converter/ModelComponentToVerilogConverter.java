@@ -72,7 +72,7 @@ public class ModelComponentToVerilogConverter
 		if (modelComponent instanceof SubmodelComponent)
 			result = new SubmodelComponentConverter(this).convert((SubmodelComponent) modelComponent, modelID, params, verilogID);
 		else if (modelComponent instanceof ModelTriStateBuffer)
-			result = new TriStateBufferConverter(this).convert((ModelTriStateBuffer) modelComponent, modelID, params, verilogID);
+			result = new TriStateBufferConverter().convert((ModelTriStateBuffer) modelComponent, modelID, params, verilogID);
 		else
 			throw new IllegalArgumentException(
 					"Can only convert SubmodelComponents, tried to convert " + modelID + " with params " + params);

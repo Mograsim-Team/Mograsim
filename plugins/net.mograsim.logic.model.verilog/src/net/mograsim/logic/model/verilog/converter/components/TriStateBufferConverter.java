@@ -37,13 +37,6 @@ public class TriStateBufferConverter implements ComponentConverter<ModelTriState
 	private static final VerilogComponentDeclaration TSBW_CONDITIONAL = new VerilogComponentDeclaration("tsbw_conditional",
 			List.of(new Input("cond", 2), new Input("onTrue", 2), new Input("onFalse", 2), new Output("res", 2)));
 
-	private final ModelComponentToVerilogConverter converter;
-
-	public TriStateBufferConverter(ModelComponentToVerilogConverter converter)
-	{
-		this.converter = converter;
-	}
-
 	@Override
 	public ComponentConversionResult convert(ModelTriStateBuffer modelComponent, String modelID, JsonElement params, String verilogID)
 	{
