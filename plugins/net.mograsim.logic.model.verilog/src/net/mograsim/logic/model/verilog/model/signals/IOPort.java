@@ -1,6 +1,6 @@
 package net.mograsim.logic.model.verilog.model.signals;
 
-public abstract class IOPort extends NamedSignal
+public abstract class IOPort extends Signal
 {
 	public IOPort(Type type, String name, int width)
 	{

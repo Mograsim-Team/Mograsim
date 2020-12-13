@@ -1,6 +1,6 @@
 package net.mograsim.logic.model.verilog.model.signals;
 
-public class Wire extends NamedSignal
+public class Wire extends Signal
 {
 	public Wire(String name, int width)
 	{

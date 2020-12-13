@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import net.mograsim.logic.model.verilog.model.VerilogComponentDeclaration;
+import net.mograsim.logic.model.verilog.model.expressions.Expression;
 import net.mograsim.logic.model.verilog.model.signals.IOPort;
 import net.mograsim.logic.model.verilog.model.signals.Signal;
 
@@ -13,9 +14,9 @@ public class ComponentReference extends Statement
 {
 	private final String name;
 	private final VerilogComponentDeclaration referencedComponent;
-	private final List<Signal> arguments;
+	private final List<Expression> arguments;
 
-	public ComponentReference(String name, VerilogComponentDeclaration referencedComponent, List<Signal> arguments)
+	public ComponentReference(String name, VerilogComponentDeclaration referencedComponent, List<Expression> arguments)
 	{
 		this.name = Objects.requireNonNull(name);
 		this.referencedComponent = Objects.requireNonNull(referencedComponent);
@@ -47,7 +48,7 @@ public class ComponentReference extends Statement
 		return referencedComponent;
 	}
 
-	public List<Signal> getArguments()
+	public List<Expression> getArguments()
 	{
 		return arguments;
 	}
@@ -58,7 +59,7 @@ public class ComponentReference extends Statement
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(referencedComponent.getID() + " " + name);
-		sb.append(arguments.stream().map(Signal::toReferenceVerilogCode).collect(Collectors.joining(", ", "(", ")")));
+		sb.append(arguments.stream().map(Expression::toVerilogCode).collect(Collectors.joining(", ", "(", ")")));
 		sb.append(";");
 
 		return sb.toString();
@@ -79,7 +80,7 @@ public class ComponentReference extends Statement
 	@Override
 	public Set<Signal> getReferencedSignals()
 	{
-		return Set.copyOf(arguments);
+		return arguments.stream().map(Expression::getReferencedSignals).flatMap(Set::stream).collect(Collectors.toUnmodifiableSet());
 	}
 
 	@Override

@@ -9,11 +9,12 @@ public class CollectionsUtils
 	{
 	}
 
-	public static <E> Set<E> union(Set<E> a, Set<E> b)
+	@SafeVarargs
+	public static <E> Set<E> union(Set<E>... sets)
 	{
 		Set<E> union = new HashSet<>();
-		union.addAll(a);
-		union.addAll(b);
+		for (Set<E> set : sets)
+			union.addAll(set);
 		return Set.copyOf(union);
 	}
 }

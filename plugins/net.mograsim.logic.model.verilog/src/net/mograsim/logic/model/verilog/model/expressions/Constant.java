@@ -1,14 +1,17 @@
-package net.mograsim.logic.model.verilog.model.signals;
+package net.mograsim.logic.model.verilog.model.expressions;
+
+import java.util.Set;
 
 import net.mograsim.logic.core.types.BitVector;
+import net.mograsim.logic.model.verilog.model.signals.Signal;
 
-public class Constant extends Signal
+public class Constant extends Expression
 {
 	private final BitVector constant;
 
 	public Constant(BitVector constant)
 	{
-		super(Type.CONSTANT, constant.length());
+		super(constant.length());
 		this.constant = constant;
 
 		check();
@@ -26,9 +29,15 @@ public class Constant extends Signal
 	}
 
 	@Override
-	public String toReferenceVerilogCode()
+	public String toVerilogCode()
 	{
 		return getWidth() + "'b" + constant.toBitstring();
+	}
+
+	@Override
+	public Set<Signal> getReferencedSignals()
+	{
+		return Set.of();
 	}
 
 	@Override

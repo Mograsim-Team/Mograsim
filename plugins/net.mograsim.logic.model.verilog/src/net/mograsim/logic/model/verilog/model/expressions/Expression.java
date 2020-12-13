@@ -11,6 +11,14 @@ public abstract class Expression
 	public Expression(int width)
 	{
 		this.width = width;
+
+		check();
+	}
+
+	private void check()
+	{
+		if (width < 0)
+			throw new IllegalArgumentException("Width can't be negative");
 	}
 
 	public int getWidth()

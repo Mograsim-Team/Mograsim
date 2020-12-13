@@ -25,8 +25,6 @@ import net.mograsim.logic.model.model.components.atomic.ModelClock.ModelClockPar
 import net.mograsim.logic.model.model.components.atomic.ModelFixedOutput;
 import net.mograsim.logic.model.model.components.atomic.ModelNandGate;
 import net.mograsim.logic.model.model.components.atomic.ModelTextComponent;
-import net.mograsim.logic.model.model.components.atomic.ModelTriStateBuffer;
-import net.mograsim.logic.model.model.components.atomic.ModelTriStateBuffer.ModelTriStateBufferParams;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.verilog.converter.ModelComponentToVerilogComponentDeclarationMapping;
@@ -67,14 +65,6 @@ public class ExportAm2900
 				new ModelNandGate(model, 1), //
 				new ModelFixedOutput(model, BitVector.SINGLE_0, null), //
 				new ModelFixedOutput(model, BitVector.SINGLE_1, null), //
-				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(1, Orientation.RIGHT)), //
-				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(1, Orientation.RIGHT_ALT)), //
-				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(1, Orientation.DOWN)), //
-				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(4, Orientation.RIGHT)), //
-				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(12, Orientation.RIGHT_ALT)), //
-				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(12, Orientation.DOWN)), //
-				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(16, Orientation.LEFT)), //
-				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(16, Orientation.RIGHT_ALT)), //
 				new ModelClock(model, new ModelClockParams(7000, Orientation.RIGHT)), //
 				new ModelTextComponent(model, "A bus"), //
 				new ModelTextComponent(model, "MPM addr"), //

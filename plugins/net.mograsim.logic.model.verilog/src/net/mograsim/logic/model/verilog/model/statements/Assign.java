@@ -4,16 +4,15 @@ import java.util.Objects;
 import java.util.Set;
 
 import net.mograsim.logic.model.verilog.model.expressions.Expression;
-import net.mograsim.logic.model.verilog.model.signals.NamedSignal;
 import net.mograsim.logic.model.verilog.model.signals.Signal;
 import net.mograsim.logic.model.verilog.utils.CollectionsUtils;
 
 public class Assign extends Statement
 {
-	private final NamedSignal target;
+	private final Signal target;
 	private final Expression source;
 
-	public Assign(NamedSignal target, Expression source)
+	public Assign(Signal target, Expression source)
 	{
 		this.target = Objects.requireNonNull(target);
 		this.source = Objects.requireNonNull(source);
