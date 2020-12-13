@@ -1,12 +1,12 @@
 package net.mograsim.logic.model.verilog.converter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import com.google.gson.JsonElement;
 
@@ -45,8 +45,15 @@ public class ModelComponentToVerilogComponentDeclarationMapping
 		List<VerilogEmulatedModelPin> reverseMapping = new ArrayList<>(pinMapping.size());
 		for (int i = 0; i < pinMapping.size(); i++)
 			reverseMapping.add(null);
+		Map<Type, Set<PinNameBit>> usedPinNameBits = new HashMap<>();
+		for (Type t : Type.values())
+			usedPinNameBits.put(t, new HashSet<>());
 		for (VerilogEmulatedModelPin verilogEmulatedModelPin : pinMapping)
 		{
+			// TODO check if pre, out, res pins are consistent with each other
+			for (PinNameBit pinbit : verilogEmulatedModelPin.getPinbits())
+				if (!usedPinNameBits.get(verilogEmulatedModelPin.getType()).add(pinbit))
+					throw new IllegalArgumentException("Pinbit occurs twice: " + pinbit);
 			int verilogPinIndex = verilogEmulatedModelPin.getPortIndex();
 			if (verilogComponentDeclaration.getIOPorts().get(verilogPinIndex) != verilogEmulatedModelPin.getVerilogPort())
 				throw new IllegalArgumentException("Incorrect IO port index for port: " + verilogEmulatedModelPin);
@@ -62,8 +69,12 @@ public class ModelComponentToVerilogComponentDeclarationMapping
 
 	private Map<PinNameBit, VerilogEmulatedModelPin> filterPinMapping(Type filteredType)
 	{
-		return pinMapping.stream().filter(p -> p.getType() == filteredType)
-				.collect(Collectors.toMap(VerilogEmulatedModelPin::getPinbit, Function.identity()));
+		Map<PinNameBit, VerilogEmulatedModelPin> result = new HashMap<>();
+		for (VerilogEmulatedModelPin p : pinMapping)
+			if (p.getType() == filteredType)
+				for (PinNameBit pinbit : p.getPinbits())
+					result.put(pinbit, p);
+		return Map.copyOf(result);
 	}
 
 	public String getModelComponentID()

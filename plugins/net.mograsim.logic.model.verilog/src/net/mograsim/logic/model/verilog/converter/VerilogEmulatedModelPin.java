@@ -1,6 +1,7 @@
 package net.mograsim.logic.model.verilog.converter;
 
 import java.util.Objects;
+import java.util.Set;
 
 import net.mograsim.logic.model.verilog.model.IOPort;
 import net.mograsim.logic.model.verilog.model.Signal;
@@ -9,14 +10,14 @@ public class VerilogEmulatedModelPin
 {
 	private final IOPort verilogPort;
 	private final int portIndex;
-	private final PinNameBit pinbit;
+	private final Set<PinNameBit> pinbits;
 	private final Type type;
 
-	public VerilogEmulatedModelPin(IOPort verilogPort, int portIndex, PinNameBit pinbit, Type type)
+	public VerilogEmulatedModelPin(IOPort verilogPort, int portIndex, Set<PinNameBit> pinbits, Type type)
 	{
 		this.verilogPort = Objects.requireNonNull(verilogPort);
 		this.portIndex = portIndex;
-		this.pinbit = Objects.requireNonNull(pinbit);
+		this.pinbits = Set.copyOf(pinbits);
 		this.type = Objects.requireNonNull(type);
 
 		check();
@@ -57,9 +58,9 @@ public class VerilogEmulatedModelPin
 		return portIndex;
 	}
 
-	public PinNameBit getPinbit()
+	public Set<PinNameBit> getPinbits()
 	{
-		return pinbit;
+		return pinbits;
 	}
 
 	public Type getType()
@@ -72,7 +73,7 @@ public class VerilogEmulatedModelPin
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((pinbit == null) ? 0 : pinbit.hashCode());
+		result = prime * result + ((pinbits == null) ? 0 : pinbits.hashCode());
 		result = prime * result + portIndex;
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((verilogPort == null) ? 0 : verilogPort.hashCode());
@@ -89,11 +90,11 @@ public class VerilogEmulatedModelPin
 		if (getClass() != obj.getClass())
 			return false;
 		VerilogEmulatedModelPin other = (VerilogEmulatedModelPin) obj;
-		if (pinbit == null)
+		if (pinbits == null)
 		{
-			if (other.pinbit != null)
+			if (other.pinbits != null)
 				return false;
-		} else if (!pinbit.equals(other.pinbit))
+		} else if (!pinbits.equals(other.pinbits))
 			return false;
 		if (portIndex != other.portIndex)
 			return false;

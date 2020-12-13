@@ -25,7 +25,6 @@ import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.verilog.converter.VerilogEmulatedModelPin.Type;
 import net.mograsim.logic.model.verilog.helper.IdentifierGenerator;
 import net.mograsim.logic.model.verilog.helper.UnionFind;
-import net.mograsim.logic.model.verilog.helper.UnionFind.UnionFindElement;
 import net.mograsim.logic.model.verilog.model.Assign;
 import net.mograsim.logic.model.verilog.model.ComponentReference;
 import net.mograsim.logic.model.verilog.model.Constant;
@@ -72,75 +71,137 @@ public class ModelComponentToVerilogConverter
 					"Can only convert SubmodelComponents, tried to convert " + modelID + " with params " + params);
 		SubmodelComponent modelComponentC = (SubmodelComponent) modelComponent;
 
-		ModelComponentToVerilogComponentDeclarationMapping mapping = mapDeclaration(modelComponentC, modelID, params);
+		UnionFind<PinBit> connectedPins = findConnectedPins(modelComponentC);
+
+		ModelComponentToVerilogComponentDeclarationMapping mapping = mapDeclaration(modelComponentC, connectedPins, modelID, params);
 		componentMappingsPerModelIDPerParams.computeIfAbsent(modelID, i -> new HashMap<>()).put(params, mapping);
 
 		for (ModelComponent subcomponent : modelComponentC.submodel.getComponentsByName().values())
-			if (!subcomponent.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
+			if (!(subcomponent instanceof ModelSplitter) && !subcomponent.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
 				convert(subcomponent);
 
-		verilogComponents.add(mapImplementation(modelComponentC, mapping));
+		verilogComponents.add(mapImplementation(modelComponentC, connectedPins, mapping));
 	}
 
-	private ModelComponentToVerilogComponentDeclarationMapping mapDeclaration(ModelComponent modelComponent, String modelID,
-			JsonElement params)
-	{
-		return generateCanonicalDeclarationMapping(modelComponent, modelID, params,
-				verilogComponentIDGen.generateID(verilogComponentIDPrefix + modelID + (params.isJsonNull() ? "" : "_" + params)));
-	}
-
-	public static ModelComponentToVerilogComponentDeclarationMapping generateCanonicalDeclarationMapping(ModelComponent modelComponent,
-			String modelID, JsonElement params, String verilogID)
-	{
-		IdentifierGenerator ioPortIDGen = new IdentifierGenerator(ModelComponentToVerilogConverter::sanitizeVerilogID);
-		List<IOPort> ioPorts = new ArrayList<>();
-		Set<VerilogEmulatedModelPin> pinMapping = new HashSet<>();
-		for (Pin modelPin : modelComponent.getPins().values())
-			for (int bit = 0; bit < modelPin.logicWidth; bit++)
-			{
-				addPinMapping(ioPortIDGen, ioPorts, pinMapping, modelPin, bit, Input::new, Type.PRE, "pre");
-				addPinMapping(ioPortIDGen, ioPorts, pinMapping, modelPin, bit, Output::new, Type.OUT, "out");
-				addPinMapping(ioPortIDGen, ioPorts, pinMapping, modelPin, bit, Input::new, Type.RES, "res");
-			}
-
-		VerilogComponentDeclaration declaration = new VerilogComponentDeclaration(verilogID, ioPorts);
-		return new ModelComponentToVerilogComponentDeclarationMapping(modelID, params, declaration, pinMapping);
-	}
-
-	private static void addPinMapping(IdentifierGenerator ioPortIDGen, List<IOPort> ioPorts, Set<VerilogEmulatedModelPin> pinMapping,
-			Pin modelPin, int bit, BiFunction<String, Integer, IOPort> constr, Type type, String suffix)
-	{
-		String portID = ioPortIDGen.generateID(modelPin.name + "_" + bit + "_" + suffix);
-		IOPort ioPort = constr.apply(portID, 2);
-		int index = ioPorts.size();
-		ioPorts.add(ioPort);
-		pinMapping.add(new VerilogEmulatedModelPin(ioPort, index, new PinNameBit(modelPin.name, bit), type));
-	}
-
-	private VerilogComponentImplementation mapImplementation(SubmodelComponent modelComponent,
-			ModelComponentToVerilogComponentDeclarationMapping declarationMapping)
+	private static UnionFind<PinBit> findConnectedPins(SubmodelComponent modelComponent)
 	{
 		UnionFind<PinBit> connectedPins = new UnionFind<>();
 		for (ModelWire w : modelComponent.submodel.getWiresByName().values())
 			for (int bit = 0; bit < w.getPin1().logicWidth; bit++)
 				connectedPins.union(new PinBit(w.getPin1(), bit), new PinBit(w.getPin2(), bit));
 
-		Map<UnionFindElement<PinBit>, Signal> currentPreSignals = new HashMap<>();
-		Map<UnionFindElement<PinBit>, NamedSignal> finalOutSignals = new HashMap<>();
-		Map<UnionFindElement<PinBit>, NamedSignal> resSignals = new HashMap<>();
+		for (ModelComponent subcomponent : modelComponent.submodel.getComponentsByName().values())
+			if (subcomponent instanceof ModelSplitter)
+			{
+				ModelSplitter splitter = (ModelSplitter) subcomponent;
+				for (int bit = 0; bit < splitter.logicWidth; bit++)
+					connectedPins.union(new PinBit(splitter.getInputPin(), bit), new PinBit(splitter.getOutputPin(bit), 0));
+			}
+
+		// TODO connected pins of subcomponents
+
+		return connectedPins;
+	}
+
+	private ModelComponentToVerilogComponentDeclarationMapping mapDeclaration(SubmodelComponent modelComponent,
+			UnionFind<PinBit> connectedPins, String modelID, JsonElement params)
+	{
+		// TODO this is probably slow
+		Map<PinBit, PinNameBit> representantMapping = new HashMap<>();
+		UnionFind<PinNameBit> connectedPinsByName = new UnionFind<>();
+		for (Pin p : modelComponent.getSubmodelPins().values())
+			for (int bit = 0; bit < p.logicWidth; bit++)
+			{
+				PinNameBit pinnamebit = new PinNameBit(p.name, bit);
+				PinNameBit representative = representantMapping.computeIfAbsent(connectedPins.find(new PinBit(p, bit)), q -> pinnamebit);
+				connectedPinsByName.union(pinnamebit, representative);
+			}
+
+		return generateCanonicalDeclarationMapping(modelComponent, connectedPinsByName, modelID, params,
+				verilogComponentIDGen.generateID(verilogComponentIDPrefix + modelID + (params.isJsonNull() ? "" : "_" + params)));
+	}
+
+	public static ModelComponentToVerilogComponentDeclarationMapping generateCanonicalDeclarationMapping(ModelComponent modelComponent,
+			UnionFind<PinNameBit> connectedPins, String modelID, JsonElement params, String verilogID)
+	{
+		IdentifierGenerator ioPortIDGen = new IdentifierGenerator(ModelComponentToVerilogConverter::sanitizeVerilogID);
+		List<IOPort> ioPorts = new ArrayList<>();
+		Map<Type, Map<PinNameBit, VerilogEmulatedModelPinBuilder>> pinMapping = new HashMap<>();
+		for (Type t : Type.values())
+			pinMapping.put(t, new HashMap<>());
+		for (Pin modelPin : modelComponent.getPins().values())
+			for (int bit = 0; bit < modelPin.logicWidth; bit++)
+			{
+				PinNameBit pinbit = new PinNameBit(modelPin.name, bit);
+				addPinMapping(ioPortIDGen, ioPorts, connectedPins, pinMapping, pinbit, Input::new, Type.PRE, "pre");
+				addPinMapping(ioPortIDGen, ioPorts, connectedPins, pinMapping, pinbit, Output::new, Type.OUT, "out");
+				addPinMapping(ioPortIDGen, ioPorts, connectedPins, pinMapping, pinbit, Input::new, Type.RES, "res");
+			}
+
+		VerilogComponentDeclaration declaration = new VerilogComponentDeclaration(verilogID, ioPorts);
+		Set<VerilogEmulatedModelPin> finalPinMapping = pinMapping.values().stream().map(Map::values).flatMap(Collection::stream)
+				.map(VerilogEmulatedModelPinBuilder::build).collect(Collectors.toSet());
+		return new ModelComponentToVerilogComponentDeclarationMapping(modelID, params, declaration, finalPinMapping);
+	}
+
+	private static void addPinMapping(IdentifierGenerator ioPortIDGen, List<IOPort> ioPorts, UnionFind<PinNameBit> connectedPins,
+			Map<Type, Map<PinNameBit, VerilogEmulatedModelPinBuilder>> pinMapping, PinNameBit pinbit,
+			BiFunction<String, Integer, IOPort> constr, Type type, String suffix)
+	{
+		Map<PinNameBit, VerilogEmulatedModelPinBuilder> pinMappingCorrectType = pinMapping.get(type);
+		pinMappingCorrectType.computeIfAbsent(connectedPins.find(pinbit), p ->
+		{
+			String portID = ioPortIDGen.generateID(p.getName() + "_" + p.getBit() + "_" + suffix);
+			IOPort ioPort = constr.apply(portID, 2);
+			int index = ioPorts.size();
+			ioPorts.add(ioPort);
+			return new VerilogEmulatedModelPinBuilder(ioPort, index, type);
+		}).addPinbit(pinbit);
+	}
+
+	private static class VerilogEmulatedModelPinBuilder
+	{
+		private final IOPort verilogPort;
+		private final int portIndex;
+		private final Set<PinNameBit> pinbits;
+		private final Type type;
+
+		public VerilogEmulatedModelPinBuilder(IOPort verilogPort, int portIndex, Type type)
+		{
+			this.verilogPort = verilogPort;
+			this.portIndex = portIndex;
+			this.pinbits = new HashSet<>();
+			this.type = type;
+		}
+
+		public void addPinbit(PinNameBit pinbit)
+		{
+			pinbits.add(pinbit);
+		}
+
+		public VerilogEmulatedModelPin build()
+		{
+			return new VerilogEmulatedModelPin(verilogPort, portIndex, pinbits, type);
+		}
+	}
+
+	private VerilogComponentImplementation mapImplementation(SubmodelComponent modelComponent, UnionFind<PinBit> connectedPins,
+			ModelComponentToVerilogComponentDeclarationMapping declarationMapping)
+	{
+		Map<PinBit, Signal> currentPreSignals = new HashMap<>();
+		Map<PinBit, NamedSignal> finalOutSignals = new HashMap<>();
+		Map<PinBit, NamedSignal> resSignals = new HashMap<>();
 		for (Pin submodelPin : modelComponent.getSubmodelPins().values())
 			for (int bit = 0; bit < submodelPin.logicWidth; bit++)
 			{
 				PinBit pinbit = new PinBit(submodelPin, bit);
 				PinNameBit pinnamebit = pinbit.toPinNameBit();
-				UnionFindElement<PinBit> root = UnionFind.find(connectedPins.getElement(pinbit));
+				PinBit root = connectedPins.find(pinbit);
 				resSignals.put(root, declarationMapping.getResPinMapping().get(pinnamebit).getVerilogPort());
 				finalOutSignals.put(root, declarationMapping.getOutPinMapping().get(pinnamebit).getVerilogPort());
 				Signal prePort = declarationMapping.getPrePinMapping().get(pinnamebit).getVerilogPort();
 				Signal previousPrePort = currentPreSignals.put(root, prePort);
-				if (previousPrePort != null)
-					// TODO implement this
-					throw new IllegalArgumentException("Can't convert components with connected pins");
+				assert previousPrePort != null && !previousPrePort.equals(prePort);
 			}
 
 		IdentifierGenerator idGen = new IdentifierGenerator(
@@ -166,7 +227,7 @@ public class ModelComponentToVerilogConverter
 				for (int bit = 0; bit < pin.logicWidth; bit++)
 				{
 					PinBit pinbit = new PinBit(pin, bit);
-					UnionFindElement<PinBit> root = UnionFind.find(connectedPins.getElement(pinbit));
+					PinBit root = connectedPins.find(pinbit);
 					Wire outSignal = new Wire(idGen.generateID(subcomponentVerilogName + "_" + pin.name + "_" + bit), 2);
 					internalWires.add(outSignal);
 					Signal preSignal = currentPreSignals.put(root, outSignal);
@@ -190,7 +251,7 @@ public class ModelComponentToVerilogConverter
 		}
 
 		Set<Assign> assigns = new HashSet<>();
-		for (Entry<UnionFindElement<PinBit>, NamedSignal> e : finalOutSignals.entrySet())
+		for (Entry<PinBit, NamedSignal> e : finalOutSignals.entrySet())
 			assigns.add(new Assign(currentPreSignals.get(e.getKey()), e.getValue()));
 
 		return new VerilogComponentImplementation(declarationMapping.getVerilogComponentDeclaration(), internalWires, assigns,
