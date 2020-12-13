@@ -36,6 +36,7 @@ public class ModelSplitter extends ModelComponent
 	public final int logicWidth;
 	private final OrientationCalculator oc;
 	private final Pin inputPin;
+	private final Pin[] outputPins;
 
 	private ReadEnd inputEnd;
 	private final ReadEnd[] outputEnds;
@@ -55,8 +56,10 @@ public class ModelSplitter extends ModelComponent
 		double inLineY = (logicWidth - 1) * heightPerPin / 2;
 		addPin(this.inputPin = new Pin(model, this, "I", logicWidth, PinUsage.TRISTATE, oc.newX(0, inLineY), oc.newY(0, inLineY)));
 		double outputHeight = (logicWidth - 1) * heightPerPin;
+		this.outputPins = new Pin[logicWidth];
 		for (int i = 0; i < logicWidth; i++, outputHeight -= 10)
-			addPin(new Pin(model, this, "O" + i, 1, PinUsage.TRISTATE, oc.newX(width, outputHeight), oc.newY(width, outputHeight)));
+			addPin(outputPins[i] = new Pin(model, this, "O" + i, 1, PinUsage.TRISTATE, oc.newX(width, outputHeight),
+					oc.newY(width, outputHeight)));
 		outputEnds = new ReadEnd[logicWidth];
 
 		init();
@@ -121,6 +124,11 @@ public class ModelSplitter extends ModelComponent
 	public Pin getInputPin()
 	{
 		return inputPin;
+	}
+
+	public Pin getOutputPin(int i)
+	{
+		return outputPins[i];
 	}
 
 	/**
