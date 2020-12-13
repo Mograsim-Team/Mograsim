@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.verilog.model;
+package net.mograsim.logic.model.verilog.model.signals;
 
 import net.mograsim.logic.core.types.BitVector;
 

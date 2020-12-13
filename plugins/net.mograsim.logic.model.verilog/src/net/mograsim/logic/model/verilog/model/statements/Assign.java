@@ -1,16 +1,22 @@
-package net.mograsim.logic.model.verilog.model;
+package net.mograsim.logic.model.verilog.model.statements;
 
 import java.util.Objects;
+import java.util.Set;
 
-public class Assign
+import net.mograsim.logic.model.verilog.model.expressions.Expression;
+import net.mograsim.logic.model.verilog.model.signals.NamedSignal;
+import net.mograsim.logic.model.verilog.model.signals.Signal;
+import net.mograsim.logic.model.verilog.utils.CollectionsUtils;
+
+public class Assign extends Statement
 {
-	private final Signal source;
 	private final NamedSignal target;
+	private final Expression source;
 
-	public Assign(Signal source, NamedSignal target)
+	public Assign(NamedSignal target, Expression source)
 	{
-		this.source = Objects.requireNonNull(source);
 		this.target = Objects.requireNonNull(target);
+		this.source = Objects.requireNonNull(source);
 
 		check();
 	}
@@ -21,25 +27,44 @@ public class Assign
 			throw new IllegalArgumentException("Signal widthes don't match");
 	}
 
-	public Signal getSource()
-	{
-		return source;
-	}
-
 	public Signal getTarget()
 	{
 		return target;
 	}
 
+	public Expression getSource()
+	{
+		return source;
+	}
+
+	@Override
 	public String toVerilogCode()
 	{
-		return "assign " + target.toReferenceVerilogCode() + " = " + source.toReferenceVerilogCode() + ";";
+		return "assign " + target.toReferenceVerilogCode() + " = " + source.toVerilogCode() + ";";
+	}
+
+	@Override
+	public Set<String> getDefinedNames()
+	{
+		return Set.of();
+	}
+
+	@Override
+	public Set<Signal> getDefinedSignals()
+	{
+		return Set.of();
+	}
+
+	@Override
+	public Set<Signal> getReferencedSignals()
+	{
+		return CollectionsUtils.union(Set.of(target), source.getReferencedSignals());
 	}
 
 	@Override
 	public String toString()
 	{
-		return target.getName() + " = " + source.toReferenceVerilogCode();
+		return target.getName() + " = " + source;
 	}
 
 	@Override

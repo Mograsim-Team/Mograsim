@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.google.gson.JsonElement;
 
@@ -20,6 +21,7 @@ public class ModelComponentToVerilogComponentDeclarationMapping
 	private final VerilogComponentDeclaration verilogComponentDeclaration;
 	private final Set<VerilogEmulatedModelPin> pinMapping;
 
+	private final Set<Set<PinNameBit>> internallyConnectedPins;
 	private final Map<PinNameBit, VerilogEmulatedModelPin> prePinMapping;
 	private final Map<PinNameBit, VerilogEmulatedModelPin> outPinMapping;
 	private final Map<PinNameBit, VerilogEmulatedModelPin> resPinMapping;
@@ -35,6 +37,7 @@ public class ModelComponentToVerilogComponentDeclarationMapping
 
 		this.reversePinMapping = checkAndCalculateReversePinMapping();
 
+		this.internallyConnectedPins = calculateInternallyConnectedPins();
 		this.prePinMapping = filterPinMapping(Type.PRE);
 		this.outPinMapping = filterPinMapping(Type.OUT);
 		this.resPinMapping = filterPinMapping(Type.RES);
@@ -67,6 +70,11 @@ public class ModelComponentToVerilogComponentDeclarationMapping
 		return reverseMapping;
 	}
 
+	private Set<Set<PinNameBit>> calculateInternallyConnectedPins()
+	{
+		return pinMapping.stream().map(VerilogEmulatedModelPin::getPinbits).collect(Collectors.toUnmodifiableSet());
+	}
+
 	private Map<PinNameBit, VerilogEmulatedModelPin> filterPinMapping(Type filteredType)
 	{
 		Map<PinNameBit, VerilogEmulatedModelPin> result = new HashMap<>();
@@ -90,6 +98,11 @@ public class ModelComponentToVerilogComponentDeclarationMapping
 	public VerilogComponentDeclaration getVerilogComponentDeclaration()
 	{
 		return verilogComponentDeclaration;
+	}
+
+	public Set<Set<PinNameBit>> getInternallyConnectedPins()
+	{
+		return internallyConnectedPins;
 	}
 
 	public Set<VerilogEmulatedModelPin> getPinMapping()
@@ -123,6 +136,7 @@ public class ModelComponentToVerilogComponentDeclarationMapping
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((modelComponentID == null) ? 0 : modelComponentID.hashCode());
+		result = prime * result + ((modelComponentParams == null) ? 0 : modelComponentParams.hashCode());
 		result = prime * result + ((pinMapping == null) ? 0 : pinMapping.hashCode());
 		result = prime * result + ((verilogComponentDeclaration == null) ? 0 : verilogComponentDeclaration.hashCode());
 		return result;
@@ -143,6 +157,12 @@ public class ModelComponentToVerilogComponentDeclarationMapping
 			if (other.modelComponentID != null)
 				return false;
 		} else if (!modelComponentID.equals(other.modelComponentID))
+			return false;
+		if (modelComponentParams == null)
+		{
+			if (other.modelComponentParams != null)
+				return false;
+		} else if (!modelComponentParams.equals(other.modelComponentParams))
 			return false;
 		if (pinMapping == null)
 		{

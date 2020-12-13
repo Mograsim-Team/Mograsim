@@ -20,22 +20,26 @@ import net.mograsim.logic.model.model.components.ModelComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelSplitter;
 import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
 import net.mograsim.logic.model.model.wires.ModelWire;
+import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.model.wires.Pin;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.verilog.converter.VerilogEmulatedModelPin.Type;
-import net.mograsim.logic.model.verilog.helper.IdentifierGenerator;
-import net.mograsim.logic.model.verilog.helper.UnionFind;
-import net.mograsim.logic.model.verilog.model.Assign;
-import net.mograsim.logic.model.verilog.model.ComponentReference;
-import net.mograsim.logic.model.verilog.model.Constant;
-import net.mograsim.logic.model.verilog.model.IOPort;
-import net.mograsim.logic.model.verilog.model.Input;
-import net.mograsim.logic.model.verilog.model.NamedSignal;
-import net.mograsim.logic.model.verilog.model.Output;
-import net.mograsim.logic.model.verilog.model.Signal;
 import net.mograsim.logic.model.verilog.model.VerilogComponentDeclaration;
 import net.mograsim.logic.model.verilog.model.VerilogComponentImplementation;
-import net.mograsim.logic.model.verilog.model.Wire;
+import net.mograsim.logic.model.verilog.model.expressions.SignalReference;
+import net.mograsim.logic.model.verilog.model.signals.Constant;
+import net.mograsim.logic.model.verilog.model.signals.IOPort;
+import net.mograsim.logic.model.verilog.model.signals.Input;
+import net.mograsim.logic.model.verilog.model.signals.NamedSignal;
+import net.mograsim.logic.model.verilog.model.signals.Output;
+import net.mograsim.logic.model.verilog.model.signals.Signal;
+import net.mograsim.logic.model.verilog.model.signals.Wire;
+import net.mograsim.logic.model.verilog.model.statements.Assign;
+import net.mograsim.logic.model.verilog.model.statements.ComponentReference;
+import net.mograsim.logic.model.verilog.model.statements.Statement;
+import net.mograsim.logic.model.verilog.model.statements.WireDeclaration;
+import net.mograsim.logic.model.verilog.utils.IdentifierGenerator;
+import net.mograsim.logic.model.verilog.utils.UnionFind;
 
 public class ModelComponentToVerilogConverter
 {
@@ -60,30 +64,42 @@ public class ModelComponentToVerilogConverter
 
 	private void convert(ModelComponent modelComponent)
 	{
+		// these are handled elsewhere
+		if (modelComponent instanceof ModelSplitter || modelComponent instanceof ModelWireCrossPoint)
+			return;
+
 		String modelID = modelComponent.getIDForSerializing(new IdentifyParams());
 		JsonElement params = modelComponent.getParamsForSerializingJSON(new IdentifyParams());
 		if (componentMappingsPerModelIDPerParams.getOrDefault(modelID, Map.of()).containsKey(params))
 			// we already converted that component, or it was specified externally
 			return;
 
-		if (!(modelComponent instanceof SubmodelComponent))
+		String verilogID = verilogComponentIDGen.generateID(verilogComponentIDPrefix + modelID + (params.isJsonNull() ? "" : "_" + params));
+
+		// TODO don't rely on instanceof
+		if (modelComponent instanceof SubmodelComponent)
+			convertSubmodelComponent((SubmodelComponent) modelComponent, modelID, params, verilogID);
+		else
 			throw new IllegalArgumentException(
 					"Can only convert SubmodelComponents, tried to convert " + modelID + " with params " + params);
-		SubmodelComponent modelComponentC = (SubmodelComponent) modelComponent;
-
-		UnionFind<PinBit> connectedPins = findConnectedPins(modelComponentC);
-
-		ModelComponentToVerilogComponentDeclarationMapping mapping = mapDeclaration(modelComponentC, connectedPins, modelID, params);
-		componentMappingsPerModelIDPerParams.computeIfAbsent(modelID, i -> new HashMap<>()).put(params, mapping);
-
-		for (ModelComponent subcomponent : modelComponentC.submodel.getComponentsByName().values())
-			if (!(subcomponent instanceof ModelSplitter) && !subcomponent.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
-				convert(subcomponent);
-
-		verilogComponents.add(mapImplementation(modelComponentC, connectedPins, mapping));
 	}
 
-	private static UnionFind<PinBit> findConnectedPins(SubmodelComponent modelComponent)
+	private void convertSubmodelComponent(SubmodelComponent modelComponent, String modelID, JsonElement params, String verilogID)
+	{
+		for (ModelComponent subcomponent : modelComponent.submodel.getComponentsByName().values())
+			if (!subcomponent.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
+				convert(subcomponent);
+
+		UnionFind<PinBit> connectedPins = findConnectedPins(modelComponent);
+
+		ModelComponentToVerilogComponentDeclarationMapping mapping = mapDeclaration(modelComponent, connectedPins, modelID, params,
+				verilogID);
+		componentMappingsPerModelIDPerParams.computeIfAbsent(modelID, i -> new HashMap<>()).put(params, mapping);
+
+		verilogComponents.add(mapImplementation(modelComponent, connectedPins, mapping));
+	}
+
+	private UnionFind<PinBit> findConnectedPins(SubmodelComponent modelComponent)
 	{
 		UnionFind<PinBit> connectedPins = new UnionFind<>();
 		for (ModelWire w : modelComponent.submodel.getWiresByName().values())
@@ -96,15 +112,19 @@ public class ModelComponentToVerilogConverter
 				ModelSplitter splitter = (ModelSplitter) subcomponent;
 				for (int bit = 0; bit < splitter.logicWidth; bit++)
 					connectedPins.union(new PinBit(splitter.getInputPin(), bit), new PinBit(splitter.getOutputPin(bit), 0));
+			} else if (!(subcomponent instanceof ModelWireCrossPoint)
+					&& !subcomponent.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
+			{
+				ModelComponentToVerilogComponentDeclarationMapping subcomponentMapping = getComponentMapping(subcomponent);
+				for (Set<PinNameBit> connected : subcomponentMapping.getInternallyConnectedPins())
+					connectedPins.unionAll(connected.stream().map(p -> p.toPinBit(subcomponent)).collect(Collectors.toList()));
 			}
-
-		// TODO connected pins of subcomponents
 
 		return connectedPins;
 	}
 
-	private ModelComponentToVerilogComponentDeclarationMapping mapDeclaration(SubmodelComponent modelComponent,
-			UnionFind<PinBit> connectedPins, String modelID, JsonElement params)
+	private static ModelComponentToVerilogComponentDeclarationMapping mapDeclaration(SubmodelComponent modelComponent,
+			UnionFind<PinBit> connectedPins, String modelID, JsonElement params, String verilogID)
 	{
 		// TODO this is probably slow
 		Map<PinBit, PinNameBit> representantMapping = new HashMap<>();
@@ -117,8 +137,7 @@ public class ModelComponentToVerilogConverter
 				connectedPinsByName.union(pinnamebit, representative);
 			}
 
-		return generateCanonicalDeclarationMapping(modelComponent, connectedPinsByName, modelID, params,
-				verilogComponentIDGen.generateID(verilogComponentIDPrefix + modelID + (params.isJsonNull() ? "" : "_" + params)));
+		return generateCanonicalDeclarationMapping(modelComponent, connectedPinsByName, modelID, params, verilogID);
 	}
 
 	public static ModelComponentToVerilogComponentDeclarationMapping generateCanonicalDeclarationMapping(ModelComponent modelComponent,
@@ -191,34 +210,28 @@ public class ModelComponentToVerilogConverter
 		Map<PinBit, Signal> currentPreSignals = new HashMap<>();
 		Map<PinBit, NamedSignal> finalOutSignals = new HashMap<>();
 		Map<PinBit, NamedSignal> resSignals = new HashMap<>();
-		for (Pin submodelPin : modelComponent.getSubmodelPins().values())
-			for (int bit = 0; bit < submodelPin.logicWidth; bit++)
-			{
-				PinBit pinbit = new PinBit(submodelPin, bit);
-				PinNameBit pinnamebit = pinbit.toPinNameBit();
-				PinBit root = connectedPins.find(pinbit);
-				resSignals.put(root, declarationMapping.getResPinMapping().get(pinnamebit).getVerilogPort());
-				finalOutSignals.put(root, declarationMapping.getOutPinMapping().get(pinnamebit).getVerilogPort());
-				Signal prePort = declarationMapping.getPrePinMapping().get(pinnamebit).getVerilogPort();
-				Signal previousPrePort = currentPreSignals.put(root, prePort);
-				assert previousPrePort != null && !previousPrePort.equals(prePort);
-			}
+		for (Set<PinNameBit> connectedPinGroup : declarationMapping.getInternallyConnectedPins())
+		{
+			PinNameBit pinnamebit = connectedPinGroup.iterator().next();
+			PinBit root = connectedPins.find(pinnamebit.toSubmodelPinBit(modelComponent));
+			resSignals.put(root, declarationMapping.getResPinMapping().get(pinnamebit).getVerilogPort());
+			finalOutSignals.put(root, declarationMapping.getOutPinMapping().get(pinnamebit).getVerilogPort());
+			currentPreSignals.put(root, declarationMapping.getPrePinMapping().get(pinnamebit).getVerilogPort());
+		}
 
 		IdentifierGenerator idGen = new IdentifierGenerator(
 				declarationMapping.getVerilogComponentDeclaration().getIOPorts().stream().map(IOPort::getName).collect(Collectors.toList()),
 				ModelComponentToVerilogConverter::sanitizeVerilogID);
-		Set<Wire> internalWires = new HashSet<>();
-		Set<ComponentReference> subcomponents = new HashSet<>();
+		List<Statement> statements = new ArrayList<>();
 		for (ModelComponent subcomponent : modelComponent.submodel.getComponentsByName().values())
 		{
 			// TODO do we really want to use instanceof?
-			if (subcomponent instanceof ModelSplitter || subcomponent.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
+			if (subcomponent instanceof ModelSplitter || subcomponent instanceof ModelWireCrossPoint
+					|| subcomponent.getName().equals(SubmodelComponent.SUBMODEL_INTERFACE_NAME))
 				continue;
 
 			String subcomponentVerilogName = idGen.generateID(subcomponent.getName());
-			ModelComponentToVerilogComponentDeclarationMapping subcomponentMapping = componentMappingsPerModelIDPerParams
-					.get(subcomponent.getIDForSerializing(new IdentifyParams()))
-					.get(subcomponent.getParamsForSerializingJSON(new IdentifyParams()));
+			ModelComponentToVerilogComponentDeclarationMapping subcomponentMapping = getComponentMapping(subcomponent);
 			int parameterCount = subcomponentMapping.getVerilogComponentDeclaration().getIOPorts().size();
 			List<Signal> arguments = new ArrayList<>(parameterCount);
 			for (int i = 0; i < parameterCount; i++)
@@ -229,7 +242,7 @@ public class ModelComponentToVerilogConverter
 					PinBit pinbit = new PinBit(pin, bit);
 					PinBit root = connectedPins.find(pinbit);
 					Wire outSignal = new Wire(idGen.generateID(subcomponentVerilogName + "_" + pin.name + "_" + bit), 2);
-					internalWires.add(outSignal);
+					statements.add(new WireDeclaration(outSignal));
 					Signal preSignal = currentPreSignals.put(root, outSignal);
 					Signal resSignal = resSignals.get(root);
 					if (resSignal == null)
@@ -237,7 +250,7 @@ public class ModelComponentToVerilogConverter
 						preSignal = new Constant(BitVector.of(Bit.ZERO, 2));
 						Wire resWire = new Wire(idGen.generateID(subcomponentVerilogName + "_" + pin.name + "_" + bit + "_res"), 2);
 						resSignal = resWire;
-						internalWires.add(resWire);
+						statements.add(new WireDeclaration(resWire));
 						finalOutSignals.put(root, resWire);
 						resSignals.put(root, resWire);
 					}
@@ -246,16 +259,21 @@ public class ModelComponentToVerilogConverter
 					arguments.set(subcomponentMapping.getOutPinMapping().get(pinnamebit).getPortIndex(), outSignal);
 					arguments.set(subcomponentMapping.getResPinMapping().get(pinnamebit).getPortIndex(), resSignal);
 				}
-			subcomponents
+			statements
 					.add(new ComponentReference(subcomponentVerilogName, subcomponentMapping.getVerilogComponentDeclaration(), arguments));
 		}
 
-		Set<Assign> assigns = new HashSet<>();
 		for (Entry<PinBit, NamedSignal> e : finalOutSignals.entrySet())
-			assigns.add(new Assign(currentPreSignals.get(e.getKey()), e.getValue()));
+			statements.add(new Assign(e.getValue(), new SignalReference(currentPreSignals.get(e.getKey()))));
 
-		return new VerilogComponentImplementation(declarationMapping.getVerilogComponentDeclaration(), internalWires, assigns,
-				subcomponents);
+		return new VerilogComponentImplementation(declarationMapping.getVerilogComponentDeclaration(), statements);
+	}
+
+	private ModelComponentToVerilogComponentDeclarationMapping getComponentMapping(ModelComponent component)
+	{
+		ModelComponentToVerilogComponentDeclarationMapping subcomponentMapping = componentMappingsPerModelIDPerParams
+				.get(component.getIDForSerializing(new IdentifyParams())).get(component.getParamsForSerializingJSON(new IdentifyParams()));
+		return subcomponentMapping;
 	}
 
 	private Set<VerilogComponentImplementation> getVerilogComponents()

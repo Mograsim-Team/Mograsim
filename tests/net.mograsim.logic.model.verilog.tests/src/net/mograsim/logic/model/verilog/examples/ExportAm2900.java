@@ -27,15 +27,14 @@ import net.mograsim.logic.model.model.components.atomic.ModelNandGate;
 import net.mograsim.logic.model.model.components.atomic.ModelTextComponent;
 import net.mograsim.logic.model.model.components.atomic.ModelTriStateBuffer;
 import net.mograsim.logic.model.model.components.atomic.ModelTriStateBuffer.ModelTriStateBufferParams;
-import net.mograsim.logic.model.model.wires.ModelWireCrossPoint;
 import net.mograsim.logic.model.serializing.IdentifyParams;
 import net.mograsim.logic.model.serializing.IndirectModelComponentCreator;
 import net.mograsim.logic.model.verilog.converter.ModelComponentToVerilogComponentDeclarationMapping;
 import net.mograsim.logic.model.verilog.converter.ModelComponentToVerilogConverter;
-import net.mograsim.logic.model.verilog.helper.UnionFind;
-import net.mograsim.logic.model.verilog.model.IOPort;
 import net.mograsim.logic.model.verilog.model.VerilogComponentDeclaration;
 import net.mograsim.logic.model.verilog.model.VerilogComponentImplementation;
+import net.mograsim.logic.model.verilog.model.signals.IOPort;
+import net.mograsim.logic.model.verilog.utils.UnionFind;
 
 public class ExportAm2900
 {
@@ -76,12 +75,6 @@ public class ExportAm2900
 				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(12, Orientation.DOWN)), //
 				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(16, Orientation.LEFT)), //
 				new ModelTriStateBuffer(model, new ModelTriStateBufferParams(16, Orientation.RIGHT_ALT)), //
-				new ModelWireCrossPoint(model, 1), //
-				new ModelWireCrossPoint(model, 2), //
-				new ModelWireCrossPoint(model, 4), //
-				new ModelWireCrossPoint(model, 9), //
-				new ModelWireCrossPoint(model, 12), //
-				new ModelWireCrossPoint(model, 16), //
 				new ModelClock(model, new ModelClockParams(7000, Orientation.RIGHT)), //
 				new ModelTextComponent(model, "A bus"), //
 				new ModelTextComponent(model, "MPM addr"), //

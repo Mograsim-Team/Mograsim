@@ -3,8 +3,8 @@ package net.mograsim.logic.model.verilog.converter;
 import java.util.Objects;
 import java.util.Set;
 
-import net.mograsim.logic.model.verilog.model.IOPort;
-import net.mograsim.logic.model.verilog.model.Signal;
+import net.mograsim.logic.model.verilog.model.signals.IOPort;
+import net.mograsim.logic.model.verilog.model.signals.Signal;
 
 public class VerilogEmulatedModelPin
 {

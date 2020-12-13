@@ -2,6 +2,9 @@ package net.mograsim.logic.model.verilog.converter;
 
 import java.util.Objects;
 
+import net.mograsim.logic.model.model.components.ModelComponent;
+import net.mograsim.logic.model.model.components.submodels.SubmodelComponent;
+
 public class PinNameBit
 {
 	private final String name;
@@ -29,6 +32,16 @@ public class PinNameBit
 	public int getBit()
 	{
 		return bit;
+	}
+
+	public PinBit toPinBit(ModelComponent pinParent)
+	{
+		return new PinBit(pinParent.getPin(name), bit);
+	}
+
+	public PinBit toSubmodelPinBit(SubmodelComponent submodelComponent)
+	{
+		return new PinBit(submodelComponent.getSubmodelPin(name), bit);
 	}
 
 	@Override

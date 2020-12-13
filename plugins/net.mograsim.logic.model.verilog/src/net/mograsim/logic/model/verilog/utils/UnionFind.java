@@ -1,6 +1,8 @@
-package net.mograsim.logic.model.verilog.helper;
+package net.mograsim.logic.model.verilog.utils;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class UnionFind<E>
@@ -51,6 +53,34 @@ public class UnionFind<E>
 			e2Root.rank++;
 			return e1Root.parent = e2Root;
 		}
+	}
+
+	public E unionAll(Collection<E> es)
+	{
+		Iterator<E> it = es.iterator();
+		if (!it.hasNext())
+			return null;
+
+		UnionFindElement<E> representant = getElement(it.next());
+
+		while (it.hasNext())
+			representant = union(representant, getElement(it.next()));
+
+		return representant.getE();
+	}
+
+	public static <E> UnionFindElement<E> unionAll2(Collection<UnionFindElement<E>> es)
+	{
+		Iterator<UnionFindElement<E>> it = es.iterator();
+		if (!it.hasNext())
+			return null;
+
+		UnionFindElement<E> representant = it.next();
+
+		while (it.hasNext())
+			representant = union(representant, it.next());
+
+		return representant;
 	}
 
 	public static class UnionFindElement<E>

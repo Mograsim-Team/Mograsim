@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.verilog.model;
+package net.mograsim.logic.model.verilog.model.signals;
 
 public class Wire extends NamedSignal
 {

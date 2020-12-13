@@ -1,4 +1,4 @@
-package net.mograsim.logic.model.verilog.helper;
+package net.mograsim.logic.model.verilog.utils;
 
 import java.util.Collection;
 import java.util.HashSet;

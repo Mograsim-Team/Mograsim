@@ -1,10 +1,15 @@
-package net.mograsim.logic.model.verilog.model;
+package net.mograsim.logic.model.verilog.model.statements;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ComponentReference
+import net.mograsim.logic.model.verilog.model.VerilogComponentDeclaration;
+import net.mograsim.logic.model.verilog.model.signals.IOPort;
+import net.mograsim.logic.model.verilog.model.signals.Signal;
+
+public class ComponentReference extends Statement
 {
 	private final String name;
 	private final VerilogComponentDeclaration referencedComponent;
@@ -47,6 +52,7 @@ public class ComponentReference
 		return arguments;
 	}
 
+	@Override
 	public String toVerilogCode()
 	{
 		StringBuilder sb = new StringBuilder();
@@ -56,6 +62,24 @@ public class ComponentReference
 		sb.append(";");
 
 		return sb.toString();
+	}
+
+	@Override
+	public Set<String> getDefinedNames()
+	{
+		return Set.of(name);
+	}
+
+	@Override
+	public Set<Signal> getDefinedSignals()
+	{
+		return Set.of();
+	}
+
+	@Override
+	public Set<Signal> getReferencedSignals()
+	{
+		return Set.copyOf(arguments);
 	}
 
 	@Override

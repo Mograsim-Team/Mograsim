@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import net.mograsim.logic.model.verilog.model.signals.IOPort;
+
 public class VerilogComponentDeclaration
 {
 	private final String id;
