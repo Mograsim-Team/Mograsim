@@ -9,3 +9,10 @@ Require-Bundle: org.eclipse.osgi,
 Automatic-Module-Name: net.mograsim.logic.model.verilogexporter
 Bundle-Vendor: Mograsim Team
 Bundle-ActivationPolicy: lazy
+Export-Package: net.mograsim.logic.model.verilog.converter,
+ net.mograsim.logic.model.verilog.converter.components,
+ net.mograsim.logic.model.verilog.model,
+ net.mograsim.logic.model.verilog.model.expressions,
+ net.mograsim.logic.model.verilog.model.signals,
+ net.mograsim.logic.model.verilog.model.statements,
+ net.mograsim.logic.model.verilog.utils
