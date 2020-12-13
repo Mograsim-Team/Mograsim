@@ -148,6 +148,16 @@ public class ModelSplitter extends ModelComponent
 	{
 		public int logicWidth;
 		public Orientation orientation;
+
+		public SplitterParams()
+		{
+		}
+
+		public SplitterParams(int logicWidth, Orientation orientation)
+		{
+			this.logicWidth = logicWidth;
+			this.orientation = orientation;
+		}
 	}
 
 	static

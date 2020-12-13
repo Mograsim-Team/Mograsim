@@ -25,6 +25,7 @@ import net.mograsim.logic.model.snippets.highlevelstatehandlers.DefaultHighLevel
  * 
  * @author Daniel Kirschten
  */
+// TODO split into "blueprint" and "used component"
 public abstract class ModelComponent implements JSONSerializable
 {
 	/**
