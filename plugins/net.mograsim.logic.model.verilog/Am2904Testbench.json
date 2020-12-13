@@ -1,0 +1,2341 @@
+{
+  "width": 0.0,
+  "height": 0.0,
+  "interfacePins": [],
+  "innerScale": 1.0,
+  "submodel": {
+    "components": [
+      {
+        "id": "Am2904",
+        "name": "Am2904#0",
+        "pos": {
+          "x": 220.0,
+          "y": 175.0
+        }
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#0",
+        "pos": {
+          "x": 391.0,
+          "y": 150.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#1",
+        "pos": {
+          "x": 391.0,
+          "y": 165.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#2",
+        "pos": {
+          "x": 391.0,
+          "y": 180.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#3",
+        "pos": {
+          "x": 391.0,
+          "y": 195.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#4",
+        "pos": {
+          "x": 365.0,
+          "y": 240.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#5",
+        "pos": {
+          "x": 365.0,
+          "y": 275.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#6",
+        "pos": {
+          "x": 365.0,
+          "y": 370.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#7",
+        "pos": {
+          "x": 365.0,
+          "y": 385.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#8",
+        "pos": {
+          "x": 365.0,
+          "y": 330.0
+        },
+        "params": 1
+      },
+      {
+        "id": "BitDisplay",
+        "name": "BitDisplay#9",
+        "pos": {
+          "x": 365.0,
+          "y": 315.0
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#0",
+        "pos": {
+          "x": 255.0,
+          "y": 152.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#1",
+        "pos": {
+          "x": 170.0,
+          "y": 82.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#2",
+        "pos": {
+          "x": 170.0,
+          "y": 112.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#3",
+        "pos": {
+          "x": 55.0,
+          "y": 122.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#4",
+        "pos": {
+          "x": 170.0,
+          "y": 127.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#5",
+        "pos": {
+          "x": 170.0,
+          "y": 142.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#6",
+        "pos": {
+          "x": 170.0,
+          "y": 157.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#7",
+        "pos": {
+          "x": 155.0,
+          "y": 172.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#8",
+        "pos": {
+          "x": 155.0,
+          "y": 187.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#9",
+        "pos": {
+          "x": 160.0,
+          "y": 232.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#10",
+        "pos": {
+          "x": 160.0,
+          "y": 247.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#11",
+        "pos": {
+          "x": 160.0,
+          "y": 217.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#12",
+        "pos": {
+          "x": 160.0,
+          "y": 202.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#13",
+        "pos": {
+          "x": 60.0,
+          "y": 132.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#14",
+        "pos": {
+          "x": 165.0,
+          "y": 287.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#15",
+        "pos": {
+          "x": 140.0,
+          "y": 317.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#16",
+        "pos": {
+          "x": 140.0,
+          "y": 332.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#17",
+        "pos": {
+          "x": 140.0,
+          "y": 387.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#18",
+        "pos": {
+          "x": 140.0,
+          "y": 372.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#19",
+        "pos": {
+          "x": 140.0,
+          "y": 357.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#20",
+        "pos": {
+          "x": 140.0,
+          "y": 302.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#21",
+        "pos": {
+          "x": 55.0,
+          "y": 142.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#22",
+        "pos": {
+          "x": 60.0,
+          "y": 152.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#23",
+        "pos": {
+          "x": 60.0,
+          "y": 172.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#24",
+        "pos": {
+          "x": 55.0,
+          "y": 162.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#25",
+        "pos": {
+          "x": 55.0,
+          "y": 182.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#26",
+        "pos": {
+          "x": 60.0,
+          "y": 192.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#27",
+        "pos": {
+          "x": 60.0,
+          "y": 232.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#28",
+        "pos": {
+          "x": 55.0,
+          "y": 202.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#29",
+        "pos": {
+          "x": 55.0,
+          "y": 222.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#30",
+        "pos": {
+          "x": 60.0,
+          "y": 212.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#31",
+        "pos": {
+          "x": 55.0,
+          "y": 242.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#32",
+        "pos": {
+          "x": 300.0,
+          "y": 107.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#33",
+        "pos": {
+          "x": 300.0,
+          "y": 137.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#34",
+        "pos": {
+          "x": 300.0,
+          "y": 92.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#35",
+        "pos": {
+          "x": 300.0,
+          "y": 122.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#36",
+        "pos": {
+          "x": 300.0,
+          "y": 77.5
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#37",
+        "pos": {
+          "x": 165.0,
+          "y": 270.0
+        },
+        "params": 1
+      },
+      {
+        "id": "ManualSwitch",
+        "name": "ManualSwitch#38",
+        "pos": {
+          "x": 385.0,
+          "y": 220.0
+        },
+        "params": 1
+      },
+      {
+        "id": "Splitter",
+        "name": "Splitter#0",
+        "pos": {
+          "x": 85.0,
+          "y": 130.0
+        },
+        "params": {
+          "logicWidth": 13,
+          "orientation": "LEFT"
+        }
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#0",
+        "pos": {
+          "x": 140.0,
+          "y": 110.0
+        },
+        "params": "IZ"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#1",
+        "pos": {
+          "x": 140.0,
+          "y": 125.0
+        },
+        "params": "IC"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#2",
+        "pos": {
+          "x": 140.0,
+          "y": 140.0
+        },
+        "params": "IN"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#3",
+        "pos": {
+          "x": 140.0,
+          "y": 155.0
+        },
+        "params": "IOVR"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#4",
+        "pos": {
+          "x": 115.0,
+          "y": 170.0
+        },
+        "params": "_CEM"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#5",
+        "pos": {
+          "x": 115.0,
+          "y": 185.0
+        },
+        "params": "_CEmu"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#6",
+        "pos": {
+          "x": 125.0,
+          "y": 200.0
+        },
+        "params": "_EZ"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#7",
+        "pos": {
+          "x": 125.0,
+          "y": 215.0
+        },
+        "params": "_EC"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#8",
+        "pos": {
+          "x": 125.0,
+          "y": 230.0
+        },
+        "params": "_EN"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#9",
+        "pos": {
+          "x": 125.0,
+          "y": 245.0
+        },
+        "params": "_EOVR"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#10",
+        "pos": {
+          "x": 35.0,
+          "y": 240.0
+        },
+        "params": "I0"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#11",
+        "pos": {
+          "x": 35.0,
+          "y": 120.0
+        },
+        "params": "I12"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#12",
+        "pos": {
+          "x": 35.0,
+          "y": 220.0
+        },
+        "params": "I2"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#13",
+        "pos": {
+          "x": 40.0,
+          "y": 190.0
+        },
+        "params": "I5"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#14",
+        "pos": {
+          "x": 40.0,
+          "y": 230.0
+        },
+        "params": "I1"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#15",
+        "pos": {
+          "x": 40.0,
+          "y": 210.0
+        },
+        "params": "I3"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#16",
+        "pos": {
+          "x": 35.0,
+          "y": 200.0
+        },
+        "params": "I4"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#17",
+        "pos": {
+          "x": 35.0,
+          "y": 180.0
+        },
+        "params": "I6"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#18",
+        "pos": {
+          "x": 40.0,
+          "y": 170.0
+        },
+        "params": "I7"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#19",
+        "pos": {
+          "x": 35.0,
+          "y": 160.0
+        },
+        "params": "I8"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#20",
+        "pos": {
+          "x": 40.0,
+          "y": 150.0
+        },
+        "params": "I9"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#21",
+        "pos": {
+          "x": 35.0,
+          "y": 140.0
+        },
+        "params": "I10"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#22",
+        "pos": {
+          "x": 40.0,
+          "y": 130.0
+        },
+        "params": "I11"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#23",
+        "pos": {
+          "x": 145.0,
+          "y": 285.0
+        },
+        "params": "CX"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#24",
+        "pos": {
+          "x": 150.0,
+          "y": 80.0
+        },
+        "params": "C"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#25",
+        "pos": {
+          "x": 225.0,
+          "y": 150.0
+        },
+        "params": "_OEY"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#26",
+        "pos": {
+          "x": 416.0,
+          "y": 150.0
+        },
+        "params": "YZ"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#27",
+        "pos": {
+          "x": 416.0,
+          "y": 165.0
+        },
+        "params": "YC"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#28",
+        "pos": {
+          "x": 416.0,
+          "y": 180.0
+        },
+        "params": "YN"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#29",
+        "pos": {
+          "x": 416.0,
+          "y": 195.0
+        },
+        "params": "YOVR"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#30",
+        "pos": {
+          "x": 390.0,
+          "y": 240.0
+        },
+        "params": "CT"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#31",
+        "pos": {
+          "x": 390.0,
+          "y": 275.0
+        },
+        "params": "C0"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#32",
+        "pos": {
+          "x": 390.0,
+          "y": 315.0
+        },
+        "params": "SIOn"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#33",
+        "pos": {
+          "x": 390.0,
+          "y": 330.0
+        },
+        "params": "QIOn"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#34",
+        "pos": {
+          "x": 390.0,
+          "y": 370.0
+        },
+        "params": "SIO0"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#35",
+        "pos": {
+          "x": 390.0,
+          "y": 385.0
+        },
+        "params": "QIO0"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#36",
+        "pos": {
+          "x": 30.0,
+          "y": 300.0
+        },
+        "params": "enable S/QIOn input"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#37",
+        "pos": {
+          "x": 30.0,
+          "y": 355.0
+        },
+        "params": "enable S/QIO0 input"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#38",
+        "pos": {
+          "x": 110.0,
+          "y": 385.0
+        },
+        "params": "QIO0"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#39",
+        "pos": {
+          "x": 110.0,
+          "y": 370.0
+        },
+        "params": "SIO0"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#40",
+        "pos": {
+          "x": 110.0,
+          "y": 315.0
+        },
+        "params": "SIOn"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#41",
+        "pos": {
+          "x": 110.0,
+          "y": 330.0
+        },
+        "params": "QIOn"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#42",
+        "pos": {
+          "x": 270.0,
+          "y": 135.0
+        },
+        "params": "YOVR"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#43",
+        "pos": {
+          "x": 270.0,
+          "y": 120.0
+        },
+        "params": "YN"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#44",
+        "pos": {
+          "x": 270.0,
+          "y": 90.0
+        },
+        "params": "YZ"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#45",
+        "pos": {
+          "x": 270.0,
+          "y": 105.0
+        },
+        "params": "YC"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#46",
+        "pos": {
+          "x": 220.0,
+          "y": 75.0
+        },
+        "params": "enable Y input"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#47",
+        "pos": {
+          "x": 145.0,
+          "y": 270.0
+        },
+        "params": "_SE"
+      },
+      {
+        "id": "TextComponent",
+        "name": "TextComponent#48",
+        "pos": {
+          "x": 350.0,
+          "y": 220.0
+        },
+        "params": "_OECT"
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#0",
+        "pos": {
+          "x": 175.0,
+          "y": 315.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#1",
+        "pos": {
+          "x": 175.0,
+          "y": 330.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#2",
+        "pos": {
+          "x": 175.0,
+          "y": 385.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#3",
+        "pos": {
+          "x": 175.0,
+          "y": 370.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#4",
+        "pos": {
+          "x": 335.0,
+          "y": 105.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#5",
+        "pos": {
+          "x": 335.0,
+          "y": 90.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#6",
+        "pos": {
+          "x": 335.0,
+          "y": 120.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "TriStateBuffer",
+        "name": "TriStateBuffer#7",
+        "pos": {
+          "x": 335.0,
+          "y": 135.0
+        },
+        "params": {
+          "logicWidth": 1,
+          "orientation": "RIGHT"
+        }
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#0",
+        "pos": {
+          "x": 184.0,
+          "y": 364.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#1",
+        "pos": {
+          "x": 184.0,
+          "y": 309.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#2",
+        "pos": {
+          "x": 209.0,
+          "y": 324.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#3",
+        "pos": {
+          "x": 214.0,
+          "y": 339.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#4",
+        "pos": {
+          "x": 354.0,
+          "y": 379.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#5",
+        "pos": {
+          "x": 359.0,
+          "y": 389.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#6",
+        "pos": {
+          "x": 344.0,
+          "y": 84.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#7",
+        "pos": {
+          "x": 359.0,
+          "y": 109.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#8",
+        "pos": {
+          "x": 359.0,
+          "y": 124.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#9",
+        "pos": {
+          "x": 364.0,
+          "y": 159.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#10",
+        "pos": {
+          "x": 369.0,
+          "y": 174.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#11",
+        "pos": {
+          "x": 374.0,
+          "y": 189.0
+        },
+        "params": 1
+      },
+      {
+        "id": "WireCrossPoint",
+        "name": "WireCrossPoint#12",
+        "pos": {
+          "x": 379.0,
+          "y": 199.0
+        },
+        "params": 1
+      }
+    ],
+    "wires": [
+      {
+        "pin1": {
+          "compName": "ManualSwitch#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_OEY"
+        },
+        "name": "unnamedWire#0",
+        "path": [
+          {
+            "x": 280.0,
+            "y": 160.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "C"
+        },
+        "name": "unnamedWire#1",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 90.0
+          },
+          {
+            "x": 215.0,
+            "y": 180.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "IZ"
+        },
+        "name": "unnamedWire#2",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 120.0
+          },
+          {
+            "x": 210.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "IC"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#3",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 190.0
+          },
+          {
+            "x": 205.0,
+            "y": 135.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#4",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 150.0
+          },
+          {
+            "x": 200.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "IOVR"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#6",
+          "pinName": ""
+        },
+        "name": "unnamedWire#5",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 200.0
+          },
+          {
+            "x": 195.0,
+            "y": 165.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_CEM"
+        },
+        "name": "unnamedWire#6",
+        "path": [
+          {
+            "x": 190.0,
+            "y": 180.0
+          },
+          {
+            "x": 190.0,
+            "y": 205.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_CEmu"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#7",
+        "path": [
+          {
+            "x": 185.0,
+            "y": 205.0
+          },
+          {
+            "x": 185.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_EZ"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#12",
+          "pinName": ""
+        },
+        "name": "unnamedWire#8",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_EC"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#11",
+          "pinName": ""
+        },
+        "name": "unnamedWire#9",
+        "path": [
+          {
+            "x": 195.0,
+            "y": 215.0
+          },
+          {
+            "x": 195.0,
+            "y": 225.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_EOVR"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#10",
+          "pinName": ""
+        },
+        "name": "unnamedWire#10",
+        "path": [
+          {
+            "x": 205.0,
+            "y": 220.0
+          },
+          {
+            "x": 205.0,
+            "y": 255.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_EN"
+        },
+        "name": "unnamedWire#11",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 240.0
+          },
+          {
+            "x": 200.0,
+            "y": 215.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "I"
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "I"
+        },
+        "name": "unnamedWire#12",
+        "path": [
+          {
+            "x": 105.0,
+            "y": 190.0
+          },
+          {
+            "x": 105.0,
+            "y": 265.0
+          },
+          {
+            "x": 210.0,
+            "y": 265.0
+          },
+          {
+            "x": 210.0,
+            "y": 235.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#14",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "Cx"
+        },
+        "name": "unnamedWire#13",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 295.0
+          },
+          {
+            "x": 200.0,
+            "y": 285.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "YOVR"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "name": "unnamedWire#14",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "YN"
+        },
+        "name": "unnamedWire#15",
+        "path": [
+          {
+            "x": 375.0,
+            "y": 195.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "BitDisplay#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#16",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "YZ"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "name": "unnamedWire#17",
+        "path": [
+          {
+            "x": 365.0,
+            "y": 185.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "CT"
+        },
+        "pin2": {
+          "compName": "BitDisplay#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#18",
+        "path": [
+          {
+            "x": 345.0,
+            "y": 235.0
+          },
+          {
+            "x": 345.0,
+            "y": 250.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "C0"
+        },
+        "pin2": {
+          "compName": "BitDisplay#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#19",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "SIOn"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#20",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 295.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#0",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#21",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "QIOn"
+        },
+        "name": "unnamedWire#22",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 305.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#1",
+          "pinName": "OUT"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#23",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#15",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#0",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#24",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#16",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#1",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#25",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#2",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#17",
+          "pinName": ""
+        },
+        "name": "unnamedWire#26",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#18",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#3",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#27",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#19",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#28",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#3",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#29",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#0",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#2",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#30",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 365.0
+          },
+          {
+            "x": 200.0,
+            "y": 390.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#20",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "name": "unnamedWire#31",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#0",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#32",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#1",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#1",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#33",
+        "path": [
+          {
+            "x": 200.0,
+            "y": 310.0
+          },
+          {
+            "x": 200.0,
+            "y": 335.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#2",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "BitDisplay#9",
+          "pinName": ""
+        },
+        "name": "unnamedWire#34",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 375.0
+          },
+          {
+            "x": 345.0,
+            "y": 375.0
+          },
+          {
+            "x": 345.0,
+            "y": 325.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "BitDisplay#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#35",
+        "path": [
+          {
+            "x": 350.0,
+            "y": 340.0
+          },
+          {
+            "x": 350.0,
+            "y": 380.0
+          },
+          {
+            "x": 215.0,
+            "y": 380.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#3",
+          "pinName": "OUT"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#36",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 380.0
+          },
+          {
+            "x": 210.0,
+            "y": 385.0
+          },
+          {
+            "x": 355.0,
+            "y": 385.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#2",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#37",
+        "path": [
+          {
+            "x": 210.0,
+            "y": 390.0
+          },
+          {
+            "x": 210.0,
+            "y": 395.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "BitDisplay#7",
+          "pinName": ""
+        },
+        "name": "unnamedWire#38",
+        "path": [
+          {
+            "x": 360.0,
+            "y": 395.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "BitDisplay#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "name": "unnamedWire#39",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#4",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "SIO0"
+        },
+        "name": "unnamedWire#40",
+        "path": [
+          {
+            "x": 355.0,
+            "y": 295.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "QIO0"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#5",
+          "pinName": ""
+        },
+        "name": "unnamedWire#41",
+        "path": [
+          {
+            "x": 360.0,
+            "y": 305.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#3",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O12"
+        },
+        "name": "unnamedWire#42",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O11"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#13",
+          "pinName": ""
+        },
+        "name": "unnamedWire#43",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#21",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O10"
+        },
+        "name": "unnamedWire#44",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O9"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#22",
+          "pinName": ""
+        },
+        "name": "unnamedWire#45",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#24",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O8"
+        },
+        "name": "unnamedWire#46",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O7"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#23",
+          "pinName": ""
+        },
+        "name": "unnamedWire#47",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#25",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O6"
+        },
+        "name": "unnamedWire#48",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O5"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#26",
+          "pinName": ""
+        },
+        "name": "unnamedWire#49",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#28",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O4"
+        },
+        "name": "unnamedWire#50",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O3"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#30",
+          "pinName": ""
+        },
+        "name": "unnamedWire#51",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#29",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O2"
+        },
+        "name": "unnamedWire#52",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "Splitter#0",
+          "pinName": "O1"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#27",
+          "pinName": ""
+        },
+        "name": "unnamedWire#53",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#31",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Splitter#0",
+          "pinName": "O0"
+        },
+        "name": "unnamedWire#54",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#7",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#33",
+          "pinName": ""
+        },
+        "name": "unnamedWire#55",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#35",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#6",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#56",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#4",
+          "pinName": "IN"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#32",
+          "pinName": ""
+        },
+        "name": "unnamedWire#57",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#34",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#5",
+          "pinName": "IN"
+        },
+        "name": "unnamedWire#58",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#5",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#59",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "ManualSwitch#36",
+          "pinName": ""
+        },
+        "name": "unnamedWire#60",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#6",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "name": "unnamedWire#61",
+        "path": [
+          {
+            "x": 360.0,
+            "y": 85.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#4",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#62",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#7",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#63",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#6",
+          "pinName": "EN"
+        },
+        "name": "unnamedWire#64",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "TriStateBuffer#7",
+          "pinName": "EN"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#8",
+          "pinName": ""
+        },
+        "name": "unnamedWire#65",
+        "path": [
+          {
+            "x": 360.0,
+            "y": 140.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "BitDisplay#0",
+          "pinName": ""
+        },
+        "name": "unnamedWire#66",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#9",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#5",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#67",
+        "path": [
+          {
+            "x": 365.0,
+            "y": 100.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "YC"
+        },
+        "pin2": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "name": "unnamedWire#68",
+        "path": [
+          {
+            "x": 370.0,
+            "y": 190.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#10",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#4",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#69",
+        "path": [
+          {
+            "x": 370.0,
+            "y": 115.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#6",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#70",
+        "path": [
+          {
+            "x": 375.0,
+            "y": 130.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#11",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "BitDisplay#2",
+          "pinName": ""
+        },
+        "name": "unnamedWire#71",
+        "path": []
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "BitDisplay#3",
+          "pinName": ""
+        },
+        "name": "unnamedWire#72",
+        "path": [
+          {
+            "x": 380.0,
+            "y": 205.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "WireCrossPoint#12",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "TriStateBuffer#7",
+          "pinName": "OUT"
+        },
+        "name": "unnamedWire#73",
+        "path": [
+          {
+            "x": 380.0,
+            "y": 145.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "Am2904#0",
+          "pinName": "_SE"
+        },
+        "pin2": {
+          "compName": "ManualSwitch#37",
+          "pinName": ""
+        },
+        "name": "unnamedWire#74",
+        "path": [
+          {
+            "x": 215.0,
+            "y": 260.0
+          },
+          {
+            "x": 215.0,
+            "y": 280.0
+          }
+        ]
+      },
+      {
+        "pin1": {
+          "compName": "ManualSwitch#38",
+          "pinName": ""
+        },
+        "pin2": {
+          "compName": "Am2904#0",
+          "pinName": "_OECT"
+        },
+        "name": "unnamedWire#75",
+        "path": [
+          {
+            "x": 410.0,
+            "y": 230.0
+          },
+          {
+            "x": 410.0,
+            "y": 215.0
+          },
+          {
+            "x": 345.0,
+            "y": 215.0
+          },
+          {
+            "x": 345.0,
+            "y": 225.0
+          }
+        ]
+      }
+    ],
+    "version": "0.1.1"
+  },
+  "symbolRendererSnippetID": "default",
+  "outlineRendererSnippetID": "default",
+  "highLevelStateHandlerSnippetID": "default",
+  "version": "0.1.5"
+}
