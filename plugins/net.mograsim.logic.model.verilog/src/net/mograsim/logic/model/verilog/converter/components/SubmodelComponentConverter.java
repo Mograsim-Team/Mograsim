@@ -1,14 +1,11 @@
 package net.mograsim.logic.model.verilog.converter.components;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 import com.google.gson.JsonElement;
@@ -26,16 +23,10 @@ import net.mograsim.logic.model.verilog.converter.ModelComponentToVerilogCompone
 import net.mograsim.logic.model.verilog.converter.ModelComponentToVerilogConverter;
 import net.mograsim.logic.model.verilog.converter.PinBit;
 import net.mograsim.logic.model.verilog.converter.PinNameBit;
-import net.mograsim.logic.model.verilog.converter.VerilogEmulatedModelPin;
-import net.mograsim.logic.model.verilog.converter.VerilogEmulatedModelPin.Type;
-import net.mograsim.logic.model.verilog.model.VerilogComponentDeclaration;
 import net.mograsim.logic.model.verilog.model.VerilogComponentImplementation;
 import net.mograsim.logic.model.verilog.model.expressions.Constant;
 import net.mograsim.logic.model.verilog.model.expressions.Expression;
 import net.mograsim.logic.model.verilog.model.expressions.SignalReference;
-import net.mograsim.logic.model.verilog.model.signals.IOPort;
-import net.mograsim.logic.model.verilog.model.signals.Input;
-import net.mograsim.logic.model.verilog.model.signals.Output;
 import net.mograsim.logic.model.verilog.model.signals.Signal;
 import net.mograsim.logic.model.verilog.model.signals.Wire;
 import net.mograsim.logic.model.verilog.model.statements.Assign;
@@ -109,71 +100,8 @@ public class SubmodelComponentConverter implements ComponentConverter<SubmodelCo
 				connectedPinsByName.union(pinnamebit, representative);
 			}
 
-		return generateCanonicalDeclarationMapping(modelComponent, connectedPinsByName, modelID, params, verilogID);
-	}
-
-	public static ModelComponentToVerilogComponentDeclarationMapping generateCanonicalDeclarationMapping(ModelComponent modelComponent,
-			UnionFind<PinNameBit> connectedPins, String modelID, JsonElement params, String verilogID)
-	{
-		IdentifierGenerator ioPortIDGen = new IdentifierGenerator(ModelComponentToVerilogConverter::sanitizeVerilogID);
-		List<IOPort> ioPorts = new ArrayList<>();
-		Map<Type, Map<PinNameBit, VerilogEmulatedModelPinBuilder>> pinMapping = new HashMap<>();
-		for (Type t : Type.values())
-			pinMapping.put(t, new HashMap<>());
-		for (Pin modelPin : modelComponent.getPins().values())
-			for (int bit = 0; bit < modelPin.logicWidth; bit++)
-			{
-				PinNameBit pinbit = new PinNameBit(modelPin.name, bit);
-				addPinMapping(ioPortIDGen, ioPorts, connectedPins, pinMapping, pinbit, Input::new, Type.PRE, "pre");
-				addPinMapping(ioPortIDGen, ioPorts, connectedPins, pinMapping, pinbit, Output::new, Type.OUT, "out");
-				addPinMapping(ioPortIDGen, ioPorts, connectedPins, pinMapping, pinbit, Input::new, Type.RES, "res");
-			}
-
-		VerilogComponentDeclaration declaration = new VerilogComponentDeclaration(verilogID, ioPorts);
-		Set<VerilogEmulatedModelPin> finalPinMapping = pinMapping.values().stream().map(Map::values).flatMap(Collection::stream)
-				.map(VerilogEmulatedModelPinBuilder::build).collect(Collectors.toSet());
-		return new ModelComponentToVerilogComponentDeclarationMapping(modelID, params, declaration, finalPinMapping);
-	}
-
-	private static void addPinMapping(IdentifierGenerator ioPortIDGen, List<IOPort> ioPorts, UnionFind<PinNameBit> connectedPins,
-			Map<Type, Map<PinNameBit, VerilogEmulatedModelPinBuilder>> pinMapping, PinNameBit pinbit,
-			BiFunction<String, Integer, IOPort> constr, Type type, String suffix)
-	{
-		Map<PinNameBit, VerilogEmulatedModelPinBuilder> pinMappingCorrectType = pinMapping.get(type);
-		pinMappingCorrectType.computeIfAbsent(connectedPins.find(pinbit), p ->
-		{
-			String portID = ioPortIDGen.generateID(p.getName() + "_" + p.getBit() + "_" + suffix);
-			IOPort ioPort = constr.apply(portID, 2);
-			int index = ioPorts.size();
-			ioPorts.add(ioPort);
-			return new VerilogEmulatedModelPinBuilder(ioPort, index, type);
-		}).addPinbit(pinbit);
-	}
-
-	private static class VerilogEmulatedModelPinBuilder
-	{
-		private final IOPort verilogPort;
-		private final int portIndex;
-		private final Set<PinNameBit> pinbits;
-		private final Type type;
-
-		public VerilogEmulatedModelPinBuilder(IOPort verilogPort, int portIndex, Type type)
-		{
-			this.verilogPort = verilogPort;
-			this.portIndex = portIndex;
-			this.pinbits = new HashSet<>();
-			this.type = type;
-		}
-
-		public void addPinbit(PinNameBit pinbit)
-		{
-			pinbits.add(pinbit);
-		}
-
-		public VerilogEmulatedModelPin build()
-		{
-			return new VerilogEmulatedModelPin(verilogPort, portIndex, pinbits, type);
-		}
+		return ModelComponentToVerilogConverter.generateCanonicalDeclarationMapping(modelComponent, connectedPinsByName, modelID, params,
+				verilogID);
 	}
 
 	private VerilogComponentImplementation mapImplementation(SubmodelComponent modelComponent, UnionFind<PinBit> connectedPins,
