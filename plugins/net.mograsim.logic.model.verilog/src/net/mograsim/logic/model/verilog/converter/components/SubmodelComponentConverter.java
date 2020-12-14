@@ -135,30 +135,29 @@ public class SubmodelComponentConverter implements ComponentConverter<SubmodelCo
 			List<Expression> arguments = new ArrayList<>(parameterCount);
 			for (int i = 0; i < parameterCount; i++)
 				arguments.add(null);
-			for (Pin pin : subcomponent.getPins().values())
-				for (int bit = 0; bit < pin.logicWidth; bit++)
+			for (Set<PinNameBit> connectedGroup : subcomponentMapping.getInternallyConnectedPins())
+			{
+				PinNameBit pinnamebit = connectedGroup.iterator().next();
+				String pinBaseName = subcomponentVerilogName + "_" + pinnamebit.getName() + "_" + pinnamebit.getBit();
+				PinBit root = connectedPins.find(pinnamebit.toPinBit(subcomponent));
+				Wire outSignal = new Wire(idGen.generateID(pinBaseName), 2);
+				statements.add(new WireDeclaration(outSignal));
+				Expression preExpr = currentPreExprs.put(root, new SignalReference(outSignal));
+				Expression outExpr = new SignalReference(outSignal);
+				Expression resExpr = resExprs.get(root);
+				if (resExpr == null)
 				{
-					PinBit pinbit = new PinBit(pin, bit);
-					PinBit root = connectedPins.find(pinbit);
-					Wire outSignal = new Wire(idGen.generateID(subcomponentVerilogName + "_" + pin.name + "_" + bit), 2);
-					statements.add(new WireDeclaration(outSignal));
-					Expression preExpr = currentPreExprs.put(root, new SignalReference(outSignal));
-					Expression outExpr = new SignalReference(outSignal);
-					Expression resExpr = resExprs.get(root);
-					if (resExpr == null)
-					{
-						preExpr = new Constant(BitVector.of(Bit.ZERO, 2));
-						Wire resWire = new Wire(idGen.generateID(subcomponentVerilogName + "_" + pin.name + "_" + bit + "_res"), 2);
-						resExpr = new SignalReference(resWire);
-						statements.add(new WireDeclaration(resWire));
-						finalOutSignals.put(root, resWire);
-						resExprs.put(root, resExpr);
-					}
-					PinNameBit pinnamebit = pinbit.toPinNameBit();
-					arguments.set(subcomponentMapping.getPrePinMapping().get(pinnamebit).getPortIndex(), preExpr);
-					arguments.set(subcomponentMapping.getOutPinMapping().get(pinnamebit).getPortIndex(), outExpr);
-					arguments.set(subcomponentMapping.getResPinMapping().get(pinnamebit).getPortIndex(), resExpr);
+					preExpr = new Constant(BitVector.of(Bit.ZERO, 2));
+					Wire resWire = new Wire(idGen.generateID(pinBaseName + "_res"), 2);
+					resExpr = new SignalReference(resWire);
+					statements.add(new WireDeclaration(resWire));
+					finalOutSignals.put(root, resWire);
+					resExprs.put(root, resExpr);
 				}
+				arguments.set(subcomponentMapping.getPrePinMapping().get(pinnamebit).getPortIndex(), preExpr);
+				arguments.set(subcomponentMapping.getOutPinMapping().get(pinnamebit).getPortIndex(), outExpr);
+				arguments.set(subcomponentMapping.getResPinMapping().get(pinnamebit).getPortIndex(), resExpr);
+			}
 			statements
 					.add(new ComponentReference(subcomponentVerilogName, subcomponentMapping.getVerilogComponentDeclaration(), arguments));
 		}
