@@ -2,6 +2,7 @@ package net.mograsim.logic.model.verilog.converter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -89,7 +90,8 @@ public class ModelComponentToVerilogConverter
 		Map<Type, Map<PinNameBit, VerilogEmulatedModelPinBuilder>> pinMapping = new HashMap<>();
 		for (Type t : Type.values())
 			pinMapping.put(t, new HashMap<>());
-		for (Pin modelPin : modelComponent.getPins().values())
+		for (Pin modelPin : (Iterable<Pin>) () -> modelComponent.getPins().values().stream().sorted(Comparator.comparing(p -> p.name))
+				.iterator())
 			for (int bit = 0; bit < modelPin.logicWidth; bit++)
 			{
 				PinNameBit pinbit = new PinNameBit(modelPin.name, bit);
@@ -111,7 +113,7 @@ public class ModelComponentToVerilogConverter
 		Map<PinNameBit, VerilogEmulatedModelPinBuilder> pinMappingCorrectType = pinMapping.get(type);
 		pinMappingCorrectType.computeIfAbsent(connectedPins.find(pinbit), p ->
 		{
-			String portID = ioPortIDGen.generateID(p.getName() + "_" + p.getBit() + "_" + suffix);
+			String portID = ioPortIDGen.generateID(pinbit.getName() + "_" + pinbit.getBit() + "_" + suffix);
 			IOPort ioPort = constr.apply(portID, 2);
 			int index = ioPorts.size();
 			ioPorts.add(ioPort);
