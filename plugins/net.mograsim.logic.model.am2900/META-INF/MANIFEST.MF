@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Bundle-Name
 Bundle-SymbolicName: net.mograsim.logic.model.am2900;singleton:=true
-Bundle-Version: 0.1.4.qualifier
+Bundle-Version: 0.1.5.qualifier
 Export-Package: net.mograsim.logic.model.am2900,
  net.mograsim.logic.model.am2900.components,
  net.mograsim.logic.model.am2900.components.am2901,
@@ -19,7 +19,7 @@ Export-Package: net.mograsim.logic.model.am2900,
  net.mograsim.logic.model.examples
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.osgi,
- net.mograsim.machine;bundle-version="0.1.4";visibility:=reexport,
+ net.mograsim.machine;bundle-version="0.1.5";visibility:=reexport,
  net.mograsim.logic.core
 Automatic-Module-Name: net.mograsim.logic.model.am2900
 Bundle-Vendor: Mograsim Team
