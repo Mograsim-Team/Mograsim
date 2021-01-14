@@ -59,6 +59,8 @@ public abstract class AbstractMemoryEditor extends EditorPart
 	private LazyTableViewer viewer;
 	private MemoryTableContentProvider provider;
 	private DisplaySettings displaySettings;
+	private final String addrColName;
+	private final String dataColName;
 
 	private Collection<Control> fontDependent = new HashSet<>();
 
@@ -69,8 +71,11 @@ public abstract class AbstractMemoryEditor extends EditorPart
 	private final static String font = "net.mograsim.plugin.memory.table_font";
 	private IPropertyChangeListener fontChangeListener;
 
-	public AbstractMemoryEditor()
+	public AbstractMemoryEditor(String addrColName, String dataColName)
 	{
+		this.addrColName = addrColName;
+		this.dataColName = dataColName;
+
 		memListener = this::cellModified;
 	}
 
@@ -197,10 +202,10 @@ public abstract class AbstractMemoryEditor extends EditorPart
 
 	private void createColumns()
 	{
-		TableViewerColumn addrCol = createTableViewerColumn("Address", 100);
+		TableViewerColumn addrCol = createTableViewerColumn(addrColName, 100);
 		addrCol.setLabelProvider(new AddressLabelProvider());
 
-		TableViewerColumn dataCol = createTableViewerColumn("Data", 100);
+		TableViewerColumn dataCol = createTableViewerColumn(dataColName, 100);
 		dataCol.setLabelProvider(new NumberColumnLabelProvider(displaySettings)
 		{
 			@Override

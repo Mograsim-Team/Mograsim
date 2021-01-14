@@ -6,6 +6,11 @@ import net.mograsim.machine.StandardMainMemory;
 
 public class MainMemoryEditor extends AbstractMemoryEditor
 {
+	public MainMemoryEditor()
+	{
+		super("Address", "Data");
+	}
+
 	@Override
 	protected BitVectorMemory createEmptyMemory(MachineDefinition activeMachineDefinition)
 	{
