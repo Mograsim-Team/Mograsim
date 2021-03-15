@@ -58,7 +58,10 @@ public class VerilogComponentImplementation
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("module " + declaration.getID());
-		sb.append(declaration.getIOPorts().stream().map(IOPort::toDeclarationVerilogCode).collect(Collectors.joining(", ", "(", ")")));
+		// TODO handle rst / clk more cleanly.
+		// Also in CompenentReference
+		sb.append(declaration.getIOPorts().stream().map(IOPort::toDeclarationVerilogCode)
+				.collect(Collectors.joining(", ", "(input rst,input clk,", ")")));
 		sb.append(";\n\n");
 
 		for (Statement statement : statements)

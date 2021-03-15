@@ -59,7 +59,8 @@ public class ComponentReference extends Statement
 		StringBuilder sb = new StringBuilder();
 
 		sb.append(referencedComponent.getID() + " " + name);
-		sb.append(arguments.stream().map(Expression::toVerilogCode).collect(Collectors.joining(", ", "(", ")")));
+		// TODO handle rst / clk more cleanly; see VerilogCompenentImplementation
+		sb.append(arguments.stream().map(Expression::toVerilogCode).collect(Collectors.joining(", ", "(rst,clk,", ")")));
 		sb.append(";");
 
 		return sb.toString();
