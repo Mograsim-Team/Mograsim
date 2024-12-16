@@ -3,8 +3,6 @@ package net.mograsim.plugin.asm;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import javax.inject.Inject;
-
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
 import org.eclipse.jface.action.Action;
@@ -31,6 +29,7 @@ import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
+import jakarta.inject.Inject;
 import net.mograsim.plugin.AsmOps;
 
 /**

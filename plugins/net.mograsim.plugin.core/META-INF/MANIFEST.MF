@@ -19,7 +19,6 @@ Export-Package: net.mograsim.plugin;uses:="org.eclipse.ui.themes,org.eclipse.swt
  net.mograsim.plugin.util,
  net.mograsim.plugin.views,
  net.mograsim.plugin.wizards.newWizards
-Import-Package: javax.inject;version="1.0.5"
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.jface.text,
@@ -37,7 +36,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.expressions,
  SWTInput,
  org.eclipse.debug.core,
- org.eclipse.debug.ui
+ org.eclipse.debug.ui,
+ jakarta.inject.jakarta.inject-api;bundle-version="1.0.5"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: net.mograsim.plugin.core
 Bundle-Vendor: %Bundle-Vendor.0
