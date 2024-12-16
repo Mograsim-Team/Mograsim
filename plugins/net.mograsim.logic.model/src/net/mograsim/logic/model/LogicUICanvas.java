@@ -63,6 +63,17 @@ public class LogicUICanvas extends ZoomableCanvas
 			setBackground(background);
 
 		LogicUIRenderer renderer = new LogicUIRenderer(model);
+		addZoomedRenderer(gc ->
+		{
+			// No idea why, but the background color sometimes is reset; at least one time once the constructor is done.
+			// So, we just set it again each time we want to render.
+			// To avoid infinite redraw loops, only set background if actually necessary.
+			// Also, this enables changing background color when preferences change while a LogicUICanvas is already existing
+			Color newBackground = renderPrefs.getColor(BACKGROUND_COLOR);
+			if (newBackground != null)
+				if (!getBackground().equals(newBackground))
+					setBackground(newBackground);
+		});
 		addZoomedRenderer(gc -> renderer.render(gc, renderPrefs, new Rectangle(-offX / zoom, -offY / zoom, gW / zoom, gH / zoom)));
 		model.setRedrawHandler(() ->
 		{
